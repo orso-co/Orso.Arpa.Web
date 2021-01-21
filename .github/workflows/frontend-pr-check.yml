@@ -1,12 +1,10 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Frontend PR Check
 
 # Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -34,5 +32,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install
       - run: npm run build:prod
-      - run: npm run test
+      - run: npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
       - run: npm run lint
