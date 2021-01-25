@@ -9,7 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
   title = 'Arpa 2.0';
   constructor(public translate: TranslateService) {
-    translate.addLangs(['de', 'ed']);
+    translate.addLangs(['de', 'en']);
     translate.setDefaultLang('de'); // used as a fallback when a translation isn't found
 
     const browserLang = translate.getBrowserLang();
