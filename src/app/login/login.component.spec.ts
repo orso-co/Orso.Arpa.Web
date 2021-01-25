@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 
-import { HttpClient} from "@angular/common/http";
-import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
-import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-translate/core";
-import { HttpLoaderFactory } from "../app.module";
+import { HttpClient} from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpLoaderFactory } from '../app.module';
 
 describe('LoginComponent', () => {
   let translate: TranslateService;
@@ -15,8 +15,8 @@ describe('LoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ 
-        LoginComponent 
+      declarations: [
+        LoginComponent
       ],
       imports: [
         HttpClientTestingModule,
@@ -30,9 +30,9 @@ describe('LoginComponent', () => {
       ],
     })
     .compileComponents();
-    translate = TestBed.get(TranslateService);
-    http = TestBed.get(HttpTestingController);
-    
+    translate = TestBed.inject(TranslateService);
+    http = TestBed.inject(HttpTestingController);
+
   });
 
   beforeEach(() => {

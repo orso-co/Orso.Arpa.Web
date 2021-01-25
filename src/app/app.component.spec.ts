@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
-import { HttpClient} from "@angular/common/http";
-import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
-import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-translate/core";
-import { HttpLoaderFactory } from "./app.module";
+import { HttpClient} from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpLoaderFactory } from './app.module';
 
 describe('AppComponent', () => {
 
@@ -25,10 +25,10 @@ describe('AppComponent', () => {
             deps: [HttpClient]
           }
         })
-      ],      
+      ],
     }).compileComponents();
-    translate = TestBed.get(TranslateService);
-    http = TestBed.get(HttpTestingController);
+    translate = TestBed.inject(TranslateService);
+    http = TestBed.inject(HttpTestingController);
   });
 
   it('should create the app', () => {

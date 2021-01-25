@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { ArpalogoComponent } from './arpalogo/arpalogo.component';
 import { LoginComponent } from './login/login.component';
 
-export function HttpLoaderFactory(httpClient: HttpClient) {
+export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(httpClient);
 }
 
