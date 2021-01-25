@@ -1,11 +1,12 @@
 # Orso.Arpa.Web
 Frontend Arpa 2.0
 
+## npm
+version used for development: 6.14.11
+
 ## Installation Steps (in Console/Terminal)
 1. git clone https://github.com/orso-co/Orso.Arpa.Web.git
-2. npm install @angular/cli
-3. npm install primeng --save
-4. npm install primeicons --save
+2. npm i
 
 ## Run on local server (in Console/Terminal)
 1. ng serve

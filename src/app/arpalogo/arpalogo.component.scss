@@ -1,0 +1,11 @@
+img {
+    opacity: 0.7;
+    filter: alpha(opacity=50);
+    width: 100%;
+    padding:10px;
+}
+
+img:hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100);
+}
