@@ -1,9 +1,0 @@
-img {
-    opacity: 0.5;
-    filter: alpha(opacity=40);
-}
-
-img:hover {
-    opacity: 1.0;
-    filter: alpha(opacity=100);
-}
