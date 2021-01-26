@@ -1,11 +1,21 @@
-<div class="vertical-center">
+<div class="login-layout">
     <div class="p-field">
-        <input id="emailadress" type="text" pInputText placeholder="E-Mailadresse"> 
+        <input id="emailadress" type="text" pInputText placeholder="{{ 'EMAILADDRESS' | translate }}"> 
     </div>
     <div class="p-field">
-        <input type="password" placeholder="Password" pPassword [feedback]=false>
+        <input type="password" placeholder="{{ 'PASSWORD' | translate }}" pPassword [feedback]=false> 
     </div>
 
-    <button pButton type="button" label="Login" ></button>
+    <button pButton type="button" label="{{ 'LOGIN' | translate }}" ></button>
+
+    <div class="p-field login-sep1" >
+        <p-button label="{{ 'REGISTER' | translate }}" styleClass="p-button-link"></p-button>
+    </div>
+
+    <div class="p-field" >
+        <p-button label="{{ 'RESETPASSWORD' | translate }}" styleClass="p-button-link"></p-button>
+    </div>
+
+
 
   </div>
