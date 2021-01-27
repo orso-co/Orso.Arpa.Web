@@ -9,9 +9,8 @@
 
         <button 
             pButton 
-            type="button" 
             label="{{ 'LOGIN' | translate }}"
-            (click)="submit();"
+            (ngSubmit)="submit();"
             [disabled]="loginFormGroup.invalid || loginFormGroup.pristine">
         </button>
     </form>
