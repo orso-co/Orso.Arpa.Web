@@ -1,7 +1,9 @@
 {
     "EMAILADDRESS": "E-Mailadresse",
     "PASSWORD": "Passwort",
-    "LOGIN": "Einloggen",
+    "LOGIN": "Eintreten",
     "REGISTER": "Registrieren",
-    "RESETPASSWORD": "Passwort vergessen"
-}
+    "RESETPASSWORD": "Passwort vergessen",
+    "IMPRESSUM": "Impressum"
+
+  }

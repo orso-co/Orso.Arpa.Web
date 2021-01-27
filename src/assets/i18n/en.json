@@ -1,7 +1,8 @@
 {
-    "EMAILADDRESS": "e-mail address",
-    "PASSWORD": "password",
-    "LOGIN": "login",
-    "REGISTER": "register",
-    "RESETPASSWORD": "reset password"
+    "EMAILADDRESS": "E-mail address",
+    "PASSWORD": "Password",
+    "LOGIN": "Login",
+    "REGISTER": "Register",
+    "RESETPASSWORD": "Reset password",
+    "IMPRESSUM": "Imprint"
 }
