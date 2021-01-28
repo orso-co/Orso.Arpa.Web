@@ -1,5 +1,5 @@
 <div class="login-layout">
-    <form [formGroup] = "loginFormGroup">
+    <form [formGroup] = "loginFormGroup" (ngSubmit)="submit()">
         <div class="p-field">
             <input id="emailadress" type="text" pInputText placeholder="{{ 'EMAILADDRESS' | translate }}" formControlName="email">
         </div>
@@ -9,8 +9,7 @@
 
         <button 
             pButton 
-            label="{{ 'LOGIN' | translate }}"
-            (ngSubmit)="submit();"
+            label="{{ 'LOGIN' | translate }}"            
             [disabled]="loginFormGroup.invalid || loginFormGroup.pristine">
         </button>
     </form>
