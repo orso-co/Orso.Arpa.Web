@@ -4,7 +4,7 @@ import { LoginComponent } from './login.component';
 import { HttpClient} from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { HttpLoaderFactory } from '../app.module';
+import { HttpLoaderFactory } from '../../app.module';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 

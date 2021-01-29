@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators  } from '@angular/forms';
+import { CustomRegex } from '../../utils/CustomRegex';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,12 +12,14 @@ export class LoginComponent implements OnInit {
 
   loginFormGroup: FormGroup;
 
-  constructor(formBuilder: FormBuilder) {
+  constructor(formBuilder: FormBuilder,
+              private router: Router) {
     this.loginFormGroup = formBuilder.group({
       email: [null,
         [
           Validators.required,
-          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
+          // todo: why not angular's built-in email validator Validators.email?
+          Validators.pattern(CustomRegex.EMAIL)
         ]
       ],
       password: [
@@ -23,7 +27,7 @@ export class LoginComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(6),
-          Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,}')
+          Validators.pattern(CustomRegex.PASSWORD)
         ],
       ],
     });
@@ -34,6 +38,9 @@ export class LoginComponent implements OnInit {
 
   submit(): void {}
 
+  goToRegister(): void {
+    this.router.navigate(['register']);
+  }
 
 }
 

@@ -1,3 +1,12 @@
+img {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  width: 100%;
+}
+
+.image-box {
+  padding-top: 0;
+}
 
 @media all and (min-width: 768px) {
     .login-layout {
@@ -7,6 +16,10 @@
     .login-sep1 {
         padding-top: 100px;
         padding-right: 0px;
+    }
+    img {
+      max-height: 100vh;
+      min-height: 100vh;
     }
   }
 

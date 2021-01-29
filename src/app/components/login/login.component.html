@@ -1,0 +1,33 @@
+<div class="p-grid">
+  <div class="login-layout" class="p-col-11 p-md-4">
+      <form [formGroup] = "loginFormGroup" (ngSubmit)="submit()">
+          <div class="p-field">
+              <input id="emailaddress" type="text" pInputText placeholder="{{ 'EMAILADDRESS' | translate }}" formControlName="email">
+          </div>
+          <div class="p-field">
+              <input type="password" placeholder="{{ 'PASSWORD' | translate }}" pPassword [feedback]=false formControlName="password">
+          </div>
+
+          <button
+              pButton
+              label="{{ 'LOGIN' | translate }}"
+              [disabled]="loginFormGroup.invalid || loginFormGroup.pristine">
+          </button>
+      </form>
+
+      <div class="p-field login-sep1" >
+          <p-button label="{{ 'REGISTER' | translate }}" styleClass="p-button-link" (click)="goToRegister()"></p-button>
+      </div>
+
+      <div class="p-field" >
+          <p-button label="{{ 'RESETPASSWORD' | translate }}" styleClass="p-button-link"></p-button>
+      </div>
+  </div>
+
+  <div class="p-col-1 p-md-1"></div>
+
+  <div class="p-col-12 p-md-7 image-box">
+    <img src="../../../assets/organization/images/bg-login.jpg" alt="bg-login" width=100% >
+  </div>
+
+</div>

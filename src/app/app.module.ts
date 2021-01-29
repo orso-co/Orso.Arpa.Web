@@ -11,8 +11,10 @@ import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
 
 import { AppComponent } from './app.component';
-import { ArpalogoComponent } from './arpalogo/arpalogo.component';
-import { LoginComponent } from './login/login.component';
+import { ArpalogoComponent } from './components/arpalogo/arpalogo.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { AppRoutingModule } from './app-routing.module';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(httpClient);
@@ -22,7 +24,8 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
   declarations: [
     AppComponent,
     ArpalogoComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,11 +38,12 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
     FormsModule,
     TranslateModule.forRoot({
       loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
       }
-    })
+    }),
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
