@@ -12,18 +12,17 @@ export class LoginComponent implements OnInit {
 
   constructor(formBuilder: FormBuilder) {
     this.loginFormGroup = formBuilder.group({
-      email: [null,
+      userName: [null,
         [
           Validators.required,
-          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
+          Validators.minLength(1)
         ]
       ],
       password: [
         null,
         [
           Validators.required,
-          Validators.minLength(6),
-          Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,}')
+          Validators.minLength(6)
         ],
       ],
     });

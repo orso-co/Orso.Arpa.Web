@@ -1,5 +1,6 @@
 {
     "EMAILADDRESS": "E-Mailadresse",
+    "USERNAME": "Benutzername",
     "PASSWORD": "Passwort",
     "LOGIN": "Einloggen",
     "REGISTER": "Registrieren",

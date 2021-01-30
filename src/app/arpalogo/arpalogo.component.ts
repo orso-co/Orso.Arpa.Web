@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { globals } from '../globals';
+
 
 @Component({
   selector: 'app-arpalogo',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArpalogoComponent implements OnInit {
 
-  constructor() { }
+  arpaUrl = globals.arpaUrl;
+
+  constructor() {}
 
   ngOnInit(): void {
   }
