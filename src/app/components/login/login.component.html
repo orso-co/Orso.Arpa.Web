@@ -1,8 +1,8 @@
 <div class="p-grid">
-  <div class="login-layout" class="p-col-11 p-md-4">
+  <div class="login-layout" class="p-col-11 p-md-4 login-sep1">
       <form [formGroup] = "loginFormGroup" (ngSubmit)="submit()">
           <div class="p-field">
-              <input id="emailaddress" type="text" pInputText placeholder="{{ 'EMAILADDRESS' | translate }}" formControlName="email">
+              <input id="usrname" type="text" pInputText placeholder="{{ 'USERNAME' | translate }}" formControlName="userName">
           </div>
           <div class="p-field">
               <input type="password" placeholder="{{ 'PASSWORD' | translate }}" pPassword [feedback]=false formControlName="password">
@@ -15,7 +15,7 @@
           </button>
       </form>
 
-      <div class="p-field login-sep1" >
+      <div class="p-field login-sep2" >
           <p-button label="{{ 'REGISTER' | translate }}" styleClass="p-button-link" (click)="goToRegister()"></p-button>
       </div>
 

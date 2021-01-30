@@ -14,9 +14,13 @@ img {
         text-align: right;
       }
     .login-sep1 {
-        padding-top: 100px;
+        padding-top: 200px;
         padding-right: 0px;
     }
+    .login-sep2 {
+      padding-top: 100px;
+      padding-right: 0px;
+    } 
     img {
       max-height: 100vh;
       min-height: 100vh;
@@ -28,7 +32,7 @@ img {
         padding-top: 5%;
         text-align: right;
       }
-    .login-sep1 {
+    .login-sep1, .login-sep2 {
         padding-top: 20px;
         padding-right: 0px;
     }

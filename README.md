@@ -13,3 +13,8 @@ version used for development: 6.14.11
 
 ## show local (in web browser)
 Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+
+## test to do before push
+1. ng lint
+2. ng test
