@@ -15,11 +15,10 @@ export class LoginComponent implements OnInit {
   constructor(formBuilder: FormBuilder,
               private router: Router) {
     this.loginFormGroup = formBuilder.group({
-      email: [null,
+      userName: [null,
         [
           Validators.required,
-          // todo: why not angular's built-in email validator Validators.email?
-          Validators.pattern(CustomRegex.EMAIL)
+          Validators.minLength(1),
         ]
       ],
       password: [
@@ -27,7 +26,6 @@ export class LoginComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(6),
-          Validators.pattern(CustomRegex.PASSWORD)
         ],
       ],
     });
