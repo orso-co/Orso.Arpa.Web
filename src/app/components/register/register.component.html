@@ -1,0 +1,23 @@
+<div class="p-grid register-layout">
+  <form [formGroup] = "registerFormGroup" (ngSubmit)="submit()">
+    <div class="p-field">
+      <input id="emailaddress" type="text" pInputText placeholder="{{ 'EMAILADDRESS' | translate }}" formControlName="email">
+    </div>
+    <div class="p-field">
+      <input type="password" placeholder="{{ 'PASSWORD' | translate }}" pPassword [feedback]=false formControlName="password">
+    </div>
+
+    <button
+      pButton
+      label="{{ 'REGISTER' | translate }}"
+      [disabled]="registerFormGroup.invalid || registerFormGroup.pristine">
+    </button>
+
+    <button
+      pButton
+      label="{{ 'CANCEL' | translate }}"
+      (click)="goToLogin()">
+    </button>
+
+  </form>
+</div>

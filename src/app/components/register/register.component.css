@@ -1,0 +1,11 @@
+@media all and (min-width: 768px) {
+  .register-layout {
+    justify-content: center
+  }
+}
+
+@media all and (max-width: 768px) {
+  .register-layout {
+    justify-content: center
+  }
+}

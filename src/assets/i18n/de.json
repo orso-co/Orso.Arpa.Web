@@ -3,5 +3,6 @@
     "PASSWORD": "Passwort",
     "LOGIN": "Einloggen",
     "REGISTER": "Registrieren",
-    "RESETPASSWORD": "Passwort vergessen"
+    "RESETPASSWORD": "Passwort vergessen",
+    "CANCEL": "Abbrechen"
 }
