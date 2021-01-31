@@ -9,12 +9,14 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { AppComponent } from './app.component';
 import { ArpalogoComponent } from './components/arpalogo/arpalogo.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AppRoutingModule } from './app-routing.module';
+import { PerformerComponent } from './components/performer/performer.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(httpClient);
@@ -26,6 +28,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
     ArpalogoComponent,
     LoginComponent,
     RegisterComponent,
+    PerformerComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +39,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
     ButtonModule,
     PasswordModule,
     FormsModule,
+    ProgressSpinnerModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

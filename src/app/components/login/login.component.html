@@ -8,11 +8,26 @@
               <input type="password" placeholder="{{ 'PASSWORD' | translate }}" pPassword [feedback]=false formControlName="password">
           </div>
 
-          <button
-              pButton
-              label="{{ 'LOGIN' | translate }}"
-              [disabled]="loginFormGroup.invalid || loginFormGroup.pristine">
-          </button>
+          <table>
+            <tr>
+                <td>          
+                    <button
+                        pButton
+                        label="{{ 'LOGIN' | translate }}"
+                        [disabled]="loginFormGroup.invalid || loginFormGroup.pristine">
+                    </button>
+            </td>
+                <td>          
+                    <p-progressSpinner *ngIf="loginRequest"
+                        [style]="{width: '50px', height: '50px'}"
+                        strokeWidth="8">
+                    </p-progressSpinner>
+                  <div *ngIf="errorMsg">{{errorMsg}}</div>
+                </td>
+            </tr>              
+          </table>
+
+
       </form>
 
       <div class="p-field login-sep2" >
