@@ -3,7 +3,10 @@
     "USERNAME": "Benutzername",
     "PASSWORD": "Passwort",
     "LOGIN": "Einloggen",
+    "LOGOUT": "Abmelden",
     "REGISTER": "Registrieren",
     "RESETPASSWORD": "Passwort vergessen",
-    "CANCEL": "Abbrechen"
+    "CANCEL": "Abbrechen",
+    "NETWORKERROR": "Netzwerkfehler",
+    "performerWELCOME": "Willkommen auf Arpa 2.0"
 }

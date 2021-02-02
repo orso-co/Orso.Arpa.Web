@@ -3,7 +3,10 @@
     "USERNAME": "Username",
     "PASSWORD": "Password",
     "LOGIN": "Login",
+    "LOGOUT": "Logout",
     "REGISTER": "Register",
     "RESETPASSWORD": "Reset password",
-    "CANCEL": "Cancel"
+    "CANCEL": "Cancel",
+    "NETWORKERROR": "Network error",
+    "performerWELCOME": "Welcome on Arpa 2.0"
 }
