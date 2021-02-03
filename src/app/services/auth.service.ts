@@ -39,9 +39,9 @@ export class AuthService {
 
   resendConfirmationLink(usernameOrEmail: string): Observable<any> {
     const createEmailConfirmationTokenDto: ICreateEmailConfirmationTokenDto = {
-      usernameOrEmail: usernameOrEmail, 
+      usernameOrEmail,
       clientUri: `${environment.web.protocol}://${environment.web.baseUrl}/eMailConfirmation`
-    }
+    };
     return this.http.post<ITokenDto>(`${this.baseUrl}/emailconfirmationtoken`, createEmailConfirmationTokenDto)
     .pipe(
       catchError(error => {

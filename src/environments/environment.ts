@@ -8,7 +8,7 @@ export const environment = {
     protocol: 'https',
     baseUrl: 'orso-arpa.azurewebsites.net'
   },
-  web: 
+  web:
   {
     protocol: 'https',
     baseUrl: 'orsoarpastorage.z1.web.core.windows.net'
