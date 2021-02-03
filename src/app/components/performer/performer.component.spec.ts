@@ -1,14 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {PerformerComponent } from './performer.component';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {HttpLoaderFactory} from '../../app.module';
-import {HttpClient} from '@angular/common/http';
-import {RouterTestingModule} from '@angular/router/testing';
+import { PerformerComponent } from './performer.component';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpLoaderFactory } from '../../app.module';
+import { HttpClient } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateService } from '@ngx-translate/core';
 
 describe('PerformerComponent', () => {
+  let translate: TranslateService;
+  let http: HttpTestingController;
+
   let component: PerformerComponent;
   let fixture: ComponentFixture<PerformerComponent>;
 
@@ -30,6 +34,8 @@ describe('PerformerComponent', () => {
       ],
     })
     .compileComponents();
+    translate = TestBed.inject(TranslateService);
+    http = TestBed.inject(HttpTestingController);
   });
 
   beforeEach(() => {
