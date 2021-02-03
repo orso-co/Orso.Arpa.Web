@@ -2,7 +2,7 @@
     "EMAILADDRESS": "E-mail address",
     "USERNAME": "Username",
     "PASSWORD": "Password",
-    "USERNAMEOREMAIL": "Username or e-Mail",    
+    "USERNAMEOREMAIL": "Username or e-Mail",
     "LOGIN": "Login",
     "LOGOUT": "Logout",
     "REGISTER": "Register",
@@ -12,6 +12,42 @@
     "performerWELCOME": "Welcome on Arpa 2.0",
     "login": {
         "RESENDCONFIRMATION": "Resend confirmation link",
-        "RESENDDONE": "Confirmation link send, please check for mail box"        
-    }
+        "RESENDDONE": "Confirmation link send, please check for mail box"
+    },
+
+    "primeng": {
+      "startsWith": "Starts with",
+      "contains": "Contains",
+      "notContains": "Not contains",
+      "endsWith": "Ends with",
+      "equals": "Equals",
+      "notEquals": "Not equals",
+      "noFilter": "No Filter",
+      "lt": "Less than",
+      "lte": "Less than or equal to",
+      "gt": "Greater than",
+      "gte": "Great then or equals",
+      "is": "Is",
+      "isNot": "Is not",
+      "before": "Before",
+      "after": "After",
+      "clear": "Clear",
+      "apply": "Apply",
+      "matchAll": "Match All",
+      "matchAny": "Match Any",
+      "addRule": "Add Rule",
+      "removeRule": "Remove Rule",
+      "accept": "Yes",
+      "reject": "No",
+      "choose": "Choose",
+      "upload": "Upload",
+      "cancel": "Cancel",
+      "dayNames": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "dayNamesShort": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+      "dayNamesMin": ["Su","Mo","Tu","We","Th","Fr","Sa"],
+      "monthNames": ["January","February","March","April","May","June","July","August","September","October","November","December"],
+      "monthNamesShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      "today": "Today",
+      "weekHeader": "Wk"
+  }
 }
