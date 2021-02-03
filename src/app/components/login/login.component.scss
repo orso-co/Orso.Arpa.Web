@@ -8,6 +8,10 @@ img {
   padding-top: 0;
 }
 
+input {
+  width: 220px;
+}
+
 @media all and (min-width: 768px) {
     .login-layout {
         padding-top: 50%;

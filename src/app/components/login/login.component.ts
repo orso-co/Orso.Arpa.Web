@@ -18,7 +18,9 @@ export class LoginComponent implements OnInit {
 
   loginFormGroup: FormGroup;
   errorMsg = '';
+  resendMsg = false;
   loginRequest = false;
+  waitForAction = false;
 
   constructor(formBuilder: FormBuilder,
               private router: Router,
@@ -27,7 +29,7 @@ export class LoginComponent implements OnInit {
 
   ) {
     this.loginFormGroup = formBuilder.group({
-      userName: [null,
+      usernameOrEmail: [null,
         [
           Validators.required,
           Validators.minLength(1),
@@ -55,6 +57,9 @@ export class LoginComponent implements OnInit {
           this.loginRequest = false;
           if (error instanceof HttpErrorResponse) {
             this.errorMsg = error.error.errorMessage.Message;
+            if (this.errorMsg.startsWith('Your email address is not confirmed')) {
+              this.resendMsg = true;
+            }
           }
           return EMPTY;
         })
@@ -68,6 +73,27 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['register']);
   }
 
+  onChange(): void {
+    this.resendMsg = false;
+    this.errorMsg = '';
+  }
+
+  resendConfirmationLink(): void {
+    this.resendMsg = false;
+    this.authService.resendConfirmationLink(this.loginFormGroup.value.usernameOrEmail)
+    .pipe(
+      catchError((error) => {
+      this.loginRequest = false;
+      if (error instanceof HttpErrorResponse) {
+        this.errorMsg = error.error.errorMessage.Message;
+      }
+      return EMPTY;
+      })
+    )
+    .subscribe(() => {
+      this.errorMsg = 'Bestätigungslink wurde versendet, bitte Mailbox prüfen';
+    });
+  }
 }
 
 

@@ -1,5 +1,6 @@
 import { ITokenDto } from '../models/ITokenDto';
 import { ILoginDto } from '../models/ILoginDto';
+import { ICreateEmailConfirmationTokenDto } from '../models/ICreateEmailConfirmationTokenDto';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import {  tap, catchError  } from 'rxjs/operators';
@@ -30,6 +31,19 @@ export class AuthService {
           localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, tokenDto.token);
         }
       }),
+      catchError(error => {
+        return throwError(error);
+      })
+    );
+  }
+
+  resendConfirmationLink(usernameOrEmail: string): Observable<any> {
+    const createEmailConfirmationTokenDto: ICreateEmailConfirmationTokenDto = {
+      usernameOrEmail,
+      clientUri: `${environment.web.protocol}://${environment.web.baseUrl}/eMailConfirmation`
+    };
+    return this.http.post<ITokenDto>(`${this.baseUrl}/emailconfirmationtoken`, createEmailConfirmationTokenDto)
+    .pipe(
       catchError(error => {
         return throwError(error);
       })

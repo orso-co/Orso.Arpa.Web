@@ -2,11 +2,16 @@
     "EMAILADDRESS": "E-mail address",
     "USERNAME": "Username",
     "PASSWORD": "Password",
+    "USERNAMEOREMAIL": "Username or e-Mail",    
     "LOGIN": "Login",
     "LOGOUT": "Logout",
     "REGISTER": "Register",
     "RESETPASSWORD": "Reset password",
     "CANCEL": "Cancel",
     "NETWORKERROR": "Network error",
-    "performerWELCOME": "Welcome on Arpa 2.0"
+    "performerWELCOME": "Welcome on Arpa 2.0",
+    "login": {
+        "RESENDCONFIRMATION": "Resend confirmation link",
+        "RESENDDONE": "Confirmation link send, please check for mail box"        
+    }
 }
