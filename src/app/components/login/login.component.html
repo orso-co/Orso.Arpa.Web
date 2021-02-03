@@ -2,7 +2,7 @@
   <div class="login-layout" class="p-col-11 p-md-4 login-sep1">
       <form [formGroup] = "loginFormGroup" (ngSubmit)="submit()">
           <div class="p-field">
-              <input id="usrname" type="text" pInputText placeholder="{{ 'USERNAME' | translate }}" formControlName="userName">
+              <input type="text" (ngModelChange)='onChange()' pInputText placeholder="{{ 'USERNAMEOREMAIL' | translate }}" formControlName="usernameOrEmail">
           </div>
           <div class="p-field">
               <input type="password" placeholder="{{ 'PASSWORD' | translate }}" pPassword [feedback]=false formControlName="password">
@@ -10,27 +10,32 @@
 
           <table>
             <tr>
-                <td>          
-                    <button
-                        pButton
-                        label="{{ 'LOGIN' | translate }}"
-                        [disabled]="loginFormGroup.invalid || loginFormGroup.pristine">
-                    </button>
-            </td>
-                <td>          
-                    <p-progressSpinner *ngIf="loginRequest"
-                        [style]="{width: '50px', height: '50px'}"
-                        strokeWidth="8">
-                    </p-progressSpinner>
-                  <div *ngIf="errorMsg">{{errorMsg}}</div>
-                </td>
+              <td>          
+                <button
+                  pButton
+                  label="{{ 'LOGIN' | translate }}"
+                  [disabled]="loginFormGroup.invalid || loginFormGroup.pristine || resendMsg">
+                </button>
+              </td>
+              <td width="10px;"></td>
+              <td>          
+                <p-progressSpinner *ngIf="loginRequest"
+                  [style]="{width: '50px', height: '50px'}"
+                  strokeWidth="8">
+                </p-progressSpinner>
+                <div *ngIf="errorMsg">{{errorMsg}}</div>
+              </td>
             </tr>              
           </table>
 
 
       </form>
 
-      <div class="p-field login-sep2" >
+      <div class="p-field" *ngIf="resendMsg">
+        <p-button label="{{'login.RESENDCONFIRMATION' | translate }}" styleClass="p-button-link" (click)="resendConfirmationLink()"></p-button>     
+      </div>
+
+      <div class="p-field login-sep2">
           <p-button label="{{ 'REGISTER' | translate }}" styleClass="p-button-link" (click)="goToRegister()"></p-button>
       </div>
 
