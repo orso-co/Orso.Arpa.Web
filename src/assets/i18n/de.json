@@ -8,10 +8,15 @@
     "REGISTER": "Registrieren",
     "RESETPASSWORD": "Passwort vergessen",
     "CANCEL": "Abbrechen",
+    "CONNECTIONERROR": "Verbindungsfehler, bitte später nochmal probieren",
     "NETWORKERROR": "Netzwerkfehler",
     "performerWELCOME": "Willkommen auf Arpa 2.0",
     "login": {
         "RESENDCONFIRMATION": "Bestätigungslink nochmal zusenden",
         "RESENDDONE": "Bestätigungslink wurde versendet, bitte Mailbox prüfen"
+    },
+    "emailconfirmation": {
+        "SUCCESS": "Danke für die Bestätigung der E-Mail Adresse",
+        "CONTINUE": "Weiter zum Login"
     }
 }

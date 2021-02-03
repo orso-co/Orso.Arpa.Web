@@ -6,12 +6,13 @@ export const environment = {
   production: false,
   api: {
     protocol: 'https',
-    baseUrl: 'orso-arpa.azurewebsites.net'
+    baseUrl: 'localhost:5001'
+
   },
   web:
   {
-    protocol: 'https',
-    baseUrl: 'orsoarpastorage.z1.web.core.windows.net'
+    protocol: 'http',
+    baseUrl: 'localhost:4200'
   },
 };
 

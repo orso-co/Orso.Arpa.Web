@@ -1,0 +1,9 @@
+<div *ngIf="errorMsg">{{errorMsg}}</div>
+
+<div *ngIf="successMsg">
+    <div>{{ 'emailconfirmation.SUCCESS' | translate }}</div>
+</div>
+
+<div class="p-field">
+  <p-button label="{{ 'emailconfirmation.CONTINUE' | translate }}" styleClass="p-button-link" (click)="goToLogin()"></p-button>
+</div>
