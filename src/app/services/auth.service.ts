@@ -1,5 +1,6 @@
 import { ITokenDto } from '../models/ITokenDto';
 import { ILoginDto } from '../models/ILoginDto';
+import { IUserRegisterDto } from '../models/IUserRegisterDto';
 import { ICreateEmailConfirmationTokenDto } from '../models/ICreateEmailConfirmationTokenDto';
 import { IConfirmEmailDto } from '../models/IConfirmEmailDto';
 import { Injectable } from '@angular/core';
@@ -32,6 +33,16 @@ export class AuthService {
           localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, tokenDto.token);
         }
       }),
+      catchError(error => {
+        return throwError(error);
+      })
+    );
+  }
+
+  register(userRegisterDto: IUserRegisterDto): Observable<ITokenDto> {
+    userRegisterDto.clientUri = `${environment.web.protocol}://${environment.web.baseUrl}/registerConfirmation`;
+    return this.http.post<ITokenDto>(`${this.baseUrl}/register`, userRegisterDto)
+    .pipe(
       catchError(error => {
         return throwError(error);
       })

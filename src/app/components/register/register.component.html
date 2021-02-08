@@ -1,23 +1,52 @@
-<div class="p-grid register-layout">
+<div class="p-grid register-layout register-sep1">
   <form [formGroup] = "registerFormGroup" (ngSubmit)="submit()">
-    <div class="p-field">
-      <input id="emailaddress" type="text" pInputText placeholder="{{ 'EMAILADDRESS' | translate }}" formControlName="email">
-    </div>
-    <div class="p-field">
-      <input type="password" placeholder="{{ 'PASSWORD' | translate }}" pPassword [feedback]=false formControlName="password">
-    </div>
+    
+    <p class="p-float-label">
+      <input id="givenname" type="text" pInputText formControlName="givenName" (ngModelChange)="onChange()">
+      <label for="float-input">{{ 'GIVENNAME' | translate }}</label>
+    </p>
+    <p class="p-float-label">
+      <input id="givenname" type="text" pInputText formControlName="surname" (ngModelChange)="onChange()">
+      <label for="float-input">{{ 'SURNAME' | translate }}</label>
+    </p>    
+    <p class="p-float-label">
+      <input id="givenname" type="text" pInputText formControlName="email" (ngModelChange)="onChange()">
+      <label for="float-input">{{ 'EMAILADDRESS' | translate }}</label>
+    </p>
+    <p class="p-float-label">
+      <input id="givenname" type="text" pInputText formControlName="userName" (ngModelChange)="onChange()">
+      <label for="float-input">{{ 'USERNAME' | translate }}</label>      
+    </p>    
+    <p class="p-float-label">
+      <input id="givenname" type="text" pInputText formControlName="password" (ngModelChange)="onChange()">
+      <label for="float-input">{{ 'PASSWORD' | translate }}</label>      
+    </p>
 
-    <button
-      pButton
-      label="{{ 'REGISTER' | translate }}"
-      [disabled]="registerFormGroup.invalid || registerFormGroup.pristine">
-    </button>
+    <table>
+      <tr>
+        <td>          
+          <button
+          pButton
+          label="{{ 'REGISTER' | translate }}"
+          [disabled]="registerFormGroup.invalid || registerFormGroup.pristine || registerRequest || errorMsg">
+          </button>
+        </td>
+        <td width="10px;"></td>
+        <td>          
+          <p-progressSpinner *ngIf="registerRequest"
+            [style]="{width: '50px', height: '50px'}"
+            strokeWidth="8">
+          </p-progressSpinner>          
+          <button *ngIf="!registerRequest"
+          pButton
+          label="{{ 'CANCEL' | translate }}"
+          (click)="goToLogin()">
+        </button>
+        </td>
+      </tr>              
+    </table>
+    <div *ngIf="errorMsg">{{errorMsg}}</div>
 
-    <button
-      pButton
-      label="{{ 'CANCEL' | translate }}"
-      (click)="goToLogin()">
-    </button>
 
   </form>
 </div>
