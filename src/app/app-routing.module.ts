@@ -8,11 +8,10 @@ import { EmailconfirmationComponent } from './components/emailconfirmation/email
 
 const routes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
-  { path: 'emailConfirmation',   redirectTo: '/emailConfirmation', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'performer', component: PerformerComponent },
-  { path: 'eMailConfirmation', component: EmailconfirmationComponent }
+  { path: 'emailConfirmation', component: EmailconfirmationComponent }
 ];
 
 @NgModule({
