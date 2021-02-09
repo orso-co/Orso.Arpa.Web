@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { IConfirmEmailDto } from '../../models/IConfirmEmailDto';
+import { AuthService } from '../../../../services/auth.service';
+import { IConfirmEmailDto } from '../../../../models/IConfirmEmailDto';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { EMPTY } from 'rxjs';
