@@ -1,9 +1,10 @@
 import { ITokenDto } from '../models/ITokenDto';
 import { ILoginDto } from '../models/ILoginDto';
 import { ICreateEmailConfirmationTokenDto } from '../models/ICreateEmailConfirmationTokenDto';
+import { IConfirmEmailDto } from '../models/IConfirmEmailDto';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import {  tap, catchError  } from 'rxjs/operators';
+import { tap, catchError  } from 'rxjs/operators';
 import { Observable, throwError  } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -42,12 +43,7 @@ export class AuthService {
       usernameOrEmail,
       clientUri: `${environment.web.protocol}://${environment.web.baseUrl}/eMailConfirmation`
     };
-    return this.http.post<ITokenDto>(`${this.baseUrl}/emailconfirmationtoken`, createEmailConfirmationTokenDto)
-    .pipe(
-      catchError(error => {
-        return throwError(error);
-      })
-    );
+    return this.http.post<ITokenDto>(`${this.baseUrl}/emailconfirmationtoken`, createEmailConfirmationTokenDto);
   }
 
   get tokenFromLocalStorage(): string | undefined {
@@ -63,4 +59,7 @@ export class AuthService {
     localStorage.removeItem(LOCAL_STORAGE_TOKEN_KEY);
   }
 
+  confirmMail(confirmEmail: IConfirmEmailDto): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/confirmemail`, confirmEmail);
+  }
 }
