@@ -6,7 +6,6 @@ import { PerformerComponent } from './components/performer/performer.component';
 import { EmailconfirmationComponent } from './components/emailconfirmation/emailconfirmation.component';
 import { RegisterConfirmationComponent } from './components/registerconfirmation/registerconfirmation.component';
 
-
 const routes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },

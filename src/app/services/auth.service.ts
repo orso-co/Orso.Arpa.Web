@@ -54,12 +54,7 @@ export class AuthService {
       usernameOrEmail,
       clientUri: `${environment.web.protocol}://${environment.web.baseUrl}/eMailConfirmation`
     };
-    return this.http.post<ITokenDto>(`${this.baseUrl}/emailconfirmationtoken`, createEmailConfirmationTokenDto)
-    .pipe(
-      catchError(error => {
-        return throwError(error);
-      })
-    );
+    return this.http.post<ITokenDto>(`${this.baseUrl}/emailconfirmationtoken`, createEmailConfirmationTokenDto);
   }
 
   get tokenFromLocalStorage(): string | undefined {
@@ -76,11 +71,6 @@ export class AuthService {
   }
 
   confirmMail(confirmEmail: IConfirmEmailDto): Observable<any> {
-    return this.http.post<ITokenDto>(`${this.baseUrl}/confirmemail`, confirmEmail)
-    .pipe(
-      catchError(error => {
-        return throwError(error);
-      })
-    );
+    return this.http.post<any>(`${this.baseUrl}/confirmemail`, confirmEmail);
   }
 }

@@ -13,13 +13,15 @@
     "CONNECTIONERROR": "Verbindungsfehler, bitte später nochmal probieren",
     "NETWORKERROR": "Netzwerkfehler",
     "performerWELCOME": "Willkommen auf Arpa 2.0",
+    "UNKNOWNERROR": "Unbekannter Fehler",
     "login": {
         "RESENDCONFIRMATION": "Bestätigungslink nochmal zusenden",
         "RESENDDONE": "Bestätigungslink wurde versendet, bitte Mailbox prüfen"
     },
     "emailconfirmation": {
         "SUCCESS": "Danke für die Bestätigung der E-Mail Adresse",
-        "CONTINUE": "Weiter zum Login"
+        "CHECKING": "Bestätigung in Prüfung - bitte warten.",
+        "CONTINUE": "Weiter zum Login"     
     },
     "primeng": {
       "startsWith": "Beginnt mit",
@@ -55,6 +57,5 @@
       "monthNamesShort": ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun","Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
       "today": "Heute",
       "weekHeader": "Woche"
-  }
-
+    }
 }

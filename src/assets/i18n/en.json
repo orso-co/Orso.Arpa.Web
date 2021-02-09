@@ -13,12 +13,14 @@
     "CONNECTIONERROR": "Connection error, please try again later",
     "NETWORKERROR": "Network error",
     "performerWELCOME": "Welcome on Arpa 2.0",
+    "UNKNOWNERROR": "Unknown error",
     "login": {
         "RESENDCONFIRMATION": "Resend confirmation link",
         "RESENDDONE": "Confirmation link send, please check for mail box"        
     },
     "emailconfirmation": {
         "SUCCESS": "Thank you for the confirmation of your e-mail address",
+        "CHECKING": "Validation in progress - please wait.",
         "CONTINUE": "Continue to the login"
     },
     "primeng": {

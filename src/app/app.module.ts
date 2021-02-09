@@ -18,6 +18,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PerformerComponent } from './components/performer/performer.component';
 import { EmailconfirmationComponent } from './components/emailconfirmation/emailconfirmation.component';
+
 import { RegisterConfirmationComponent } from './components/registerconfirmation/registerconfirmation.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
