@@ -4,4 +4,5 @@ export interface IUserRegisterDto {
   email: string;
   givenName: string;
   surname: string;
+  clientUri: string;
 }

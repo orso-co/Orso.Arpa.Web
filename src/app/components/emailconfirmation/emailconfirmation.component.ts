@@ -27,13 +27,10 @@ export class EmailconfirmationComponent implements OnInit {
     this.route.queryParams
     .subscribe(params => {
       const confirmEmail: IConfirmEmailDto = {token: params.token, email: params.email};
-      console.log(params);
       this.authService
       .confirmMail(confirmEmail)
       .pipe(
         catchError((error) => {
-
-          console.log(error);
           if (error instanceof HttpErrorResponse) {
             if (error.status === 0) {
               this.errorMsg = this.translate.instant('CONNECTIONERROR');

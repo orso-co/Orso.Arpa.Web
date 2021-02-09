@@ -1,6 +1,8 @@
 {
     "EMAILADDRESS": "E-mail address",
     "USERNAME": "Username",
+    "GIVENNAME": "Given name",
+    "SURNAME": "Surname",
     "PASSWORD": "Password",
     "USERNAMEOREMAIL": "Username or e-Mail",
     "LOGIN": "Login",
