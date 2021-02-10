@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { catchError } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import {CustomRegex} from '../../utils/CustomRegex';
+import {CustomRegex} from '../../../utils/CustomRegex';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
