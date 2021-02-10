@@ -13,13 +13,15 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { AppComponent } from './app.component';
 import { ArpalogoComponent } from './components/arpalogo/arpalogo.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/onboarding/login/login.component';
+import { RegisterComponent } from './components/onboarding/register/register.component';
 import { AppRoutingModule } from './app-routing.module';
-import { PerformerComponent } from './components/performer/performer.component';
-import { EmailconfirmationComponent } from './components/emailconfirmation/emailconfirmation.component';
+import { PerformerComponent } from './components/dashboards/performer/performer.component';
+import { EmailconfirmationComponent } from './components/onboarding/emailconfirmation/emailconfirmation.component';
 
-import { RegisterConfirmationComponent } from './components/registerconfirmation/registerconfirmation.component';
+import { RegisterConfirmationComponent } from './components/onboarding/registerconfirmation/registerconfirmation.component';
+import { StaffComponent } from './components/dashboards/staff/staff.component';
+import { AdministratorComponent } from './components/dashboards/administrator/administrator.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(httpClient);
@@ -34,6 +36,8 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
     PerformerComponent,
     EmailconfirmationComponent,
     RegisterConfirmationComponent,
+    StaffComponent,
+    AdministratorComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,29 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { PerformerComponent } from './performer.component';
+import { EmailconfirmationComponent } from './emailconfirmation.component';
+import {RouterTestingModule} from '@angular/router/testing';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpLoaderFactory } from '../../../app.module';
+import { HttpClient} from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HttpLoaderFactory } from '../../app.module';
-import { HttpClient } from '@angular/common/http';
-import { RouterTestingModule } from '@angular/router/testing';
-import { TranslateService } from '@ngx-translate/core';
 
-describe('PerformerComponent', () => {
+describe('EmailconfirmationComponent', () => {
+  let component: EmailconfirmationComponent;
+  let fixture: ComponentFixture<EmailconfirmationComponent>;
+
   let translate: TranslateService;
   let http: HttpTestingController;
 
-  let component: PerformerComponent;
-  let fixture: ComponentFixture<PerformerComponent>;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PerformerComponent ],
+      declarations: [ EmailconfirmationComponent ],
       imports: [
         HttpClientTestingModule,
-        ReactiveFormsModule,
         RouterTestingModule,
-        FormsModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
@@ -39,7 +34,7 @@ describe('PerformerComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PerformerComponent);
+    fixture = TestBed.createComponent(EmailconfirmationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

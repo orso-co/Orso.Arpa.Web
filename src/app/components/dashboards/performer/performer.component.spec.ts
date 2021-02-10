@@ -1,31 +1,29 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LoginComponent } from './login.component';
 
-import { HttpClient} from '@angular/common/http';
+import { PerformerComponent } from './performer.component';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { HttpLoaderFactory } from '../../app.module';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import {RouterTestingModule} from '@angular/router/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpLoaderFactory } from '../../../app.module';
+import { HttpClient } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateService } from '@ngx-translate/core';
 
-describe('LoginComponent', () => {
+describe('PerformerComponent', () => {
   let translate: TranslateService;
   let http: HttpTestingController;
 
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+  let component: PerformerComponent;
+  let fixture: ComponentFixture<PerformerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        LoginComponent
-      ],
+      declarations: [ PerformerComponent ],
       imports: [
         HttpClientTestingModule,
         ReactiveFormsModule,
-        FormsModule,
         RouterTestingModule,
+        FormsModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
@@ -38,11 +36,10 @@ describe('LoginComponent', () => {
     .compileComponents();
     translate = TestBed.inject(TranslateService);
     http = TestBed.inject(HttpTestingController);
-
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
+    fixture = TestBed.createComponent(PerformerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
