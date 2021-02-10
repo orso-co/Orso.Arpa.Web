@@ -23,6 +23,10 @@
         "CHECKING": "Validation in progress - please wait.",
         "CONTINUE": "Continue to the login"
     },
+        "registerconfirmation": {
+        "THANKS": "Thanks for your registration at ARPA. Please check your mail box and confirm your e-mail address.",
+        "CONTINUE": "Continue to the login"
+    },
     "primeng": {
       "startsWith": "Starts with",
       "contains": "Contains",

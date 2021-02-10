@@ -84,7 +84,7 @@ export class RegisterComponent implements OnInit {
         })
       )
       .subscribe(() => {
-        this.router.navigate(['registerconfirmation']);
+        this.router.navigate(['registerConfirmation']);
       });
 
   }
