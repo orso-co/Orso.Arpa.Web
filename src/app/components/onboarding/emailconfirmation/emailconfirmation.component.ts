@@ -9,7 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-emailconfirmation',
+  selector: 'arpa-emailconfirmation',
   templateUrl: './emailconfirmation.component.html',
   styleUrls: ['./emailconfirmation.component.scss']
 })

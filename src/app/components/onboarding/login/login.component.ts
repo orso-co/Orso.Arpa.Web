@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 export const LOCAL_STORAGE_TOKEN_KEY = 'token';
 
 @Component({
-  selector: 'app-login',
+  selector: 'arpa-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })

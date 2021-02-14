@@ -99,7 +99,7 @@ export class AuthService {
     if (!token) {
       return null;
     }
-    var tokenObj = this.jwtHelperService.decodeToken(token);
+    const tokenObj = this.jwtHelperService.decodeToken(token);
     return {
       audience: tokenObj.aud,
       issuer: tokenObj.iss,

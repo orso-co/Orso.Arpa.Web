@@ -9,7 +9,7 @@ import { CustomRegex } from '../../../utils/CustomRegex';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-register',
+  selector: 'arpa-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })

@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-onboarding-shell',
+  selector: 'arpa-onboarding-shell',
   templateUrl: './onboarding-shell.component.html',
   styleUrls: ['./onboarding-shell.component.scss']
 })
-export class OnboardingShellComponent implements OnInit {
+export class OnboardingShellComponent  {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
 
 }

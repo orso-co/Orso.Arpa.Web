@@ -1,3 +1,4 @@
+import { waitForAsync } from '@angular/core/testing';
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -9,7 +10,7 @@ describe('OnboardingShellComponent', () => {
   let component: OnboardingShellComponent;
   let fixture: ComponentFixture<OnboardingShellComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ OnboardingShellComponent ]
     })

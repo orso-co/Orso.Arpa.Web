@@ -4,7 +4,7 @@ import { SubSink } from 'subsink';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
-  selector: 'app-performer',
+  selector: 'arpa-performer',
   templateUrl: './performer.component.html',
   styleUrls: ['./performer.component.scss']
 })
@@ -25,7 +25,7 @@ private subs = new SubSink();
       .subscribe(() => this.router.navigate(['/onboarding/login'])));
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subs.unsubscribe();
   }
 }
