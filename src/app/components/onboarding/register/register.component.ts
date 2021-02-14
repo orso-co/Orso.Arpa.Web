@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { catchError } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import {CustomRegex} from '../../../utils/CustomRegex';
+import { CustomRegex } from '../../../utils/CustomRegex';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -29,33 +29,31 @@ export class RegisterComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(4),
+          Validators.maxLength(256),
         ]
       ],
       givenName: [null,
         [
           Validators.required,
-          Validators.minLength(1),
+          Validators.maxLength(50),
         ]
       ],
       surname: [null,
         [
           Validators.required,
-          Validators.minLength(1),
+          Validators.maxLength(50),
         ]
       ],
       email: [null,
         [
           Validators.required,
-          // todo: why not angular's built-in email validator Validators.email?
           Validators.pattern(CustomRegex.EMAIL),
-          Validators.minLength(1),
         ]
       ],
       password: [
         null,
         [
           Validators.required,
-          Validators.minLength(6),
           Validators.pattern(CustomRegex.PASSWORD)
         ],
       ],
@@ -84,7 +82,7 @@ export class RegisterComponent implements OnInit {
         })
       )
       .subscribe(() => {
-        this.router.navigate(['registerconfirmation']);
+        this.router.navigate(['registerConfirmation']);
       });
 
   }

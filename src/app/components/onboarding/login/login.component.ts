@@ -60,7 +60,12 @@ export class LoginComponent implements OnInit {
             if (error.status === 0) {
               this.errorMsg = this.translate.instant('CONNECTIONERROR');
             } else {
-              this.errorMsg = error.error.errorMessage.Message;
+              if (error.error.title) {
+                this.errorMsg = error.error.title;
+              }
+              if (error.error.errors.Email) {
+                this.errorMsg = error.error.errors.Email[0];
+              }
               if (this.errorMsg.startsWith('Your email address is not confirmed')) {
                 this.resendMsg = true;
               }

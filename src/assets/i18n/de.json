@@ -23,6 +23,10 @@
         "CHECKING": "Bestätigung in Prüfung - bitte warten.",
         "CONTINUE": "Weiter zum Login"     
     },
+    "registerconfirmation": {
+        "THANKS": "Vielen Dank für die Registrierung bei ARPA. Bitte prüfe deine Mailbox und bestätige deine Mailaddresse.",
+        "CONTINUE": "Weiter zum Login" 
+    },
     "primeng": {
       "startsWith": "Beginnt mit",
       "contains": "Enthält",

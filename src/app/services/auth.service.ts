@@ -33,20 +33,12 @@ export class AuthService {
           localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, tokenDto.token);
         }
       }),
-      catchError(error => {
-        return throwError(error);
-      })
     );
   }
 
-  register(userRegisterDto: IUserRegisterDto): Observable<ITokenDto> {
-    userRegisterDto.clientUri = `${environment.web.protocol}://${environment.web.baseUrl}/registerConfirmation`;
-    return this.http.post<ITokenDto>(`${this.baseUrl}/register`, userRegisterDto)
-    .pipe(
-      catchError(error => {
-        return throwError(error);
-      })
-    );
+  register(userRegisterDto: IUserRegisterDto): Observable<any> {
+    userRegisterDto.clientUri = `${environment.web.protocol}://${environment.web.baseUrl}/eMailConfirmation`;
+    return this.http.post(`${this.baseUrl}/register`, userRegisterDto);
   }
 
   resendConfirmationLink(usernameOrEmail: string): Observable<any> {
