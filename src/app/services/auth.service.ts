@@ -5,10 +5,12 @@ import { ICreateEmailConfirmationTokenDto } from '../models/ICreateEmailConfirma
 import { IConfirmEmailDto } from '../models/IConfirmEmailDto';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { tap, catchError, map, filter } from 'rxjs/operators';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { tap, map, filter } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { RoleNames } from '../models/role-names';
+import { intersection } from 'lodash-es';
 
 export const LOCAL_STORAGE_TOKEN_KEY = 'token';
 
@@ -18,7 +20,7 @@ export interface IToken {
   creationDate: Date;
   issuer: string;
   username: string;
-  roles: string[];
+  roles: RoleNames[];
   displayName: string;
 }
 
@@ -111,7 +113,7 @@ export class AuthService {
     };
   }
 
-  private getRoles(tokenObj: any): string[] {
+  private getRoles(tokenObj: any): RoleNames[] {
     if (!tokenObj.hasOwnProperty('role')) {
       return [];
     }
@@ -121,5 +123,9 @@ export class AuthService {
       ];
     }
     return [tokenObj.role.toLowerCase()];
+  }
+
+  public isUserInAtLeastOnRole(roles: RoleNames[]): Observable<boolean> {
+    return this.token$.pipe(map(token => token ? intersection(token.roles, roles).length > 0 : false));
   }
 }

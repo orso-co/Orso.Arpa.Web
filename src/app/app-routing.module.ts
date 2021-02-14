@@ -1,3 +1,7 @@
+import { RoleNames } from './models/role-names';
+import { RoleGuard } from './guards/role.guard';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { DashboardGuard } from './guards/dashboard.guard';
 import { IsLoggedInGuard } from './guards/is-logged-in.guard';
 import { DashboardSelectorComponent } from './components/dashboards/dashboard-selector/dashboard-selector.component';
@@ -34,21 +38,25 @@ const routes: Routes = [
     path: 'pages',
     component: MainComponent,
     canActivate: [IsLoggedInGuard],
+    canActivateChild: [RoleGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
         component: DashboardComponent,
         children: [
-          { path: '', pathMatch: 'full', redirectTo: 'select'},
+          { path: '', pathMatch: 'full', redirectTo: 'select' },
           { path: 'select', component: DashboardSelectorComponent, canActivate: [DashboardGuard] },
-          { path: 'performer', component: PerformerComponent },
-          { path: 'admin', component: AdministratorComponent },
-          { path: 'staff', component: StaffComponent },
+          { path: 'performer', component: PerformerComponent, data: { roles: [RoleNames.performer] } },
+          { path: 'admin', component: AdministratorComponent, data: { roles: [RoleNames.admin] } },
+          { path: 'staff', component: StaffComponent, data: { roles: [RoleNames.staff] } },
         ],
       },
     ],
   },
+  { path: 'forbidden', component: ForbiddenComponent },
+  { path: 'notfound', component: NotFoundComponent },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

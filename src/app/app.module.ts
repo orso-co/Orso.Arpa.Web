@@ -1,3 +1,5 @@
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { DashboardSelectorComponent } from './components/dashboards/dashboard-selector/dashboard-selector.component';
 import { FooterComponent } from './components/shell/footer/footer.component';
 import { DashboardComponent } from './components/dashboards/dashboard/dashboard.component';
@@ -49,7 +51,9 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
     OnboardingShellComponent,
     DashboardComponent,
     FooterComponent,
-    DashboardSelectorComponent
+    DashboardSelectorComponent,
+    ForbiddenComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
