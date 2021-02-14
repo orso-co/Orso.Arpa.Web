@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-forbidden',
+  selector: 'arpa-forbidden',
   templateUrl: './forbidden.component.html',
   styleUrls: ['./forbidden.component.scss']
 })
-export class ForbiddenComponent implements OnInit {
+export class ForbiddenComponent {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
 
 }
