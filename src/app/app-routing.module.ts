@@ -1,3 +1,4 @@
+import { DashboardGuard } from './guards/dashboard.guard';
 import { IsLoggedInGuard } from './guards/is-logged-in.guard';
 import { DashboardSelectorComponent } from './components/dashboards/dashboard-selector/dashboard-selector.component';
 import { StaffComponent } from './components/dashboards/staff/staff.component';
@@ -14,7 +15,7 @@ import { EmailconfirmationComponent } from './components/onboarding/emailconfirm
 import { RegisterConfirmationComponent } from './components/onboarding/registerconfirmation/registerconfirmation.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'onboarding', pathMatch: 'full' },
+  { path: '', redirectTo: 'pages', pathMatch: 'full' },
   {
     path: 'onboarding',
     component: OnboardingShellComponent,
@@ -29,7 +30,6 @@ const routes: Routes = [
       },
     ],
   },
-
   {
     path: 'pages',
     component: MainComponent,
@@ -40,7 +40,8 @@ const routes: Routes = [
         path: 'dashboard',
         component: DashboardComponent,
         children: [
-          { path: 'select', component: DashboardSelectorComponent },
+          { path: '', pathMatch: 'full', redirectTo: 'select'},
+          { path: 'select', component: DashboardSelectorComponent, canActivate: [DashboardGuard] },
           { path: 'performer', component: PerformerComponent },
           { path: 'admin', component: AdministratorComponent },
           { path: 'staff', component: StaffComponent },

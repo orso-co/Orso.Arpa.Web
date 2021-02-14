@@ -12,7 +12,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 
 export const LOCAL_STORAGE_TOKEN_KEY = 'token';
 
-interface IToken {
+export interface IToken {
   audience: string;
   expiryDate: Date;
   creationDate: Date;
