@@ -1,0 +1,12 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'arpa-topbar',
+  templateUrl: './topbar.component.html',
+  styleUrls: ['./topbar.component.scss']
+})
+export class TopbarComponent {
+
+
+
+}

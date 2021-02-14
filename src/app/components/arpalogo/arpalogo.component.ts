@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { globals } from '../../globals';
 
 @Component({
-  selector: 'app-arpalogo',
+  selector: 'arpa-arpalogo',
   templateUrl: './arpalogo.component.html',
   styleUrls: ['./arpalogo.component.scss']
 })

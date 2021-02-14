@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-staff',
+  selector: 'arpa-staff',
   templateUrl: './staff.component.html',
   styleUrls: ['./staff.component.css']
 })

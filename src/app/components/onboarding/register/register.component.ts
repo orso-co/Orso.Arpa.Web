@@ -9,7 +9,7 @@ import { CustomRegex } from '../../../utils/CustomRegex';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-register',
+  selector: 'arpa-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
@@ -82,11 +82,10 @@ export class RegisterComponent implements OnInit {
         })
       )
       .subscribe(() => {
-        this.router.navigate(['registerConfirmation']);
+        this.router.navigate(['/onboarding/registerConfirmation']);
       });
 
   }
-
 
   onChange(): void {
     this.registerRequest = false;
@@ -94,7 +93,7 @@ export class RegisterComponent implements OnInit {
   }
 
   goToLogin(): void {
-    this.router.navigate(['login']);
+    this.router.navigate(['/onboarding/login']);
   }
 
 }
