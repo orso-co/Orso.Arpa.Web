@@ -1,3 +1,4 @@
+import { NoRoleComponent } from './components/dashboards/no-role/no-role.component';
 import { RoleNames } from './models/role-names';
 import { RoleGuard } from './guards/role.guard';
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -50,6 +51,7 @@ const routes: Routes = [
           { path: 'performer', component: PerformerComponent, data: { roles: [RoleNames.performer] } },
           { path: 'admin', component: AdministratorComponent, data: { roles: [RoleNames.admin] } },
           { path: 'staff', component: StaffComponent, data: { roles: [RoleNames.staff] } },
+          { path: 'noRole', component: NoRoleComponent },
         ],
       },
     ],

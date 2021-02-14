@@ -23,7 +23,8 @@ export class DashboardGuard implements CanActivate {
 
         switch (token.roles.length) {
           case 0:
-            throw new Error('Es muss definiert werden, wohin bei Usern navigiert werden soll, die keine Rolle haben');
+            this.router.navigate([`/pages/dashboard/noRole`]);
+            return false;
           case 1:
             this.router.navigate([`/pages/dashboard/${token.roles[0]}`]);
             return false;
