@@ -12,7 +12,7 @@
 
           <table>
             <tr>
-              <td>          
+              <td>
                 <button
                   pButton
                   label="{{ 'LOGIN' | translate }}"
@@ -20,21 +20,21 @@
                 </button>
               </td>
               <td width="10px;"></td>
-              <td>          
+              <td>
                 <p-progressSpinner *ngIf="loginRequest"
                   [style]="{width: '50px', height: '50px'}"
                   strokeWidth="8">
                 </p-progressSpinner>
                 <div *ngIf="errorMsg">{{errorMsg}}</div>
               </td>
-            </tr>              
+            </tr>
           </table>
 
 
       </form>
 
       <div class="p-field" *ngIf="resendMsg">
-        <p-button label="{{'login.RESENDCONFIRMATION' | translate }}" styleClass="p-button-link" (click)="resendConfirmationLink()"></p-button>     
+        <p-button label="{{'login.RESENDCONFIRMATION' | translate }}" styleClass="p-button-link" (click)="resendConfirmationLink()"></p-button>
       </div>
 
       <div class="p-field login-sep2">

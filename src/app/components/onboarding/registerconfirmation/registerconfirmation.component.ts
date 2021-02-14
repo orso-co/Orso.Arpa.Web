@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-registerconfirmation',
+  selector: 'arpa-registerconfirmation',
   templateUrl: './registerconfirmation.component.html',
   styleUrls: ['./registerconfirmation.component.css']
 })

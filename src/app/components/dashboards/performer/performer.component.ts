@@ -1,27 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SubSink } from 'subsink';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
-  selector: 'app-performer',
+  selector: 'arpa-performer',
   templateUrl: './performer.component.html',
-  styleUrls: ['./performer.component.css']
+  styleUrls: ['./performer.component.scss']
 })
-export class PerformerComponent implements OnInit {
+export class PerformerComponent implements OnInit, OnDestroy {
+private subs = new SubSink();
 
   constructor(private router: Router,
               private authService: AuthService) {
               }
 
   ngOnInit(): void {
-    if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['login']);
-    }
+
   }
 
   logout(): void {
-    this.authService.logout();
-    this.router.navigate(['login']);
+    this.subs.add(this.authService
+      .logout()
+      .subscribe(() => this.router.navigate(['/onboarding/login'])));
   }
 
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
+  }
 }

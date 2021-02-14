@@ -1,3 +1,8 @@
+import { DashboardSelectorComponent } from './components/dashboards/dashboard-selector/dashboard-selector.component';
+import { FooterComponent } from './components/shell/footer/footer.component';
+import { DashboardComponent } from './components/dashboards/dashboard/dashboard.component';
+import { OnboardingShellComponent } from './components/onboarding/onboarding-shell/onboarding-shell.component';
+import { MainComponent } from './components/shell/main/main.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,6 +27,7 @@ import { EmailconfirmationComponent } from './components/onboarding/emailconfirm
 import { RegisterConfirmationComponent } from './components/onboarding/registerconfirmation/registerconfirmation.component';
 import { StaffComponent } from './components/dashboards/staff/staff.component';
 import { AdministratorComponent } from './components/dashboards/administrator/administrator.component';
+import { TopbarComponent } from './components/shell/topbar/topbar.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(httpClient);
@@ -38,6 +44,12 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
     RegisterConfirmationComponent,
     StaffComponent,
     AdministratorComponent,
+    MainComponent,
+    TopbarComponent,
+    OnboardingShellComponent,
+    DashboardComponent,
+    FooterComponent,
+    DashboardSelectorComponent
   ],
   imports: [
     BrowserModule,
