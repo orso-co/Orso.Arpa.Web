@@ -74,13 +74,23 @@ export class LoginComponent implements OnInit {
           return EMPTY;
         })
       )
-      .subscribe(() => {
-        this.router.navigate(['performer']);
+      .subscribe((token) => {
+        switch (token.roles.length) {
+          case 0:
+            throw Error('ToDo: Define where to navigate if user does not have any roles');
+          case 1:
+            this.router.navigate([`/pages/dashboard/${token.roles[0]}`]);
+            break;
+          default:
+            this.router.navigate(['/pages/dashboard/select']);
+            break;
+        }
+
       });
   }
 
   goToRegister(): void {
-    this.router.navigate(['register']);
+    this.router.navigate(['/onboarding/register']);
   }
 
   onChange(): void {
