@@ -35,7 +35,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(httpClient);
 }
 
-export function tokenGetter() {
+export function tokenGetter(): string | null {
   return localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY);
 }
 
@@ -76,7 +76,7 @@ export function tokenGetter() {
     PrimeNgModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: tokenGetter,
+        tokenGetter,
         allowedDomains: [environment.api.baseUrl],
         disallowedRoutes: [],
       },
