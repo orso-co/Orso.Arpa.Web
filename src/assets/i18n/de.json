@@ -34,6 +34,9 @@
     "WELCOME": "Willkommen bei ARPA!",
     "BE_PATIENT": "Wir bitten um ein wenig Geduld, bis du von unserem Team freigeschaltet wurdest. Du wirst per E-Mail über die erfolgte Freischaltung benachrichtigt."
   },
+  "userlist": {
+    "PENDING_REGISTRATIONS": "Offene Registrierungen"
+  },
   "primeng": {
     "startsWith": "Beginnt mit",
     "contains": "Enthält",

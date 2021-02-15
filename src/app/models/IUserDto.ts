@@ -1,6 +1,9 @@
 export interface IUserDto {
   userName: string;
-  roleName: string;
-  roleLevel: number;
+  roleNames: string[];
   displayName: string;
+  email: string;
+  emailConfirmed: boolean;
+  createdAt: Date;
 }
+

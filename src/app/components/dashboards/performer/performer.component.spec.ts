@@ -1,3 +1,4 @@
+import { AuthService } from './../../../services/auth.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PerformerComponent } from './performer.component';
@@ -32,6 +33,7 @@ describe('PerformerComponent', () => {
           }
         })
       ],
+      providers: [ { provide: AuthService, useValue: {}}]
     })
     .compileComponents();
     translate = TestBed.inject(TranslateService);

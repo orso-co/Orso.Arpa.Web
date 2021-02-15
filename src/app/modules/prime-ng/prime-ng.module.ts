@@ -7,8 +7,22 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { TabMenuModule } from 'primeng/tabmenu';
+import { ListboxModule } from 'primeng/listbox';
+import { AvatarModule } from 'primeng/avatar';
+import { CardModule } from 'primeng/card';
 
-const MODULES = [InputTextModule, ButtonModule, PasswordModule, MessagesModule, MessageModule, ProgressSpinnerModule, TabMenuModule];
+const MODULES = [
+  InputTextModule,
+  ButtonModule,
+  PasswordModule,
+  MessagesModule,
+  MessageModule,
+  ProgressSpinnerModule,
+  TabMenuModule,
+  ListboxModule,
+  AvatarModule,
+  CardModule
+];
 
 @NgModule({
   imports: [CommonModule, ...MODULES],
