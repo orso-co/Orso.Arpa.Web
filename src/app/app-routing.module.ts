@@ -1,11 +1,10 @@
+import { DashboardGuard } from './guards/dashboard.guard';
 import { NoRoleComponent } from './components/dashboards/no-role/no-role.component';
 import { RoleNames } from './models/role-names';
 import { RoleGuard } from './guards/role.guard';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
-import { DashboardGuard } from './guards/dashboard.guard';
 import { IsLoggedInGuard } from './guards/is-logged-in.guard';
-import { DashboardSelectorComponent } from './components/dashboards/dashboard-selector/dashboard-selector.component';
 import { StaffComponent } from './components/dashboards/staff/staff.component';
 import { AdministratorComponent } from './components/dashboards/administrator/administrator.component';
 import { DashboardComponent } from './components/dashboards/dashboard/dashboard.component';
@@ -45,9 +44,9 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
+        canActivate: [DashboardGuard],
+        runGuardsAndResolvers: 'always',
         children: [
-          { path: '', pathMatch: 'full', redirectTo: 'select' },
-          { path: 'select', component: DashboardSelectorComponent, canActivate: [DashboardGuard] },
           { path: 'performer', component: PerformerComponent, data: { roles: [RoleNames.performer] } },
           { path: 'admin', component: AdministratorComponent, data: { roles: [RoleNames.admin] } },
           { path: 'staff', component: StaffComponent, data: { roles: [RoleNames.staff] } },
