@@ -1,9 +1,10 @@
+import { API_URL } from './../models/api-url';
 import { ITokenDto } from '../models/ITokenDto';
 import { ILoginDto } from '../models/ILoginDto';
 import { IUserRegisterDto } from '../models/IUserRegisterDto';
 import { ICreateEmailConfirmationTokenDto } from '../models/ICreateEmailConfirmationTokenDto';
 import { IConfirmEmailDto } from '../models/IConfirmEmailDto';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { tap, map, filter } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -28,15 +29,14 @@ export interface IToken {
   providedIn: 'root',
 })
 export class AuthService {
-  baseUrl = `${environment.api.protocol}://${environment.api.baseUrl}/api/auth`;
+  private baseUrl: string;
   jwtHelperService: JwtHelperService;
   private token$$ = new BehaviorSubject<IToken | null>(null);
-  private tokenString: string | null = localStorage.getItem(
-    LOCAL_STORAGE_TOKEN_KEY
-  );
+  private tokenString: string | null = localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY);
   public token$: Observable<IToken | null> = this.token$$.asObservable();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, @Inject(API_URL) apiUrl: string) {
+    this.baseUrl = `${apiUrl}/api/auth`;
     this.jwtHelperService = new JwtHelperService();
     this.token$$.next(this.decodeToken(this.tokenString));
   }
@@ -55,10 +55,7 @@ export class AuthService {
 
   register(userRegisterDto: IUserRegisterDto): Observable<ITokenDto> {
     userRegisterDto.clientUri = `${environment.web.protocol}://${environment.web.baseUrl}/registerConfirmation`;
-    return this.http.post<ITokenDto>(
-      `${this.baseUrl}/register`,
-      userRegisterDto
-    );
+    return this.http.post<ITokenDto>(`${this.baseUrl}/register`, userRegisterDto);
   }
 
   resendConfirmationLink(usernameOrEmail: string): Observable<any> {
@@ -66,10 +63,7 @@ export class AuthService {
       usernameOrEmail,
       clientUri: `${environment.web.protocol}://${environment.web.baseUrl}/eMailConfirmation`,
     };
-    return this.http.post<ITokenDto>(
-      `${this.baseUrl}/emailconfirmationtoken`,
-      createEmailConfirmationTokenDto
-    );
+    return this.http.post<ITokenDto>(`${this.baseUrl}/emailconfirmationtoken`, createEmailConfirmationTokenDto);
   }
 
   get tokenFromLocalStorage(): string | undefined {
@@ -78,9 +72,7 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    return this.tokenString
-      ? !this.jwtHelperService.isTokenExpired(this.tokenString)
-      : false;
+    return this.tokenString ? !this.jwtHelperService.isTokenExpired(this.tokenString) : false;
   }
 
   logout(): Observable<any> {
@@ -118,14 +110,12 @@ export class AuthService {
       return [];
     }
     if (Array.isArray(tokenObj.role)) {
-      return [
-        ...tokenObj.role.map((roleName: string) => roleName.toLowerCase()),
-      ];
+      return [...tokenObj.role.map((roleName: string) => roleName.toLowerCase())];
     }
     return [tokenObj.role.toLowerCase()];
   }
 
   public isUserInAtLeastOnRole(roles: RoleNames[]): Observable<boolean> {
-    return this.token$.pipe(map(token => token ? intersection(token.roles, roles).length > 0 : false));
+    return this.token$.pipe(map((token) => (token ? intersection(token.roles, roles).length > 0 : false)));
   }
 }

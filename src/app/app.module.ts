@@ -1,3 +1,4 @@
+import { UserListComponent } from './components/dashboards/user-list/user-list.component';
 import { environment } from './../environments/environment';
 import { LOCAL_STORAGE_TOKEN_KEY } from './services/auth.service';
 import { PrimeNgModule } from './modules/prime-ng/prime-ng.module';
@@ -8,7 +9,7 @@ import { FooterComponent } from './components/shell/footer/footer.component';
 import { DashboardComponent } from './components/dashboards/dashboard/dashboard.component';
 import { OnboardingShellComponent } from './components/onboarding/onboarding-shell/onboarding-shell.component';
 import { MainComponent } from './components/shell/main/main.component';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -29,7 +30,11 @@ import { AdministratorComponent } from './components/dashboards/administrator/ad
 import { TopbarComponent } from './components/shell/topbar/topbar.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { WithCredentialsInterceptor } from './interceptors/with-credentials.interceptor';
+import { API_URL } from './models/api-url';
+import { registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
 
+registerLocaleData(localeDe, 'de');
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(httpClient);
@@ -58,6 +63,7 @@ export function tokenGetter(): string | null {
     ForbiddenComponent,
     NotFoundComponent,
     NoRoleComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,6 +94,8 @@ export function tokenGetter(): string | null {
       useClass: WithCredentialsInterceptor,
       multi: true,
     },
+    { provide: API_URL, useValue: `${environment.api.protocol}://${environment.api.baseUrl}` },
+    { provide: LOCALE_ID, useValue: 'de-de' },
   ],
   bootstrap: [AppComponent],
 })

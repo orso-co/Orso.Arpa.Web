@@ -1,3 +1,4 @@
+import { AuthService } from './../../../services/auth.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EmailconfirmationComponent } from './emailconfirmation.component';
 import {RouterTestingModule} from '@angular/router/testing';
@@ -5,6 +6,8 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { HttpLoaderFactory } from '../../../app.module';
 import { HttpClient} from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { IConfirmEmailDto } from 'src/app/models/IConfirmEmailDto';
+import { of } from 'rxjs';
 
 describe('EmailconfirmationComponent', () => {
   let component: EmailconfirmationComponent;
@@ -27,6 +30,7 @@ describe('EmailconfirmationComponent', () => {
           }
         })
       ],
+      providers: [{provide: AuthService, useValue: { confirmMail: (confirmEmail: IConfirmEmailDto) => of(null) }}]
     })
     .compileComponents();
     translate = TestBed.inject(TranslateService);
