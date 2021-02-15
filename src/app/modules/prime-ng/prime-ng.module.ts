@@ -7,8 +7,11 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { TabMenuModule } from 'primeng/tabmenu';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { CheckboxModule } from 'primeng/checkbox';
 
-const MODULES = [InputTextModule, ButtonModule, PasswordModule, MessagesModule, MessageModule, ProgressSpinnerModule, TabMenuModule];
+
+const MODULES = [InputTextModule, ButtonModule, PasswordModule, MessagesModule, MessageModule, ProgressSpinnerModule, TabMenuModule, InputSwitchModule, CheckboxModule];
 
 @NgModule({
   imports: [CommonModule, ...MODULES],

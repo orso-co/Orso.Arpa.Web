@@ -19,12 +19,6 @@ private subs = new SubSink();
 
   }
 
-  logout(): void {
-    this.subs.add(this.authService
-      .logout()
-      .subscribe(() => this.router.navigate(['/onboarding/login'])));
-  }
-
   ngOnDestroy(): void {
     this.subs.unsubscribe();
   }

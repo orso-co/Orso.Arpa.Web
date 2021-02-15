@@ -22,13 +22,60 @@
       <label for="float-input">{{ 'PASSWORD' | translate }}</label>      
     </p>
 
+    <h3>{{ 'DIVISION' | translate }}:</h3>
+    <table>
+      <tr>
+        <td>          
+          <p-inputSwitch [(ngModel)]="divisionPerformer" formControlName="divisionPerformer"></p-inputSwitch>
+        </td>
+        <td>
+          {{ 'PERFORMER' | translate }}
+        </td>
+      </tr>
+      <tr *ngIf="divisionPerformer">
+        <td>                    
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td><p-checkbox formControlName="performerChoir" value="Chor" [(ngModel)]="selectedPerformer"></p-checkbox>
+              <label>{{ 'CHOIR' | translate }}</label></td>
+              <td><p-checkbox formControlName="performeOrchester" value="Orchester" [(ngModel)]="selectedPerformer"></p-checkbox>
+              <label>{{ 'ORCHESTRA' | translate }}</label></td>
+              <td><p-checkbox formControlName="performerSolo" value="Solo" [(ngModel)]="selectedPerformer"></p-checkbox>
+              <label>{{ 'SOLOIST' | translate }}</label>  </td>       
+              <td><p-checkbox formControlName="performerBand" value="Band" [(ngModel)]="selectedPerformer"></p-checkbox>
+              <label>{{ 'BAND' | translate }}</label>   </td>
+            </tr>
+          </table>           
+        </td>
+      </tr>      
+
+      <tr>
+        <td>          
+          <p-inputSwitch [(ngModel)]="divisionVolunteers" formControlName="divisionVolunteers"></p-inputSwitch>
+        </td>
+        <td>
+          {{ 'VOLUNTEERS' | translate }}
+        </td>
+      </tr>      
+      <tr>
+        <td>          
+          <p-inputSwitch [(ngModel)]="divisionVisitors" formControlName="divisionVisitors"></p-inputSwitch>
+        </td>
+        <td>
+          {{ 'CONCERTVISITORS' | translate }}
+        </td>
+      </tr>         
+    </table>
+    <p></p>
     <table>
       <tr>
         <td>          
           <button
           pButton
           label="{{ 'REGISTER' | translate }}"
-          [disabled]="registerFormGroup.invalid || registerFormGroup.pristine || registerRequest || errorMsg">
+          [disabled]="registerFormGroup.invalid || registerFormGroup.pristine || registerRequest || errorMsg || !(divisionPerformer || divisionVolunteers || divisionVisitors)">
           </button>
         </td>
         <td width="10px;"></td>

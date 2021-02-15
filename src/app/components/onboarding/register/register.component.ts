@@ -18,6 +18,11 @@ export class RegisterComponent implements OnInit {
   registerRequest = false;
   errorMsg = '';
 
+  divisionPerformer: boolean = false;
+  divisionVolunteers: boolean = false;
+  divisionVisitors: boolean = false;
+  selectedPerformer: string[] = [];
+
   registerFormGroup: FormGroup;
 
   constructor(formBuilder: FormBuilder,
@@ -57,6 +62,34 @@ export class RegisterComponent implements OnInit {
           Validators.pattern(CustomRegex.PASSWORD)
         ],
       ],
+      divisionPerformer: [
+        null,
+        [],
+      ],    
+      divisionVolunteers: [
+        null,
+        [],
+      ],          
+      divisionVisitors: [
+        null,
+        [],
+      ], 
+      performerChoir: [
+        null,
+        [],
+      ],     
+      performeOrchester: [
+        null,
+        [],
+      ],        
+      performerSolo: [
+        null,
+        [],
+      ],        
+      performerBand: [
+        null,
+        [],
+      ],                      
     });
   }
 

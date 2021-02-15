@@ -1,8 +1,15 @@
 {
+  "BAND": "Band",
+  "CHOIR": "Chor",
+  "CONCERTVISITORS": "Konzertbesucher",
+  "DIVISION": "Abteilung",
   "EMAILADDRESS": "E-Mailadresse",
-  "USERNAME": "Benutzername",
   "GIVENNAME": "Vorname",
+  "PERFORMER": "Mitwirkende",
+  "USERNAME": "Benutzername",
+  "SOLOIST": "Solist",
   "SURNAME": "Nachname",
+  "ORCHESTRA": "Orchester",
   "PASSWORD": "Passwort",
   "USERNAMEOREMAIL": "Benutzername oder e-Mail",
   "LOGIN": "Einloggen",
@@ -12,8 +19,8 @@
   "CANCEL": "Abbrechen",
   "CONNECTIONERROR": "Verbindungsfehler, bitte später nochmal probieren",
   "NETWORKERROR": "Netzwerkfehler",
-  "performerWELCOME": "Willkommen auf Arpa 2.0",
   "UNKNOWNERROR": "Unbekannter Fehler",
+  "VOLUNTEERS": "Freiwillige Helfer",
   "login": {
     "RESENDCONFIRMATION": "Bestätigungslink nochmal zusenden",
     "RESENDDONE": "Bestätigungslink wurde versendet, bitte Mailbox prüfen"

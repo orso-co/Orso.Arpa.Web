@@ -1,8 +1,15 @@
 {
+  "BAND": "Band",
+  "CHOIR": "Choir",
+  "CONCERTVISITORS": "Concert visitors",
+  "DIVISION": "Division",
   "EMAILADDRESS": "E-mail address",
   "USERNAME": "Username",
+  "SOLOIST": "Soloist",
   "GIVENNAME": "Given name",
+  "PERFORMER": "Performer",  
   "SURNAME": "Surname",
+  "ORCHESTRA": "Orchestra",
   "PASSWORD": "Password",
   "USERNAMEOREMAIL": "Username or e-Mail",
   "LOGIN": "Login",
@@ -12,8 +19,8 @@
   "CANCEL": "Cancel",
   "CONNECTIONERROR": "Connection error, please try again later",
   "NETWORKERROR": "Network error",
-  "performerWELCOME": "Welcome on Arpa 2.0",
   "UNKNOWNERROR": "Unknown error",
+  "VOLUNTEERS": "Volunteers",
   "login": {
     "RESENDCONFIRMATION": "Resend confirmation link",
     "RESENDDONE": "Confirmation link send, please check for mail box"
