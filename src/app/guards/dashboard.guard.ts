@@ -17,19 +17,18 @@ export class DashboardGuard implements CanActivate {
     return this.authService.token$.pipe(
       map((token: IToken | null) => {
         if (!token) {
-          this.router.navigate(['/onboarding/login']);
-          return false;
+          return this.router.parseUrl('/onboarding/login');
+        }
+
+        if (route.children.length > 0) {
+          return true;
         }
 
         switch (token.roles.length) {
           case 0:
-            this.router.navigate([`/pages/dashboard/noRole`]);
-            return false;
-          case 1:
-            this.router.navigate([`/pages/dashboard/${token.roles[0]}`]);
-            return false;
+            return this.router.parseUrl('/pages/dashboard/noRole');
           default:
-            return true;
+            return this.router.parseUrl(`/pages/dashboard/${token.roles[0]}`);
         }
       })
     );
