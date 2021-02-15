@@ -1,3 +1,6 @@
+import { NoRoleComponent } from './components/dashboards/no-role/no-role.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { DashboardSelectorComponent } from './components/dashboards/dashboard-selector/dashboard-selector.component';
 import { FooterComponent } from './components/shell/footer/footer.component';
 import { DashboardComponent } from './components/dashboards/dashboard/dashboard.component';
@@ -28,6 +31,8 @@ import { RegisterConfirmationComponent } from './components/onboarding/registerc
 import { StaffComponent } from './components/dashboards/staff/staff.component';
 import { AdministratorComponent } from './components/dashboards/administrator/administrator.component';
 import { TopbarComponent } from './components/shell/topbar/topbar.component';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(httpClient);
@@ -49,7 +54,10 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
     OnboardingShellComponent,
     DashboardComponent,
     FooterComponent,
-    DashboardSelectorComponent
+    DashboardSelectorComponent,
+    ForbiddenComponent,
+    NotFoundComponent,
+    NoRoleComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +67,8 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
     InputTextModule,
     ButtonModule,
     PasswordModule,
+    MessagesModule,
+    MessageModule,
     FormsModule,
     ProgressSpinnerModule,
     TranslateModule.forRoot({

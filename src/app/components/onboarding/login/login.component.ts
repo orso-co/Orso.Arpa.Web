@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { SubSink } from 'subsink';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators  } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
@@ -14,13 +15,14 @@ export const LOCAL_STORAGE_TOKEN_KEY = 'token';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   loginFormGroup: FormGroup;
   errorMsg = '';
   resendMsg = false;
   loginRequest = false;
   waitForAction = false;
+  private subs = new SubSink();
 
   constructor(formBuilder: FormBuilder,
               private router: Router,
@@ -48,9 +50,13 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
+  }
+
   submit(): void {
     this.loginRequest = true;
-    this.authService
+    this.subs.add(this.authService
       .login(Object.assign({}, this.loginFormGroup.value))
       .pipe(
         catchError((error) => {
@@ -74,19 +80,7 @@ export class LoginComponent implements OnInit {
           return EMPTY;
         })
       )
-      .subscribe((token) => {
-        switch (token.roles.length) {
-          case 0:
-            throw Error('ToDo: Define where to navigate if user does not have any roles');
-          case 1:
-            this.router.navigate([`/pages/dashboard/${token.roles[0]}`]);
-            break;
-          default:
-            this.router.navigate(['/pages/dashboard/select']);
-            break;
-        }
-
-      });
+      .subscribe(() => this.router.navigate(['/'])));
   }
 
   goToRegister(): void {
