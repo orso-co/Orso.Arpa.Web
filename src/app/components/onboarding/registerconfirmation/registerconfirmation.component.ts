@@ -14,7 +14,7 @@ export class RegisterConfirmationComponent implements OnInit {
   }
 
   goToLogin(): void {
-    this.router.navigate(['login']);
+    this.router.navigate(['/onboarding/login']);
   }
 
 }

@@ -1,21 +1,21 @@
-import { AuthService } from './../../../services/auth.service';
-/* tslint:disable:no-unused-variable */
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { DashboardSelectorComponent } from './dashboard-selector.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { of } from 'rxjs';
+
+import { NoRoleComponent } from './no-role.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-describe('DashboardSelectorComponent', () => {
-  let component: DashboardSelectorComponent;
-  let fixture: ComponentFixture<DashboardSelectorComponent>;
+describe('NoRoleComponent', () => {
+  let component: NoRoleComponent;
+  let fixture: ComponentFixture<NoRoleComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [DashboardSelectorComponent],
+      declarations: [NoRoleComponent],
+      schemas: [NO_ERRORS_SCHEMA],
       imports: [
         HttpClientTestingModule,
         TranslateModule.forRoot({
@@ -26,13 +26,11 @@ describe('DashboardSelectorComponent', () => {
           },
         }),
       ],
-      schemas: [NO_ERRORS_SCHEMA],
-      providers: [{ provide: AuthService, useValue: { token$: of(null) } }],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardSelectorComponent);
+    fixture = TestBed.createComponent(NoRoleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
