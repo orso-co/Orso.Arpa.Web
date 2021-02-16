@@ -16,6 +16,8 @@
   "performerWELCOME": "Willkommen auf Arpa 2.0",
   "UNKNOWNERROR": "Unbekannter Fehler",
   "SAVE": "Speichern",
+  "NO": "Nein",
+  "YES": "Ja",
   "login": {
     "RESENDCONFIRMATION": "Bestätigungslink nochmal zusenden",
     "RESENDDONE": "Bestätigungslink wurde versendet, bitte Mailbox prüfen",

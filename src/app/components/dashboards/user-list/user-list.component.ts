@@ -81,6 +81,8 @@ export class UserListComponent implements OnDestroy, OnChanges {
       target: event.target ?? undefined,
       message: this.translateService.instant('userlist.PROCEED'),
       icon: 'pi pi-exclamation-triangle',
+      acceptLabel: this.translateService.instant('YES'),
+      rejectLabel: this.translateService.instant('NO'),
       accept: () => {
         this.deleteSelectedUser();
       },
