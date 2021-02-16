@@ -1,12 +1,12 @@
-/* tslint:disable:no-unused-variable */
-
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
+import { TestBed, inject } from '@angular/core/testing';
 import { ToastService } from './toast.service';
 
 describe('Service: Toast', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ToastService]
+      providers: [ToastService, { provide: ToastrService, useValue: {} }, { provide: TranslateService, useValue: {} }],
     });
   });
 

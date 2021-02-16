@@ -11,7 +11,6 @@ import { PrimeNGConfig } from 'primeng/api';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'Arpa 2.0';
   private subs = new SubSink();
 
   constructor(

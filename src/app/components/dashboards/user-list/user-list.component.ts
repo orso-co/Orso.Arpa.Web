@@ -40,7 +40,7 @@ export class UserListComponent implements OnDestroy, OnChanges {
     this.maxRoleLevel$ = this.authService.getMaxRoleLevelOfCurrentUser();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes.hasOwnProperty('users') && this.users) {
       this.usersWithoutRole = orderBy(this.users, (user) => user.createdAt, 'desc');
     }
@@ -76,7 +76,7 @@ export class UserListComponent implements OnDestroy, OnChanges {
     );
   }
 
-  showDeleteConfirmation(event: Event) {
+  showDeleteConfirmation(event: Event): void {
     this.confirmationService.confirm({
       target: event.target ?? undefined,
       message: this.translateService.instant('userlist.PROCEED'),

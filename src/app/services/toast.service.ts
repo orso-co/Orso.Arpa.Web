@@ -8,15 +8,15 @@ import { ToastrService } from 'ngx-toastr';
 export class ToastService {
   constructor(private toastrService: ToastrService, private translateService: TranslateService) {}
 
-  public success(messageKey: string) {
+  public success(messageKey: string): void {
     this.toastrService.success(this.translateService.instant(messageKey));
   }
 
-  public info(messageKey: string) {
+  public info(messageKey: string): void {
     this.toastrService.info(this.translateService.instant(messageKey));
   }
 
-  public eccor(messageKey: string) {
+  public eccor(messageKey: string): void {
     this.toastrService.error(this.translateService.instant(messageKey));
   }
 }

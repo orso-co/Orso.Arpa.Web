@@ -9,7 +9,7 @@ export class RoleListResolver implements Resolve<boolean> {
   constructor(private roleService: RoleService) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
-    if(this.roleService.loaded) {
+    if (this.roleService.loaded) {
       return of(true);
     }
 

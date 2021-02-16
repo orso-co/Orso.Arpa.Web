@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'arpa-administrator',
   templateUrl: './administrator.component.html',
-  styleUrls: ['./administrator.component.scss']
+  styleUrls: ['./administrator.component.scss'],
 })
 export class AdministratorComponent implements OnDestroy {
   users: IUserDto[] = [];
