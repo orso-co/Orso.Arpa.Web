@@ -1,6 +1,6 @@
 import { IUserDto } from './../../../models/IUserDto';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -9,14 +9,14 @@ import { map } from 'rxjs/operators';
   templateUrl: './administrator.component.html',
   styleUrls: ['./administrator.component.scss']
 })
-export class AdministratorComponent implements OnInit {
+export class AdministratorComponent {
   users$: Observable<IUserDto[]>;
 
   constructor(route: ActivatedRoute) {
     this.users$ = route.data.pipe(map(routeData => routeData.users));
   }
 
-  ngOnInit(): void {
+  filterUsersWithoutRole(users: IUserDto[] | null): IUserDto[] | null {
+    return users?.filter((u) => u.roleNames.length === 0) ?? null;
   }
-
 }

@@ -36,7 +36,8 @@
     "BE_PATIENT": "Wir bitten um ein wenig Geduld, bis du von unserem Team freigeschaltet wurdest. Du wirst per E-Mail über die erfolgte Freischaltung benachrichtigt."
   },
   "userlist": {
-    "PENDING_REGISTRATIONS": "Offene Registrierungen"
+    "PENDING_REGISTRATIONS": "Offene Registrierungen",
+    "REGISTERED_SINCE": "Registriert seit"
   },
   "primeng": {
     "startsWith": "Beginnt mit",

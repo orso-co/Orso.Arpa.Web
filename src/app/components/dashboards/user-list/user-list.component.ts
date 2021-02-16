@@ -5,7 +5,7 @@ import { orderBy } from 'lodash-es';
 @Component({
   selector: 'arpa-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss']
+  styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit {
   @Input() users: IUserDto[] | null = [];
@@ -14,17 +14,22 @@ export class UserListComponent implements OnInit {
 
   ngOnInit(): void {
     this.usersWithoutRole = orderBy(
-      this.users?.filter((u) => u.roleNames.length === 0),
+      this.users,
       (user) => user.createdAt,
       'desc'
     );
   }
 
   getInitials(user: IUserDto): string {
-    return `${user.displayName.split(' ').map(name => name[0].toUpperCase()).join('')}`;
+    return `${user.displayName
+      .split(' ')
+      .map((name) => name[0].toUpperCase())
+      .join('')}`;
   }
 
-  onUserSelected(): void {
-    alert(`User ${this.selectedUser?.displayName} is now selected`);
+  onSelected(event: any, panel: any): void {
+    console.log(event);
+    this.selectedUser = event.option;
+    panel.toggle(event.originalEvent);
   }
 }

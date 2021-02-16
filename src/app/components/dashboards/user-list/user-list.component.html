@@ -1,15 +1,42 @@
-<p-listbox [options]="usersWithoutRole!" [(ngModel)]="selectedUser" optionLabel="displayName" [filter]="true" (onClick)="onUserSelected()">
-      <ng-template pTemplate="header">
-        <h3>{{ 'userlist.PENDING_REGISTRATIONS' | translate }}</h3>
-    </ng-template>
-    <ng-template let-user pTemplate="item">
-        <div class="user-item">
-            <p-avatar [label]="getInitials(user)" styleClass="p-mr-3" size="large" shape="circle"></p-avatar>
-            <div class="user-info">
-              <span class="p-mb-2"><b>{{user.displayName}}</b></span>
-              <a [href]="'mailto:' + user.email" target="_blank">{{user.email}}<i *ngIf="user.emailConfirmed" class="pi pi-check-circle p-ml-2" style="color: #C8E6C9"></i></a>
-              <span>{{user.createdAt | date:'short' }}</span>
-            </div>
-        </div>
-    </ng-template>
+<p-listbox
+  [options]="usersWithoutRole!"
+  optionLabel="displayName"
+  optionValue="userName"
+  [filter]="true"
+  (onClick)="onSelected($event, op)"
+>
+  <ng-template pTemplate="header">
+    <h3>{{ 'userlist.PENDING_REGISTRATIONS' | translate }}</h3>
+  </ng-template>
+  <ng-template let-user pTemplate="item">
+    <div class="user-item">
+      <p-avatar [label]="getInitials(user)" styleClass="p-mr-3" size="large" shape="circle"></p-avatar>
+      <div class="user-info">
+        <span class="p-mb-2"
+          ><b>{{ user.displayName }}</b></span
+        >
+        <span>{{ user.email }}<i *ngIf="user.emailConfirmed" class="pi pi-check-circle p-ml-2" style="color: #c8e6c9"></i></span>
+        <span>{{ user.createdAt | date: 'short' }}</span>
+      </div>
+    </div>
+  </ng-template>
 </p-listbox>
+
+<p-overlayPanel #op [showCloseIcon]="true">
+  <ng-template pTemplate>
+    <p-card class="user-detail-card">
+      <ng-template pTemplate="header">
+        <div class="header">
+          <p-avatar [label]="getInitials(selectedUser!)" styleClass="p-mr-2" size="xlarge"></p-avatar>
+          <h3>{{ selectedUser!.displayName }}</h3>
+        </div>
+      </ng-template>
+      <p>
+        <a target="_blank" [href]="'mailto:' + selectedUser!.email"><i class="pi pi-envelope p-mr-2"></i>{{ selectedUser!.email }}</a>
+      </p>
+      <p>
+        <span>{{ 'userlist.REGISTERED_SINCE' | translate }}</span> {{ selectedUser!.createdAt | date: 'short' }}
+      </p>
+    </p-card>
+  </ng-template>
+</p-overlayPanel>
