@@ -1,12 +1,13 @@
 <div class="admin-claim">Admin</div>
 <div class="p-grid">
+  <div class="p-col-12 p-md-6 p-lg-4">spalte 1</div>
   <div class="p-col-12 p-md-6 p-lg-4">
-    spalte 1
+    <arpa-user-list
+      [users]="users"
+      [roles]="(roles$ | async)!"
+      (userDeleted)="onUserChanged($event)"
+      (rolesSet)="onUserChanged($event.userName)"
+    ></arpa-user-list>
   </div>
-  <div class="p-col-12 p-md-6 p-lg-4">
-    <arpa-user-list [users]="users" (userDeleted)="onUserDeleted($event)"></arpa-user-list>
-  </div>
-  <div class="p-col-12 p-md-6 p-lg-4">
-    spalte 3
-  </div>
+  <div class="p-col-12 p-md-6 p-lg-4">spalte 3</div>
 </div>

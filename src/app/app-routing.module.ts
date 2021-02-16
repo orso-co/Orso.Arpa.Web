@@ -1,3 +1,4 @@
+import { RoleListResolver } from './resolvers/roles-list.resolver';
 import { UserListResolver } from './resolvers/user-list.resolver';
 import { DashboardGuard } from './guards/dashboard.guard';
 import { NoRoleComponent } from './components/dashboards/no-role/no-role.component';
@@ -49,7 +50,12 @@ const routes: Routes = [
         runGuardsAndResolvers: 'always',
         children: [
           { path: 'performer', component: PerformerComponent, data: { roles: [RoleNames.performer] } },
-          { path: 'admin', component: AdministratorComponent, data: { roles: [RoleNames.admin] }, resolve: { users: UserListResolver } },
+          {
+            path: 'admin',
+            component: AdministratorComponent,
+            data: { roles: [RoleNames.admin] },
+            resolve: { users: UserListResolver, roles: RoleListResolver },
+          },
           { path: 'staff', component: StaffComponent, data: { roles: [RoleNames.staff] } },
           { path: 'noRole', component: NoRoleComponent },
         ],

@@ -1,3 +1,4 @@
+import { ISetRoleDto } from './../models/ISetRoleDto';
 import { API_URL } from './../models/api-url';
 import { ITokenDto } from '../models/ITokenDto';
 import { ILoginDto } from '../models/ILoginDto';
@@ -117,5 +118,9 @@ export class AuthService {
 
   public isUserInAtLeastOnRole(roles: RoleNames[]): Observable<boolean> {
     return this.token$.pipe(map((token) => (token ? intersection(token.roles, roles).length > 0 : false)));
+  }
+
+  public setUserRoles(setRole: ISetRoleDto): Observable<any> {
+    return this.http.put(`${this.baseUrl}/role`, setRole);
   }
 }

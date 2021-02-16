@@ -15,6 +15,7 @@
   "NETWORKERROR": "Netzwerkfehler",
   "performerWELCOME": "Willkommen auf Arpa 2.0",
   "UNKNOWNERROR": "Unbekannter Fehler",
+  "SAVE": "Speichern",
   "login": {
     "RESENDCONFIRMATION": "Bestätigungslink nochmal zusenden",
     "RESENDDONE": "Bestätigungslink wurde versendet, bitte Mailbox prüfen",
@@ -41,7 +42,9 @@
     "REGISTERED_SINCE": "Registriert seit",
     "DELETE_USER": "User löschen",
     "PROCEED": "Soll dieser User wirklich unwiderruflich gelöscht werden?",
-    "USER_DELETED": "Der User wurde gelöscht"
+    "USER_DELETED": "Der User wurde gelöscht",
+    "ASSIGN_ROLES": "Rollen zuweisen",
+    "USER_ROLES_SET": "Rollenzuweisung wurde gespeichert"
   },
   "primeng": {
     "startsWith": "Beginnt mit",

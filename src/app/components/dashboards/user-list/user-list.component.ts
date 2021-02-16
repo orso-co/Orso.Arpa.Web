@@ -1,3 +1,6 @@
+import { ISetRoleDto } from './../../../models/ISetRoleDto';
+import { AuthService } from './../../../services/auth.service';
+import { IRoleDto } from './../../../models/IRoleDto';
 import { ToastService } from './../../../services/toast.service';
 import { SubSink } from 'subsink';
 import { UserService } from './../../../services/user.service';
@@ -6,6 +9,7 @@ import { IUserDto } from './../../../models/IUserDto';
 import { Component, EventEmitter, Input, Output, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { orderBy } from 'lodash-es';
 import { ConfirmationService } from 'primeng/api';
+import { OverlayPanel } from 'primeng/overlaypanel';
 
 @Component({
   selector: 'arpa-user-list',
@@ -14,20 +18,24 @@ import { ConfirmationService } from 'primeng/api';
 })
 export class UserListComponent implements OnDestroy, OnChanges {
   @Input() users: IUserDto[] | null = [];
+  @Input() roles: IRoleDto[] = [];
   @Output() userDeleted = new EventEmitter<string>();
+  @Output() rolesSet = new EventEmitter<ISetRoleDto>();
   usersWithoutRole: IUserDto[] | undefined = [];
   selectedUser: IUserDto | null = null;
+  selectedRoles: string[] = [];
   private subs = new SubSink();
 
   constructor(
     private confirmationService: ConfirmationService,
     private translateService: TranslateService,
     private userService: UserService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private authService: AuthService
   ) {}
 
   ngOnChanges(changes: SimpleChanges) {
-    if(changes.hasOwnProperty('users') && this.users) {
+    if (changes.hasOwnProperty('users') && this.users) {
       this.usersWithoutRole = orderBy(this.users, (user) => user.createdAt, 'desc');
     }
   }
@@ -45,7 +53,21 @@ export class UserListComponent implements OnDestroy, OnChanges {
 
   onSelected(event: any, panel: any): void {
     this.selectedUser = event.option;
+    this.selectedRoles = this.selectedUser!.roleNames;
     panel.toggle(event.originalEvent);
+  }
+
+  saveRoles(panel: OverlayPanel): void {
+    const dto: ISetRoleDto = { userName: this.selectedUser!.userName, roleNames: this.selectedRoles };
+    this.subs.add(
+      this.authService.setUserRoles(dto).subscribe(() => {
+        this.rolesSet.emit(dto);
+        this.selectedUser = null;
+        this.selectedRoles = [];
+        panel.hide();
+        this.toastService.success('userlist.USER_ROLES_SET');
+      })
+    );
   }
 
   showDeleteConfirmation(event: Event) {
@@ -60,9 +82,13 @@ export class UserListComponent implements OnDestroy, OnChanges {
   }
 
   private deleteSelectedUser(): void {
-    this.userService.deleteUser(this.selectedUser!.userName).subscribe(() => {
-      this.userDeleted.emit(this.selectedUser!.userName);
-      this.toastService.success('userlist.USER_DELETED');
-    });
+    this.subs.add(
+      this.userService.deleteUser(this.selectedUser!.userName).subscribe(() => {
+        this.userDeleted.emit(this.selectedUser!.userName);
+        this.selectedUser = null;
+        this.selectedRoles = [];
+        this.toastService.success('userlist.USER_DELETED');
+      })
+    );
   }
 }
