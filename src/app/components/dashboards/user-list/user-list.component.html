@@ -55,7 +55,7 @@
             [value]="role.roleName"
             [(ngModel)]="selectedRoles"
             [inputId]="role.roleName"
-            [disabled]="role.roleName === 'Admin'"
+            [disabled]="hasUserRight(role.roleLevel, maxRoleLevel$ | async)"
           ></p-checkbox>
           <label [for]="role.roleName">{{ role.roleName }}</label>
         </div>

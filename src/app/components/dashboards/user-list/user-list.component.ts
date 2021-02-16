@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { ISetRoleDto } from './../../../models/ISetRoleDto';
 import { AuthService } from './../../../services/auth.service';
 import { IRoleDto } from './../../../models/IRoleDto';
@@ -24,6 +25,7 @@ export class UserListComponent implements OnDestroy, OnChanges {
   usersWithoutRole: IUserDto[] | undefined = [];
   selectedUser: IUserDto | null = null;
   selectedRoles: string[] = [];
+  maxRoleLevel$: Observable<number>;
   private subs = new SubSink();
 
   constructor(
@@ -32,7 +34,9 @@ export class UserListComponent implements OnDestroy, OnChanges {
     private userService: UserService,
     private toastService: ToastService,
     private authService: AuthService
-  ) {}
+  ) {
+    this.maxRoleLevel$ = this.authService.getMaxRoleLevelOfCurrentUser();
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.hasOwnProperty('users') && this.users) {
@@ -79,6 +83,10 @@ export class UserListComponent implements OnDestroy, OnChanges {
         this.deleteSelectedUser();
       },
     });
+  }
+
+  hasUserRight(optionLevel: number, maxRoleLevel: number | null): boolean {
+    return optionLevel > (maxRoleLevel ?? 0);
   }
 
   private deleteSelectedUser(): void {
