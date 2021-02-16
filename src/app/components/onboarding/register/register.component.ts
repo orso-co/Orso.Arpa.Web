@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators, FormControl} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { catchError } from 'rxjs/operators';
@@ -18,10 +18,8 @@ export class RegisterComponent implements OnInit {
   registerRequest = false;
   errorMsg = '';
 
-  divisionPerformer: boolean = false;
-  divisionVolunteers: boolean = false;
-  divisionVisitors: boolean = false;
-  selectedPerformer: string[] = [];
+  performerRoles: string[] = [];
+  divisions: any = {performer: false, volunteer: false, visitor: false};
 
   registerFormGroup: FormGroup;
 
@@ -29,6 +27,7 @@ export class RegisterComponent implements OnInit {
               private authService: AuthService,
               private translate: TranslateService,
               private router: Router) {
+
     this.registerFormGroup = formBuilder.group({
       userName: [null,
         [
@@ -62,34 +61,8 @@ export class RegisterComponent implements OnInit {
           Validators.pattern(CustomRegex.PASSWORD)
         ],
       ],
-      divisionPerformer: [
-        null,
-        [],
-      ],    
-      divisionVolunteers: [
-        null,
-        [],
-      ],          
-      divisionVisitors: [
-        null,
-        [],
-      ], 
-      performerChoir: [
-        null,
-        [],
-      ],     
-      performeOrchester: [
-        null,
-        [],
-      ],        
-      performerSolo: [
-        null,
-        [],
-      ],        
-      performerBand: [
-        null,
-        [],
-      ],                      
+      division: [[]],
+      performerRole: [[]]
     });
   }
 
@@ -97,6 +70,9 @@ export class RegisterComponent implements OnInit {
   }
 
   submit(): void {
+
+    for (const k in this.divisions) { if (this.divisions[k]) {this.registerFormGroup.value.division.push(k); } }
+
     this.registerRequest = true;
     this.authService
       .register(Object.assign({}, this.registerFormGroup.value))
@@ -108,7 +84,18 @@ export class RegisterComponent implements OnInit {
             if (error.status === 0) {
               this.errorMsg = this.translate.instant('CONNECTIONERROR');
             } else {
-              this.errorMsg = error.error.errorMessage.Message;
+              if (error.error.title) {
+                this.errorMsg = error.error.title;
+              }
+              if (error.error.errors.Password) {
+                this.errorMsg = error.error.errors.Password[0];
+              }
+              if (error.error.errors.Email) {
+                this.errorMsg = error.error.errors.Email[0];
+              }
+              if (error.error.errors.UserName) {
+                this.errorMsg = error.error.errors.UserName[0];
+              }
             }
           }
           return EMPTY;

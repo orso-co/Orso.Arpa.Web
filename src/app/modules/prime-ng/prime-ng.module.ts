@@ -11,7 +11,16 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { CheckboxModule } from 'primeng/checkbox';
 
 
-const MODULES = [InputTextModule, ButtonModule, PasswordModule, MessagesModule, MessageModule, ProgressSpinnerModule, TabMenuModule, InputSwitchModule, CheckboxModule];
+const MODULES = [
+  InputTextModule,
+  ButtonModule,
+  PasswordModule,
+  MessagesModule,
+  MessageModule,
+  ProgressSpinnerModule,
+  TabMenuModule,
+  InputSwitchModule,
+  CheckboxModule];
 
 @NgModule({
   imports: [CommonModule, ...MODULES],
