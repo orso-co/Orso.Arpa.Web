@@ -1,3 +1,4 @@
+import { LoadingComponent } from './components/loading/loading.component';
 import { UserListComponent } from './components/dashboards/user-list/user-list.component';
 import { environment } from './../environments/environment';
 import { LOCAL_STORAGE_TOKEN_KEY } from './services/auth.service';
@@ -66,6 +67,7 @@ export function tokenGetter(): string | null {
     NotFoundComponent,
     NoRoleComponent,
     UserListComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

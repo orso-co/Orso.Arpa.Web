@@ -1,3 +1,4 @@
+import { LoadingService } from './../../../services/loading.service';
 import { Observable } from 'rxjs';
 import { ISetRoleDto } from './../../../models/ISetRoleDto';
 import { AuthService } from './../../../services/auth.service';
@@ -33,7 +34,8 @@ export class UserListComponent implements OnDestroy, OnChanges {
     private translateService: TranslateService,
     private userService: UserService,
     private toastService: ToastService,
-    private authService: AuthService
+    private authService: AuthService,
+    private loadingService: LoadingService
   ) {
     this.maxRoleLevel$ = this.authService.getMaxRoleLevelOfCurrentUser();
   }
@@ -64,7 +66,7 @@ export class UserListComponent implements OnDestroy, OnChanges {
   saveRoles(panel: OverlayPanel): void {
     const dto: ISetRoleDto = { userName: this.selectedUser!.userName, roleNames: this.selectedRoles };
     this.subs.add(
-      this.authService.setUserRoles(dto).subscribe(() => {
+      this.loadingService.showLoaderUntilCompleted(this.authService.setUserRoles(dto)).subscribe(() => {
         this.rolesSet.emit(dto);
         this.selectedUser = null;
         this.selectedRoles = [];
@@ -91,7 +93,7 @@ export class UserListComponent implements OnDestroy, OnChanges {
 
   private deleteSelectedUser(): void {
     this.subs.add(
-      this.userService.deleteUser(this.selectedUser!.userName).subscribe(() => {
+      this.loadingService.showLoaderUntilCompleted(this.userService.deleteUser(this.selectedUser!.userName)).subscribe(() => {
         this.userDeleted.emit(this.selectedUser!.userName);
         this.selectedUser = null;
         this.selectedRoles = [];
