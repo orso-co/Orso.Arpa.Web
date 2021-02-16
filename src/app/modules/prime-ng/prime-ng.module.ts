@@ -10,6 +10,9 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { CheckboxModule } from 'primeng/checkbox';
 
+import { ListboxModule } from 'primeng/listbox';
+import { AvatarModule } from 'primeng/avatar';
+import { CardModule } from 'primeng/card';
 
 const MODULES = [
   InputTextModule,
@@ -21,6 +24,10 @@ const MODULES = [
   TabMenuModule,
   InputSwitchModule,
   CheckboxModule];
+  ListboxModule,
+  AvatarModule,
+  CardModule
+];
 
 @NgModule({
   imports: [CommonModule, ...MODULES],
