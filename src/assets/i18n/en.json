@@ -37,7 +37,9 @@
   },
   "userlist": {
     "PENDING_REGISTRATIONS": "Pending Registrations",
-    "REGISTERED_SINCE": "Registered since"
+    "REGISTERED_SINCE": "Registered since",
+    "DELETE_USER": "Delete user",
+    "PROCEED": "Are you sure that you want to delete this user?"
   },
   "primeng": {
     "startsWith": "Starts with",

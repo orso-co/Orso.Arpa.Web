@@ -11,6 +11,9 @@ import { ListboxModule } from 'primeng/listbox';
 import { AvatarModule } from 'primeng/avatar';
 import { CardModule } from 'primeng/card';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { TooltipModule } from 'primeng/tooltip';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ConfirmationService } from 'primeng/api';
 
 const MODULES = [
   InputTextModule,
@@ -23,11 +26,14 @@ const MODULES = [
   ListboxModule,
   AvatarModule,
   CardModule,
-  OverlayPanelModule
+  OverlayPanelModule,
+  TooltipModule,
+  ConfirmPopupModule
 ];
 
 @NgModule({
   imports: [CommonModule, ...MODULES],
+  providers: [ConfirmationService],
   exports: [...MODULES],
 })
 export class PrimeNgModule {}

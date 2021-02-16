@@ -24,13 +24,14 @@
 
 <p-overlayPanel #op [showCloseIcon]="true">
   <ng-template pTemplate>
-    <p-card class="user-detail-card">
+    <p-card class="user-detail-card" [style]="{'box-shadow': 'none'}">
       <ng-template pTemplate="header">
         <div class="header">
           <p-avatar [label]="getInitials(selectedUser!)" styleClass="p-mr-2" size="xlarge"></p-avatar>
           <h3>{{ selectedUser!.displayName }}</h3>
+          <button (click)="showDeleteConfirmation($event)" [pTooltip]="'userlist.DELETE_USER' | translate" pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger p-button-outlined p-button-sm p-ml-2"></button>
         </div>
-      </ng-template>
+        </ng-template>
       <p>
         <a target="_blank" [href]="'mailto:' + selectedUser!.email"><i class="pi pi-envelope p-mr-2"></i>{{ selectedUser!.email }}</a>
       </p>
@@ -40,3 +41,5 @@
     </p-card>
   </ng-template>
 </p-overlayPanel>
+
+<p-confirmPopup></p-confirmPopup>
