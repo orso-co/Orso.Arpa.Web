@@ -1,8 +1,9 @@
+import { ToastService } from './../../../services/toast.service';
 import { SubSink } from 'subsink';
 import { UserService } from './../../../services/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { IUserDto } from './../../../models/IUserDto';
-import { Component, EventEmitter, Input, OnInit, Output, OnDestroy, ChangeDetectorRef, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { orderBy } from 'lodash-es';
 import { ConfirmationService } from 'primeng/api';
 
@@ -22,6 +23,7 @@ export class UserListComponent implements OnDestroy, OnChanges {
     private confirmationService: ConfirmationService,
     private translateService: TranslateService,
     private userService: UserService,
+    private toastService: ToastService
   ) {}
 
   ngOnChanges(changes: SimpleChanges) {
@@ -60,6 +62,7 @@ export class UserListComponent implements OnDestroy, OnChanges {
   private deleteSelectedUser(): void {
     this.userService.deleteUser(this.selectedUser!.userName).subscribe(() => {
       this.userDeleted.emit(this.selectedUser!.userName);
+      this.toastService.success('userlist.USER_DELETED');
     });
   }
 }

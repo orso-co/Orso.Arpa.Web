@@ -17,7 +17,8 @@
   "UNKNOWNERROR": "Unbekannter Fehler",
   "login": {
     "RESENDCONFIRMATION": "Bestätigungslink nochmal zusenden",
-    "RESENDDONE": "Bestätigungslink wurde versendet, bitte Mailbox prüfen"
+    "RESENDDONE": "Bestätigungslink wurde versendet, bitte Mailbox prüfen",
+    "LOGIN_FIRST": "Bitte loggen Sie sich zunächst ein"
   },
   "emailconfirmation": {
     "SUCCESS": "Danke für die Bestätigung der E-Mail Adresse",
@@ -39,7 +40,8 @@
     "PENDING_REGISTRATIONS": "Offene Registrierungen",
     "REGISTERED_SINCE": "Registriert seit",
     "DELETE_USER": "User löschen",
-    "PROCEED": "Soll dieser User wirklich unwiderruflich gelöscht werden?"
+    "PROCEED": "Soll dieser User wirklich unwiderruflich gelöscht werden?",
+    "USER_DELETED": "Der User wurde gelöscht"
   },
   "primeng": {
     "startsWith": "Beginnt mit",

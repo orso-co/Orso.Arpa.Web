@@ -34,6 +34,7 @@ import { WithCredentialsInterceptor } from './interceptors/with-credentials.inte
 import { API_URL } from './models/api-url';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
+import { ToastrModule } from 'ngx-toastr';
 
 registerLocaleData(localeDe, 'de');
 
@@ -88,6 +89,10 @@ export function tokenGetter(): string | null {
         allowedDomains: [environment.api.baseUrl],
         disallowedRoutes: [],
       },
+    }),
+    ToastrModule.forRoot({
+      progressBar: true,
+      positionClass: 'toast-top-full-width'
     }),
   ],
   providers: [

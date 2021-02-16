@@ -17,7 +17,8 @@
   "UNKNOWNERROR": "Unknown error",
   "login": {
     "RESENDCONFIRMATION": "Resend confirmation link",
-    "RESENDDONE": "Confirmation link send, please check for mail box"
+    "RESENDDONE": "Confirmation link sent, please check for mail box",
+    "LOGIN_FIRST": "Please login first"
   },
   "emailconfirmation": {
     "SUCCESS": "Thank you for the confirmation of your e-mail address",
@@ -39,7 +40,8 @@
     "PENDING_REGISTRATIONS": "Pending Registrations",
     "REGISTERED_SINCE": "Registered since",
     "DELETE_USER": "Delete user",
-    "PROCEED": "Are you sure that you want to delete this user?"
+    "PROCEED": "Are you sure that you want to delete this user?",
+    "USER_DELETED": "The user has been deleted"
   },
   "primeng": {
     "startsWith": "Starts with",
