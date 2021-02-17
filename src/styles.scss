@@ -26,3 +26,17 @@ body {
 p-tabmenu > .p-tabmenu.p-component {
   margin-bottom: 0.5rem;
 }
+
+fieldset
+{
+    border: 1px solid #383838;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+    padding: 1rem;
+
+    legend {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+}

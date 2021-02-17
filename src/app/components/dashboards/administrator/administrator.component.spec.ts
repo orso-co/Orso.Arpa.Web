@@ -1,7 +1,10 @@
+import { of } from 'rxjs';
+import { RoleService } from './../../../services/role.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdministratorComponent } from './administrator.component';
+import { ActivatedRoute } from '@angular/router';
 
 describe('AdministratorComponent', () => {
   let component: AdministratorComponent;
@@ -9,10 +12,13 @@ describe('AdministratorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdministratorComponent ],
-      imports: [RouterTestingModule]
-    })
-    .compileComponents();
+      declarations: [AdministratorComponent],
+      imports: [RouterTestingModule],
+      providers: [
+        { provide: RoleService, useValue: { roles$: of([]) } },
+        { provide: ActivatedRoute, useValue: { data: of({ users: [] }) } },
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

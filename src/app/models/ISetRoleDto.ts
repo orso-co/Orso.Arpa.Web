@@ -1,4 +1,4 @@
 export interface ISetRoleDto {
   userName: string;
-  roleName: string;
+  roleNames: string[];
 }
