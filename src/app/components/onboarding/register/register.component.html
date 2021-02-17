@@ -21,6 +21,10 @@
       <input id="givenname" type="text" pInputText formControlName="password" (ngModelChange)="onChange()">
       <label for="float-input">{{ 'PASSWORD' | translate }}</label>      
     </p>
+    <p class="p-field-checkbox">
+      <p-checkbox id="givenname" formControlName="privacyPolicy" ngDefaultControl></p-checkbox>
+      <label>{{ 'PRIVACYPOLICY' | translate }}</label>
+    </p>
 
     <table>
       <tr>
