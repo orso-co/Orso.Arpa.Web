@@ -15,9 +15,13 @@
   "NETWORKERROR": "Network error",
   "performerWELCOME": "Welcome on Arpa 2.0",
   "UNKNOWNERROR": "Unknown error",
+  "SAVE": "Save",
+  "NO": "No",
+  "YES": "Yes",
   "login": {
     "RESENDCONFIRMATION": "Resend confirmation link",
-    "RESENDDONE": "Confirmation link send, please check for mail box"
+    "RESENDDONE": "Confirmation link sent, please check for mail box",
+    "LOGIN_FIRST": "Please login first"
   },
   "emailconfirmation": {
     "SUCCESS": "Thank you for the confirmation of your e-mail address",
@@ -36,7 +40,13 @@
     "BE_PATIENT": "We ask for a little patience until you have been activated by our team. You will be notified of the activation by email."
   },
   "userlist": {
-    "PENDING_REGISTRATIONS": "Pending Registrations"
+    "PENDING_REGISTRATIONS": "Pending Registrations",
+    "REGISTERED_SINCE": "Registered since",
+    "DELETE_USER": "Delete user",
+    "PROCEED": "Are you sure that you want to delete this user?",
+    "USER_DELETED": "The user has been deleted",
+    "ASSIGN_ROLES": "Assign roles",
+    "USER_ROLES_SET": "The user roles have been set"
   },
   "primeng": {
     "startsWith": "Starts with",

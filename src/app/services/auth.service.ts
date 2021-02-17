@@ -1,3 +1,5 @@
+import { RoleService } from './role.service';
+import { ISetRoleDto } from './../models/ISetRoleDto';
 import { API_URL } from './../models/api-url';
 import { ITokenDto } from '../models/ITokenDto';
 import { ILoginDto } from '../models/ILoginDto';
@@ -6,8 +8,8 @@ import { ICreateEmailConfirmationTokenDto } from '../models/ICreateEmailConfirma
 import { IConfirmEmailDto } from '../models/IConfirmEmailDto';
 import { Inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { tap, map, filter } from 'rxjs/operators';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { tap, map, filter, mergeMap } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { RoleNames } from '../models/role-names';
@@ -35,7 +37,7 @@ export class AuthService {
   private tokenString: string | null = localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY);
   public token$: Observable<IToken | null> = this.token$$.asObservable();
 
-  constructor(private http: HttpClient, @Inject(API_URL) apiUrl: string) {
+  constructor(private http: HttpClient, @Inject(API_URL) apiUrl: string, private roleService: RoleService) {
     this.baseUrl = `${apiUrl}/api/auth`;
     this.jwtHelperService = new JwtHelperService();
     this.token$$.next(this.decodeToken(this.tokenString));
@@ -89,6 +91,21 @@ export class AuthService {
     return this.http.post<any>(`${this.baseUrl}/confirmemail`, confirmEmail);
   }
 
+  public isUserInAtLeastOnRole(roles: RoleNames[]): Observable<boolean> {
+    return this.token$.pipe(map((token) => (token ? intersection(token.roles, roles).length > 0 : false)));
+  }
+
+  public setUserRoles(setRole: ISetRoleDto): Observable<any> {
+    return this.http.put(`${this.baseUrl}/role`, setRole);
+  }
+
+  public getMaxRoleLevelOfCurrentUser(): Observable<number> {
+    return combineLatest([this.token$, this.roleService.roles$]).pipe(map(([token, roles]) => {
+      const userRoles = roles.filter(r => token?.roles.includes(r.roleName.toLowerCase() as RoleNames));
+      return Math.max(...userRoles.map(r => r.roleLevel));
+    }));
+  }
+
   private decodeToken(token: string | null): IToken | null {
     if (!token) {
       return null;
@@ -113,9 +130,5 @@ export class AuthService {
       return [...tokenObj.role.map((roleName: string) => roleName.toLowerCase())];
     }
     return [tokenObj.role.toLowerCase()];
-  }
-
-  public isUserInAtLeastOnRole(roles: RoleNames[]): Observable<boolean> {
-    return this.token$.pipe(map((token) => (token ? intersection(token.roles, roles).length > 0 : false)));
   }
 }
