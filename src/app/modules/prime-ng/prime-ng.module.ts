@@ -16,7 +16,6 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { TooltipModule } from 'primeng/tooltip';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ConfirmationService } from 'primeng/api';
-import {CheckboxModule} from 'primeng/checkbox';
 
 const MODULES = [
   InputTextModule,
@@ -34,7 +33,6 @@ const MODULES = [
   OverlayPanelModule,
   TooltipModule,
   ConfirmPopupModule,
-  CheckboxModule
 ];
 
 @NgModule({
