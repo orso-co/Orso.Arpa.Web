@@ -5,9 +5,25 @@
   .user-info {
     display: flex;
     flex-direction: column;
+  }
+}
 
+.user-detail-card {
+  .header {
+    display: flex;
+    align-items: center;
+  }
+  p {
     a {
-      color: var(--text-color);
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: var(--text-color);
+      }
     }
   }
 }

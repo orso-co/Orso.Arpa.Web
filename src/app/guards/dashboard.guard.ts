@@ -1,3 +1,4 @@
+import { ToastService } from './../services/toast.service';
 import { AuthService, IToken } from './../services/auth.service';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
@@ -8,7 +9,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class DashboardGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private toastService: ToastService) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -17,6 +18,7 @@ export class DashboardGuard implements CanActivate {
     return this.authService.token$.pipe(
       map((token: IToken | null) => {
         if (!token) {
+          this.toastService.info('login.LOGIN_FIRST');
           return this.router.parseUrl('/onboarding/login');
         }
 

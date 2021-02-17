@@ -10,6 +10,11 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { ListboxModule } from 'primeng/listbox';
 import { AvatarModule } from 'primeng/avatar';
 import { CardModule } from 'primeng/card';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { TooltipModule } from 'primeng/tooltip';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ConfirmationService } from 'primeng/api';
+import {CheckboxModule} from 'primeng/checkbox';
 
 const MODULES = [
   InputTextModule,
@@ -21,11 +26,16 @@ const MODULES = [
   TabMenuModule,
   ListboxModule,
   AvatarModule,
-  CardModule
+  CardModule,
+  OverlayPanelModule,
+  TooltipModule,
+  ConfirmPopupModule,
+  CheckboxModule
 ];
 
 @NgModule({
   imports: [CommonModule, ...MODULES],
+  providers: [ConfirmationService],
   exports: [...MODULES],
 })
 export class PrimeNgModule {}

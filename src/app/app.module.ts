@@ -1,3 +1,4 @@
+import { LoadingComponent } from './components/loading/loading.component';
 import { UserListComponent } from './components/dashboards/user-list/user-list.component';
 import { environment } from './../environments/environment';
 import { LOCAL_STORAGE_TOKEN_KEY } from './services/auth.service';
@@ -34,6 +35,7 @@ import { WithCredentialsInterceptor } from './interceptors/with-credentials.inte
 import { API_URL } from './models/api-url';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
+import { ToastrModule } from 'ngx-toastr';
 
 registerLocaleData(localeDe, 'de');
 
@@ -65,6 +67,7 @@ export function tokenGetter(): string | null {
     NotFoundComponent,
     NoRoleComponent,
     UserListComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -88,6 +91,10 @@ export function tokenGetter(): string | null {
         allowedDomains: [environment.api.baseUrl],
         disallowedRoutes: [],
       },
+    }),
+    ToastrModule.forRoot({
+      progressBar: true,
+      positionClass: 'toast-top-full-width'
     }),
   ],
   providers: [
