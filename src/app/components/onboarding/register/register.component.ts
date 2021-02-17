@@ -57,6 +57,12 @@ export class RegisterComponent implements OnInit {
           Validators.pattern(CustomRegex.PASSWORD)
         ],
       ],
+      privacyPolicy: [
+        null,
+        [
+          Validators.required,
+        ]
+      ],
     });
   }
 

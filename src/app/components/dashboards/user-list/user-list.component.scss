@@ -1,0 +1,13 @@
+.user-item {
+  display: flex;
+  align-items: center;
+
+  .user-info {
+    display: flex;
+    flex-direction: column;
+
+    a {
+      color: var(--text-color);
+    }
+  }
+}

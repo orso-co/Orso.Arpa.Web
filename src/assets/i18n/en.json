@@ -4,6 +4,7 @@
   "GIVENNAME": "Given name",
   "SURNAME": "Surname",
   "PASSWORD": "Password",
+  "PRIVACYPOLICY": "I have read the notes on privacy and accept them.",
   "USERNAMEOREMAIL": "Username or e-Mail",
   "LOGIN": "Login",
   "LOGOUT": "Logout",
@@ -33,6 +34,9 @@
   "norole": {
     "WELCOME": "Welcome to ARPA!",
     "BE_PATIENT": "We ask for a little patience until you have been activated by our team. You will be notified of the activation by email."
+  },
+  "userlist": {
+    "PENDING_REGISTRATIONS": "Pending Registrations"
   },
   "primeng": {
     "startsWith": "Starts with",
