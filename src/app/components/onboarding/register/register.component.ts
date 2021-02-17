@@ -62,7 +62,13 @@ export class RegisterComponent implements OnInit {
         ],
       ],
       division: [[]],
-      performerRole: [[]]
+      performerRole: [[]],
+      privacyPolicy: [
+        null,
+        [
+          Validators.required,
+        ]
+      ],
     });
   }
 
