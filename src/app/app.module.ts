@@ -1,4 +1,5 @@
 import { UserListComponent } from './components/dashboards/user-list/user-list.component';
+import { UserListRecentComponent } from './components/dashboards/user-list-recent/user-list-recent.component';
 import { environment } from './../environments/environment';
 import { LOCAL_STORAGE_TOKEN_KEY } from './services/auth.service';
 import { PrimeNgModule } from './modules/prime-ng/prime-ng.module';
@@ -64,6 +65,7 @@ export function tokenGetter(): string | null {
     NotFoundComponent,
     NoRoleComponent,
     UserListComponent,
+    UserListRecentComponent
   ],
   imports: [
     BrowserModule,

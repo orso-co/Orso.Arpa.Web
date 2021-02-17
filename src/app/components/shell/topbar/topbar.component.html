@@ -6,4 +6,12 @@
         routerLink="/"
       />
     </a>
+    <div>{{ "performerWELCOME" | translate }}</div>
+    <div>
+      <button
+    pButton
+    label="{{ 'LOGOUT' | translate }}"
+    (click)="logout()">
+    </button>
+    </div>
 </div>
