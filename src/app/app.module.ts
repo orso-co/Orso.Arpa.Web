@@ -13,6 +13,7 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { CheckboxModule } from 'primeng/checkbox';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -71,6 +72,7 @@ export function tokenGetter(): string | null {
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    CheckboxModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -4,6 +4,7 @@
   "GIVENNAME": "Given name",
   "SURNAME": "Surname",
   "PASSWORD": "Password",
+  "PRIVACYPOLICY": "I have read the notes on privacy and accept them.",
   "USERNAMEOREMAIL": "Username or e-Mail",
   "LOGIN": "Login",
   "LOGOUT": "Logout",
