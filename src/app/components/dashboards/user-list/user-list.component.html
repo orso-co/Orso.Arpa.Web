@@ -15,7 +15,7 @@
         <span class="p-mb-2"
           ><b>{{ user.displayName }}</b></span
         >
-        <span>{{ user.email }}<i *ngIf="user.emailConfirmed" class="pi pi-check-circle p-ml-2" style="color: #c8e6c9"></i></span>
+        <span>{{ user.email }}<i *ngIf="user.emailConfirmed" class="pi pi-check-circle p-ml-2" style="color: yellowgreen"></i></span>
         <span>{{ user.createdAt | date: 'short' }}</span>
       </div>
     </div>
@@ -40,28 +40,34 @@
           ></button>
         </div>
       </ng-template>
-      <p>
-        <a target="_blank" [href]="'mailto:' + selectedUser!.email"><i class="pi pi-envelope p-mr-2"></i>{{ selectedUser!.email }}</a>
-      </p>
-      <p>
-        <span>{{ 'userlist.REGISTERED_SINCE' | translate }}</span> {{ selectedUser!.createdAt | date: 'short' }}
-      </p>
-      <fieldset>
-        <legend>{{ 'userlist.ASSIGN_ROLES' | translate }}</legend>
-        <div *ngFor="let role of roles" class="p-field-checkbox">
-          <p-checkbox
-            name="roleGroup"
-            value="role.roleName"
-            [value]="role.roleName"
-            [(ngModel)]="selectedRoles"
-            [inputId]="role.roleName"
-            [disabled]="hasUserRight(role.roleLevel, maxRoleLevel$ | async)"
-          ></p-checkbox>
-          <label [for]="role.roleName">{{ role.roleName }}</label>
+      <div class="p-grid">
+        <div class="p-col-12 p-sm-6">
+          <p>
+            <a target="_blank" [href]="'mailto:' + selectedUser!.email"><i class="pi pi-envelope p-mr-2"></i>{{ selectedUser!.email }}</a>
+          </p>
+          <p>
+            <span>{{ 'userlist.REGISTERED_SINCE' | translate }}</span> {{ selectedUser!.createdAt | date: 'short' }}
+          </p>
+          <fieldset>
+            <legend>{{ 'userlist.ASSIGN_ROLES' | translate }}</legend>
+            <div *ngFor="let role of roles" class="p-field-checkbox">
+              <p-checkbox
+                name="roleGroup"
+                value="role.roleName"
+                [value]="role.roleName"
+                [(ngModel)]="selectedRoles"
+                [inputId]="role.roleName"
+                [disabled]="hasUserRight(role.roleLevel, maxRoleLevel$ | async)"
+              ></p-checkbox>
+              <label [for]="role.roleName">{{ role.roleName }}</label>
+            </div>
+            <button pButton pRipple type="button" [label]="'SAVE' | translate" class="p-button-outlined" (click)="saveRoles(op)"></button>
+          </fieldset>
         </div>
-        <button pButton pRipple type="button" [label]="'SAVE' | translate" class="p-button-outlined" (click)="saveRoles(op)"></button>
-      </fieldset>
-      {{ sectionTree | json }}
+        <div class="p-col-12 p-sm-6">
+          <p-tree class="group-tree" [virtualScroll]="false" [value]="selectedUserSections"></p-tree>
+        </div>
+      </div>
     </p-card>
   </ng-template>
 </p-overlayPanel>

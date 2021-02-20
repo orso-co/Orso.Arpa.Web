@@ -1,3 +1,5 @@
+import { ISectionDto } from './section';
+
 export interface IBaseEntityDto {
   id: string;
   createdBy: string;
