@@ -8,7 +8,7 @@
           <p class="p-float-label">
             <input id="password" type="text" pInputText formControlName="password" pPassword [feedback]=false [type]="hide ? 'password' : 'text'" (ngModelChange)="onChange()">
             <label for="float-input">{{ 'PASSWORD' | translate }}</label>
-            <i id="eyeButton" class="pi {{hide ? visibility_off : visibility}}" (click)="hide = !hide"></i>
+            <i id="eyeButton" class="pi {{hide ? visibilityOff : visibility}}" (click)="hide = !hide"></i>
           </p>        
 
           <table>

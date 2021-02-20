@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   waitForAction = false;
   private subs = new SubSink();
   hide = true;
-  visibility_off = 'pi-eye-slash';
+  visibilityOff = 'pi-eye-slash';
   visibility = 'pi-eye';
 
   constructor(formBuilder: FormBuilder,
