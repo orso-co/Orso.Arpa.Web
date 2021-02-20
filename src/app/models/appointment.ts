@@ -53,10 +53,6 @@ export interface IProjectDto extends IBaseEntityDto {
   isCompleted: boolean;
 }
 
-export interface ISectionDto extends IBaseEntityDto {
-  name: string;
-}
-
 export interface IAppointmentParticipationListItemDto {
   participation: IAppointmentParticipationDto;
   person: IPersonDto;

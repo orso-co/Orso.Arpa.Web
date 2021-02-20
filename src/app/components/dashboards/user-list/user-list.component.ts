@@ -1,3 +1,4 @@
+import { ISectionTreeDto } from './../../../models/section';
 import { LoadingService } from './../../../services/loading.service';
 import { Observable } from 'rxjs';
 import { ISetRoleDto } from './../../../models/ISetRoleDto';
@@ -21,6 +22,7 @@ import { OverlayPanel } from 'primeng/overlaypanel';
 export class UserListComponent implements OnDestroy, OnChanges {
   @Input() users: IUserDto[] | null = [];
   @Input() roles: IRoleDto[] = [];
+  @Input() sectionTree: ISectionTreeDto | undefined;
   @Output() userDeleted = new EventEmitter<string>();
   @Output() rolesSet = new EventEmitter<ISetRoleDto>();
   usersWithoutRole: IUserDto[] | undefined = [];

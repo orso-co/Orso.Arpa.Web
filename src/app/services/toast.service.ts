@@ -9,14 +9,20 @@ export class ToastService {
   constructor(private toastrService: ToastrService, private translateService: TranslateService) {}
 
   public success(messageKey: string): void {
-    this.toastrService.success(this.translateService.instant(messageKey));
+    this.translateService.get(messageKey).subscribe((translation) => {
+      this.toastrService.success(translation);
+    });
   }
 
   public info(messageKey: string): void {
-    this.toastrService.info(this.translateService.instant(messageKey));
+    this.translateService.get(messageKey).subscribe((translation) => {
+      this.toastrService.info(translation);
+    });
   }
 
   public eccor(messageKey: string): void {
-    this.toastrService.error(this.translateService.instant(messageKey));
+    this.translateService.get(messageKey).subscribe((translation) => {
+      this.toastrService.error(translation);
+    });
   }
 }

@@ -19,6 +19,7 @@ import { RegisterComponent } from './components/onboarding/register/register.com
 import { PerformerComponent } from './components/dashboards/performer/performer.component';
 import { EmailconfirmationComponent } from './components/onboarding/emailconfirmation/emailconfirmation.component';
 import { RegisterConfirmationComponent } from './components/onboarding/registerconfirmation/registerconfirmation.component';
+import { SectionTreeResolver } from './resolvers/section-tree.resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
@@ -54,8 +55,8 @@ const routes: Routes = [
           {
             path: 'admin',
             component: AdministratorComponent,
-            data: { roles: [RoleNames.admin] },
-            resolve: { users: UserListResolver },
+            data: { roles: [RoleNames.admin], treeMaxLevel: 2 },
+            resolve: { users: UserListResolver, sectionTreeLoaded: SectionTreeResolver },
           },
           { path: 'staff', component: StaffComponent, data: { roles: [RoleNames.staff] } },
           { path: 'noRole', component: NoRoleComponent },

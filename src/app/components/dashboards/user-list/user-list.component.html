@@ -61,6 +61,7 @@
         </div>
         <button pButton pRipple type="button" [label]="'SAVE' | translate" class="p-button-outlined" (click)="saveRoles(op)"></button>
       </fieldset>
+      {{ sectionTree | json }}
     </p-card>
   </ng-template>
 </p-overlayPanel>
