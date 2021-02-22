@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginRequest = false;
   waitForAction = false;
   private subs = new SubSink();
+  hide = true;
 
   constructor(formBuilder: FormBuilder,
               private router: Router,
