@@ -11,6 +11,7 @@
   "REGISTER": "Register",
   "RESETPASSWORD": "Reset password",
   "CANCEL": "Cancel",
+  "FORGOTPASSWORD": "Send new password",
   "CONNECTIONERROR": "Connection error, please try again later",
   "NETWORKERROR": "Network error",
   "performerWELCOME": "Welcome on Arpa 2.0",

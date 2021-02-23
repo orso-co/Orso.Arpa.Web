@@ -7,6 +7,7 @@ import { catchError } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
+import { CustomRegex } from '../../../utils/CustomRegex';
 
 export const LOCAL_STORAGE_TOKEN_KEY = 'token';
 
@@ -18,11 +19,13 @@ export const LOCAL_STORAGE_TOKEN_KEY = 'token';
 export class LoginComponent implements OnInit, OnDestroy {
 
   loginFormGroup: FormGroup;
+  forgotPasswordFormGroup: FormGroup;
   errorMsg = '';
   resendMsg = false;
   loginRequest = false;
   waitForAction = false;
   private subs = new SubSink();
+  forgotPasswordForm = false;
 
   constructor(formBuilder: FormBuilder,
               private router: Router,
@@ -45,7 +48,17 @@ export class LoginComponent implements OnInit, OnDestroy {
         ],
       ],
     });
+
+    this.forgotPasswordFormGroup = formBuilder.group({
+      usernameOrEmailForgotPassword: [null,
+        [
+          Validators.required,
+          Validators.pattern(CustomRegex.EMAIL),
+        ]
+      ],
+    });
   }
+
 
   ngOnInit(): void {
   }
@@ -107,6 +120,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     .subscribe(() => {
       this.errorMsg = 'Bestätigungslink wurde versendet, bitte Mailbox prüfen';
     });
+  }
+
+  forgotPassword(): void{
+    this.authService.
+      forgotPassword(Object.assign({}, this.forgotPasswordFormGroup.value)).subscribe();
+    this.forgotPasswordForm = false;
   }
 }
 

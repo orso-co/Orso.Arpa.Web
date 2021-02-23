@@ -11,6 +11,7 @@
   "REGISTER": "Registrieren",
   "RESETPASSWORD": "Passwort vergessen",
   "CANCEL": "Abbrechen",
+  "FORGOTPASSWORD": "Neues Passwort anfordern",
   "CONNECTIONERROR": "Verbindungsfehler, bitte später nochmal probieren",
   "NETWORKERROR": "Netzwerkfehler",
   "performerWELCOME": "Willkommen auf Arpa 2.0",

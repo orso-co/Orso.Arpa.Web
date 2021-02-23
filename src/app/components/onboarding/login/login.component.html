@@ -42,9 +42,24 @@
       </div>
 
       <div class="p-field" >
-          <p-button label="{{ 'RESETPASSWORD' | translate }}" styleClass="p-button-link"></p-button>
+          <p-button label="{{ 'FORGOTPASSWORD' | translate }}" styleClass="p-button-link" (click)="forgotPasswordForm = true"></p-button>
       </div>
+
+      <form *ngIf="forgotPasswordForm" [formGroup] = "forgotPasswordFormGroup" (ngSubmit)="forgotPassword()">
+        <p class="p-float-label">
+          <input id="usernameOrEmailForgotPassword" type="text" pInputText formControlName="usernameOrEmailForgotPassword" (ngModelChange)="onChange()">
+          <label for="float-input">{{ 'EMAILADDRESS' | translate }}</label>
+        </p>
+        <button
+          pButton
+          label="{{ 'FORGOTPASSWORD' | translate }}"
+          [disabled]="forgotPasswordFormGroup.invalid || forgotPasswordFormGroup.pristine">
+        </button>
+      </form>
+
   </div>
+
+
 
   <div class="p-col-1 p-md-1"></div>
 

@@ -14,6 +14,7 @@ import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { RoleNames } from '../models/role-names';
 import { intersection } from 'lodash-es';
+import { ICreateNewPasswordDto } from '../models/ICreateNewPasswordDto';
 
 export const LOCAL_STORAGE_TOKEN_KEY = 'token';
 
@@ -89,6 +90,14 @@ export class AuthService {
 
   confirmMail(confirmEmail: IConfirmEmailDto): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/confirmemail`, confirmEmail);
+  }
+
+  forgotPassword(usernameOrEmail: string): Observable<any> {
+    const createNewPasswordDto  = {
+      usernameOrEmail,
+      clientUri: `${environment.web.protocol}://${environment.web.baseUrl}/forgotPassword`,
+    };
+    return this.http.post(`${this.baseUrl}/forgotpassword`, createNewPasswordDto);
   }
 
   public isUserInAtLeastOnRole(roles: RoleNames[]): Observable<boolean> {
