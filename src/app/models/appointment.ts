@@ -1,3 +1,5 @@
+import { ISectionDto } from './section';
+
 export interface IBaseEntityDto {
   id: string;
   createdBy: string;
@@ -51,10 +53,6 @@ export interface IProjectDto extends IBaseEntityDto {
   description: string;
   genreId: string;
   isCompleted: boolean;
-}
-
-export interface ISectionDto extends IBaseEntityDto {
-  name: string;
 }
 
 export interface IAppointmentParticipationListItemDto {

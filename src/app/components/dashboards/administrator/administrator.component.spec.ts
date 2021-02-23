@@ -1,3 +1,4 @@
+import { SectionService } from './../../../services/section.service';
 import { of } from 'rxjs';
 import { RoleService } from './../../../services/role.service';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -16,6 +17,7 @@ describe('AdministratorComponent', () => {
       imports: [RouterTestingModule],
       providers: [
         { provide: RoleService, useValue: { roles$: of([]) } },
+        { provide: SectionService, useValue: { getTree: () => {}} },
         { provide: ActivatedRoute, useValue: { data: of({ users: [] }) } },
       ],
     }).compileComponents();
