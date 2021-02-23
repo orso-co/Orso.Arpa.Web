@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
 
     this.forgotPasswordFormGroup = formBuilder.group({
-      usernameOrEmailForgotPassword: [null,
+      usernameOrEmail: [null,
         [
           Validators.required,
           Validators.pattern(CustomRegex.EMAIL),
@@ -124,7 +124,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   forgotPassword(): void{
     this.authService.
-      forgotPassword(Object.assign({}, this.forgotPasswordFormGroup.value)).subscribe();
+      forgotPassword(this.forgotPasswordFormGroup.value).subscribe();
     this.forgotPasswordForm = false;
   }
 }

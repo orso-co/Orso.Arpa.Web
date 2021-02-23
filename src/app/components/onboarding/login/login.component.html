@@ -1,70 +1,65 @@
 <div class="p-grid">
   <div class="login-layout" class="p-col-11 p-md-4 login-sep1">
-      <form [formGroup] = "loginFormGroup" (ngSubmit)="submit()">
-          <p class="p-float-label">
-            <input id="usernameOrEmail" type="text" pInputText formControlName="usernameOrEmail" (ngModelChange)="onChange()">
-            <label for="float-input">{{ 'USERNAMEOREMAIL' | translate }}</label>
-          </p>
-          <p class="p-float-label">
-            <input id="password" type="text" pInputText formControlName="password" pPassword [feedback]=false (ngModelChange)="onChange()">
-            <label for="float-input">{{ 'PASSWORD' | translate }}</label>
-          </p>        
+    <form [formGroup]="loginFormGroup" (ngSubmit)="submit()">
+      <p class="p-float-label">
+        <input id="usernameOrEmail" type="text" pInputText formControlName="usernameOrEmail" (ngModelChange)="onChange()" />
+        <label for="float-input">{{ 'USERNAMEOREMAIL' | translate }}</label>
+      </p>
+      <p class="p-float-label">
+        <input id="password" type="text" pInputText formControlName="password" pPassword [feedback]="false" (ngModelChange)="onChange()" />
+        <label for="float-input">{{ 'PASSWORD' | translate }}</label>
+      </p>
 
-          <table>
-            <tr>
-              <td>
-                <button
-                  pButton
-                  label="{{ 'LOGIN' | translate }}"
-                  [disabled]="loginFormGroup.invalid || loginFormGroup.pristine || resendMsg">
-                </button>
-              </td>
-              <td width="10px;"></td>
-              <td>
-                <p-progressSpinner *ngIf="loginRequest"
-                  [style]="{width: '50px', height: '50px'}"
-                  strokeWidth="8">
-                </p-progressSpinner>
-                <div *ngIf="errorMsg">{{errorMsg}}</div>
-              </td>
-            </tr>
-          </table>
+      <table>
+        <tr>
+          <td>
+            <button
+              pButton
+              label="{{ 'LOGIN' | translate }}"
+              [disabled]="loginFormGroup.invalid || loginFormGroup.pristine || resendMsg"
+            ></button>
+          </td>
+          <td width="10px;"></td>
+          <td>
+            <p-progressSpinner *ngIf="loginRequest" [style]="{ width: '50px', height: '50px' }" strokeWidth="8"> </p-progressSpinner>
+            <div *ngIf="errorMsg">{{ errorMsg }}</div>
+          </td>
+        </tr>
+      </table>
+    </form>
 
+    <div class="p-field" *ngIf="resendMsg">
+      <p-button
+        label="{{ 'login.RESENDCONFIRMATION' | translate }}"
+        styleClass="p-button-link"
+        (click)="resendConfirmationLink()"
+      ></p-button>
+    </div>
 
-      </form>
+    <div class="p-field login-sep2">
+      <p-button label="{{ 'REGISTER' | translate }}" styleClass="p-button-link" (click)="goToRegister()"></p-button>
+    </div>
 
-      <div class="p-field" *ngIf="resendMsg">
-        <p-button label="{{'login.RESENDCONFIRMATION' | translate }}" styleClass="p-button-link" (click)="resendConfirmationLink()"></p-button>
-      </div>
+    <div class="p-field">
+      <p-button label="{{ 'FORGOTPASSWORD' | translate }}" styleClass="p-button-link" (click)="forgotPasswordForm = true"></p-button>
+    </div>
 
-      <div class="p-field login-sep2">
-          <p-button label="{{ 'REGISTER' | translate }}" styleClass="p-button-link" (click)="goToRegister()"></p-button>
-      </div>
-
-      <div class="p-field" >
-          <p-button label="{{ 'FORGOTPASSWORD' | translate }}" styleClass="p-button-link" (click)="forgotPasswordForm = true"></p-button>
-      </div>
-
-      <form *ngIf="forgotPasswordForm" [formGroup] = "forgotPasswordFormGroup" (ngSubmit)="forgotPassword()">
-        <p class="p-float-label">
-          <input id="usernameOrEmailForgotPassword" type="text" pInputText formControlName="usernameOrEmailForgotPassword" (ngModelChange)="onChange()">
-          <label for="float-input">{{ 'EMAILADDRESS' | translate }}</label>
-        </p>
-        <button
-          pButton
-          label="{{ 'FORGOTPASSWORD' | translate }}"
-          [disabled]="forgotPasswordFormGroup.invalid || forgotPasswordFormGroup.pristine">
-        </button>
-      </form>
-
+    <form *ngIf="forgotPasswordForm" [formGroup]="forgotPasswordFormGroup" (ngSubmit)="forgotPassword()">
+      <p class="p-float-label">
+        <input id="usernameOrEmailForgotPassword" type="text" pInputText formControlName="usernameOrEmail" (ngModelChange)="onChange()" />
+        <label for="float-input">{{ 'EMAILADDRESS' | translate }}</label>
+      </p>
+      <button
+        pButton
+        label="{{ 'FORGOTPASSWORD' | translate }}"
+        [disabled]="forgotPasswordFormGroup.invalid || forgotPasswordFormGroup.pristine"
+      ></button>
+    </form>
   </div>
-
-
 
   <div class="p-col-1 p-md-1"></div>
 
   <div class="p-col-12 p-md-7 image-box">
-    <img src="../../../assets/organization/images/bg-login.jpg" alt="bg-login" width=100% >
+    <img src="../../../assets/organization/images/bg-login.jpg" alt="bg-login" width="100%" />
   </div>
-
 </div>
