@@ -6,8 +6,9 @@
             <label for="float-input">{{ 'USERNAMEOREMAIL' | translate }}</label>
           </p>
           <p class="p-float-label">
-            <input id="password" type="text" pInputText formControlName="password" pPassword [feedback]=false (ngModelChange)="onChange()">
+            <input id="password" type="text" pInputText formControlName="password" pPassword [feedback]=false [type]="hide ? 'password' : 'text'" (ngModelChange)="onChange()">
             <label for="float-input">{{ 'PASSWORD' | translate }}</label>
+            <i id="eyeButton" class="p-ml-2 pi {{hide ? 'pi-eye-slash' : 'pi-eye'}}" (click)="hide = !hide"></i>
           </p>        
 
           <table>

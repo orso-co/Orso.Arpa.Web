@@ -5,5 +5,6 @@ export interface IUserDto {
   email: string;
   emailConfirmed: boolean;
   createdAt: Date;
+  stakeholderGroupIds: string[];
 }
 
