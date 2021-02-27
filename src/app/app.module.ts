@@ -26,7 +26,6 @@ import { RegisterComponent } from './components/onboarding/register/register.com
 import { AppRoutingModule } from './app-routing.module';
 import { PerformerComponent } from './components/dashboards/performer/performer.component';
 import { EmailconfirmationComponent } from './components/onboarding/emailconfirmation/emailconfirmation.component';
-import { RegisterConfirmationComponent } from './components/onboarding/registerconfirmation/registerconfirmation.component';
 import { StaffComponent } from './components/dashboards/staff/staff.component';
 import { AdministratorComponent } from './components/dashboards/administrator/administrator.component';
 import { TopbarComponent } from './components/shell/topbar/topbar.component';
@@ -56,7 +55,6 @@ export function tokenGetter(): string | null {
     RegisterComponent,
     PerformerComponent,
     EmailconfirmationComponent,
-    RegisterConfirmationComponent,
     StaffComponent,
     AdministratorComponent,
     MainComponent,

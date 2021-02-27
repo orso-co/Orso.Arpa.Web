@@ -2,11 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
-import { catchError } from 'rxjs/operators';
-import { EMPTY } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
 import { CustomRegex } from '../../../utils/CustomRegex';
-import { TranslateService } from '@ngx-translate/core';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'arpa-register',
@@ -16,13 +13,12 @@ import { TranslateService } from '@ngx-translate/core';
 export class RegisterComponent implements OnInit {
 
   registerRequest = false;
-  errorMsg = '';
-
   registerFormGroup: FormGroup;
+  hide = true;
 
   constructor(formBuilder: FormBuilder,
               private authService: AuthService,
-              private translate: TranslateService,
+              private toastService: ToastService,
               private router: Router) {
     this.registerFormGroup = formBuilder.group({
       userName: [null,
@@ -73,29 +69,15 @@ export class RegisterComponent implements OnInit {
     this.registerRequest = true;
     this.authService
       .register(Object.assign({}, this.registerFormGroup.value))
-      .pipe(
-        catchError((error) => {
-          this.registerRequest = false;
-
-          if (error instanceof HttpErrorResponse) {
-            if (error.status === 0) {
-              this.errorMsg = this.translate.instant('CONNECTIONERROR');
-            } else {
-              this.errorMsg = error.error.errorMessage.Message;
-            }
-          }
-          return EMPTY;
-        })
-      )
       .subscribe(() => {
-        this.router.navigate(['/onboarding/registerConfirmation']);
+        this.toastService.info('register.THANKS');
+        this.router.navigate(['/onboarding/login']);
       });
-
+    this.registerRequest = false;
   }
 
   onChange(): void {
     this.registerRequest = false;
-    this.errorMsg = '';
   }
 
   goToLogin(): void {

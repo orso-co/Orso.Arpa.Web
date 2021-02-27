@@ -1,6 +1,6 @@
 import { AuthService } from './../../../services/auth.service';
+import { ToastService } from './../../../services/toast.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { RegisterComponent } from './register.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -29,7 +29,9 @@ describe('RegisterComponent', () => {
           }
         })
       ],
-      providers: [{provide: AuthService, useValue: {}}]
+      providers: [
+        {provide: AuthService, useValue: {}},
+        {provide: ToastService, useValue: {}}]
     })
     .compileComponents();
   });

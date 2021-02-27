@@ -2,11 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { IConfirmEmailDto } from '../../../models/IConfirmEmailDto';
-import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { EMPTY } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
-import { HttpErrorResponse } from '@angular/common/http';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'arpa-emailconfirmation',
@@ -15,12 +12,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class EmailconfirmationComponent implements OnInit {
 
-  errorMsg = '';
-  successMsg = false;
-
   constructor(private route: ActivatedRoute,
               private authService: AuthService,
-              private translate: TranslateService,
+              private toastService: ToastService,
               private router: Router) { }
 
   ngOnInit(): void {
@@ -30,12 +24,9 @@ export class EmailconfirmationComponent implements OnInit {
       this.authService
       .confirmMail(confirmEmail)
       .subscribe(() => {
-        this.successMsg = true;
+        this.toastService.info('emailconfirmation.SUCCESS');
       });
     });
-  }
-
-  goToLogin(): void {
     this.router.navigate(['/onboarding/login']);
   }
 

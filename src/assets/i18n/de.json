@@ -24,13 +24,10 @@
     "LOGIN_FIRST": "Bitte loggen Sie sich zunächst ein"
   },
   "emailconfirmation": {
-    "SUCCESS": "Danke für die Bestätigung der E-Mail Adresse",
-    "CHECKING": "Bestätigung in Prüfung - bitte warten.",
-    "CONTINUE": "Weiter zum Login"
+    "SUCCESS": "Danke für die Bestätigung der E-Mail Adresse"
   },
-  "registerconfirmation": {
-    "THANKS": "Vielen Dank für die Registrierung bei ARPA. Bitte prüfe deine Mailbox und bestätige deine Mailaddresse.",
-    "CONTINUE": "Weiter zum Login"
+  "register": {
+    "THANKS": "Vielen Dank für die Registrierung bei ARPA. Bitte prüfe deine Mailbox und bestätige deine Mailaddresse."
   },
   "dashboardselector": {
     "SELECT_DASHBOARD": "Wähle das Dashboard, zu dem du wechseln möchtest"
