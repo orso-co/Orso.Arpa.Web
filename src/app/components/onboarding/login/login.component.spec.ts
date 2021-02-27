@@ -1,6 +1,7 @@
 import { AuthService } from './../../../services/auth.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
+import { ToastService } from './../../../services/toast.service';
 
 import { HttpClient} from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
@@ -33,9 +34,12 @@ describe('LoginComponent', () => {
             useFactory: HttpLoaderFactory,
             deps: [HttpClient]
           }
-        })
+        }),
       ],
-      providers: [{provide: AuthService, useValue: {}}]
+      providers: [
+        { provide: AuthService, useValue: {} },
+        { provide: ToastService, useValue: {} },
+      ]
     })
     .compileComponents();
     translate = TestBed.inject(TranslateService);

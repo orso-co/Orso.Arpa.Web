@@ -47,13 +47,25 @@
     <form *ngIf="forgotPasswordForm" [formGroup]="forgotPasswordFormGroup" (ngSubmit)="forgotPassword()">
       <p class="p-float-label">
         <input id="usernameOrEmailForgotPassword" type="text" pInputText formControlName="usernameOrEmail" (ngModelChange)="onChange()" />
-        <label for="float-input">{{ 'EMAILADDRESS' | translate }}</label>
+        <label for="float-input">{{ 'USERNAMEOREMAIL' | translate }}</label>
       </p>
-      <button
-        pButton
-        label="{{ 'FORGOTPASSWORD' | translate }}"
-        [disabled]="forgotPasswordFormGroup.invalid || forgotPasswordFormGroup.pristine"
-      ></button>
+
+      <table>
+        <tr>
+          <td>
+            <button
+              pButton
+              label="{{ 'FORGOTPASSWORD' | translate }}"
+              [disabled]="forgotPasswordFormGroup.invalid || forgotPasswordFormGroup.pristine"
+            ></button>
+          </td>
+          <td width="10px;"></td>
+          <td>
+            <div *ngIf="errorMsgPassword">{{ errorMsgPassword }}</div>
+          </td>
+        </tr>
+      </table>
+
     </form>
   </div>
 

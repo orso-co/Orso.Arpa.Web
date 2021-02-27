@@ -4,10 +4,12 @@ import { FormGroup, FormBuilder, Validators  } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { catchError } from 'rxjs/operators';
-import { EMPTY } from 'rxjs';
+import { EMPTY, from } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { CustomRegex } from '../../../utils/CustomRegex';
+import { LoadingService} from '../../../services/loading.service';
+import { ToastService } from '../../../services/toast.service';
 
 export const LOCAL_STORAGE_TOKEN_KEY = 'token';
 
@@ -21,6 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginFormGroup: FormGroup;
   forgotPasswordFormGroup: FormGroup;
   errorMsg = '';
+  errorMsgPassword = '';
   resendMsg = false;
   loginRequest = false;
   waitForAction = false;
@@ -30,7 +33,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(formBuilder: FormBuilder,
               private router: Router,
               private authService: AuthService,
-              private translate: TranslateService
+              private translate: TranslateService,
+              private loadingService: LoadingService,
+              private toastService: ToastService,
 
   ) {
     this.loginFormGroup = formBuilder.group({
@@ -53,7 +58,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       usernameOrEmail: [null,
         [
           Validators.required,
-          Validators.pattern(CustomRegex.EMAIL),
+          Validators.minLength(4),
         ]
       ],
     });
@@ -103,6 +108,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   onChange(): void {
     this.resendMsg = false;
     this.errorMsg = '';
+    this.errorMsgPassword = '';
   }
 
   resendConfirmationLink(): void {
@@ -123,9 +129,25 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   forgotPassword(): void{
-    this.authService.
-      forgotPassword(this.forgotPasswordFormGroup.value).subscribe();
-    this.forgotPasswordForm = false;
+
+    this.subs.add(
+      this.loadingService.showLoaderUntilCompleted(this.authService.forgotPassword(this.forgotPasswordFormGroup.value))
+      .pipe(catchError((error) => {
+        this.forgotPasswordForm = true;
+        if (error instanceof HttpErrorResponse) {
+          if (error.status === 0) {
+            this.errorMsgPassword = this.translate.instant('CONNECTIONERROR');
+          } else {
+            this.errorMsgPassword = this.translate.instant('USERNAMEOREMAILERROR');
+          }
+        }
+        return EMPTY;
+      }))
+      .subscribe(() => {
+        this.toastService.success('FORGOTPASSWORDSENT');
+        this.forgotPasswordForm = false;
+      })
+    );
   }
 }
 

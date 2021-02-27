@@ -16,7 +16,7 @@ export class ToastService {
     this.toastrService.info(this.translateService.instant(messageKey));
   }
 
-  public eccor(messageKey: string): void {
+  public error(messageKey: string): void {
     this.toastrService.error(this.translateService.instant(messageKey));
   }
 }
