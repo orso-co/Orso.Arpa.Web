@@ -20,7 +20,7 @@
   "YES": "Ja",
   "login": {
     "RESENDCONFIRMATION": "Bestätigungslink nochmal zusenden",
-    "RESENDDONE": "Bestätigungslink wurde versendet, bitte Mailbox prüfen",
+    "RESENDDONE": "Bestätigungslink wurde erneut versendet, bitte Mailbox prüfen",
     "LOGIN_FIRST": "Bitte loggen Sie sich zunächst ein"
   },
   "emailconfirmation": {
