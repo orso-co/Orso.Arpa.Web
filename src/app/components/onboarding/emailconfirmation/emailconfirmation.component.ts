@@ -24,10 +24,10 @@ export class EmailconfirmationComponent implements OnInit {
       this.authService
       .confirmMail(confirmEmail)
       .subscribe(() => {
-        this.toastService.info('emailconfirmation.SUCCESS');
+        this.toastService.success('emailconfirmation.SUCCESS');
       });
     });
-    this.router.navigate(['/onboarding/login']);
+    this.router.navigate(['/']);
   }
 
 }

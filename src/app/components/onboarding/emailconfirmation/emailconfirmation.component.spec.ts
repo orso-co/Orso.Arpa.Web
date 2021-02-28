@@ -33,7 +33,7 @@ describe('EmailconfirmationComponent', () => {
       ],
       providers: [
         {provide: AuthService, useValue: { confirmMail: (confirmEmail: IConfirmEmailDto) => of(null) }},
-        {provide: ToastService, useValue: {}}, ]
+        {provide: ToastService, useValue: { success: () => of(null) }}, ]
     })
     .compileComponents();
     translate = TestBed.inject(TranslateService);
