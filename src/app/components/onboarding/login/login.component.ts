@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authService
     .resendConfirmationLink(this.loginFormGroup.value.usernameOrEmail)
     .subscribe(() => {
-        this.toastService.eccor('login.RESENDDONE');
+        this.toastService.error('login.RESENDDONE');
         });
   }
 }

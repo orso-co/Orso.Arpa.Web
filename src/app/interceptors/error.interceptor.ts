@@ -26,7 +26,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         if (error) {
           switch (error.status) {
             case 0:
-                this.toastService.eccor('CONNECTIONERROR');
+                this.toastService.error('CONNECTIONERROR');
                 break;
             default:
                 if (error.error.errors) {
