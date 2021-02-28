@@ -1,9 +1,22 @@
 <div class="topbar clearfix">
-    <a routerLink="/" class="logo-link">
-      <img
-        src="assets/organization/icons/organisation_icon.png"
-        class="topbar-logo"
-        routerLink="/"
-      />
-    </a>
+  <a routerLink="/" class="logo-link">
+    <img src="assets/organization/icons/organisation_icon.png" class="topbar-logo" routerLink="/" />
+  </a>
+
+  <ul class="topbar-menu">
+    <li class="user-profile-item" *ngIf="token$ | async as token">
+      <a href="#" (click)="userprofilemenu.toggle($event); $event.preventDefault();">
+        <p-avatar
+          [label]="getInitials(token)"
+          size="large"
+          [style]="{ 'background-color': '#64B5F6', color: 'rgba(255, 255, 255, 0.87)' }"
+          shape="circle"
+        ></p-avatar>
+        <span class="user-profile-name">{{ token.displayName }}</span>
+        <span class="user-profile-role">{{ getRoleNames(token) }}</span>
+      </a>
+    </li>
+  </ul>
 </div>
+
+<p-menu #userprofilemenu [popup]="true" [model]="userProfileItems"></p-menu>

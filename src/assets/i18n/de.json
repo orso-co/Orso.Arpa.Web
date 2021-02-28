@@ -20,7 +20,9 @@
   "errors": {
     "NOTFOUND": "Seite nicht gefunden",
     "FORBIDDEN": "Zugriff verweigert",
-    "CONNECTIONERROR": "Verbindungsfehler, bitte später nochmal probieren"
+    "CONNECTIONERROR": "Verbindungsfehler, bitte später nochmal probieren",
+  "logout": {
+    "LOGGED_OUT": "Bis zum nächsten Mal bei ARPA"
   },
   "login": {
     "RESENDCONFIRMATION": "Bestätigungslink nochmal zusenden",
