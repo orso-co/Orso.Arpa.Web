@@ -4,12 +4,9 @@ img {
   width: 100%;
 }
 
-.image-box {
-  padding-top: 0;
-}
-
-input {
-  width: 220px;
+.no-margin {
+  text-align: left;
+  margin-left: 0px;
 }
 
 @media all and (min-width: 768px) {

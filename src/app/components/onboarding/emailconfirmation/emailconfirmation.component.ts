@@ -29,25 +29,6 @@ export class EmailconfirmationComponent implements OnInit {
       const confirmEmail: IConfirmEmailDto = {token: params.token, email: params.email};
       this.authService
       .confirmMail(confirmEmail)
-      .pipe(
-        catchError((error) => {
-          if (error instanceof HttpErrorResponse) {
-            if (error.status === 0) {
-              this.errorMsg = this.translate.instant('CONNECTIONERROR');
-            } else {
-              this.errorMsg = this.translate.instant('UNKNOWNERROR');
-              if (error.error.errors) {
-                if (error.error.errors.Email) { this.errorMsg = error.error.errors.Email; }
-                if (error.error.errors.Token) { this.errorMsg = error.error.errors.Token; }
-              }
-              if (error.error.errorMessage) {
-                if (error.error.errorMessage.Errors) { this.errorMsg = error.error.errorMessage.Errors[0]; }
-              }
-            }
-          }
-          return EMPTY;
-        })
-      )
       .subscribe(() => {
         this.successMsg = true;
       });

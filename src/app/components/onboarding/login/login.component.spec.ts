@@ -1,14 +1,16 @@
 import { AuthService } from './../../../services/auth.service';
+import { ToastService } from './../../../services/toast.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../../../app.module';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import {RouterTestingModule} from '@angular/router/testing';
+import { RouterTestingModule} from '@angular/router/testing';
+import { ErrorInterceptor } from './../../../interceptors/error.interceptor';
 
 describe('LoginComponent', () => {
   let translate: TranslateService;
@@ -35,7 +37,10 @@ describe('LoginComponent', () => {
           }
         })
       ],
-      providers: [{provide: AuthService, useValue: {}}]
+      providers: [
+        {provide: AuthService, useValue: {}},
+        {provide: ToastService, useValue: {}},
+        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true, }, ]
     })
     .compileComponents();
     translate = TestBed.inject(TranslateService);

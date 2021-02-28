@@ -36,6 +36,7 @@ import { API_URL } from './models/api-url';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import { ToastrModule } from 'ngx-toastr';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 
 registerLocaleData(localeDe, 'de');
 
@@ -67,7 +68,8 @@ export function tokenGetter(): string | null {
     NotFoundComponent,
     NoRoleComponent,
     UserListComponent,
-    LoadingComponent
+    LoadingComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -101,6 +103,11 @@ export function tokenGetter(): string | null {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: WithCredentialsInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
       multi: true,
     },
     { provide: API_URL, useValue: `${environment.api.protocol}://${environment.api.baseUrl}` },

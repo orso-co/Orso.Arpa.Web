@@ -20,7 +20,7 @@ export class ToastService {
     });
   }
 
-  public eccor(messageKey: string): void {
+  public error(messageKey: string): void {
     this.translateService.get(messageKey).subscribe((translation) => {
       this.toastrService.error(translation);
     });
