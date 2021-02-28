@@ -42,7 +42,6 @@ const routes: Routes = [
     component: MainComponent,
     canActivate: [IsLoggedInGuard],
     canActivateChild: [RoleGuard],
-    resolve: { rolesLoaded: RoleListResolver },
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
@@ -56,7 +55,7 @@ const routes: Routes = [
             path: 'admin',
             component: AdministratorComponent,
             data: { roles: [RoleNames.admin], treeMaxLevel: 2 },
-            resolve: { users: UserListResolver, sectionTreeLoaded: SectionTreeResolver },
+            resolve: { users: UserListResolver, sectionTreeLoaded: SectionTreeResolver, rolesLoaded: RoleListResolver },
           },
           { path: 'staff', component: StaffComponent, data: { roles: [RoleNames.staff] } },
           { path: 'noRole', component: NoRoleComponent },
