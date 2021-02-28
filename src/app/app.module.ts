@@ -36,6 +36,7 @@ import { API_URL } from './models/api-url';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import { ToastrModule } from 'ngx-toastr';
+import { ForgotPasswordComponent } from './components/onboarding/forgot-password/forgot-password.component';
 
 registerLocaleData(localeDe, 'de');
 
@@ -67,7 +68,8 @@ export function tokenGetter(): string | null {
     NotFoundComponent,
     NoRoleComponent,
     UserListComponent,
-    LoadingComponent
+    LoadingComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

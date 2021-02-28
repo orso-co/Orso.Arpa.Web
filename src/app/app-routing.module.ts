@@ -19,6 +19,7 @@ import { RegisterComponent } from './components/onboarding/register/register.com
 import { PerformerComponent } from './components/dashboards/performer/performer.component';
 import { EmailconfirmationComponent } from './components/onboarding/emailconfirmation/emailconfirmation.component';
 import { RegisterConfirmationComponent } from './components/onboarding/registerconfirmation/registerconfirmation.component';
+import { ForgotPasswordComponent } from './components/onboarding/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
@@ -28,6 +29,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
+      { path: 'forgotPassword', component: ForgotPasswordComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'eMailConfirmation', component: EmailconfirmationComponent },
       {
