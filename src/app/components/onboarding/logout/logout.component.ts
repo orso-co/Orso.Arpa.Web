@@ -6,7 +6,7 @@ import { AuthService } from './../../../services/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
-  selector: 'app-logout',
+  selector: 'arpa-logout',
   templateUrl: './logout.component.html',
   styleUrls: ['./logout.component.scss'],
 })
@@ -20,7 +20,7 @@ export class LogoutComponent implements OnInit, OnDestroy {
     private loadingService: LoadingService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.subs.add(
       this.loadingService.showLoaderUntilCompleted(this.authService.logout()).subscribe(() => {
         this.toastService.info('logout.LOGGED_OUT');

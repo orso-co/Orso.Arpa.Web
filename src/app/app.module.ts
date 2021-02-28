@@ -1,5 +1,4 @@
 import { LogoutComponent } from './components/onboarding/logout/logout.component';
-import { UserMenuComponent } from './components/shell/user-menu/user-menu.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { UserListComponent } from './components/dashboards/user-list/user-list.component';
 import { environment } from './../environments/environment';
@@ -71,7 +70,6 @@ export function tokenGetter(): string | null {
     NoRoleComponent,
     UserListComponent,
     LoadingComponent,
-    UserMenuComponent,
     LogoutComponent
   ],
   imports: [
