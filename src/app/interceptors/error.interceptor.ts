@@ -31,11 +31,6 @@ export class ErrorInterceptor implements HttpInterceptor {
               this.toastService.error('errors.CONNECTIONERROR');
               break;
 
-            case 401:
-              this.toastService.error('login.LOGIN_FIRST');
-              this.router.navigate(['/onboarding/login']);
-              break;
-
             case 403:
               this.toastService.error('errors.FORBIDDEN');
               this.router.navigate(['/forbidden']);
@@ -59,7 +54,11 @@ export class ErrorInterceptor implements HttpInterceptor {
                       errorMessages.push(error.error.title);
                     }
                 }
-               break;
+                if ((error.status === 401) && (errorMessages.length === 0)) {
+                  this.toastService.error('warning.LOGIN_FIRST');
+                  this.router.navigate(['/']);
+                }
+                break;
           }
         }
         return throwError(errorMessages);
