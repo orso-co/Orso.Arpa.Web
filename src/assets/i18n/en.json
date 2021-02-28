@@ -11,13 +11,17 @@
   "REGISTER": "Register",
   "RESETPASSWORD": "Reset password",
   "CANCEL": "Cancel",
-  "CONNECTIONERROR": "Connection error, please try again later",
   "NETWORKERROR": "Network error",
   "performerWELCOME": "Welcome on Arpa 2.0",
   "UNKNOWNERROR": "Unknown error",
   "SAVE": "Save",
   "NO": "No",
   "YES": "Yes",
+  "errors": {
+    "NOTFOUND": "Page not found",
+    "FORBIDDEN": "Access denied",
+    "CONNECTIONERROR": "Connection error, please try again later"
+  },
   "login": {
     "RESENDCONFIRMATION": "Resend confirmation link",
     "RESENDDONE": "Confirmation link sent, please check for mail box",
