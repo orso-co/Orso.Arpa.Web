@@ -22,6 +22,9 @@
     "FORBIDDEN": "Zugriff verweigert",
     "CONNECTIONERROR": "Verbindungsfehler, bitte später nochmal probieren"
   },
+  "logout": {
+    "LOGGED_OUT": "Bis zum nächsten Mal bei ARPA"
+  },
   "login": {
     "RESENDCONFIRMATION": "Bestätigungslink nochmal zusenden",
     "RESENDDONE": "Bestätigungslink wurde erneut versendet, bitte Mailbox prüfen",

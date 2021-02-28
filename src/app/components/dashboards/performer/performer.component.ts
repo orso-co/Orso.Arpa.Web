@@ -1,7 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
 import { SubSink } from 'subsink';
-import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'arpa-performer',
@@ -10,15 +8,6 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class PerformerComponent implements OnDestroy {
 private subs = new SubSink();
-
-  constructor(private router: Router,
-              private authService: AuthService) {}
-
-  logout(): void {
-    this.subs.add(this.authService
-      .logout()
-      .subscribe(() => this.router.navigate(['/onboarding/login'])));
-  }
 
   ngOnDestroy(): void {
     this.subs.unsubscribe();

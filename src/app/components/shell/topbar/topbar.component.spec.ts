@@ -1,10 +1,9 @@
+import { AuthService } from './../../../services/auth.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { waitForAsync } from '@angular/core/testing';
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TopbarComponent } from './topbar.component';
+import { of } from 'rxjs';
 
 describe('TopbarComponent', () => {
   let component: TopbarComponent;
@@ -12,7 +11,9 @@ describe('TopbarComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TopbarComponent ]
+      declarations: [ TopbarComponent ],
+      imports: [HttpClientTestingModule],
+      providers: [ { provide: AuthService, useValue: { token$: of(null)}}]
     })
     .compileComponents();
   }));

@@ -1,3 +1,4 @@
+import { LogoutComponent } from './components/onboarding/logout/logout.component';
 import { RoleListResolver } from './resolvers/roles-list.resolver';
 import { UserListResolver } from './resolvers/user-list.resolver';
 import { DashboardGuard } from './guards/dashboard.guard';
@@ -30,6 +31,11 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'eMailConfirmation', component: EmailconfirmationComponent },
+      {
+        path: 'registerConfirmation',
+        component: RegisterConfirmationComponent,
+      },
+      { path: 'logout', component: LogoutComponent }
     ],
   },
   {

@@ -16,6 +16,7 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ConfirmationService } from 'primeng/api';
 import { CheckboxModule } from 'primeng/checkbox';
 import { TreeModule } from 'primeng/tree';
+import { MenuModule } from 'primeng/menu';
 
 const MODULES = [
   InputTextModule,
@@ -33,6 +34,7 @@ const MODULES = [
   ConfirmPopupModule,
   CheckboxModule,
   TreeModule,
+  MenuModule
 ];
 
 @NgModule({
