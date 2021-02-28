@@ -19,7 +19,6 @@ import { LoginComponent } from './components/onboarding/login/login.component';
 import { RegisterComponent } from './components/onboarding/register/register.component';
 import { PerformerComponent } from './components/dashboards/performer/performer.component';
 import { EmailconfirmationComponent } from './components/onboarding/emailconfirmation/emailconfirmation.component';
-import { RegisterConfirmationComponent } from './components/onboarding/registerconfirmation/registerconfirmation.component';
 import { SectionTreeResolver } from './resolvers/section-tree.resolver';
 
 const routes: Routes = [
@@ -32,10 +31,6 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'eMailConfirmation', component: EmailconfirmationComponent },
-      {
-        path: 'registerConfirmation',
-        component: RegisterConfirmationComponent,
-      },
       { path: 'logout', component: LogoutComponent }
     ],
   },

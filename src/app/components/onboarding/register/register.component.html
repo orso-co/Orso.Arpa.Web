@@ -18,8 +18,9 @@
       <label for="float-input">{{ 'USERNAME' | translate }}</label>      
     </p>    
     <p class="p-float-label">
-      <input id="givenname" type="text" pInputText formControlName="password" (ngModelChange)="onChange()">
-      <label for="float-input">{{ 'PASSWORD' | translate }}</label>      
+      <input id="password" type="text" pInputText formControlName="password" pPassword [feedback]=false [type]="hide ? 'password' : 'text'" (ngModelChange)="onChange()">
+      <label for="float-input">{{ 'PASSWORD' | translate }}</label> 
+      <i id="eyeButton" class="p-ml-2 pi {{hide ? 'pi-eye-slash' : 'pi-eye'}}" (click)="hide = !hide"></i>     
     </p>
     <p class="p-field-checkbox">
       <p-checkbox id="givenname" formControlName="privacyPolicy" ngDefaultControl></p-checkbox>
@@ -32,7 +33,7 @@
           <button
           pButton
           label="{{ 'REGISTER' | translate }}"
-          [disabled]="registerFormGroup.invalid || registerFormGroup.pristine || registerRequest || errorMsg">
+          [disabled]="registerFormGroup.invalid || registerFormGroup.pristine || registerRequest">
           </button>
         </td>
         <td width="10px;"></td>
@@ -49,8 +50,6 @@
         </td>
       </tr>              
     </table>
-    <div *ngIf="errorMsg">{{errorMsg}}</div>
-
 
   </form>
 </div>

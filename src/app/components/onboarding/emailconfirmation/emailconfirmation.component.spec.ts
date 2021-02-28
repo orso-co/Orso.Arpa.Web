@@ -1,4 +1,5 @@
 import { AuthService } from './../../../services/auth.service';
+import { ToastService } from './../../../services/toast.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EmailconfirmationComponent } from './emailconfirmation.component';
 import {RouterTestingModule} from '@angular/router/testing';
@@ -30,7 +31,9 @@ describe('EmailconfirmationComponent', () => {
           }
         })
       ],
-      providers: [{provide: AuthService, useValue: { confirmMail: (confirmEmail: IConfirmEmailDto) => of(null) }}]
+      providers: [
+        {provide: AuthService, useValue: { confirmMail: (confirmEmail: IConfirmEmailDto) => of(null) }},
+        {provide: ToastService, useValue: { success: () => of(null) }}, ]
     })
     .compileComponents();
     translate = TestBed.inject(TranslateService);

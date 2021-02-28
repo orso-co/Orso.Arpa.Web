@@ -56,14 +56,14 @@ export class AuthService {
   }
 
   register(userRegisterDto: IUserRegisterDto): Observable<ITokenDto> {
-    userRegisterDto.clientUri = `${environment.web.protocol}://${environment.web.baseUrl}/registerConfirmation`;
+    userRegisterDto.clientUri = `${environment.web.protocol}://${environment.web.baseUrl}/onboarding/eMailConfirmation`;
     return this.http.post<ITokenDto>(`${this.baseUrl}/register`, userRegisterDto);
   }
 
   resendConfirmationLink(usernameOrEmail: string): Observable<any> {
     const createEmailConfirmationTokenDto: ICreateEmailConfirmationTokenDto = {
       usernameOrEmail,
-      clientUri: `${environment.web.protocol}://${environment.web.baseUrl}/eMailConfirmation`,
+      clientUri: `${environment.web.protocol}://${environment.web.baseUrl}/onboarding/eMailConfirmation`,
     };
     return this.http.post<ITokenDto>(`${this.baseUrl}/emailconfirmationtoken`, createEmailConfirmationTokenDto);
   }

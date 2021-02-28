@@ -31,13 +31,10 @@
     "LOGIN_FIRST": "Please login first"
   },
   "emailconfirmation": {
-    "SUCCESS": "Thank you for the confirmation of your e-mail address",
-    "CHECKING": "Validation in progress - please wait.",
-    "CONTINUE": "Continue to the login"
+    "SUCCESS": "Thank you for the confirmation of your e-mail address"
   },
-  "registerconfirmation": {
-    "THANKS": "Thanks for your registration at ARPA. Please check your mail box and confirm your e-mail address.",
-    "CONTINUE": "Continue to the login"
+  "register": {
+    "THANKS": "Thanks for your registration at ARPA. Please check your mail box and confirm your e-mail address."
   },
   "dashboardselector": {
     "SELECT_DASHBOARD": "Select the dashboard you want to switch to"

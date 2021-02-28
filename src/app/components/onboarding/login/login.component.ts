@@ -56,7 +56,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {this.router.navigate(['/']); },
         error => {
-          console.log(error);
           this.loginRequest = false;
           // following lines are workaround to identify if confirmation link should be recent
           // will not work when backend send error text in other language or text will change
