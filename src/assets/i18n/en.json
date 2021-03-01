@@ -9,13 +9,9 @@
   "LOGIN": "Login",
   "LOGOUT": "Logout",
   "REGISTER": "Register",
-  "RESETPASSWORD": "Reset password",
   "CANCEL": "Cancel",
-  "FORGOTPASSWORD": "Send new password",
-  "FORGOTPASSWORDSENT": "A link to assign a new password has been sent to your e-mail address.",
   "CONNECTIONERROR": "Connection error, please try again later",
   "NETWORKERROR": "Network error",
-  "USERNAMEOREMAILERROR": "The email address or username could not be found.",
   "performerWELCOME": "Welcome on Arpa 2.0",
   "UNKNOWNERROR": "Unknown error",
   "SAVE": "Save",
@@ -25,6 +21,11 @@
     "RESENDCONFIRMATION": "Resend confirmation link",
     "RESENDDONE": "Confirmation link sent, please check for mail box",
     "LOGIN_FIRST": "Please login first"
+  },
+  "forgotpassword": {
+    "BUTTON": "Send new password",
+    "SENT": "A link to assign a new password has been sent to your e-mail address.",
+    "USERNAMEOREMAILERROR": "The email address or username could not be found. "
   },
   "emailconfirmation": {
     "SUCCESS": "Thank you for the confirmation of your e-mail address",

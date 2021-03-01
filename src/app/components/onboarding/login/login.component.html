@@ -41,8 +41,9 @@
     </div>
 
     <div class="p-field">
-      <p-button label="{{ 'FORGOTPASSWORD' | translate }}" styleClass="p-button-link" (click)="forgotPassword()"></p-button>
+      <p-button label="{{ 'forgotpassword.BUTTON' | translate }}" styleClass="p-button-link" (click)="forgotPassword()"></p-button>
     </div>
+    <div *ngIf="errorMsgPassword">{{ errorMsgPassword }}</div>
 
   </div>
 

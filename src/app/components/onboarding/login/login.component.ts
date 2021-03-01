@@ -126,13 +126,13 @@ export class LoginComponent implements OnInit, OnDestroy {
           if (error.status === 0) {
             this.errorMsgPassword = this.translate.instant('CONNECTIONERROR');
           } else {
-            this.errorMsgPassword = this.translate.instant('USERNAMEOREMAILERROR');
+            this.errorMsgPassword = this.translate.instant('forgotpassword.USERNAMEOREMAILERROR');
           }
         }
         return EMPTY;
       }))
       .subscribe(() => {
-        this.toastService.success('FORGOTPASSWORDSENT');
+        this.toastService.success('forgotpassword.SENT');
       })
     );
   }

@@ -9,13 +9,9 @@
   "LOGIN": "Einloggen",
   "LOGOUT": "Abmelden",
   "REGISTER": "Registrieren",
-  "RESETPASSWORD": "Passwort vergessen",
   "CANCEL": "Abbrechen",
-  "FORGOTPASSWORD": "Neues Passwort anfordern",
-  "FORGOTPASSWORDSENT": "Ein Link zum Vergeben eines neuen Passworts wurde an deine e-Mailadresse gesendet.",
   "CONNECTIONERROR": "Verbindungsfehler, bitte später nochmal probieren",
   "NETWORKERROR": "Netzwerkfehler",
-  "USERNAMEOREMAILERROR": "Die e-Mailadresse oder der Benutzername konnte nicht gefunden werden.",
   "performerWELCOME": "Willkommen auf Arpa 2.0",
   "UNKNOWNERROR": "Unbekannter Fehler",
   "SAVE": "Speichern",
@@ -25,6 +21,11 @@
     "RESENDCONFIRMATION": "Bestätigungslink nochmal zusenden",
     "RESENDDONE": "Bestätigungslink wurde versendet, bitte Mailbox prüfen",
     "LOGIN_FIRST": "Bitte loggen Sie sich zunächst ein"
+  },
+  "forgotpassword": {
+    "BUTTON": "Passwort vergessen",
+    "SENT": "Ein Link zum Vergeben eines neuen Passworts wurde an deine e-Mailadresse gesendet.",
+    "USERNAMEOREMAILERROR": "Die e-Mailadresse oder der Benutzername konnte nicht gefunden werden."
   },
   "emailconfirmation": {
     "SUCCESS": "Danke für die Bestätigung der E-Mail Adresse",
