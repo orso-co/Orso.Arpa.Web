@@ -21,14 +21,12 @@ export const LOCAL_STORAGE_TOKEN_KEY = 'token';
 export class LoginComponent implements OnInit, OnDestroy {
 
   loginFormGroup: FormGroup;
-  forgotPasswordFormGroup: FormGroup;
   errorMsg = '';
   errorMsgPassword = '';
   resendMsg = false;
   loginRequest = false;
   waitForAction = false;
   private subs = new SubSink();
-  forgotPasswordForm = false;
 
   constructor(formBuilder: FormBuilder,
               private router: Router,
@@ -51,15 +49,6 @@ export class LoginComponent implements OnInit, OnDestroy {
           Validators.required,
           Validators.minLength(6),
         ],
-      ],
-    });
-
-    this.forgotPasswordFormGroup = formBuilder.group({
-      usernameOrEmail: [null,
-        [
-          Validators.required,
-          Validators.minLength(4),
-        ]
       ],
     });
   }
@@ -131,9 +120,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   forgotPassword(): void{
 
     this.subs.add(
-      this.loadingService.showLoaderUntilCompleted(this.authService.forgotPassword(this.forgotPasswordFormGroup.value))
+      this.loadingService.showLoaderUntilCompleted(this.authService.forgotPassword(this.loginFormGroup.value.usernameOrEmail))
       .pipe(catchError((error) => {
-        this.forgotPasswordForm = true;
         if (error instanceof HttpErrorResponse) {
           if (error.status === 0) {
             this.errorMsgPassword = this.translate.instant('CONNECTIONERROR');
@@ -145,7 +133,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       }))
       .subscribe(() => {
         this.toastService.success('FORGOTPASSWORDSENT');
-        this.forgotPasswordForm = false;
       })
     );
   }

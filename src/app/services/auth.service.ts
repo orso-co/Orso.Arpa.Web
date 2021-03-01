@@ -92,9 +92,9 @@ export class AuthService {
     return this.http.post<any>(`${this.baseUrl}/confirmemail`, confirmEmail);
   }
 
-  forgotPassword(dto: {usernameOrEmail: string}): Observable<any> {
+  forgotPassword(usernameOrEmail: string): Observable<any> {
     const createNewPasswordDto  = {
-      usernameOrEmail: dto.usernameOrEmail,
+      usernameOrEmail,
       clientUri: `${environment.web.protocol}://${environment.web.baseUrl}/onboarding/forgotPassword`,
     };
     return this.http.post(`${this.baseUrl}/forgotpassword`, createNewPasswordDto);
