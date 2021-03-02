@@ -9,7 +9,6 @@
   "LOGIN": "Einloggen",
   "LOGOUT": "Abmelden",
   "REGISTER": "Registrieren",
-  "RESETPASSWORD": "Passwort vergessen",
   "CANCEL": "Abbrechen",
   "NETWORKERROR": "Netzwerkfehler",
   "performerWELCOME": "Willkommen auf Arpa 2.0",
@@ -29,6 +28,10 @@
     "RESENDCONFIRMATION": "Bestätigungslink nochmal zusenden",
     "RESENDDONE": "Bestätigungslink wurde erneut versendet, bitte Mailbox prüfen",
     "LOGIN_FIRST": "Bitte loggen Sie sich zunächst ein"
+  },
+  "forgotpassword": {
+    "BUTTON": "Passwort vergessen",
+    "SENT": "Ein Link zum Vergeben eines neuen Passworts wurde an deine e-Mailadresse gesendet."
   },
   "emailconfirmation": {
     "SUCCESS": "Danke für die Bestätigung der E-Mail Adresse"

@@ -9,7 +9,6 @@
   "LOGIN": "Login",
   "LOGOUT": "Logout",
   "REGISTER": "Register",
-  "RESETPASSWORD": "Reset password",
   "CANCEL": "Cancel",
   "NETWORKERROR": "Network error",
   "performerWELCOME": "Welcome on Arpa 2.0",
@@ -20,7 +19,7 @@
   "errors": {
     "NOTFOUND": "Page not found",
     "FORBIDDEN": "Access denied",
-    "CONNECTIONERROR": "Connection error, please try again later",
+    "CONNECTIONERROR": "Connection error, please try again later"
   },
   "logout": {
     "LOGGED_OUT": "Until next time at ARPA"
@@ -29,6 +28,10 @@
     "RESENDCONFIRMATION": "Resend confirmation link",
     "RESENDDONE": "Confirmation link sent, please check for mail box",
     "LOGIN_FIRST": "Please login first"
+  },
+  "forgotpassword": {
+    "BUTTON": "Send new password",
+    "SENT": "A link to assign a new password has been sent to your e-mail address."
   },
   "emailconfirmation": {
     "SUCCESS": "Thank you for the confirmation of your e-mail address"
