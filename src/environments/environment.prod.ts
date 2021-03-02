@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
     api: {
-    protocol: 'http',
-    baseUrl: 'http://localhost:5000'
+    protocol: 'https',
+    baseUrl: 'orso-arpa.azurewebsites.net'
   },
   web:
   {

@@ -6,8 +6,7 @@ export const environment = {
   production: false,
   api: {
     protocol: 'http',
-    baseUrl: 'localhost:5000',
-    // baseUrl: 'orso-arpa.azurewebsites.net'
+    baseUrl: 'localhost:5000'
 
   },
   web:
