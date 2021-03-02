@@ -10,7 +10,8 @@ import { Component } from '@angular/core';
 })
 export class TopbarComponent {
   userProfileItems: MenuItem[] = [
-    { label: 'Logout', icon: 'pi pi-sign-out', routerLink: ['/onboarding/logout'] }
+    { label: 'Logout', icon: 'pi pi-sign-out', routerLink: ['/onboarding/logout'] },
+    { label: 'Profile', icon: 'pi pi-user-edit', routerLink: ['/onboarding/profile'] }
   ];
   token$: Observable<IToken | null>;
 
