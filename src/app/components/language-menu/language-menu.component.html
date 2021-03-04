@@ -1,5 +1,7 @@
 <p-selectButton
   [options]="languages"
   [(ngModel)]="currentLanguage"
-  (onChange)="updateLanguage($event)">
+  optionValue="value"
+  optionLabel="value"
+  (onChange)="updateLanguage()">
 </p-selectButton>

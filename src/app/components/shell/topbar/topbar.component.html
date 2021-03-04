@@ -21,11 +21,8 @@
         <span class="user-profile-name">{{ token.displayName }}</span>
         <span class="user-profile-role">{{ getRoleNames(token) }}</span>
       </a>
-      <p-menu #userprofilemenu [popup]="true" [model]="userProfileItems"></p-menu>
     </li>
-
   </ul>
-
 </div>
 
-
+<p-menu #userprofilemenu [popup]="true" [model]="userProfileItems"></p-menu>
