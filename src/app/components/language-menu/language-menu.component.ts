@@ -14,7 +14,6 @@ export class LanguageMenuComponent implements OnInit {
 
   constructor(private translate: TranslateService) {
     translate.getLangs().forEach(language => {
-      console.log(language);
       this.languages.push({ value: language });
     });
     this.currentLanguage = translate.currentLang;
