@@ -36,7 +36,7 @@
   "errors": {
     "NOTFOUND": "Page not found",
     "FORBIDDEN": "Access denied",
-    "CONNECTIONERROR": "Connection error, please try again later",
+    "CONNECTIONERROR": "Connection error, please try again later"
   },
   "logout": {
     "LOGGED_OUT": "Until next time at ARPA"
