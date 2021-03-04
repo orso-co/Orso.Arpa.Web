@@ -17,10 +17,26 @@
   "SAVE": "Save",
   "NO": "No",
   "YES": "Yes",
+  "MESSAGES": "Messages",
+  "APPOINTMENTS": "Appointments",
+  "PROJECTS": "Projects",
+  "TASKS": "Tasks",
+  "RECENT_ACTIVITY": "Recent Activiy",
+  "PROFILE": "My Profile Page",
+  "BASEDATA": "Base Data",
+  "CONTACTDATA": "Contact Data",
+  "MEMBERDATA": "Member Data",
+  "MUSICIANDATA": "Musician Data",
+
+  "navigation": {
+    "BACKTODASHBOARD": "Back to dashboard"
+
+  },
+
   "errors": {
     "NOTFOUND": "Page not found",
     "FORBIDDEN": "Access denied",
-    "CONNECTIONERROR": "Connection error, please try again later",
+    "CONNECTIONERROR": "Connection error, please try again later"
   },
   "logout": {
     "LOGGED_OUT": "Until next time at ARPA"

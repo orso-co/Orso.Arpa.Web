@@ -17,6 +17,22 @@
   "SAVE": "Speichern",
   "NO": "Nein",
   "YES": "Ja",
+  "MESSAGES": "Nachrichten",
+  "APPOINTMENTS": "Termine",
+  "PROJECTS": "Projekte",
+  "TASKS": "Aufgaben",
+  "RECENT_ACTIVITY": "Aktivitätsverlauf",
+  "PROFILE": "Meine Profilseite",
+  "BASEDATA": "Stammdaten",
+  "CONTACTDATA": "Kontaktdaten",
+  "MEMBERDATA": "Mitgliedsdaten",
+  "MUSICIANDATA": "Musikerdaten",
+
+  "navigation": {
+    "BACKTODASHBOARD": "zurück zum Dashboard"
+
+  },
+
   "errors": {
     "NOTFOUND": "Seite nicht gefunden",
     "FORBIDDEN": "Zugriff verweigert",

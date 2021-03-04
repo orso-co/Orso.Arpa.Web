@@ -2,6 +2,7 @@
   <a routerLink="/" class="logo-link">
     <img src="assets/organization/icons/organisation_icon.png" class="topbar-logo" routerLink="/" />
   </a>
+  <div>{{ "performerWELCOME" | translate }}</div>
 
   <ul class="topbar-menu">
     <li class="user-profile-item" *ngIf="token$ | async as token">
