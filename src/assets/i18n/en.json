@@ -1,18 +1,18 @@
 {
-  "EMAILADDRESS": "E-mail address",
+  "EMAILADDRESS": "Email address",
   "USERNAME": "Username",
   "GIVENNAME": "Given name",
   "SURNAME": "Surname",
   "PASSWORD": "Password",
   "PRIVACYPOLICY": "I have read the notes on privacy and accept them.",
-  "USERNAMEOREMAIL": "Username or e-Mail",
+  "USERNAMEOREMAIL": "Username or Email",
   "LOGIN": "Login",
   "LOGOUT": "Logout",
   "REGISTER": "Register",
   "RESETPASSWORD": "Reset password",
   "CANCEL": "Cancel",
   "NETWORKERROR": "Network error",
-  "performerWELCOME": "Welcome on Arpa 2.0",
+  "performerWELCOME": "Welcome to Arpa 2.0",
   "UNKNOWNERROR": "Unknown error",
   "SAVE": "Save",
   "NO": "No",
@@ -22,7 +22,8 @@
   "PROJECTS": "Projects",
   "TASKS": "Tasks",
   "RECENT_ACTIVITY": "Recent Activiy",
-  "PROFILE": "My Profile Page",
+  "PROFILE_TITLE": "My Profile Page",
+  "PROFILE": "Profile",
   "BASEDATA": "Base Data",
   "CONTACTDATA": "Contact Data",
   "MEMBERDATA": "Member Data",
@@ -30,7 +31,6 @@
 
   "navigation": {
     "BACKTODASHBOARD": "Back to dashboard"
-
   },
 
   "errors": {
@@ -39,18 +39,19 @@
     "CONNECTIONERROR": "Connection error, please try again later"
   },
   "logout": {
-    "LOGGED_OUT": "Until next time at ARPA"
+    "LOGGED_OUT": "See you again soon on ARPA!",
+    "LOG_OUT": "Log out"
   },
   "login": {
     "RESENDCONFIRMATION": "Resend confirmation link",
-    "RESENDDONE": "Confirmation link sent, please check for mail box",
+    "RESENDDONE": "Confirmation link sent, please check your inbox",
     "LOGIN_FIRST": "Please login first"
   },
   "emailconfirmation": {
-    "SUCCESS": "Thank you for the confirmation of your e-mail address"
+    "SUCCESS": "Thank you for confirming your email address"
   },
   "register": {
-    "THANKS": "Thanks for your registration at ARPA. Please check your mail box and confirm your e-mail address."
+    "THANKS": "Thanks for your registration with ARPA. Please check your inbox and confirm your email address."
   },
   "dashboardselector": {
     "SELECT_DASHBOARD": "Select the dashboard you want to switch to"

@@ -42,8 +42,8 @@ import { ProfileComponent } from './components/onboarding/profile/profile.compon
 
 registerLocaleData(localeDe, 'de');
 
-export function HttpLoaderFactory(httpBackend: HttpBackend): TranslateHttpLoader {
-  return new TranslateHttpLoader(new HttpClient(httpBackend));
+export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(httpClient);
 }
 
 export function tokenGetter(): string | null {
@@ -85,7 +85,7 @@ export function tokenGetter(): string | null {
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpBackend],
+        deps: [HttpClient],
       },
     }),
     AppRoutingModule,
