@@ -17,7 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS, HttpBackend} from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppComponent } from './app.component';
@@ -37,11 +37,12 @@ import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { LanguageMenuComponent } from './components/language-menu/language-menu.component';
 
 registerLocaleData(localeDe, 'de');
 
-export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
-  return new TranslateHttpLoader(httpClient);
+export function HttpLoaderFactory(httpBackend: HttpBackend): TranslateHttpLoader {
+  return new TranslateHttpLoader(new HttpClient(httpBackend));
 }
 
 export function tokenGetter(): string | null {
@@ -68,7 +69,8 @@ export function tokenGetter(): string | null {
     NoRoleComponent,
     UserListComponent,
     LoadingComponent,
-    LogoutComponent
+    LogoutComponent,
+    LanguageMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +83,7 @@ export function tokenGetter(): string | null {
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
+        deps: [HttpBackend],
       },
     }),
     AppRoutingModule,

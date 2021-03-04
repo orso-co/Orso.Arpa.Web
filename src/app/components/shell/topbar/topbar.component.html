@@ -4,6 +4,11 @@
   </a>
 
   <ul class="topbar-menu">
+
+    <li class="language-menu-item">
+      <arpa-language-menu></arpa-language-menu>
+    </li>
+
     <li class="user-profile-item" *ngIf="token$ | async as token">
       <a href="#" (click)="userprofilemenu.toggle($event); $event.preventDefault();">
         <p-avatar
@@ -15,8 +20,11 @@
         <span class="user-profile-name">{{ token.displayName }}</span>
         <span class="user-profile-role">{{ getRoleNames(token) }}</span>
       </a>
+      <p-menu #userprofilemenu [popup]="true" [model]="userProfileItems"></p-menu>
     </li>
+
   </ul>
+
 </div>
 
-<p-menu #userprofilemenu [popup]="true" [model]="userProfileItems"></p-menu>
+
