@@ -22,7 +22,8 @@
   "PROJECTS": "Projekte",
   "TASKS": "Aufgaben",
   "RECENT_ACTIVITY": "Aktivitätsverlauf",
-  "PROFILE": "Meine Profilseite",
+  "PROFILE_TITLE": "Meine Profilseite",
+  "PROFILE": "Profil",
   "BASEDATA": "Stammdaten",
   "CONTACTDATA": "Kontaktdaten",
   "MEMBERDATA": "Mitgliedsdaten",
@@ -30,7 +31,6 @@
 
   "navigation": {
     "BACKTODASHBOARD": "zurück zum Dashboard"
-
   },
 
   "errors": {
@@ -39,7 +39,8 @@
     "CONNECTIONERROR": "Verbindungsfehler, bitte später nochmal probieren"
   },
   "logout": {
-    "LOGGED_OUT": "Bis zum nächsten Mal bei ARPA"
+    "LOGGED_OUT": "Bis zum nächsten Mal bei ARPA",
+    "LOG_OUT": "Ausloggen"
   },
   "login": {
     "RESENDCONFIRMATION": "Bestätigungslink nochmal zusenden",

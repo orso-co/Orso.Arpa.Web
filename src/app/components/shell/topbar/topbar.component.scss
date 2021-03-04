@@ -21,6 +21,12 @@
     display: flex;
 
     li {
+      &.language-menu-item {
+        margin: auto 14px;
+      }
+    }
+
+    li {
       &.user-profile-item {
         float: right;
         position: relative;

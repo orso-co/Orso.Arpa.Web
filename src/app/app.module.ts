@@ -37,6 +37,7 @@ import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { LanguageMenuComponent } from './components/language-menu/language-menu.component';
 import { ProfileComponent } from './components/onboarding/profile/profile.component';
 
 registerLocaleData(localeDe, 'de');
@@ -70,6 +71,7 @@ export function tokenGetter(): string | null {
     UserListComponent,
     LoadingComponent,
     LogoutComponent,
+    LanguageMenuComponent,
     ProfileComponent
   ],
   imports: [

@@ -1,6 +1,10 @@
 <div class="p-grid">
   <div class="login-layout" class="p-col-11 p-md-4 login-sep1">
       <form [formGroup] = "loginFormGroup" (ngSubmit)="submit()">
+          <p>
+            <arpa-language-menu></arpa-language-menu>
+          </p>
+          <p style="height:2px"></p>
           <p class="p-float-label">
             <input id="usernameOrEmail" type="text" pInputText formControlName="usernameOrEmail">
             <label for="float-input">{{ 'USERNAMEOREMAIL' | translate }}</label>
@@ -10,7 +14,7 @@
             <input id="password" type="text" pInputText formControlName="password" pPassword [feedback]=false [type]="hide ? 'password' : 'text'">
             <label for="float-input">{{ 'PASSWORD' | translate }}</label>
             <i id="eyeButton" class="p-ml-2 pi {{hide ? 'pi-eye-slash' : 'pi-eye'}}" (click)="hide = !hide"></i>
-          </p>        
+          </p>
           <p style="height:10px"></p>
           <table>
             <tr>
