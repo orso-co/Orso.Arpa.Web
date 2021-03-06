@@ -21,6 +21,7 @@ import { PerformerComponent } from './components/dashboards/performer/performer.
 import { EmailconfirmationComponent } from './components/onboarding/emailconfirmation/emailconfirmation.component';
 import { SectionTreeResolver } from './resolvers/section-tree.resolver';
 import { ForgotPasswordComponent } from './components/onboarding/forgot-password/forgot-password.component';
+import { ProfileComponent } from './components/onboarding/profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
@@ -33,7 +34,9 @@ const routes: Routes = [
       { path: 'forgotPassword', component: ForgotPasswordComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'eMailConfirmation', component: EmailconfirmationComponent },
-      { path: 'logout', component: LogoutComponent }
+      { path: 'logout', component: LogoutComponent },
+      { path: 'profile', component: ProfileComponent }
+
     ],
   },
   {
