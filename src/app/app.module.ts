@@ -72,7 +72,7 @@ export function tokenGetter(): string | null {
     UserListComponent,
     LoadingComponent,
     LogoutComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
     LanguageMenuComponent,
     ProfileComponent
   ],
