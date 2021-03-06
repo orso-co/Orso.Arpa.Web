@@ -37,6 +37,7 @@ import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { ForgotPasswordComponent } from './components/onboarding/forgot-password/forgot-password.component';
 import { LanguageMenuComponent } from './components/language-menu/language-menu.component';
 import { ProfileComponent } from './components/onboarding/profile/profile.component';
 
@@ -71,6 +72,7 @@ export function tokenGetter(): string | null {
     UserListComponent,
     LoadingComponent,
     LogoutComponent,
+    ForgotPasswordComponent,
     LanguageMenuComponent,
     ProfileComponent
   ],

@@ -9,7 +9,6 @@
   "LOGIN": "Login",
   "LOGOUT": "Logout",
   "REGISTER": "Register",
-  "RESETPASSWORD": "Reset password",
   "CANCEL": "Cancel",
   "NETWORKERROR": "Network error",
   "performerWELCOME": "Welcome to Arpa 2.0",
@@ -46,6 +45,10 @@
     "RESENDCONFIRMATION": "Resend confirmation link",
     "RESENDDONE": "Confirmation link sent, please check your inbox",
     "LOGIN_FIRST": "Please login first"
+  },
+  "forgotpassword": {
+    "BUTTON": "Send new password",
+    "SENT": "A link to assign a new password has been sent to your e-mail address."
   },
   "emailconfirmation": {
     "SUCCESS": "Thank you for confirming your email address"

@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { ToastService } from '../../../services/toast.service';
+import { LoadingService} from '../../../services/loading.service';
 
 export const LOCAL_STORAGE_TOKEN_KEY = 'token';
 
@@ -22,8 +23,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(formBuilder: FormBuilder,
               private router: Router,
               private authService: AuthService,
-              private toastService: ToastService
-
+              private toastService: ToastService,
+              private loadingService: LoadingService
   ) {
     this.loginFormGroup = formBuilder.group({
       usernameOrEmail: [null,
@@ -77,6 +78,15 @@ export class LoginComponent implements OnInit, OnDestroy {
     .subscribe(() => {
         this.toastService.error('login.RESENDDONE');
         });
+  }
+
+  forgotPassword(): void{
+    this.subs.add(
+      this.loadingService.showLoaderUntilCompleted(this.authService.forgotPassword(this.loginFormGroup.value.usernameOrEmail))
+      .subscribe(() => {
+        this.toastService.success('forgotpassword.SENT');
+      })
+    );
   }
 }
 
