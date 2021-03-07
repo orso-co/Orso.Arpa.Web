@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   api: {
-    protocol: 'https',
-    baseUrl: 'localhost:5001'
+    protocol: 'http',
+    baseUrl: 'localhost:5000'
 
   },
   web:
