@@ -8,6 +8,7 @@ import { MyAppointmentsComponent } from './my-appointments/my-appointments.compo
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
+import { AppointmentParticipationPredictionListResolver } from 'src/app/resolvers/appointment-participation-prediction-list.resolver';
 
 @NgModule({
   imports: [
@@ -28,11 +29,12 @@ import { HttpClient } from '@angular/common/http';
         path: 'appointments',
         component: MyAppointmentsComponent,
         resolve: {
-          // predictions: AppointmentParticipationPredictionsResolver,
+          predictions: AppointmentParticipationPredictionListResolver,
         },
       },
     ]),
   ],
   declarations: [MyAppointmentsComponent],
+  providers: [AppointmentParticipationPredictionListResolver]
 })
 export class MeModule {}

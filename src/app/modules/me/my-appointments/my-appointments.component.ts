@@ -16,7 +16,7 @@ import { ToastService } from 'src/app/services/toast.service';
 export class MyAppointmentsComponent implements OnInit {
   userAppointments$: Observable<IUserAppointmentDto[]> = of([]);
   totalRecordsCount$: Observable<number> = of(0);
-  predictionOptions: SelectItem[] = [];
+  predictionOptions$: Observable<SelectItem[]> = of([]);
   itemsPerPage = 3;
 
   constructor(
@@ -25,14 +25,13 @@ export class MyAppointmentsComponent implements OnInit {
     private toastService: ToastService,
     private loadingService: LoadingService
   ) {
-    this.route.data.subscribe((data) => {
-      this.predictionOptions = data['predictions'];
-    });
+
   }
 
   ngOnInit() {}
 
   loadData(take: number, skip: number) {
+    this.predictionOptions$ = this.route.data.pipe(map((data) => data['predictions']));
     const loadResult$ = this.loadingService.showLoaderUntilCompleted(this.meService.getMyAppointments(take, skip));
     this.userAppointments$ = loadResult$.pipe(map((result) => result.userAppointments));
     this.totalRecordsCount$ = loadResult$.pipe(map((result) => result.totalRecordsCount));

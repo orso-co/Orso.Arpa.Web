@@ -91,7 +91,7 @@
                       [placeholder]="'myappointments.SELECT_PREDICTION' | translate"
                       [(ngModel)]="appointment.predictionId"
                       [autoDisplayFirst]="false"
-                      [options]="predictionOptions"
+                      [options]="(predictionOptions$ | async) || []"
                       (onChange)="onPredictionChanged($event, appointment)"
                       [disabled]="appointment.result"
                       id="prediction"
@@ -128,7 +128,7 @@
             [showClear]="true"
             [(ngModel)]="appointment.predictionId"
             [autoDisplayFirst]="false"
-            [options]="predictionOptions"
+            [options]="(predictionOptions$ | async) || []"
             (onChange)="onPredictionChanged($event, appointment)"
             id="prediction"
           ></p-dropdown>
