@@ -13,7 +13,7 @@
       <div class="p-helper-clearfix">
         <div class="p-grid p-ai-center vertical-container">
           <div class="p-col-6 p-md-2">
-            <label>Items per page</label>
+            <label>{{ 'myappointments.ITEMS_PER_PAGE' | translate }}</label>
           </div>
           <div class="p-col-6 p-md-1">
             <p-inputNumber
@@ -41,22 +41,22 @@
         </div>
         <div class="p-col-12 p-md-9 appointment-details">
           <div class="p-grid">
-            <div class="p-col-3 p-sm-6">Name:</div>
+            <div class="p-col-3 p-sm-6">{{ 'myappointments.NAME' | translate }}:</div>
             <div class="p-col-9 p-sm-6">
               <b>{{ appointment.name }}</b>
             </div>
-            <div class="p-col-3 p-sm-6">Time:</div>
+            <div class="p-col-3 p-sm-6">{{ 'myappointments.TIME' | translate }}:</div>
             <div class="p-col-9 p-sm-6">
               <b> {{ appointment.startTime | date: 'H:mm':'locale(de)' }} - {{ appointment.endTime | date: 'H:mm':'locale(de)' }} </b>
             </div>
-            <div class="p-col-3 p-sm-6">Projects:</div>
+            <div class="p-col-3 p-sm-6">{{ 'myappointments.PROJECTS' | translate }}:</div>
             <div class="p-col-9 p-sm-6">
               <span *ngIf="appointment.projects.length > 0">
                 {{ getProjectNames(appointment.projects) }}
               </span>
             </div>
             <ng-container *ngIf="appointment.venue">
-              <div class="p-col-3 p-sm-6">Venue:</div>
+              <div class="p-col-3 p-sm-6">{{ 'myappointments.VENUE' | translate }}:</div>
               <div class="p-col-9 p-sm-6">
                 <div style="display: flex; align-items: center">
                   <b>{{ appointment.venue?.name }}</b>
@@ -76,19 +76,19 @@
               </div>
             </ng-container>
             <div class="p-col-12">
-              <p-fieldset legend="Participation">
+              <p-fieldset [legend]="'myappointments.PARTICIPATION' | translate">
                 <div class="p-grid">
                   <ng-container *ngIf="appointment.expectation">
-                    <div class="p-col-12 p-md-3">Expectation:</div>
+                    <div class="p-col-12 p-md-3">{{ 'myappointments.EXPECTATION' | translate }}:</div>
                     <div class="p-col-12 p-md-9">
                       <span>{{ appointment.expectation }}</span>
                     </div>
                   </ng-container>
-                  <div class="p-col-12 p-md-3">Prediction:</div>
+                  <div class="p-col-12 p-md-3">{{ 'myappointments.PREDICTION' | translate }}:</div>
                   <div class="p-col-12 p-md-9">
                     <p-dropdown
                       [autoDisplayFirst]="false"
-                      placeholer="Select prediction"
+                      [placeholder]="'myappointments.SELECT_PREDICTION' | translate"
                       [(ngModel)]="appointment.predictionId"
                       [autoDisplayFirst]="false"
                       [options]="predictionOptions"
@@ -98,7 +98,7 @@
                     ></p-dropdown>
                   </div>
                   <ng-container *ngIf="appointment.result">
-                    <div class="p-col-12 p-md-3">Result:</div>
+                    <div class="p-col-12 p-md-3">{{ 'myappointments.RESULT' | translate }}:</div>
                     <div class="p-col-12 p-md-9">
                       <p-message severity="info" [text]="appointment.result"></p-message>
                     </div>
@@ -111,7 +111,7 @@
       </div>
     </ng-template>
     <ng-template let-appointment pTemplate="gridItem">
-      <div class="p-col-12 p-md-3 p-p-1">
+      <div class="p-col-12 p-md-6 p-lg-4 p-p-1">
         <p-panel [style]="{ 'text-align': 'center' }">
           <ng-template pTemplate="header">
             <b>{{ appointment.name }}</b>
@@ -124,7 +124,7 @@
           <hr class="p-widget-content" style="border-top: 0" />
           <p-dropdown
             [autoDisplayFirst]="false"
-            placeholer="Select prediction"
+            [placeholder]="'myappointments.SELECT_PREDICTION' | translate"
             [showClear]="true"
             [(ngModel)]="appointment.predictionId"
             [autoDisplayFirst]="false"

@@ -59,6 +59,18 @@
   "dashboardselector": {
     "SELECT_DASHBOARD": "Select the dashboard you want to switch to"
   },
+  "myappointments": {
+    "ITEMS_PER_PAGE": "Items per page",
+    "NAME": "Name",
+    "TIME": "Time",
+    "PROJECTS": "Projects",
+    "VENUE": "Venue",
+    "EXPECTATION": "Expectation",
+    "PREDICTION": "Prediction",
+    "RESULT": "Result",
+    "SELECT_PREDICTION": "Select prediction",
+    "PARTICIPATION": "Participation"
+  },
   "norole": {
     "WELCOME": "Welcome to ARPA!",
     "BE_PATIENT": "We ask for a little patience until you have been activated by our team. You will be notified of the activation by email."
