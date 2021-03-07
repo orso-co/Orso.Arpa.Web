@@ -12,7 +12,7 @@ export class SelectValueListResolver implements Resolve<boolean> {
     const tableName = route.data.tableName;
     const propertyName = route.data.propertyName;
 
-    if(!tableName || !propertyName) {
+    if (!tableName || !propertyName) {
       return of(false);
     }
 

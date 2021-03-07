@@ -9,7 +9,7 @@ export class AppointmentsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

@@ -20,7 +20,7 @@ export class MeService {
     return this.http.get<IUserProfileDto>(`${this.baseUrl}/profile`).pipe(shareReplay());
   }
 
-  putProfile(profileDto: IUserProfileDto) {
+  putProfile(profileDto: IUserProfileDto): Observable<any> {
     return this.http.put(`${this.baseUrl}/profile`, profileDto).pipe(shareReplay());
   }
 
@@ -28,7 +28,7 @@ export class MeService {
     return this.http.get<IUserAppointmentListDto>(`${this.baseUrl}/appointments?limit=${take}&offset=${skip}`).pipe(shareReplay());
   }
 
-  setAppointmentPrediction(appointmentId: string, predictionId: string) {
+  setAppointmentPrediction(appointmentId: string, predictionId: string): Observable<any> {
     return this.http.put(`${this.baseUrl}/appointments/${appointmentId}/participation/prediction/${predictionId}`, {}).pipe(shareReplay());
   }
 }

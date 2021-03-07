@@ -7,13 +7,13 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./calendar-sheet.component.scss'],
 })
 export class CalendarSheetComponent implements OnInit {
-  @Input() date: string = '';
+  @Input() date = '';
   calendarDate: Date = new Date();
 
   constructor(private primengConfig: PrimeNGConfig) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.calendarDate = new Date(this.date);
   }
 

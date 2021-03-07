@@ -1,6 +1,7 @@
+import { SubSink } from 'subsink';
 import { SelectValueService } from './../../../services/select-value.service';
 import { LoadingService } from '../../../services/loading.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'primeng/api';
 import { Observable, of } from 'rxjs';
@@ -14,11 +15,12 @@ import { ToastService } from 'src/app/services/toast.service';
   templateUrl: './my-appointments.component.html',
   styleUrls: ['./my-appointments.component.scss'],
 })
-export class MyAppointmentsComponent implements OnInit {
+export class MyAppointmentsComponent implements OnInit, OnDestroy {
   userAppointments$: Observable<IUserAppointmentDto[]> = of([]);
   totalRecordsCount$: Observable<number> = of(0);
   predictionOptions$: Observable<SelectItem[]> = of([]);
   itemsPerPage = 3;
+  private subs = new SubSink();
 
   constructor(
     private meService: MeService,
@@ -28,13 +30,17 @@ export class MyAppointmentsComponent implements OnInit {
     private selectValueService: SelectValueService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.predictionOptions$ = this.route.data.pipe(
       map((data) => (data.predictionsLoaded ? this.selectValueService.get(data.tableName, data.propertyName) : []))
     );
   }
 
-  loadData(take: number, skip: number) {
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
+  }
+
+  loadData(take: number, skip: number): void {
     const loadResult$ = this.loadingService.showLoaderUntilCompleted(this.meService.getMyAppointments(take, skip));
     this.userAppointments$ = loadResult$.pipe(map((result) => result.userAppointments));
     this.totalRecordsCount$ = loadResult$.pipe(map((result) => result.totalRecordsCount));
@@ -70,9 +76,9 @@ export class MyAppointmentsComponent implements OnInit {
     return rooms.map((r) => r.name).join(', ');
   }
 
-  onPredictionChanged(event: { value: string }, userAppointment: IUserAppointmentDto) {
-    this.meService
+  onPredictionChanged(event: { value: string }, userAppointment: IUserAppointmentDto): void {
+    this.subs.add(this.meService
       .setAppointmentPrediction(userAppointment.id, event.value)
-      .subscribe((result) => this.toastService.success('Appointment participation prediction successfully set'));
+      .subscribe((result) => this.toastService.success('myAppointments.PREDICTION_SET')));
   }
 }

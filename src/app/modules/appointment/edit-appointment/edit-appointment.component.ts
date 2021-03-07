@@ -9,7 +9,7 @@ export class EditAppointmentComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

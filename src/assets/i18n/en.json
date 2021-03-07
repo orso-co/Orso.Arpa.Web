@@ -69,7 +69,8 @@
     "PREDICTION": "Prediction",
     "RESULT": "Result",
     "SELECT_PREDICTION": "Select prediction",
-    "PARTICIPATION": "Participation"
+    "PARTICIPATION": "Participation",
+    "PREDICTION_SET": "Appointment participation prediction successfully set"
   },
   "norole": {
     "WELCOME": "Welcome to ARPA!",

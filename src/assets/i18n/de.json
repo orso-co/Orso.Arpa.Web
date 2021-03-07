@@ -69,7 +69,8 @@
     "PREDICTION": "Vorhersage",
     "RESULT": "Ergebnis",
     "SELECT_PREDICTION": "Vorhersage auswählen",
-    "PARTICIPATION": "Teilnahme"
+    "PARTICIPATION": "Teilnahme",
+    "PREDICTION_SET": "Vorhersage für Terminteilnahme erfolgreich gespeichert"
   },
   "norole": {
     "WELCOME": "Willkommen bei ARPA!",
