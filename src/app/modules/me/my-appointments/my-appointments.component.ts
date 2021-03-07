@@ -1,3 +1,4 @@
+import { SelectValueService } from './../../../services/select-value.service';
 import { LoadingService } from '../../../services/loading.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -23,15 +24,17 @@ export class MyAppointmentsComponent implements OnInit {
     private meService: MeService,
     private route: ActivatedRoute,
     private toastService: ToastService,
-    private loadingService: LoadingService
-  ) {
+    private loadingService: LoadingService,
+    private selectValueService: SelectValueService
+  ) {}
 
+  ngOnInit() {
+    this.predictionOptions$ = this.route.data.pipe(
+      map((data) => (data.predictionsLoaded ? this.selectValueService.get(data.tableName, data.propertyName) : []))
+    );
   }
 
-  ngOnInit() {}
-
   loadData(take: number, skip: number) {
-    this.predictionOptions$ = this.route.data.pipe(map((data) => data['predictions']));
     const loadResult$ = this.loadingService.showLoaderUntilCompleted(this.meService.getMyAppointments(take, skip));
     this.userAppointments$ = loadResult$.pipe(map((result) => result.userAppointments));
     this.totalRecordsCount$ = loadResult$.pipe(map((result) => result.totalRecordsCount));
