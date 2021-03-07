@@ -55,7 +55,11 @@ export class MyAppointmentsComponent implements OnInit, OnDestroy {
       return '';
     }
 
-    let tooltip = `<p><b>${venue.name}</b><br/><small>${venue.description}</small></p>`;
+    let tooltip = `<p><b>${venue.name}</b>`;
+    if(venue.description) {
+      tooltip += `<br/><small>${venue.description}</small>`;
+    }
+    tooltip += '</p>';
     if (venue.address) {
       if (venue.address.address1) {
         tooltip += `<p>${venue.address.address1}`;
