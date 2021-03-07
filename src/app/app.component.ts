@@ -42,6 +42,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     const browserLang = translate.getBrowserLang();
     translate.use(browserLang.match(/en|de/) ? browserLang : 'de');
+    translate.get('primeng').subscribe((res) => this.primengConfig.setTranslation(res));
   }
 
   ngOnInit(): void {

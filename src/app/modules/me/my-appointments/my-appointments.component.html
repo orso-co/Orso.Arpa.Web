@@ -1,0 +1,139 @@
+<div class="card p-m-auto" style="max-width: 800px">
+  <p-dataView
+    #dv
+    [value]="(userAppointments$ | async) || []"
+    [paginator]="true"
+    [rows]="itemsPerPage"
+    paginatorPosition="both"
+    [lazy]="true"
+    (onLazyLoad)="loadData($event.rows, $event.first)"
+    [totalRecords]="(totalRecordsCount$ | async) || 0"
+  >
+    <p-header>
+      <div class="p-helper-clearfix">
+        <div class="p-grid p-ai-center vertical-container">
+          <div class="p-col-6 p-md-2">
+            <label>Items per page</label>
+          </div>
+          <div class="p-col-6 p-md-1">
+            <p-inputNumber
+              [(ngModel)]="itemsPerPage"
+              mode="decimal"
+              [showButtons]="true"
+              [min]="1"
+              [max]="100"
+              [step]="1"
+              (onInput)="loadData(itemsPerPage, 0)"
+            >
+            </p-inputNumber>
+          </div>
+          <div class="p-col-12 p-md-3"></div>
+          <div class="p-col-12 p-md-6 p-text-right">
+            <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+          </div>
+        </div>
+      </div>
+    </p-header>
+    <ng-template let-appointment pTemplate="listItem">
+      <div class="p-grid p-p-5">
+        <div class="p-col-12 p-md-3 p-text-center">
+          <arpa-calendar-sheet [date]="appointment.startTime"></arpa-calendar-sheet>
+        </div>
+        <div class="p-col-12 p-md-9 appointment-details">
+          <div class="p-grid">
+            <div class="p-col-3 p-sm-6">Name:</div>
+            <div class="p-col-9 p-sm-6">
+              <b>{{ appointment.name }}</b>
+            </div>
+            <div class="p-col-3 p-sm-6">Time:</div>
+            <div class="p-col-9 p-sm-6">
+              <b> {{ appointment.startTime | date: 'H:mm':'locale(de)' }} - {{ appointment.endTime | date: 'H:mm':'locale(de)' }} </b>
+            </div>
+            <div class="p-col-3 p-sm-6">Projects:</div>
+            <div class="p-col-9 p-sm-6">
+              <span *ngIf="appointment.projects.length > 0">
+                {{ getProjectNames(appointment.projects) }}
+              </span>
+            </div>
+            <ng-container *ngIf="appointment.venue">
+              <div class="p-col-3 p-sm-6">Venue:</div>
+              <div class="p-col-9 p-sm-6">
+                <div style="display: flex; align-items: center">
+                  <b>{{ appointment.venue?.name }}</b>
+                  <button
+                    pButton
+                    class="p-button-rounded p-button-outlined p-button-text p-ml-1"
+                    type="button"
+                    icon="pi pi-info-circle"
+                    [pTooltip]="getVenueTooltip(appointment.venue)"
+                    tooltipPosition="right"
+                    tooltipEvent="focus"
+                    [escape]="false"
+                  ></button>
+                </div>
+
+                <ng-container *ngIf="appointment.rooms.length > 0">({{ getRoomNames(appointment.rooms) }})</ng-container>
+              </div>
+            </ng-container>
+            <div class="p-col-12">
+              <p-fieldset legend="Participation">
+                <div class="p-grid">
+                  <ng-container *ngIf="appointment.expectation">
+                    <div class="p-col-12 p-md-3">Expectation:</div>
+                    <div class="p-col-12 p-md-9">
+                      <span>{{ appointment.expectation }}</span>
+                    </div>
+                  </ng-container>
+                  <div class="p-col-12 p-md-3">Prediction:</div>
+                  <div class="p-col-12 p-md-9">
+                    <p-dropdown
+                      [autoDisplayFirst]="false"
+                      placeholer="Select prediction"
+                      [(ngModel)]="appointment.predictionId"
+                      [autoDisplayFirst]="false"
+                      [options]="predictionOptions"
+                      (onChange)="onPredictionChanged($event, appointment)"
+                      [disabled]="appointment.result"
+                      id="prediction"
+                    ></p-dropdown>
+                  </div>
+                  <ng-container *ngIf="appointment.result">
+                    <div class="p-col-12 p-md-3">Result:</div>
+                    <div class="p-col-12 p-md-9">
+                      <p-message severity="info" [text]="appointment.result"></p-message>
+                    </div>
+                  </ng-container>
+                </div>
+              </p-fieldset>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template let-appointment pTemplate="gridItem">
+      <div class="p-col-12 p-md-3 p-p-1">
+        <p-panel [style]="{ 'text-align': 'center' }">
+          <ng-template pTemplate="header">
+            <b>{{ appointment.name }}</b>
+          </ng-template>
+          <arpa-calendar-sheet [date]="appointment.startTime"></arpa-calendar-sheet>
+          <div class="appointment-detail">
+            {{ appointment.startTime | date: 'H:mm':'locale(de)' }} - {{ appointment.endTime | date: 'H:mm':'locale(de)' }}
+            {{ appointment.venue?.name }}
+          </div>
+          <hr class="p-widget-content" style="border-top: 0" />
+          <p-dropdown
+            [autoDisplayFirst]="false"
+            placeholer="Select prediction"
+            [showClear]="true"
+            [(ngModel)]="appointment.predictionId"
+            [autoDisplayFirst]="false"
+            [options]="predictionOptions"
+            (onChange)="onPredictionChanged($event, appointment)"
+            id="prediction"
+          ></p-dropdown>
+        </p-panel>
+      </div>
+    </ng-template>
+  </p-dataView>
+</div>
