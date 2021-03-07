@@ -56,7 +56,7 @@ export class MyAppointmentsComponent implements OnInit, OnDestroy {
     }
 
     let tooltip = `<p><b>${venue.name}</b>`;
-    if(venue.description) {
+    if (venue.description) {
       tooltip += `<br/><small>${venue.description}</small>`;
     }
     tooltip += '</p>';
@@ -81,8 +81,10 @@ export class MyAppointmentsComponent implements OnInit, OnDestroy {
   }
 
   onPredictionChanged(event: { value: string }, userAppointment: IUserAppointmentDto): void {
-    this.subs.add(this.meService
-      .setAppointmentPrediction(userAppointment.id, event.value)
-      .subscribe((result) => this.toastService.success('myappointments.PREDICTION_SET')));
+    this.subs.add(
+      this.meService
+        .setAppointmentPrediction(userAppointment.id, event.value)
+        .subscribe((result) => this.toastService.success('myappointments.PREDICTION_SET'))
+    );
   }
 }
