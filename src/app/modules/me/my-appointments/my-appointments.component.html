@@ -131,6 +131,7 @@
             [options]="(predictionOptions$ | async) || []"
             (onChange)="onPredictionChanged($event, appointment)"
             id="prediction"
+            [disabled]="appointment.result"
           ></p-dropdown>
         </p-panel>
       </div>
