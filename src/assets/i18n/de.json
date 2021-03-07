@@ -60,7 +60,7 @@
     "SELECT_DASHBOARD": "Wähle das Dashboard, zu dem du wechseln möchtest"
   },
   "myappointments": {
-    "ITEMS_PER_PAGE": "pro Seite",
+    "ITEMS_PER_PAGE": "Termine pro Seite",
     "NAME": "Name",
     "TIME": "Uhrzeit",
     "PROJECTS": "Projekte",
