@@ -27,11 +27,18 @@
   "CONTACTDATA": "Contact Data",
   "MEMBERDATA": "Member Data",
   "MUSICIANDATA": "Musician Data",
+  "TODAY": "Today",
+  "NEW": "New",
+  "DAY": "Day",
+  "WEEK": "Week",
+  "MONTH": "Month",
 
+  "appointments": {
+    "NEW_APPOINTMENT_CONFIRMATION": "Do you want to create a new appointment for {{value}}?"
+  },
   "navigation": {
     "BACKTODASHBOARD": "Back to dashboard"
   },
-
   "errors": {
     "NOTFOUND": "Page not found",
     "FORBIDDEN": "Access denied",

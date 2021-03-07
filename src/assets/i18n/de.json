@@ -27,7 +27,15 @@
   "CONTACTDATA": "Kontaktdaten",
   "MEMBERDATA": "Mitgliedsdaten",
   "MUSICIANDATA": "Musikerdaten",
+  "TODAY": "Heute",
+  "NEW": "Neu",
+  "DAY": "Tag",
+  "WEEK": "Woche",
+  "MONTH": "Monat",
 
+  "appointments": {
+    "NEW_APPOINTMENT_CONFIRMATION": "Möchtest du einen neuen Termin anlegen für {{value}}?"
+  },
   "navigation": {
     "BACKTODASHBOARD": "zurück zum Dashboard"
   },

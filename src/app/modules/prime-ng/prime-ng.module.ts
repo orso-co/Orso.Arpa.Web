@@ -24,6 +24,9 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FieldsetModule } from 'primeng/fieldset';
 import { PanelModule } from 'primeng/panel';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { FullCalendarModule } from 'primeng/fullcalendar';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 
 const MODULES = [
   InputTextModule,
@@ -48,12 +51,15 @@ const MODULES = [
   DropdownModule,
   FieldsetModule,
   PanelModule,
-  InputNumberModule
+  InputNumberModule,
+  FullCalendarModule,
+  ConfirmDialogModule,
+  DynamicDialogModule,
 ];
 
 @NgModule({
   imports: [CommonModule, ...MODULES],
-  providers: [ConfirmationService],
+  providers: [ConfirmationService, DialogService],
   exports: [...MODULES],
 })
 export class PrimeNgModule {}
