@@ -44,7 +44,8 @@
               "node_modules/@fullcalendar/timegrid/main.min.js",
               "node_modules/@fullcalendar/interaction/main.min.js",
               "node_modules/@fullcalendar/core/locales-all.min.js"
-            ]
+            ],
+            "allowedCommonJsDependencies": ["@fullcalendar/timegrid", "@fullcalendar/daygrid", "@fullcalendar/interaction"]
           },
           "configurations": {
             "production": {
@@ -65,7 +66,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
