@@ -1,0 +1,24 @@
+.container {
+  position: relative;
+  text-align: center;
+  .centered {
+    position: absolute;
+    top: 44%;
+    left: 41%;
+    width: 95px;
+    -moz-transform: rotate(-2deg) translate(-23px, -37px);
+    -webkit-transform: rotate(-2deg) translate(-23px, -37px);
+    -o-transform: rotate(-2deg) translate(-23px, -37px);
+    -ms-transform: rotate(-2deg) translate(-23px, -37px);
+    transform: rotate(-2deg) translate(-23px, -37px);
+    .day {
+      font-size: xxx-large;
+      font-weight: bold;
+      line-height: 0.8;
+    }
+    .passed {
+      color: gray;
+      margin: 0;
+    }
+  }
+}

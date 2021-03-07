@@ -59,6 +59,19 @@
   "dashboardselector": {
     "SELECT_DASHBOARD": "Wähle das Dashboard, zu dem du wechseln möchtest"
   },
+  "myappointments": {
+    "ITEMS_PER_PAGE": "Termine pro Seite",
+    "NAME": "Name",
+    "TIME": "Uhrzeit",
+    "PROJECTS": "Projekte",
+    "VENUE": "Ort",
+    "EXPECTATION": "Erwartung",
+    "PREDICTION": "Vorhersage",
+    "RESULT": "Ergebnis",
+    "SELECT_PREDICTION": "Vorhersage auswählen",
+    "PARTICIPATION": "Teilnahme",
+    "PREDICTION_SET": "Vorhersage für Terminteilnahme erfolgreich gespeichert"
+  },
   "norole": {
     "WELCOME": "Willkommen bei ARPA!",
     "BE_PATIENT": "Wir bitten um ein wenig Geduld, bis du von unserem Team freigeschaltet wurdest. Du wirst per E-Mail über die erfolgte Freischaltung benachrichtigt."

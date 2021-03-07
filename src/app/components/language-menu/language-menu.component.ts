@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import {SelectItem} from 'primeng/api';
+import { SelectItem, PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'arpa-language-menu',
@@ -12,7 +12,7 @@ export class LanguageMenuComponent implements OnInit {
   languages: Array<SelectItem<string>> = [];
   currentLanguage: string;
 
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private primengConfig: PrimeNGConfig) {
     translate.getLangs().forEach(language => {
       this.languages.push({ value: language });
     });
@@ -24,6 +24,7 @@ export class LanguageMenuComponent implements OnInit {
 
   updateLanguage(): void {
     this.translate.use(this.currentLanguage);
+    this.translate.get('primeng').subscribe((res) => this.primengConfig.setTranslation(res));
   }
 
 
