@@ -1,10 +1,15 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { LoadingService } from './../../../services/loading.service';
+import { DialogService } from 'primeng/dynamicdialog';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ToastService } from './../../../services/toast.service';
+import { AppointmentService } from 'src/app/services/appointment.service';
 import { waitForAsync } from '@angular/core/testing';
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppointmentsComponent } from './appointments.component';
+import { HttpLoaderFactory } from 'src/app/app.module';
+import { HttpClient } from '@angular/common/http';
 
 describe('AppointmentsComponent', () => {
   let component: AppointmentsComponent;
@@ -12,9 +17,25 @@ describe('AppointmentsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppointmentsComponent ]
-    })
-    .compileComponents();
+      declarations: [AppointmentsComponent],
+      providers: [
+        { provide: AppointmentService, useValue: {} },
+        { provide: ToastService, useValue: {} },
+        { provide: DialogService, useValue: {} },
+        { provide: LoadingService, useValue: {} },
+      ],
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient],
+          },
+        }),
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

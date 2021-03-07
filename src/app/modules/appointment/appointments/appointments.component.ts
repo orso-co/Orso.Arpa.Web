@@ -1,5 +1,5 @@
 import { LoadingService } from './../../../services/loading.service';
-import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 import { EditAppointmentComponent } from './../edit-appointment/edit-appointment.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnDestroy } from '@angular/core';
@@ -50,13 +50,13 @@ export class AppointmentsComponent implements OnDestroy {
     private dialogService: DialogService,
     private loadingService: LoadingService
   ) {
-    this.route.data.subscribe((data) => {
-      this.categoryOptions = data['categories'];
-      this.statusOptions = data['status'];
-      this.emolumentOptions = data['emoluments'];
-      this.emolumentPatternOptions = data['emolumentPatterns'];
-      this.expectationOptions = data['expectations'];
-    });
+    this.subs.add(this.route.data.subscribe((data) => {
+      this.categoryOptions = data.categories;
+      this.statusOptions = data.status;
+      this.emolumentOptions = data.emoluments;
+      this.emolumentPatternOptions = data.emolumentPatterns;
+      this.expectationOptions = data.expectations;
+    }));
     this.setOptions();
     this.translate.onLangChange.subscribe(() => this.setOptions());
   }
@@ -65,7 +65,7 @@ export class AppointmentsComponent implements OnDestroy {
     this.subs.unsubscribe();
   }
 
-  private setOptions() {
+  private setOptions(): void {
     this.fullCalendarOptions$ = this.translate.get('NEW').pipe(
       map((translation) => ({
         plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
@@ -122,7 +122,7 @@ export class AppointmentsComponent implements OnDestroy {
     };
   }
 
-  changeDates(oldEvent: ICalendarEvent, changedEvent: ICalendarEvent) {
+  changeDates(oldEvent: ICalendarEvent, changedEvent: ICalendarEvent): void {
     let newStartTime: Date | null = null;
     let newEndTime: Date | null = null;
     if (oldEvent.start !== changedEvent.start) {
@@ -140,7 +140,7 @@ export class AppointmentsComponent implements OnDestroy {
     }
   }
 
-  setAppointments(viewType: string, date: Date) {
+  setAppointments(viewType: string, date: Date): void {
     this.subs.add(
       this.loadingService
         .showLoaderUntilCompleted(this.appointmentService.get(this.getRange(viewType), date))
@@ -161,7 +161,7 @@ export class AppointmentsComponent implements OnDestroy {
     }
   }
 
-  openCreateDialog(date?: Date) {
+  openCreateDialog(date?: Date): void {
     const ref = this.dialogService.open(EditAppointmentComponent, {
       data: {
         date: date || new Date(),
