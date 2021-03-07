@@ -79,6 +79,6 @@ export class MyAppointmentsComponent implements OnInit, OnDestroy {
   onPredictionChanged(event: { value: string }, userAppointment: IUserAppointmentDto): void {
     this.subs.add(this.meService
       .setAppointmentPrediction(userAppointment.id, event.value)
-      .subscribe((result) => this.toastService.success('myAppointments.PREDICTION_SET')));
+      .subscribe((result) => this.toastService.success('myappointments.PREDICTION_SET')));
   }
 }
