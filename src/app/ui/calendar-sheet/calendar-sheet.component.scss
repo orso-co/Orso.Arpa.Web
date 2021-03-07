@@ -1,54 +1,23 @@
-.day {
-  font-size: xxx-large;
-  font-weight: bold;
-  line-height: 0.8;
-}
-
 .container {
   position: relative;
   text-align: center;
-}
-
-.centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -moz-transform: rotate(-2deg) translate(-23px, -37px);
-  -webkit-transform: rotate(-2deg) translate(-23px, -37px);
-  -o-transform: rotate(-2deg) translate(-23px, -37px);
-  -ms-transform: rotate(-2deg) translate(-23px, -37px);
-  transform: rotate(-2deg) translate(-23px, -37px);
-}
-
-.pi {
-  position: absolute;
-  margin-left: -18px;
-  height: 20px;
-  width: 20px;
-  border: solid 2px #ffffff;
-  color: #16b807;
-  font-size: xx-large;
-  margin-top: 88px;
-}
-
-.passed {
-  color: gray;
-  margin: 0;
-}
-
-::ng-deep {
-
- .p-message {
-   position: absolute;
-     top: -5px;
-     right: 53px;
-     left: 20px;
-     bottom: 98px;
-     transform: rotate(-20deg);
-     opacity: 0.9;
- }
-
- .p-message.p-widget.p-corner-all.p-message-info.ng-star-inserted {
-   border-color: gray;
- }
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: rotate(-2deg) translate(-23px, -37px);
+    -webkit-transform: rotate(-2deg) translate(-23px, -37px);
+    -o-transform: rotate(-2deg) translate(-23px, -37px);
+    -ms-transform: rotate(-2deg) translate(-23px, -37px);
+    transform: rotate(-2deg) translate(-23px, -37px);
+    .day {
+      font-size: xxx-large;
+      font-weight: bold;
+      line-height: 0.8;
+    }
+    .passed {
+      color: gray;
+      margin: 0;
+    }
+  }
 }
