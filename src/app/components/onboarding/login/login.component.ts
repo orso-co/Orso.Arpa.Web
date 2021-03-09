@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.renderer.appendChild(document.body, this.script);
   }
 
-  setLanguage(param: any) {
+  setLanguage(param: any): void {
     this.language = param;
     console.log(this.language);
   }
@@ -111,7 +111,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     );
   }
 
-  showResponse(response: any) {
+  showResponse(response: any): void {
     this.captchaSuccess = true;
   }
 }
