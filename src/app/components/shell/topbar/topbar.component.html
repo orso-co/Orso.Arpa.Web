@@ -4,7 +4,7 @@
     <img src="assets/organization/icons/organisation_icon.png" class="topbar-logo" routerLink="/" />
   </a>
 
-  <div class="welcome-text">{{ "performerWELCOME" | translate }}</div>
+  <div class="welcome p-d-none p-d-sm-inline-flex">{{ "performerWELCOME" | translate }}</div>
 
   <ul class="topbar-menu">
     <li class="user-profile-item" *ngIf="token$ | async as token">

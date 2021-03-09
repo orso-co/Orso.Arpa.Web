@@ -12,19 +12,16 @@ export class LanguageService {
       ['en', 'English']
     ]
   );
-  private localStorage: Storage;
 
   constructor(private translate: TranslateService,
               private primengConfig: PrimeNGConfig) {
-    this.localStorage = window.localStorage;
     this.initialiseLanguageSettings();
   }
 
   private initialiseLanguageSettings(): void {
     this.translate.addLangs(['de', 'en']);
     this.translate.setDefaultLang('de');
-    const existingLang = this.localStorage.getItem('language');
-    console.log(existingLang);
+    const existingLang = localStorage.getItem('language');
     if (existingLang) {
       this.updateLanguage(existingLang);
     } else {
@@ -40,7 +37,7 @@ export class LanguageService {
   public updateLanguage(newLanguage: string): void {
     this.translate.use(newLanguage);
     this.translate.get('primeng').subscribe((res) => this.primengConfig.setTranslation(res));
-    this.localStorage.setItem('language', newLanguage);
+    localStorage.setItem('language', newLanguage);
   }
 
   /**
