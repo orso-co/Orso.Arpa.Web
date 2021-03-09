@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
 import { SelectItem, PrimeNGConfig } from 'primeng/api';
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
-import {SelectItem} from 'primeng/api';
-import {Subject, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
+import {LanguageService} from '../../services/language.service';
 
 @Component({
   selector: 'arpa-language-menu',
@@ -17,7 +15,7 @@ export class LanguageMenuComponent implements OnDestroy {
   currentLanguage: string;
   langChangeListener: Subscription;
 
-  constructor(private translate: TranslateService, private primengConfig: PrimeNGConfig) {
+  constructor(private translate: TranslateService, private langService: LanguageService) {
     translate.getLangs().forEach(language => {
       this.languages.push({ value: language });
     });
@@ -29,8 +27,7 @@ export class LanguageMenuComponent implements OnDestroy {
   }
 
   updateLanguage(): void {
-    this.translate.use(this.currentLanguage);
-    this.translate.get('primeng').subscribe((res) => this.primengConfig.setTranslation(res));
+    this.langService.updateLanguage(this.currentLanguage);
   }
 
   ngOnDestroy(): void {

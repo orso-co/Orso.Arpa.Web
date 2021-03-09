@@ -4,6 +4,7 @@ import { LoadingService } from './services/loading.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { PrimeNGConfig } from 'primeng/api';
+import {LanguageService} from './services/language.service';
 
 @Component({
   selector: 'arpa-root',
@@ -17,7 +18,7 @@ export class AppComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
     private primengConfig: PrimeNGConfig,
     loadingService: LoadingService,
-    private router: Router
+    private router: Router,
   ) {
     this.subs.add(this.router.events.subscribe(event => {
       switch (true) {
@@ -36,13 +37,6 @@ export class AppComponent implements OnInit, OnDestroy {
           break;
         }
       }}));
-
-    translate.addLangs(['de', 'en']);
-    translate.setDefaultLang('de'); // used as a fallback when a translation isn't found
-
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|de/) ? browserLang : 'de');
-    translate.get('primeng').subscribe((res) => this.primengConfig.setTranslation(res));
   }
 
   ngOnInit(): void {

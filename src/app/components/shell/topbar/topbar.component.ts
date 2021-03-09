@@ -3,6 +3,7 @@ import { AuthService, IToken } from './../../../services/auth.service';
 import { MenuItem } from 'primeng/api';
 import {Component, OnDestroy} from '@angular/core';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
+import {LanguageService} from '../../../services/language.service';
 
 @Component({
   selector: 'arpa-topbar',
@@ -11,20 +12,17 @@ import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 })
 export class TopbarComponent implements OnDestroy {
 
-  languageMap = new Map([
-      ['de', 'Deutsch'],
-      ['en', 'English']
-    ]
-  );
+
   userProfileItems: MenuItem[] = [];
   token$: Observable<IToken | null>;
   langChangeListener: Subscription;
 
   constructor(private authService: AuthService,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private langService: LanguageService) {
     this.token$ = this.authService.token$;
     this.initialiseUserMenu();
-    // in case the language is changed somewhere else in the app
+    // if the language changes retranslate the menu items
     this.langChangeListener = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.initialiseUserMenu();
     });
@@ -37,14 +35,12 @@ export class TopbarComponent implements OnDestroy {
       { separator: true }
     ];
     this.translate.getLangs().forEach(lang =>
-      this.userProfileItems.push({ label: this.languageMap.has(lang) ? this.languageMap.get(lang) : lang,
+      this.userProfileItems.push({ label: this.langService.getLanguageName(lang),
         command: () => this.updateLanguage(lang) }));
   }
 
   updateLanguage(language: string): void {
-    this.translate.use(language);
-    // translate menu items into the new language
-    this.initialiseUserMenu();
+    this.langService.updateLanguage(language);
   }
 
   getRoleNames(token: IToken): string {

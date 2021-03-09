@@ -6,8 +6,6 @@
 
   <div class="welcome-text">{{ "performerWELCOME" | translate }}</div>
 
-  <div class="language-menu-item"><arpa-language-menu></arpa-language-menu></div>
-
   <ul class="topbar-menu">
     <li class="user-profile-item" *ngIf="token$ | async as token">
       <a href="#" (click)="userprofilemenu.toggle($event); $event.preventDefault();">
