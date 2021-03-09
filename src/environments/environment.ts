@@ -4,12 +4,10 @@
 
 export const environment = {
   production: false,
-  captcha: {
-    key: '6Le-g3QaAAAAAJmIN-s37441yuZPBp1M7nqUwtED'
-  },
   api: {
-    protocol: 'https',
-    baseUrl: 'orso-arpa.azurewebsites.net'
+    protocol: 'http',
+    baseUrl: 'localhost:5000'
+
   },
   web:
   {
