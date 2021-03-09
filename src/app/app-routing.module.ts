@@ -35,8 +35,7 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent },
       { path: 'eMailConfirmation', component: EmailconfirmationComponent },
       { path: 'logout', component: LogoutComponent },
-      { path: 'profile', component: ProfileComponent }
-
+      { path: 'profile', component: ProfileComponent },
     ],
   },
   {
@@ -63,6 +62,16 @@ const routes: Routes = [
           { path: 'noRole', component: NoRoleComponent },
         ],
       },
+      {
+        path: 'appointments',
+        data: { roles: [RoleNames.staff, RoleNames.admin] },
+        loadChildren: () => import('./modules/appointment/appointment.module').then((mod) => mod.AppointmentModule),
+      },
+      {
+        path: 'me',
+        data: { roles: [RoleNames.performer, RoleNames.staff, RoleNames.admin]},
+        loadChildren: () => import('./modules/me/me.module').then((mod) => mod.MeModule)
+      }
     ],
   },
   { path: 'forbidden', component: ForbiddenComponent },

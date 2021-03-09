@@ -28,11 +28,18 @@
   "MEMBERDATA": "Member Data",
   "MUSICIANDATA": "Musician Data",
   "LANGUAGE": "Language",
+  "TODAY": "Today",
+  "NEW": "New",
+  "DAY": "Day",
+  "WEEK": "Week",
+  "MONTH": "Month",
 
+  "appointments": {
+    "NEW_APPOINTMENT_CONFIRMATION": "Do you want to create a new appointment for {{value}}?"
+  },
   "navigation": {
     "BACKTODASHBOARD": "Back to dashboard"
   },
-
   "errors": {
     "NOTFOUND": "Page not found",
     "FORBIDDEN": "Access denied",
@@ -59,6 +66,19 @@
   },
   "dashboardselector": {
     "SELECT_DASHBOARD": "Select the dashboard you want to switch to"
+  },
+  "myappointments": {
+    "ITEMS_PER_PAGE": "Items per page",
+    "NAME": "Name",
+    "TIME": "Time",
+    "PROJECTS": "Projects",
+    "VENUE": "Venue",
+    "EXPECTATION": "Expectation",
+    "PREDICTION": "Prediction",
+    "RESULT": "Result",
+    "SELECT_PREDICTION": "Select prediction",
+    "PARTICIPATION": "Participation",
+    "PREDICTION_SET": "Appointment participation prediction successfully set"
   },
   "norole": {
     "WELCOME": "Welcome to ARPA!",

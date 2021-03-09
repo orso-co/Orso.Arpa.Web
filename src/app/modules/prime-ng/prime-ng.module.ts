@@ -18,6 +18,15 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { TreeModule } from 'primeng/tree';
 import { MenuModule } from 'primeng/menu';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { DataViewModule } from 'primeng/dataview';
+import { SpinnerModule } from 'primeng/spinner';
+import { DropdownModule } from 'primeng/dropdown';
+import { FieldsetModule } from 'primeng/fieldset';
+import { PanelModule } from 'primeng/panel';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { FullCalendarModule } from 'primeng/fullcalendar';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 
 const MODULES = [
   InputTextModule,
@@ -36,12 +45,21 @@ const MODULES = [
   CheckboxModule,
   TreeModule,
   MenuModule,
-  SelectButtonModule
+  SelectButtonModule,
+  DataViewModule,
+  SpinnerModule,
+  DropdownModule,
+  FieldsetModule,
+  PanelModule,
+  InputNumberModule,
+  FullCalendarModule,
+  ConfirmDialogModule,
+  DynamicDialogModule,
 ];
 
 @NgModule({
   imports: [CommonModule, ...MODULES],
-  providers: [ConfirmationService],
+  providers: [ConfirmationService, DialogService],
   exports: [...MODULES],
 })
 export class PrimeNgModule {}

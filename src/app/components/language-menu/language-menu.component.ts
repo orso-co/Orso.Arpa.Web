@@ -1,3 +1,6 @@
+import { Component, OnInit } from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
+import { SelectItem, PrimeNGConfig } from 'primeng/api';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {SelectItem} from 'primeng/api';
@@ -14,9 +17,9 @@ export class LanguageMenuComponent implements OnDestroy {
   currentLanguage: string;
   langChangeListener: Subscription;
 
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private primengConfig: PrimeNGConfig) {
     translate.getLangs().forEach(language => {
-      this.languages.push({value: language});
+      this.languages.push({ value: language });
     });
     this.currentLanguage = translate.currentLang;
     // in case the language is changed somewhere else in the app
@@ -27,6 +30,7 @@ export class LanguageMenuComponent implements OnDestroy {
 
   updateLanguage(): void {
     this.translate.use(this.currentLanguage);
+    this.translate.get('primeng').subscribe((res) => this.primengConfig.setTranslation(res));
   }
 
   ngOnDestroy(): void {

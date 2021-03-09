@@ -1,0 +1,14 @@
+::ng-deep {
+  #calendar {
+    .fc-right,
+    .fc-left {
+      display: flex;
+    }
+
+    @media screen and (max-width: 50em) {
+      .fc-toolbar {
+        flex-direction: column;
+      }
+    }
+  }
+}
