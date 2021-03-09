@@ -10,7 +10,6 @@ export const environment = {
   api: {
     protocol: 'http',
     baseUrl: 'localhost:5000'
-
   },
   web:
   {

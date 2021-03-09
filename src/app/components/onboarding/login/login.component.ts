@@ -21,10 +21,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginRequest = false;
   private subs = new SubSink();
   hide = true;
-  language: string;
-  captchaSuccess = false;
+  // language: string;
+  // captchaSuccess = false;
   captchaKey = environment.captcha.key;
-  script: any;
+  // script: any;
 
   constructor(formBuilder: FormBuilder,
               private router: Router,
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit, OnDestroy {
               private toastService: ToastService,
               private loadingService: LoadingService,
               private translate: TranslateService,
-              private renderer: Renderer2
+              private renderer: Renderer2,
   ) {
     this.loginFormGroup = formBuilder.group({
       usernameOrEmail: [null,
@@ -48,25 +48,26 @@ export class LoginComponent implements OnInit, OnDestroy {
           Validators.minLength(6),
         ],
       ],
+      recaptcha: ['', Validators.required],
     });
   }
 
   ngOnInit(): void {
-    this.translate
-      .stream('SHORTCUT')
-      .subscribe(v => this.setLanguage(v));
-    this.script = this.renderer.createElement('script');
-    this.script = this.renderer.createElement('script');
-    this.script.defer = true;
-    this.script.async = true;
-    this.script.src = 'https://www.google.com/recaptcha/api.js?render=explicit&onload=loadCaptcha';
-    this.renderer.appendChild(document.body, this.script);
+    // this.translate
+    //   .stream('SHORTCUT')
+    //   .subscribe(v => this.setLanguage(v));
+    // this.script = this.renderer.createElement('script');
+    // this.script = this.renderer.createElement('script');
+    // this.script.defer = true;
+    // this.script.async = true;
+    // this.script.src = 'https://www.google.com/recaptcha/api.js?render=explicit&onload=loadCaptcha';
+    // this.renderer.appendChild(document.body, this.script);
   }
 
-  setLanguage(param: any): void {
-    this.language = param;
-    console.log(this.language);
-  }
+  // setLanguage(param: any): void {
+  //   this.language = param;
+  //   console.log(this.language);
+  // }
 
   ngOnDestroy(): void {
     this.subs.unsubscribe();
@@ -111,9 +112,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     );
   }
 
-  showResponse(response: any): void {
-    this.captchaSuccess = true;
-  }
+  // showResponse(response: any): void {
+  //   this.captchaSuccess = true;
+  // }
 }
 
 

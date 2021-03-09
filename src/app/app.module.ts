@@ -40,7 +40,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { ForgotPasswordComponent } from './components/onboarding/forgot-password/forgot-password.component';
 import { LanguageMenuComponent } from './components/language-menu/language-menu.component';
 import { ProfileComponent } from './components/onboarding/profile/profile.component';
-import {CaptchaModule} from 'primeng/captcha';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 registerLocaleData(localeDe, 'de');
 
@@ -104,7 +104,7 @@ export function tokenGetter(): string | null {
       progressBar: true,
       positionClass: 'toast-top-full-width'
     }),
-    CaptchaModule,
+    NgxCaptchaModule,
   ],
   providers: [
     {
