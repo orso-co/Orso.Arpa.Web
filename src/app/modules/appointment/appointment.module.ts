@@ -23,11 +23,7 @@ import { HttpClient } from '@angular/common/http';
     RouterModule.forChild([
       {
         path: '',
-        redirectTo: 'administration',
         pathMatch: 'full',
-      },
-      {
-        path: 'administration',
         component: AppointmentsComponent,
         resolve: {
           // categories: AppointmentCategoriesResolver,
@@ -38,7 +34,7 @@ import { HttpClient } from '@angular/common/http';
         },
       },
       {
-        path: 'administration/edit/:id',
+        path: 'edit/:id',
         component: EditAppointmentComponent,
         resolve: {
           // appointment: AppointmentResolver,
