@@ -1,10 +1,12 @@
+import { environment } from './../../../../environments/environment';
 import { SubSink } from 'subsink';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer2 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { ToastService } from '../../../services/toast.service';
 import { LoadingService} from '../../../services/loading.service';
+import { TranslateService } from '@ngx-translate/core';
 
 export const LOCAL_STORAGE_TOKEN_KEY = 'token';
 
@@ -19,12 +21,18 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginRequest = false;
   private subs = new SubSink();
   hide = true;
+  language: string;
+  captchaSuccess = false;
+  captchaKey = environment.captcha.key;
+  script: any;
 
   constructor(formBuilder: FormBuilder,
               private router: Router,
               private authService: AuthService,
               private toastService: ToastService,
-              private loadingService: LoadingService
+              private loadingService: LoadingService,
+              private translate: TranslateService,
+              private renderer: Renderer2
   ) {
     this.loginFormGroup = formBuilder.group({
       usernameOrEmail: [null,
@@ -44,6 +52,20 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.translate
+      .stream('SHORTCUT')
+      .subscribe(v => this.setLanguage(v));
+    this.script = this.renderer.createElement('script');
+    this.script = this.renderer.createElement('script');
+    this.script.defer = true;
+    this.script.async = true;
+    this.script.src = 'https://www.google.com/recaptcha/api.js?render=explicit&onload=loadCaptcha';
+    this.renderer.appendChild(document.body, this.script);
+  }
+
+  setLanguage(param: any) {
+    this.language = param;
+    console.log(this.language);
   }
 
   ngOnDestroy(): void {
@@ -87,6 +109,10 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.toastService.success('forgotpassword.SENT');
       })
     );
+  }
+
+  showResponse(response: any) {
+    this.captchaSuccess = true;
   }
 }
 

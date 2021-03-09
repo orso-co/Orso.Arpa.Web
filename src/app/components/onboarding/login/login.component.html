@@ -2,7 +2,7 @@
   <div class="login-layout" class="p-col-11 p-md-4 login-sep1">
       <form [formGroup] = "loginFormGroup" (ngSubmit)="submit()">
           <p>
-            <arpa-language-menu></arpa-language-menu>
+            <arpa-language-menu (onclick) = "cpt.reset()"></arpa-language-menu>
           </p>
           <p style="height:2px"></p>
           <p class="p-float-label">
@@ -15,6 +15,7 @@
             <label for="float-input">{{ 'PASSWORD' | translate }}</label>
             <i id="eyeButton" class="p-ml-2 pi {{hide ? 'pi-eye-slash' : 'pi-eye'}}" (click)="hide = !hide"></i>
           </p>
+          <p-captcha #cpt siteKey = "{{captchaKey}}"  theme = 'dark' language="{{this.language}}" (onResponse)="showResponse($event)" initCallback="loadCaptcha"></p-captcha>
           <p style="height:10px"></p>
           <table>
             <tr>
@@ -22,7 +23,7 @@
                 <button
                   pButton
                   label="{{ 'LOGIN' | translate }}"
-                  [disabled]="loginFormGroup.invalid || loginFormGroup.pristine ">
+                  [disabled]="loginFormGroup.invalid || loginFormGroup.pristine || !captchaSuccess">
                 </button>
               </td>
               <td width="20px;"></td>
