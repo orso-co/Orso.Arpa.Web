@@ -24,6 +24,7 @@ export class LanguageService {
     this.translate.addLangs(['de', 'en']);
     this.translate.setDefaultLang('de');
     const existingLang = this.localStorage.getItem('language');
+    console.log(existingLang);
     if (existingLang) {
       this.updateLanguage(existingLang);
     } else {
@@ -39,11 +40,11 @@ export class LanguageService {
   public updateLanguage(newLanguage: string): void {
     this.translate.use(newLanguage);
     this.translate.get('primeng').subscribe((res) => this.primengConfig.setTranslation(res));
-    this.localStorage.setItem('language', this.translate.currentLang);
+    this.localStorage.setItem('language', newLanguage);
   }
 
   /**
-   * Returns the user-defined name corresponding to the language code
+   * Returns the pre-defined name corresponding to the language code
    * If no name has been defined returns the code
    * @param code e.g. 'en', 'de'
    */

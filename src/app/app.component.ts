@@ -4,7 +4,6 @@ import { LoadingService } from './services/loading.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { PrimeNGConfig } from 'primeng/api';
-import {LanguageService} from './services/language.service';
 
 @Component({
   selector: 'arpa-root',
@@ -18,7 +17,7 @@ export class AppComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
     private primengConfig: PrimeNGConfig,
     loadingService: LoadingService,
-    private router: Router,
+    private router: Router
   ) {
     this.subs.add(this.router.events.subscribe(event => {
       switch (true) {
