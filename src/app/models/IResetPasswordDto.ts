@@ -1,6 +1,5 @@
 export interface IResetPasswordDto {
-    usernameOrEmail: string,
-    password: string,
-    token: string
+    usernameOrEmail: string;
+    password: string;
+    token: string;
   }
-  

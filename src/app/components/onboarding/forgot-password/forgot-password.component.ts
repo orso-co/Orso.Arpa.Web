@@ -41,23 +41,22 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   submit(): void{
-    //subs.add noch integrieren
-    //wohin navigieren? am besten direkt eingeloggt zum Dashboard... 
+    // subs.add noch integrieren
+    // wohin navigieren? am besten direkt eingeloggt zum Dashboard...
     this.forgotPasswordRequest = true;
     this.route.queryParams
     .subscribe(params => {
-      const resetPassword: IResetPasswordDto = {usernameOrEmail: params.usernameOrEmail, password: this.forgotPasswordFormGroup.value.password, token: params.token,};
+      const resetPassword: IResetPasswordDto = {
+        usernameOrEmail: params.email,
+        password: this.forgotPasswordFormGroup.value.password,
+        token: params.token, };
       this.authService
       .resetPassword(resetPassword)
       .subscribe(() => {
-        this.toastService.success('forgotpassword.SENT');
+        this.toastService.success('forgotpassword.CHANGED');
         this.router.navigate(['/onboarding/login']);
       });
     });
-    this.forgotPasswordRequest = false;
-  }
-
-  onChange(): void {
     this.forgotPasswordRequest = false;
   }
 
