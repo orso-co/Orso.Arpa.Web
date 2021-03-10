@@ -1,15 +1,12 @@
 <div class="topbar clearfix">
+
   <a routerLink="/" class="logo-link">
     <img src="assets/organization/icons/organisation_icon.png" class="topbar-logo" routerLink="/" />
   </a>
-  <div>{{ "performerWELCOME" | translate }}</div>
+
+  <div class="welcome p-d-none p-d-sm-inline-flex">{{ "performerWELCOME" | translate }}</div>
 
   <ul class="topbar-menu">
-
-    <li class="language-menu-item">
-      <arpa-language-menu></arpa-language-menu>
-    </li>
-
     <li class="user-profile-item" *ngIf="token$ | async as token">
       <a href="#" (click)="userprofilemenu.toggle($event); $event.preventDefault();">
         <p-avatar
@@ -25,4 +22,4 @@
   </ul>
 </div>
 
-<p-menu #userprofilemenu [popup]="true" [model]="userProfileItems"></p-menu>
+<p-menu class="user-menu" #userprofilemenu [popup]="true" [model]="userProfileItems"></p-menu>
