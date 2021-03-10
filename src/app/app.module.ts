@@ -41,6 +41,7 @@ import { ForgotPasswordComponent } from './components/onboarding/forgot-password
 import { LanguageMenuComponent } from './components/language-menu/language-menu.component';
 import { ProfileComponent } from './components/onboarding/profile/profile.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import {AcceptLanguageInterceptor} from './interceptors/accept-language.interceptor';
 
 registerLocaleData(localeDe, 'de');
 
@@ -110,6 +111,11 @@ export function tokenGetter(): string | null {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: WithCredentialsInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AcceptLanguageInterceptor,
       multi: true,
     },
     {
