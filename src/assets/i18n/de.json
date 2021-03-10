@@ -48,7 +48,10 @@
   },
   "forgotpassword": {
     "BUTTON": "Passwort vergessen",
-    "SENT": "Ein Link zum Vergeben eines neuen Passworts wurde an deine e-Mailadresse gesendet."
+    "SENT": "Ein Link zum Vergeben eines neuen Passworts wurde an deine e-Mailadresse gesendet.",
+    "CONFIRM": "Passwort ändern.",
+    "CHANGED": "Dein Passwort wurde geändert.",
+    "PASSWORD": "Neues Passwort"
   },
   "emailconfirmation": {
     "SUCCESS": "Danke für die Bestätigung der E-Mail Adresse"
