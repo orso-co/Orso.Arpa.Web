@@ -1,3 +1,360 @@
-<p>
-  edit-appointment works!
-</p>
+<p-steps [model]="items" [(activeIndex)]="activeIndex" [readonly]="false"></p-steps>
+<div [ngSwitch]="activeIndex">
+  <ng-container *ngSwitchCase="0">
+    <form (submit)="onSubmit()" [formGroup]="formGroup">
+      <div class="p-grid">
+        <div class="p-col-12">
+          <div class="card card-w-title">
+            <div class="p-grid form-group">
+              <div class="p-col-12 p-lg-3">
+                <label for="title">Title *</label>
+              </div>
+              <div class="p-col-12 p-lg-9">
+                <input required type="text" pInputText placeholder="Title" formControlName="name" maxlength="50" id="title" />
+              </div>
+              <div class="p-col-12 p-lg-3">
+                <label for="starttime">Start Time *</label>
+              </div>
+              <div class="p-col-12 p-lg-9">
+                <p-calendar
+                  [required]="true"
+                  formControlName="startTime"
+                  id="starttime"
+                  dateFormat="dd.MM yy"
+                  [showWeek]="true"
+                  [showTime]="true"
+                  hourFormat="24"
+                  placeholder="Start Time"
+                ></p-calendar>
+              </div>
+              <div class="p-col-12 p-lg-3">
+                <label for="endtime">End Time *</label>
+              </div>
+              <div class="p-col-12 p-lg-9">
+                <p-calendar
+                  [required]="true"
+                  formControlName="endTime"
+                  dateFormat="dd.MM yy"
+                  [showWeek]="true"
+                  id="endtime"
+                  [showTime]="true"
+                  hourFormat="24"
+                  placeholder="End Time"
+                ></p-calendar>
+              </div>
+              <div class="p-col-12 p-lg-3">
+                <label for="status">Status *</label>
+              </div>
+              <div class="p-col-12 p-lg-9">
+                <p-dropdown
+                  placeholer="Select status"
+                  [showClear]="true"
+                  [required]="true"
+                  formControlName="statusId"
+                  [autoDisplayFirst]="false"
+                  [options]="statusOptions"
+                  id="status"
+                ></p-dropdown>
+              </div>
+              <div class="p-col-12 p-lg-3">
+                <label for="category">Category *</label>
+              </div>
+              <div class="p-col-12 p-lg-9">
+                <p-dropdown
+                  [autoDisplayFirst]="false"
+                  placeholer="Select category"
+                  [showClear]="true"
+                  [required]="true"
+                  formControlName="categoryId"
+                  [autoDisplayFirst]="false"
+                  [options]="categoryOptions"
+                  id="category"
+                ></p-dropdown>
+              </div>
+              <div class="p-col-12 p-lg-3">
+                <label for="expectation">Expectation *</label>
+              </div>
+              <div class="p-col-12 p-lg-9">
+                <p-dropdown
+                  [autoDisplayFirst]="false"
+                  placeholer="Select expectation"
+                  [showClear]="true"
+                  [required]="true"
+                  formControlName="expectationId"
+                  [autoDisplayFirst]="false"
+                  [options]="expectationOptions"
+                  id="expectation"
+                ></p-dropdown>
+              </div>
+              <div class="p-col-12">
+                <label for="publicDetails">Public Details</label>
+              </div>
+              <div class="p-col-12">
+                <textarea
+                  formControlName="publicDetails"
+                  id="publicDetails"
+                  [rows]="3"
+                  [cols]="30"
+                  pInputTextarea
+                  placeholder="Public Details"
+                  maxlength="1000"
+                  autoResize="autoResize"
+                ></textarea>
+              </div>
+              <div class="p-col-12">
+                <label for="internalDetails">Internal Details</label>
+              </div>
+              <div class="p-col-12">
+                <textarea
+                  id="internalDetails"
+                  formControlName="internalDetails"
+                  [rows]="3"
+                  [cols]="30"
+                  pInputTextarea
+                  maxlength="1000"
+                  placeholder="Internal Details"
+                  autoResize="autoResize"
+                ></textarea>
+              </div>
+              <div class="p-col-12">
+                <p-fieldset legend="Emolument">
+                  <div class="p-col-12">
+                    <label for="emolument">Emolument *</label>
+                  </div>
+                  <div class="p-col-12">
+                    <p-dropdown
+                      [required]="true"
+                      formControlName="emolumentId"
+                      [showClear]="true"
+                      [options]="emolumentOptions"
+                      [autoDisplayFirst]="false"
+                      id="emolument"
+                    ></p-dropdown>
+                  </div>
+                  <div class="p-col-12">
+                    <label for="emolumentPattern">Emolument Pattern</label>
+                  </div>
+                  <div class="p-col-12">
+                    <p-dropdown
+                      formControlName="emolumentPatternId"
+                      [options]="emolumentPatternOptions"
+                      [showClear]="true"
+                      [autoDisplayFirst]="false"
+                      id="emolumentPattern"
+                    ></p-dropdown>
+                  </div>
+                </p-fieldset>
+              </div>
+              <div class="p-col-12">
+                <p-button
+                  type="submit"
+                  label="Save"
+                  icon="pi pi-check"
+                  iconPos="left"
+                  [disabled]="formGroup.pristine || formGroup.invalid"
+                ></p-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-container>
+  <ng-container *ngSwitchCase="1">
+    <div class="card card-w-title">
+      <div class="p-grid form-group">
+        <div class="p-col-12">
+          <label for="venue">Venue</label>
+        </div>
+        <div class="p-col-12">
+          <p-dropdown
+            [autoDisplayFirst]="false"
+            placeholer="Select venue"
+            [showClear]="true"
+            [autoDisplayFirst]="false"
+            [options]="venueOptions"
+            (onChange)="onVenueChanged($event)"
+            id="venue"
+            name="venue"
+            [(ngModel)]="appointment.venueId"
+          ></p-dropdown>
+        </div>
+        <div class="p-col-12">
+          <label for="rooms">Rooms</label>
+        </div>
+        <div class="p-col-12">
+          <p-autoComplete
+            [(ngModel)]="appointment.rooms"
+            field="name"
+            name="rooms"
+            id="rooms"
+            [suggestions]="roomOptions"
+            (completeMethod)="searchRoom($event)"
+            [disabled]="rooms.length === 0"
+            [multiple]="true"
+            [forceSelection]="true"
+            [dropdown]="true"
+            (onSelect)="onRoomAdded($event)"
+            (onUnselect)="onRoomRemoved($event)"
+          ></p-autoComplete>
+        </div>
+        <div class="p-col-12">
+          <label for="sections">Sections</label>
+        </div>
+        <div class="p-col-12">
+          <p-autoComplete
+            id="sections"
+            field="name"
+            [(ngModel)]="appointment.sections"
+            name="sections"
+            [suggestions]="sectionOptions"
+            (completeMethod)="searchSection($event)"
+            [multiple]="true"
+            [forceSelection]="true"
+            [dropdown]="true"
+            (onSelect)="onSectionAdded($event)"
+            (onUnselect)="onSectionRemoved($event)"
+          ></p-autoComplete>
+        </div>
+        <div class="p-col-12">
+          <label for="projects">Projects</label>
+        </div>
+        <div class="p-col-12">
+          <p-autoComplete
+            [(ngModel)]="appointment.projects"
+            name="projects"
+            field="title"
+            id="projects"
+            [suggestions]="projectOptions"
+            (completeMethod)="searchProject($event)"
+            [multiple]="true"
+            [forceSelection]="true"
+            [dropdown]="true"
+            (onSelect)="onProjectAdded($event)"
+            (onUnselect)="onProjectRemoved($event)"
+          ></p-autoComplete>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngSwitchDefault>
+    <div class="card card-w-title">
+      <p-table
+        #participationTable
+        [columns]="columns"
+        [value]="participationTableItems"
+        [paginator]="true"
+        [rows]="5"
+        [responsive]="true"
+        (onFilter)="onTableFiltered($event)"
+      >
+        <ng-template pTemplate="caption">Participations</ng-template>
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+              {{ col.header }}
+              <p-sortIcon [field]="col.field"></p-sortIcon>
+            </th>
+          </tr>
+          <tr>
+            <th *ngFor="let col of columns" [ngSwitch]="col.field">
+              <input
+                *ngSwitchCase="'surname'"
+                pInputText
+                type="text"
+                (input)="participationTable.filter($event.target.value, col.field, 'contains')"
+              />
+              <input
+                *ngSwitchCase="'givenName'"
+                pInputText
+                type="text"
+                (input)="participationTable.filter($event.target.value, col.field, 'contains')"
+              />
+              <p-dropdown
+                *ngSwitchCase="'predictionId'"
+                [showClear]="true"
+                [autoDisplayFirst]="false"
+                [options]="predictionOptions"
+                [style]="{ width: '100%' }"
+                (onChange)="participationTable.filter($event.value, col.field, 'equals')"
+              ></p-dropdown>
+              <p-dropdown
+                *ngSwitchCase="'resultId'"
+                [showClear]="true"
+                [autoDisplayFirst]="false"
+                [options]="resultOptions"
+                [style]="{ width: '100%' }"
+                (onChange)="participationTable.filter($event.value, col.field, 'equals')"
+              ></p-dropdown>
+              <p-dropdown
+                *ngSwitchCase="'isProfessional'"
+                [showClear]="true"
+                [autoDisplayFirst]="false"
+                [options]="isProfessionalOptions"
+                [style]="{ width: '100%' }"
+                (onChange)="participationTable.filter($event.value, col.field, 'equals')"
+              ></p-dropdown>
+              <p-dropdown
+                *ngSwitchCase="'sections'"
+                [showClear]="true"
+                [autoDisplayFirst]="false"
+                [options]="sectionSelectItems"
+                [style]="{ width: '100%' }"
+                (onChange)="participationTable.filter($event.value, col.field, 'contains')"
+              ></p-dropdown>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr>
+            <td>
+              <span class="ui-column-title">Surname</span>
+              {{ item.surname }}
+            </td>
+            <td>
+              <span class="ui-column-title">Given Name</span>
+              {{ item.givenName }}
+            </td>
+            <td>
+              <span class="ui-column-title">Sections</span>
+              {{ item.sections }}
+            </td>
+            <td>
+              <span class="ui-column-title">Is Professional</span>
+              {{ item.isProfessional }}
+            </td>
+            <td>
+              <span class="ui-column-title">Prediction</span>
+              <p-dropdown
+                *ngIf="item.predictionId"
+                placeholer="Select prediction"
+                [disabled]="true"
+                [autoDisplayFirst]="false"
+                [options]="predictionOptions"
+                [name]="'prediction-' + item.id"
+                [(ngModel)]="item.predictionId"
+              ></p-dropdown>
+            </td>
+            <td>
+              <span class="ui-column-title">Result</span>
+              <p-dropdown
+                placeholer="Select result"
+                [autoDisplayFirst]="false"
+                [options]="resultOptions"
+                [name]="'result-' + item.id"
+                (onChange)="onResultChanged(item, $event)"
+                [(ngModel)]="item.resultId"
+              ></p-dropdown>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage" let-columns>
+          <tr>
+            <td [attr.colspan]="columns.length">No records found</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary"> {{ filteredDataCount }} participations </ng-template>
+      </p-table>
+    </div>
+  </ng-container>
+</div>

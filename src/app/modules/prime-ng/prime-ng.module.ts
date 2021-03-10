@@ -27,6 +27,10 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { FullCalendarModule } from 'primeng/fullcalendar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { StepsModule } from 'primeng/steps';
+import { CalendarModule } from 'primeng/calendar';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { TableModule } from 'primeng/table';
 import {CaptchaModule} from 'primeng/captcha';
 
 const MODULES = [
@@ -57,6 +61,10 @@ const MODULES = [
   ConfirmDialogModule,
   DynamicDialogModule,
   CaptchaModule,
+  StepsModule,
+  CalendarModule,
+  AutoCompleteModule,
+  TableModule
 ];
 
 @NgModule({

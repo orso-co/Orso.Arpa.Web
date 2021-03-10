@@ -7,7 +7,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { SelectItem } from 'primeng/api';
-import { IAppointmentDto, ICalendarEvent } from 'src/app/models/appointment';
+import { IAppointmentDto, ICalendarEvent, IProjectDto, IVenueDto } from 'src/app/models/appointment';
 import { ToastService } from 'src/app/services/toast.service';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { DateRange } from 'src/app/models/date-range';
@@ -15,6 +15,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SubSink } from 'subsink';
+import { ISectionDto } from 'src/app/models/section';
 
 @Component({
   selector: 'arpa-appointments',
@@ -27,6 +28,12 @@ export class AppointmentsComponent implements OnDestroy {
   emolumentPatternOptions: SelectItem[] = [];
   emolumentOptions: SelectItem[] = [];
   expectationOptions: SelectItem[] = [];
+  sections: ISectionDto[] = [];
+  projects: IProjectDto[] = [];
+  venues: IVenueDto[] = [];
+  predictionOptions: SelectItem[] = [];
+  resultOptions: SelectItem[] = [];
+
   fullCalendarOptions$: Observable<any>;
   private _appointments: IAppointmentDto[] = [];
   events: ICalendarEvent[] = [];
@@ -50,13 +57,15 @@ export class AppointmentsComponent implements OnDestroy {
     private dialogService: DialogService,
     private loadingService: LoadingService
   ) {
-    this.subs.add(this.route.data.subscribe((data) => {
-      this.categoryOptions = data.categories;
-      this.statusOptions = data.status;
-      this.emolumentOptions = data.emoluments;
-      this.emolumentPatternOptions = data.emolumentPatterns;
-      this.expectationOptions = data.expectations;
-    }));
+    this.subs.add(
+      this.route.data.subscribe((data) => {
+        this.categoryOptions = data.categories;
+        this.statusOptions = data.status;
+        this.emolumentOptions = data.emoluments;
+        this.emolumentPatternOptions = data.emolumentPatterns;
+        this.expectationOptions = data.expectations;
+      })
+    );
     this.setOptions();
     this.translate.onLangChange.subscribe(() => this.setOptions());
   }
@@ -162,9 +171,36 @@ export class AppointmentsComponent implements OnDestroy {
   }
 
   openCreateDialog(date?: Date): void {
+    const appointmentDate = date || new Date();
     const ref = this.dialogService.open(EditAppointmentComponent, {
       data: {
-        date: date || new Date(),
+        appointment: {
+          startTime: appointmentDate,
+          endTime: appointmentDate,
+          id: null,
+          internalDetails: null,
+          publicDetails: null,
+          categoryId: null,
+          expectationId: null,
+          statusId: null,
+          name: null,
+          emolumentPatternId: null,
+          emolumentId: null,
+          rooms: [],
+          participations: [],
+          projects: [],
+          sections: [],
+          createdBy: null,
+          createdAt: null,
+          modifiedAt: null,
+          modifiedBy: null,
+          venueId: null,
+        },
+        sections: this.sections,
+        projects: this.projects,
+        venues: this.venues,
+        predictionOptions: this.predictionOptions,
+        resultOptions: this.resultOptions,
         categoryOptions: this.categoryOptions,
         statusOptions: this.statusOptions,
         emolumentPatternOptions: this.emolumentPatternOptions,
@@ -172,6 +208,7 @@ export class AppointmentsComponent implements OnDestroy {
         expectationOptions: this.expectationOptions,
       },
       header: 'Create an appointment',
+      style: { 'max-width': '1500px'}
     });
 
     this.subs.add(

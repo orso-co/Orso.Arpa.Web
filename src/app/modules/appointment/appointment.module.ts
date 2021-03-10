@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimeNgModule } from './../prime-ng/prime-ng.module';
 import { EditAppointmentComponent } from './edit-appointment/edit-appointment.component';
 import { RouterModule } from '@angular/router';
@@ -12,6 +13,8 @@ import { HttpClient } from '@angular/common/http';
   imports: [
     CommonModule,
     PrimeNgModule,
+    FormsModule,
+    ReactiveFormsModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,

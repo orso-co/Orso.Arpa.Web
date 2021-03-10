@@ -7,7 +7,7 @@ import {LanguageService} from '../../services/language.service';
 @Component({
   selector: 'arpa-language-menu',
   templateUrl: './language-menu.component.html',
-  styleUrls: ['./language-menu.component.css']
+  styleUrls: ['./language-menu.component.scss']
 })
 export class LanguageMenuComponent implements OnDestroy {
 
