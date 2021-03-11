@@ -62,7 +62,8 @@
     "SUCCESS": "Thank you for confirming your email address"
   },
   "register": {
-    "THANKS": "Thanks for your registration with ARPA. Please check your inbox and confirm your email address."
+    "THANKS": "Thanks for your registration with ARPA. Please check your inbox and confirm your email address.",
+    "SHOWPRIVACY": "Privacy Policy"
   },
   "dashboardselector": {
     "SELECT_DASHBOARD": "Select the dashboard you want to switch to"
