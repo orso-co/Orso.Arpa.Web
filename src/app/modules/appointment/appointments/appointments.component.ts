@@ -1,3 +1,4 @@
+import { SectionService } from './../../../services/section.service';
 import { LoadingService } from './../../../services/loading.service';
 import { TranslateService } from '@ngx-translate/core';
 import { EditAppointmentComponent } from './../edit-appointment/edit-appointment.component';
@@ -50,22 +51,28 @@ export class AppointmentsComponent implements OnDestroy {
 
   constructor(
     private appointmentService: AppointmentService,
-    private router: Router,
     private toastService: ToastService,
     private route: ActivatedRoute,
     private translate: TranslateService,
     private dialogService: DialogService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private sectionService: SectionService
   ) {
     this.subs.add(
       this.route.data.subscribe((data) => {
-        this.categoryOptions = data.categories;
-        this.statusOptions = data.status;
-        this.emolumentOptions = data.emoluments;
-        this.emolumentPatternOptions = data.emolumentPatterns;
-        this.expectationOptions = data.expectations;
-      })
-    );
+        this.projects = data.projects || [];
+        this.venues = data.venues || [];
+        this.emolumentOptions = data.emoluments || [];
+        this.emolumentPatternOptions = data.emolumentPatterns || [];
+        this.expectationOptions = data.expecetations || [];
+        this.categoryOptions = data.categories || [];
+        this.statusOptions = data.status || [];
+        this.predictionOptions = data.predictions || [];
+        this.resultOptions = data.results || [];
+      }));
+      this.subs.add(
+        this.sectionService.sections$.subscribe(sections => this.sections = sections || [])
+      )
     this.setOptions();
     this.translate.onLangChange.subscribe(() => this.setOptions());
   }

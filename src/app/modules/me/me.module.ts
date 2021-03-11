@@ -8,7 +8,7 @@ import { MyAppointmentsComponent } from './my-appointments/my-appointments.compo
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
-import { SelectValueListResolver } from 'src/app/resolvers/select-value-list.resolver';
+import { AppointmentParticipationPredictionListResolver } from 'src/app/resolvers/appointment-participation-prediction-list.resolver';
 
 @NgModule({
   imports: [
@@ -28,14 +28,13 @@ import { SelectValueListResolver } from 'src/app/resolvers/select-value-list.res
       {
         path: 'appointments',
         component: MyAppointmentsComponent,
-        data: { tableName: 'AppointmentParticipation', propertyName: 'Prediction'},
         resolve: {
-          predictionsLoaded: SelectValueListResolver,
+          predictions: AppointmentParticipationPredictionListResolver,
         },
       },
     ]),
   ],
   declarations: [MyAppointmentsComponent],
-  providers: [SelectValueListResolver]
+  providers: [AppointmentParticipationPredictionListResolver],
 })
 export class MeModule {}

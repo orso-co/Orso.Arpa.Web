@@ -27,13 +27,12 @@ export class MyAppointmentsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private toastService: ToastService,
     private loadingService: LoadingService,
-    private selectValueService: SelectValueService
   ) {}
 
   ngOnInit(): void {
     this.predictionOptions$ = this.route.data.pipe(
-      map((data) => (data.predictionsLoaded ? this.selectValueService.get(data.tableName, data.propertyName) : []))
-    );
+      map((data) => (data.predictions || [])
+    ));
   }
 
   ngOnDestroy(): void {

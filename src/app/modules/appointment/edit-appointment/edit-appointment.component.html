@@ -14,7 +14,7 @@
                   </div>
                 </div>
                 <div class="p-col-12">
-                  <div class="p-field">
+                  <div class="p-field p-fluid">
                     <label for="starttime">Start Time *</label>
                     <p-calendar
                       [required]="true"
@@ -25,12 +25,11 @@
                       [showTime]="true"
                       hourFormat="24"
                       placeholder="Start Time"
-                      [style]="{'width': '100%'}"
                     ></p-calendar>
                   </div>
                 </div>
                 <div class="p-col-12">
-                  <div class="p-field">
+                  <div class="p-field p-fluid">
                     <label for="endtime">End Time *</label>
                     <p-calendar
                       [required]="true"
@@ -41,16 +40,16 @@
                       [showTime]="true"
                       hourFormat="24"
                       placeholder="End Time"
-                      [style]="{'width': '100%'}"
                     ></p-calendar>
                   </div>
                 </div>
               </div>
               <div class="p-col-12 p-md-6 p-lg-4">
                 <div class="p-col-12">
-                  <div class="p-field">
+                  <div class="p-field p-fluid">
                     <label for="status">Status *</label>
                     <p-dropdown
+                      appendTo="body"
                       placeholer="Select status"
                       [showClear]="true"
                       [required]="true"
@@ -58,14 +57,14 @@
                       [autoDisplayFirst]="false"
                       [options]="statusOptions"
                       id="status"
-                      [style]="{'width': '100%'}"
                     ></p-dropdown>
                   </div>
                 </div>
                 <div class="p-col-12">
-                  <div class="p-field">
+                  <div class="p-field p-fluid">
                     <label for="category">Category *</label>
                     <p-dropdown
+                      appendTo="body"
                       [autoDisplayFirst]="false"
                       placeholer="Select category"
                       [showClear]="true"
@@ -74,14 +73,14 @@
                       [autoDisplayFirst]="false"
                       [options]="categoryOptions"
                       id="category"
-                      [style]="{'width': '100%'}"
                     ></p-dropdown>
                   </div>
                 </div>
                 <div class="p-col-12">
-                  <div class="p-field">
+                  <div class="p-field p-fluid">
                     <label for="expectation">Expectation *</label>
                     <p-dropdown
+                      appendTo="body"
                       [autoDisplayFirst]="false"
                       placeholer="Select expectation"
                       [showClear]="true"
@@ -90,14 +89,13 @@
                       [autoDisplayFirst]="false"
                       [options]="expectationOptions"
                       id="expectation"
-                      [style]="{'width': '100%'}"
                     ></p-dropdown>
                   </div>
                 </div>
               </div>
               <div class="p-col-12 p-md-6 p-lg-4">
                 <div class="p-col-12">
-                  <div class="p-field">
+                  <div class="p-field p-fluid">
                     <label for="publicDetails">Public Details</label>
                     <textarea
                       formControlName="publicDetails"
@@ -133,13 +131,14 @@
                     <div class="p-field">
                       <label for="emolument">Emolument *</label>
                       <p-dropdown
+                        appendTo="body"
                         [required]="true"
                         formControlName="emolumentId"
                         [showClear]="true"
                         [options]="emolumentOptions"
                         [autoDisplayFirst]="false"
                         id="emolument"
-                        [style]="{'min-width': '50%'}"
+                        [style]="{ 'min-width': '50%' }"
                       ></p-dropdown>
                     </div>
                   </div>
@@ -147,12 +146,13 @@
                     <div class="p-field">
                       <label for="emolumentPattern">Emolument Pattern</label>
                       <p-dropdown
+                        appendTo="body"
                         formControlName="emolumentPatternId"
                         [options]="emolumentPatternOptions"
                         [showClear]="true"
                         [autoDisplayFirst]="false"
                         id="emolumentPattern"
-                        [style]="{'min-width': '50%'}"
+                        [style]="{ 'min-width': '50%' }"
                       ></p-dropdown>
                     </div>
                   </div>
@@ -177,75 +177,79 @@
     <div class="card card-w-title">
       <div class="p-grid form-group">
         <div class="p-col-12">
-          <label for="venue">Venue</label>
+          <div class="p-field p-fluid">
+            <label for="venue">Venue</label>
+            <p-dropdown
+              appendTo="body"
+              [autoDisplayFirst]="false"
+              placeholer="Select venue"
+              [showClear]="true"
+              [autoDisplayFirst]="false"
+              [options]="venueOptions"
+              (onChange)="onVenueChanged($event)"
+              id="venue"
+              name="venue"
+              [(ngModel)]="appointment.venueId"
+            ></p-dropdown>
+          </div>
         </div>
         <div class="p-col-12">
-          <p-dropdown
-            [autoDisplayFirst]="false"
-            placeholer="Select venue"
-            [showClear]="true"
-            [autoDisplayFirst]="false"
-            [options]="venueOptions"
-            (onChange)="onVenueChanged($event)"
-            id="venue"
-            name="venue"
-            [(ngModel)]="appointment.venueId"
-          ></p-dropdown>
+          <div class="p-field p-fluid">
+            <label for="rooms">Rooms</label>
+            <p-autoComplete
+              appendTo="body"
+              [(ngModel)]="appointment.rooms"
+              field="name"
+              name="rooms"
+              id="rooms"
+              [suggestions]="roomOptions"
+              (completeMethod)="searchRoom($event)"
+              [disabled]="rooms.length === 0"
+              [multiple]="true"
+              [forceSelection]="true"
+              [dropdown]="true"
+              (onSelect)="onRoomAdded($event)"
+              (onUnselect)="onRoomRemoved($event)"
+            ></p-autoComplete>
+          </div>
         </div>
         <div class="p-col-12">
-          <label for="rooms">Rooms</label>
+          <div class="p-field p-fluid">
+            <label for="sections">Sections</label>
+            <p-autoComplete
+              appendTo="body"
+              id="sections"
+              field="name"
+              [(ngModel)]="appointment.sections"
+              name="sections"
+              [suggestions]="sectionOptions"
+              (completeMethod)="searchSection($event)"
+              [multiple]="true"
+              [forceSelection]="true"
+              [dropdown]="true"
+              (onSelect)="onSectionAdded($event)"
+              (onUnselect)="onSectionRemoved($event)"
+            ></p-autoComplete>
+          </div>
         </div>
         <div class="p-col-12">
-          <p-autoComplete
-            [(ngModel)]="appointment.rooms"
-            field="name"
-            name="rooms"
-            id="rooms"
-            [suggestions]="roomOptions"
-            (completeMethod)="searchRoom($event)"
-            [disabled]="rooms.length === 0"
-            [multiple]="true"
-            [forceSelection]="true"
-            [dropdown]="true"
-            (onSelect)="onRoomAdded($event)"
-            (onUnselect)="onRoomRemoved($event)"
-          ></p-autoComplete>
-        </div>
-        <div class="p-col-12">
-          <label for="sections">Sections</label>
-        </div>
-        <div class="p-col-12">
-          <p-autoComplete
-            id="sections"
-            field="name"
-            [(ngModel)]="appointment.sections"
-            name="sections"
-            [suggestions]="sectionOptions"
-            (completeMethod)="searchSection($event)"
-            [multiple]="true"
-            [forceSelection]="true"
-            [dropdown]="true"
-            (onSelect)="onSectionAdded($event)"
-            (onUnselect)="onSectionRemoved($event)"
-          ></p-autoComplete>
-        </div>
-        <div class="p-col-12">
-          <label for="projects">Projects</label>
-        </div>
-        <div class="p-col-12">
-          <p-autoComplete
-            [(ngModel)]="appointment.projects"
-            name="projects"
-            field="title"
-            id="projects"
-            [suggestions]="projectOptions"
-            (completeMethod)="searchProject($event)"
-            [multiple]="true"
-            [forceSelection]="true"
-            [dropdown]="true"
-            (onSelect)="onProjectAdded($event)"
-            (onUnselect)="onProjectRemoved($event)"
-          ></p-autoComplete>
+          <div class="p-field p-fluid">
+            <label for="projects">Projects</label>
+            <p-autoComplete
+              appendTo="body"
+              [(ngModel)]="appointment.projects"
+              name="projects"
+              field="title"
+              id="projects"
+              [suggestions]="projectOptions"
+              (completeMethod)="searchProject($event)"
+              [multiple]="true"
+              [forceSelection]="true"
+              [dropdown]="true"
+              (onSelect)="onProjectAdded($event)"
+              (onUnselect)="onProjectRemoved($event)"
+            ></p-autoComplete>
+          </div>
         </div>
       </div>
     </div>
@@ -284,6 +288,7 @@
                 (input)="participationTable.filter($event.target.value, col.field, 'contains')"
               />
               <p-dropdown
+                appendTo="body"
                 *ngSwitchCase="'predictionId'"
                 [showClear]="true"
                 [autoDisplayFirst]="false"
@@ -292,6 +297,7 @@
                 (onChange)="participationTable.filter($event.value, col.field, 'equals')"
               ></p-dropdown>
               <p-dropdown
+                appendTo="body"
                 *ngSwitchCase="'resultId'"
                 [showClear]="true"
                 [autoDisplayFirst]="false"
@@ -300,6 +306,7 @@
                 (onChange)="participationTable.filter($event.value, col.field, 'equals')"
               ></p-dropdown>
               <p-dropdown
+                appendTo="body"
                 *ngSwitchCase="'isProfessional'"
                 [showClear]="true"
                 [autoDisplayFirst]="false"
@@ -308,6 +315,7 @@
                 (onChange)="participationTable.filter($event.value, col.field, 'equals')"
               ></p-dropdown>
               <p-dropdown
+                appendTo="body"
                 *ngSwitchCase="'sections'"
                 [showClear]="true"
                 [autoDisplayFirst]="false"
@@ -339,6 +347,7 @@
             <td>
               <span class="ui-column-title">Prediction</span>
               <p-dropdown
+                appendTo="body"
                 *ngIf="item.predictionId"
                 placeholer="Select prediction"
                 [disabled]="true"
@@ -351,6 +360,7 @@
             <td>
               <span class="ui-column-title">Result</span>
               <p-dropdown
+                appendTo="body"
                 placeholer="Select result"
                 [autoDisplayFirst]="false"
                 [options]="resultOptions"
