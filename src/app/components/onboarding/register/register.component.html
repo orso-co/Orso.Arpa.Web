@@ -27,9 +27,12 @@
     </p>
     <p class="p-field-checkbox">
       <p-checkbox id="givenname" formControlName="privacyPolicy" ngDefaultControl></p-checkbox>
-      <label>{{ 'PRIVACYPOLICY' | translate }}</label>
-    </p>
-
+      <label>
+        <a href="../../../../assets/organization/documents/privacyPolicy.html" target="_blanc" style="color:currentColor;" title="{{ 'register.SHOWPRIVACY' | translate }}">
+          {{ 'PRIVACYPOLICY' | translate }}
+        </a>
+      </label>
+ 
     <table>
       <tr>
         <td>
