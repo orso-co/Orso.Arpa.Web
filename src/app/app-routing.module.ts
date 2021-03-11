@@ -62,6 +62,7 @@ const routes: Routes = [
           { path: 'noRole', component: NoRoleComponent },
         ],
       },
+      {path: 'profile', component: ProfileComponent, pathMatch: 'full'},
       {
         path: 'appointments',
         data: { roles: [RoleNames.staff, RoleNames.admin] },
