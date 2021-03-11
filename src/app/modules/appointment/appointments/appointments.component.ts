@@ -91,7 +91,7 @@ export class AppointmentsComponent implements OnDestroy {
           this.openCreateDialog(e.date);
         },
         eventClick: (e: any) => {
-          this.router.navigate(['/pages/appointments/edit', e.event.id]);
+          this.openEditDialog(e.event.id);
         },
         customButtons: {
           btnAddAppointment: {
@@ -209,6 +209,35 @@ export class AppointmentsComponent implements OnDestroy {
       },
       header: 'Create an appointment',
       style: { 'max-width': '1500px'}
+    });
+
+    this.subs.add(
+      ref.onClose.subscribe((appointment: IAppointmentDto) => {
+        if (appointment) {
+          this.appointments = [...this.appointments, appointment];
+        }
+      })
+    );
+  }
+
+  private openEditDialog(appointmentId: string) {
+    const appointment = this.appointments.find(a => a.id === appointmentId);
+    const ref = this.dialogService.open(EditAppointmentComponent, {
+      data: {
+        appointment,
+        sections: this.sections,
+        projects: this.projects,
+        venues: this.venues,
+        predictionOptions: this.predictionOptions,
+        resultOptions: this.resultOptions,
+        categoryOptions: this.categoryOptions,
+        statusOptions: this.statusOptions,
+        emolumentPatternOptions: this.emolumentPatternOptions,
+        emolumentOptions: this.emolumentOptions,
+        expectationOptions: this.expectationOptions,
+      },
+      header: 'Edit appointment',
+      style: { 'max-width': '1500px' },
     });
 
     this.subs.add(

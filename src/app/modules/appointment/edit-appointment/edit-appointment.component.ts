@@ -80,29 +80,33 @@ export class EditAppointmentComponent implements OnInit {
     this.createForm();
 
     this.venueOptions = this.venues.map((v) => this.mapVenueToSelectItem(v));
-    this.sectionSelectItems = this.appointment.participations
-      .map(function (p) {
-        return p.musicianProfiles;
-      })
-      .reduce(function (a, b) {
-        return a.concat(b);
-      }, [])
-      .map((mp) => this.mapMusicianProfileToSelectItem(mp));
-    this.setRooms(this.appointment.venueId);
 
-    this.appointment.participations.forEach((element) => {
-      this.participationTableItems.push(
-        new ParticipationTableItem(
-          element.person.id,
-          element.person.givenName,
-          element.person.surname,
-          this.getSectionNames(element.musicianProfiles),
-          element.musicianProfiles.map((mp) => mp.isProfessional).includes(true) ? 'Yes' : 'No',
-          element.participation ? element.participation.predictionId : '',
-          element.participation ? element.participation.resultId : ''
-        )
-      );
-    });
+    if (this.appointment.participations) {
+      this.sectionSelectItems = this.appointment.participations
+        .map(function (p) {
+          return p.musicianProfiles;
+        })
+        .reduce(function (a, b) {
+          return a.concat(b);
+        }, [])
+        .map((mp) => this.mapMusicianProfileToSelectItem(mp));
+      this.setRooms(this.appointment.venueId);
+
+      this.appointment.participations.forEach((element) => {
+        this.participationTableItems.push(
+          new ParticipationTableItem(
+            element.person.id,
+            element.person.givenName,
+            element.person.surname,
+            this.getSectionNames(element.musicianProfiles),
+            element.musicianProfiles.map((mp) => mp.isProfessional).includes(true) ? 'Yes' : 'No',
+            element.participation ? element.participation.predictionId : '',
+            element.participation ? element.participation.resultId : ''
+          )
+        );
+      });
+    }
+
     this.filteredDataCount = this.participationTableItems.length;
 
     this.isProfessionalOptions = [
@@ -121,19 +125,19 @@ export class EditAppointmentComponent implements OnInit {
 
     this.items = [
       {
-        label: 'Grunddaten',
+        label: 'Basic data',
         command: (event: any) => {
           this.activeIndex = 0;
         },
       },
       {
-        label: 'Zusatzdaten',
+        label: 'Additional data',
         command: (event: any) => {
           this.activeIndex = 1;
         },
       },
       {
-        label: 'Teilnahmen',
+        label: 'Participations',
         command: (event: any) => {
           this.activeIndex = 2;
         },

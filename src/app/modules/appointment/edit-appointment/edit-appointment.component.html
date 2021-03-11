@@ -5,143 +5,156 @@
       <div class="p-grid">
         <div class="p-col-12">
           <div class="card card-w-title">
-            <div class="p-grid form-group">
-              <div class="p-col-12 p-lg-3">
-                <label for="title">Title *</label>
+            <div class="p-grid">
+              <div class="p-col-12 p-md-6 p-lg-4">
+                <div class="p-col-12">
+                  <div class="p-field">
+                    <label for="title">Title *</label>
+                    <input required type="text" pInputText placeholder="Title" formControlName="name" maxlength="50" id="title" />
+                  </div>
+                </div>
+                <div class="p-col-12">
+                  <div class="p-field">
+                    <label for="starttime">Start Time *</label>
+                    <p-calendar
+                      [required]="true"
+                      formControlName="startTime"
+                      id="starttime"
+                      dateFormat="dd.MM yy"
+                      [showWeek]="true"
+                      [showTime]="true"
+                      hourFormat="24"
+                      placeholder="Start Time"
+                      [style]="{'width': '100%'}"
+                    ></p-calendar>
+                  </div>
+                </div>
+                <div class="p-col-12">
+                  <div class="p-field">
+                    <label for="endtime">End Time *</label>
+                    <p-calendar
+                      [required]="true"
+                      formControlName="endTime"
+                      dateFormat="dd.MM yy"
+                      [showWeek]="true"
+                      id="endtime"
+                      [showTime]="true"
+                      hourFormat="24"
+                      placeholder="End Time"
+                      [style]="{'width': '100%'}"
+                    ></p-calendar>
+                  </div>
+                </div>
               </div>
-              <div class="p-col-12 p-lg-9">
-                <input required type="text" pInputText placeholder="Title" formControlName="name" maxlength="50" id="title" />
+              <div class="p-col-12 p-md-6 p-lg-4">
+                <div class="p-col-12">
+                  <div class="p-field">
+                    <label for="status">Status *</label>
+                    <p-dropdown
+                      placeholer="Select status"
+                      [showClear]="true"
+                      [required]="true"
+                      formControlName="statusId"
+                      [autoDisplayFirst]="false"
+                      [options]="statusOptions"
+                      id="status"
+                      [style]="{'width': '100%'}"
+                    ></p-dropdown>
+                  </div>
+                </div>
+                <div class="p-col-12">
+                  <div class="p-field">
+                    <label for="category">Category *</label>
+                    <p-dropdown
+                      [autoDisplayFirst]="false"
+                      placeholer="Select category"
+                      [showClear]="true"
+                      [required]="true"
+                      formControlName="categoryId"
+                      [autoDisplayFirst]="false"
+                      [options]="categoryOptions"
+                      id="category"
+                      [style]="{'width': '100%'}"
+                    ></p-dropdown>
+                  </div>
+                </div>
+                <div class="p-col-12">
+                  <div class="p-field">
+                    <label for="expectation">Expectation *</label>
+                    <p-dropdown
+                      [autoDisplayFirst]="false"
+                      placeholer="Select expectation"
+                      [showClear]="true"
+                      [required]="true"
+                      formControlName="expectationId"
+                      [autoDisplayFirst]="false"
+                      [options]="expectationOptions"
+                      id="expectation"
+                      [style]="{'width': '100%'}"
+                    ></p-dropdown>
+                  </div>
+                </div>
               </div>
-              <div class="p-col-12 p-lg-3">
-                <label for="starttime">Start Time *</label>
-              </div>
-              <div class="p-col-12 p-lg-9">
-                <p-calendar
-                  [required]="true"
-                  formControlName="startTime"
-                  id="starttime"
-                  dateFormat="dd.MM yy"
-                  [showWeek]="true"
-                  [showTime]="true"
-                  hourFormat="24"
-                  placeholder="Start Time"
-                ></p-calendar>
-              </div>
-              <div class="p-col-12 p-lg-3">
-                <label for="endtime">End Time *</label>
-              </div>
-              <div class="p-col-12 p-lg-9">
-                <p-calendar
-                  [required]="true"
-                  formControlName="endTime"
-                  dateFormat="dd.MM yy"
-                  [showWeek]="true"
-                  id="endtime"
-                  [showTime]="true"
-                  hourFormat="24"
-                  placeholder="End Time"
-                ></p-calendar>
-              </div>
-              <div class="p-col-12 p-lg-3">
-                <label for="status">Status *</label>
-              </div>
-              <div class="p-col-12 p-lg-9">
-                <p-dropdown
-                  placeholer="Select status"
-                  [showClear]="true"
-                  [required]="true"
-                  formControlName="statusId"
-                  [autoDisplayFirst]="false"
-                  [options]="statusOptions"
-                  id="status"
-                ></p-dropdown>
-              </div>
-              <div class="p-col-12 p-lg-3">
-                <label for="category">Category *</label>
-              </div>
-              <div class="p-col-12 p-lg-9">
-                <p-dropdown
-                  [autoDisplayFirst]="false"
-                  placeholer="Select category"
-                  [showClear]="true"
-                  [required]="true"
-                  formControlName="categoryId"
-                  [autoDisplayFirst]="false"
-                  [options]="categoryOptions"
-                  id="category"
-                ></p-dropdown>
-              </div>
-              <div class="p-col-12 p-lg-3">
-                <label for="expectation">Expectation *</label>
-              </div>
-              <div class="p-col-12 p-lg-9">
-                <p-dropdown
-                  [autoDisplayFirst]="false"
-                  placeholer="Select expectation"
-                  [showClear]="true"
-                  [required]="true"
-                  formControlName="expectationId"
-                  [autoDisplayFirst]="false"
-                  [options]="expectationOptions"
-                  id="expectation"
-                ></p-dropdown>
-              </div>
-              <div class="p-col-12">
-                <label for="publicDetails">Public Details</label>
-              </div>
-              <div class="p-col-12">
-                <textarea
-                  formControlName="publicDetails"
-                  id="publicDetails"
-                  [rows]="3"
-                  [cols]="30"
-                  pInputTextarea
-                  placeholder="Public Details"
-                  maxlength="1000"
-                  autoResize="autoResize"
-                ></textarea>
-              </div>
-              <div class="p-col-12">
-                <label for="internalDetails">Internal Details</label>
-              </div>
-              <div class="p-col-12">
-                <textarea
-                  id="internalDetails"
-                  formControlName="internalDetails"
-                  [rows]="3"
-                  [cols]="30"
-                  pInputTextarea
-                  maxlength="1000"
-                  placeholder="Internal Details"
-                  autoResize="autoResize"
-                ></textarea>
+              <div class="p-col-12 p-md-6 p-lg-4">
+                <div class="p-col-12">
+                  <div class="p-field">
+                    <label for="publicDetails">Public Details</label>
+                    <textarea
+                      formControlName="publicDetails"
+                      id="publicDetails"
+                      [rows]="3"
+                      [cols]="30"
+                      pInputTextarea
+                      placeholder="Public Details"
+                      maxlength="1000"
+                      autoResize="autoResize"
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="p-col-12">
+                  <div class="p-field">
+                    <label for="internalDetails">Internal Details</label>
+                    <textarea
+                      id="internalDetails"
+                      formControlName="internalDetails"
+                      [rows]="3"
+                      [cols]="30"
+                      pInputTextarea
+                      maxlength="1000"
+                      placeholder="Internal Details"
+                      autoResize="autoResize"
+                    ></textarea>
+                  </div>
+                </div>
               </div>
               <div class="p-col-12">
                 <p-fieldset legend="Emolument">
                   <div class="p-col-12">
-                    <label for="emolument">Emolument *</label>
+                    <div class="p-field">
+                      <label for="emolument">Emolument *</label>
+                      <p-dropdown
+                        [required]="true"
+                        formControlName="emolumentId"
+                        [showClear]="true"
+                        [options]="emolumentOptions"
+                        [autoDisplayFirst]="false"
+                        id="emolument"
+                        [style]="{'min-width': '50%'}"
+                      ></p-dropdown>
+                    </div>
                   </div>
                   <div class="p-col-12">
-                    <p-dropdown
-                      [required]="true"
-                      formControlName="emolumentId"
-                      [showClear]="true"
-                      [options]="emolumentOptions"
-                      [autoDisplayFirst]="false"
-                      id="emolument"
-                    ></p-dropdown>
-                  </div>
-                  <div class="p-col-12">
-                    <label for="emolumentPattern">Emolument Pattern</label>
-                  </div>
-                  <div class="p-col-12">
-                    <p-dropdown
-                      formControlName="emolumentPatternId"
-                      [options]="emolumentPatternOptions"
-                      [showClear]="true"
-                      [autoDisplayFirst]="false"
-                      id="emolumentPattern"
-                    ></p-dropdown>
+                    <div class="p-field">
+                      <label for="emolumentPattern">Emolument Pattern</label>
+                      <p-dropdown
+                        formControlName="emolumentPatternId"
+                        [options]="emolumentPatternOptions"
+                        [showClear]="true"
+                        [autoDisplayFirst]="false"
+                        id="emolumentPattern"
+                        [style]="{'min-width': '50%'}"
+                      ></p-dropdown>
+                    </div>
                   </div>
                 </p-fieldset>
               </div>
