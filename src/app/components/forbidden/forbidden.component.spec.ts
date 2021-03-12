@@ -22,7 +22,7 @@ describe('ForbiddenComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule,
         TranslateModule.forRoot({
-          loader:{
+          loader: {
             provide: TranslateLoader,
             useFactory: HttpLoaderFactory,
             deps: [HttpClient]

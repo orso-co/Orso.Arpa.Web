@@ -46,7 +46,7 @@ const routes: Routes = [
     children: [
       { path: 'forbidden', component: ForbiddenComponent },
       { path: 'notfound', component: NotFoundComponent },
-      { path: '**', component: NotFoundComponent },
+     // { path: '**', component: NotFoundComponent },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',

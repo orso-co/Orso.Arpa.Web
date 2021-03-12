@@ -19,7 +19,7 @@ describe('NotFoundComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ NotFoundComponent ],
-      imports:[HttpClientTestingModule,
+      imports: [ HttpClientTestingModule,
         ReactiveFormsModule,
         RouterTestingModule,
         FormsModule,

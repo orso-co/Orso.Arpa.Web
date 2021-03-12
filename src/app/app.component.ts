@@ -19,7 +19,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private primengConfig: PrimeNGConfig,
     loadingService: LoadingService,
     private router: Router,
-    LanguageService: LanguageService
+    languageService: LanguageService
   ) {
     this.subs.add(this.router.events.subscribe(event => {
       switch (true) {

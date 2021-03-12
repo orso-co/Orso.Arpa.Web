@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'arpa-profile',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  router: Router;
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
-}
+  goToDashboard(): void {
+    this.router.navigate(['/pages/dashboard']);
+    }
+  }
