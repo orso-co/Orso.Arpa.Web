@@ -15,6 +15,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { RoleNames } from '../models/role-names';
 import { intersection } from 'lodash-es';
 import { ICreateNewPasswordDto } from '../models/ICreateNewPasswordDto';
+import { IResetPasswordDto } from '../models/IResetPasswordDto';
 
 export const LOCAL_STORAGE_TOKEN_KEY = 'token';
 
@@ -98,6 +99,10 @@ export class AuthService {
       clientUri: `${environment.web.protocol}://${environment.web.baseUrl}/onboarding/forgotPassword`,
     };
     return this.http.post(`${this.baseUrl}/forgotpassword`, createNewPasswordDto);
+  }
+
+  resetPassword(resetPassword: IResetPasswordDto): Observable<any> {
+    return this.http.post(`${this.baseUrl}/resetpassword`, resetPassword);
   }
 
   public isUserInAtLeastOnRole(roles: RoleNames[]): Observable<boolean> {

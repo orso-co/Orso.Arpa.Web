@@ -56,7 +56,10 @@
   },
   "forgotpassword": {
     "BUTTON": "Send new password",
-    "SENT": "A link to assign a new password has been sent to your e-mail address."
+    "SENT": "A link to assign a new password has been sent to your e-mail address.",
+    "CONFIRM": "Change password",
+    "CHANGED": "Your password has been changed.",
+    "PASSWORD": "new password"
   },
   "emailconfirmation": {
     "SUCCESS": "Thank you for confirming your email address"
