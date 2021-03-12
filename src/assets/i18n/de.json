@@ -13,6 +13,8 @@
   "NETWORKERROR": "Netzwerkfehler",
   "performerWELCOME": "Willkommen auf Arpa 2.0",
   "UNKNOWNERROR": "Unbekannter Fehler",
+  "NOTFOUND_NICE": "Oups! Hier ist nichts. Sorry!",
+  "FORBIDDEN_NICE": "Autsch! Leider erlauben deine Zugriffsrechte diesen Schritt nicht. Sorry!",
   "SAVE": "Speichern",
   "NO": "Nein",
   "YES": "Ja",

@@ -13,6 +13,8 @@
   "NETWORKERROR": "Network error",
   "performerWELCOME": "Welcome to Arpa 2.0",
   "UNKNOWNERROR": "Unknown error",
+  "NOTFOUND_NICE": "Oups! There's nothing here. Sorry!",
+  "FORBIDDEN_NICE": "Oups! Seems you don't have permission for that. Sorry!",
   "SAVE": "Save",
   "NO": "No",
   "YES": "Yes",

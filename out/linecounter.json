@@ -1,0 +1,1192 @@
+{
+    "extension": "linecounter",
+    "version": "0.2.7",
+    "workspace": "/Users/wolf/Documents/ARPA2/FrontEnd/20210201#1/Orso.Arpa.Web",
+    "linecount": [
+        {
+            "version": "0.2.7",
+            "counttime": "2021-03-09 16:36:33",
+            "filesum": 187,
+            "codesum": 20672,
+            "commentsum": 156,
+            "blanksum": 578,
+            "statistics": {
+                ".json": {
+                    "code": 16714,
+                    "comment": 4,
+                    "blank": 33
+                },
+                "": {
+                    "code": 161,
+                    "comment": 28,
+                    "blank": 43
+                },
+                ".ts": {
+                    "code": 2822,
+                    "comment": 106,
+                    "blank": 413
+                },
+                ".scss": {
+                    "code": 301,
+                    "comment": 1,
+                    "blank": 34
+                },
+                ".css": {
+                    "code": 25,
+                    "comment": 0,
+                    "blank": 2
+                },
+                ".html": {
+                    "code": 511,
+                    "comment": 0,
+                    "blank": 31
+                },
+                ".js": {
+                    "code": 71,
+                    "comment": 14,
+                    "blank": 4
+                },
+                ".md": {
+                    "code": 14,
+                    "comment": 2,
+                    "blank": 6
+                },
+                ".yml": {
+                    "code": 53,
+                    "comment": 1,
+                    "blank": 12
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 3,
+                    "code": 14,
+                    "comment": 2,
+                    "filename": ".browserslistrc"
+                },
+                {
+                    "blank": 3,
+                    "code": 13,
+                    "comment": 1,
+                    "filename": ".editorconfig"
+                },
+                {
+                    "blank": 6,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": ".github/workflows/frontend-pr-check.yml"
+                },
+                {
+                    "blank": 5,
+                    "code": 22,
+                    "comment": 25,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 1,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": ".prettierignore"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": ".prettierrc"
+                },
+                {
+                    "blank": 6,
+                    "code": 135,
+                    "comment": 0,
+                    "filename": "angular.json"
+                },
+                {
+                    "blank": 6,
+                    "code": 23,
+                    "comment": 1,
+                    "filename": "azure-pipelines.yml"
+                },
+                {
+                    "blank": 3,
+                    "code": 28,
+                    "comment": 6,
+                    "filename": "e2e/protractor.conf.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 18,
+                    "comment": 1,
+                    "filename": "e2e/src/app.e2e-spec.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "e2e/src/app.po.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 11,
+                    "comment": 1,
+                    "filename": "e2e/tsconfig.json"
+                },
+                {
+                    "blank": 1,
+                    "code": 43,
+                    "comment": 8,
+                    "filename": "karma.conf.js"
+                },
+                {
+                    "blank": 31,
+                    "code": 94,
+                    "comment": 0,
+                    "filename": "LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 16065,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 59,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "blank": 6,
+                    "code": 14,
+                    "comment": 2,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 2,
+                    "code": 84,
+                    "comment": 0,
+                    "filename": "src/app/app-routing.module.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "src/app/app.component.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/app.component.scss"
+                },
+                {
+                    "blank": 6,
+                    "code": 36,
+                    "comment": 0,
+                    "filename": "src/app/app.component.spec.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 48,
+                    "comment": 1,
+                    "filename": "src/app/app.component.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 119,
+                    "comment": 1,
+                    "filename": "src/app/app.module.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "src/app/components/arpalogo/arpalogo.component.html"
+                },
+                {
+                    "blank": 1,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src/app/components/arpalogo/arpalogo.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/components/arpalogo/arpalogo.component.spec.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src/app/components/arpalogo/arpalogo.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/administrator/administrator.component.html"
+                },
+                {
+                    "blank": 2,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/administrator/administrator.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/administrator/administrator.component.spec.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 38,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/administrator/administrator.component.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/dashboard/dashboard.component.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/dashboard/dashboard.component.scss"
+                },
+                {
+                    "blank": 4,
+                    "code": 27,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/dashboard/dashboard.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/dashboard/dashboard.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/no-role/no-role.component.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/no-role/no-role.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 36,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/no-role/no-role.component.spec.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/no-role/no-role.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 23,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/performer/performer.component.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/performer/performer.component.scss"
+                },
+                {
+                    "blank": 6,
+                    "code": 46,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/performer/performer.component.spec.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/performer/performer.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/staff/staff.component.css"
+                },
+                {
+                    "blank": 3,
+                    "code": 34,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/staff/staff.component.html"
+                },
+                {
+                    "blank": 5,
+                    "code": 39,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/staff/staff.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/staff/staff.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 73,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/user-list/user-list.component.html"
+                },
+                {
+                    "blank": 9,
+                    "code": 48,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/user-list/user-list.component.scss"
+                },
+                {
+                    "blank": 4,
+                    "code": 36,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/user-list/user-list.component.spec.ts"
+                },
+                {
+                    "blank": 14,
+                    "code": 122,
+                    "comment": 0,
+                    "filename": "src/app/components/dashboards/user-list/user-list.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/app/components/forbidden/forbidden.component.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/components/forbidden/forbidden.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 23,
+                    "comment": 1,
+                    "filename": "src/app/components/forbidden/forbidden.component.spec.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/app/components/forbidden/forbidden.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/components/language-menu/language-menu.component.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src/app/components/language-menu/language-menu.component.html"
+                },
+                {
+                    "blank": 5,
+                    "code": 32,
+                    "comment": 0,
+                    "filename": "src/app/components/language-menu/language-menu.component.spec.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "src/app/components/language-menu/language-menu.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/app/components/loading/loading.component.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/app/components/loading/loading.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "src/app/components/loading/loading.component.spec.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src/app/components/loading/loading.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/app/components/not-found/not-found.component.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/components/not-found/not-found.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 23,
+                    "comment": 1,
+                    "filename": "src/app/components/not-found/not-found.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/app/components/not-found/not-found.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/emailconfirmation/emailconfirmation.component.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/emailconfirmation/emailconfirmation.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 47,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/emailconfirmation/emailconfirmation.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/emailconfirmation/emailconfirmation.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/forgot-password/forgot-password.component.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/forgot-password/forgot-password.component.html"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/forgot-password/forgot-password.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/forgot-password/forgot-password.component.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 49,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/login/login.component.html"
+                },
+                {
+                    "blank": 3,
+                    "code": 37,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/login/login.component.scss"
+                },
+                {
+                    "blank": 7,
+                    "code": 53,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/login/login.component.spec.ts"
+                },
+                {
+                    "blank": 13,
+                    "code": 79,
+                    "comment": 2,
+                    "filename": "src/app/components/onboarding/login/login.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/logout/logout.component.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/logout/logout.component.scss"
+                },
+                {
+                    "blank": 4,
+                    "code": 32,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/logout/logout.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 31,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/logout/logout.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/onboarding-shell/onboarding-shell.component.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/onboarding-shell/onboarding-shell.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 23,
+                    "comment": 1,
+                    "filename": "src/app/components/onboarding/onboarding-shell/onboarding-shell.component.spec.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/onboarding-shell/onboarding-shell.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/profile/profile.component.css"
+                },
+                {
+                    "blank": 3,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/profile/profile.component.html"
+                },
+                {
+                    "blank": 5,
+                    "code": 39,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/profile/profile.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/profile/profile.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/register/register.component.css"
+                },
+                {
+                    "blank": 3,
+                    "code": 55,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/register/register.component.html"
+                },
+                {
+                    "blank": 4,
+                    "code": 44,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/register/register.component.spec.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 79,
+                    "comment": 0,
+                    "filename": "src/app/components/onboarding/register/register.component.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "src/app/components/shell/footer/footer.component.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src/app/components/shell/footer/footer.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 23,
+                    "comment": 1,
+                    "filename": "src/app/components/shell/footer/footer.component.spec.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/app/components/shell/footer/footer.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src/app/components/shell/main/main.component.html"
+                },
+                {
+                    "blank": 1,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src/app/components/shell/main/main.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 23,
+                    "comment": 1,
+                    "filename": "src/app/components/shell/main/main.component.spec.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/app/components/shell/main/main.component.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "src/app/components/shell/topbar/topbar.component.html"
+                },
+                {
+                    "blank": 12,
+                    "code": 95,
+                    "comment": 0,
+                    "filename": "src/app/components/shell/topbar/topbar.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 36,
+                    "comment": 0,
+                    "filename": "src/app/components/shell/topbar/topbar.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": "src/app/components/shell/topbar/topbar.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/app/globals.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 34,
+                    "comment": 0,
+                    "filename": "src/app/guards/dashboard.guard.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 33,
+                    "comment": 0,
+                    "filename": "src/app/guards/is-logged-in.guard.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src/app/guards/role.guard.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 61,
+                    "comment": 0,
+                    "filename": "src/app/interceptors/error.interceptor.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src/app/interceptors/with-credentials.interceptor.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "src/app/models/api-url.ts"
+                },
+                {
+                    "blank": 14,
+                    "code": 100,
+                    "comment": 0,
+                    "filename": "src/app/models/appointment.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "src/app/models/IChangePasswordDto.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "src/app/models/IConfirmEmailDto.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "src/app/models/ICreateEmailConfirmationTokenDto.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "src/app/models/ICreateNewPasswordDto.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "src/app/models/ILoginDto.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "src/app/models/IRoleDto.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "src/app/models/ISetRoleDto.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/app/models/ITokenDto.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/app/models/IUserDto.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src/app/models/IUserProfileDto.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/app/models/IUserRegisterDto.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src/app/models/role-names.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/app/models/section.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 44,
+                    "comment": 16,
+                    "filename": "src/app/modules/appointment/appointment.module.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/app/modules/appointment/appointments/appointments.component.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/modules/appointment/appointments/appointments.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 23,
+                    "comment": 1,
+                    "filename": "src/app/modules/appointment/appointments/appointments.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/app/modules/appointment/appointments/appointments.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/app/modules/appointment/edit-appointment/edit-appointment.component.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/modules/appointment/edit-appointment/edit-appointment.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 23,
+                    "comment": 1,
+                    "filename": "src/app/modules/appointment/edit-appointment/edit-appointment.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/app/modules/appointment/edit-appointment/edit-appointment.component.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 40,
+                    "comment": 0,
+                    "filename": "src/app/modules/me/me.module.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 139,
+                    "comment": 0,
+                    "filename": "src/app/modules/me/my-appointments/my-appointments.component.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/modules/me/my-appointments/my-appointments.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 50,
+                    "comment": 1,
+                    "filename": "src/app/modules/me/my-appointments/my-appointments.component.spec.ts"
+                },
+                {
+                    "blank": 10,
+                    "code": 80,
+                    "comment": 0,
+                    "filename": "src/app/modules/me/my-appointments/my-appointments.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 57,
+                    "comment": 0,
+                    "filename": "src/app/modules/prime-ng/prime-ng.module.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src/app/resolvers/roles-list.resolver.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src/app/resolvers/section-tree.resolver.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/resolvers/select-value-list.resolver.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/app/resolvers/user-list.resolver.ts"
+                },
+                {
+                    "blank": 17,
+                    "code": 126,
+                    "comment": 3,
+                    "filename": "src/app/services/auth.service.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 1,
+                    "filename": "src/app/services/loading.service.spec.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 23,
+                    "comment": 0,
+                    "filename": "src/app/services/loading.service.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src/app/services/me.service.spec.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 28,
+                    "comment": 0,
+                    "filename": "src/app/services/me.service.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 15,
+                    "comment": 1,
+                    "filename": "src/app/services/role.service.spec.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "src/app/services/role.service.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 15,
+                    "comment": 1,
+                    "filename": "src/app/services/section.service.spec.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 31,
+                    "comment": 0,
+                    "filename": "src/app/services/section.service.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src/app/services/select-value.service.spec.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 38,
+                    "comment": 0,
+                    "filename": "src/app/services/select-value.service.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "src/app/services/toast.service.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "src/app/services/toast.service.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src/app/services/user.service.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/services/user.service.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/app/ui/calendar-sheet/calendar-sheet.component.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "src/app/ui/calendar-sheet/calendar-sheet.component.scss"
+                },
+                {
+                    "blank": 6,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "src/app/ui/calendar-sheet/calendar-sheet.component.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src/app/ui/calendar-sheet/calendar-sheet.module.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "src/app/utils/CustomRegex.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/assets/.gitkeep"
+                },
+                {
+                    "filename": "src/assets/common/logos/arpa_logo.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 2,
+                    "code": 121,
+                    "comment": 0,
+                    "filename": "src/assets/i18n/de.json"
+                },
+                {
+                    "blank": 3,
+                    "code": 133,
+                    "comment": 0,
+                    "filename": "src/assets/i18n/en.json"
+                },
+                {
+                    "filename": "src/assets/organization/icons/organisation_icon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/assets/organization/images/bg-login.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/assets/organization/images/calendar_sheet.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/assets/organization/logos/orso_logo.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/environments/environment.prod.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 11,
+                    "filename": "src/environments/environment.ts"
+                },
+                {
+                    "filename": "src/favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src/index.html"
+                },
+                {
+                    "blank": 3,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/main.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 1,
+                    "comment": 56,
+                    "filename": "src/polyfills.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 35,
+                    "comment": 1,
+                    "filename": "src/styles.scss"
+                },
+                {
+                    "blank": 3,
+                    "code": 18,
+                    "comment": 4,
+                    "filename": "src/test.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 12,
+                    "comment": 1,
+                    "filename": "tsconfig.app.json"
+                },
+                {
+                    "blank": 1,
+                    "code": 27,
+                    "comment": 1,
+                    "filename": "tsconfig.json"
+                },
+                {
+                    "blank": 3,
+                    "code": 14,
+                    "comment": 1,
+                    "filename": "tsconfig.spec.json"
+                },
+                {
+                    "blank": 15,
+                    "code": 137,
+                    "comment": 0,
+                    "filename": "tslint.json"
+                }
+            ]
+        }
+    ]
+}

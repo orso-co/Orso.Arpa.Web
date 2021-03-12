@@ -44,6 +44,9 @@ const routes: Routes = [
     canActivate: [IsLoggedInGuard],
     canActivateChild: [RoleGuard],
     children: [
+      { path: 'forbidden', component: ForbiddenComponent },
+      { path: 'notfound', component: NotFoundComponent },
+      { path: '**', component: NotFoundComponent },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
@@ -75,9 +78,7 @@ const routes: Routes = [
       }
     ],
   },
-  { path: 'forbidden', component: ForbiddenComponent },
-  { path: 'notfound', component: NotFoundComponent },
-  { path: '**', component: NotFoundComponent },
+
 ];
 
 @NgModule({
