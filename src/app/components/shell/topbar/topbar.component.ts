@@ -31,7 +31,7 @@ export class TopbarComponent implements OnDestroy {
   private initialiseUserMenu(): void {
     this.userProfileItems = [
       { label: this.translate.instant('logout.LOG_OUT'), icon: 'pi pi-sign-out', routerLink: ['/onboarding/logout'] },
-      { label: this.translate.instant('PROFILE'), icon: 'pi pi-user-edit', routerLink: ['/onboarding/profile'] },
+      { label: this.translate.instant('PROFILE'), icon: 'pi pi-user-edit', routerLink: ['/pages/profile'] },
       { separator: true }
     ];
     this.translate.getLangs().forEach(lang =>
