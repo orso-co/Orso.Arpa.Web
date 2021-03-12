@@ -64,7 +64,7 @@ export class AppointmentsComponent implements OnDestroy {
         this.venues = data.venues || [];
         this.emolumentOptions = data.emoluments || [];
         this.emolumentPatternOptions = data.emolumentPatterns || [];
-        this.expectationOptions = data.expecetations || [];
+        this.expectationOptions = data.expectations || [];
         this.categoryOptions = data.categories || [];
         this.statusOptions = data.status || [];
         this.predictionOptions = data.predictions || [];
@@ -250,7 +250,9 @@ export class AppointmentsComponent implements OnDestroy {
     this.subs.add(
       ref.onClose.subscribe((appointment: IAppointmentDto) => {
         if (appointment) {
-          this.appointments = [...this.appointments, appointment];
+          const index = this.appointments.findIndex((a) => a.id === appointment.id);
+          this.appointments[index] = appointment;
+          this.appointments = [...this.appointments];
         }
       })
     );

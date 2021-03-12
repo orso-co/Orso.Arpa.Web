@@ -68,6 +68,10 @@ export class EditAppointmentComponent implements OnInit {
   columns: any[] = [];
   filteredDataCount: number;
 
+  get isNew(): boolean {
+    return !this.appointment.id;
+  }
+
   constructor(
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
@@ -78,6 +82,7 @@ export class EditAppointmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
+    this.fillForm();
 
     this.venueOptions = this.venues.map((v) => this.mapVenueToSelectItem(v));
 
@@ -123,44 +128,68 @@ export class EditAppointmentComponent implements OnInit {
       { field: 'resultId', header: 'Result' },
     ];
 
-    this.items = [
-      {
-        label: 'Basic data',
-        command: (event: any) => {
-          this.activeIndex = 0;
-        },
-      },
-      {
-        label: 'Additional data',
-        command: (event: any) => {
-          this.activeIndex = 1;
-        },
-      },
-      {
-        label: 'Participations',
-        command: (event: any) => {
-          this.activeIndex = 2;
-        },
-      },
-    ];
+    this.createStepperMenu();
   }
 
   private createForm(): void {
     this.formGroup = this.formBuilder.group({
-      name: [this.appointment ? this.appointment.name : null, [Validators.required]],
-      startTime: [this.appointment ? new Date(this.appointment.startTime) : new Date(), [Validators.required]],
-      endTime: [this.appointment ? new Date(this.appointment.endTime) : new Date(), [Validators.required]],
-      publicDetails: [this.appointment ? this.appointment.publicDetails : null],
-      internalDetails: [this.appointment ? this.appointment.internalDetails : null],
-      categoryId: [this.appointment ? this.appointment.categoryId : null, [Validators.required]],
-      statusId: [this.appointment ? this.appointment.statusId : null, [Validators.required]],
-      emolumentId: [this.appointment ? this.appointment.emolumentId : null, [Validators.required]],
-      emolumentPatternId: [this.appointment ? this.appointment.emolumentPatternId : null],
-      expectationId: [this.appointment ? this.appointment.expectationId : null],
+      name: [null, [Validators.required]],
+      startTime: [null, [Validators.required]],
+      endTime: [null, [Validators.required]],
+      publicDetails: [null],
+      internalDetails: [null],
+      categoryId: [null, [Validators.required]],
+      statusId: [null, [Validators.required]],
+      emolumentId: [null, [Validators.required]],
+      emolumentPatternId: [null],
+      expectationId: [null],
     });
   }
 
-  onSubmit(): void {}
+  private fillForm(): void {
+    console.log(this.appointment);
+    this.formGroup.reset({
+      ...this.appointment,
+      startTime: new Date(this.appointment.startTime),
+      endTime: new Date(this.appointment.endTime),
+    });
+  }
+
+  private createStepperMenu(): void {
+        this.items = [
+          {
+            label: 'Basic data',
+            command: (event: any) => {
+              this.activeIndex = 0;
+            },
+          },
+          {
+            label: 'Additional data',
+            disabled: this.isNew,
+            command: (event: any) => {
+              this.activeIndex = 1;
+            },
+          },
+          {
+            label: 'Participations',
+            disabled: this.isNew,
+            command: (event: any) => {
+              this.activeIndex = 2;
+            },
+          },
+        ];
+  }
+
+  onSubmit(continueToNextStep: boolean): void {
+    if (this.formGroup.invalid || this.formGroup.pristine) {
+      return;
+    }
+    if (this.isNew) {
+      this.createAppointment({ ...this.appointment, ...this.formGroup.value }, continueToNextStep);
+    } else {
+      this.updateAppointment({ ...this.appointment, ...this.formGroup.value }, continueToNextStep);
+    }
+  }
 
   mapVenueToSelectItem(venue: IVenueDto): SelectItem {
     return { label: `${venue.address.city} ${venue.address.urbanDistrict} | ${venue.name}`, value: venue.id };
@@ -170,17 +199,29 @@ export class EditAppointmentComponent implements OnInit {
     return { label: musicianProfile.sectionName, value: musicianProfile.sectionName };
   }
 
-  editAppointment(appointment: IAppointmentDto) {
+  updateAppointment(appointment: IAppointmentDto, continueToNextStep: boolean) {
     this.appointmentService.update(appointment).subscribe((_) => {
       this.toastService.success('Appointment updated');
-      this.ref.close(appointment);
+      if (continueToNextStep) {
+        this.appointment = appointment;
+        this.fillForm();
+        this.activeIndex = 1;
+      } else {
+        this.ref.close(appointment);
+      }
     });
   }
 
-  createAppointment(appointment: IAppointmentDto) {
+  createAppointment(appointment: IAppointmentDto, continueToNextStep: boolean) {
     this.appointmentService.create(appointment).subscribe((result) => {
       this.toastService.success('Appointment created');
-      this.ref.close(result);
+      if (continueToNextStep) {
+        this.appointment = result;
+        this.fillForm();
+        this.activeIndex = 1;
+      } else {
+        this.ref.close(result);
+      }
     });
   }
 

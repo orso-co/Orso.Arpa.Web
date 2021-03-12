@@ -1,7 +1,7 @@
 <p-steps [model]="items" [(activeIndex)]="activeIndex" [readonly]="false"></p-steps>
 <div [ngSwitch]="activeIndex">
   <ng-container *ngSwitchCase="0">
-    <form (submit)="onSubmit()" [formGroup]="formGroup">
+    <form (submit)="onSubmit(false)" [formGroup]="formGroup">
       <div class="p-grid">
         <div class="p-col-12">
           <div class="card card-w-title">
@@ -161,10 +161,19 @@
               <div class="p-col-12">
                 <p-button
                   type="submit"
-                  label="Save"
+                  label="Save and close"
                   icon="pi pi-check"
                   iconPos="left"
                   [disabled]="formGroup.pristine || formGroup.invalid"
+                ></p-button>
+                <p-button
+                  class="p-ml-3"
+                  type="button"
+                  label="Save and continue"
+                  icon="pi pi-arrow-right"
+                  iconPos="left"
+                  [disabled]="formGroup.pristine || formGroup.invalid"
+                  (click)="onSubmit(true)"
                 ></p-button>
               </div>
             </div>
@@ -329,23 +338,23 @@
         <ng-template pTemplate="body" let-item>
           <tr>
             <td>
-              <span class="ui-column-title">Surname</span>
+              <span class="p-column-title">Surname</span>
               {{ item.surname }}
             </td>
             <td>
-              <span class="ui-column-title">Given Name</span>
+              <span class="p-column-title">Given Name</span>
               {{ item.givenName }}
             </td>
             <td>
-              <span class="ui-column-title">Sections</span>
+              <span class="p-column-title">Sections</span>
               {{ item.sections }}
             </td>
             <td>
-              <span class="ui-column-title">Is Professional</span>
+              <span class="p-column-title">Is Professional</span>
               {{ item.isProfessional }}
             </td>
-            <td>
-              <span class="ui-column-title">Prediction</span>
+            <td class="p-fluid">
+              <span class="p-column-title">Prediction</span>
               <p-dropdown
                 appendTo="body"
                 *ngIf="item.predictionId"
@@ -357,8 +366,8 @@
                 [(ngModel)]="item.predictionId"
               ></p-dropdown>
             </td>
-            <td>
-              <span class="ui-column-title">Result</span>
+            <td class="p-fluid">
+              <span class="p-column-title">Result</span>
               <p-dropdown
                 appendTo="body"
                 placeholer="Select result"
