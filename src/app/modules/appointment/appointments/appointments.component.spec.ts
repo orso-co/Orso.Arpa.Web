@@ -1,3 +1,4 @@
+import { SectionService } from './../../../services/section.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LoadingService } from './../../../services/loading.service';
@@ -10,6 +11,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppointmentsComponent } from './appointments.component';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
+import { of } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 describe('AppointmentsComponent', () => {
   let component: AppointmentsComponent;
@@ -23,6 +26,8 @@ describe('AppointmentsComponent', () => {
         { provide: ToastService, useValue: {} },
         { provide: DialogService, useValue: {} },
         { provide: LoadingService, useValue: {} },
+        { provide: SectionService, useValue: { sections$: of([])} },
+        { provide: ActivatedRoute, useValue: { data: of({})} },
       ],
       imports: [
         RouterTestingModule,

@@ -4,11 +4,8 @@ import { SelectValueService } from './../../../services/select-value.service';
 import { LoadingService } from './../../../services/loading.service';
 import { ToastService } from './../../../services/toast.service';
 import { waitForAsync } from '@angular/core/testing';
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MyAppointmentsComponent } from './my-appointments.component';
 import { MeService } from 'src/app/services/me.service';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';

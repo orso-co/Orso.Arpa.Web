@@ -1,12 +1,13 @@
-/* tslint:disable:no-unused-variable */
-
-import { TestBed, async, inject } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TestBed, inject } from '@angular/core/testing';
+import { API_URL } from '../models/api-url';
 import { VenueService } from './venue.service';
 
 describe('Service: Venue', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [VenueService]
+      providers: [VenueService, { provide: API_URL, useValue: '' }],
+      imports: [HttpClientTestingModule],
     });
   });
 
