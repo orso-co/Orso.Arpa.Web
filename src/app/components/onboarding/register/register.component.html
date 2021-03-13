@@ -1,5 +1,6 @@
 <div class="p-grid register-layout register-sep1">
-  <form [formGroup] = "registerFormGroup" (ngSubmit)="submit()">
+  Test
+  <form [formGroup] = "registerFormGroup" (ngSubmit)="onSubmit()">
 
     <p class="p-float-label">
       <arpa-language-menu></arpa-language-menu>
@@ -57,5 +58,6 @@
       </tr>
     </table>
 
+    <p-captcha [siteKey]="captchaKey" theme="dark" size="invisible" language="en" (onResponse)="submit()"></p-captcha>
   </form>
 </div>

@@ -1,6 +1,9 @@
 export const environment = {
   production: true,
-    api: {
+  captcha: {
+    key: '6Ld32XwaAAAAAK1gCWGXIyBCNOccv5ZZpymP1341'
+  },
+  api: {
     protocol: 'https',
     baseUrl: 'orso-arpa.azurewebsites.net'
   },

@@ -4,10 +4,12 @@
 
 export const environment = {
   production: false,
+  captcha: {
+    key: '6Ld32XwaAAAAAK1gCWGXIyBCNOccv5ZZpymP1341'
+  },
   api: {
     protocol: 'http',
     baseUrl: 'localhost:5000'
-
   },
   web:
   {
