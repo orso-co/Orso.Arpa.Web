@@ -97,22 +97,8 @@ export class EditAppointmentComponent implements OnInit {
         .map((mp) => this.mapMusicianProfileToSelectItem(mp));
       this.setRooms(this.appointment.venueId);
 
-      this.appointment.participations.forEach((element) => {
-        this.participationTableItems.push(
-          new ParticipationTableItem(
-            element.person.id,
-            element.person.givenName,
-            element.person.surname,
-            this.getSectionNames(element.musicianProfiles),
-            element.musicianProfiles.map((mp) => mp.isProfessional).includes(true) ? 'Yes' : 'No',
-            element.participation ? element.participation.predictionId : '',
-            element.participation ? element.participation.resultId : ''
-          )
-        );
-      });
+      this.mapParticipations();
     }
-
-    this.filteredDataCount = this.participationTableItems.length;
 
     this.isProfessionalOptions = [
       { label: 'Yes', value: 'Yes' },
@@ -146,6 +132,24 @@ export class EditAppointmentComponent implements OnInit {
     });
   }
 
+  private mapParticipations(): void {
+    this.participationTableItems = [];
+    this.appointment.participations.forEach((element) => {
+      this.participationTableItems.push(
+        new ParticipationTableItem(
+          element.person.id,
+          element.person.givenName,
+          element.person.surname,
+          this.getSectionNames(element.musicianProfiles),
+          element.musicianProfiles.map((mp) => mp.isProfessional).includes(true) ? 'Yes' : 'No',
+          element.participation ? element.participation.predictionId : '',
+          element.participation ? element.participation.resultId : ''
+        )
+      );
+    });
+    this.filteredDataCount = this.participationTableItems.length;
+  }
+
   private fillForm(): void {
     console.log(this.appointment);
     this.formGroup.reset({
@@ -156,28 +160,28 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   private createStepperMenu(): void {
-        this.items = [
-          {
-            label: 'Basic data',
-            command: (event: any) => {
-              this.activeIndex = 0;
-            },
-          },
-          {
-            label: 'Additional data',
-            disabled: this.isNew,
-            command: (event: any) => {
-              this.activeIndex = 1;
-            },
-          },
-          {
-            label: 'Participations',
-            disabled: this.isNew,
-            command: (event: any) => {
-              this.activeIndex = 2;
-            },
-          },
-        ];
+    this.items = [
+      {
+        label: 'Basic data',
+        command: (event: any) => {
+          this.activeIndex = 0;
+        },
+      },
+      {
+        label: 'Additional data',
+        disabled: this.isNew,
+        command: (event: any) => {
+          this.activeIndex = 1;
+        },
+      },
+      {
+        label: 'Participations',
+        disabled: this.isNew,
+        command: (event: any) => {
+          this.activeIndex = 2;
+        },
+      },
+    ];
   }
 
   onSubmit(continueToNextStep: boolean): void {
@@ -306,25 +310,33 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   removeSection(sectionId: string) {
-    this.appointmentService.removeSection(this.appointment.id, sectionId).subscribe((_) => {
+    this.appointmentService.removeSection(this.appointment.id, sectionId).subscribe((result) => {
+      this.appointment = result;
+      this.mapParticipations();
       this.toastService.success('Section removed');
     });
   }
 
   addSection(sectionId: string) {
-    this.appointmentService.addSection(this.appointment.id, sectionId).subscribe((_) => {
+    this.appointmentService.addSection(this.appointment.id, sectionId).subscribe((result) => {
+      this.appointment = result;
+      this.mapParticipations();
       this.toastService.success('Section added');
     });
   }
 
   removeProject(projectId: string) {
-    this.appointmentService.removeProject(this.appointment.id, projectId).subscribe((_) => {
+    this.appointmentService.removeProject(this.appointment.id, projectId).subscribe((result) => {
+      this.appointment = result;
+      this.mapParticipations();
       this.toastService.success('Project removed');
     });
   }
 
   addProject(projectId: string) {
-    this.appointmentService.addProject(this.appointment.id, projectId).subscribe((_) => {
+    this.appointmentService.addProject(this.appointment.id, projectId).subscribe((result) => {
+      this.appointment = result;
+      this.mapParticipations();
       this.toastService.success('Project added');
     });
   }
