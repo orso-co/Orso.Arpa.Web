@@ -3,9 +3,11 @@ import { of } from 'rxjs';
 import { RoleService } from './../../../services/role.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
 import { AdministratorComponent } from './administrator.component';
 import { ActivatedRoute } from '@angular/router';
+import {HttpLoaderFactory} from './../../../app.module';
+import {HttpClient} from '@angular/common/http';
 
 describe('AdministratorComponent', () => {
   let component: AdministratorComponent;
@@ -17,6 +19,7 @@ describe('AdministratorComponent', () => {
       imports: [RouterTestingModule],
       providers: [
         { provide: RoleService, useValue: { roles$: of([]) } },
+        { provide: TranslateService, useValue: {get: () => {}} },
         { provide: SectionService, useValue: { getTree: () => {}} },
         { provide: ActivatedRoute, useValue: { data: of({ users: [] }) } },
       ],

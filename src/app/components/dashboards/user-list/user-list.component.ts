@@ -133,4 +133,5 @@ export class UserListComponent implements OnDestroy, OnChanges {
       selectable: false,
     };
   }
+
 }
