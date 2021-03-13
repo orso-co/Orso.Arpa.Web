@@ -151,7 +151,6 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   private fillForm(): void {
-    console.log(this.appointment);
     this.formGroup.reset({
       ...this.appointment,
       startTime: new Date(this.appointment.startTime),
@@ -222,6 +221,7 @@ export class EditAppointmentComponent implements OnInit {
       if (continueToNextStep) {
         this.appointment = result;
         this.fillForm();
+        this.createStepperMenu();
         this.activeIndex = 1;
       } else {
         this.ref.close(result);
