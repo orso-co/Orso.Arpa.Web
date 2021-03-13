@@ -69,10 +69,9 @@ export class AppointmentsComponent implements OnDestroy {
         this.statusOptions = data.status || [];
         this.predictionOptions = data.predictions || [];
         this.resultOptions = data.results || [];
-      }));
-      this.subs.add(
-        this.sectionService.sections$.subscribe(sections => this.sections = sections || [])
-      )
+      })
+    );
+    this.subs.add(this.sectionService.sections$.subscribe((sections) => (this.sections = sections || [])));
     this.setOptions();
     this.translate.onLangChange.subscribe(() => this.setOptions());
   }
@@ -215,7 +214,7 @@ export class AppointmentsComponent implements OnDestroy {
         expectationOptions: this.expectationOptions,
       },
       header: 'Create an appointment',
-      style: { 'max-width': '1500px'}
+      style: { 'max-width': '1500px' },
     });
 
     this.subs.add(
@@ -227,8 +226,8 @@ export class AppointmentsComponent implements OnDestroy {
     );
   }
 
-  private openEditDialog(appointmentId: string) {
-    const appointment = this.appointments.find(a => a.id === appointmentId);
+  private openEditDialog(appointmentId: string): void {
+    const appointment = this.appointments.find((a) => a.id === appointmentId);
     const ref = this.dialogService.open(EditAppointmentComponent, {
       data: {
         appointment,
@@ -248,10 +247,10 @@ export class AppointmentsComponent implements OnDestroy {
     });
 
     this.subs.add(
-      ref.onClose.subscribe((appointment: IAppointmentDto) => {
-        if (appointment) {
-          const index = this.appointments.findIndex((a) => a.id === appointment.id);
-          this.appointments[index] = appointment;
+      ref.onClose.subscribe((result: IAppointmentDto) => {
+        if (result) {
+          const index = this.appointments.findIndex((a) => a.id === result.id);
+          this.appointments[index] = result;
           this.appointments = [...this.appointments];
         }
       })

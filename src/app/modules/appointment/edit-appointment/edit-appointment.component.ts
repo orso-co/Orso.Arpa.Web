@@ -42,7 +42,7 @@ class ParticipationTableItem {
 })
 export class EditAppointmentComponent implements OnInit {
   items: MenuItem[] = [];
-  activeIndex: number = 0;
+  activeIndex = 0;
   formGroup: FormGroup;
 
   appointment: IAppointmentDto = this.config.data.appointment;
@@ -88,12 +88,8 @@ export class EditAppointmentComponent implements OnInit {
 
     if (this.appointment.participations) {
       this.sectionSelectItems = this.appointment.participations
-        .map(function (p) {
-          return p.musicianProfiles;
-        })
-        .reduce(function (a, b) {
-          return a.concat(b);
-        }, [])
+        .map(p => p.musicianProfiles)
+        .reduce((a, b) => a.concat(b), [])
         .map((mp) => this.mapMusicianProfileToSelectItem(mp));
       this.setRooms(this.appointment.venueId);
 
@@ -202,7 +198,7 @@ export class EditAppointmentComponent implements OnInit {
     return { label: musicianProfile.sectionName, value: musicianProfile.sectionName };
   }
 
-  updateAppointment(appointment: IAppointmentDto, continueToNextStep: boolean) {
+  updateAppointment(appointment: IAppointmentDto, continueToNextStep: boolean): void {
     this.appointmentService.update(appointment).subscribe((_) => {
       this.toastService.success('Appointment updated');
       if (continueToNextStep) {
@@ -215,7 +211,7 @@ export class EditAppointmentComponent implements OnInit {
     });
   }
 
-  createAppointment(appointment: IAppointmentDto, continueToNextStep: boolean) {
+  createAppointment(appointment: IAppointmentDto, continueToNextStep: boolean): void {
     this.appointmentService.create(appointment).subscribe((result) => {
       this.toastService.success('Appointment created');
       if (continueToNextStep) {
@@ -229,7 +225,7 @@ export class EditAppointmentComponent implements OnInit {
     });
   }
 
-  setRooms(venueId: string) {
+  setRooms(venueId: string): void {
     if (venueId && this.venues) {
       const venue = this.venues.find((v) => v.id === venueId);
       if (venue) {
@@ -240,27 +236,27 @@ export class EditAppointmentComponent implements OnInit {
     }
   }
 
-  searchProject(event: any) {
+  searchProject(event: any): void {
     this.projectOptions = this.projects.filter(
       (p) =>
         p.title.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.projects.map((r) => r.id).includes(p.id)
     );
   }
 
-  searchSection(event: any) {
+  searchSection(event: any): void {
     this.sectionOptions = this.sections.filter(
       (p) =>
         p.name.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.sections.map((r) => r.id).includes(p.id)
     );
   }
 
-  searchRoom(event: any) {
+  searchRoom(event: any): void {
     this.roomOptions = this.rooms.filter(
       (p) => p.name.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.rooms.map((r) => r.id).includes(p.id)
     );
   }
 
-  onVenueChanged(event: any) {
+  onVenueChanged(event: any): void {
     this.appointmentService.setVenue(this.appointment.id, event.value).subscribe((_) => {
       this.toastService.success('Venue set');
       this.appointment.rooms.forEach((room) => {
@@ -271,31 +267,31 @@ export class EditAppointmentComponent implements OnInit {
     });
   }
 
-  onProjectAdded(event: any) {
+  onProjectAdded(event: any): void {
     this.addProject(event.id);
   }
 
-  onProjectRemoved(event: any) {
+  onProjectRemoved(event: any): void {
     this.removeProject(event.id);
   }
 
-  onSectionAdded(event: any) {
+  onSectionAdded(event: any): void {
     this.addSection(event.id);
   }
 
-  onSectionRemoved(event: any) {
+  onSectionRemoved(event: any): void {
     this.removeSection(event.id);
   }
 
-  onRoomAdded(event: any) {
+  onRoomAdded(event: any): void {
     this.addRoom(event.id);
   }
 
-  onRoomRemoved(event: any) {
+  onRoomRemoved(event: any): void {
     this.removeRoom(event.id, true);
   }
 
-  removeRoom(roomId: string, showToast: boolean) {
+  removeRoom(roomId: string, showToast: boolean): void {
     this.appointmentService.removeRoom(this.appointment.id, roomId).subscribe((_) => {
       if (showToast) {
         this.toastService.success('Room removed');
@@ -303,13 +299,13 @@ export class EditAppointmentComponent implements OnInit {
     });
   }
 
-  addRoom(roomId: string) {
+  addRoom(roomId: string): void {
     this.appointmentService.addRoom(this.appointment.id, roomId).subscribe((_) => {
       this.toastService.success('Room added');
     });
   }
 
-  removeSection(sectionId: string) {
+  removeSection(sectionId: string): void {
     this.appointmentService.removeSection(this.appointment.id, sectionId).subscribe((result) => {
       this.appointment = result;
       this.mapParticipations();
@@ -317,7 +313,7 @@ export class EditAppointmentComponent implements OnInit {
     });
   }
 
-  addSection(sectionId: string) {
+  addSection(sectionId: string): void {
     this.appointmentService.addSection(this.appointment.id, sectionId).subscribe((result) => {
       this.appointment = result;
       this.mapParticipations();
@@ -325,7 +321,7 @@ export class EditAppointmentComponent implements OnInit {
     });
   }
 
-  removeProject(projectId: string) {
+  removeProject(projectId: string): void {
     this.appointmentService.removeProject(this.appointment.id, projectId).subscribe((result) => {
       this.appointment = result;
       this.mapParticipations();
@@ -333,7 +329,7 @@ export class EditAppointmentComponent implements OnInit {
     });
   }
 
-  addProject(projectId: string) {
+  addProject(projectId: string): void {
     this.appointmentService.addProject(this.appointment.id, projectId).subscribe((result) => {
       this.appointment = result;
       this.mapParticipations();
@@ -341,15 +337,15 @@ export class EditAppointmentComponent implements OnInit {
     });
   }
 
-  getSectionNames(musicianProfiles: IMusicianProfileDto[]) {
+  getSectionNames(musicianProfiles: IMusicianProfileDto[]): string {
     return musicianProfiles.map((p) => p.sectionName).toString();
   }
 
-  onTableFiltered(event: any) {
+  onTableFiltered(event: any): void {
     this.filteredDataCount = event.filteredValue.length;
   }
 
-  onResultChanged(item: ParticipationTableItem, event: any) {
+  onResultChanged(item: ParticipationTableItem, event: any): void {
     this.appointmentService.setResult(item.personId, this.appointment.id, event.value).subscribe((_) => {
       this.toastService.success('Result set');
     });
