@@ -27,6 +27,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { FullCalendarModule } from 'primeng/fullcalendar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import {CaptchaModule} from 'primeng/captcha';
 
 const MODULES = [
   InputTextModule,
@@ -55,6 +56,7 @@ const MODULES = [
   FullCalendarModule,
   ConfirmDialogModule,
   DynamicDialogModule,
+  CaptchaModule,
 ];
 
 @NgModule({
