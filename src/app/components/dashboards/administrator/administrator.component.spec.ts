@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import {HttpLoaderFactory} from './../../../app.module';
 import {HttpClient} from '@angular/common/http';
 
+
 describe('AdministratorComponent', () => {
   let component: AdministratorComponent;
   let fixture: ComponentFixture<AdministratorComponent>;
@@ -16,10 +17,9 @@ describe('AdministratorComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AdministratorComponent],
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, TranslateModule.forRoot()],
       providers: [
         { provide: RoleService, useValue: { roles$: of([]) } },
-        { provide: TranslateService, useValue: {get: () => {}} },
         { provide: SectionService, useValue: { getTree: () => {}} },
         { provide: ActivatedRoute, useValue: { data: of({ users: [] }) } },
       ],
