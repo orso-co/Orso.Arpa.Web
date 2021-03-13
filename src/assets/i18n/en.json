@@ -92,6 +92,7 @@
   },
   "userlist": {
     "PENDING_REGISTRATIONS": "Pending Registrations",
+    "REGISTERED_USERS": "Registered Users",
     "REGISTERED_SINCE": "Registered since",
     "DELETE_USER": "Delete user",
     "PROCEED": "Are you sure that you want to delete this user?",

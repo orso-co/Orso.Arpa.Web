@@ -2,6 +2,7 @@
 <div class="p-grid">
   <div class="p-col-12 p-md-6 p-lg-4">spalte 1</div>
   <div class="p-col-12 p-md-6 p-lg-4">
+    <h3>{{ 'userlist.PENDING_REGISTRATIONS' | translate }}</h3>
     <arpa-user-list
       [users]="users"
       [roles]="(roles$ | async)!"
@@ -10,5 +11,14 @@
       (rolesSet)="onUserChanged($event.userName)"
     ></arpa-user-list>
   </div>
-  <div class="p-col-12 p-md-6 p-lg-4">spalte 3</div>
+  <div class="p-col-12 p-md-6 p-lg-4">
+    <h3>{{ 'userlist.REGISTERED_USERS' | translate }}</h3>
+    <arpa-user-list
+      [users]="usersWithRole"
+      [roles]="(roles$ | async)!"
+      [sectionTree]="(sectionTree$ | async)!"
+      (userDeleted)="onUserChanged($event)"
+      (rolesSet)="onUserChanged($event.userName)"
+    ></arpa-user-list>    
+  </div>
 </div>
