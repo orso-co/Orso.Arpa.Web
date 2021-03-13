@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { environment } from './../../../../environments/environment.prod';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
@@ -15,11 +16,15 @@ export class RegisterComponent implements OnInit {
   registerRequest = false;
   registerFormGroup: FormGroup;
   hide = true;
+  script: any;
+  captchaKey = environment.captcha.key;
 
   constructor(formBuilder: FormBuilder,
               private authService: AuthService,
               private toastService: ToastService,
-              private router: Router) {
+              private router: Router,
+              private renderer: Renderer2,
+  ) {
     this.registerFormGroup = formBuilder.group({
       userName: [null,
         [
@@ -63,6 +68,15 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.script = this.renderer.createElement('script');
+    this.script.defer = true;
+    this.script.async = true;
+    this.script.src = 'https://www.google.com/recaptcha/api.js?render=explicit&onload=initRecaptcha';
+    this.renderer.appendChild(document.body, this.script);
+  }
+
+  onSubmit(): void {
+    (window as any).grecaptcha.execute();
   }
 
   submit(): void {
