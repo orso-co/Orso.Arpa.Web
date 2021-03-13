@@ -1,3 +1,4 @@
+import { LanguageService } from './services/language.service';
 import { SubSink } from 'subsink';
 import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { LoadingService } from './services/loading.service';
@@ -17,7 +18,8 @@ export class AppComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
     private primengConfig: PrimeNGConfig,
     loadingService: LoadingService,
-    private router: Router
+    private router: Router,
+    languageService: LanguageService
   ) {
     this.subs.add(this.router.events.subscribe(event => {
       switch (true) {

@@ -44,6 +44,7 @@ const routes: Routes = [
     canActivate: [IsLoggedInGuard],
     canActivateChild: [RoleGuard],
     children: [
+
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
@@ -72,12 +73,13 @@ const routes: Routes = [
         path: 'me',
         data: { roles: [RoleNames.performer, RoleNames.staff, RoleNames.admin]},
         loadChildren: () => import('./modules/me/me.module').then((mod) => mod.MeModule)
-      }
+      },
+      { path: 'forbidden', component: ForbiddenComponent },
+      { path: 'notfound', component: NotFoundComponent },
+      { path: '**', component: NotFoundComponent },
     ],
   },
-  { path: 'forbidden', component: ForbiddenComponent },
-  { path: 'notfound', component: NotFoundComponent },
-  { path: '**', component: NotFoundComponent },
+
 ];
 
 @NgModule({
