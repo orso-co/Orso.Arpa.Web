@@ -1,25 +1,41 @@
-<div class="topbar clearfix">
+<div class='topbar clearfix'>
+  <a class='icon-menu' (click)='sideBarDisplay = true'></a>
 
-  <a routerLink="/" class="logo-link">
-    <img src="assets/organization/icons/organisation_icon.png" class="topbar-logo" routerLink="/" />
+  <a routerLink='/' class='logo-link'>
+    <img src='assets/organization/icons/organisation_icon.png' class='topbar-logo' routerLink='/' />
   </a>
 
-  <div class="welcome p-d-none p-d-sm-inline-flex">{{ "performerWELCOME" | translate }}</div>
+  <div class='welcome p-d-none p-d-sm-inline-flex'>{{ "performerWELCOME" | translate }}</div>
 
-  <ul class="topbar-menu">
-    <li class="user-profile-item" *ngIf="token$ | async as token">
-      <a href="#" (click)="userprofilemenu.toggle($event); $event.preventDefault();">
+  <ul class='topbar-menu'>
+    <li class='user-profile-item' *ngIf='token$ | async as token'>
+      <a href='#' (click)='userprofilemenu.toggle($event); $event.preventDefault();'>
         <p-avatar
-          [label]="getInitials(token)"
-          size="large"
+          [label]='getInitials(token)'
+          size='large'
           [style]="{ 'background-color': '#64B5F6', color: 'rgba(255, 255, 255, 0.87)' }"
-          shape="circle"
+          shape='circle'
         ></p-avatar>
-        <span class="user-profile-name">{{ token.displayName }}</span>
-        <span class="user-profile-role">{{ getRoleNames(token) }}</span>
+        <span class='user-profile-name'>{{ token.displayName }}</span>
+        <span class='user-profile-role'>{{ getRoleNames(token) }}</span>
       </a>
     </li>
   </ul>
 </div>
 
-<p-menu class="user-menu" #userprofilemenu [popup]="true" [model]="userProfileItems"></p-menu>
+<p-menu class='user-menu' #userprofilemenu [popup]='true' [model]='userProfileItems'></p-menu>
+
+<p-sidebar [(visible)]='sideBarDisplay'>
+  <ul class='p-menu'>
+    <li class='p-menuitem'>
+      <a class=' p-menuitem-link' routerLink='/'><span
+        class='icon-stack'></span>{{ "PROJECTS" | translate }}</a>
+    </li>
+    <li class='p-menuitem'>
+      <a class='p-menuitem-link' routerLink='/'><span class='icon-list'></span>{{ "Dashboard" | translate }}</a>
+    </li>
+    <li class='p-menuitem'>
+      <a class=' p-menuitem-link' routerLink='/pages/appointments'><span class='icon-calendar'></span>{{ "APPOINTMENTS" | translate }}</a>
+    </li>
+  </ul>
+</p-sidebar>

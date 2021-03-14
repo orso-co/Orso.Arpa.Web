@@ -16,6 +16,7 @@ export class TopbarComponent implements OnDestroy {
   userProfileItems: MenuItem[] = [];
   token$: Observable<IToken | null>;
   langChangeListener: Subscription;
+  sideBarDisplay: boolean;
 
   constructor(private authService: AuthService,
               private translate: TranslateService,
