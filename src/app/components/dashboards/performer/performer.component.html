@@ -1,23 +1,66 @@
 <div class="p-grid">
-  <div class="p-col-12 p-md-6 p-lg-4"><h3>{{ 'MESSAGES' | translate }}</h3>
-    <div>Nachricht 1</div>
-    <div>Nachricht 2</div>
-    <div>Nachricht 3</div>
+  <div class="p-col-12 p-md-6 p-lg-4">
+    <arpa-dummy [icon]='"messages"' class='arpa-dummy'>
+      <h3>{{ 'MESSAGES' | translate }}</h3>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
+      <br>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
+      <br>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
+    </arpa-dummy>
   </div>
-  <div class="p-col-12 p-md-6 p-lg-4"><h3>{{ 'APPOINTMENTS' | translate }}</h3>
-    <div>Terminstatus 1</div>
-    <div>Terminstatus 2</div>
-    <div>Terminstatus 3</div>
-    <div>Terminstatus 4</div>
-    <div>Terminstatus 5</div>
+  <div class="p-col-12 p-md-6 p-lg-4">
+    <arpa-dummy [icon]='"appointments"'>
+      <h3>{{ 'APPOINTMENTS' | translate }}</h3>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
+      <br>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
+    </arpa-dummy>
     <hr>
-    <div><h3>{{ 'PROJECTS' | translate }}</h3></div>
-    <div>Projektstatus 1</div>
-    <div>Projektstatus 2</div>
-    <div>Projektstatus 3</div>
+    <arpa-project-list
+      [projects]="projects"
+    ></arpa-project-list>
   </div>
-  <div class="p-col-12 p-md-6 p-lg-4"><h3>{{ 'TASKS' | translate }}</h3>
-    <div>Aufgabe 1</div>
-    <div>Aufgabe 2</div>
+  <div class="p-col-12 p-md-6 p-lg-4">
+    <arpa-dummy [icon]='"tasks"'>
+      <h3>{{ 'TASKS' | translate }}</h3>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
+    </arpa-dummy>
   </div>
 </div>

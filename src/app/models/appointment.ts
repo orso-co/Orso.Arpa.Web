@@ -53,6 +53,7 @@ export interface IProjectDto extends IBaseEntityDto {
   description: string;
   genreId: string;
   isCompleted: boolean;
+  deleted: boolean;
 }
 
 export interface IAppointmentParticipationListItemDto {

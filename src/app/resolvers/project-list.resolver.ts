@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class ProjectListResolver implements Resolve<IProjectDto[]> {
   constructor(private projectService: ProjectService) {}
 

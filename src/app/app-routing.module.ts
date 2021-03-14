@@ -22,6 +22,8 @@ import { EmailconfirmationComponent } from './components/onboarding/emailconfirm
 import { SectionTreeResolver } from './resolvers/section-tree.resolver';
 import { ForgotPasswordComponent } from './components/onboarding/forgot-password/forgot-password.component';
 import { ProfileComponent } from './components/onboarding/profile/profile.component';
+import { ProjectListResolver } from './resolvers/project-list.resolver';
+import { ProjectListComponent } from './components/dashboards/project-list/project-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
@@ -52,14 +54,20 @@ const routes: Routes = [
         canActivate: [DashboardGuard],
         runGuardsAndResolvers: 'always',
         children: [
-          { path: 'performer', component: PerformerComponent, data: { roles: [RoleNames.performer] } },
+          { path: 'performer', component: PerformerComponent,
+            data: { roles: [RoleNames.performer] },
+            resolve: { projects: ProjectListResolver }
+          },
           {
             path: 'admin',
             component: AdministratorComponent,
             data: { roles: [RoleNames.admin], treeMaxLevel: 2 },
             resolve: { users: UserListResolver, sectionTreeLoaded: SectionTreeResolver, rolesLoaded: RoleListResolver },
           },
-          { path: 'staff', component: StaffComponent, data: { roles: [RoleNames.staff] } },
+          { path: 'staff', component: StaffComponent,
+            data: { roles: [RoleNames.staff] },
+            resolve: { projects: ProjectListResolver }
+          },
           { path: 'noRole', component: NoRoleComponent },
         ],
       },
@@ -68,6 +76,12 @@ const routes: Routes = [
         path: 'appointments',
         data: { roles: [RoleNames.staff, RoleNames.admin] },
         loadChildren: () => import('./modules/appointment/appointment.module').then((mod) => mod.AppointmentModule),
+      },
+      {
+        path: 'projects',
+        data: { roles: [RoleNames.staff, RoleNames.admin] },
+        resolve: { projects: ProjectListResolver },
+        component: ProjectListComponent
       },
       {
         path: 'me',
