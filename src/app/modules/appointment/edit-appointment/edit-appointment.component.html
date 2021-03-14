@@ -1,3 +1,392 @@
-<p>
-  edit-appointment works!
-</p>
+<p-steps [model]="items" [(activeIndex)]="activeIndex" [readonly]="false"></p-steps>
+<div [ngSwitch]="activeIndex">
+  <ng-container *ngSwitchCase="0">
+    <form (submit)="onSubmit(false)" [formGroup]="formGroup">
+      <div class="p-grid">
+        <div class="p-col-12">
+          <div class="card card-w-title">
+            <div class="p-grid">
+              <div class="p-col-12 p-md-6 p-lg-4">
+                <div class="p-col-12">
+                  <div class="p-field">
+                    <label for="title">Title *</label>
+                    <input required type="text" pInputText placeholder="Title" formControlName="name" maxlength="50" id="title" />
+                  </div>
+                </div>
+                <div class="p-col-12">
+                  <div class="p-field p-fluid">
+                    <label for="starttime">Start Time *</label>
+                    <p-calendar
+                      [required]="true"
+                      formControlName="startTime"
+                      id="starttime"
+                      dateFormat="dd.MM yy"
+                      [showWeek]="true"
+                      [showTime]="true"
+                      hourFormat="24"
+                      placeholder="Start Time"
+                    ></p-calendar>
+                  </div>
+                </div>
+                <div class="p-col-12">
+                  <div class="p-field p-fluid">
+                    <label for="endtime">End Time *</label>
+                    <p-calendar
+                      [required]="true"
+                      formControlName="endTime"
+                      dateFormat="dd.MM yy"
+                      [showWeek]="true"
+                      id="endtime"
+                      [showTime]="true"
+                      hourFormat="24"
+                      placeholder="End Time"
+                    ></p-calendar>
+                  </div>
+                </div>
+              </div>
+              <div class="p-col-12 p-md-6 p-lg-4">
+                <div class="p-col-12">
+                  <div class="p-field p-fluid">
+                    <label for="status">Status *</label>
+                    <p-dropdown
+                      appendTo="body"
+                      placeholer="Select status"
+                      [showClear]="true"
+                      [required]="true"
+                      formControlName="statusId"
+                      [autoDisplayFirst]="false"
+                      [options]="statusOptions"
+                      id="status"
+                    ></p-dropdown>
+                  </div>
+                </div>
+                <div class="p-col-12">
+                  <div class="p-field p-fluid">
+                    <label for="category">Category *</label>
+                    <p-dropdown
+                      appendTo="body"
+                      [autoDisplayFirst]="false"
+                      placeholer="Select category"
+                      [showClear]="true"
+                      [required]="true"
+                      formControlName="categoryId"
+                      [autoDisplayFirst]="false"
+                      [options]="categoryOptions"
+                      id="category"
+                    ></p-dropdown>
+                  </div>
+                </div>
+                <div class="p-col-12">
+                  <div class="p-field p-fluid">
+                    <label for="expectation">Expectation *</label>
+                    <p-dropdown
+                      appendTo="body"
+                      [autoDisplayFirst]="false"
+                      placeholer="Select expectation"
+                      [showClear]="true"
+                      [required]="true"
+                      formControlName="expectationId"
+                      [autoDisplayFirst]="false"
+                      [options]="expectationOptions"
+                      id="expectation"
+                    ></p-dropdown>
+                  </div>
+                </div>
+              </div>
+              <div class="p-col-12 p-md-6 p-lg-4">
+                <div class="p-col-12">
+                  <div class="p-field p-fluid">
+                    <label for="publicDetails">Public Details</label>
+                    <textarea
+                      formControlName="publicDetails"
+                      id="publicDetails"
+                      [rows]="3"
+                      [cols]="30"
+                      pInputTextarea
+                      placeholder="Public Details"
+                      maxlength="1000"
+                      autoResize="autoResize"
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="p-col-12">
+                  <div class="p-field">
+                    <label for="internalDetails">Internal Details</label>
+                    <textarea
+                      id="internalDetails"
+                      formControlName="internalDetails"
+                      [rows]="3"
+                      [cols]="30"
+                      pInputTextarea
+                      maxlength="1000"
+                      placeholder="Internal Details"
+                      autoResize="autoResize"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="p-col-12">
+                <p-fieldset legend="Emolument">
+                  <div class="p-col-12">
+                    <div class="p-field">
+                      <label for="emolument">Emolument *</label>
+                      <p-dropdown
+                        appendTo="body"
+                        [required]="true"
+                        formControlName="emolumentId"
+                        [showClear]="true"
+                        [options]="emolumentOptions"
+                        [autoDisplayFirst]="false"
+                        id="emolument"
+                        [style]="{ 'min-width': '50%' }"
+                      ></p-dropdown>
+                    </div>
+                  </div>
+                  <div class="p-col-12">
+                    <div class="p-field">
+                      <label for="emolumentPattern">Emolument Pattern</label>
+                      <p-dropdown
+                        appendTo="body"
+                        formControlName="emolumentPatternId"
+                        [options]="emolumentPatternOptions"
+                        [showClear]="true"
+                        [autoDisplayFirst]="false"
+                        id="emolumentPattern"
+                        [style]="{ 'min-width': '50%' }"
+                      ></p-dropdown>
+                    </div>
+                  </div>
+                </p-fieldset>
+              </div>
+              <div class="p-col-12">
+                <p-button
+                  type="submit"
+                  label="Save and close"
+                  icon="pi pi-check"
+                  iconPos="left"
+                  [disabled]="formGroup.pristine || formGroup.invalid"
+                ></p-button>
+                <p-button
+                  class="p-ml-3"
+                  type="button"
+                  label="Save and continue"
+                  icon="pi pi-arrow-right"
+                  iconPos="left"
+                  [disabled]="formGroup.pristine || formGroup.invalid"
+                  (click)="onSubmit(true)"
+                ></p-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-container>
+  <ng-container *ngSwitchCase="1">
+    <div class="card card-w-title">
+      <div class="p-grid form-group">
+        <div class="p-col-12">
+          <div class="p-field p-fluid">
+            <label for="venue">Venue</label>
+            <p-dropdown
+              appendTo="body"
+              [autoDisplayFirst]="false"
+              placeholer="Select venue"
+              [showClear]="true"
+              [autoDisplayFirst]="false"
+              [options]="venueOptions"
+              (onChange)="onVenueChanged($event)"
+              id="venue"
+              name="venue"
+              [(ngModel)]="appointment.venueId"
+            ></p-dropdown>
+          </div>
+        </div>
+        <div class="p-col-12">
+          <div class="p-field p-fluid">
+            <label for="rooms">Rooms</label>
+            <p-autoComplete
+              appendTo="body"
+              [(ngModel)]="appointment.rooms"
+              field="name"
+              name="rooms"
+              id="rooms"
+              [suggestions]="roomOptions"
+              (completeMethod)="searchRoom($event)"
+              [disabled]="rooms.length === 0"
+              [multiple]="true"
+              [forceSelection]="true"
+              [dropdown]="true"
+              (onSelect)="onRoomAdded($event)"
+              (onUnselect)="onRoomRemoved($event)"
+            ></p-autoComplete>
+          </div>
+        </div>
+        <div class="p-col-12">
+          <div class="p-field p-fluid">
+            <label for="sections">Sections</label>
+            <p-autoComplete
+              appendTo="body"
+              id="sections"
+              field="name"
+              [(ngModel)]="appointment.sections"
+              name="sections"
+              [suggestions]="sectionOptions"
+              (completeMethod)="searchSection($event)"
+              [multiple]="true"
+              [forceSelection]="true"
+              [dropdown]="true"
+              (onSelect)="onSectionAdded($event)"
+              (onUnselect)="onSectionRemoved($event)"
+            ></p-autoComplete>
+          </div>
+        </div>
+        <div class="p-col-12">
+          <div class="p-field p-fluid">
+            <label for="projects">Projects</label>
+            <p-autoComplete
+              appendTo="body"
+              [(ngModel)]="appointment.projects"
+              name="projects"
+              field="title"
+              id="projects"
+              [suggestions]="projectOptions"
+              (completeMethod)="searchProject($event)"
+              [multiple]="true"
+              [forceSelection]="true"
+              [dropdown]="true"
+              (onSelect)="onProjectAdded($event)"
+              (onUnselect)="onProjectRemoved($event)"
+            ></p-autoComplete>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngSwitchDefault>
+    <div class="card card-w-title">
+      <p-table
+        #participationTable
+        [columns]="columns"
+        [value]="participationTableItems"
+        [paginator]="true"
+        [rows]="5"
+        [responsive]="true"
+        (onFilter)="onTableFiltered($event)"
+      >
+        <ng-template pTemplate="caption">Participations</ng-template>
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+              {{ col.header }}
+              <p-sortIcon [field]="col.field"></p-sortIcon>
+            </th>
+          </tr>
+          <tr>
+            <th *ngFor="let col of columns" [ngSwitch]="col.field">
+              <input
+                *ngSwitchCase="'surname'"
+                pInputText
+                type="text"
+                (input)="participationTable.filter($event.target.value, col.field, 'contains')"
+              />
+              <input
+                *ngSwitchCase="'givenName'"
+                pInputText
+                type="text"
+                (input)="participationTable.filter($event.target.value, col.field, 'contains')"
+              />
+              <p-dropdown
+                appendTo="body"
+                *ngSwitchCase="'predictionId'"
+                [showClear]="true"
+                [autoDisplayFirst]="false"
+                [options]="predictionOptions"
+                [style]="{ width: '100%' }"
+                (onChange)="participationTable.filter($event.value, col.field, 'equals')"
+              ></p-dropdown>
+              <p-dropdown
+                appendTo="body"
+                *ngSwitchCase="'resultId'"
+                [showClear]="true"
+                [autoDisplayFirst]="false"
+                [options]="resultOptions"
+                [style]="{ width: '100%' }"
+                (onChange)="participationTable.filter($event.value, col.field, 'equals')"
+              ></p-dropdown>
+              <p-dropdown
+                appendTo="body"
+                *ngSwitchCase="'isProfessional'"
+                [showClear]="true"
+                [autoDisplayFirst]="false"
+                [options]="isProfessionalOptions"
+                [style]="{ width: '100%' }"
+                (onChange)="participationTable.filter($event.value, col.field, 'equals')"
+              ></p-dropdown>
+              <p-dropdown
+                appendTo="body"
+                *ngSwitchCase="'sections'"
+                [showClear]="true"
+                [autoDisplayFirst]="false"
+                [options]="sectionSelectItems"
+                [style]="{ width: '100%' }"
+                (onChange)="participationTable.filter($event.value, col.field, 'contains')"
+              ></p-dropdown>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr>
+            <td>
+              <span class="p-column-title">Surname</span>
+              {{ item.surname }}
+            </td>
+            <td>
+              <span class="p-column-title">Given Name</span>
+              {{ item.givenName }}
+            </td>
+            <td>
+              <span class="p-column-title">Sections</span>
+              {{ item.sections }}
+            </td>
+            <td>
+              <span class="p-column-title">Is Professional</span>
+              {{ item.isProfessional }}
+            </td>
+            <td class="p-fluid">
+              <span class="p-column-title">Prediction</span>
+              <p-dropdown
+                appendTo="body"
+                *ngIf="item.predictionId"
+                placeholer="Select prediction"
+                [disabled]="true"
+                [autoDisplayFirst]="false"
+                [options]="predictionOptions"
+                [name]="'prediction-' + item.id"
+                [(ngModel)]="item.predictionId"
+              ></p-dropdown>
+            </td>
+            <td class="p-fluid">
+              <span class="p-column-title">Result</span>
+              <p-dropdown
+                appendTo="body"
+                placeholer="Select result"
+                [autoDisplayFirst]="false"
+                [options]="resultOptions"
+                [name]="'result-' + item.id"
+                (onChange)="onResultChanged(item, $event)"
+                [(ngModel)]="item.resultId"
+              ></p-dropdown>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage" let-columns>
+          <tr>
+            <td [attr.colspan]="columns.length">No records found</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary"> {{ filteredDataCount }} participations </ng-template>
+      </p-table>
+    </div>
+  </ng-container>
+</div>

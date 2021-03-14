@@ -42,20 +42,20 @@ export class AppointmentService {
     return this.http.post(`${this.baseUrl}/${id}/rooms/${roomId}`, {}).pipe(shareReplay());
   }
 
-  removeSection(id: string, sectionId: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}/sections/${sectionId}`).pipe(shareReplay());
+  removeSection(id: string, sectionId: string): Observable<IAppointmentDto> {
+    return this.http.delete<IAppointmentDto>(`${this.baseUrl}/${id}/sections/${sectionId}`).pipe(shareReplay());
   }
 
-  addSection(id: string, sectionId: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/${id}/sections/${sectionId}`, {}).pipe(shareReplay());
+  addSection(id: string, sectionId: string): Observable<IAppointmentDto> {
+    return this.http.post<IAppointmentDto>(`${this.baseUrl}/${id}/sections/${sectionId}`, {}).pipe(shareReplay());
   }
 
-  removeProject(id: string, projectId: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}/projects/${projectId}`).pipe(shareReplay());
+  removeProject(id: string, projectId: string): Observable<IAppointmentDto> {
+    return this.http.delete<IAppointmentDto>(`${this.baseUrl}/${id}/projects/${projectId}`).pipe(shareReplay());
   }
 
-  addProject(id: string, projectId: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/${id}/projects/${projectId}`, {}).pipe(shareReplay());
+  addProject(id: string, projectId: string): Observable<IAppointmentDto> {
+    return this.http.post<IAppointmentDto>(`${this.baseUrl}/${id}/projects/${projectId}`, {}).pipe(shareReplay());
   }
 
   setVenue(id: string, venueId: string | null): Observable<any> {
