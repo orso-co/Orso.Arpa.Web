@@ -28,14 +28,23 @@
 <p-sidebar [(visible)]='sideBarDisplay'>
   <ul class='p-menu'>
     <li class='p-menuitem'>
-      <a class=' p-menuitem-link' routerLink='/'><span
-        class='icon-stack'></span>{{ "PROJECTS" | translate }}</a>
-    </li>
-    <li class='p-menuitem'>
       <a class='p-menuitem-link' routerLink='/'><span class='icon-list'></span>{{ "Dashboard" | translate }}</a>
     </li>
     <li class='p-menuitem'>
+      <a class=' p-menuitem-link' routerLink='/pages/projects'><span
+        class='icon-stack'></span>{{ "PROJECTS" | translate }}</a>
+    </li>
+
+    <li class='p-menuitem'>
       <a class=' p-menuitem-link' routerLink='/pages/appointments'><span class='icon-calendar'></span>{{ "APPOINTMENTS" | translate }}</a>
+    </li>
+
+    <li class='p-menuitem'>
+      <a class=' p-menuitem-link' routerLink='/pages/me/appointments'><span class='icon-calendar'></span>{{ "MY_APPOINTMENTS" | translate }}</a>
+    </li>
+    <li class='p-menuitem'>
+      <a class=' p-menuitem-link' routerLink='/pages/library'><span
+        class='icon-stack'></span>{{ "LIBRARY" | translate }}</a>
     </li>
   </ul>
 </p-sidebar>
