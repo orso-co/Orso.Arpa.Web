@@ -1,37 +1,79 @@
-<div class="p-grid">
-  <div class="p-col-12 p-md-6 p-lg-4"><h3>{{ 'PROJECTS' | translate }}</h3>
-  <div>Projektstatus 1</div>
-  <div>Projektstatus 2</div>
-  <div>Projektstatus 3</div>
-  <hr>
-  <div><h3>{{ 'APPOINTMENTS' | translate }}</h3>
-    <div>Terminstatus 1</div>
-    <div>Terminstatus 2</div>
-    <div>Terminstatus 3</div>
-    <div>Terminstatus 4</div>
-    <div>Terminstatus 5</div>
-  </div>
-</div>
-  <div class="p-col-12 p-md-6 p-lg-4"><h3>{{ 'MESSAGES' | translate }}</h3>
-    <div>Nachricht 1</div>
-    <div>Nachricht 2</div>
-    <div>Nachricht 3</div>
-    <div>Nachricht 4</div>
-    <div>Nachricht 5</div>
-    <div>Nachricht 6</div>
-    <div>Nachricht 7</div>
-    <div>Nachricht 8</div>
-
+<div class='p-grid'>
+  <div class='p-col-12 p-md-6 p-lg-4'>
+    <arpa-project-list
+      [projects]="projects"
+    ></arpa-project-list>
     <hr>
-    <div><h3>{{ 'TASKS' | translate }}</h3></div>
-    <div>Aufgabe 1</div>
-    <div>Aufgabe 2</div>
-    <div>Aufgabe 3</div>
-    <div>Aufgabe 4</div>
-    <div>Aufgabe 5</div>
-    <div>Aufgabe 6</div>
-
-
+    <div><h3>{{ 'APPOINTMENTS' | translate }}</h3>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
+      <br>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
+      <br>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
+    </div>
   </div>
-  <div class="p-col-12 p-md-6 p-lg-4"><h3>{{ 'RECENT_ACTIVITY' | translate }}</h3></div>
+  <div class='p-col-12 p-md-6 p-lg-4'>
+    <arpa-dummy [icon]='"messages"'>
+      <h3>{{ 'MESSAGES' | translate }}</h3>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
+      <br>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
+      <br>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
+    </arpa-dummy>
+    <hr>
+    <arpa-dummy [icon]='"tasks"'>
+      <h3>{{ 'TASKS' | translate }}</h3>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
+      <br>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
+    </arpa-dummy>
+  </div>
+  <div class='p-col-12 p-md-6 p-lg-4'>
+    <arpa-dummy [icon]='"activities"'>
+      <h3>{{ 'RECENT_ACTIVITY' | translate }}</h3>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="60%" height='30'>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="60%" height='30'>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="60%" height='30'>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="60%" height='30'>
+      <br>
+      <br>
+      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="60%" height='30'>
+      <br>
+    </arpa-dummy>
+  </div>
 </div>

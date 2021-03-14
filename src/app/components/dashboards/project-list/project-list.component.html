@@ -1,0 +1,17 @@
+<h3>{{ 'PROJECTS' | translate }}</h3>
+
+<p-listbox
+  [options]="projects!"
+  optionLabel="title"
+  optionValue="description"
+  [filter]="true"
+>
+  <ng-template pTemplate="header"></ng-template>
+  <ng-template let-project pTemplate="item">
+    <div class="project-item">
+      {{project.title}}
+      {{project.description}}
+      {{project.isCompleted}}
+    </div>
+  </ng-template>
+</p-listbox>

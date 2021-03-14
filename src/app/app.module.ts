@@ -1,7 +1,9 @@
 import { LogoutComponent } from './components/onboarding/logout/logout.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { UserListComponent } from './components/dashboards/user-list/user-list.component';
-import { environment } from './../environments/environment';
+import { ProjectListComponent } from './components/dashboards/project-list/project-list.component';
+import { DummyComponent } from './components/dashboards/dummy/dummy.component';
+import { environment } from '../environments/environment';
 import { LOCAL_STORAGE_TOKEN_KEY } from './services/auth.service';
 import { PrimeNgModule } from './modules/prime-ng/prime-ng.module';
 import { NoRoleComponent } from './components/dashboards/no-role/no-role.component';
@@ -71,6 +73,8 @@ export function tokenGetter(): string | null {
     NotFoundComponent,
     NoRoleComponent,
     UserListComponent,
+    ProjectListComponent,
+    DummyComponent,
     LoadingComponent,
     LogoutComponent,
     ForgotPasswordComponent,
