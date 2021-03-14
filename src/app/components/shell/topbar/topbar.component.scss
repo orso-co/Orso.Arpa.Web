@@ -1,20 +1,47 @@
 .topbar {
-  background-color: var(--surface-a);
-  height: 70px;
   position: fixed;
+  z-index: 997;
   top: 0;
   left: 0;
-  width: 100%;
-  z-index: 997;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
-  border-bottom: 1px solid var(--surface-d);
   display: flex;
+  width: 100%;
+  height: 60px;
+  padding: 0 35px 0 .5em;
   align-items: center;
   justify-content: space-between;
-  padding: 0 35px;
+
+  background-color: var(--surface-a);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid var(--surface-d);
+
+  transition: all .25s;
+
+  .icon-menu {
+    font-size: 2em;
+    padding: .5em;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .logo-link {
+    max-height: 100%;
+    height: 100%;
+    padding: .4em;
+
+    align-self: center;
+
+    & > img {
+      display: block;
+      max-height: inherit;
+      height: inherit;
+    }
+  }
 
   .welcome {
-    margin: auto
+    margin: auto;
+    font-weight: 600;
+    font-size: 1.2em;
   }
 
   ul.topbar-menu {
@@ -26,34 +53,30 @@
 
     li {
       &.user-profile-item {
-        float: right;
-        position: relative;
-        margin-left: 14px;
-
+        display: flex;
+        justify-content: center;
+        align-items: center;
         a {
           transition: color 0.3s;
-          top: 14px;
           position: relative;
-          display: block;
-
+          display: inline-block;
           p-avatar {
-            width: 36px;
-            height: 36px;
-            margin-top: -4px;
+            margin-top: auto;
+            display: inline-block;
             float: right;
-            margin-left: 12px;
+            right: 0;
+            margin-left: 1em;
           }
-
           span {
+            display: none;
+            margin-top: .5em;
             &.user-profile-name {
-              display: block;
               float: left;
               font-size: 16px;
               color: var(--text-color);
             }
 
             &.user-profile-role {
-              display: block;
               font-size: 12px;
               color: var(--text-color);
               clear: left;
@@ -72,34 +95,48 @@
   }
 }
 
-@media (max-width: 960px) {
-  .topbar {
-    height: 110px;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 0;
-
-    a.logo-link {
-      margin-left: 1rem;
-    }
-
-    ul.topbar-menu {
+p-sidebar {
+  ul.p-menu {
+    margin: 0;
+    padding: 4em 0 0;
+    border: 0;
+    width: 100%;
+    list-style: none;
     li {
-      &.user-profile-item {
-        a {
-          right: 24px;
-
-          p-avatar {
-            margin-top: 13px;
-          }
-          span {
-            &.user-profile-name, &.user-profile-role {
-              display: none;
-            }
+      list-style: none;
+      a {
+        & > span {
+          &:before {
+            font-size: 1.8em;
+            margin-right: 1em;
           }
         }
       }
     }
   }
+}
+
+@media (min-width: 768px) {
+  .topbar {
+    height: 70px;
+    justify-content: space-between;
+
+    .welcome {
+      margin: auto;
+      font-weight: 600;
+      font-size: 1.5em;
+    }
+
+    ul.topbar-menu {
+      li {
+        &.user-profile-item {
+          a {
+            span {
+              display: block;
+            }
+          }
+        }
+      }
+    }
   }
 }

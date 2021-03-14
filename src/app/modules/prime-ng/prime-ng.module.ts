@@ -32,6 +32,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { TableModule } from 'primeng/table';
 import {CaptchaModule} from 'primeng/captcha';
+import {SidebarModule} from 'primeng/sidebar';
 
 const MODULES = [
   InputTextModule,
@@ -64,7 +65,8 @@ const MODULES = [
   StepsModule,
   CalendarModule,
   AutoCompleteModule,
-  TableModule
+  TableModule,
+  SidebarModule
 ];
 
 @NgModule({
