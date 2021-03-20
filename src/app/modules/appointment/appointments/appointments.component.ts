@@ -150,7 +150,12 @@ export class AppointmentsComponent implements OnDestroy {
       this.subs.add(
         this.loadingService
           .showLoaderUntilCompleted(this.appointmentService.setDates(changedEvent.id, newStartTime, newEndTime))
-          .subscribe(() => this.toastService.success('Dates changed'))
+          .subscribe((appointment) => {
+            const index = this.appointments.findIndex((a) => a.id === appointment.id);
+            this.appointments[index] = appointment;
+            this.appointments = [...this.appointments];
+            this.toastService.success('Dates changed');
+          })
       );
     }
   }
