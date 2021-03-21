@@ -3,12 +3,32 @@ pButton label="{{ 'navigation.BACKTODASHBOARD' | translate }}" (click)="goToDas
 </button> -->
 <h2>{{ 'PROFILE_TITLE' | translate }}</h2>
 
+
+
 <div class=p-grid>
   <div class="p-col-12 p-md-6 p-lg-4"><h3>{{ 'BASEDATA' | translate }}</h3>
+
+    <ng-container *ngIf="userProfile && profileFormGroup">
+      <form [formGroup] = "profileFormGroup" (ngSubmit)="onSubmit()">
+         <div *ngFor="let control of profileFormGroup.controls | keyvalue : returnZero">
+          <p class="p-float-label">
+            <input id="{{control.key}}" type="text" pInputText formControlName="{{control.key}}"> 
+            <label for="float-input">{{ (control.key | uppercase) | translate}}</label>
+          </p>
+        </div>
+        <button
+           pButton
+            label="{{ 'SAVE' | translate }}"
+            [disabled]="profileFormGroup.invalid">
+      </button>
+      </form>
+      </ng-container>
+
+<!-- 
     <div>Nachname, Vorname</div>
     <div>Geschlecht</div>
     <div>Geburtsdatum</div>
-    <div>Sterbedatum</div>
+    <div>Sterbedatum</div> -->
 
 
   <div><h3>{{ 'CONTACTDATA' | translate }}</h3></div>
