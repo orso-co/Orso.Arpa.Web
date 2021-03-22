@@ -16,7 +16,6 @@ export class RegisterComponent implements OnInit {
   registerRequest = false;
   registerFormGroup: FormGroup;
   hide = true;
-  script: any;
   captchaKey = environment.captcha.key;
 
   constructor(formBuilder: FormBuilder,
@@ -68,11 +67,6 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.script = this.renderer.createElement('script');
-    this.script.defer = true;
-    this.script.async = true;
-    this.script.src = 'https://www.google.com/recaptcha/api.js?render=explicit&onload=initRecaptcha';
-    this.renderer.appendChild(document.body, this.script);
   }
 
   onSubmit(): void {
