@@ -62,9 +62,9 @@ export class AppointmentService {
     return this.http.put(`${this.baseUrl}/${id}/venue/set/${venueId}`, {}).pipe(shareReplay());
   }
 
-  setDates(id: string, startTime: Date | null, endTime: Date | null): Observable<any> {
+  setDates(id: string, startTime: Date | null, endTime: Date | null): Observable<IAppointmentDto> {
     return this.http
-      .put<IAppointmentDto[]>(`${this.baseUrl}/${id}/dates/set`, { startTime, endTime })
+      .put<IAppointmentDto>(`${this.baseUrl}/${id}/dates/set`, { startTime, endTime })
       .pipe(shareReplay());
   }
 
