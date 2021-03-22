@@ -131,7 +131,7 @@ export class AuthService {
       expiryDate: new Date(tokenObj.exp * 1000),
       creationDate: new Date(tokenObj.iat * 1000),
       username: tokenObj.nameid,
-      displayName: tokenObj.unique_name,
+      displayName: tokenObj.name,
       roles: this.getRoles(tokenObj),
     };
   }
