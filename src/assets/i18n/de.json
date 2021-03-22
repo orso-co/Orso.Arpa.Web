@@ -1,5 +1,7 @@
 {
   "EMAILADDRESS": "E-Mailadresse",
+  "EMAIL": "E-Mail",
+  "PHONENUMBER": "Telefonnummer",
   "USERNAME": "Benutzername",
   "GIVENNAME": "Vorname",
   "SURNAME": "Nachname",
@@ -43,6 +45,11 @@
   },
   "navigation": {
     "BACKTODASHBOARD": "zurück zum Dashboard"
+  },
+
+  "profile": {
+    "UPDATE": "Profil wurde aktualisiert",
+    "ISSUE": "Profil konnte nicht aktualisiert werden."
   },
 
   "errors": {
