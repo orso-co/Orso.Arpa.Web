@@ -1,5 +1,7 @@
 {
   "EMAILADDRESS": "Email address",
+  "EMAIL": "E-Mail",
+  "PHONENUMBER": "Phone Number",
   "USERNAME": "Username",
   "GIVENNAME": "Given name",
   "SURNAME": "Surname",
@@ -43,6 +45,11 @@
   },
   "navigation": {
     "BACKTODASHBOARD": "Back to dashboard"
+  },
+
+  "profile": {
+  "UPDATE": "Profile update done.",
+  "ISSUE": "Could not update profile."
   },
   "errors": {
     "NOTFOUND": "Page not found",
