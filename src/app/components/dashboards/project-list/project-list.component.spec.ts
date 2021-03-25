@@ -34,7 +34,7 @@ describe('ProjectListComponent', () => {
         providers: [{ provide: ActivatedRoute,
           useValue: {
             data: of({
-              projects:[],
+              projects: [],
             })
           }
         }],

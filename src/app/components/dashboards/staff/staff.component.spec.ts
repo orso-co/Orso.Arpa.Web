@@ -35,7 +35,7 @@ describe('StaffComponent', () => {
         { provide: ActivatedRoute,
           useValue: {
             data: of({
-              projects:[],
+              projects: [],
             })
           }
         }]

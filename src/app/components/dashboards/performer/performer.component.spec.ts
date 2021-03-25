@@ -40,7 +40,7 @@ describe('PerformerComponent', () => {
         { provide: ActivatedRoute,
           useValue: {
             data: of({
-              projects:[],
+              projects: [],
             })
           }
         }]
