@@ -7,6 +7,9 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 
 import { StaffComponent } from './staff.component';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
+import { AuthService } from '../../../services/auth.service';
 
 describe('StaffComponent', () => {
   let component: StaffComponent;
@@ -28,6 +31,14 @@ describe('StaffComponent', () => {
           }
         })
       ],
+      providers: [
+        { provide: ActivatedRoute,
+          useValue: {
+            data: of({
+              projects:[],
+            })
+          }
+        }]
     })
     .compileComponents();
   });

@@ -9,6 +9,8 @@ import { HttpLoaderFactory } from '../../../app.module';
 import { HttpClient } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateService } from '@ngx-translate/core';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('PerformerComponent', () => {
   let translate: TranslateService;
@@ -33,7 +35,15 @@ describe('PerformerComponent', () => {
           }
         })
       ],
-      providers: [ { provide: AuthService, useValue: {}}]
+      providers: [
+        { provide: AuthService, useValue: {}},
+        { provide: ActivatedRoute,
+          useValue: {
+            data: of({
+              projects:[],
+            })
+          }
+        }]
     })
     .compileComponents();
     translate = TestBed.inject(TranslateService);
