@@ -45,6 +45,7 @@ import { ProfileComponent } from './components/onboarding/profile/profile.compon
 import {AcceptLanguageInterceptor} from './interceptors/accept-language.interceptor';
 import { ProjectsComponent } from './modules/project/projects/projects.component';
 import { EditProjectComponent } from './modules/project/edit-project/edit-project.component';
+import { QrcodeComponent } from './components/onboarding/qrcode/qrcode.component';
 
 registerLocaleData(localeDe, 'de');
 
@@ -83,7 +84,8 @@ export function tokenGetter(): string | null {
     LanguageMenuComponent,
     ProfileComponent,
     ProjectsComponent,
-    EditProjectComponent
+    EditProjectComponent,
+    QrcodeComponent
   ],
   imports: [
     BrowserModule,
