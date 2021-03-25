@@ -218,7 +218,7 @@ export class AppointmentsComponent implements OnDestroy {
         emolumentOptions: this.emolumentOptions,
         expectationOptions: this.expectationOptions,
       },
-      header: 'Create an appointment',
+      header: this.translate.instant ('editappointments.CREATE'),
       style: { 'max-width': '1500px' },
     });
 
@@ -247,7 +247,7 @@ export class AppointmentsComponent implements OnDestroy {
         emolumentOptions: this.emolumentOptions,
         expectationOptions: this.expectationOptions,
       },
-      header: 'Edit appointment',
+      header: this.translate.instant('editappointments.EDIT'),
       style: { 'max-width': '1500px' },
     });
 

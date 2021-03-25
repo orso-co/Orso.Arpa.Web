@@ -96,6 +96,35 @@
     "PARTICIPATION": "Teilnahme",
     "PREDICTION_SET": "Vorhersage für Terminteilnahme erfolgreich gespeichert"
   },
+  "editappointments": {
+    "CREATE": "Termin erstellen",
+    "EDIT": "Termin bearbeiten",
+    "SAVECLOSE": "Speichern und schließen",
+    "SAVECONTINUE": "Speichern und weiter",
+    "BASICDATA": "Basisdaten",
+    "ADDITIONALDATA": "Details",
+    "PARTICIPATION": "Teilnahmestatus",
+    "TITLE": "Terminbezeichnung *",
+    "START": "Beginn *",
+    "END": "Ende *",
+    "STATUS": "Status *",
+    "CATEGORY": "Kategorie *",
+    "EXPECTATION": "Erwartung *",
+    "DETAILSPUBLIC": "Öffentliche Details",
+    "DETAILSINTERNAL": "Interne Details",
+    "EMOLUMENT": "Vergütung",
+    "EMOLUMENTPATTERN": "Vergütungsmuster",
+    "VENUE": "Ort",
+    "ROOMS": "Räume",
+    "SECTIONS": "Register/Zielgruppe",
+    "PROJECTS": "Projekte",
+    "NORECORDS": "Keine Datensätze gefunden",
+    "PARTICIPATIONS": "Teilnahmen",
+    "PREDICTION": "Vorhersage",
+    "RESULT": "Ergebnis",
+    "LEVEL": "(Semi-)Profi"
+
+  },
   "norole": {
     "WELCOME": "Willkommen bei ARPA!",
     "BE_PATIENT": "Wir bitten um ein wenig Geduld, bis du von unserem Team freigeschaltet wurdest. Du wirst per E-Mail über die erfolgte Freischaltung benachrichtigt."
