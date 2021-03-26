@@ -8,8 +8,8 @@ export const environment = {
     key: '6LfS2X0aAAAAADWnno_N6FJzl2OhGI3ibz2EqPQQ'
   },
   api: {
-    protocol: 'https',
-    baseUrl: 'localhost:5001'
+    protocol: 'http',
+    baseUrl: 'localhost:5000'
   },
   web:
   {
