@@ -252,11 +252,16 @@ export class AppointmentsComponent implements OnDestroy {
     });
 
     this.subs.add(
-      ref.onClose.subscribe((result: IAppointmentDto) => {
+      ref.onClose.subscribe((result: IAppointmentDto | string) => {
         if (result) {
-          const index = this.appointments.findIndex((a) => a.id === result.id);
-          this.appointments[index] = result;
-          this.appointments = [...this.appointments];
+          if (typeof result === 'string') {
+            this.appointments.splice(this.appointments.findIndex(a => a.id === appointmentId), 1);
+            this.appointments = [...this.appointments];
+          } else {
+            const index = this.appointments.findIndex((a) => a.id === result.id);
+            this.appointments[index] = result;
+            this.appointments = [...this.appointments];
+          }
         }
       })
     );

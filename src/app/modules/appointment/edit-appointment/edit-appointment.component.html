@@ -9,7 +9,7 @@
               <div class="p-col-12 p-md-6 p-lg-4">
                 <div class="p-col-12">
                   <div class="p-field">
-                    <label for="title">{{ 'editappointments.TITLE' | translate }} *</label>
+                    <label for="title">{{ 'editappointments.TITLE' |�translate }} *</label>
                     <input required type="text" pInputText placeholder="{{ 'editappointments.TITLE' | translate }} *" formControlName="name" maxlength="50" id="title" />
                   </div>
                 </div>
@@ -158,23 +158,37 @@
                   </div>
                 </p-fieldset>
               </div>
-              <div class="p-col-12">
-                <p-button
-                  type="submit"
-                  label="{{ 'editappointments.SAVECLOSE' | translate }}"
-                  icon="pi pi-check"
-                  iconPos="left"
-                  [disabled]="formGroup.pristine || formGroup.invalid"
-                ></p-button>
-                <p-button
-                  class="p-ml-3"
+              <div class="p-col-12" style="display: flex; justify-content: space-between">
+                <div>
+                  <button
+                    pButton
+                    type="submit"
+                    [label]="'editappointments.SAVECLOSE' | translate"
+                    icon="pi pi-check"
+                    iconPos="left"
+                    [disabled]="formGroup.pristine || formGroup.invalid"
+                  ></button>
+                  <button
+                    pButton
+                    class="p-ml-3"
+                    type="button"
+                    [label]="'editappointments.SAVECONTINUE' | translate"
+                    icon="pi pi-arrow-right"
+                    iconPos="left"
+                    [disabled]="formGroup.pristine || formGroup.invalid"
+                    (click)="onSubmit(true)"
+                  ></button>
+                </div>
+
+                <button
+                  pButton
+                  class="p-ml-3 p-button-danger"
                   type="button"
-                  label="{{ 'editappointments.SAVECONTINUE' | translate }}"
-                  icon="pi pi-arrow-right"
+                  label="Delete"
+                  icon="pi pi-trash"
                   iconPos="left"
-                  [disabled]="formGroup.pristine || formGroup.invalid"
-                  (click)="onSubmit(true)"
-                ></p-button>
+                  (click)="showDeleteConfirmation($event)"
+                ></button>
               </div>
             </div>
           </div>
@@ -390,3 +404,4 @@
     </div>
   </ng-container>
 </div>
+<p-confirmPopup></p-confirmPopup>

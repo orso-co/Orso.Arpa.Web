@@ -34,6 +34,10 @@ export class AppointmentService {
     return this.http.put(`${this.baseUrl}/${appointment.id}`, appointment).pipe(shareReplay());
   }
 
+  delete(id: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${id}`).pipe(shareReplay());
+  }
+
   removeRoom(id: string, roomId: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}/rooms/${roomId}`).pipe(shareReplay());
   }
