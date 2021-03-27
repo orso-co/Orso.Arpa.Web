@@ -9,13 +9,13 @@
               <div class="p-col-12 p-md-6 p-lg-4">
                 <div class="p-col-12">
                   <div class="p-field">
-                    <label for="title">Title *</label>
-                    <input required type="text" pInputText placeholder="Title" formControlName="name" maxlength="50" id="title" />
+                    <label for="title">{{ 'editappointments.TITLE' | translate }} *</label>
+                    <input required type="text" pInputText placeholder="{{ 'editappointments.TITLE' | translate }} *" formControlName="name" maxlength="50" id="title" />
                   </div>
                 </div>
                 <div class="p-col-12">
                   <div class="p-field p-fluid">
-                    <label for="starttime">Start Time *</label>
+                    <label for="starttime">{{ 'editappointments.START' | translate }} *</label>
                     <p-calendar
                       [required]="true"
                       formControlName="startTime"
@@ -24,13 +24,13 @@
                       [showWeek]="true"
                       [showTime]="true"
                       hourFormat="24"
-                      placeholder="Start Time"
+                      placeholder="{{ 'editappointments.START' | translate }} *"
                     ></p-calendar>
                   </div>
                 </div>
                 <div class="p-col-12">
                   <div class="p-field p-fluid">
-                    <label for="endtime">End Time *</label>
+                    <label for="endtime">{{ 'editappointments.END' | translate }} *</label>
                     <p-calendar
                       [required]="true"
                       formControlName="endTime"
@@ -39,7 +39,7 @@
                       id="endtime"
                       [showTime]="true"
                       hourFormat="24"
-                      placeholder="End Time"
+                      placeholder="{{ 'editappointments.END' | translate }} *"
                     ></p-calendar>
                   </div>
                 </div>
@@ -47,7 +47,7 @@
               <div class="p-col-12 p-md-6 p-lg-4">
                 <div class="p-col-12">
                   <div class="p-field p-fluid">
-                    <label for="status">Status *</label>
+                    <label for="status">{{ 'editappointments.STATUS' | translate }} *</label>
                     <p-dropdown
                       appendTo="body"
                       placeholer="Select status"
@@ -62,7 +62,7 @@
                 </div>
                 <div class="p-col-12">
                   <div class="p-field p-fluid">
-                    <label for="category">Category *</label>
+                    <label for="category">{{ 'editappointments.CATEGORY' | translate }}  *</label>
                     <p-dropdown
                       appendTo="body"
                       [autoDisplayFirst]="false"
@@ -78,7 +78,7 @@
                 </div>
                 <div class="p-col-12">
                   <div class="p-field p-fluid">
-                    <label for="expectation">Expectation *</label>
+                    <label for="expectation">{{ 'editappointments.EXPECTATION' | translate }} *</label>
                     <p-dropdown
                       appendTo="body"
                       [autoDisplayFirst]="false"
@@ -96,14 +96,14 @@
               <div class="p-col-12 p-md-6 p-lg-4">
                 <div class="p-col-12">
                   <div class="p-field p-fluid">
-                    <label for="publicDetails">Public Details</label>
+                    <label for="publicDetails">{{ 'editappointments.DETAILSPUBLIC' | translate }}</label>
                     <textarea
                       formControlName="publicDetails"
                       id="publicDetails"
                       [rows]="3"
                       [cols]="30"
                       pInputTextarea
-                      placeholder="Public Details"
+                      placeholder="{{ 'editappointments.DETAILSPUBLIC' | translate }}"
                       maxlength="1000"
                       autoResize="autoResize"
                     ></textarea>
@@ -111,7 +111,7 @@
                 </div>
                 <div class="p-col-12">
                   <div class="p-field">
-                    <label for="internalDetails">Internal Details</label>
+                    <label for="internalDetails">{{ 'editappointments.DETAILSINTERNAL' | translate }}</label>
                     <textarea
                       id="internalDetails"
                       formControlName="internalDetails"
@@ -119,17 +119,17 @@
                       [cols]="30"
                       pInputTextarea
                       maxlength="1000"
-                      placeholder="Internal Details"
+                      placeholder="{{ 'editappointments.DETAILSINTERNAL' | translate }}"
                       autoResize="autoResize"
                     ></textarea>
                   </div>
                 </div>
               </div>
               <div class="p-col-12">
-                <p-fieldset legend="Emolument">
+                <p-fieldset legend="{{ 'editappointments.EMOLUMENT' | translate }}">
                   <div class="p-col-12">
                     <div class="p-field">
-                      <label for="emolument">Emolument *</label>
+                      <label for="emolument">{{ 'editappointments.EMOLUMENT' | translate }} *</label>
                       <p-dropdown
                         appendTo="body"
                         [required]="true"
@@ -144,7 +144,7 @@
                   </div>
                   <div class="p-col-12">
                     <div class="p-field">
-                      <label for="emolumentPattern">Emolument Pattern</label>
+                      <label for="emolumentPattern">{{ 'editappointments.EMOLUMENTPATTERN' | translate }}</label>
                       <p-dropdown
                         appendTo="body"
                         formControlName="emolumentPatternId"
@@ -161,7 +161,7 @@
               <div class="p-col-12">
                 <p-button
                   type="submit"
-                  label="Save and close"
+                  label="{{ 'editappointments.SAVECLOSE' | translate }}"
                   icon="pi pi-check"
                   iconPos="left"
                   [disabled]="formGroup.pristine || formGroup.invalid"
@@ -169,7 +169,7 @@
                 <p-button
                   class="p-ml-3"
                   type="button"
-                  label="Save and continue"
+                  label="{{ 'editappointments.SAVECONTINUE' | translate }}"
                   icon="pi pi-arrow-right"
                   iconPos="left"
                   [disabled]="formGroup.pristine || formGroup.invalid"
@@ -187,7 +187,7 @@
       <div class="p-grid form-group">
         <div class="p-col-12">
           <div class="p-field p-fluid">
-            <label for="venue">Venue</label>
+            <label for="venue">{{ 'editappointments.VENUE' | translate }}</label>
             <p-dropdown
               appendTo="body"
               [autoDisplayFirst]="false"
@@ -204,7 +204,7 @@
         </div>
         <div class="p-col-12">
           <div class="p-field p-fluid">
-            <label for="rooms">Rooms</label>
+            <label for="rooms">{{ 'editappointments.ROOMS' | translate }}</label>
             <p-autoComplete
               appendTo="body"
               [(ngModel)]="appointment.rooms"
@@ -224,7 +224,7 @@
         </div>
         <div class="p-col-12">
           <div class="p-field p-fluid">
-            <label for="sections">Sections</label>
+            <label for="sections">{{ 'editappointments.SECTIONS' | translate }}</label>
             <p-autoComplete
               appendTo="body"
               id="sections"
@@ -243,7 +243,7 @@
         </div>
         <div class="p-col-12">
           <div class="p-field p-fluid">
-            <label for="projects">Projects</label>
+            <label for="projects">{{ 'editappointments.PROJECTS' | translate }}</label>
             <p-autoComplete
               appendTo="body"
               [(ngModel)]="appointment.projects"
@@ -274,7 +274,7 @@
         [responsive]="true"
         (onFilter)="onTableFiltered($event)"
       >
-        <ng-template pTemplate="caption">Participations</ng-template>
+        <ng-template pTemplate="caption">{{ 'editappointments.PARTICIPATIONS' | translate }}</ng-template>
         <ng-template pTemplate="header" let-columns>
           <tr>
             <th *ngFor="let col of columns" [pSortableColumn]="col.field">
@@ -338,23 +338,23 @@
         <ng-template pTemplate="body" let-item>
           <tr>
             <td>
-              <span class="p-column-title">Surname</span>
+              <span class="p-column-title">{{ 'SURNAME' | translate }}</span>
               {{ item.surname }}
             </td>
             <td>
-              <span class="p-column-title">Given Name</span>
+              <span class="p-column-title">{{ 'GIVENNAME' | translate }}</span>
               {{ item.givenName }}
             </td>
             <td>
-              <span class="p-column-title">Sections</span>
+              <span class="p-column-title">{{ 'SECTIONS' | translate }}</span>
               {{ item.sections }}
             </td>
             <td>
-              <span class="p-column-title">Is Professional</span>
+              <span class="p-column-title">{{ 'editappointments.LEVEL' | translate }}</span>
               {{ item.isProfessional }}
             </td>
             <td class="p-fluid">
-              <span class="p-column-title">Prediction</span>
+              <span class="p-column-title">{{ 'editappointments.PREDICTION' | translate }}</span>
               <p-dropdown
                 appendTo="body"
                 *ngIf="item.predictionId"
@@ -367,7 +367,7 @@
               ></p-dropdown>
             </td>
             <td class="p-fluid">
-              <span class="p-column-title">Result</span>
+              <span class="p-column-title">{{ 'editappointments.RESULT' | translate }}</span>
               <p-dropdown
                 appendTo="body"
                 placeholer="Select result"
@@ -382,10 +382,10 @@
         </ng-template>
         <ng-template pTemplate="emptymessage" let-columns>
           <tr>
-            <td [attr.colspan]="columns.length">No records found</td>
+            <td [attr.colspan]="columns.length">{{ 'editappointments.NORECORDS' | translate }}</td>
           </tr>
         </ng-template>
-        <ng-template pTemplate="summary"> {{ filteredDataCount }} participations </ng-template>
+        <ng-template pTemplate="summary"> {{ filteredDataCount }} {{ 'editappointments.PARTICIPATIONS' | translate }} </ng-template>
       </p-table>
     </div>
   </ng-container>

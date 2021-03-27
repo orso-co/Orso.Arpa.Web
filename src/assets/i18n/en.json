@@ -51,6 +51,7 @@
   "UPDATE": "Profile update done.",
   "ISSUE": "Could not update profile."
   },
+
   "errors": {
     "NOTFOUND": "Page not found",
     "FORBIDDEN": "Access denied",
@@ -139,22 +140,37 @@
     "dayNames": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     "dayNamesShort": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
     "dayNamesMin": ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
-    "monthNames": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "monthNames": ["January","February","March","April","May","June","July","August","September","October","November","December"],
     "monthNamesShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     "today": "Today",
     "weekHeader": "Wk"
+  },
+  "editappointments": {
+    "CREATE": "Create an appointment",
+    "EDIT": "Edit appointment",
+    "SAVECLOSE": "Save and close",
+    "SAVECONTINUE": "Save and continue",
+    "BASICDATA": "Basic data",
+    "ADDITIONALDATA": "Additional data",
+    "PARTICIPATION": "Participations",
+    "TITLE": "Appointment description",
+    "START": "Start",
+    "END": "End",
+    "STATUS": "Status",
+    "CATEGORY": "Category",
+    "EXPECTATION": "Expectation",
+    "DETAILSPUBLIC": "Public Details",
+    "DETAILSINTERNAL": "Internal Details",
+    "EMOLUMENT": "Emolument",
+    "EMOLUMENTPATTERN": "Emolument Pattern",
+    "VENUE": "Venue",
+    "ROOMS": "Rooms",
+    "SECTIONS": "Sections/Department",
+    "PROJECTS": "Projects",
+    "NORECORDS": "No records found",
+    "PARTICIPATIONS": "Participations",
+    "PREDICTION": "Prediction",
+    "RESULT": "Result",
+    "LEVEL": "(Semi-)Professional"
   }
 }
