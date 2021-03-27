@@ -1,3 +1,5 @@
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppointmentService } from 'src/app/services/appointment.service';
@@ -9,6 +11,8 @@ import { EditAppointmentComponent } from './edit-appointment.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { PrimeNgModule } from '../../prime-ng/prime-ng.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClient } from '@angular/common/http';
+import { HttpLoaderFactory } from 'src/app/app.module';
 
 describe('EditAppointmentComponent', () => {
   let component: EditAppointmentComponent;
@@ -17,7 +21,21 @@ describe('EditAppointmentComponent', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [FormsModule, ReactiveFormsModule, PrimeNgModule, RouterTestingModule, NoopAnimationsModule],
+        imports: [
+          FormsModule,
+          ReactiveFormsModule,
+          PrimeNgModule,
+          RouterTestingModule,
+          NoopAnimationsModule,
+          HttpClientTestingModule,
+          TranslateModule.forRoot({
+            loader: {
+              provide: TranslateLoader,
+              useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+            }
+          })
+        ],
         declarations: [EditAppointmentComponent],
         providers: [
           { provide: DynamicDialogRef, useValue: {} },
