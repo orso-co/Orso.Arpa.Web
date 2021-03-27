@@ -11,6 +11,11 @@
     -o-transform: rotate(-2deg) translate(-23px, -37px);
     -ms-transform: rotate(-2deg) translate(-23px, -37px);
     transform: rotate(-2deg) translate(-23px, -37px);
+    p {
+      margin: 0;
+      color: var(--primary-color-text);
+    }
+
     .day {
       font-size: xxx-large;
       font-weight: bold;
@@ -18,7 +23,6 @@
     }
     .passed {
       color: gray;
-      margin: 0;
     }
   }
 }
