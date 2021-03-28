@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -77,7 +78,8 @@ export class EditAppointmentComponent implements OnInit {
     public config: DynamicDialogConfig,
     private toastService: ToastService,
     private appointmentService: AppointmentService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -97,17 +99,17 @@ export class EditAppointmentComponent implements OnInit {
     }
 
     this.isProfessionalOptions = [
-      { label: 'Yes', value: 'Yes' },
-      { label: 'No', value: 'No' },
+      { label: this.translate.instant('Yes'), value: 'Yes' },
+      { label: this.translate.instant('No'), value: 'No' },
     ];
 
     this.columns = [
-      { field: 'surname', header: 'Surname' },
-      { field: 'givenName', header: 'Given Name' },
-      { field: 'sections', header: 'Sections' },
-      { field: 'isProfessional', header: 'Is Professional' },
-      { field: 'predictionId', header: 'Prediction' },
-      { field: 'resultId', header: 'Result' },
+      { field: 'surname', header: this.translate.instant('SURNAME') },
+      { field: 'givenName', header: this.translate.instant('GIVENNAME') },
+      { field: 'sections', header: this.translate.instant('editappointments.SECTIONS') },
+      { field: 'isProfessional', header: this.translate.instant('editappointments.LEVEL') },
+      { field: 'predictionId', header: this.translate.instant('editappointments.PREDICTION') },
+      { field: 'resultId', header: this.translate.instant('editappointments.RESULTS')},
     ];
 
     this.createStepperMenu();
@@ -157,20 +159,20 @@ export class EditAppointmentComponent implements OnInit {
   private createStepperMenu(): void {
     this.items = [
       {
-        label: 'Basic data',
+        label: this.translate.instant('editappointments.BASICDATA'),
         command: (event: any) => {
           this.activeIndex = 0;
         },
       },
       {
-        label: 'Additional data',
+        label: this.translate.instant('editappointments.ADDITIONALDATA'),
         disabled: this.isNew,
         command: (event: any) => {
           this.activeIndex = 1;
         },
       },
       {
-        label: 'Participations',
+        label: this.translate.instant('editappointments.PARTICIPATIONS'),
         disabled: this.isNew,
         command: (event: any) => {
           this.activeIndex = 2;
