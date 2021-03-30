@@ -12,7 +12,7 @@ import { IAppointmentDto, ICalendarEvent, IProjectDto, IVenueDto } from 'src/app
 import { ToastService } from 'src/app/services/toast.service';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { DateRange } from 'src/app/models/date-range';
-import { DialogService } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SubSink } from 'subsink';
@@ -128,12 +128,15 @@ export class AppointmentsComponent implements OnDestroy {
   }
 
   mapAppointmentToCalendarEvent(appointment: IAppointmentDto): ICalendarEvent {
-    return {
+    // let allDay = false;
+    // if(new Date(appointment.endTime).getHours() - new Date(appointment.startTime).getHours() <= 7) allDay = true; 
+     return {
       id: appointment.id,
       end: new Date(appointment.endTime),
       start: new Date(appointment.startTime),
       title: appointment.name,
-      allDay: false,
+      //allDay: appointment.allDay,
+      allDay:false,
     };
   }
 
@@ -188,6 +191,7 @@ export class AppointmentsComponent implements OnDestroy {
         appointment: {
           startTime: appointmentDate,
           endTime: appointmentDate,
+          //allDay:false,
           id: null,
           internalDetails: null,
           publicDetails: null,
@@ -220,6 +224,7 @@ export class AppointmentsComponent implements OnDestroy {
       },
       header: this.translate.instant('editappointments.CREATE'),
       style: { 'max-width': '1500px' },
+      dismissableMask: true
     });
 
     this.subs.add(
@@ -228,7 +233,7 @@ export class AppointmentsComponent implements OnDestroy {
           this.appointments = [...this.appointments, appointment];
         }
       })
-    );
+    );    
   }
 
   private openEditDialog(appointmentId: string): void {
@@ -249,6 +254,7 @@ export class AppointmentsComponent implements OnDestroy {
       },
       header: this.translate.instant('editappointments.EDIT'),
       style: { 'max-width': '1500px' },
+      dismissableMask:true,
     });
 
     this.subs.add(
