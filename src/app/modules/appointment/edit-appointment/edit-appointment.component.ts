@@ -82,7 +82,7 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
     private toastService: ToastService,
     private appointmentService: AppointmentService,
     private formBuilder: FormBuilder,
-    private translateService: TranslateService,
+    private translate: TranslateService,
     private confirmationService: ConfirmationService,
     private loadingService: LoadingService
   ) {}
@@ -212,7 +212,7 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
   updateAppointment(appointment: IAppointmentDto, continueToNextStep: boolean): void {
     this.subs.add(
       this.loadingService.showLoaderUntilCompleted(this.appointmentService.update(appointment)).subscribe(() => {
-        this.toastService.success('Appointment updated');
+        this.toastService.success('editappointments.APPOINTMENT_UPDATED');
         if (continueToNextStep) {
           this.appointment = appointment;
           this.fillForm();
@@ -227,7 +227,7 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
   createAppointment(appointment: IAppointmentDto, continueToNextStep: boolean): void {
     this.subs.add(
       this.loadingService.showLoaderUntilCompleted(this.appointmentService.create(appointment)).subscribe((result) => {
-        this.toastService.success('Appointment created');
+        this.toastService.success('editappointments.APPOINTMENT_CREATED');
         if (continueToNextStep) {
           this.appointment = result;
           this.fillForm();
@@ -274,7 +274,7 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
   onVenueChanged(event: any): void {
     this.subs.add(
       this.loadingService.showLoaderUntilCompleted(this.appointmentService.setVenue(this.appointment.id, event.value)).subscribe((_) => {
-        this.toastService.success('Venue set');
+        this.toastService.success('editappointments.VENUE_SET');
         this.appointment.rooms.forEach((room) => {
           this.removeRoom(room.id, false);
         });
@@ -312,7 +312,7 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
     this.subs.add(
       this.loadingService.showLoaderUntilCompleted(this.appointmentService.removeRoom(this.appointment.id, roomId)).subscribe((_) => {
         if (showToast) {
-          this.toastService.success('Room removed');
+          this.toastService.success('editappointments.ROOM_REMOVED');
         }
       })
     );
@@ -321,7 +321,7 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
   addRoom(roomId: string): void {
     this.subs.add(
       this.loadingService.showLoaderUntilCompleted(this.appointmentService.addRoom(this.appointment.id, roomId)).subscribe((_) => {
-        this.toastService.success('Room added');
+        this.toastService.success('editappointments.ROOM_ADDED');
       })
     );
   }
@@ -333,7 +333,7 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
         .subscribe((result) => {
           this.appointment = result;
           this.mapParticipations();
-          this.toastService.success('Section removed');
+          this.toastService.success('editappointments.SECTION_REMOVED');
         })
     );
   }
@@ -345,7 +345,7 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
         .subscribe((result) => {
           this.appointment = result;
           this.mapParticipations();
-          this.toastService.success('Section added');
+          this.toastService.success('editappointments.SECTION_ADDED');
         })
     );
   }
@@ -357,7 +357,7 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
         .subscribe((result) => {
           this.appointment = result;
           this.mapParticipations();
-          this.toastService.success('Project removed');
+          this.toastService.success('editappointments.PROJECT_REMOVED');
         })
     );
   }
@@ -369,7 +369,7 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
         .subscribe((result) => {
           this.appointment = result;
           this.mapParticipations();
-          this.toastService.success('Project added');
+          this.toastService.success('editappointments.PROJECT_ADDED');
         })
     );
   }
@@ -387,7 +387,7 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
       this.loadingService
         .showLoaderUntilCompleted(this.appointmentService.setResult(item.personId, this.appointment.id, event.value))
         .subscribe((_) => {
-          this.toastService.success('Result set');
+          this.toastService.success('editappointments.RESULT_SET');
         })
     );
   }
@@ -395,10 +395,10 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
   showDeleteConfirmation(event: Event): void {
     this.confirmationService.confirm({
       target: event.target || undefined,
-      message: 'Are you sure that you want to irrevocably delete this appointment including all dependent data?',
+      message: this.translate.instant('editappointments.ARE_YOU_SURE'),
       icon: 'pi pi-exclamation-triangle',
-      acceptLabel: this.translateService.instant('YES'),
-      rejectLabel: this.translateService.instant('NO'),
+      acceptLabel: this.translate.instant('YES'),
+      rejectLabel: this.translate.instant('NO'),
       accept: () => {
         this.deleteAppointment();
       },
@@ -408,7 +408,7 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
   private deleteAppointment(): void {
     this.subs.add(
       this.loadingService.showLoaderUntilCompleted(this.appointmentService.delete(this.appointment.id)).subscribe(() => {
-        this.toastService.success('Appointment deleted');
+        this.toastService.success('editappointments.APPOINTMENT_DELETED');
         this.ref.close(this.appointment.id);
       })
     );

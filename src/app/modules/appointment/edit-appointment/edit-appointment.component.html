@@ -9,7 +9,7 @@
               <div class="p-col-12 p-md-6 p-lg-4">
                 <div class="p-col-12">
                   <div class="p-field">
-                    <label for="title">{{ 'editappointments.TITLE' |�translate }} *</label>
+                    <label for="title">{{ 'editappointments.TITLE' | translate }} *</label>
                     <input required type="text" pInputText placeholder="{{ 'editappointments.TITLE' | translate }} *" formControlName="name" maxlength="50" id="title" />
                   </div>
                 </div>
@@ -179,12 +179,11 @@
                     (click)="onSubmit(true)"
                   ></button>
                 </div>
-
                 <button
                   pButton
                   class="p-ml-3 p-button-danger"
                   type="button"
-                  label="Delete"
+                  [label]="'DELETE' | translate"
                   icon="pi pi-trash"
                   iconPos="left"
                   (click)="showDeleteConfirmation($event)"
