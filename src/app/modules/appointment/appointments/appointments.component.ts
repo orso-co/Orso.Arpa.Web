@@ -129,14 +129,14 @@ export class AppointmentsComponent implements OnDestroy {
 
   mapAppointmentToCalendarEvent(appointment: IAppointmentDto): ICalendarEvent {
     // let allDay = false;
-    // if(new Date(appointment.endTime).getHours() - new Date(appointment.startTime).getHours() <= 7) allDay = true; 
+    // if(new Date(appointment.endTime).getHours() - new Date(appointment.startTime).getHours() <= 7) allDay = true;
      return {
       id: appointment.id,
       end: new Date(appointment.endTime),
       start: new Date(appointment.startTime),
       title: appointment.name,
-      //allDay: appointment.allDay,
-      allDay:false,
+      // allDay: appointment.allDay,
+      allDay: false,
     };
   }
 
@@ -191,7 +191,7 @@ export class AppointmentsComponent implements OnDestroy {
         appointment: {
           startTime: appointmentDate,
           endTime: appointmentDate,
-          //allDay:false,
+          // allDay:false,
           id: null,
           internalDetails: null,
           publicDetails: null,
@@ -233,7 +233,7 @@ export class AppointmentsComponent implements OnDestroy {
           this.appointments = [...this.appointments, appointment];
         }
       })
-    );    
+    );
   }
 
   private openEditDialog(appointmentId: string): void {
@@ -254,7 +254,7 @@ export class AppointmentsComponent implements OnDestroy {
       },
       header: this.translate.instant('editappointments.EDIT'),
       style: { 'max-width': '1500px' },
-      dismissableMask:true,
+      dismissableMask: true,
     });
 
     this.subs.add(
