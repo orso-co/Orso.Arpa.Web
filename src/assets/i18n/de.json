@@ -39,6 +39,7 @@
   "DAY": "Tag",
   "WEEK": "Woche",
   "MONTH": "Monat",
+  "DELETE": "Löschen",
 
   "appointments": {
     "NEW_APPOINTMENT_CONFIRMATION": "Möchtest du einen neuen Termin anlegen für {{value}}?"
@@ -146,10 +147,22 @@
     "weekHeader": "Woche"
   },
   "editappointments": {
+    "APPOINTMENT_CREATED": "Termin angelegt",
+    "APPOINTMENT_DELETED": "Termin gelöscht",
+    "APPOINTMENT_UPDATED": "Termin aktualisiert",
+    "ARE_YOU_SURE": "Sind Sie sicher, dass Sie den Termin inklusiver aller abhängigen Daten unwiderruflich löschen wollen?",
     "CREATE": "Termin erstellen",
     "EDIT": "Termin bearbeiten",
+    "PROJECT_ADDED": "Projekt hinzugefügt",
+    "PROJECT_REMOVED": "Projekt entfernt",
+    "RESULT_SET": "Ergebnis gesetzt",
+    "ROOM_ADDED": "Raum hinzugefügt",
+    "ROOM_REMOVED": "Raum entfernt",
     "SAVECLOSE": "Speichern und schließen",
     "SAVECONTINUE": "Speichern und weiter",
+    "SECTION_ADDED": "Register hinzugefügt",
+    "SECTION_REMOVED": "Register entfernt",
+    "VENUE_SET": "Veranstaltungsort gesetzt",
     "BASICDATA": "Basisdaten",
     "ADDITIONALDATA": "Details",
     "PARTICIPATION": "Teilnahmestatus",

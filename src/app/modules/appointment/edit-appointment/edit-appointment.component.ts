@@ -1,9 +1,11 @@
+import { LoadingService } from './../../../services/loading.service';
+import { SubSink } from 'subsink';
 import { TranslateService } from '@ngx-translate/core';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
-import { MenuItem, SelectItem } from 'primeng/api';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { MenuItem, SelectItem, ConfirmationService } from 'primeng/api';
 import { IAppointmentDto, IMusicianProfileDto, IProjectDto, IRoomDto, IVenueDto } from 'src/app/models/appointment';
 import { ISectionDto } from 'src/app/models/section';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -41,10 +43,11 @@ class ParticipationTableItem {
   templateUrl: './edit-appointment.component.html',
   styleUrls: ['./edit-appointment.component.scss'],
 })
-export class EditAppointmentComponent implements OnInit {
+export class EditAppointmentComponent implements OnInit, OnDestroy {
   items: MenuItem[] = [];
   activeIndex = 0;
   formGroup: FormGroup;
+  private subs = new SubSink();
 
   appointment: IAppointmentDto = this.config.data.appointment;
   sections: ISectionDto[] = this.config.data.sections;
@@ -79,7 +82,9 @@ export class EditAppointmentComponent implements OnInit {
     private toastService: ToastService,
     private appointmentService: AppointmentService,
     private formBuilder: FormBuilder,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private confirmationService: ConfirmationService,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit(): void {
@@ -90,7 +95,7 @@ export class EditAppointmentComponent implements OnInit {
 
     if (this.appointment.participations) {
       this.sectionSelectItems = this.appointment.participations
-        .map(p => p.musicianProfiles)
+        .map((p) => p.musicianProfiles)
         .reduce((a, b) => a.concat(b), [])
         .map((mp) => this.mapMusicianProfileToSelectItem(mp));
       this.setRooms(this.appointment.venueId);
@@ -113,6 +118,10 @@ export class EditAppointmentComponent implements OnInit {
     ];
 
     this.createStepperMenu();
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 
   private createForm(): void {
@@ -201,30 +210,34 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   updateAppointment(appointment: IAppointmentDto, continueToNextStep: boolean): void {
-    this.appointmentService.update(appointment).subscribe((_) => {
-      this.toastService.success('Appointment updated');
-      if (continueToNextStep) {
-        this.appointment = appointment;
-        this.fillForm();
-        this.activeIndex = 1;
-      } else {
-        this.ref.close(appointment);
-      }
-    });
+    this.subs.add(
+      this.loadingService.showLoaderUntilCompleted(this.appointmentService.update(appointment)).subscribe(() => {
+        this.toastService.success('editappointments.APPOINTMENT_UPDATED');
+        if (continueToNextStep) {
+          this.appointment = appointment;
+          this.fillForm();
+          this.activeIndex = 1;
+        } else {
+          this.ref.close(appointment);
+        }
+      })
+    );
   }
 
   createAppointment(appointment: IAppointmentDto, continueToNextStep: boolean): void {
-    this.appointmentService.create(appointment).subscribe((result) => {
-      this.toastService.success('Appointment created');
-      if (continueToNextStep) {
-        this.appointment = result;
-        this.fillForm();
-        this.createStepperMenu();
-        this.activeIndex = 1;
-      } else {
-        this.ref.close(result);
-      }
-    });
+    this.subs.add(
+      this.loadingService.showLoaderUntilCompleted(this.appointmentService.create(appointment)).subscribe((result) => {
+        this.toastService.success('editappointments.APPOINTMENT_CREATED');
+        if (continueToNextStep) {
+          this.appointment = result;
+          this.fillForm();
+          this.createStepperMenu();
+          this.activeIndex = 1;
+        } else {
+          this.ref.close(result);
+        }
+      })
+    );
   }
 
   setRooms(venueId: string): void {
@@ -259,14 +272,16 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   onVenueChanged(event: any): void {
-    this.appointmentService.setVenue(this.appointment.id, event.value).subscribe((_) => {
-      this.toastService.success('Venue set');
-      this.appointment.rooms.forEach((room) => {
-        this.removeRoom(room.id, false);
-      });
-      this.appointment.rooms = [];
-      this.setRooms(event.value);
-    });
+    this.subs.add(
+      this.loadingService.showLoaderUntilCompleted(this.appointmentService.setVenue(this.appointment.id, event.value)).subscribe((_) => {
+        this.toastService.success('editappointments.VENUE_SET');
+        this.appointment.rooms.forEach((room) => {
+          this.removeRoom(room.id, false);
+        });
+        this.appointment.rooms = [];
+        this.setRooms(event.value);
+      })
+    );
   }
 
   onProjectAdded(event: any): void {
@@ -294,49 +309,69 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   removeRoom(roomId: string, showToast: boolean): void {
-    this.appointmentService.removeRoom(this.appointment.id, roomId).subscribe((_) => {
-      if (showToast) {
-        this.toastService.success('Room removed');
-      }
-    });
+    this.subs.add(
+      this.loadingService.showLoaderUntilCompleted(this.appointmentService.removeRoom(this.appointment.id, roomId)).subscribe((_) => {
+        if (showToast) {
+          this.toastService.success('editappointments.ROOM_REMOVED');
+        }
+      })
+    );
   }
 
   addRoom(roomId: string): void {
-    this.appointmentService.addRoom(this.appointment.id, roomId).subscribe((_) => {
-      this.toastService.success('Room added');
-    });
+    this.subs.add(
+      this.loadingService.showLoaderUntilCompleted(this.appointmentService.addRoom(this.appointment.id, roomId)).subscribe((_) => {
+        this.toastService.success('editappointments.ROOM_ADDED');
+      })
+    );
   }
 
   removeSection(sectionId: string): void {
-    this.appointmentService.removeSection(this.appointment.id, sectionId).subscribe((result) => {
-      this.appointment = result;
-      this.mapParticipations();
-      this.toastService.success('Section removed');
-    });
+    this.subs.add(
+      this.loadingService
+        .showLoaderUntilCompleted(this.appointmentService.removeSection(this.appointment.id, sectionId))
+        .subscribe((result) => {
+          this.appointment = result;
+          this.mapParticipations();
+          this.toastService.success('editappointments.SECTION_REMOVED');
+        })
+    );
   }
 
   addSection(sectionId: string): void {
-    this.appointmentService.addSection(this.appointment.id, sectionId).subscribe((result) => {
-      this.appointment = result;
-      this.mapParticipations();
-      this.toastService.success('Section added');
-    });
+    this.subs.add(
+      this.loadingService
+        .showLoaderUntilCompleted(this.appointmentService.addSection(this.appointment.id, sectionId))
+        .subscribe((result) => {
+          this.appointment = result;
+          this.mapParticipations();
+          this.toastService.success('editappointments.SECTION_ADDED');
+        })
+    );
   }
 
   removeProject(projectId: string): void {
-    this.appointmentService.removeProject(this.appointment.id, projectId).subscribe((result) => {
-      this.appointment = result;
-      this.mapParticipations();
-      this.toastService.success('Project removed');
-    });
+    this.subs.add(
+      this.loadingService
+        .showLoaderUntilCompleted(this.appointmentService.removeProject(this.appointment.id, projectId))
+        .subscribe((result) => {
+          this.appointment = result;
+          this.mapParticipations();
+          this.toastService.success('editappointments.PROJECT_REMOVED');
+        })
+    );
   }
 
   addProject(projectId: string): void {
-    this.appointmentService.addProject(this.appointment.id, projectId).subscribe((result) => {
-      this.appointment = result;
-      this.mapParticipations();
-      this.toastService.success('Project added');
-    });
+    this.subs.add(
+      this.loadingService
+        .showLoaderUntilCompleted(this.appointmentService.addProject(this.appointment.id, projectId))
+        .subscribe((result) => {
+          this.appointment = result;
+          this.mapParticipations();
+          this.toastService.success('editappointments.PROJECT_ADDED');
+        })
+    );
   }
 
   getSectionNames(musicianProfiles: IMusicianProfileDto[]): string {
@@ -348,8 +383,34 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   onResultChanged(item: ParticipationTableItem, event: any): void {
-    this.appointmentService.setResult(item.personId, this.appointment.id, event.value).subscribe((_) => {
-      this.toastService.success('Result set');
+    this.subs.add(
+      this.loadingService
+        .showLoaderUntilCompleted(this.appointmentService.setResult(item.personId, this.appointment.id, event.value))
+        .subscribe((_) => {
+          this.toastService.success('editappointments.RESULT_SET');
+        })
+    );
+  }
+
+  showDeleteConfirmation(event: Event): void {
+    this.confirmationService.confirm({
+      target: event.target || undefined,
+      message: this.translate.instant('editappointments.ARE_YOU_SURE'),
+      icon: 'pi pi-exclamation-triangle',
+      acceptLabel: this.translate.instant('YES'),
+      rejectLabel: this.translate.instant('NO'),
+      accept: () => {
+        this.deleteAppointment();
+      },
     });
+  }
+
+  private deleteAppointment(): void {
+    this.subs.add(
+      this.loadingService.showLoaderUntilCompleted(this.appointmentService.delete(this.appointment.id)).subscribe(() => {
+        this.toastService.success('editappointments.APPOINTMENT_DELETED');
+        this.ref.close(this.appointment.id);
+      })
+    );
   }
 }
