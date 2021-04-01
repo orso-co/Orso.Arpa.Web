@@ -76,13 +76,13 @@ export class ApiInterceptor implements HttpInterceptor {
           }
           return of(error);
         }),
-        catchError((error) => {
-          if (error.status !== 401) {
-            return this.handleResponseError(error);
+        catchError((e) => {
+          if (e.status !== 401) {
+            return this.handleResponseError(e);
           } else {
             this.logout();
           }
-          return of(error);
+          return of(e);
         }));
     } else if (error.status === 403) {
       this.notificationsService.error('error.FORBIDDEN');
@@ -111,12 +111,12 @@ export class ApiInterceptor implements HttpInterceptor {
   setAuthHeader() {
     const token = this.jwtService.getToken();
     const headersConfig: Record<string, string> = {
-      // eslint-disable @typescript-eslint/naming-convention
+      /* eslint-disable @typescript-eslint/naming-convention */
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Accept-Language': this.translate.currentLang + ';q=0.9,de,de-DE;q=0.8,en,en-GB;q=0.7',
     };
-    // eslint-enable @typescript-eslint/naming-convention
+    /* eslint-enable @typescript-eslint/naming-convention */
     if (token) {
       headersConfig.Authorization = `Bearer ${token}`;
     }
