@@ -14,7 +14,7 @@ export class ProjectListComponent implements OnDestroy {
   private subs = new SubSink();
 
   constructor(
-    route: ActivatedRoute
+    route: ActivatedRoute,
   ) {
     if (route) {
       this.subs.add(

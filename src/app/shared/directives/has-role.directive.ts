@@ -1,9 +1,9 @@
-import {Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
-import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
+import { Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Directive({
-  selector: '[arpaHasRole]'
+  selector: '[arpaHasRole]',
 })
 export class HasRoleDirective implements OnInit, OnDestroy {
 
@@ -23,8 +23,8 @@ export class HasRoleDirective implements OnInit, OnDestroy {
   ngOnInit() {
     //  We subscribe to the roles$ to know the roles the user has
     /**this.rolesService.roles$.pipe(
-      takeUntil(this.stop$)
-    ).subscribe((roles: any) => {
+     takeUntil(this.stop$)
+     ).subscribe((roles: any) => {
       if (!roles) {
         this.viewContainerRef.clear();
       }
