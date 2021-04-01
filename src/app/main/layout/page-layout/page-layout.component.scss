@@ -1,0 +1,17 @@
+:host {
+  .p-grid {
+    height: 100%;
+    align-items: stretch;
+  }
+
+  .bg {
+    @media (min-width: 768px) {
+      background-image: url("../../../../assets/organization/images/bg-login.jpg");
+      background-repeat: no-repeat;
+      background-position-x: left;
+      background-position-y: top;
+      background-size: auto 100%;
+      align-items: stretch;
+    }
+  }
+}

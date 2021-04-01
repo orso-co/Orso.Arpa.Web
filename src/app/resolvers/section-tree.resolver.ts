@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { SectionService } from '../services/section.service';
+import {SectionService} from '../core/services/section.service';
 
 @Injectable({ providedIn: 'root' })
 export class SectionTreeResolver implements Resolve<boolean> {

@@ -12,10 +12,23 @@ export const environment = {
     baseUrl: 'localhost:5000'
   },
   web:
-  {
-    protocol: 'http',
-    baseUrl: 'localhost:4200'
+    {
+      protocol: 'http',
+      baseUrl: 'localhost:4200'
+    },
+  arpa: {
+    url: 'http://arpa.orso.berlin/',
   },
+  validation: {
+    password: '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9].{5,256}',
+    email: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,4}$',
+  },
+  config: {
+    url: 'http://localhost:5000/swagger/v1/swagger.json',
+  },
+  locale: {
+    default: 'de',
+  }
 };
 
 /*

@@ -1,8 +1,8 @@
-import { ProjectService } from './../services/project.service';
-import { IProjectDto } from './../models/appointment';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
+import {IProjectDto} from '../models/appointment';
+import {ProjectService} from '../core/services/project.service';
 
 @Injectable({providedIn: 'root'})
 export class ProjectListResolver implements Resolve<IProjectDto[]> {
