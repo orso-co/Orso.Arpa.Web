@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {AuthService, IToken} from '../../../core/services/auth.service';
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { AuthService, IToken } from '../../../core/services/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ export class DashboardGuard implements CanActivate {
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    state: RouterStateSnapshot,
   ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     return this.authService.currentUser.pipe(
       map((token: IToken | null) => {
@@ -27,7 +27,7 @@ export class DashboardGuard implements CanActivate {
           default:
             return this.router.parseUrl(`/arpa/dashboard/${token.roles[0]}`);
         }
-      })
+      }),
     );
   }
 }

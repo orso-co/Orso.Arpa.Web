@@ -1,16 +1,22 @@
-import {Component} from '@angular/core';
-import {ConfigService} from './core/services/config.service';
-import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterEvent} from '@angular/router';
-import {LoadingService} from './core/services/loading.service';
-import {AuthService} from './core/services/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { ConfigService } from './core/services/config.service';
+import {
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router,
+} from '@angular/router';
+import { LoadingService } from './core/services/loading.service';
+import { AuthService } from './core/services/auth.service';
 
 @Component({
   selector: 'arpa-root',
   template: `
     <arpa-loading></arpa-loading>
-    <router-outlet></router-outlet>`
+    <router-outlet></router-outlet>`,
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Orso-Arpa-Web';
 
   constructor(
@@ -33,8 +39,8 @@ export class AppComponent {
         state: {
           error: 500,
           type: 'FatalError',
-          message: 'Could not load config!'
-        }
+          message: 'Could not load config!',
+        },
       });
     }
     this.authService.populate();

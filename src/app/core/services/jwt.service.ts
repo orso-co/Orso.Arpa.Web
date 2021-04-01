@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core';
-import {JwtHelperService} from '@auth0/angular-jwt';
-import {RoleNames} from '../../models/role-names';
+import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { RoleNames } from '../../models/role-names';
 
 const JWT_TOKEN_KEY = 'jwtToken';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class JwtService {
   private jwtHelperService: JwtHelperService;
@@ -33,16 +33,6 @@ export class JwtService {
     };
   }
 
-  private normalizeRoles(tokenObj: any): RoleNames[] {
-    if (!tokenObj.hasOwnProperty('role')) {
-      return [];
-    }
-    if (Array.isArray(tokenObj.role)) {
-      return [...tokenObj.role.map((roleName: string) => roleName.toLowerCase())];
-    }
-    return [tokenObj.role.toLowerCase()];
-  }
-
   getToken(): string {
     return window.localStorage[JWT_TOKEN_KEY];
   }
@@ -53,5 +43,15 @@ export class JwtService {
 
   destroyToken() {
     window.localStorage.removeItem(JWT_TOKEN_KEY);
+  }
+
+  private normalizeRoles(tokenObj: any): RoleNames[] {
+    if (!tokenObj.hasOwnProperty('role')) {
+      return [];
+    }
+    if (Array.isArray(tokenObj.role)) {
+      return [...tokenObj.role.map((roleName: string) => roleName.toLowerCase())];
+    }
+    return [tokenObj.role.toLowerCase()];
   }
 }

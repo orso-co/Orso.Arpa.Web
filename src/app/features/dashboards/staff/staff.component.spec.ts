@@ -4,9 +4,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { HttpLoaderFactory } from 'src/app/app.module';
 
 import { StaffComponent } from './staff.component';
+import { httpLoaderFactory } from '../../../core/core.module';
 
 describe('StaffComponent', () => {
   let component: StaffComponent;
@@ -14,7 +14,7 @@ describe('StaffComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StaffComponent ],
+      declarations: [StaffComponent],
       imports: [
         HttpClientTestingModule,
         ReactiveFormsModule,
@@ -23,13 +23,13 @@ describe('StaffComponent', () => {
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-          }
-        })
+            useFactory: httpLoaderFactory,
+            deps: [HttpClient],
+          },
+        }),
       ],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

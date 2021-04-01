@@ -1,9 +1,8 @@
-
 import { waitForAsync } from '@angular/core/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoadingComponent } from './loading.component';
-import {LoadingService} from '../../core/services/loading.service';
+import { LoadingService } from '../../core/services/loading.service';
 
 describe('LoadingComponent', () => {
   let component: LoadingComponent;
@@ -15,7 +14,7 @@ describe('LoadingComponent', () => {
         declarations: [LoadingComponent],
         providers: [{ provide: LoadingService, useValue: {} }],
       }).compileComponents();
-    })
+    }),
   );
 
   beforeEach(() => {

@@ -1,9 +1,9 @@
-import {Observable, BehaviorSubject} from 'rxjs';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {Inject, Injectable} from '@angular/core';
-import {tap, shareReplay} from 'rxjs/operators';
-import {ISectionDto, ISectionTreeDto} from '../../models/section';
-import {ApiService} from './api.service';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { tap, shareReplay } from 'rxjs/operators';
+import { ISectionDto, ISectionTreeDto } from '../../models/section';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +23,7 @@ export class SectionService {
     return this.apiService.get<ISectionDto[]>(this.baseUrl).pipe(
       shareReplay(),
       tap((sections) => (this.sections$$.next(sections))),
-      tap(sections => this.sectionsLoaded = true)
+      tap(sections => this.sectionsLoaded = true),
     );
   }
 
@@ -36,7 +36,7 @@ export class SectionService {
       .get<ISectionTreeDto>(`${this.baseUrl}/tree`, params)
       .pipe(
         shareReplay(),
-        tap((tree) => this.sectionTrees.set(treeMaxLevel, tree))
+        tap((tree) => this.sectionTrees.set(treeMaxLevel, tree)),
       );
   }
 

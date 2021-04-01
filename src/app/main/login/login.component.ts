@@ -1,18 +1,17 @@
-import {Component, OnInit} from '@angular/core';
-import {SubSink} from 'subsink';
-import {Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {NotificationsService} from '../../core/services/notifications.service';
-import {LoadingService} from '../../core/services/loading.service';
-import {AuthService} from '../../core/services/auth.service';
-import {tap} from 'rxjs/operators';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { SubSink } from 'subsink';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NotificationsService } from '../../core/services/notifications.service';
+import { LoadingService } from '../../core/services/loading.service';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'arpa-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   loginFormGroup: FormGroup;
   private subs = new SubSink();
   hide = true;
@@ -28,7 +27,7 @@ export class LoginComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(1),
-        ]
+        ],
       ],
       password: [
         null,
@@ -41,7 +40,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.authService.getCurrentUser().username) {
+    if (this.authService.getCurrentUser().username) {
       this.router.navigate(['/arpa/dashboard']);
     }
   }

@@ -1,14 +1,14 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor, HttpErrorResponse
+  HttpInterceptor, HttpErrorResponse,
 } from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
-import {catchError, finalize} from 'rxjs/operators';
-import {NotificationsService} from '../services/notifications.service';
-import {LoadingService} from '../services/loading.service';
+import { Observable, throwError } from 'rxjs';
+import { catchError, finalize } from 'rxjs/operators';
+import { NotificationsService } from '../services/notifications.service';
+import { LoadingService } from '../services/loading.service';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
@@ -20,7 +20,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
   intercept(
     request: HttpRequest<any>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<any>> {
     this.loadingService.loadingOn();
     return next.handle(request).pipe(
@@ -31,7 +31,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
       }),
       finalize(() => {
         this.loadingService.loadingOff();
-      })
+      }),
     ) as Observable<HttpEvent<any>>;
   }
 }

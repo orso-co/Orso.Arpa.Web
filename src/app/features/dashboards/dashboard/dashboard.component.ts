@@ -1,9 +1,9 @@
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { combineLatest, Observable } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { MenuItem } from 'primeng/api';
-import {AuthService} from '../../../core/services/auth.service';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'arpa-dashboard',
@@ -18,7 +18,7 @@ export class DashboardComponent {
 
     this.menuItems$ = authService.currentUser.pipe(
       map((token) => token!.roles),
-      map((roles) => roles.map((role) => ({ routerLink: [`/arpa/dashboard/${role}`], label: role.toUpperCase() })))
+      map((roles) => roles.map((role) => ({ routerLink: [`/arpa/dashboard/${role}`], label: role.toUpperCase() }))),
     );
   }
 

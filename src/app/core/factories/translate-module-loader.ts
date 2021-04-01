@@ -1,11 +1,11 @@
-import {HttpClient} from '@angular/common/http';
-import {forkJoin, Observable, of} from 'rxjs';
-import {TranslateLoader} from '@ngx-translate/core';
-import {catchError, map} from 'rxjs/operators';
-import {merge} from 'lodash-es';
+import { HttpClient } from '@angular/common/http';
+import { forkJoin, Observable, of } from 'rxjs';
+import { TranslateLoader } from '@ngx-translate/core';
+import { catchError, map } from 'rxjs/operators';
+import { merge } from 'lodash-es';
 
 export class TranslateModuleLoader implements TranslateLoader {
-  constructor(private http: HttpClient, private modules: String[]) {
+  constructor(private http: HttpClient, private modules: string[]) {
   }
 
   /**

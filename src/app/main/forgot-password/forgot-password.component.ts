@@ -1,17 +1,17 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {SubSink} from 'subsink';
-import {ActivatedRoute} from '@angular/router';
-import {AuthService} from '../../core/services/auth.service';
-import {NotificationsService} from '../../core/services/notifications.service';
-import {IResetPasswordDto} from '../../models/IResetPasswordDto';
-import {ConfigService} from '../../core/services/config.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { SubSink } from 'subsink';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
+import { NotificationsService } from '../../core/services/notifications.service';
+import { IResetPasswordDto } from '../../models/IResetPasswordDto';
+import { ConfigService } from '../../core/services/config.service';
 
 @Component({
   selector: 'arpa-forgot-password',
   templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.css']
+  styleUrls: ['./forgot-password.component.css'],
 })
 export class ForgotPasswordComponent implements OnInit {
 
@@ -25,14 +25,14 @@ export class ForgotPasswordComponent implements OnInit {
               private configService: ConfigService,
               private notificationsService: NotificationsService,
               private router: Router,
-              private route: ActivatedRoute
+              private route: ActivatedRoute,
   ) {
     this.forgotPasswordFormGroup = formBuilder.group({
       password: [
         null,
         [
           Validators.required,
-          Validators.pattern(this.configService.getEnv('validation').password)
+          Validators.pattern(this.configService.getEnv('validation').password),
         ],
       ],
     });

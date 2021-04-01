@@ -1,17 +1,17 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   UrlTree,
   Router,
-  CanActivateChild
+  CanActivateChild,
 } from '@angular/router';
-import {Observable} from 'rxjs';
-import {AuthService} from '../services/auth.service';
-import {map} from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RoleGuard implements CanActivateChild {
 
@@ -34,7 +34,7 @@ export class RoleGuard implements CanActivateChild {
           return true;
         }
         return this.router.parseUrl('/forbidden');
-      })
+      }),
     );
   }
 

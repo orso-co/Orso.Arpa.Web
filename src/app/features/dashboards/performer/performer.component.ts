@@ -7,14 +7,14 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'arpa-performer',
   templateUrl: './performer.component.html',
-  styleUrls: ['./performer.component.scss']
+  styleUrls: ['./performer.component.scss'],
 })
 export class PerformerComponent implements OnDestroy {
   projects: IProjectDto[] = [];
   private subs = new SubSink();
 
   constructor(
-    route: ActivatedRoute
+    route: ActivatedRoute,
   ) {
     this.subs.add(
       route.data.pipe(map((routeData) => routeData.projects)).subscribe((project) => (this.projects = this.filterActiveProjects(project))),

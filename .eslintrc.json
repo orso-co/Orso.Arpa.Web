@@ -21,11 +21,15 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
+        "no-console": "warn",
+        "no-underscore-dangle": "off",
+        "@typescript-eslint/member-ordering": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
         "@angular-eslint/component-selector": [
           "error",
           {
             "type": "element",
-            "prefix": "app",
+            "prefix": "arpa",
             "style": "kebab-case"
           }
         ],
@@ -33,7 +37,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "app",
+            "prefix": "arpa",
             "style": "camelCase"
           }
         ]

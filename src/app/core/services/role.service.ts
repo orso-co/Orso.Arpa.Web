@@ -1,8 +1,8 @@
-import {BehaviorSubject, Observable} from 'rxjs';
-import {Injectable} from '@angular/core';
-import {tap} from 'rxjs/operators';
-import {IRoleDto} from '../../models/IRoleDto';
-import {ApiService} from './api.service';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { tap } from 'rxjs/operators';
+import { IRoleDto } from '../../models/IRoleDto';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +16,7 @@ export class RoleService {
   }
 
   loadRoles(): Observable<IRoleDto[]> {
-    return this.apiService.get<IRoleDto[]>('/roles').pipe(tap(roles => this.roles$$.next(roles)), tap(roles => this.loaded = true));
+    return this.apiService.get<IRoleDto[]>('/roles')
+      .pipe(tap(roles => this.roles$$.next(roles)), tap(roles => this.loaded = true));
   }
 }

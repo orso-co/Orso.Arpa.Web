@@ -1,17 +1,17 @@
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {ConfigService} from './core/services/config.service';
-import {CoreModule} from './core/core.module';
-import {MainModule} from './main/main.module';
-import {SharedModule} from './shared/shared.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ConfigService } from './core/services/config.service';
+import { CoreModule } from './core/core.module';
+import { MainModule } from './main/main.module';
+import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -19,17 +19,18 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AppRoutingModule,
     CoreModule,
     MainModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     ConfigService,
     {
       provide: APP_INITIALIZER,
-      useFactory: ( appConfigService: ConfigService) => () => appConfigService.fetch(),
+      useFactory: (appConfigService: ConfigService) => () => appConfigService.fetch(),
       deps: [ConfigService],
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+}

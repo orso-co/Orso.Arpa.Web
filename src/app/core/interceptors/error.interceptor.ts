@@ -1,14 +1,14 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
 } from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
-import {catchError} from 'rxjs/operators';
-import {Router} from '@angular/router';
-import {NotificationsService} from '../services/notifications.service';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { NotificationsService } from '../services/notifications.service';
 
 
 @Injectable()
@@ -16,7 +16,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   constructor(
     private notificationsService: NotificationsService,
-    private router: Router
+    private router: Router,
   ) {
   }
 
@@ -54,7 +54,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           }
         }
         return throwError(errorMessages);
-      })
+      }),
     );
   }
 }

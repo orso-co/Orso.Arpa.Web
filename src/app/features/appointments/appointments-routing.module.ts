@@ -1,17 +1,17 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {AppointmentEmolumentListResolver} from '../../resolvers/appointment-emolument-list.resolver';
-import {AppointmentEmolumentPatternListResolver} from '../../resolvers/appointment-emolument-pattern-list.resolver';
-import {AppointmentExpectationListResolver} from '../../resolvers/appointment-expectation-list.resolver';
-import {ProjectListResolver} from '../../resolvers/project-list.resolver';
-import {SectionListResolver} from '../../resolvers/section-list.resolver';
-import {VenueListResolver} from '../../resolvers/venue-list.resolver';
-import {AppointmentCategoryListResolver} from '../../resolvers/appointment-category-list.resolver';
-import {AppointmentStatusListResolver} from '../../resolvers/appointment-status-list.resolver';
-import {AppointmentParticipationPredictionListResolver} from '../../resolvers/appointment-participation-prediction-list.resolver';
-import {AppointmentParticipationResultListResolver} from '../../resolvers/appointment-participation-result-list.resolver';
-import {RoleNames} from '../../models/role-names';
-import {AppointmentsComponent} from './appointments/appointments.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AppointmentEmolumentListResolver } from '../../resolvers/appointment-emolument-list.resolver';
+import { AppointmentEmolumentPatternListResolver } from '../../resolvers/appointment-emolument-pattern-list.resolver';
+import { AppointmentExpectationListResolver } from '../../resolvers/appointment-expectation-list.resolver';
+import { ProjectListResolver } from '../../resolvers/project-list.resolver';
+import { SectionListResolver } from '../../resolvers/section-list.resolver';
+import { VenueListResolver } from '../../resolvers/venue-list.resolver';
+import { AppointmentCategoryListResolver } from '../../resolvers/appointment-category-list.resolver';
+import { AppointmentStatusListResolver } from '../../resolvers/appointment-status-list.resolver';
+import { AppointmentParticipationPredictionListResolver } from '../../resolvers/appointment-participation-prediction-list.resolver';
+import { AppointmentParticipationResultListResolver } from '../../resolvers/appointment-participation-result-list.resolver';
+import { RoleNames } from '../../models/role-names';
+import { AppointmentsComponent } from './appointments/appointments.component';
 
 const routes: Routes = [
   {
@@ -36,7 +36,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppointmentsRoutingModule {
 }

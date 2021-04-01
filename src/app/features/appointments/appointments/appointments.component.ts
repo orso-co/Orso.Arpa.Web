@@ -12,11 +12,11 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SubSink } from 'subsink';
 import { ISectionDto } from 'src/app/models/section';
-import {AppointmentService} from '../../../core/services/appointment.service';
-import {NotificationsService} from '../../../core/services/notifications.service';
-import {LoadingService} from '../../../core/services/loading.service';
-import {SectionService} from '../../../core/services/section.service';
-import {EditAppointmentComponent} from '../edit-appointment/edit-appointment.component';
+import { AppointmentService } from '../../../core/services/appointment.service';
+import { NotificationsService } from '../../../core/services/notifications.service';
+import { LoadingService } from '../../../core/services/loading.service';
+import { SectionService } from '../../../core/services/section.service';
+import { EditAppointmentComponent } from '../edit-appointment/edit-appointment.component';
 
 @Component({
   selector: 'arpa-appointments',
@@ -36,8 +36,8 @@ export class AppointmentsComponent implements OnDestroy {
   resultOptions: SelectItem[] = [];
 
   fullCalendarOptions$: Observable<any>;
-  private _appointments: IAppointmentDto[] = [];
   events: ICalendarEvent[] = [];
+  private _appointments: IAppointmentDto[] = [];
   private subs = new SubSink();
 
   get appointments(): IAppointmentDto[] {
@@ -56,7 +56,7 @@ export class AppointmentsComponent implements OnDestroy {
     private translate: TranslateService,
     private dialogService: DialogService,
     private loadingService: LoadingService,
-    private sectionService: SectionService
+    private sectionService: SectionService,
   ) {
     this.subs.add(
       this.route.data.subscribe((data) => {
@@ -69,7 +69,7 @@ export class AppointmentsComponent implements OnDestroy {
         this.statusOptions = data.status || [];
         this.predictionOptions = data.predictions || [];
         this.resultOptions = data.results || [];
-      })
+      }),
     );
     this.subs.add(this.sectionService.sections$.subscribe((sections) => (this.sections = sections || [])));
     this.setOptions();
@@ -123,14 +123,14 @@ export class AppointmentsComponent implements OnDestroy {
         datesRender: (info: any) => {
           this.setAppointments(info.view.type, info.view.calendar.component.props.currentDate);
         },
-      }))
+      })),
     );
   }
 
   mapAppointmentToCalendarEvent(appointment: IAppointmentDto): ICalendarEvent {
     // let allDay = false;
     // if(new Date(appointment.endTime).getHours() - new Date(appointment.startTime).getHours() <= 7) allDay = true;
-     return {
+    return {
       id: appointment.id,
       end: new Date(appointment.endTime),
       start: new Date(appointment.startTime),
@@ -158,7 +158,7 @@ export class AppointmentsComponent implements OnDestroy {
             this.appointments[index] = appointment;
             this.appointments = [...this.appointments];
             this.notificationsService.success('Dates changed');
-          })
+          }),
       );
     }
   }
@@ -167,18 +167,18 @@ export class AppointmentsComponent implements OnDestroy {
     this.subs.add(
       this.loadingService
         .showLoaderUntilCompleted(this.appointmentService.get(this.getRange(viewType), date))
-        .subscribe((result) => (this.appointments = result))
+        .subscribe((result) => (this.appointments = result)),
     );
   }
 
   getRange(viewName: string): DateRange {
     switch (viewName) {
       case 'dayGridMonth':
-        return DateRange.Month;
+        return DateRange.month;
       case 'timeGridWeek':
-        return DateRange.Week;
+        return DateRange.week;
       case 'timeGridDay':
-        return DateRange.Day;
+        return DateRange.day;
       default:
         throw Error('not supported');
     }
@@ -224,7 +224,7 @@ export class AppointmentsComponent implements OnDestroy {
       },
       header: this.translate.instant('editappointments.CREATE'),
       style: { 'max-width': '1500px' },
-      dismissableMask: true
+      dismissableMask: true,
     });
 
     this.subs.add(
@@ -232,7 +232,7 @@ export class AppointmentsComponent implements OnDestroy {
         if (appointment) {
           this.appointments = [...this.appointments, appointment];
         }
-      })
+      }),
     );
   }
 
@@ -269,7 +269,7 @@ export class AppointmentsComponent implements OnDestroy {
             this.appointments = [...this.appointments];
           }
         }
-      })
+      }),
     );
   }
 }

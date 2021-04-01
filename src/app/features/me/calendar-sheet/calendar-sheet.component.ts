@@ -1,5 +1,5 @@
 import { PrimeNGConfig } from 'primeng/api';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'arpa-calendar-sheet',
@@ -25,7 +25,7 @@ export class CalendarSheetComponent implements OnInit {
     return this.primengConfig.getTranslation('dayNames')[this.calendarDate.getDay()];
   }
 
-  get IsPassed(): boolean {
+  get isPassed(): boolean {
     return this.calendarDate < new Date();
   }
 }

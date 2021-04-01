@@ -1,8 +1,8 @@
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 /* tslint:disable:no-unused-variable */
 
-import {TestBed, inject} from '@angular/core/testing';
-import {RoleService} from './role.service';
+import { TestBed, inject } from '@angular/core/testing';
+import { RoleService } from './role.service';
 
 describe('Service: Role', () => {
   beforeEach(() => {

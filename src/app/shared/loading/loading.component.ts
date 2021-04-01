@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {LoadingService} from '../../core/services/loading.service';
+import { LoadingService } from '../../core/services/loading.service';
 
 @Component({
   selector: 'arpa-loading',
@@ -7,5 +7,6 @@ import {LoadingService} from '../../core/services/loading.service';
   styleUrls: ['./loading.component.scss'],
 })
 export class LoadingComponent {
-  constructor(public loadingService: LoadingService) {}
+  constructor(public loadingService: LoadingService) {
+  }
 }

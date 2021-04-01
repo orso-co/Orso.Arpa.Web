@@ -1,14 +1,14 @@
-import { AuthService } from './../../../services/auth.service';
-import { ToastService } from './../../../services/toast.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EmailconfirmationComponent } from './emailconfirmation.component';
-import {RouterTestingModule} from '@angular/router/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { HttpLoaderFactory } from '../../../app.module';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { IConfirmEmailDto } from 'src/app/models/IConfirmEmailDto';
 import { of } from 'rxjs';
+import { httpLoaderFactory } from '../../core/core.module';
+import { AuthService } from '../../core/services/auth.service';
+import { NotificationsService } from '../../core/services/notifications.service';
 
 describe('EmailconfirmationComponent', () => {
   let component: EmailconfirmationComponent;
@@ -19,23 +19,23 @@ describe('EmailconfirmationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EmailconfirmationComponent ],
+      declarations: [EmailconfirmationComponent],
       imports: [
         HttpClientTestingModule,
         RouterTestingModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-          }
-        })
+            useFactory: httpLoaderFactory,
+            deps: [HttpClient],
+          },
+        }),
       ],
       providers: [
-        {provide: AuthService, useValue: { confirmMail: (confirmEmail: IConfirmEmailDto) => of(null) }},
-        {provide: ToastService, useValue: { success: () => of(null) }}, ]
+        { provide: AuthService, useValue: { confirmMail: (confirmEmail: IConfirmEmailDto) => of(null) } },
+        { provide: NotificationsService, useValue: { success: () => of(null) } }],
     })
-    .compileComponents();
+      .compileComponents();
     translate = TestBed.inject(TranslateService);
     http = TestBed.inject(HttpTestingController);
   });

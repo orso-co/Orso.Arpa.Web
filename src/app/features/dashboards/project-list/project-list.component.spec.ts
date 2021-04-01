@@ -12,7 +12,7 @@ describe('ProjectListComponent', () => {
         declarations: [ProjectListComponent],
         providers: [],
       }).compileComponents();
-    })
+    }),
   );
 
   beforeEach(() => {

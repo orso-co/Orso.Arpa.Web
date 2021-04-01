@@ -5,9 +5,9 @@ import { map } from 'rxjs/operators';
 import { IRoleDto } from 'src/app/models/IRoleDto';
 import { Observable } from 'rxjs';
 import { ISectionTreeDto } from 'src/app/models/section';
-import {IUserDto} from '../../../models/IUserDto';
-import {RoleService} from '../../../core/services/role.service';
-import {SectionService} from '../../../core/services/section.service';
+import { IUserDto } from '../../../models/IUserDto';
+import { RoleService } from '../../../core/services/role.service';
+import { SectionService } from '../../../core/services/section.service';
 
 @Component({
   selector: 'arpa-administrator',
@@ -25,10 +25,10 @@ export class AdministratorComponent implements OnDestroy {
     route: ActivatedRoute,
     private roleService: RoleService,
     sectionService: SectionService,
-    ) {
+  ) {
     this.subs.add(
       route.data.pipe(map((routeData) => routeData.users)).subscribe((users) => (this.users = this.filterUsersWithoutRole(users))),
-      route.data.pipe(map((routeData) => routeData.users)).subscribe((users) => (this.usersWithRole = this.filterUsersWithRole(users)))
+      route.data.pipe(map((routeData) => routeData.users)).subscribe((users) => (this.usersWithRole = this.filterUsersWithRole(users))),
     );
 
     //

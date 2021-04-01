@@ -6,9 +6,9 @@ import { MenuItem, SelectItem, ConfirmationService } from 'primeng/api';
 import { IAppointmentDto, IMusicianProfileDto, IProjectDto, IRoomDto, IVenueDto } from 'src/app/models/appointment';
 import { ISectionDto } from 'src/app/models/section';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import {NotificationsService} from '../../../core/services/notifications.service';
-import {AppointmentService} from '../../../core/services/appointment.service';
-import {LoadingService} from '../../../core/services/loading.service';
+import { NotificationsService } from '../../../core/services/notifications.service';
+import { AppointmentService } from '../../../core/services/appointment.service';
+import { LoadingService } from '../../../core/services/loading.service';
 
 class ParticipationTableItem {
   givenName: string;
@@ -26,7 +26,7 @@ class ParticipationTableItem {
     sections: string,
     isProfessional: string,
     predictionId: string,
-    resultId: string
+    resultId: string,
   ) {
     this.givenName = givenName;
     this.surname = surname;
@@ -47,7 +47,6 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
   items: MenuItem[] = [];
   activeIndex = 0;
   formGroup: FormGroup;
-  private subs = new SubSink();
 
   appointment: IAppointmentDto = this.config.data.appointment;
   sections: ISectionDto[] = this.config.data.sections;
@@ -72,6 +71,8 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
   columns: any[] = [];
   filteredDataCount: number;
 
+  private subs = new SubSink();
+
   get isNew(): boolean {
     return !this.appointment.id;
   }
@@ -84,8 +85,9 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private translate: TranslateService,
     private confirmationService: ConfirmationService,
-    private loadingService: LoadingService
-  ) {}
+    private loadingService: LoadingService,
+  ) {
+  }
 
   ngOnInit(): void {
     this.createForm();
@@ -114,7 +116,7 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
       { field: 'sections', header: this.translate.instant('editappointments.SECTIONS') },
       { field: 'isProfessional', header: this.translate.instant('editappointments.LEVEL') },
       { field: 'predictionId', header: this.translate.instant('editappointments.PREDICTION') },
-      { field: 'resultId', header: this.translate.instant('editappointments.RESULTS')},
+      { field: 'resultId', header: this.translate.instant('editappointments.RESULTS') },
     ];
 
     this.createStepperMenu();
@@ -123,6 +125,224 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subs.unsubscribe();
   }
+
+  onSubmit(continueToNextStep: boolean): void {
+    if (this.formGroup.invalid || this.formGroup.pristine) {
+      return;
+    }
+    if (this.isNew) {
+      this.createAppointment({ ...this.appointment, ...this.formGroup.value }, continueToNextStep);
+    } else {
+      this.updateAppointment({ ...this.appointment, ...this.formGroup.value }, continueToNextStep);
+    }
+  }
+
+  mapVenueToSelectItem(venue: IVenueDto): SelectItem {
+    return { label: `${venue.address.city} ${venue.address.urbanDistrict} | ${venue.name}`, value: venue.id };
+  }
+
+  mapMusicianProfileToSelectItem(musicianProfile: IMusicianProfileDto): SelectItem {
+    return { label: musicianProfile.sectionName, value: musicianProfile.sectionName };
+  }
+
+  updateAppointment(appointment: IAppointmentDto, continueToNextStep: boolean): void {
+    this.subs.add(
+      this.loadingService.showLoaderUntilCompleted(this.appointmentService.update(appointment)).subscribe(() => {
+        this.notificationsService.success('editappointments.APPOINTMENT_UPDATED');
+        if (continueToNextStep) {
+          this.appointment = appointment;
+          this.fillForm();
+          this.activeIndex = 1;
+        } else {
+          this.ref.close(appointment);
+        }
+      }),
+    );
+  }
+
+  createAppointment(appointment: IAppointmentDto, continueToNextStep: boolean): void {
+    this.subs.add(
+      this.loadingService.showLoaderUntilCompleted(this.appointmentService.create(appointment)).subscribe((result) => {
+        this.notificationsService.success('editappointments.APPOINTMENT_CREATED');
+        if (continueToNextStep) {
+          this.appointment = result;
+          this.fillForm();
+          this.createStepperMenu();
+          this.activeIndex = 1;
+        } else {
+          this.ref.close(result);
+        }
+      }),
+    );
+  }
+
+  setRooms(venueId: string): void {
+    if (venueId && this.venues) {
+      const venue = this.venues.find((v) => v.id === venueId);
+      if (venue) {
+        this.rooms = venue.rooms;
+        return;
+      }
+      this.rooms = [];
+    }
+  }
+
+  searchProject(event: any): void {
+    this.projectOptions = this.projects.filter(
+      (p) =>
+        p.title.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.projects.map((r) => r.id).includes(p.id),
+    );
+  }
+
+  searchSection(event: any): void {
+    this.sectionOptions = this.sections.filter(
+      (p) =>
+        p.name.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) &&
+        !this.appointment.sections.map((r) => r.id).includes(p.id),
+    );
+  }
+
+  searchRoom(event: any): void {
+    this.roomOptions = this.rooms.filter(
+      (p) => p.name.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) &&
+        !this.appointment.rooms.map((r) => r.id).includes(p.id),
+    );
+  }
+
+  onVenueChanged(event: any): void {
+    this.subs.add(
+      this.loadingService.showLoaderUntilCompleted(this.appointmentService.setVenue(this.appointment.id, event.value)).subscribe((_) => {
+        this.notificationsService.success('editappointments.VENUE_SET');
+        this.appointment.rooms.forEach((room) => {
+          this.removeRoom(room.id, false);
+        });
+        this.appointment.rooms = [];
+        this.setRooms(event.value);
+      }),
+    );
+  }
+
+  onProjectAdded(event: any): void {
+    this.addProject(event.id);
+  }
+
+  onProjectRemoved(event: any): void {
+    this.removeProject(event.id);
+  }
+
+  onSectionAdded(event: any): void {
+    this.addSection(event.id);
+  }
+
+  onSectionRemoved(event: any): void {
+    this.removeSection(event.id);
+  }
+
+  onRoomAdded(event: any): void {
+    this.addRoom(event.id);
+  }
+
+  onRoomRemoved(event: any): void {
+    this.removeRoom(event.id, true);
+  }
+
+  removeRoom(roomId: string, showToast: boolean): void {
+    this.subs.add(
+      this.loadingService.showLoaderUntilCompleted(this.appointmentService.removeRoom(this.appointment.id, roomId)).subscribe((_) => {
+        if (showToast) {
+          this.notificationsService.success('editappointments.ROOM_REMOVED');
+        }
+      }),
+    );
+  }
+
+  addRoom(roomId: string): void {
+    this.subs.add(
+      this.loadingService.showLoaderUntilCompleted(this.appointmentService.addRoom(this.appointment.id, roomId)).subscribe((_) => {
+        this.notificationsService.success('editappointments.ROOM_ADDED');
+      }),
+    );
+  }
+
+  removeSection(sectionId: string): void {
+    this.subs.add(
+      this.loadingService
+        .showLoaderUntilCompleted(this.appointmentService.removeSection(this.appointment.id, sectionId))
+        .subscribe((result) => {
+          this.appointment = result;
+          this.mapParticipations();
+          this.notificationsService.success('editappointments.SECTION_REMOVED');
+        }),
+    );
+  }
+
+  addSection(sectionId: string): void {
+    this.subs.add(
+      this.loadingService
+        .showLoaderUntilCompleted(this.appointmentService.addSection(this.appointment.id, sectionId))
+        .subscribe((result) => {
+          this.appointment = result;
+          this.mapParticipations();
+          this.notificationsService.success('editappointments.SECTION_ADDED');
+        }),
+    );
+  }
+
+  removeProject(projectId: string): void {
+    this.subs.add(
+      this.loadingService
+        .showLoaderUntilCompleted(this.appointmentService.removeProject(this.appointment.id, projectId))
+        .subscribe((result) => {
+          this.appointment = result;
+          this.mapParticipations();
+          this.notificationsService.success('editappointments.PROJECT_REMOVED');
+        }),
+    );
+  }
+
+  addProject(projectId: string): void {
+    this.subs.add(
+      this.loadingService
+        .showLoaderUntilCompleted(this.appointmentService.addProject(this.appointment.id, projectId))
+        .subscribe((result) => {
+          this.appointment = result;
+          this.mapParticipations();
+          this.notificationsService.success('editappointments.PROJECT_ADDED');
+        }),
+    );
+  }
+
+  getSectionNames(musicianProfiles: IMusicianProfileDto[]): string {
+    return musicianProfiles.map((p) => p.sectionName).toString();
+  }
+
+  onTableFiltered(event: any): void {
+    this.filteredDataCount = event.filteredValue.length;
+  }
+
+  onResultChanged(item: ParticipationTableItem, event: any): void {
+    this.subs.add(
+      this.loadingService
+        .showLoaderUntilCompleted(this.appointmentService.setResult(item.personId, this.appointment.id, event.value))
+        .subscribe((_) => {
+          this.notificationsService.success('editappointments.RESULT_SET');
+        }),
+    );
+  }
+
+  showDeleteConfirmation(event: Event): void {
+    this.confirmationService.confirm({
+      target: event.target || undefined,
+      message: this.translate.instant('editappointments.ARE_YOU_SURE'),
+      icon: 'pi pi-exclamation-triangle',
+      acceptLabel: this.translate.instant('YES'),
+      rejectLabel: this.translate.instant('NO'),
+      accept: () => {
+        this.deleteAppointment();
+      },
+    });
+  }
+
 
   private createForm(): void {
     this.formGroup = this.formBuilder.group({
@@ -150,8 +370,8 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
           this.getSectionNames(element.musicianProfiles),
           element.musicianProfiles.map((mp) => mp.isProfessional).includes(true) ? 'Yes' : 'No',
           element.participation ? element.participation.predictionId : '',
-          element.participation ? element.participation.resultId : ''
-        )
+          element.participation ? element.participation.resultId : '',
+        ),
       );
     });
     this.filteredDataCount = this.participationTableItems.length;
@@ -190,227 +410,12 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
     ];
   }
 
-  onSubmit(continueToNextStep: boolean): void {
-    if (this.formGroup.invalid || this.formGroup.pristine) {
-      return;
-    }
-    if (this.isNew) {
-      this.createAppointment({ ...this.appointment, ...this.formGroup.value }, continueToNextStep);
-    } else {
-      this.updateAppointment({ ...this.appointment, ...this.formGroup.value }, continueToNextStep);
-    }
-  }
-
-  mapVenueToSelectItem(venue: IVenueDto): SelectItem {
-    return { label: `${venue.address.city} ${venue.address.urbanDistrict} | ${venue.name}`, value: venue.id };
-  }
-
-  mapMusicianProfileToSelectItem(musicianProfile: IMusicianProfileDto): SelectItem {
-    return { label: musicianProfile.sectionName, value: musicianProfile.sectionName };
-  }
-
-  updateAppointment(appointment: IAppointmentDto, continueToNextStep: boolean): void {
-    this.subs.add(
-      this.loadingService.showLoaderUntilCompleted(this.appointmentService.update(appointment)).subscribe(() => {
-        this.notificationsService.success('editappointments.APPOINTMENT_UPDATED');
-        if (continueToNextStep) {
-          this.appointment = appointment;
-          this.fillForm();
-          this.activeIndex = 1;
-        } else {
-          this.ref.close(appointment);
-        }
-      })
-    );
-  }
-
-  createAppointment(appointment: IAppointmentDto, continueToNextStep: boolean): void {
-    this.subs.add(
-      this.loadingService.showLoaderUntilCompleted(this.appointmentService.create(appointment)).subscribe((result) => {
-        this.notificationsService.success('editappointments.APPOINTMENT_CREATED');
-        if (continueToNextStep) {
-          this.appointment = result;
-          this.fillForm();
-          this.createStepperMenu();
-          this.activeIndex = 1;
-        } else {
-          this.ref.close(result);
-        }
-      })
-    );
-  }
-
-  setRooms(venueId: string): void {
-    if (venueId && this.venues) {
-      const venue = this.venues.find((v) => v.id === venueId);
-      if (venue) {
-        this.rooms = venue.rooms;
-        return;
-      }
-      this.rooms = [];
-    }
-  }
-
-  searchProject(event: any): void {
-    this.projectOptions = this.projects.filter(
-      (p) =>
-        p.title.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.projects.map((r) => r.id).includes(p.id)
-    );
-  }
-
-  searchSection(event: any): void {
-    this.sectionOptions = this.sections.filter(
-      (p) =>
-        p.name.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.sections.map((r) => r.id).includes(p.id)
-    );
-  }
-
-  searchRoom(event: any): void {
-    this.roomOptions = this.rooms.filter(
-      (p) => p.name.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.rooms.map((r) => r.id).includes(p.id)
-    );
-  }
-
-  onVenueChanged(event: any): void {
-    this.subs.add(
-      this.loadingService.showLoaderUntilCompleted(this.appointmentService.setVenue(this.appointment.id, event.value)).subscribe((_) => {
-        this.notificationsService.success('editappointments.VENUE_SET');
-        this.appointment.rooms.forEach((room) => {
-          this.removeRoom(room.id, false);
-        });
-        this.appointment.rooms = [];
-        this.setRooms(event.value);
-      })
-    );
-  }
-
-  onProjectAdded(event: any): void {
-    this.addProject(event.id);
-  }
-
-  onProjectRemoved(event: any): void {
-    this.removeProject(event.id);
-  }
-
-  onSectionAdded(event: any): void {
-    this.addSection(event.id);
-  }
-
-  onSectionRemoved(event: any): void {
-    this.removeSection(event.id);
-  }
-
-  onRoomAdded(event: any): void {
-    this.addRoom(event.id);
-  }
-
-  onRoomRemoved(event: any): void {
-    this.removeRoom(event.id, true);
-  }
-
-  removeRoom(roomId: string, showToast: boolean): void {
-    this.subs.add(
-      this.loadingService.showLoaderUntilCompleted(this.appointmentService.removeRoom(this.appointment.id, roomId)).subscribe((_) => {
-        if (showToast) {
-          this.notificationsService.success('editappointments.ROOM_REMOVED');
-        }
-      })
-    );
-  }
-
-  addRoom(roomId: string): void {
-    this.subs.add(
-      this.loadingService.showLoaderUntilCompleted(this.appointmentService.addRoom(this.appointment.id, roomId)).subscribe((_) => {
-        this.notificationsService.success('editappointments.ROOM_ADDED');
-      })
-    );
-  }
-
-  removeSection(sectionId: string): void {
-    this.subs.add(
-      this.loadingService
-        .showLoaderUntilCompleted(this.appointmentService.removeSection(this.appointment.id, sectionId))
-        .subscribe((result) => {
-          this.appointment = result;
-          this.mapParticipations();
-          this.notificationsService.success('editappointments.SECTION_REMOVED');
-        })
-    );
-  }
-
-  addSection(sectionId: string): void {
-    this.subs.add(
-      this.loadingService
-        .showLoaderUntilCompleted(this.appointmentService.addSection(this.appointment.id, sectionId))
-        .subscribe((result) => {
-          this.appointment = result;
-          this.mapParticipations();
-          this.notificationsService.success('editappointments.SECTION_ADDED');
-        })
-    );
-  }
-
-  removeProject(projectId: string): void {
-    this.subs.add(
-      this.loadingService
-        .showLoaderUntilCompleted(this.appointmentService.removeProject(this.appointment.id, projectId))
-        .subscribe((result) => {
-          this.appointment = result;
-          this.mapParticipations();
-          this.notificationsService.success('editappointments.PROJECT_REMOVED');
-        })
-    );
-  }
-
-  addProject(projectId: string): void {
-    this.subs.add(
-      this.loadingService
-        .showLoaderUntilCompleted(this.appointmentService.addProject(this.appointment.id, projectId))
-        .subscribe((result) => {
-          this.appointment = result;
-          this.mapParticipations();
-          this.notificationsService.success('editappointments.PROJECT_ADDED');
-        })
-    );
-  }
-
-  getSectionNames(musicianProfiles: IMusicianProfileDto[]): string {
-    return musicianProfiles.map((p) => p.sectionName).toString();
-  }
-
-  onTableFiltered(event: any): void {
-    this.filteredDataCount = event.filteredValue.length;
-  }
-
-  onResultChanged(item: ParticipationTableItem, event: any): void {
-    this.subs.add(
-      this.loadingService
-        .showLoaderUntilCompleted(this.appointmentService.setResult(item.personId, this.appointment.id, event.value))
-        .subscribe((_) => {
-          this.notificationsService.success('editappointments.RESULT_SET');
-        })
-    );
-  }
-
-  showDeleteConfirmation(event: Event): void {
-    this.confirmationService.confirm({
-      target: event.target || undefined,
-      message: this.translate.instant('editappointments.ARE_YOU_SURE'),
-      icon: 'pi pi-exclamation-triangle',
-      acceptLabel: this.translate.instant('YES'),
-      rejectLabel: this.translate.instant('NO'),
-      accept: () => {
-        this.deleteAppointment();
-      },
-    });
-  }
-
   private deleteAppointment(): void {
     this.subs.add(
       this.loadingService.showLoaderUntilCompleted(this.appointmentService.delete(this.appointment.id)).subscribe(() => {
         this.notificationsService.success('editappointments.APPOINTMENT_DELETED');
         this.ref.close(this.appointment.id);
-      })
+      }),
     );
   }
 }

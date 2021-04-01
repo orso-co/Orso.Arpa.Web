@@ -1,17 +1,17 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {environment} from '../../../environments/environment';
-import {LoggerService} from './logger.service';
-import {Resolver} from '@stoplight/json-ref-resolver';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { LoggerService } from './logger.service';
+import { Resolver } from '@stoplight/json-ref-resolver';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ConfigService {
 
   private readonly config: any;
   private readonly env: any;
-  private ready: Boolean = false;
+  private ready = false;
 
   constructor(private http: HttpClient, private logger: LoggerService) {
     this.config = {};
@@ -22,10 +22,6 @@ export class ConfigService {
     return this.config[key];
   }
 
-  /**
-   *
-   * @param key
-   */
   public getEnv(key: string): any {
     return this.env[key];
   }
@@ -33,7 +29,7 @@ export class ConfigService {
   /**
    * Indicates if config is ready.
    */
-  public isReady(): Boolean {
+  public isReady(): boolean {
     return this.ready;
   }
 
@@ -42,7 +38,7 @@ export class ConfigService {
    */
   async fetch() {
     try {
-      const config: any = await this.http.get(this.env.config.url, {responseType: 'json'}).toPromise();
+      const config: any = await this.http.get(this.env.config.url, { responseType: 'json' }).toPromise();
       const resolver = new Resolver();
       const refResult: any = await resolver.resolve(config);
       this.config.schemas = refResult.result.components.schemas;

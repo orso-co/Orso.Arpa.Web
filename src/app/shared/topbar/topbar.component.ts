@@ -1,17 +1,16 @@
-import {Observable, Subscription} from 'rxjs';
-import {MenuItem} from 'primeng/api';
-import {Component, OnDestroy} from '@angular/core';
-import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
-import {AuthService, IToken} from '../../core/services/auth.service';
-import {LanguageService} from '../../core/services/language.service';
+import { Observable, Subscription } from 'rxjs';
+import { MenuItem } from 'primeng/api';
+import { Component, OnDestroy } from '@angular/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { AuthService, IToken } from '../../core/services/auth.service';
+import { LanguageService } from '../../core/services/language.service';
 
 @Component({
   selector: 'arpa-topbar',
   templateUrl: './topbar.component.html',
-  styleUrls: ['./topbar.component.scss']
+  styleUrls: ['./topbar.component.scss'],
 })
 export class TopbarComponent implements OnDestroy {
-
 
   userProfileItems: MenuItem[] = [];
   token$: Observable<IToken | null>;
@@ -27,19 +26,6 @@ export class TopbarComponent implements OnDestroy {
     this.langChangeListener = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.initialiseUserMenu();
     });
-  }
-
-  private initialiseUserMenu(): void {
-    this.userProfileItems = [
-      {label: this.translate.instant('logout.LOG_OUT'), icon: 'pi pi-sign-out', routerLink: ['/logout']},
-      {label: this.translate.instant('PROFILE'), icon: 'pi pi-user-edit', routerLink: ['/arpa/profile']},
-      {separator: true}
-    ];
-    this.translate.getLangs().forEach(lang =>
-      this.userProfileItems.push({
-        label: this.langService.getLanguageName(lang),
-        command: () => this.updateLanguage(lang)
-      }));
   }
 
   updateLanguage(language: string): void {
@@ -59,5 +45,18 @@ export class TopbarComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.langChangeListener.unsubscribe();
+  }
+
+  private initialiseUserMenu(): void {
+    this.userProfileItems = [
+      { label: this.translate.instant('logout.LOG_OUT'), icon: 'pi pi-sign-out', routerLink: ['/logout'] },
+      { label: this.translate.instant('PROFILE'), icon: 'pi pi-user-edit', routerLink: ['/arpa/profile'] },
+      { separator: true },
+    ];
+    this.translate.getLangs().forEach(lang =>
+      this.userProfileItems.push({
+        label: this.langService.getLanguageName(lang),
+        command: () => this.updateLanguage(lang),
+      }));
   }
 }

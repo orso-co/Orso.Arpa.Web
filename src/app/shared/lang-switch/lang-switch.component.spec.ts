@@ -1,11 +1,8 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {LangSwitchComponent} from './lang-switch.component';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
-import {HttpClient} from '@angular/common/http';
-import {SharedModule} from '../shared.module';
-import {TranslateMockModule} from '../../../testing/translate.mock.module';
+import { LangSwitchComponent } from './lang-switch.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TranslateMockModule } from '../../../testing/translate.mock.module';
 
 describe('LangSwitchComponent', () => {
   let component: LangSwitchComponent;
@@ -15,7 +12,7 @@ describe('LangSwitchComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        TranslateMockModule
+        TranslateMockModule,
       ],
       declarations: [LangSwitchComponent],
     })

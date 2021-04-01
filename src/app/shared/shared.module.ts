@@ -1,15 +1,16 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {LoadingComponent} from './loading/loading.component';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { LoadingComponent } from './loading/loading.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import {LangSwitchComponent} from './lang-switch/lang-switch.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {PrimeNgModule} from './prime-ng/prime-ng.module';
-import {LogoComponent} from './logo/logo.component';
-import {BackButtonDirective} from './directives/back-button.directive';
-import {HasRoleDirective} from './directives/has-role.directive';
-import {TopbarComponent} from './topbar/topbar.component';
-import {TranslateModule} from '@ngx-translate/core';
+import { LangSwitchComponent } from './lang-switch/lang-switch.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PrimeNgModule } from './prime-ng/prime-ng.module';
+import { LogoComponent } from './logo/logo.component';
+import { BackButtonDirective } from './directives/back-button.directive';
+import { HasRoleDirective } from './directives/has-role.directive';
+import { TopbarComponent } from './topbar/topbar.component';
+import { TranslateModule } from '@ngx-translate/core';
+
 @NgModule({
   declarations: [
     LoadingComponent,
@@ -17,7 +18,7 @@ import {TranslateModule} from '@ngx-translate/core';
     LogoComponent,
     HasRoleDirective,
     BackButtonDirective,
-    TopbarComponent
+    TopbarComponent,
   ],
   imports: [
     CommonModule,
@@ -25,7 +26,7 @@ import {TranslateModule} from '@ngx-translate/core';
     TranslateModule,
     FormsModule,
     ReactiveFormsModule,
-    PrimeNgModule
+    PrimeNgModule,
   ],
   exports: [
     PrimeNgModule,
@@ -36,7 +37,7 @@ import {TranslateModule} from '@ngx-translate/core';
     HasRoleDirective,
     BackButtonDirective,
     TopbarComponent,
-  ]
+  ],
 })
 export class SharedModule {
 }

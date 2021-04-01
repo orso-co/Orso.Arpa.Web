@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import {RoleService} from '../core/services/role.service';
+import { RoleService } from '../core/services/role.service';
 
 @Injectable({ providedIn: 'root' })
 export class RoleListResolver implements Resolve<boolean> {
-  constructor(private roleService: RoleService) {}
+  constructor(private roleService: RoleService) {
+  }
 
   resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
     if (this.roleService.loaded) {

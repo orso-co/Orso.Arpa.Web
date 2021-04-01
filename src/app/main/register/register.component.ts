@@ -1,14 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {NotificationsService} from '../../core/services/notifications.service';
-import {ConfigService} from '../../core/services/config.service';
-import {AuthService} from '../../core/services/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NotificationsService } from '../../core/services/notifications.service';
+import { ConfigService } from '../../core/services/config.service';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'arpa-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
 
@@ -32,38 +32,38 @@ export class RegisterComponent implements OnInit {
           Validators.required,
           Validators.minLength(4),
           Validators.maxLength(256),
-        ]
+        ],
       ],
       givenName: [null,
         [
           Validators.required,
           Validators.maxLength(50),
-        ]
+        ],
       ],
       surname: [null,
         [
           Validators.required,
           Validators.maxLength(50),
-        ]
+        ],
       ],
       email: [null,
         [
           Validators.required,
           Validators.pattern(configService.getEnv('validation').email),
-        ]
+        ],
       ],
       password: [
         null,
         [
           Validators.required,
-          Validators.pattern(configService.getEnv('validation').password)
+          Validators.pattern(configService.getEnv('validation').password),
         ],
       ],
       privacyPolicy: [
         null,
         [
           Validators.required,
-        ]
+        ],
       ],
     });
   }

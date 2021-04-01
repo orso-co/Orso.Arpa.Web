@@ -31,8 +31,8 @@ import { StepsModule } from 'primeng/steps';
 import { CalendarModule } from 'primeng/calendar';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { TableModule } from 'primeng/table';
-import {CaptchaModule} from 'primeng/captcha';
-import {SidebarModule} from 'primeng/sidebar';
+import { CaptchaModule } from 'primeng/captcha';
+import { SidebarModule } from 'primeng/sidebar';
 
 const MODULES = [
   InputTextModule,
@@ -66,7 +66,7 @@ const MODULES = [
   CalendarModule,
   AutoCompleteModule,
   TableModule,
-  SidebarModule
+  SidebarModule,
 ];
 
 @NgModule({
@@ -74,4 +74,5 @@ const MODULES = [
   providers: [ConfirmationService, DialogService],
   exports: [...MODULES],
 })
-export class PrimeNgModule {}
+export class PrimeNgModule {
+}

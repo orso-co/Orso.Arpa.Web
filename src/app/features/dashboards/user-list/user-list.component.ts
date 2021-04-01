@@ -5,14 +5,14 @@ import { Component, EventEmitter, Input, Output, OnDestroy, OnChanges, SimpleCha
 import { orderBy } from 'lodash-es';
 import { ConfirmationService, TreeNode } from 'primeng/api';
 import { OverlayPanel } from 'primeng/overlaypanel';
-import {IUserDto} from '../../../models/IUserDto';
-import {IRoleDto} from '../../../models/IRoleDto';
-import {ISectionTreeDto} from '../../../models/section';
-import {ISetRoleDto} from '../../../models/ISetRoleDto';
-import {UserService} from '../../../core/services/user.service';
-import {NotificationsService} from '../../../core/services/notifications.service';
-import {AuthService} from '../../../core/services/auth.service';
-import {LoadingService} from '../../../core/services/loading.service';
+import { IUserDto } from '../../../models/IUserDto';
+import { IRoleDto } from '../../../models/IRoleDto';
+import { ISectionTreeDto } from '../../../models/section';
+import { ISetRoleDto } from '../../../models/ISetRoleDto';
+import { UserService } from '../../../core/services/user.service';
+import { NotificationsService } from '../../../core/services/notifications.service';
+import { AuthService } from '../../../core/services/auth.service';
+import { LoadingService } from '../../../core/services/loading.service';
 
 @Component({
   selector: 'arpa-user-list',
@@ -38,7 +38,7 @@ export class UserListComponent implements OnDestroy, OnChanges {
     private userService: UserService,
     private notificationsService: NotificationsService,
     private authService: AuthService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
   ) {
     this.maxRoleLevel$ = this.authService.getMaxRoleLevelOfCurrentUser();
   }
@@ -75,7 +75,7 @@ export class UserListComponent implements OnDestroy, OnChanges {
         this.reset();
         panel.hide();
         this.notificationsService.success('userlist.USER_ROLES_SET');
-      })
+      }),
     );
   }
 
@@ -112,7 +112,7 @@ export class UserListComponent implements OnDestroy, OnChanges {
         this.userDeleted.emit(this.selectedUser!.userName);
         this.reset();
         this.notificationsService.success('userlist.USER_DELETED');
-      })
+      }),
     );
   }
 

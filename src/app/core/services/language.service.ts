@@ -1,33 +1,21 @@
-import {Injectable} from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
-import {PrimeNGConfig} from 'primeng/api';
+import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LanguageService {
 
   private languageMap = new Map<string, string>([
       ['de', 'Deutsch'],
-      ['en', 'English']
-    ]
+      ['en', 'English'],
+    ],
   );
 
   constructor(private translate: TranslateService,
               private primengConfig: PrimeNGConfig) {
     this.initialiseLanguageSettings();
-  }
-
-  private initialiseLanguageSettings(): void {
-    this.translate.addLangs(['de', 'en']);
-    this.translate.setDefaultLang('de');
-    const existingLang = localStorage.getItem('language');
-    if (existingLang) {
-      this.updateLanguage(existingLang);
-    } else {
-      const browserLang = this.translate.getBrowserLang();
-      this.updateLanguage(browserLang.match(/en|de/) ? browserLang : 'de');
-    }
   }
 
   /**
@@ -50,5 +38,17 @@ export class LanguageService {
   public getLanguageName(code: string): string {
     const name = this.languageMap.get(code);
     return name ? name : code;
+  }
+
+  private initialiseLanguageSettings(): void {
+    this.translate.addLangs(['de', 'en']);
+    this.translate.setDefaultLang('de');
+    const existingLang = localStorage.getItem('language');
+    if (existingLang) {
+      this.updateLanguage(existingLang);
+    } else {
+      const browserLang = this.translate.getBrowserLang();
+      this.updateLanguage(browserLang.match(/en|de/) ? browserLang : 'de');
+    }
   }
 }

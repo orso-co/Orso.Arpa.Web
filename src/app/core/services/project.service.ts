@@ -1,9 +1,9 @@
-import {shareReplay} from 'rxjs/operators';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {Inject, Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {ApiService} from './api.service';
-import {IProjectDto} from '../../models/appointment';
+import { shareReplay } from 'rxjs/operators';
+import { HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ApiService } from './api.service';
+import { IProjectDto } from '../../models/appointment';
 
 @Injectable({
   providedIn: 'root',

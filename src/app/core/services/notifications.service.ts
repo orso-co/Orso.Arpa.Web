@@ -1,6 +1,6 @@
-import {Injectable, Injector} from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
-import {ToastrService} from 'ngx-toastr';
+import { Injectable, Injector } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',

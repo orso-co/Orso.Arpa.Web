@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {SelectItem} from 'primeng/api';
-import {Observable} from 'rxjs';
-import {map, shareReplay, tap} from 'rxjs/operators';
-import {ApiService} from './api.service';
-import {ISelectValueDto} from '../../models/appointment';
+import { Injectable } from '@angular/core';
+import { SelectItem } from 'primeng/api';
+import { Observable } from 'rxjs';
+import { map, shareReplay, tap } from 'rxjs/operators';
+import { ApiService } from './api.service';
+import { ISelectValueDto } from '../../models/appointment';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +20,7 @@ export class SelectValueService {
     return this.apiService.get<ISelectValueDto[]>(`${this.baseUrl}/${tableName}/properties/${propertyName}`).pipe(
       shareReplay(),
       map((dtos) => dtos.map((v) => this.mapSelectValueToSelectItem(v))),
-      tap((selectItems) => this.selectValues.set(this.getMapKey(tableName, propertyName), selectItems))
+      tap((selectItems) => this.selectValues.set(this.getMapKey(tableName, propertyName), selectItems)),
     );
   }
 
@@ -37,6 +37,6 @@ export class SelectValueService {
   }
 
   private mapSelectValueToSelectItem(selectValue: ISelectValueDto): SelectItem {
-    return {label: selectValue.name, value: selectValue.id};
+    return { label: selectValue.name, value: selectValue.id };
   }
 }

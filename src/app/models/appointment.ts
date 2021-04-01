@@ -48,6 +48,7 @@ export interface IRoomDto extends IBaseEntityDto {
 }
 
 export interface IProjectDto extends IBaseEntityDto {
+  // eslint-disable-next-line id-blacklist
   number: number;
   title: string;
   description: string;
@@ -102,14 +103,14 @@ export interface IUserAppointmentListDto {
 }
 
 export interface IUserAppointmentDto extends IBaseEntityDto {
- startTime: string;
- endTime: string;
- name: string;
- projects: IProjectDto[];
- venue: IVenueDto;
- rooms: IRoomDto[];
- publicDetails: string;
- expectation: string;
- result: string;
- predictionId: string;
+  startTime: string;
+  endTime: string;
+  name: string;
+  projects: IProjectDto[];
+  venue: IVenueDto;
+  rooms: IRoomDto[];
+  publicDetails: string;
+  expectation: string;
+  result: string;
+  predictionId: string;
 }

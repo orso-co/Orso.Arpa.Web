@@ -12,7 +12,7 @@ describe('DummyListComponent', () => {
         declarations: [DummyComponent],
         providers: [],
       }).compileComponents();
-    })
+    }),
   );
 
   beforeEach(() => {

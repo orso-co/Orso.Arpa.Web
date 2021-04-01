@@ -4,9 +4,9 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { NoRoleComponent } from './no-role.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { httpLoaderFactory } from '../../../core/core.module';
 
 describe('NoRoleComponent', () => {
   let component: NoRoleComponent;
@@ -21,7 +21,7 @@ describe('NoRoleComponent', () => {
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
+            useFactory: httpLoaderFactory,
             deps: [HttpClient],
           },
         }),

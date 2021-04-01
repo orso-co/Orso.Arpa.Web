@@ -1,8 +1,8 @@
-import {shareReplay} from 'rxjs/operators';
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {ApiService} from './api.service';
-import {IRoomDto, IVenueDto} from '../../models/appointment';
+import { shareReplay } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ApiService } from './api.service';
+import { IRoomDto, IVenueDto } from '../../models/appointment';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,7 @@ export class VenueService {
 
   load(): Observable<IVenueDto[]> {
     return this.apiService.get<IVenueDto[]>(this.baseUrl).pipe(
-      shareReplay()
+      shareReplay(),
     );
   }
 

@@ -1,25 +1,25 @@
-import {Injectable, NgModule} from '@angular/core';
-import {IndividualConfig, ToastPackage, ToastRef, ToastrModule} from 'ngx-toastr';
+import { Injectable, NgModule } from '@angular/core';
+import { IndividualConfig, ToastPackage, ToastRef, ToastrModule } from 'ngx-toastr';
 
 
 @Injectable()
 class MockToastPackage extends ToastPackage {
   constructor() {
-    const toastConfig = {toastClass: 'custom-toast'};
-    super(1, <IndividualConfig>toastConfig, 'test message', 'test title', 'show', new ToastRef(<any>null));
+    const toastConfig = { toastClass: 'custom-toast' };
+    super(1, toastConfig as IndividualConfig, 'test message', 'test title', 'show', new ToastRef(null as any));
   }
 }
 
 @NgModule({
   providers: [
-    {provide: ToastPackage, useClass: MockToastPackage}
+    { provide: ToastPackage, useClass: MockToastPackage },
   ],
   imports: [
     ToastrModule.forRoot(),
   ],
   exports: [
-    ToastrModule
-  ]
+    ToastrModule,
+  ],
 })
 export class ToastrTestingModule {
 

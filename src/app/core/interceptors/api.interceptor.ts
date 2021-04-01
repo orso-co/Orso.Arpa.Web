@@ -1,18 +1,18 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor, HttpErrorResponse
+  HttpInterceptor, HttpErrorResponse, HttpHeaders,
 } from '@angular/common/http';
-import {Observable, of, Subject, throwError} from 'rxjs';
-import {JwtService} from '../services/jwt.service';
-import {Router} from '@angular/router';
-import {catchError, switchMap, tap} from 'rxjs/operators';
-import {ConfigService} from '../services/config.service';
-import {TranslateService} from '@ngx-translate/core';
-import {AuthService} from '../services/auth.service';
-import {NotificationsService} from '../services/notifications.service';
+import { Observable, of, Subject, throwError } from 'rxjs';
+import { JwtService } from '../services/jwt.service';
+import { Router } from '@angular/router';
+import { catchError, switchMap, tap } from 'rxjs/operators';
+import { ConfigService } from '../services/config.service';
+import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from '../services/auth.service';
+import { NotificationsService } from '../services/notifications.service';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
@@ -29,9 +29,9 @@ export class ApiInterceptor implements HttpInterceptor {
     private authService: AuthService,
     private jwtService: JwtService,
     private configService: ConfigService,
-    private translate: TranslateService
+    private translate: TranslateService,
   ) {
-    const {protocol, baseUrl} = this.configService.getEnv('api');
+    const { protocol, baseUrl } = this.configService.getEnv('api');
     this.apiUrlBase = `${protocol}://${baseUrl}`;
   }
 
@@ -71,7 +71,7 @@ export class ApiInterceptor implements HttpInterceptor {
       return this.refreshToken().pipe(
         switchMap(() => {
           if (request) {
-            request = request.clone({setHeaders: this.setAuthHeader()});
+            request = request.clone({ setHeaders: this.setAuthHeader() });
             return next.handle(request);
           }
           return of(error);
@@ -92,16 +92,16 @@ export class ApiInterceptor implements HttpInterceptor {
         state: {
           error: 500,
           type: 'FatalError',
-          message: 'error.FATAL_ERROR'
-        }
+          message: 'error.FATAL_ERROR',
+        },
       });
     } else if (error.status === 503) {
       this.router.navigate(['error'], {
         state: {
           error: 503,
           type: 'Error',
-          message: 'error.SERVICE_UNAVAILABLE'
-        }
+          message: 'error.SERVICE_UNAVAILABLE',
+        },
       });
     }
 
@@ -110,11 +110,13 @@ export class ApiInterceptor implements HttpInterceptor {
 
   setAuthHeader() {
     const token = this.jwtService.getToken();
-    const headersConfig: any = {
+    const headersConfig: Record<string, string> = {
+      // eslint-disable @typescript-eslint/naming-convention
       'Content-Type': 'application/json',
-      Accept: 'application/json',
-      'Accept-Language': this.translate.currentLang + ';q=0.9,de,de-DE;q=0.8,en,en-GB;q=0.7'
+      'Accept': 'application/json',
+      'Accept-Language': this.translate.currentLang + ';q=0.9,de,de-DE;q=0.8,en,en-GB;q=0.7',
     };
+    // eslint-enable @typescript-eslint/naming-convention
     if (token) {
       headersConfig.Authorization = `Bearer ${token}`;
     }
@@ -123,7 +125,7 @@ export class ApiInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (request.url.startsWith(this.apiUrlBase)) {
-      request = request.clone({setHeaders: this.setAuthHeader()});
+      request = request.clone({ setHeaders: this.setAuthHeader() });
       return next.handle(request).pipe(catchError((error: any) => this.handleResponseError(error, request, next)));
     } else {
       return next.handle(request.clone());

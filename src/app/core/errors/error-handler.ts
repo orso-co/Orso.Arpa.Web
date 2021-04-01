@@ -1,5 +1,5 @@
-import {Injectable, NgZone} from '@angular/core';
-import {NotificationsService} from '../services/notifications.service';
+import { Injectable, NgZone } from '@angular/core';
+import { NotificationsService } from '../services/notifications.service';
 
 @Injectable()
 export class ErrorHandler {

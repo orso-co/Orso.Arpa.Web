@@ -1,13 +1,13 @@
-import { SelectItem, PrimeNGConfig } from 'primeng/api';
-import {Component, OnDestroy} from '@angular/core';
-import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
-import {Subscription} from 'rxjs';
-import {LanguageService} from '../../core/services/language.service';
+import { SelectItem } from 'primeng/api';
+import { Component, OnDestroy } from '@angular/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
+import { LanguageService } from '../../core/services/language.service';
 
 @Component({
   selector: 'arpa-lang-switch',
   templateUrl: './lang-switch.component.html',
-  styleUrls: ['./lang-switch.component.scss']
+  styleUrls: ['./lang-switch.component.scss'],
 })
 export class LangSwitchComponent implements OnDestroy {
 

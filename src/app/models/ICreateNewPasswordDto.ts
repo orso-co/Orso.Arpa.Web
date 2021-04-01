@@ -1,4 +1,4 @@
 export interface ICreateNewPasswordDto {
-    usernameOrEmail: string;
-    clientUri: string;
-  }
+  usernameOrEmail: string;
+  clientUri: string;
+}

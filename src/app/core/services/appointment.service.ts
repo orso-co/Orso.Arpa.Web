@@ -1,10 +1,10 @@
-import {shareReplay} from 'rxjs/operators';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {Inject, Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {ApiService} from './api.service';
-import {IAppointmentDto} from '../../models/appointment';
-import {DateRange} from '../../models/date-range';
+import { shareReplay } from 'rxjs/operators';
+import { HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ApiService } from './api.service';
+import { IAppointmentDto } from '../../models/appointment';
+import { DateRange } from '../../models/date-range';
 
 @Injectable({
   providedIn: 'root',
@@ -68,7 +68,7 @@ export class AppointmentService {
 
   setDates(id: string, startTime: Date | null, endTime: Date | null): Observable<IAppointmentDto> {
     return this.apiService
-      .put<IAppointmentDto>(`${this.baseUrl}/${id}/dates/set`, {startTime, endTime})
+      .put<IAppointmentDto>(`${this.baseUrl}/${id}/dates/set`, { startTime, endTime })
       .pipe(shareReplay());
   }
 

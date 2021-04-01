@@ -1,22 +1,22 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable, BehaviorSubject, ReplaySubject, combineLatest} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, BehaviorSubject, ReplaySubject, combineLatest } from 'rxjs';
 
-import {ApiService} from './api.service';
-import {JwtService} from './jwt.service';
-import {map, distinctUntilChanged, filter, tap, catchError} from 'rxjs/operators';
-import {ILoginDto} from '../../models/ILoginDto';
-import {ITokenDto} from '../../models/ITokenDto';
-import {IUserRegisterDto} from '../../models/IUserRegisterDto';
-import {ConfigService} from './config.service';
-import {ICreateEmailConfirmationTokenDto} from '../../models/ICreateEmailConfirmationTokenDto';
-import {IConfirmEmailDto} from '../../models/IConfirmEmailDto';
-import {ICreateNewPasswordDto} from '../../models/ICreateNewPasswordDto';
-import {IResetPasswordDto} from '../../models/IResetPasswordDto';
-import {intersection} from 'lodash-es';
-import {RoleNames} from '../../models/role-names';
-import {ISetRoleDto} from '../../models/ISetRoleDto';
-import {RoleService} from './role.service';
+import { ApiService } from './api.service';
+import { JwtService } from './jwt.service';
+import { map, distinctUntilChanged, filter, tap, catchError } from 'rxjs/operators';
+import { ILoginDto } from '../../models/ILoginDto';
+import { ITokenDto } from '../../models/ITokenDto';
+import { IUserRegisterDto } from '../../models/IUserRegisterDto';
+import { ConfigService } from './config.service';
+import { ICreateEmailConfirmationTokenDto } from '../../models/ICreateEmailConfirmationTokenDto';
+import { IConfirmEmailDto } from '../../models/IConfirmEmailDto';
+import { ICreateNewPasswordDto } from '../../models/ICreateNewPasswordDto';
+import { IResetPasswordDto } from '../../models/IResetPasswordDto';
+import { intersection } from 'lodash-es';
+import { RoleNames } from '../../models/role-names';
+import { ISetRoleDto } from '../../models/ISetRoleDto';
+import { RoleService } from './role.service';
 
 export interface IToken {
   audience: string;
@@ -29,7 +29,7 @@ export interface IToken {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private currentUserSubject = new BehaviorSubject<IToken>({} as IToken);
@@ -47,7 +47,7 @@ export class AuthService {
     private configService: ConfigService,
     private roleService: RoleService,
   ) {
-    const {protocol, baseUrl} = this.configService.getEnv('web');
+    const { protocol, baseUrl } = this.configService.getEnv('web');
     this.clientUriBase = `${protocol}://${baseUrl}`;
     // ToDo: Introspection endpoint would be nice if token is still valid.
   }
@@ -73,7 +73,7 @@ export class AuthService {
 
   refreshToken() {
     return this.apiService.post<ITokenDto>('/api/Auth/refreshtoken', {
-      token: this.jwtService.getToken()
+      token: this.jwtService.getToken(),
     }).pipe(tap((tokenDto: ITokenDto) => {
       this.jwtService.saveToken(tokenDto.token);
     }));
@@ -89,15 +89,15 @@ export class AuthService {
       tap((token) => {
         this.currentUserSubject.next(token);
         this.isAuthenticatedSubject.next(true);
-      })
+      }),
     );
   }
 
   logout(): Observable<any> {
     return this.apiService.post<any>(`/auth/logout`, {
-      token: this.jwtService.getToken()
+      token: this.jwtService.getToken(),
     }).pipe(
-      tap(() => this.purgeAuth())
+      tap(() => this.purgeAuth()),
     );
   }
 

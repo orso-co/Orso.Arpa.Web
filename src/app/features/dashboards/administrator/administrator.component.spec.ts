@@ -1,13 +1,11 @@
-import { SectionService } from './../../../services/section.service';
 import { of } from 'rxjs';
-import { RoleService } from './../../../services/role.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { AdministratorComponent } from './administrator.component';
 import { ActivatedRoute } from '@angular/router';
-import {HttpLoaderFactory} from './../../../app.module';
-import {HttpClient} from '@angular/common/http';
+import { RoleService } from '../../../core/services/role.service';
+import { SectionService } from '../../../core/services/section.service';
 
 
 describe('AdministratorComponent', () => {
@@ -20,7 +18,12 @@ describe('AdministratorComponent', () => {
       imports: [RouterTestingModule, TranslateModule.forRoot()],
       providers: [
         { provide: RoleService, useValue: { roles$: of([]) } },
-        { provide: SectionService, useValue: { getTree: () => {}} },
+        {
+          provide: SectionService, useValue: {
+            getTree: () => {
+            },
+          },
+        },
         { provide: ActivatedRoute, useValue: { data: of({ users: [] }) } },
       ],
     }).compileComponents();

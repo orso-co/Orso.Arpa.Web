@@ -1,13 +1,13 @@
-import {NgModule} from '@angular/core';
-import {TranslateModule} from '@ngx-translate/core';
+import { NgModule } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
-    TranslateModule.forRoot()
+    TranslateModule.forRoot(),
   ],
   exports: [
-    TranslateModule
-  ]
+    TranslateModule,
+  ],
 })
 export class TranslateMockModule {
 

@@ -1,13 +1,13 @@
-import {SubSink} from 'subsink';
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {SelectItem} from 'primeng/api';
-import {Observable, of} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {IProjectDto, IRoomDto, IUserAppointmentDto, IVenueDto} from 'src/app/models/appointment';
-import {MeService} from '../../../core/services/me.service';
-import {NotificationsService} from '../../../core/services/notifications.service';
-import {LoadingService} from '../../../core/services/loading.service';
+import { SubSink } from 'subsink';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { SelectItem } from 'primeng/api';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { IProjectDto, IRoomDto, IUserAppointmentDto, IVenueDto } from 'src/app/models/appointment';
+import { MeService } from '../../../core/services/me.service';
+import { NotificationsService } from '../../../core/services/notifications.service';
+import { LoadingService } from '../../../core/services/loading.service';
 
 @Component({
   selector: 'arpa-my-appointments',
@@ -31,7 +31,7 @@ export class MyAppointmentsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.predictionOptions$ = this.route.data.pipe(
-      map((data) => (data.predictions || [])
+      map((data) => (data.predictions || []),
       ));
   }
 
@@ -83,7 +83,7 @@ export class MyAppointmentsComponent implements OnInit, OnDestroy {
     this.subs.add(
       this.meService
         .setAppointmentPrediction(userAppointment.id, event.value)
-        .subscribe((result) => this.notificationsService.success('myappointments.PREDICTION_SET'))
+        .subscribe((result) => this.notificationsService.success('myappointments.PREDICTION_SET')),
     );
   }
 }

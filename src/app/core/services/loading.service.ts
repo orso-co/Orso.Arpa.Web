@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable, of} from 'rxjs';
-import {concatMap, finalize, tap} from 'rxjs/operators';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { concatMap, finalize, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +14,7 @@ export class LoadingService {
     return of(null).pipe(
       tap(() => this.loadingOn()),
       concatMap(() => obs$),
-      finalize(() => this.loadingOff())
+      finalize(() => this.loadingOff()),
     );
   }
 

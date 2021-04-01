@@ -5,16 +5,16 @@
 export const environment = {
   production: false,
   captcha: {
-    key: '6LfS2X0aAAAAADWnno_N6FJzl2OhGI3ibz2EqPQQ'
+    key: '6LfS2X0aAAAAADWnno_N6FJzl2OhGI3ibz2EqPQQ',
   },
   api: {
     protocol: 'http',
-    baseUrl: 'localhost:5000'
+    baseUrl: 'localhost:5000',
   },
   web:
     {
       protocol: 'http',
-      baseUrl: 'localhost:4200'
+      baseUrl: 'localhost:4200',
     },
   arpa: {
     url: 'http://arpa.orso.berlin/',
@@ -28,7 +28,7 @@ export const environment = {
   },
   locale: {
     default: 'de',
-  }
+  },
 };
 
 /*

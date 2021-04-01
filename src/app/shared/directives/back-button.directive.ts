@@ -1,8 +1,8 @@
-import {Directive, HostListener} from '@angular/core';
-import {NavigationService} from '../../core/services/navigation.service';
+import { Directive, HostListener } from '@angular/core';
+import { NavigationService } from '../../core/services/navigation.service';
 
 @Directive({
-  selector: '[arpaBackButton]'
+  selector: '[arpaBackButton]',
 })
 export class BackButtonDirective {
   constructor(private navigation: NavigationService) {

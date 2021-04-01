@@ -7,14 +7,14 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'arpa-staff',
   templateUrl: './staff.component.html',
-  styleUrls: ['./staff.component.css']
+  styleUrls: ['./staff.component.css'],
 })
 export class StaffComponent implements OnDestroy {
   projects: IProjectDto[] = [];
   private subs = new SubSink();
 
   constructor(
-    route: ActivatedRoute
+    route: ActivatedRoute,
   ) {
     this.subs.add(
       route.data.pipe(map((routeData) => routeData.projects)).subscribe((project) => (this.projects = this.filterActiveProjects(project))),

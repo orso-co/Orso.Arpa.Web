@@ -1,17 +1,17 @@
-import {Component, OnInit} from '@angular/core';
-import {NotificationsService} from '../../core/services/notifications.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {IUserProfileDto} from '../../models/IUserProfileDto';
-import {SubSink} from 'subsink';
-import {MeService} from '../../core/services/me.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NotificationsService } from '../../core/services/notifications.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { IUserProfileDto } from '../../models/IUserProfileDto';
+import { SubSink } from 'subsink';
+import { MeService } from '../../core/services/me.service';
 
 @Component({
   selector: 'arpa-appointments',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
 
   private subs = new SubSink();
   userProfile: IUserProfileDto;
@@ -20,14 +20,14 @@ export class ProfileComponent implements OnInit {
   constructor(private meService: MeService,
               private router: Router,
               private fb: FormBuilder,
-              private notificationsService: NotificationsService
+              private notificationsService: NotificationsService,
   ) {
     this.profileFormGroup = this.fb.group({
-      userName: [{value: '', disabled: true}],
+      userName: [{ value: '', disabled: true }],
       givenName: ['', Validators.required],
       surname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', Validators.pattern('[- +()0-9]+')]
+      phoneNumber: ['', Validators.pattern('[- +()0-9]+')],
     });
   }
 
@@ -59,7 +59,7 @@ export class ProfileComponent implements OnInit {
         } else {
           this.notificationsService.error('profile.ISSUE');
         }
-      }
+      },
     ));
   }
 

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PageLayoutComponent } from './page-layout.component';
-import {ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 describe('PageLayoutComponent', () => {
   let component: PageLayoutComponent;
@@ -9,12 +9,12 @@ describe('PageLayoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PageLayoutComponent ],
+      declarations: [PageLayoutComponent],
       providers: [
         { provide: ActivatedRoute, useValue: {} },
-      ]
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

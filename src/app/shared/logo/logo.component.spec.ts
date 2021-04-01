@@ -1,7 +1,7 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {LogoComponent} from './logo.component';
-import {ConfigService} from '../../core/services/config.service';
+import { LogoComponent } from './logo.component';
+import { ConfigService } from '../../core/services/config.service';
 
 describe('ArpalogoComponent', () => {
   let component: LogoComponent;
@@ -11,7 +11,7 @@ describe('ArpalogoComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [LogoComponent],
       providers: [
-        ConfigService
+        ConfigService,
       ],
     })
       .compileComponents();
