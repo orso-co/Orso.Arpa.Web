@@ -9,7 +9,7 @@ import { LoginComponent } from './main/login/login.component';
 import { RegisterComponent } from './main/register/register.component';
 import { PrivacyComponent } from './main/privacy/privacy.component';
 import { LogoutComponent } from './main/logout/logout.component';
-import { EmailconfirmationComponent } from './main/emailconfirmation/emailconfirmation.component';
+import { EmailConfirmationComponent } from './main/emailconfirmation/email-confirmation.component';
 import { ForgotPasswordComponent } from './main/forgot-password/forgot-password.component';
 import { SessionGuard } from './core/guards/session.guard';
 
@@ -28,8 +28,8 @@ const routes: Routes = [
       },
       { path: 'login', component: LoginComponent, data: { sessionPrevent: true } },
       { path: 'register', component: RegisterComponent, data: { sessionPrevent: true } },
-      { path: 'password', component: ForgotPasswordComponent, data: { sessionPrevent: true } },
-      { path: 'eMailConfirmation', component: EmailconfirmationComponent, data: { sessionPrevent: true } },
+      { path: 'forgotPassword', component: ForgotPasswordComponent, data: { sessionPrevent: true } },
+      { path: 'eMailConfirmation', component: EmailConfirmationComponent, data: { sessionPrevent: true } },
       { path: 'logout', component: LogoutComponent },
       { path: 'privacy', component: PrivacyComponent },
     ],

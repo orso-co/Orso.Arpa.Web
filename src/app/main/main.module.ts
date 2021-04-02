@@ -11,7 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { EmailconfirmationComponent } from './emailconfirmation/emailconfirmation.component';
+import { EmailConfirmationComponent } from './emailconfirmation/email-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { EmailconfirmationComponent } from './emailconfirmation/emailconfirmatio
     PrivacyComponent,
     LogoutComponent,
     ForgotPasswordComponent,
-    EmailconfirmationComponent,
+    EmailConfirmationComponent,
   ],
   imports: [
     CommonModule,

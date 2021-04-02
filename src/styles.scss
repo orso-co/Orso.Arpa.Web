@@ -49,3 +49,11 @@ select:-webkit-autofill:focus {
 [arpaBAckButton] {
   cursor: pointer;
 }
+
+.p-field.p-float-label, .p-field + .p-field {
+  margin-top: 3em;
+}
+
+.p-formgroup-inline > .p-field + .p-field {
+  margin-top: inherit;
+}

@@ -4,6 +4,10 @@
     align-items: stretch;
   }
 
+  .content {
+    padding: 2em;
+  }
+
   .bg {
     @media (min-width: 768px) {
       background-image: url("../../../../assets/organization/images/bg-login.jpg");

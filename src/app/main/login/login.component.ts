@@ -62,10 +62,16 @@ export class LoginComponent {
   }
 
   resendConfirmationLink(): void {
-
+    this.authService
+      .resendConfirmationLink(this.loginFormGroup.value.usernameOrEmail)
+      .subscribe(() => {
+        this.notificationsService.info('login.RESENDDONE');
+      });
   }
 
   forgotPassword(): void {
-
+    this.authService.forgotPassword(this.loginFormGroup.value.usernameOrEmail).subscribe(() => {
+      this.notificationsService.success('forgotpassword.SENT');
+    });
   }
 }

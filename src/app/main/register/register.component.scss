@@ -1,15 +1,8 @@
 :host {
-  form {
-    display: block;
-    justify-content: center;
-  }
+  display: flex;
+  justify-content: center;
 
-  form > div {
-    margin-bottom: 3em;
-  }
-
-  form > arpa-lang-switch {
-    display: block;
-    margin-bottom: 4em;
+  .p-field-checkbox {
+    margin-top: 4em;
   }
 }

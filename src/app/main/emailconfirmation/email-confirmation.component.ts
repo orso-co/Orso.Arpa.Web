@@ -7,10 +7,9 @@ import { NotificationsService } from '../../core/services/notifications.service'
 
 @Component({
   selector: 'arpa-emailconfirmation',
-  templateUrl: './emailconfirmation.component.html',
-  styleUrls: ['./emailconfirmation.component.scss'],
+  template: '',
 })
-export class EmailconfirmationComponent implements OnInit {
+export class EmailConfirmationComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private authService: AuthService,

@@ -1,63 +1,64 @@
-<div class="p-grid">
-  <div class="p-col-3 p-md-2"></div>
-  <div class="p-col-9 p-md-10">
-    <form [formGroup] = "registerFormGroup" (ngSubmit)="submit()">
+<form [formGroup]='registerFormGroup' (ngSubmit)='submit()'>
 
-      <arpa-lang-switch class="p-mr-12 p-mt-auto"></arpa-lang-switch>
+  <div class='p-field'>
+    <arpa-lang-switch></arpa-lang-switch>
+  </div>
 
-      <div class="p-float-label p-mr-12 p-mt-auto">
-        <input id="givenname" type="text" pInputText formControlName="givenName" (ngModelChange)="onChange()">
-        <label for="float-input">{{ 'GIVENNAME' | translate }}</label>
-      </div>
-
-
-      <div class="p-float-label p-mr-12 p-mt-auto">
-        <input id="givenname" type="text" pInputText formControlName="surname" (ngModelChange)="onChange()">
-        <label for="float-input">{{ 'SURNAME' | translate }}</label>
-      </div>
+  <div class='p-field p-float-label'>
+    <input id='givenname' type='text' pInputText formControlName='givenName' (ngModelChange)='onChange()'>
+    <label for='float-input'>{{ 'GIVENNAME' | translate }}</label>
+  </div>
 
 
-      <div class="p-float-label p-mr-12 p-mt-auto">
-        <input id="givenname" type="text" pInputText formControlName="email" (ngModelChange)="onChange()">
-        <label for="float-input">{{ 'EMAILADDRESS' | translate }}</label>
-      </div>
-
-      <div class="p-float-label p-mr-12 p-mt-auto">
-        <input id="givenname" type="text" pInputText formControlName="userName" (ngModelChange)="onChange()">
-        <label for="float-input">{{ 'USERNAME' | translate }}</label>
-      </div>
-
-      <div class="p-float-label p-mr-12 p-mt-auto">
-        <input id="password" type="text" pInputText formControlName="password" pPassword [feedback]=false [type]="hide ? 'password' : 'text'" (ngModelChange)="onChange()">
-        <label for="float-input">{{ 'PASSWORD' | translate }}</label>
-        <i id="eyeButton" class="p-ml-2 pi {{hide ? 'pi-eye-slash' : 'pi-eye'}}" (click)="hide = !hide"></i>
-      </div>
-
-      <div class="p-field-checkbox p-mr-12 p-mt-auto">
-        <p-checkbox id="givenname" formControlName="privacyPolicy" ngDefaultControl></p-checkbox>
-        <label>
-          <a [routerLink]="['/privacy']" style="color:currentColor;" title="{{ 'register.SHOWPRIVACY' | translate }}">
-            {{ 'PRIVACYPOLICY' | translate }}
-          </a>
-        </label>
-      </div>
+  <div class='p-field p-float-label'>
+    <input id='givenname' type='text' pInputText formControlName='surname' (ngModelChange)='onChange()'>
+    <label for='float-input'>{{ 'SURNAME' | translate }}</label>
+  </div>
 
 
+  <div class='p-field p-float-label'>
+    <input id='givenname' type='text' pInputText formControlName='email' (ngModelChange)='onChange()'>
+    <label for='float-input'>{{ 'EMAILADDRESS' | translate }}</label>
+  </div>
 
+  <div class='p-field p-float-label'>
+    <input id='givenname' type='text' pInputText formControlName='userName' (ngModelChange)='onChange()'>
+    <label for='float-input'>{{ 'USERNAME' | translate }}</label>
+  </div>
+
+  <div class='p-field p-float-label'>
+    <input id='password' type='text' pInputText formControlName='password' pPassword [feedback]=false
+           [type]="hide ? 'password' : 'text'" (ngModelChange)='onChange()'>
+    <label for='float-input'>{{ 'PASSWORD' | translate }}</label>
+    <i id='eyeButton' class="p-ml-2 pi {{hide ? 'pi-eye-slash' : 'pi-eye'}}" (click)='hide = !hide'></i>
+  </div>
+
+  <div class='p-field-checkbox'>
+    <p-checkbox id='givenname' formControlName='privacyPolicy' ngDefaultControl></p-checkbox>
+    <label>
+      <a [routerLink]="['/privacy']" style='color:currentColor;' title="{{ 'register.SHOWPRIVACY' | translate }}">
+        {{ 'PRIVACYPOLICY' | translate }}
+      </a>
+    </label>
+  </div>
+
+  <div class='p-formgroup-inline'>
+    <div class='p-field'>
       <button
         pButton
         label="{{ 'REGISTER' | translate }}"
-        [disabled]="registerFormGroup.invalid || registerFormGroup.pristine || registerRequest">
+        [disabled]='registerFormGroup.invalid || registerFormGroup.pristine || registerRequest'>
       </button>
-
-
-      <button *ngIf="!registerRequest"
+    </div>
+    <div class='p-field'>
+      <button *ngIf='!registerRequest'
               pButton
               label="{{ 'CANCEL' | translate }}"
-              (click)="goToLogin()">
+              (click)='goToLogin()'>
       </button>
-
-      <!--<p-captcha [siteKey]="captchaKey" theme="dark" size="invisible" language="en" (onResponse)="submit()"></p-captcha>-->
-    </form>
+    </div>
   </div>
-</div>
+
+ <!--<p-captcha [siteKey]="captchaKey" theme="dark" size="invisible" language="en" (onResponse)="submit()"></p-captcha>-->
+</form>
+

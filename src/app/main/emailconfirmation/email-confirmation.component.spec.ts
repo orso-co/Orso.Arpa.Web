@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { EmailconfirmationComponent } from './emailconfirmation.component';
+import { EmailConfirmationComponent } from './email-confirmation.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
@@ -11,15 +11,15 @@ import { AuthService } from '../../core/services/auth.service';
 import { NotificationsService } from '../../core/services/notifications.service';
 
 describe('EmailconfirmationComponent', () => {
-  let component: EmailconfirmationComponent;
-  let fixture: ComponentFixture<EmailconfirmationComponent>;
+  let component: EmailConfirmationComponent;
+  let fixture: ComponentFixture<EmailConfirmationComponent>;
 
   let translate: TranslateService;
   let http: HttpTestingController;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [EmailconfirmationComponent],
+      declarations: [EmailConfirmationComponent],
       imports: [
         HttpClientTestingModule,
         RouterTestingModule,
@@ -41,7 +41,7 @@ describe('EmailconfirmationComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EmailconfirmationComponent);
+    fixture = TestBed.createComponent(EmailConfirmationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
