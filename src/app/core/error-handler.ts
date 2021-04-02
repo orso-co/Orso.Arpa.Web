@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { NotificationsService } from '../services/notifications.service';
+import { NotificationsService } from './services/notifications.service';
 
 @Injectable()
 export class ErrorHandler {
@@ -7,7 +7,6 @@ export class ErrorHandler {
   }
 
   handleError(error: Error) {
-
     this.zone.run(() => this.notificationsService.error(error.message));
   }
 }

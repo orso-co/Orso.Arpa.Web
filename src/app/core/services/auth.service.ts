@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject, ReplaySubject, combineLatest } from 'rxjs';
+import { Observable, BehaviorSubject, ReplaySubject, combineLatest, of } from 'rxjs';
 
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
@@ -17,6 +17,7 @@ import { intersection } from 'lodash-es';
 import { RoleNames } from '../../models/role-names';
 import { ISetRoleDto } from '../../models/ISetRoleDto';
 import { RoleService } from './role.service';
+import { LoggerService } from './logger.service';
 
 export interface IToken {
   audience: string;
@@ -46,6 +47,7 @@ export class AuthService {
     private jwtService: JwtService,
     private configService: ConfigService,
     private roleService: RoleService,
+    private logger: LoggerService,
   ) {
     const { protocol, baseUrl } = this.configService.getEnv('web');
     this.clientUriBase = `${protocol}://${baseUrl}`;
@@ -97,7 +99,13 @@ export class AuthService {
     return this.apiService.post<any>(`/auth/logout`, {
       token: this.jwtService.getToken(),
     }).pipe(
-      tap(() => this.purgeAuth()),
+      catchError((error) => {
+        if (error) {
+          this.logger.error(error);
+        }
+        this.purgeAuth();
+        return of({});
+      }),
     );
   }
 

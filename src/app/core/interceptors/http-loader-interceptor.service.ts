@@ -11,7 +11,7 @@ import { NotificationsService } from '../services/notifications.service';
 import { LoadingService } from '../services/loading.service';
 
 @Injectable()
-export class HttpErrorInterceptor implements HttpInterceptor {
+export class HttpLoaderInterceptor implements HttpInterceptor {
   constructor(
     private notificationsService: NotificationsService,
     private loadingService: LoadingService,
@@ -25,7 +25,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     this.loadingService.loadingOn();
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        console.error('Error from error interceptor', error);
         this.notificationsService.error(error.message);
         return throwError(error);
       }),

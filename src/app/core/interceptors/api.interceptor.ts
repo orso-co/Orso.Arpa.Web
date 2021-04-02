@@ -3,7 +3,7 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor, HttpErrorResponse, HttpHeaders,
+  HttpInterceptor,
 } from '@angular/common/http';
 import { Observable, of, Subject, throwError } from 'rxjs';
 import { JwtService } from '../services/jwt.service';

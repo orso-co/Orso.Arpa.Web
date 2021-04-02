@@ -1,5 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { SubSink } from 'subsink';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationsService } from '../../core/services/notifications.service';
@@ -11,9 +10,8 @@ import { AuthService } from '../../core/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnDestroy {
+export class LoginComponent {
   loginFormGroup: FormGroup;
-  private subs = new SubSink();
   hide = true;
 
   constructor(formBuilder: FormBuilder,
@@ -39,13 +37,9 @@ export class LoginComponent implements OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
-    this.subs.unsubscribe();
-  }
-
   submit(): void {
     this.loadingService.loadingOn();
-    this.subs.add(this.authService
+    this.authService
       .login(Object.assign({}, this.loginFormGroup.value))
       .subscribe(
         response => {
@@ -60,7 +54,7 @@ export class LoginComponent implements OnDestroy {
               this.resendConfirmationLink();
             }
           });
-        }));
+        });
   }
 
   goToRegister(): void {
