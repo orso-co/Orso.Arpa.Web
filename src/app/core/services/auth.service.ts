@@ -74,9 +74,7 @@ export class AuthService {
   }
 
   refreshToken() {
-    return this.apiService.post<ITokenDto>('/api/Auth/refreshtoken', {
-      token: this.jwtService.getToken(),
-    }).pipe(tap((tokenDto: ITokenDto) => {
+    return this.apiService.post<ITokenDto>('/api/Auth/refreshtoken', {}).pipe(tap((tokenDto: ITokenDto) => {
       this.jwtService.saveToken(tokenDto.token);
     }));
   }
