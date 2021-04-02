@@ -1,6 +1,6 @@
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { IAppointmentDto, ICalendarEvent, IProjectDto, IVenueDto } from 'src/app/models/appointment';
 import { DateRange } from 'src/app/models/date-range';
@@ -10,11 +10,9 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { SubSink } from 'subsink';
 import { ISectionDto } from 'src/app/models/section';
 import { AppointmentService } from '../../../core/services/appointment.service';
 import { NotificationsService } from '../../../core/services/notifications.service';
-import { LoadingService } from '../../../core/services/loading.service';
 import { SectionService } from '../../../core/services/section.service';
 import { EditAppointmentComponent } from '../edit-appointment/edit-appointment.component';
 
@@ -23,7 +21,7 @@ import { EditAppointmentComponent } from '../edit-appointment/edit-appointment.c
   templateUrl: './appointments.component.html',
   styleUrls: ['./appointments.component.scss'],
 })
-export class AppointmentsComponent implements OnDestroy {
+export class AppointmentsComponent {
   categoryOptions: SelectItem[] = [];
   statusOptions: SelectItem[] = [];
   emolumentPatternOptions: SelectItem[] = [];
@@ -38,7 +36,6 @@ export class AppointmentsComponent implements OnDestroy {
   fullCalendarOptions$: Observable<any>;
   events: ICalendarEvent[] = [];
   private _appointments: IAppointmentDto[] = [];
-  private subs = new SubSink();
 
   get appointments(): IAppointmentDto[] {
     return this._appointments;
@@ -55,29 +52,22 @@ export class AppointmentsComponent implements OnDestroy {
     private route: ActivatedRoute,
     private translate: TranslateService,
     private dialogService: DialogService,
-    private loadingService: LoadingService,
     private sectionService: SectionService,
   ) {
-    this.subs.add(
-      this.route.data.subscribe((data) => {
-        this.projects = data.projects || [];
-        this.venues = data.venues || [];
-        this.emolumentOptions = data.emoluments || [];
-        this.emolumentPatternOptions = data.emolumentPatterns || [];
-        this.expectationOptions = data.expectations || [];
-        this.categoryOptions = data.categories || [];
-        this.statusOptions = data.status || [];
-        this.predictionOptions = data.predictions || [];
-        this.resultOptions = data.results || [];
-      }),
-    );
-    this.subs.add(this.sectionService.sections$.subscribe((sections) => (this.sections = sections || [])));
+    this.route.data.subscribe((data) => {
+      this.projects = data.projects || [];
+      this.venues = data.venues || [];
+      this.emolumentOptions = data.emoluments || [];
+      this.emolumentPatternOptions = data.emolumentPatterns || [];
+      this.expectationOptions = data.expectations || [];
+      this.categoryOptions = data.categories || [];
+      this.statusOptions = data.status || [];
+      this.predictionOptions = data.predictions || [];
+      this.resultOptions = data.results || [];
+    });
+    this.sectionService.sections$.subscribe((sections) => (this.sections = sections || []));
     this.setOptions();
     this.translate.onLangChange.subscribe(() => this.setOptions());
-  }
-
-  ngOnDestroy(): void {
-    this.subs.unsubscribe();
   }
 
   private setOptions(): void {
@@ -150,25 +140,17 @@ export class AppointmentsComponent implements OnDestroy {
       newEndTime = changedEvent.end;
     }
     if (newEndTime !== null || newStartTime !== null) {
-      this.subs.add(
-        this.loadingService
-          .showLoaderUntilCompleted(this.appointmentService.setDates(changedEvent.id, newStartTime, newEndTime))
-          .subscribe((appointment) => {
-            const index = this.appointments.findIndex((a) => a.id === appointment.id);
-            this.appointments[index] = appointment;
-            this.appointments = [...this.appointments];
-            this.notificationsService.success('Dates changed');
-          }),
-      );
+      this.appointmentService.setDates(changedEvent.id, newStartTime, newEndTime).subscribe((appointment) => {
+        const index = this.appointments.findIndex((a) => a.id === appointment.id);
+        this.appointments[index] = appointment;
+        this.appointments = [...this.appointments];
+        this.notificationsService.success('Dates changed');
+      });
     }
   }
 
   setAppointments(viewType: string, date: Date): void {
-    this.subs.add(
-      this.loadingService
-        .showLoaderUntilCompleted(this.appointmentService.get(this.getRange(viewType), date))
-        .subscribe((result) => (this.appointments = result)),
-    );
+    this.appointmentService.get(this.getRange(viewType), date).subscribe((result) => (this.appointments = result));
   }
 
   getRange(viewName: string): DateRange {
@@ -227,13 +209,11 @@ export class AppointmentsComponent implements OnDestroy {
       dismissableMask: true,
     });
 
-    this.subs.add(
-      ref.onClose.subscribe((appointment: IAppointmentDto) => {
-        if (appointment) {
-          this.appointments = [...this.appointments, appointment];
-        }
-      }),
-    );
+    ref.onClose.subscribe((appointment: IAppointmentDto) => {
+      if (appointment) {
+        this.appointments = [...this.appointments, appointment];
+      }
+    });
   }
 
   private openEditDialog(appointmentId: string): void {
@@ -257,19 +237,17 @@ export class AppointmentsComponent implements OnDestroy {
       dismissableMask: true,
     });
 
-    this.subs.add(
-      ref.onClose.subscribe((result: IAppointmentDto | string) => {
-        if (result) {
-          if (typeof result === 'string') {
-            this.appointments.splice(this.appointments.findIndex(a => a.id === appointmentId), 1);
-            this.appointments = [...this.appointments];
-          } else {
-            const index = this.appointments.findIndex((a) => a.id === result.id);
-            this.appointments[index] = result;
-            this.appointments = [...this.appointments];
-          }
+    ref.onClose.subscribe((result: IAppointmentDto | string) => {
+      if (result) {
+        if (typeof result === 'string') {
+          this.appointments.splice(this.appointments.findIndex(a => a.id === appointmentId), 1);
+          this.appointments = [...this.appointments];
+        } else {
+          const index = this.appointments.findIndex((a) => a.id === result.id);
+          this.appointments[index] = result;
+          this.appointments = [...this.appointments];
         }
-      }),
-    );
+      }
+    });
   }
 }

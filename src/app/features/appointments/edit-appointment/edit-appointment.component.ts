@@ -1,14 +1,12 @@
-import { SubSink } from 'subsink';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuItem, SelectItem, ConfirmationService } from 'primeng/api';
 import { IAppointmentDto, IMusicianProfileDto, IProjectDto, IRoomDto, IVenueDto } from 'src/app/models/appointment';
 import { ISectionDto } from 'src/app/models/section';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { NotificationsService } from '../../../core/services/notifications.service';
 import { AppointmentService } from '../../../core/services/appointment.service';
-import { LoadingService } from '../../../core/services/loading.service';
 
 class ParticipationTableItem {
   givenName: string;
@@ -43,7 +41,7 @@ class ParticipationTableItem {
   templateUrl: './edit-appointment.component.html',
   styleUrls: ['./edit-appointment.component.scss'],
 })
-export class EditAppointmentComponent implements OnInit, OnDestroy {
+export class EditAppointmentComponent implements OnInit {
   items: MenuItem[] = [];
   activeIndex = 0;
   formGroup: FormGroup;
@@ -71,8 +69,6 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
   columns: any[] = [];
   filteredDataCount: number;
 
-  private subs = new SubSink();
-
   get isNew(): boolean {
     return !this.appointment.id;
   }
@@ -85,7 +81,6 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private translate: TranslateService,
     private confirmationService: ConfirmationService,
-    private loadingService: LoadingService,
   ) {
   }
 
@@ -122,10 +117,6 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
     this.createStepperMenu();
   }
 
-  ngOnDestroy(): void {
-    this.subs.unsubscribe();
-  }
-
   onSubmit(continueToNextStep: boolean): void {
     if (this.formGroup.invalid || this.formGroup.pristine) {
       return;
@@ -146,34 +137,30 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
   }
 
   updateAppointment(appointment: IAppointmentDto, continueToNextStep: boolean): void {
-    this.subs.add(
-      this.loadingService.showLoaderUntilCompleted(this.appointmentService.update(appointment)).subscribe(() => {
-        this.notificationsService.success('editappointments.APPOINTMENT_UPDATED');
-        if (continueToNextStep) {
-          this.appointment = appointment;
-          this.fillForm();
-          this.activeIndex = 1;
-        } else {
-          this.ref.close(appointment);
-        }
-      }),
-    );
+    this.appointmentService.update(appointment).subscribe(() => {
+      this.notificationsService.success('editappointments.APPOINTMENT_UPDATED');
+      if (continueToNextStep) {
+        this.appointment = appointment;
+        this.fillForm();
+        this.activeIndex = 1;
+      } else {
+        this.ref.close(appointment);
+      }
+    });
   }
 
   createAppointment(appointment: IAppointmentDto, continueToNextStep: boolean): void {
-    this.subs.add(
-      this.loadingService.showLoaderUntilCompleted(this.appointmentService.create(appointment)).subscribe((result) => {
-        this.notificationsService.success('editappointments.APPOINTMENT_CREATED');
-        if (continueToNextStep) {
-          this.appointment = result;
-          this.fillForm();
-          this.createStepperMenu();
-          this.activeIndex = 1;
-        } else {
-          this.ref.close(result);
-        }
-      }),
-    );
+    this.appointmentService.create(appointment).subscribe((result) => {
+      this.notificationsService.success('editappointments.APPOINTMENT_CREATED');
+      if (continueToNextStep) {
+        this.appointment = result;
+        this.fillForm();
+        this.createStepperMenu();
+        this.activeIndex = 1;
+      } else {
+        this.ref.close(result);
+      }
+    });
   }
 
   setRooms(venueId: string): void {
@@ -210,16 +197,15 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
   }
 
   onVenueChanged(event: any): void {
-    this.subs.add(
-      this.loadingService.showLoaderUntilCompleted(this.appointmentService.setVenue(this.appointment.id, event.value)).subscribe((_) => {
+    this.appointmentService.setVenue(this.appointment.id, event.value)
+      .subscribe((_) => {
         this.notificationsService.success('editappointments.VENUE_SET');
         this.appointment.rooms.forEach((room) => {
           this.removeRoom(room.id, false);
         });
         this.appointment.rooms = [];
         this.setRooms(event.value);
-      }),
-    );
+      });
   }
 
   onProjectAdded(event: any): void {
@@ -247,69 +233,53 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
   }
 
   removeRoom(roomId: string, showToast: boolean): void {
-    this.subs.add(
-      this.loadingService.showLoaderUntilCompleted(this.appointmentService.removeRoom(this.appointment.id, roomId)).subscribe((_) => {
-        if (showToast) {
-          this.notificationsService.success('editappointments.ROOM_REMOVED');
-        }
-      }),
-    );
+    this.appointmentService.removeRoom(this.appointment.id, roomId).subscribe((_) => {
+      if (showToast) {
+        this.notificationsService.success('editappointments.ROOM_REMOVED');
+      }
+    });
   }
 
   addRoom(roomId: string): void {
-    this.subs.add(
-      this.loadingService.showLoaderUntilCompleted(this.appointmentService.addRoom(this.appointment.id, roomId)).subscribe((_) => {
+    this.appointmentService.addRoom(this.appointment.id, roomId)
+      .subscribe((_) => {
         this.notificationsService.success('editappointments.ROOM_ADDED');
-      }),
-    );
+      });
   }
 
   removeSection(sectionId: string): void {
-    this.subs.add(
-      this.loadingService
-        .showLoaderUntilCompleted(this.appointmentService.removeSection(this.appointment.id, sectionId))
-        .subscribe((result) => {
-          this.appointment = result;
-          this.mapParticipations();
-          this.notificationsService.success('editappointments.SECTION_REMOVED');
-        }),
-    );
+    this.appointmentService.removeSection(this.appointment.id, sectionId)
+      .subscribe((result) => {
+        this.appointment = result;
+        this.mapParticipations();
+        this.notificationsService.success('editappointments.SECTION_REMOVED');
+      });
   }
 
   addSection(sectionId: string): void {
-    this.subs.add(
-      this.loadingService
-        .showLoaderUntilCompleted(this.appointmentService.addSection(this.appointment.id, sectionId))
-        .subscribe((result) => {
-          this.appointment = result;
-          this.mapParticipations();
-          this.notificationsService.success('editappointments.SECTION_ADDED');
-        }),
-    );
+    this.appointmentService.addSection(this.appointment.id, sectionId)
+      .subscribe((result) => {
+        this.appointment = result;
+        this.mapParticipations();
+        this.notificationsService.success('editappointments.SECTION_ADDED');
+      });
   }
 
   removeProject(projectId: string): void {
-    this.subs.add(
-      this.loadingService
-        .showLoaderUntilCompleted(this.appointmentService.removeProject(this.appointment.id, projectId))
-        .subscribe((result) => {
-          this.appointment = result;
-          this.mapParticipations();
-          this.notificationsService.success('editappointments.PROJECT_REMOVED');
-        }),
-    );
+    this.appointmentService.removeProject(this.appointment.id, projectId)
+      .subscribe((result) => {
+        this.appointment = result;
+        this.mapParticipations();
+        this.notificationsService.success('editappointments.PROJECT_REMOVED');
+      });
   }
 
   addProject(projectId: string): void {
-    this.subs.add(
-      this.loadingService
-        .showLoaderUntilCompleted(this.appointmentService.addProject(this.appointment.id, projectId))
-        .subscribe((result) => {
-          this.appointment = result;
-          this.mapParticipations();
-          this.notificationsService.success('editappointments.PROJECT_ADDED');
-        }),
-    );
+    this.appointmentService.addProject(this.appointment.id, projectId).subscribe((result) => {
+      this.appointment = result;
+      this.mapParticipations();
+      this.notificationsService.success('editappointments.PROJECT_ADDED');
+    });
   }
 
   getSectionNames(musicianProfiles: IMusicianProfileDto[]): string {
@@ -321,13 +291,10 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
   }
 
   onResultChanged(item: ParticipationTableItem, event: any): void {
-    this.subs.add(
-      this.loadingService
-        .showLoaderUntilCompleted(this.appointmentService.setResult(item.personId, this.appointment.id, event.value))
-        .subscribe((_) => {
-          this.notificationsService.success('editappointments.RESULT_SET');
-        }),
-    );
+    this.appointmentService.setResult(item.personId, this.appointment.id, event.value)
+      .subscribe((_) => {
+        this.notificationsService.success('editappointments.RESULT_SET');
+      });
   }
 
   showDeleteConfirmation(event: Event): void {
@@ -411,11 +378,9 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
   }
 
   private deleteAppointment(): void {
-    this.subs.add(
-      this.loadingService.showLoaderUntilCompleted(this.appointmentService.delete(this.appointment.id)).subscribe(() => {
-        this.notificationsService.success('editappointments.APPOINTMENT_DELETED');
-        this.ref.close(this.appointment.id);
-      }),
-    );
+    this.appointmentService.delete(this.appointment.id).subscribe(() => {
+      this.notificationsService.success('editappointments.APPOINTMENT_DELETED');
+      this.ref.close(this.appointment.id);
+    });
   }
 }

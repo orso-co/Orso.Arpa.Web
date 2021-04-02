@@ -1,7 +1,6 @@
 import { Observable } from 'rxjs';
-import { SubSink } from 'subsink';
 import { TranslateService } from '@ngx-translate/core';
-import { Component, EventEmitter, Input, Output, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { orderBy } from 'lodash-es';
 import { ConfirmationService, TreeNode } from 'primeng/api';
 import { OverlayPanel } from 'primeng/overlaypanel';
@@ -12,14 +11,13 @@ import { ISetRoleDto } from '../../../models/ISetRoleDto';
 import { UserService } from '../../../core/services/user.service';
 import { NotificationsService } from '../../../core/services/notifications.service';
 import { AuthService } from '../../../core/services/auth.service';
-import { LoadingService } from '../../../core/services/loading.service';
 
 @Component({
   selector: 'arpa-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss'],
 })
-export class UserListComponent implements OnDestroy, OnChanges {
+export class UserListComponent implements OnChanges {
   @Input() users: IUserDto[] | null = [];
   @Input() roles: IRoleDto[] = [];
   @Input() sectionTree: ISectionTreeDto | undefined;
@@ -30,7 +28,6 @@ export class UserListComponent implements OnDestroy, OnChanges {
   selectedRoles: string[] = [];
   maxRoleLevel$: Observable<number>;
   selectedUserSections: TreeNode[] = [];
-  private subs = new SubSink();
 
   constructor(
     private confirmationService: ConfirmationService,
@@ -38,7 +35,6 @@ export class UserListComponent implements OnDestroy, OnChanges {
     private userService: UserService,
     private notificationsService: NotificationsService,
     private authService: AuthService,
-    private loadingService: LoadingService,
   ) {
     this.maxRoleLevel$ = this.authService.getMaxRoleLevelOfCurrentUser();
   }
@@ -47,10 +43,6 @@ export class UserListComponent implements OnDestroy, OnChanges {
     if (changes.hasOwnProperty('users') && this.users) {
       this.usersWithoutRole = orderBy(this.users, (user) => user.createdAt, 'desc');
     }
-  }
-
-  ngOnDestroy(): void {
-    this.subs.unsubscribe();
   }
 
   getInitials(user: IUserDto): string {
@@ -69,14 +61,12 @@ export class UserListComponent implements OnDestroy, OnChanges {
 
   saveRoles(panel: OverlayPanel): void {
     const dto: ISetRoleDto = { userName: this.selectedUser!.userName, roleNames: this.selectedRoles };
-    this.subs.add(
-      this.loadingService.showLoaderUntilCompleted(this.authService.setUserRoles(dto)).subscribe(() => {
-        this.rolesSet.emit(dto);
-        this.reset();
-        panel.hide();
-        this.notificationsService.success('userlist.USER_ROLES_SET');
-      }),
-    );
+    this.authService.setUserRoles(dto).subscribe(() => {
+      this.rolesSet.emit(dto);
+      this.reset();
+      panel.hide();
+      this.notificationsService.success('userlist.USER_ROLES_SET');
+    });
   }
 
   showDeleteConfirmation(event: Event): void {
@@ -107,13 +97,11 @@ export class UserListComponent implements OnDestroy, OnChanges {
   }
 
   private deleteSelectedUser(): void {
-    this.subs.add(
-      this.loadingService.showLoaderUntilCompleted(this.userService.deleteUser(this.selectedUser!.userName)).subscribe(() => {
-        this.userDeleted.emit(this.selectedUser!.userName);
-        this.reset();
-        this.notificationsService.success('userlist.USER_DELETED');
-      }),
-    );
+    this.userService.deleteUser(this.selectedUser!.userName).subscribe(() => {
+      this.userDeleted.emit(this.selectedUser!.userName);
+      this.reset();
+      this.notificationsService.success('userlist.USER_DELETED');
+    });
   }
 
   private mapSectionTree(sectionTree: ISectionTreeDto, stakeholderGoupIds: string[]): TreeNode[] {

@@ -1,6 +1,5 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { IProjectDto } from '../../../models/appointment';
-import { SubSink } from 'subsink';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 
@@ -9,20 +8,13 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './staff.component.html',
   styleUrls: ['./staff.component.css'],
 })
-export class StaffComponent implements OnDestroy {
+export class StaffComponent {
   projects: IProjectDto[] = [];
-  private subs = new SubSink();
 
   constructor(
     route: ActivatedRoute,
   ) {
-    this.subs.add(
-      route.data.pipe(map((routeData) => routeData.projects)).subscribe((project) => (this.projects = this.filterActiveProjects(project))),
-    );
-  }
-
-  ngOnDestroy(): void {
-    this.subs.unsubscribe();
+    route.data.pipe(map((routeData) => routeData.projects)).subscribe((project) => (this.projects = this.filterActiveProjects(project)));
   }
 
   filterActiveProjects(projects: IProjectDto[]): IProjectDto[] {

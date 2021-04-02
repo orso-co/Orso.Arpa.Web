@@ -1,5 +1,4 @@
-import { SubSink } from 'subsink';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'primeng/api';
 import { Observable, of } from 'rxjs';
@@ -7,25 +6,22 @@ import { map } from 'rxjs/operators';
 import { IProjectDto, IRoomDto, IUserAppointmentDto, IVenueDto } from 'src/app/models/appointment';
 import { MeService } from '../../../core/services/me.service';
 import { NotificationsService } from '../../../core/services/notifications.service';
-import { LoadingService } from '../../../core/services/loading.service';
 
 @Component({
   selector: 'arpa-my-appointments',
   templateUrl: './my-appointments.component.html',
   styleUrls: ['./my-appointments.component.scss'],
 })
-export class MyAppointmentsComponent implements OnInit, OnDestroy {
+export class MyAppointmentsComponent implements OnInit {
   userAppointments$: Observable<IUserAppointmentDto[]> = of([]);
   totalRecordsCount$: Observable<number> = of(0);
   predictionOptions$: Observable<SelectItem[]> = of([]);
   itemsPerPage = 3;
-  private subs = new SubSink();
 
   constructor(
     private meService: MeService,
     private route: ActivatedRoute,
     private notificationsService: NotificationsService,
-    private loadingService: LoadingService,
   ) {
   }
 
@@ -35,12 +31,8 @@ export class MyAppointmentsComponent implements OnInit, OnDestroy {
       ));
   }
 
-  ngOnDestroy(): void {
-    this.subs.unsubscribe();
-  }
-
   loadData(take: number, skip: number): void {
-    const loadResult$ = this.loadingService.showLoaderUntilCompleted(this.meService.getMyAppointments(take, skip));
+    const loadResult$ = this.meService.getMyAppointments(take, skip);
     this.userAppointments$ = loadResult$.pipe(map((result) => result.userAppointments));
     this.totalRecordsCount$ = loadResult$.pipe(map((result) => result.totalRecordsCount));
   }
@@ -80,10 +72,8 @@ export class MyAppointmentsComponent implements OnInit, OnDestroy {
   }
 
   onPredictionChanged(event: { value: string }, userAppointment: IUserAppointmentDto): void {
-    this.subs.add(
-      this.meService
-        .setAppointmentPrediction(userAppointment.id, event.value)
-        .subscribe((result) => this.notificationsService.success('myappointments.PREDICTION_SET')),
-    );
+    this.meService
+      .setAppointmentPrediction(userAppointment.id, event.value)
+      .subscribe(() => this.notificationsService.success('myappointments.PREDICTION_SET'));
   }
 }

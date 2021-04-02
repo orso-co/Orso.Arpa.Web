@@ -1,9 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NotificationsService } from '../../core/services/notifications.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IUserProfileDto } from '../../models/IUserProfileDto';
-import { SubSink } from 'subsink';
 import { MeService } from '../../core/services/me.service';
 
 @Component({
@@ -11,9 +10,8 @@ import { MeService } from '../../core/services/me.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent implements OnInit, OnDestroy {
+export class ProfileComponent implements OnInit {
 
-  private subs = new SubSink();
   userProfile: IUserProfileDto;
   profileFormGroup: FormGroup;
 
@@ -32,14 +30,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subs.add(this.meService.getMyProfile().subscribe(data => {
+    this.meService.getMyProfile().subscribe(data => {
       this.userProfile = data;
       this.profileFormGroup.setValue(this.userProfile);
-    }));
+    });
 
-    this.subs.add(this.profileFormGroup.valueChanges.subscribe(data => {
+    this.profileFormGroup.valueChanges.subscribe(data => {
       this.userProfile = data;
-    }));
+    });
   }
 
   // workaround to display formGroup fields in original order
@@ -53,17 +51,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    this.subs.add(this.meService.putProfile(this.userProfile).subscribe(data => {
+    this.meService.putProfile(this.userProfile).subscribe(data => {
         if (data == null) {
           this.notificationsService.info('profile.UPDATE');
         } else {
           this.notificationsService.error('profile.ISSUE');
         }
       },
-    ));
-  }
-
-  ngOnDestroy(): void {
-    this.subs.unsubscribe();
+    );
   }
 }

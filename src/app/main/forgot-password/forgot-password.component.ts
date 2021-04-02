@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SubSink } from 'subsink';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { NotificationsService } from '../../core/services/notifications.service';
@@ -18,7 +17,6 @@ export class ForgotPasswordComponent implements OnInit {
   forgotPasswordRequest = false;
   forgotPasswordFormGroup: FormGroup;
   hide = true;
-  private subs = new SubSink();
 
   constructor(formBuilder: FormBuilder,
               private authService: AuthService,

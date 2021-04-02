@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:prod": "ng build --prod",
-    "build:optimized": "ng build --prod --aot --vendor-chunk --common-chunk --delete-output-path --buildOptimizer",
+    "build:optimized": "ng build --prod --aot --vendor-chunk --common-chunk --delete-output-path --build-optimizer",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -37,7 +37,6 @@
     "primeicons": "^4.1.0",
     "primeng": "^11.3.1",
     "rxjs": "~6.6.0",
-    "subsink": "^1.0.2",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },
