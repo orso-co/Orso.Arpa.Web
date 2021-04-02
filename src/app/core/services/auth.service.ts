@@ -104,6 +104,10 @@ export class AuthService {
         this.purgeAuth();
         return of({});
       }),
+      map(() => {
+        this.purgeAuth();
+        return of({});
+      }),
     );
   }
 

@@ -71,7 +71,7 @@ export class ApiInterceptor implements HttpInterceptor {
       return this.refreshToken().pipe(
         switchMap(() => {
           if (request) {
-            request = request.clone({ setHeaders: this.setAuthHeader() });
+            request = request.clone({ setHeaders: this.setAuthHeader(), withCredentials: true });
             return next.handle(request);
           }
           return of(error);
@@ -125,7 +125,7 @@ export class ApiInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (request.url.startsWith(this.apiUrlBase)) {
-      request = request.clone({ setHeaders: this.setAuthHeader() });
+      request = request.clone({ setHeaders: this.setAuthHeader(), withCredentials: true });
       return next.handle(request).pipe(catchError((error: any) => this.handleResponseError(error, request, next)));
     } else {
       return next.handle(request.clone());
