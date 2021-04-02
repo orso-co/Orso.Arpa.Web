@@ -28,6 +28,7 @@
     "@fullcalendar/timegrid": "4.1.0",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
+    "chart.js": "^2.9.4",
     "lodash-es": "^4.17.20",
     "ngx-toastr": "^13.2.0",
     "node-modules": "^1.0.1",

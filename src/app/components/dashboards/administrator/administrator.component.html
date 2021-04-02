@@ -1,8 +1,11 @@
 <div class="admin-claim">Admin</div>
+
 <div class="p-grid">
-  <div class="p-col-12 p-md-6 p-lg-4">spalte 1</div>
+
+
   <div class="p-col-12 p-md-6 p-lg-4">
-    <h3>{{ 'userlist.PENDING_REGISTRATIONS' | translate }}</h3>
+
+    <h3>{{ 'userlist.PENDING_REGISTRATIONS' | translate }}: {{users.length}}</h3>
     <arpa-user-list
       [users]="users"
       [roles]="(roles$ | async)!"
@@ -11,14 +14,24 @@
       (rolesSet)="onUserChanged($event.userName)"
     ></arpa-user-list>
   </div>
+
   <div class="p-col-12 p-md-6 p-lg-4">
-    <h3>{{ 'userlist.REGISTERED_USERS' | translate }}</h3>
+
+    <h3>{{ 'userlist.REGISTERED_USERS' | translate }}: {{usersWithRole.length}}</h3>
     <arpa-user-list
       [users]="usersWithRole"
       [roles]="(roles$ | async)!"
       [sectionTree]="(sectionTree$ | async)!"
       (userDeleted)="onUserChanged($event)"
       (rolesSet)="onUserChanged($event.userName)"
-    ></arpa-user-list>    
+    ></arpa-user-list>
   </div>
+  <div class="p-col-12 p-md-6 p-lg-4">
+
+    <h3>Anzahl aller User: {{users.length + usersWithRole.length}}</h3>
+     <h4>{{usersWithAdminRole.length}} Admins  |  {{usersWithStaffRole.length}} Staff  |  {{usersWithPerformerRole.length}} Performer  |  {{users.length}} without Role</h4>
+
+      <arpa-piechartusers></arpa-piechartusers>
+
+    </div>
 </div>

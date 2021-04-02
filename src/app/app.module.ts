@@ -43,6 +43,7 @@ import { ForgotPasswordComponent } from './components/onboarding/forgot-password
 import { LanguageMenuComponent } from './components/language-menu/language-menu.component';
 import { ProfileComponent } from './components/onboarding/profile/profile.component';
 import {AcceptLanguageInterceptor} from './interceptors/accept-language.interceptor';
+import { PiechartusersComponent } from './components/dashboards/piechartusers/piechartusers.component';
 
 registerLocaleData(localeDe, 'de');
 
@@ -79,7 +80,8 @@ export function tokenGetter(): string | null {
     LogoutComponent,
     ForgotPasswordComponent,
     LanguageMenuComponent,
-    ProfileComponent
+    ProfileComponent,
+    PiechartusersComponent
   ],
   imports: [
     BrowserModule,
