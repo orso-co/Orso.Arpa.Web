@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --prod",
     "build:optimized": "ng build --prod --aot --vendor-chunk --common-chunk --delete-output-path --buildOptimizer",
     "test": "ng test",
     "lint": "ng lint",
