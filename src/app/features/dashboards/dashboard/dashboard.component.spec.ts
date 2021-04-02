@@ -4,6 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DashboardComponent } from './dashboard.component';
 import { of } from 'rxjs';
 import { AuthService } from '../../../core/services/auth.service';
+import { TranslateMockModule } from '../../../../testing/translate.mock.module';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -13,8 +14,11 @@ describe('DashboardComponent', () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [DashboardComponent],
-        imports: [RouterTestingModule],
-        providers: [{ provide: AuthService, useValue: { token$: of({ roles: [] }) } }],
+        imports: [
+          RouterTestingModule,
+          TranslateMockModule,
+        ],
+        providers: [{ provide: AuthService, useValue: { currentUser: of({ roles: [] }) } }],
       }).compileComponents();
     }),
   );

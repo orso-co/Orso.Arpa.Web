@@ -5,7 +5,7 @@ import { SelectValueService } from './select-value.service';
 describe('Service: SelectValue', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SelectValueService, {}],
+      providers: [SelectValueService],
       imports: [HttpClientTestingModule],
     });
   });

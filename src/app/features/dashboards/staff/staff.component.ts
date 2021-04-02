@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { IProjectDto } from '../../../models/appointment';
 import { SubSink } from 'subsink';
 import { map } from 'rxjs/operators';

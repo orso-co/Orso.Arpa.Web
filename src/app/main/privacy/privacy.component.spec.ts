@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PrivacyComponent } from './privacy.component';
+import { TranslateMockModule } from '../../../testing/translate.mock.module';
 
 describe('PrivacyComponent', () => {
   let component: PrivacyComponent;
@@ -8,6 +9,9 @@ describe('PrivacyComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        TranslateMockModule,
+      ],
       declarations: [PrivacyComponent],
     })
       .compileComponents();

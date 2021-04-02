@@ -6,6 +6,7 @@ import { NotificationsMockService } from '../../../testing/notifications.mock.se
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateMockModule } from '../../../testing/translate.mock.module';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -14,6 +15,7 @@ describe('LoginComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
+        HttpClientTestingModule,
         RouterTestingModule,
         ReactiveFormsModule,
         TranslateMockModule,

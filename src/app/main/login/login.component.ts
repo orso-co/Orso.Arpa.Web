@@ -11,7 +11,7 @@ import { AuthService } from '../../core/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnDestroy {
   loginFormGroup: FormGroup;
   private subs = new SubSink();
   hide = true;
@@ -37,12 +37,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         ],
       ],
     });
-  }
-
-  ngOnInit(): void {
-    if (this.authService.getCurrentUser().username) {
-      this.router.navigate(['/arpa/dashboard']);
-    }
   }
 
   ngOnDestroy(): void {

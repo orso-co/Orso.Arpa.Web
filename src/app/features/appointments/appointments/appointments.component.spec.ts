@@ -1,18 +1,17 @@
-import { SectionService } from './../../../services/section.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { LoadingService } from './../../../services/loading.service';
 import { DialogService } from 'primeng/dynamicdialog';
-import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { ToastService } from './../../../services/toast.service';
-import { AppointmentService } from 'src/app/services/appointment.service';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { waitForAsync } from '@angular/core/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppointmentsComponent } from './appointments.component';
-import { HttpLoaderFactory } from 'src/app/app.module';
-import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { AppointmentService } from '../../../core/services/appointment.service';
+import { NotificationsMockService } from '../../../../testing/notifications.mock.service';
+import { LoadingService } from '../../../core/services/loading.service';
+import { SectionService } from '../../../core/services/section.service';
+import { TranslateMockModule } from '../../../../testing/translate.mock.module';
 
 describe('AppointmentsComponent', () => {
   let component: AppointmentsComponent;
@@ -23,7 +22,7 @@ describe('AppointmentsComponent', () => {
       declarations: [AppointmentsComponent],
       providers: [
         { provide: AppointmentService, useValue: {} },
-        { provide: ToastService, useValue: {} },
+        { provide: NotificationsMockService },
         { provide: DialogService, useValue: {} },
         { provide: LoadingService, useValue: {} },
         { provide: SectionService, useValue: { sections$: of([])} },
@@ -32,13 +31,7 @@ describe('AppointmentsComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientTestingModule,
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient],
-          },
-        }),
+        TranslateMockModule
       ],
     }).compileComponents();
   }));

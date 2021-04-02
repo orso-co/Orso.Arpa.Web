@@ -11,11 +11,13 @@ import { PrivacyComponent } from './main/privacy/privacy.component';
 import { LogoutComponent } from './main/logout/logout.component';
 import { EmailconfirmationComponent } from './main/emailconfirmation/emailconfirmation.component';
 import { ForgotPasswordComponent } from './main/forgot-password/forgot-password.component';
+import { SessionGuard } from './core/guards/session.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: PageLayoutComponent,
+    canActivateChild: [SessionGuard],
     children: [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       {
@@ -24,10 +26,10 @@ const routes: Routes = [
         pathMatch: 'full',
         data: { error: 404, type: 'RouteNotFound', message: 'error.ROUTE_NOT_FOUND' },
       },
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
-      { path: 'password', component: ForgotPasswordComponent },
-      { path: 'eMailConfirmation', component: EmailconfirmationComponent },
+      { path: 'login', component: LoginComponent, data: { sessionPrevent: true } },
+      { path: 'register', component: RegisterComponent, data: { sessionPrevent: true } },
+      { path: 'password', component: ForgotPasswordComponent, data: { sessionPrevent: true } },
+      { path: 'eMailConfirmation', component: EmailconfirmationComponent, data: { sessionPrevent: true } },
       { path: 'logout', component: LogoutComponent },
       { path: 'privacy', component: PrivacyComponent },
     ],

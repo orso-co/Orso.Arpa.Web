@@ -7,7 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimeNgModule } from './prime-ng/prime-ng.module';
 import { LogoComponent } from './logo/logo.component';
 import { BackButtonDirective } from './directives/back-button.directive';
-import { HasRoleDirective } from './directives/has-role.directive';
 import { TopbarComponent } from './topbar/topbar.component';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -16,7 +15,6 @@ import { TranslateModule } from '@ngx-translate/core';
     LoadingComponent,
     LangSwitchComponent,
     LogoComponent,
-    HasRoleDirective,
     BackButtonDirective,
     TopbarComponent,
   ],
@@ -34,7 +32,6 @@ import { TranslateModule } from '@ngx-translate/core';
     ProgressSpinnerModule,
     LangSwitchComponent,
     LogoComponent,
-    HasRoleDirective,
     BackButtonDirective,
     TopbarComponent,
   ],

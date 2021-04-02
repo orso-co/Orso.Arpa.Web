@@ -7,7 +7,7 @@ import { SectionService } from './section.service';
 describe('Service: Section', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SectionService, {}],
+      providers: [SectionService],
       imports: [HttpClientTestingModule],
     });
   });

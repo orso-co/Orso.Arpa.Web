@@ -10,7 +10,7 @@ import { AuthService } from '../../core/services/auth.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
   registerRequest = false;
   registerFormGroup: FormGroup;
@@ -66,12 +66,6 @@ export class RegisterComponent implements OnInit {
         ],
       ],
     });
-  }
-
-  ngOnInit(): void {
-    if (this.authService.getCurrentUser().username) {
-      this.router.navigate(['/arpa/dashboard']);
-    }
   }
 
   submit(): void {

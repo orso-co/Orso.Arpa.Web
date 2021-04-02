@@ -9,10 +9,10 @@ import { EditAppointmentComponent } from './edit-appointment.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient } from '@angular/common/http';
-import {PrimeNgModule} from '../../../shared/prime-ng/prime-ng.module';
-import {HttpLoaderFactory} from '../../../core/core.module';
-import {AppointmentService} from '../../../core/services/appointment.service';
-import {NotificationsService} from '../../../core/services/notifications.service';
+import { PrimeNgModule } from '../../../shared/prime-ng/prime-ng.module';
+import { httpLoaderFactory } from '../../../core/core.module';
+import { AppointmentService } from '../../../core/services/appointment.service';
+import { NotificationsService } from '../../../core/services/notifications.service';
 
 describe('EditAppointmentComponent', () => {
   let component: EditAppointmentComponent;
@@ -31,10 +31,10 @@ describe('EditAppointmentComponent', () => {
           TranslateModule.forRoot({
             loader: {
               provide: TranslateLoader,
-              useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-            }
-          })
+              useFactory: httpLoaderFactory,
+              deps: [HttpClient],
+            },
+          }),
         ],
         declarations: [EditAppointmentComponent],
         providers: [
@@ -45,7 +45,7 @@ describe('EditAppointmentComponent', () => {
         ],
         schemas: [NO_ERRORS_SCHEMA],
       }).compileComponents();
-    })
+    }),
   );
 
   beforeEach(() => {

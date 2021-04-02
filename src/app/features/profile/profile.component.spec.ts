@@ -5,16 +5,21 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {TranslateMockModule} from '../../../testing/translate.mock.module';
 import {NotificationsService} from '../../core/services/notifications.service';
 import {NotificationsMockService} from '../../../testing/notifications.mock.service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-describe('AppointmentsComponent', () => {
+describe('ProfileComponent', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
+        RouterTestingModule,
         HttpClientTestingModule,
         TranslateMockModule,
+        FormsModule,
+        ReactiveFormsModule,
       ],
       providers: [{provide: NotificationsService, useClass: NotificationsMockService}],
       declarations: [ProfileComponent],

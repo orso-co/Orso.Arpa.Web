@@ -5,6 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { AuthService } from '../../core/services/auth.service';
 import { NotificationsService } from '../../core/services/notifications.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('LogoutComponent', () => {
   let component: LogoutComponent;
@@ -14,7 +15,13 @@ describe('LogoutComponent', () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [LogoutComponent],
-        imports: [RouterTestingModule.withRoutes([])],
+        imports: [
+          RouterTestingModule.withRoutes([{
+            path: 'login',
+            redirectTo: '',
+          }]),
+          HttpClientTestingModule,
+        ],
         providers: [
           { provide: AuthService, useValue: { logout: () => of(null) } },
           {
