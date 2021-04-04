@@ -69,7 +69,7 @@ export interface IAppointmentParticipationDto extends IBaseEntityDto {
 
 export interface IMusicianProfileDto {
   sectionName: string;
-  isProfessional: boolean;
+  qualification: string;
 }
 
 export interface IPersonDto extends IBaseEntityDto {
