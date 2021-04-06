@@ -1,0 +1,149 @@
+:host {
+  display: block;
+}
+.topbar {
+  position: fixed;
+  z-index: 997;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  height: 60px;
+  padding: 0 .5em 0 0;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: var(--surface-a);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid var(--surface-d);
+
+  transition: all .25s;
+
+  .icon-menu {
+    transition: all .25s;
+    font-size: 2em;
+    padding: .5em;
+    &:hover {
+      cursor: pointer;
+      background-color: var(--surface-d);
+    }
+    border-right: 1px solid var(--surface-d);
+  }
+
+  .logo-link {
+    max-height: 100%;
+    height: 100%;
+    padding: .4em;
+
+    align-self: center;
+
+    & > img {
+      display: block;
+      max-height: inherit;
+      height: inherit;
+    }
+  }
+
+  .welcome {
+    margin: auto;
+    font-weight: 600;
+    font-size: 1.2em;
+  }
+
+  ul.topbar-menu {
+    list-style-type: none;
+    padding: 0;
+    height: 100%;
+    margin: 0 0 0 auto;
+    display: flex;
+
+    li {
+      &.user-profile-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        a {
+          transition: color 0.3s;
+          position: relative;
+          display: inline-block;
+          p-avatar {
+            margin-top: auto;
+            display: inline-block;
+            float: right;
+            right: 0;
+            margin-left: 1em;
+          }
+          span {
+            display: none;
+            margin-top: .5em;
+            &.user-profile-name {
+              float: left;
+              font-size: 16px;
+              color: var(--text-color);
+            }
+
+            &.user-profile-role {
+              font-size: 12px;
+              color: var(--text-color);
+              clear: left;
+              overflow: hidden;
+            }
+
+            &::after {
+              content: '';
+              display: table;
+              clear: both;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+p-sidebar {
+  ul.p-menu {
+    margin: 0;
+    padding: 4em 0 0;
+    border: 0;
+    width: 100%;
+    list-style: none;
+    li {
+      list-style: none;
+      a {
+        & > span {
+          &:before {
+            font-size: 1.8em;
+            margin-right: 1em;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .topbar {
+    padding: 0 1em 0 0;
+    height: 70px;
+    justify-content: space-between;
+
+    .welcome {
+      margin: auto;
+      font-weight: 600;
+      font-size: 1.5em;
+    }
+
+    ul.topbar-menu {
+      li {
+        &.user-profile-item {
+          a {
+            span {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}

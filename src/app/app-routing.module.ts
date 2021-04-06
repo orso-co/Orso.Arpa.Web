@@ -1,103 +1,78 @@
-import { LogoutComponent } from './components/onboarding/logout/logout.component';
-import { RoleListResolver } from './resolvers/roles-list.resolver';
-import { UserListResolver } from './resolvers/user-list.resolver';
-import { DashboardGuard } from './guards/dashboard.guard';
-import { NoRoleComponent } from './components/dashboards/no-role/no-role.component';
-import { RoleNames } from './models/role-names';
-import { RoleGuard } from './guards/role.guard';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { ForbiddenComponent } from './components/forbidden/forbidden.component';
-import { IsLoggedInGuard } from './guards/is-logged-in.guard';
-import { StaffComponent } from './components/dashboards/staff/staff.component';
-import { AdministratorComponent } from './components/dashboards/administrator/administrator.component';
-import { DashboardComponent } from './components/dashboards/dashboard/dashboard.component';
-import { OnboardingShellComponent } from './components/onboarding/onboarding-shell/onboarding-shell.component';
-import { MainComponent } from './components/shell/main/main.component';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './components/onboarding/login/login.component';
-import { RegisterComponent } from './components/onboarding/register/register.component';
-import { PerformerComponent } from './components/dashboards/performer/performer.component';
-import { EmailconfirmationComponent } from './components/onboarding/emailconfirmation/emailconfirmation.component';
-import { SectionTreeResolver } from './resolvers/section-tree.resolver';
-import { ForgotPasswordComponent } from './components/onboarding/forgot-password/forgot-password.component';
-import { ProfileComponent } from './components/onboarding/profile/profile.component';
-import { ProjectListResolver } from './resolvers/project-list.resolver';
-import { ProjectListComponent } from './components/dashboards/project-list/project-list.component';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { PageLayoutComponent } from './main/layout/page-layout/page-layout.component';
+import { ErrorComponent } from './main/error/error.component';
+import { DefaultLayoutComponent } from './main/layout/default-layout/default-layout.component';
+import { AuthGuard } from './core/guards/auth.guard';
+import { RoleGuard } from './core/guards/role.guard';
+import { LoginComponent } from './main/login/login.component';
+import { RegisterComponent } from './main/register/register.component';
+import { PrivacyComponent } from './main/privacy/privacy.component';
+import { LogoutComponent } from './main/logout/logout.component';
+import { EmailConfirmationComponent } from './main/emailconfirmation/email-confirmation.component';
+import { ForgotPasswordComponent } from './main/forgot-password/forgot-password.component';
+import { SessionGuard } from './core/guards/session.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'pages', pathMatch: 'full' },
   {
-    path: 'onboarding',
-    component: OnboardingShellComponent,
+    path: '',
+    component: PageLayoutComponent,
+    canActivateChild: [SessionGuard],
     children: [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
-      { path: 'login', component: LoginComponent },
-      { path: 'forgotPassword', component: ForgotPasswordComponent },
-      { path: 'register', component: RegisterComponent },
-      { path: 'eMailConfirmation', component: EmailconfirmationComponent },
+      {
+        path: 'error',
+        component: ErrorComponent,
+        pathMatch: 'full',
+        data: { error: 404, type: 'RouteNotFound', message: 'error.ROUTE_NOT_FOUND' },
+      },
+      { path: 'login', component: LoginComponent, data: { sessionPrevent: true } },
+      { path: 'register', component: RegisterComponent, data: { sessionPrevent: true } },
+      { path: 'forgotPassword', component: ForgotPasswordComponent, data: { sessionPrevent: true } },
+      { path: 'eMailConfirmation', component: EmailConfirmationComponent, data: { sessionPrevent: true } },
       { path: 'logout', component: LogoutComponent },
-      { path: 'profile', component: ProfileComponent },
+      { path: 'privacy', component: PrivacyComponent },
     ],
   },
   {
-    path: 'pages',
-    component: MainComponent,
-    canActivate: [IsLoggedInGuard],
+    path: 'arpa',
+    canActivate: [AuthGuard],
     canActivateChild: [RoleGuard],
+    runGuardsAndResolvers: 'always',
+    component: DefaultLayoutComponent,
     children: [
-
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
-        component: DashboardComponent,
-        canActivate: [DashboardGuard],
-        runGuardsAndResolvers: 'always',
-        children: [
-          { path: 'performer', component: PerformerComponent,
-            data: { roles: [RoleNames.performer] },
-            resolve: { projects: ProjectListResolver }
-          },
-          {
-            path: 'admin',
-            component: AdministratorComponent,
-            data: { roles: [RoleNames.admin], treeMaxLevel: 2 },
-            resolve: { users: UserListResolver, sectionTreeLoaded: SectionTreeResolver, rolesLoaded: RoleListResolver },
-          },
-          { path: 'staff', component: StaffComponent,
-            data: { roles: [RoleNames.staff] },
-            resolve: { projects: ProjectListResolver }
-          },
-          { path: 'noRole', component: NoRoleComponent },
-        ],
+        loadChildren: () => import('./features/dashboards/dashboards.module').then(m => m.DashboardsModule),
       },
-      {path: 'profile', component: ProfileComponent, pathMatch: 'full'},
       {
         path: 'appointments',
-        data: { roles: [RoleNames.staff, RoleNames.admin] },
-        loadChildren: () => import('./modules/appointment/appointment.module').then((mod) => mod.AppointmentModule),
+        loadChildren: () => import('./features/appointments/appointments.module').then(m => m.AppointmentsModule),
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule),
       },
       {
         path: 'projects',
-        data: { roles: [RoleNames.staff, RoleNames.admin] },
-        resolve: { projects: ProjectListResolver },
-        component: ProjectListComponent
+        loadChildren: () => import('./features/projects/projects.module').then(m => m.ProjectsModule),
       },
       {
         path: 'me',
-        data: { roles: [RoleNames.performer, RoleNames.staff, RoleNames.admin]},
-        loadChildren: () => import('./modules/me/me.module').then((mod) => mod.MeModule)
+        loadChildren: () => import('./features/me/me.module').then((mod) => mod.MeModule),
       },
-      { path: 'forbidden', component: ForbiddenComponent },
-      { path: 'notfound', component: NotFoundComponent },
-      { path: '**', component: NotFoundComponent },
     ],
   },
-
+  { path: '**', redirectTo: '/error' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    preloadingStrategy: PreloadAllModules,
+    paramsInheritanceStrategy: 'always',
+  })],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

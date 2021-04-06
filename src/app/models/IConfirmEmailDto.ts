@@ -1,4 +1,4 @@
 export interface IConfirmEmailDto {
-    token: string;
-    email: string;
-  }
+  token: string;
+  email: string;
+}

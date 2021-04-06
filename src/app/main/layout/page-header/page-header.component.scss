@@ -1,0 +1,15 @@
+:host {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding-top: 2em;
+  padding-bottom: 2em;
+
+  @media (min-width: 768px) {
+    justify-content: left;
+    padding: 0 0 4em;
+  }
+
+}

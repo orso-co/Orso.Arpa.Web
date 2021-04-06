@@ -1,5 +1,5 @@
 export enum DateRange {
-  Month = 0,
-  Week = 1,
-  Day = 2,
+  month = 0,
+  week = 1,
+  day = 2,
 }

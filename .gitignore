@@ -31,9 +31,6 @@ speed-measure-plugin*.json
 !.vscode/extensions.json
 .history/*
 
-# IDE - Visual Studio
-.vs/*
-
 # misc
 /.sass-cache
 /connect.lock
@@ -47,7 +44,3 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-package-lock.json
-
-# Tools
-/out

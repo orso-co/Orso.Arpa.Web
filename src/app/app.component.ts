@@ -1,50 +1,63 @@
-import { LanguageService } from './services/language.service';
-import { SubSink } from 'subsink';
-import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
-import { LoadingService } from './services/loading.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { PrimeNGConfig } from 'primeng/api';
+import { Component, OnInit } from '@angular/core';
+import { ConfigService } from './core/services/config.service';
+import {
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router,
+} from '@angular/router';
+import { LoadingService } from './core/services/loading.service';
+import { AuthService } from './core/services/auth.service';
 
 @Component({
   selector: 'arpa-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  template: `
+    <arpa-loading></arpa-loading>
+    <router-outlet></router-outlet>`,
 })
-export class AppComponent implements OnInit, OnDestroy {
-  private subs = new SubSink();
+export class AppComponent implements OnInit {
+  title = 'Orso-Arpa-Web';
 
   constructor(
-    public translate: TranslateService,
-    private primengConfig: PrimeNGConfig,
-    loadingService: LoadingService,
+    private configService: ConfigService,
     private router: Router,
-    languageService: LanguageService
+    private loadingService: LoadingService,
+    private authService: AuthService,
   ) {
-    this.subs.add(this.router.events.subscribe(event => {
-      switch (true) {
-        case event instanceof NavigationStart: {
-          loadingService.loadingOn();
-          break;
-        }
-
-        case event instanceof NavigationEnd:
-        case event instanceof NavigationCancel:
-        case event instanceof NavigationError: {
-          loadingService.loadingOff();
-          break;
-        }
-        default: {
-          break;
-        }
-      }}));
+    this.router.events.subscribe((event) => {
+      this.navigationInterceptor(event);
+    });
   }
 
-  ngOnInit(): void {
-    this.primengConfig.ripple = true;
+  ngOnInit() {
+    /**
+     * Redirect to fatal error page if config is not ready.
+     */
+    if (!this.configService.isReady()) {
+      this.router.navigate(['error'], {
+        state: {
+          error: 500,
+          type: 'FatalError',
+          message: 'Could not load config!',
+        },
+      });
+    }
+    this.authService.populate();
   }
 
-  ngOnDestroy(): void {
-    this.subs.unsubscribe();
+  navigationInterceptor(event: any): void {
+    if (event instanceof NavigationStart) {
+      this.loadingService.loadingOn();
+    }
+    if (event instanceof NavigationEnd) {
+      this.loadingService.loadingOff();
+    }
+    if (event instanceof NavigationCancel) {
+      this.loadingService.loadingOff();
+    }
+    if (event instanceof NavigationError) {
+      this.loadingService.loadingOff();
+    }
   }
 }

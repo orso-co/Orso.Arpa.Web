@@ -1,0 +1,62 @@
+<h2>{{ 'PROFILE_TITLE' | translate }}</h2>
+
+
+<div class=p-grid>
+  <div class="p-col-12 p-md-6 p-lg-4"><h3>{{ 'BASEDATA' | translate }}</h3>
+
+    <ng-container *ngIf="userProfile && profileFormGroup">
+      <form [formGroup]="profileFormGroup" (ngSubmit)="onSubmit()">
+        <div *ngFor="let control of profileFormGroup.controls | keyvalue : returnZero">
+          <p class="p-float-label">
+            <input id="{{control.key}}" type="text" pInputText formControlName="{{control.key}}">
+            <label for="float-input">{{ (control.key | uppercase) | translate}}</label>
+          </p>
+        </div>
+        <button
+          pButton
+          label="{{ 'SAVE' | translate }}"
+          [disabled]="profileFormGroup.invalid">
+        </button>
+      </form>
+    </ng-container>
+
+
+    <div><h3>{{ 'CONTACTDATA' | translate }}</h3></div>
+    <div>E-Mail</div>
+    <div>Telefon</div>
+    <div>Links</div>
+    <div>Anschrift</div>
+
+    <div><h3>{{ 'BANKACCOUNT' | translate }}</h3></div>
+    <div>Bank</div>
+    <div>IBAN</div>
+    <div>BIC</div>
+    <div>Lastschrifteinzug: Ja</div>
+
+  </div>
+
+  <div class="p-col-12 p-md-6 p-lg-4"><h3>{{ 'MUSICIANDATA' | translate }}</h3>
+    <div>1. Hauptinstrument: Flöte</div>
+    <div>Wechselinstrument: Altflöte</div>
+    <div>2. Hauptinstrument: Violine</div>
+    <div>Nebeninstrument: Viola</div>
+    <div>Leistungslevel: Semiprofi (Student)</div>
+    <div>Ausbildung: Kurz vor Master Musikhochschule Köln</div>
+    <div>2. Hauptinstrument: Violine</div>
+    <div>Leistungslevel: Amateur</div>
+    <div>Ausbildung: Autodidakt</div>
+    <div>Nebeninstrument: Viola</div>
+    <h3>Referenzen:</h3>
+    <div>- bli</div>
+    <div>- bla</div>
+    <div>- blub</div>
+
+  </div>
+  <div class="p-col-12 p-md-6 p-lg-4"><h3>{{ 'MEMBERDATA' | translate }}</h3>
+    <div>Mitgliedstatus: Vollmitglied</div>
+    <div>Eintrittsdatum: 23.3.1993</div>
+    <div>Jahresbeitrag: 120€</div>
+    <div><h3>Profilfoto:</h3>
+      <img src="assets/common/images/einstein_placeholder.jpg" alt="Placeholder" width="100%">
+    </div>
+  </div>

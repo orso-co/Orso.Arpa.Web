@@ -1,4 +1,4 @@
 export interface ICreateEmailConfirmationTokenDto {
-    usernameOrEmail: string;
-    clientUri: string;
-  }
+  usernameOrEmail: string;
+  clientUri: string;
+}

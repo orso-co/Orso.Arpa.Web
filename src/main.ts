@@ -9,4 +9,15 @@ if (environment.production) {
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+  .catch(err => {
+    const messageElement = document.querySelector('#message');
+    let message = 'Application initialization failed';
+    if (err && messageElement) {
+      if (err.message) {
+        message = message + ': ' + err.message;
+      } else {
+        message = message + ': ' + err;
+      }
+      messageElement.textContent = message;
+    }
+  });
