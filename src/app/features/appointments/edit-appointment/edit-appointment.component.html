@@ -329,12 +329,12 @@
               ></p-dropdown>
               <p-dropdown
                 appendTo="body"
-                *ngSwitchCase="'isProfessional'"
+                *ngSwitchCase="'qualification'"
                 [showClear]="true"
                 [autoDisplayFirst]="false"
-                [options]="isProfessionalOptions"
+                [options]="qualificationOptions"
                 [style]="{ width: '100%' }"
-                (onChange)="participationTable.filter($event.value, col.field, 'equals')"
+                (onChange)="participationTable.filter($event.value, col.field, 'contains')"
               ></p-dropdown>
               <p-dropdown
                 appendTo="body"
@@ -364,7 +364,7 @@
             </td>
             <td>
               <span class="p-column-title">{{ 'editappointments.LEVEL' | translate }}</span>
-              {{ item.isProfessional }}
+              {{ item.qualification }}
             </td>
             <td class="p-fluid">
               <span class="p-column-title">{{ 'editappointments.PREDICTION' | translate }}</span>
