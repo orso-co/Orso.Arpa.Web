@@ -9,12 +9,13 @@ import { MenuItem, SelectItem, ConfirmationService } from 'primeng/api';
 import { IAppointmentDto, IMusicianProfileDto, IProjectDto, IRoomDto, IVenueDto } from 'src/app/models/appointment';
 import { ISectionDto } from 'src/app/models/section';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { sortBy, uniq } from 'lodash-es';
 
 class ParticipationTableItem {
   givenName: string;
   surname: string;
   sections: string;
-  isProfessional: string;
+  qualification: string;
   predictionId: string;
   resultId: string;
   personId: string;
@@ -24,14 +25,14 @@ class ParticipationTableItem {
     givenName: string,
     surname: string,
     sections: string,
-    isProfessional: string,
+    qualification: string,
     predictionId: string,
     resultId: string
   ) {
     this.givenName = givenName;
     this.surname = surname;
     this.sections = sections;
-    this.isProfessional = isProfessional;
+    this.qualification = qualification;
     this.resultId = resultId;
     this.predictionId = predictionId;
     this.personId = personId;
@@ -68,9 +69,9 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
   rooms: IRoomDto[] = [];
   venueOptions: SelectItem[] = [];
   sectionSelectItems: SelectItem[] = [];
-  isProfessionalOptions: SelectItem[] = [];
   columns: any[] = [];
   filteredDataCount: number;
+  qualificationOptions: SelectItem[] = [];
 
   get isNew(): boolean {
     return !this.appointment.id;
@@ -94,27 +95,28 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
     this.venueOptions = this.venues.map((v) => this.mapVenueToSelectItem(v));
 
     if (this.appointment.participations) {
-      this.sectionSelectItems = this.appointment.participations
+      this.sectionSelectItems = sortBy(uniq(this.appointment.participations
         .map((p) => p.musicianProfiles)
         .reduce((a, b) => a.concat(b), [])
-        .map((mp) => this.mapMusicianProfileToSelectItem(mp));
-      this.setRooms(this.appointment.venueId);
+        .map((mp) => this.mapMusicianProfileToSectionSelectItem(mp))), selectItem => selectItem.label);
+
+      this.qualificationOptions = sortBy(uniq(this.appointment.participations
+        .map((p) => p.musicianProfiles)
+        .reduce((a, b) => a.concat(b), [])
+        .map((mp) => this.mapMusicianProfileToQualificationSelectItem(mp))), selectItem => selectItem.label);
 
       this.mapParticipations();
     }
 
-    this.isProfessionalOptions = [
-      { label: this.translate.instant('Yes'), value: 'Yes' },
-      { label: this.translate.instant('No'), value: 'No' },
-    ];
+    this.setRooms(this.appointment.venueId);
 
     this.columns = [
       { field: 'surname', header: this.translate.instant('SURNAME') },
       { field: 'givenName', header: this.translate.instant('GIVENNAME') },
       { field: 'sections', header: this.translate.instant('editappointments.SECTIONS') },
-      { field: 'isProfessional', header: this.translate.instant('editappointments.LEVEL') },
+      { field: 'qualification', header: this.translate.instant('editappointments.LEVEL') },
       { field: 'predictionId', header: this.translate.instant('editappointments.PREDICTION') },
-      { field: 'resultId', header: this.translate.instant('editappointments.RESULTS')},
+      { field: 'resultId', header: this.translate.instant('editappointments.RESULTS') },
     ];
 
     this.createStepperMenu();
@@ -148,7 +150,7 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
           element.person.givenName,
           element.person.surname,
           this.getSectionNames(element.musicianProfiles),
-          element.musicianProfiles.map((mp) => mp.isProfessional).includes(true) ? 'Yes' : 'No',
+          element.musicianProfiles.map((mp) => mp.qualification).join(', '),
           element.participation ? element.participation.predictionId : '',
           element.participation ? element.participation.resultId : ''
         )
@@ -205,8 +207,12 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
     return { label: `${venue.address.city} ${venue.address.urbanDistrict} | ${venue.name}`, value: venue.id };
   }
 
-  mapMusicianProfileToSelectItem(musicianProfile: IMusicianProfileDto): SelectItem {
+  mapMusicianProfileToSectionSelectItem(musicianProfile: IMusicianProfileDto): SelectItem {
     return { label: musicianProfile.sectionName, value: musicianProfile.sectionName };
+  }
+
+  mapMusicianProfileToQualificationSelectItem(musicianProfile: IMusicianProfileDto): SelectItem {
+    return { label: musicianProfile.qualification, value: musicianProfile.qualification };
   }
 
   updateAppointment(appointment: IAppointmentDto, continueToNextStep: boolean): void {
@@ -375,7 +381,7 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
   }
 
   getSectionNames(musicianProfiles: IMusicianProfileDto[]): string {
-    return musicianProfiles.map((p) => p.sectionName).toString();
+    return musicianProfiles.map((p) => p.sectionName).join(', ');
   }
 
   onTableFiltered(event: any): void {
