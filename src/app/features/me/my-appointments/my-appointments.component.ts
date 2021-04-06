@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'primeng/api';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 import { IProjectDto, IRoomDto, IUserAppointmentDto, IVenueDto } from 'src/app/models/appointment';
 import { MeService } from '../../../core/services/me.service';
 import { NotificationsService } from '../../../core/services/notifications.service';
@@ -74,6 +74,7 @@ export class MyAppointmentsComponent implements OnInit {
   onPredictionChanged(event: { value: string }, userAppointment: IUserAppointmentDto): void {
     this.meService
       .setAppointmentPrediction(userAppointment.id, event.value)
+      .pipe(first())
       .subscribe(() => this.notificationsService.success('myappointments.PREDICTION_SET'));
   }
 }

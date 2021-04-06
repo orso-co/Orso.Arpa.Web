@@ -6,6 +6,7 @@ import { AuthService } from '../../core/services/auth.service';
 import { NotificationsService } from '../../core/services/notifications.service';
 import { IResetPasswordDto } from '../../models/IResetPasswordDto';
 import { ConfigService } from '../../core/services/config.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'arpa-forgot-password',
@@ -42,6 +43,7 @@ export class ForgotPasswordComponent implements OnInit {
   submit(): void {
     this.forgotPasswordRequest = true;
     this.route.queryParams
+      .pipe(first())
       .subscribe(params => {
         const resetPassword: IResetPasswordDto = {
           usernameOrEmail: params.email,
@@ -50,6 +52,7 @@ export class ForgotPasswordComponent implements OnInit {
         };
         this.authService
           .resetPassword(resetPassword)
+          .pipe(first())
           .subscribe(() => {
             this.notificationsService.success('forgotpassword.CHANGED');
             this.router.navigate(['/login']);

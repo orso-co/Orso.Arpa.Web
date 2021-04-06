@@ -1,7 +1,7 @@
-import { Component, Input, OnDestroy } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IProjectDto } from '../../../models/appointment';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 
 @Component({
   selector: 'arpa-project-list',
@@ -16,6 +16,7 @@ export class ProjectListComponent {
   ) {
     if (route) {
       route.data.pipe(map((routeData) => routeData.projects))
+        .pipe(first())
         .subscribe((project) => (this.projects = this.filterActiveProjects(project)));
     }
   }

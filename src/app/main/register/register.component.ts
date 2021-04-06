@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NotificationsService } from '../../core/services/notifications.service';
 import { ConfigService } from '../../core/services/config.service';
 import { AuthService } from '../../core/services/auth.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'arpa-register',
@@ -72,6 +73,7 @@ export class RegisterComponent {
     this.registerRequest = true;
     this.authService
       .register(Object.assign({}, this.registerFormGroup.value))
+      .pipe(first())
       .subscribe(() => {
         this.notificationsService.info('register.THANKS');
         this.router.navigate(['login']);

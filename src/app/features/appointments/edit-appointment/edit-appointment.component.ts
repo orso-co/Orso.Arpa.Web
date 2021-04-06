@@ -7,6 +7,7 @@ import { ISectionDto } from 'src/app/models/section';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { NotificationsService } from '../../../core/services/notifications.service';
 import { AppointmentService } from '../../../core/services/appointment.service';
+import { first } from 'rxjs/operators';
 
 class ParticipationTableItem {
   givenName: string;
@@ -137,30 +138,34 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   updateAppointment(appointment: IAppointmentDto, continueToNextStep: boolean): void {
-    this.appointmentService.update(appointment).subscribe(() => {
-      this.notificationsService.success('editappointments.APPOINTMENT_UPDATED');
-      if (continueToNextStep) {
-        this.appointment = appointment;
-        this.fillForm();
-        this.activeIndex = 1;
-      } else {
-        this.ref.close(appointment);
-      }
-    });
+    this.appointmentService.update(appointment)
+      .pipe(first())
+      .subscribe(() => {
+        this.notificationsService.success('editappointments.APPOINTMENT_UPDATED');
+        if (continueToNextStep) {
+          this.appointment = appointment;
+          this.fillForm();
+          this.activeIndex = 1;
+        } else {
+          this.ref.close(appointment);
+        }
+      });
   }
 
   createAppointment(appointment: IAppointmentDto, continueToNextStep: boolean): void {
-    this.appointmentService.create(appointment).subscribe((result) => {
-      this.notificationsService.success('editappointments.APPOINTMENT_CREATED');
-      if (continueToNextStep) {
-        this.appointment = result;
-        this.fillForm();
-        this.createStepperMenu();
-        this.activeIndex = 1;
-      } else {
-        this.ref.close(result);
-      }
-    });
+    this.appointmentService.create(appointment)
+      .pipe(first())
+      .subscribe((result) => {
+        this.notificationsService.success('editappointments.APPOINTMENT_CREATED');
+        if (continueToNextStep) {
+          this.appointment = result;
+          this.fillForm();
+          this.createStepperMenu();
+          this.activeIndex = 1;
+        } else {
+          this.ref.close(result);
+        }
+      });
   }
 
   setRooms(venueId: string): void {
@@ -198,6 +203,7 @@ export class EditAppointmentComponent implements OnInit {
 
   onVenueChanged(event: any): void {
     this.appointmentService.setVenue(this.appointment.id, event.value)
+      .pipe(first())
       .subscribe((_) => {
         this.notificationsService.success('editappointments.VENUE_SET');
         this.appointment.rooms.forEach((room) => {
@@ -233,15 +239,18 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   removeRoom(roomId: string, showToast: boolean): void {
-    this.appointmentService.removeRoom(this.appointment.id, roomId).subscribe((_) => {
-      if (showToast) {
-        this.notificationsService.success('editappointments.ROOM_REMOVED');
-      }
-    });
+    this.appointmentService.removeRoom(this.appointment.id, roomId)
+      .pipe(first())
+      .subscribe((_) => {
+        if (showToast) {
+          this.notificationsService.success('editappointments.ROOM_REMOVED');
+        }
+      });
   }
 
   addRoom(roomId: string): void {
     this.appointmentService.addRoom(this.appointment.id, roomId)
+      .pipe(first())
       .subscribe((_) => {
         this.notificationsService.success('editappointments.ROOM_ADDED');
       });
@@ -249,6 +258,7 @@ export class EditAppointmentComponent implements OnInit {
 
   removeSection(sectionId: string): void {
     this.appointmentService.removeSection(this.appointment.id, sectionId)
+      .pipe(first())
       .subscribe((result) => {
         this.appointment = result;
         this.mapParticipations();
@@ -267,6 +277,7 @@ export class EditAppointmentComponent implements OnInit {
 
   removeProject(projectId: string): void {
     this.appointmentService.removeProject(this.appointment.id, projectId)
+      .pipe(first())
       .subscribe((result) => {
         this.appointment = result;
         this.mapParticipations();
@@ -275,11 +286,13 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   addProject(projectId: string): void {
-    this.appointmentService.addProject(this.appointment.id, projectId).subscribe((result) => {
-      this.appointment = result;
-      this.mapParticipations();
-      this.notificationsService.success('editappointments.PROJECT_ADDED');
-    });
+    this.appointmentService.addProject(this.appointment.id, projectId)
+      .pipe(first())
+      .subscribe((result) => {
+        this.appointment = result;
+        this.mapParticipations();
+        this.notificationsService.success('editappointments.PROJECT_ADDED');
+      });
   }
 
   getSectionNames(musicianProfiles: IMusicianProfileDto[]): string {
@@ -292,6 +305,7 @@ export class EditAppointmentComponent implements OnInit {
 
   onResultChanged(item: ParticipationTableItem, event: any): void {
     this.appointmentService.setResult(item.personId, this.appointment.id, event.value)
+      .pipe(first())
       .subscribe((_) => {
         this.notificationsService.success('editappointments.RESULT_SET');
       });

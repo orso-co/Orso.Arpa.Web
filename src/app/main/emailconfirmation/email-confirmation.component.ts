@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { IConfirmEmailDto } from '../../models/IConfirmEmailDto';
 import { AuthService } from '../../core/services/auth.service';
 import { NotificationsService } from '../../core/services/notifications.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'arpa-emailconfirmation',
@@ -18,14 +19,13 @@ export class EmailConfirmationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(
-      this.route.queryParams,
-    );
     this.route.queryParams
+      .pipe(first())
       .subscribe(params => {
         const confirmEmail: IConfirmEmailDto = { token: params.token, email: params.email };
         this.authService
           .confirmMail(confirmEmail)
+          .pipe(first())
           .subscribe(() => {
             this.notificationsService.success('emailconfirmation.SUCCESS');
           });

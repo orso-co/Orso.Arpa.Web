@@ -2,14 +2,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PerformerComponent } from './performer.component';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthService } from '../../../core/services/auth.service';
-import { DummyComponent } from '../dummy/dummy.component';
 import { TranslateMockModule } from '../../../../testing/translate.mock.module';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+import { DummyComponent } from '../../../shared/dummy/dummy.component';
 
 describe('PerformerComponent', () => {
   let translate: TranslateService;

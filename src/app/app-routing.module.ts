@@ -55,6 +55,10 @@ const routes: Routes = [
         loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule),
       },
       {
+        path: 'projects',
+        loadChildren: () => import('./features/projects/projects.module').then(m => m.ProjectsModule),
+      },
+      {
         path: 'me',
         loadChildren: () => import('./features/me/me.module').then((mod) => mod.MeModule),
       },

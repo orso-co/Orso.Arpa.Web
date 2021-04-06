@@ -9,6 +9,7 @@ import { LogoComponent } from './logo/logo.component';
 import { BackButtonDirective } from './directives/back-button.directive';
 import { TopbarComponent } from './topbar/topbar.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { DummyComponent } from './dummy/dummy.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { TranslateModule } from '@ngx-translate/core';
     LogoComponent,
     BackButtonDirective,
     TopbarComponent,
+    DummyComponent,
   ],
   imports: [
     CommonModule,
@@ -34,6 +36,7 @@ import { TranslateModule } from '@ngx-translate/core';
     LogoComponent,
     BackButtonDirective,
     TopbarComponent,
+    DummyComponent,
   ],
 })
 export class SharedModule {

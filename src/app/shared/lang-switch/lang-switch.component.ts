@@ -1,15 +1,17 @@
 import { SelectItem } from 'primeng/api';
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { LanguageService } from '../../core/services/language.service';
+import { Unsubscribe } from '../../core/decorators/unsubscribe.decorator';
 
 @Component({
   selector: 'arpa-lang-switch',
   templateUrl: './lang-switch.component.html',
   styleUrls: ['./lang-switch.component.scss'],
 })
-export class LangSwitchComponent implements OnDestroy {
+@Unsubscribe()
+export class LangSwitchComponent {
 
   languages: Array<SelectItem<string>> = [];
   currentLanguage: string;
@@ -28,9 +30,5 @@ export class LangSwitchComponent implements OnDestroy {
 
   updateLanguage(): void {
     this.langService.updateLanguage(this.currentLanguage);
-  }
-
-  ngOnDestroy(): void {
-    this.langChangeListener.unsubscribe();
   }
 }

@@ -1,16 +1,18 @@
 import { Observable, Subscription } from 'rxjs';
 import { MenuItem } from 'primeng/api';
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { AuthService, IToken } from '../../core/services/auth.service';
 import { LanguageService } from '../../core/services/language.service';
+import { Unsubscribe } from '../../core/decorators/unsubscribe.decorator';
 
 @Component({
   selector: 'arpa-topbar',
   templateUrl: './topbar.component.html',
   styleUrls: ['./topbar.component.scss'],
 })
-export class TopbarComponent implements OnDestroy {
+@Unsubscribe()
+export class TopbarComponent {
 
   userProfileItems: MenuItem[] = [];
   token$: Observable<IToken | null>;
@@ -41,10 +43,6 @@ export class TopbarComponent implements OnDestroy {
       .split(' ')
       .map((name) => name[0].toUpperCase())
       .join('')}`;
-  }
-
-  ngOnDestroy(): void {
-    this.langChangeListener.unsubscribe();
   }
 
   private initialiseUserMenu(): void {

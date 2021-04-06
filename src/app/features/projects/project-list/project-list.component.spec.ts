@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateMockModule } from '../../../../testing/translate.mock.module';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
-import { DummyComponent } from '../dummy/dummy.component';
+import { DummyComponent } from '../../../shared/dummy/dummy.component';
 
 describe('ProjectListComponent', () => {
   let component: ProjectListComponent;

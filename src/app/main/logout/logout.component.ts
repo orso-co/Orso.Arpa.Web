@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../core/services/auth.service';
 import { NotificationsService } from '../../core/services/notifications.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'arpa-logout',
@@ -17,9 +18,11 @@ export class LogoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.logout().subscribe(() => {
-      this.notificationsService.info('logout.LOGGED_OUT');
-      this.router.navigate(['/login']);
-    });
+    this.authService.logout().pipe(first())
+      .pipe(first())
+      .subscribe(() => {
+        this.notificationsService.info('logout.LOGGED_OUT');
+        this.router.navigate(['/login']);
+      });
   }
 }

@@ -8,20 +8,25 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { DialogService } from 'primeng/dynamicdialog';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
+import { first, map } from 'rxjs/operators';
 import { ISectionDto } from 'src/app/models/section';
 import { AppointmentService } from '../../../core/services/appointment.service';
 import { NotificationsService } from '../../../core/services/notifications.service';
 import { SectionService } from '../../../core/services/section.service';
 import { EditAppointmentComponent } from '../edit-appointment/edit-appointment.component';
+import { Unsubscribe } from '../../../core/decorators/unsubscribe.decorator';
 
 @Component({
   selector: 'arpa-appointments',
   templateUrl: './appointments.component.html',
   styleUrls: ['./appointments.component.scss'],
 })
+@Unsubscribe()
 export class AppointmentsComponent {
+
+  langChangeListener: Subscription;
+  sectionsSubscription: Subscription;
   categoryOptions: SelectItem[] = [];
   statusOptions: SelectItem[] = [];
   emolumentPatternOptions: SelectItem[] = [];
@@ -54,20 +59,22 @@ export class AppointmentsComponent {
     private dialogService: DialogService,
     private sectionService: SectionService,
   ) {
-    this.route.data.subscribe((data) => {
-      this.projects = data.projects || [];
-      this.venues = data.venues || [];
-      this.emolumentOptions = data.emoluments || [];
-      this.emolumentPatternOptions = data.emolumentPatterns || [];
-      this.expectationOptions = data.expectations || [];
-      this.categoryOptions = data.categories || [];
-      this.statusOptions = data.status || [];
-      this.predictionOptions = data.predictions || [];
-      this.resultOptions = data.results || [];
-    });
-    this.sectionService.sections$.subscribe((sections) => (this.sections = sections || []));
+    this.route.data
+      .pipe(first())
+      .subscribe((data) => {
+        this.projects = data.projects || [];
+        this.venues = data.venues || [];
+        this.emolumentOptions = data.emoluments || [];
+        this.emolumentPatternOptions = data.emolumentPatterns || [];
+        this.expectationOptions = data.expectations || [];
+        this.categoryOptions = data.categories || [];
+        this.statusOptions = data.status || [];
+        this.predictionOptions = data.predictions || [];
+        this.resultOptions = data.results || [];
+      });
+    this.sectionsSubscription = this.sectionService.sections$.subscribe((sections) => (this.sections = sections || []));
+    this.langChangeListener = this.translate.onLangChange.subscribe(() => this.setOptions());
     this.setOptions();
-    this.translate.onLangChange.subscribe(() => this.setOptions());
   }
 
   private setOptions(): void {
@@ -150,7 +157,9 @@ export class AppointmentsComponent {
   }
 
   setAppointments(viewType: string, date: Date): void {
-    this.appointmentService.get(this.getRange(viewType), date).subscribe((result) => (this.appointments = result));
+    this.appointmentService.get(this.getRange(viewType), date)
+      .pipe(first())
+      .subscribe((result) => (this.appointments = result));
   }
 
   getRange(viewName: string): DateRange {
@@ -209,11 +218,13 @@ export class AppointmentsComponent {
       dismissableMask: true,
     });
 
-    ref.onClose.subscribe((appointment: IAppointmentDto) => {
-      if (appointment) {
-        this.appointments = [...this.appointments, appointment];
-      }
-    });
+    ref.onClose
+      .pipe(first())
+      .subscribe((appointment: IAppointmentDto) => {
+        if (appointment) {
+          this.appointments = [...this.appointments, appointment];
+        }
+      });
   }
 
   private openEditDialog(appointmentId: string): void {
@@ -237,17 +248,19 @@ export class AppointmentsComponent {
       dismissableMask: true,
     });
 
-    ref.onClose.subscribe((result: IAppointmentDto | string) => {
-      if (result) {
-        if (typeof result === 'string') {
-          this.appointments.splice(this.appointments.findIndex(a => a.id === appointmentId), 1);
-          this.appointments = [...this.appointments];
-        } else {
-          const index = this.appointments.findIndex((a) => a.id === result.id);
-          this.appointments[index] = result;
-          this.appointments = [...this.appointments];
+    ref.onClose
+      .pipe(first())
+      .subscribe((result: IAppointmentDto | string) => {
+        if (result) {
+          if (typeof result === 'string') {
+            this.appointments.splice(this.appointments.findIndex(a => a.id === appointmentId), 1);
+            this.appointments = [...this.appointments];
+          } else {
+            const index = this.appointments.findIndex((a) => a.id === result.id);
+            this.appointments[index] = result;
+            this.appointments = [...this.appointments];
+          }
         }
-      }
-    });
+      });
   }
 }

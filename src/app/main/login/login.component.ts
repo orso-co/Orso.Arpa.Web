@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationsService } from '../../core/services/notifications.service';
 import { LoadingService } from '../../core/services/loading.service';
 import { AuthService } from '../../core/services/auth.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'arpa-login',
@@ -41,6 +42,7 @@ export class LoginComponent {
     this.loadingService.loadingOn();
     this.authService
       .login(Object.assign({}, this.loginFormGroup.value))
+      .pipe(first())
       .subscribe(
         response => {
           this.router.navigate(['/arpa']);
@@ -64,14 +66,17 @@ export class LoginComponent {
   resendConfirmationLink(): void {
     this.authService
       .resendConfirmationLink(this.loginFormGroup.value.usernameOrEmail)
+      .pipe(first())
       .subscribe(() => {
         this.notificationsService.info('login.RESENDDONE');
       });
   }
 
   forgotPassword(): void {
-    this.authService.forgotPassword(this.loginFormGroup.value.usernameOrEmail).subscribe(() => {
-      this.notificationsService.success('forgotpassword.SENT');
-    });
+    this.authService.forgotPassword(this.loginFormGroup.value.usernameOrEmail)
+      .pipe(first())
+      .subscribe(() => {
+        this.notificationsService.success('forgotpassword.SENT');
+      });
   }
 }
