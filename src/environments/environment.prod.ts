@@ -20,7 +20,8 @@ export const environment = {
     email: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,4}$',
   },
   config: {
-    url: 'http://localhost:5000/swagger/v1/swagger.json',
+    protocol: 'https',
+    baseUrl: 'orso-arpa.azurewebsites.net/swagger/v1/swagger.json',
   },
   locale: {
     default: 'de',
