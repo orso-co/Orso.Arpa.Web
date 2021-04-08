@@ -1,0 +1,76 @@
+<form (submit)="onSubmit()" [formGroup]="formGroup">
+  <div class="p-fluid p-formgrid p-grid">
+    <div class="p-row">
+      <div class="p-field p-col-12 p-md-col-3">
+        <label for="title">{{ 'projects.NAME' | translate }} *</label>
+        <input required type="text" pInputText formControlName="title" maxlength="50" id="title" />
+      </div>
+      <div class="p-field p-col-12 p-md-col-3">
+        <label for="shortTitle">{{ 'projects.ABBREVIATION' | translate }} *</label>
+        <input required type="text" pInputText formControlName="shortTitle" maxlength="50" id="shortTitle" />
+      </div>
+      <div class="p-field p-col-12 p-md-col-3">
+        <label for="startDate">{{ 'projects.START' | translate }} *</label>
+        <p-calendar
+          [required]="true"
+          formControlName="startDate"
+          id="startDate"
+          dateFormat="dd MM yy"
+          [showWeek]="true"
+        ></p-calendar>
+      </div>
+      <div class="p-field p-col-12 p-md-col-3">
+        <label for="endDate">{{ 'projects.END' | translate }} *</label>
+        <p-calendar
+          [required]="true"
+          formControlName="endDate"
+          id="endDate"
+          dateFormat="dd MM yy"
+          [showWeek]="true"
+        ></p-calendar>
+      </div>
+    </div>
+
+    <div class="p-row">
+      <div class="p-field p-col-12 p-md-col-3">
+        <label for="genre">{{ 'projects.GENRE' | translate }} *</label>
+        <input required type="text" pInputText formControlName="genreId" maxlength="50" id="genre" />
+      </div>
+      <div class="p-field p-col-12 p-md-col-3">
+        <label for="type">{{ 'projects.TYPE' | translate }} *</label>
+        <input required type="text" pInputText formControlName="typeId" maxlength="50" id="type" />
+      </div>
+      <div class="p-field p-col-12 p-md-col-3">
+        <label for="status">{{ 'projects.STATUS' | translate }} *</label>
+        <input required type="text" pInputText formControlName="statusId" maxlength="50" id="status" />
+      </div>
+      <div class="p-field p-col-12 p-md-col-3">
+        <label for="parent">{{ 'projects.PARENT' | translate }}</label>
+        <input required type="text" pInputText formControlName="parentId" maxlength="50" id="parent" />
+      </div>
+    </div>
+
+    <div class="p-field p-col-12">
+      <label for="description">{{ 'projects.DESCRIPTION' | translate }}</label>
+      <input required type="text" pInputText formControlName="description" maxlength="50" id="description" />
+    </div>
+  </div>
+</form>
+<button
+  pButton
+  type="submit"
+  [label]="'editappointments.SAVECLOSE' | translate"
+  icon="pi pi-check"
+  iconPos="left"
+  [disabled]="formGroup.pristine || formGroup.invalid"
+></button>
+<button
+  pButton
+  class="p-ml-3 p-button-danger"
+  type="button"
+  [label]="'CANCEL' | translate"
+  icon="pi pi-times"
+  iconPos="left"
+  (click)="cancel()"
+></button>
+

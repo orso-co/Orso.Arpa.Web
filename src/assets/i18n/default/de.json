@@ -174,5 +174,23 @@
     "PREDICTION": "Vorhersage",
     "RESULT": "Ergebnis",
     "LEVEL": "(Semi-)Profi"
+  },
+  "projects": {
+    "NAME": "Name",
+    "VENUE": "Ort",
+    "START": "Beginn",
+    "END": "Ende",
+    "STATUS": "Status",
+    "COMPLETED": "Abgeschlossen",
+    "NOT_COMPLETED": "Laufend",
+    "GENRE": "Genre",
+    "NEW_PROJECT": "Neues Projekt anlegen",
+    "EDIT_PROJECT": "Projekt Bearbeiten",
+    "DESCRIPTION": "Beschreibung",
+    "ABBREVIATION": "Kürzel",
+    "TYPE": "Typ",
+    "PARENT": "Übergeordnetes Projekt",
+    "PROJECT_CREATED": "Projekt erfolgreich angelegt",
+    "PROJECT_UPDATED": "Projekt erfolgreich bearbeitet"
   }
 }

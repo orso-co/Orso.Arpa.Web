@@ -3,7 +3,7 @@ import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
-import { IProjectDto } from '../../models/appointment';
+import {IAppointmentDto, IProjectDto} from '../../models/appointment';
 
 @Injectable({
   providedIn: 'root',
@@ -23,5 +23,9 @@ export class ProjectService {
     }
 
     return this.apiService.get<IProjectDto[]>(this.baseUrl).pipe(shareReplay());
+  }
+
+  create(project: IProjectDto): Observable<IProjectDto> {
+    return this.apiService.post<IProjectDto>(this.baseUrl, project);
   }
 }

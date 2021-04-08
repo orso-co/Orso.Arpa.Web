@@ -1,17 +1,33 @@
-<h3>{{ 'PROJECTS' | translate }}</h3>
+<button
+  pButton
+  class="p-ml-3"
+  type="button"
+  [label]="'projects.NEW_PROJECT' | translate"
+  (click)="openCreateProjectDialog()"
+></button>
 
-<p-listbox
-  [options]="projects!"
-  optionLabel="title"
-  optionValue="description"
-  [filter]="true"
->
-  <ng-template pTemplate="header"></ng-template>
-  <ng-template let-project pTemplate="item">
-    <div class="project-item">
-      {{project.title}}
-      {{project.description}}
-      {{project.isCompleted}}
-    </div>
-  </ng-template>
-</p-listbox>
+<div class="card">
+  <h3>{{ 'PROJECTS' | translate }}</h3>
+  <p-table [value]="projects">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="name">{{ 'projects.NAME' | translate }}<p-sortIcon field="name"></p-sortIcon></th>
+        <th pSortableColumn="venue">{{ 'projects.VENUE' | translate }}<p-sortIcon field="venue"></p-sortIcon></th>
+        <th pSortableColumn="genre">{{ 'projects.GENRE' | translate }}<p-sortIcon field="genre"></p-sortIcon></th>
+        <th pSortableColumn="start">{{ 'projects.START' | translate }}<p-sortIcon field="start"></p-sortIcon></th>
+        <th pSortableColumn="end">{{ 'projects.END' | translate }}<p-sortIcon field="end"></p-sortIcon></th>
+        <th pSortableColumn="completed">{{ 'projects.STATUS' | translate }}<p-sortIcon field="completed"></p-sortIcon></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-project>
+      <tr (click)="openEditProjectDialog(project)">
+        <td>{{ project.title }}</td>
+        <td>venue placeholder</td>
+        <td>start placeholder</td>
+        <td>end placeholder</td>
+        <td *ngIf="project.isCompleted">{{ 'projects.COMPLETED' | translate }}</td>
+        <td *ngIf="!project.isCompleted">{{ 'projects.NOT_COMPLETED' | translate }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

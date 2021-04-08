@@ -51,8 +51,14 @@ export interface IProjectDto extends IBaseEntityDto {
   // eslint-disable-next-line id-blacklist
   number: number;
   title: string;
+  shortTitle: string;
   description: string;
+  typeId: string;
   genreId: string;
+  startDate: Date;
+  endDate: Date;
+  stateId: string;
+  parentId: number;
   isCompleted: boolean;
   deleted: boolean;
 }
