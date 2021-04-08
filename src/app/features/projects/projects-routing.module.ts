@@ -5,6 +5,7 @@ import { ProjectListResolver } from '../../resolvers/project-list.resolver';
 import {VenueListResolver} from '../../resolvers/venue-list.resolver';
 import {ProjectGenreResolver} from '../../resolvers/project-genre.resolver';
 import {ProjectTypeResolver} from '../../resolvers/project-type.resolver';
+import {ProjectStatusResolver} from '../../resolvers/project-status.resolver';
 
 const routes: Routes = [
   {
@@ -14,7 +15,8 @@ const routes: Routes = [
       projects: ProjectListResolver,
       venues: VenueListResolver,
       genres: ProjectGenreResolver,
-      types: ProjectTypeResolver
+      types: ProjectTypeResolver,
+      status: ProjectStatusResolver
     },
   },
 ];

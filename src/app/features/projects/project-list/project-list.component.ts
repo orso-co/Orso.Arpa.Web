@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 import {Unsubscribe} from '../../../core/decorators/unsubscribe.decorator';
 import {EditProjectComponent} from '../edit-project/edit-project.component';
-import {DialogService, DynamicDialogRef} from 'primeng/dynamicdialog';
+import {DialogService} from 'primeng/dynamicdialog';
 import {TranslateService} from '@ngx-translate/core';
 import {SelectItem} from 'primeng/api';
 
@@ -27,15 +27,15 @@ export class ProjectListComponent {
     route: ActivatedRoute,
     private dialogService: DialogService,
     private translate: TranslateService,
-    public ref: DynamicDialogRef,
   ) {
     route.data
       .pipe(first())
       .subscribe((data) => {
         this.projects = data.projects || [];
         this.venues = data.venues || [];
-        this.genreOptions = data.genreOptions || [];
-        this.statusOptions = data.statusOptions || [];
+        this.genreOptions = data.genres || [];
+        this.statusOptions = data.status || [];
+        this.typeOptions = data.types
       });
   }
 
@@ -44,7 +44,7 @@ export class ProjectListComponent {
   }
 
   public openCreateProjectDialog(): void {
-    this.ref = this.dialogService.open(EditProjectComponent, {
+    const ref = this.dialogService.open(EditProjectComponent, {
       data: {
         project: null,
         venues: this.venues,
@@ -55,7 +55,7 @@ export class ProjectListComponent {
       },
       header: this.translate.instant('projects.NEW_PROJECT'),
     });
-    this.ref.onClose
+    ref.onClose
       .pipe(first())
       .subscribe((project: IProjectDto) => {
         if (project) {

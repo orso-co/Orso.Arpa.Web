@@ -1,15 +1,11 @@
-<form (submit)="onSubmit()" [formGroup]="formGroup">
+<form [formGroup]="formGroup">
   <div class="p-fluid p-formgrid p-grid">
-    <div class="p-row">
-      <div class="p-field p-col-12 p-md-col-3">
+    <div class="p-col-12 p-md-4">
+      <div class="p-field p-col-12">
         <label for="title">{{ 'projects.NAME' | translate }} *</label>
         <input required type="text" pInputText formControlName="title" maxlength="50" id="title" />
       </div>
-      <div class="p-field p-col-12 p-md-col-3">
-        <label for="shortTitle">{{ 'projects.ABBREVIATION' | translate }} *</label>
-        <input required type="text" pInputText formControlName="shortTitle" maxlength="50" id="shortTitle" />
-      </div>
-      <div class="p-field p-col-12 p-md-col-3">
+      <div class="p-field p-col-12">
         <label for="startDate">{{ 'projects.START' | translate }} *</label>
         <p-calendar
           [required]="true"
@@ -19,7 +15,7 @@
           [showWeek]="true"
         ></p-calendar>
       </div>
-      <div class="p-field p-col-12 p-md-col-3">
+      <div class="p-field p-col-12">
         <label for="endDate">{{ 'projects.END' | translate }} *</label>
         <p-calendar
           [required]="true"
@@ -29,22 +25,33 @@
           [showWeek]="true"
         ></p-calendar>
       </div>
+      <div class="p-field p-col-12">
+        <label for="isCompleted">{{ 'projects.COMPLETED' | translate }}</label>
+        <p-checkbox
+          formControlName="isCompleted"
+          id="isCompleted"
+        ></p-checkbox>
+      </div>
     </div>
 
-    <div class="p-row">
-      <div class="p-field p-col-12 p-md-col-3">
+    <div class="p-col-12 p-md-4">
+      <div class="p-field p-col-12">
+        <label for="shortTitle">{{ 'projects.ABBREVIATION' | translate }} *</label>
+        <input required type="text" pInputText formControlName="shortTitle" maxlength="50" id="shortTitle" />
+      </div>
+      <div class="p-field p-col-12">
         <label for="genre">{{ 'projects.GENRE' | translate }} *</label>
         <p-dropdown
-        appendTo="body"
-        [showClear]="true"
-        [required]="true"
-        formControlName="genreId"
-        [autoDisplayFirst]="false"
-        [options]="genreOptions"
-        id="genre"
-      ></p-dropdown>
+          appendTo="body"
+          [showClear]="true"
+          [required]="true"
+          formControlName="genreId"
+          [autoDisplayFirst]="false"
+          [options]="genreOptions"
+          id="genre"
+        ></p-dropdown>
       </div>
-      <div class="p-field p-col-12 p-md-col-3">
+      <div class="p-field p-col-12">
         <label for="type">{{ 'projects.TYPE' | translate }} *</label>
         <p-dropdown
           appendTo="body"
@@ -56,25 +63,55 @@
           id="type"
         ></p-dropdown>
       </div>
-      <div class="p-field p-col-12 p-md-col-3">
-        <label for="parent">{{ 'projects.PARENT' | translate }}</label>
+    </div>
+
+    <div class="p-col-12 p-md-4">
+      <div class="p-field p-col-12">
+        <label for="status">{{ 'projects.STATUS' | translate }} *</label>
         <p-dropdown
           appendTo="body"
           [showClear]="true"
           [required]="true"
-          formControlName="parentProjectId"
+          formControlName="statusId"
+          [autoDisplayFirst]="false"
+          [options]="statusOptions"
+          id="status"
+        ></p-dropdown>
+      </div>
+      <div class="p-field p-col-12">
+        <label for="parent">{{ 'projects.PARENT' | translate }}</label>
+        <p-dropdown
+          appendTo="body"
+          [showClear]="true"
+          formControlName="parentId"
           [autoDisplayFirst]="false"
           [options]="parentProjectOptions"
           id="parent"
         ></p-dropdown>
       </div>
-    </div>
-
-    <div class="p-field p-col-12">
-      <label for="description">{{ 'projects.DESCRIPTION' | translate }}</label>
-      <input required type="text" pInputText formControlName="description" maxlength="50" id="description" />
+      <div class="p-field p-col-12">
+        <label for="venues">{{ 'projects.VENUE' | translate }}</label>
+        <p-dropdown
+          appendTo="body"
+          [showClear]="true"
+          [required]="true"
+          formControlName="venues"
+          [autoDisplayFirst]="false"
+          [options]="venueOptions"
+          id="venues"
+        ></p-dropdown>
+      </div>
     </div>
   </div>
+  <div class="p-fluid p-grid p-formgrid">
+    <div class="p-field p-col-12">
+      <label for="description">{{ 'projects.DESCRIPTION' | translate }}</label>
+      <textarea
+        formControlName="description"
+        id="description"></textarea>
+    </div>
+  </div>
+
 </form>
 <button
   pButton
@@ -82,7 +119,7 @@
   [label]="'editappointments.SAVECLOSE' | translate"
   icon="pi pi-check"
   iconPos="left"
-  [disabled]="formGroup.pristine || formGroup.invalid"
+  (click)="onSubmit()"
 ></button>
 <button
   pButton

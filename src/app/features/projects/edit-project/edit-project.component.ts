@@ -26,7 +26,7 @@ export class EditProjectComponent implements OnInit {
   formGroup: FormGroup;
 
   get isNew(): boolean {
-    return !this.project.id;
+    return !this.project;
   }
 
   constructor(public config: DynamicDialogConfig,
@@ -49,6 +49,7 @@ export class EditProjectComponent implements OnInit {
       startDate: [null, [Validators.required]],
       endDate: [null, [Validators.required]],
       description: [null],
+      venues: [null],
       typeId: [null, [Validators.required]],
       statusId: [null, [Validators.required]],
       genreId: [null, [Validators.required]],
@@ -68,9 +69,6 @@ export class EditProjectComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.formGroup.invalid || this.formGroup.pristine) {
-      return;
-    }
     if (this.isNew) {
       this.saveNewProject({ ...this.project, ...this.formGroup.value});
     } else {
@@ -79,6 +77,7 @@ export class EditProjectComponent implements OnInit {
   }
 
   private saveNewProject(project: IProjectDto): void {
+    console.log("save new");
     this.projectService.create(project)
       .pipe(first())
       .subscribe((result) => {
@@ -88,6 +87,7 @@ export class EditProjectComponent implements OnInit {
   }
 
   private updateProject(project: IProjectDto): void {
+    console.log("update");
   }
 
   cancel(): void {
