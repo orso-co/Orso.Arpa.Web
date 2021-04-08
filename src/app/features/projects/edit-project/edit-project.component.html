@@ -34,19 +34,39 @@
     <div class="p-row">
       <div class="p-field p-col-12 p-md-col-3">
         <label for="genre">{{ 'projects.GENRE' | translate }} *</label>
-        <input required type="text" pInputText formControlName="genreId" maxlength="50" id="genre" />
+        <p-dropdown
+        appendTo="body"
+        [showClear]="true"
+        [required]="true"
+        formControlName="genreId"
+        [autoDisplayFirst]="false"
+        [options]="genreOptions"
+        id="genre"
+      ></p-dropdown>
       </div>
       <div class="p-field p-col-12 p-md-col-3">
         <label for="type">{{ 'projects.TYPE' | translate }} *</label>
-        <input required type="text" pInputText formControlName="typeId" maxlength="50" id="type" />
-      </div>
-      <div class="p-field p-col-12 p-md-col-3">
-        <label for="status">{{ 'projects.STATUS' | translate }} *</label>
-        <input required type="text" pInputText formControlName="statusId" maxlength="50" id="status" />
+        <p-dropdown
+          appendTo="body"
+          [showClear]="true"
+          [required]="true"
+          formControlName="typeId"
+          [autoDisplayFirst]="false"
+          [options]="typeOptions"
+          id="type"
+        ></p-dropdown>
       </div>
       <div class="p-field p-col-12 p-md-col-3">
         <label for="parent">{{ 'projects.PARENT' | translate }}</label>
-        <input required type="text" pInputText formControlName="parentId" maxlength="50" id="parent" />
+        <p-dropdown
+          appendTo="body"
+          [showClear]="true"
+          [required]="true"
+          formControlName="parentProjectId"
+          [autoDisplayFirst]="false"
+          [options]="parentProjectOptions"
+          id="parent"
+        ></p-dropdown>
       </div>
     </div>
 

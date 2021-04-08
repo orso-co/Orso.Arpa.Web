@@ -39,6 +39,7 @@ export class EditProjectComponent implements OnInit {
   ngOnInit(): void {
     this.createForm();
     this.fillForm();
+    this.venueOptions = this.venues.map((v) => this.mapVenueToSelectItem(v));
   }
 
   private createForm(): void {
@@ -60,6 +61,10 @@ export class EditProjectComponent implements OnInit {
     this.formGroup.reset({
       ...this.project,
     });
+  }
+
+  private mapVenueToSelectItem(venue: IVenueDto): SelectItem {
+    return { label: `${venue.address.city} ${venue.address.urbanDistrict} | ${venue.name}`, value: venue.id };
   }
 
   onSubmit(): void {

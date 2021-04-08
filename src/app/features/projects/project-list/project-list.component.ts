@@ -75,8 +75,6 @@ export class ProjectListComponent {
         statusOptions: this.statusOptions
       },
       header: this.translate.instant('projects.EDIT_PROJECT'),
-      style: 'overflow: scroll',
-      contentStyle: 'overflow: visible'
     });
   }
 }
