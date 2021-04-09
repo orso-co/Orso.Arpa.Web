@@ -8,6 +8,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { httpLoaderFactory } from '../../core/core.module';
 import { AuthService } from '../../core/services/auth.service';
 import { NotificationsService } from '../../core/services/notifications.service';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -21,6 +22,7 @@ describe('RegisterComponent', () => {
         ReactiveFormsModule,
         RouterTestingModule,
         FormsModule,
+        RecaptchaModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
