@@ -22,9 +22,7 @@ export class HttpLoaderInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     this.loadingService.loadingOn();
     return next.handle(request).pipe(
-      catchError((error: HttpErrorResponse) => {
-        return throwError(error);
-      }),
+      catchError((error: HttpErrorResponse) => throwError(error)),
       finalize(() => {
         this.loadingService.loadingOff();
       }),
