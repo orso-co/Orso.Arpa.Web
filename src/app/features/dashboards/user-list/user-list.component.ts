@@ -63,7 +63,6 @@ export class UserListComponent implements OnChanges {
     const dto: ISetRoleDto = { userName: this.selectedUser!.userName, roleNames: this.selectedRoles };
     this.authService.setUserRoles(dto).subscribe(() => {
       this.rolesSet.emit(dto);
-      this.reset();
       panel.hide();
       this.notificationsService.success('userlist.USER_ROLES_SET');
     });
@@ -99,7 +98,6 @@ export class UserListComponent implements OnChanges {
   private deleteSelectedUser(): void {
     this.userService.deleteUser(this.selectedUser!.userName).subscribe(() => {
       this.userDeleted.emit(this.selectedUser!.userName);
-      this.reset();
       this.notificationsService.success('userlist.USER_DELETED');
     });
   }

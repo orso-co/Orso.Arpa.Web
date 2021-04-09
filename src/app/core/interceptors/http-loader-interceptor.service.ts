@@ -7,13 +7,11 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
-import { NotificationsService } from '../services/notifications.service';
 import { LoadingService } from '../services/loading.service';
 
 @Injectable()
 export class HttpLoaderInterceptor implements HttpInterceptor {
   constructor(
-    private notificationsService: NotificationsService,
     private loadingService: LoadingService,
   ) {
   }
@@ -25,7 +23,6 @@ export class HttpLoaderInterceptor implements HttpInterceptor {
     this.loadingService.loadingOn();
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        this.notificationsService.error(error.message);
         return throwError(error);
       }),
       finalize(() => {

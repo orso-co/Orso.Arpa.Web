@@ -55,6 +55,7 @@
 
   "error": {
     "SOMETHING_WENT_WRONG": "Da ist etwas schiefgelaufen!",
+    "BAD_REQUEST": "Es ist ein Fehler aufgetreten",
     "ROUTE_NOT_FOUND": "Seite nicht gefunden",
     "FORBIDDEN": "Zugriff verweigert",
     "CONNECTION_ERROR": "Verbindungsfehler, bitte später nochmal probieren"
