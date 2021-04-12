@@ -4,7 +4,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateModuleLoader } from './factories/translate-module-loader';
 import { ApiInterceptor } from './interceptors/api.interceptor';
-import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { ConfigService } from './services/config.service';
 import { ErrorHandler as CustomErrorHandler } from './error-handler';
 import { HttpLoaderInterceptor } from './interceptors/http-loader-interceptor.service';
@@ -37,7 +36,6 @@ export const translateInitializerFactory = (translate: TranslateService, configS
     { provide: HTTP_INTERCEPTORS, useClass: HttpLoaderInterceptor, multi: true },
     { provide: ErrorHandler, useClass: CustomErrorHandler },
     { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     {
       provide: APP_INITIALIZER,
       useFactory: translateInitializerFactory,

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationsService } from '../../core/services/notifications.service';
-import { LoadingService } from '../../core/services/loading.service';
 import { AuthService } from '../../core/services/auth.service';
 import { first } from 'rxjs/operators';
 
@@ -18,7 +17,6 @@ export class LoginComponent {
   constructor(formBuilder: FormBuilder,
               private router: Router,
               private notificationsService: NotificationsService,
-              private loadingService: LoadingService,
               private authService: AuthService,
   ) {
     this.loginFormGroup = formBuilder.group({
@@ -39,7 +37,6 @@ export class LoginComponent {
   }
 
   submit(): void {
-    this.loadingService.loadingOn();
     this.authService
       .login(Object.assign({}, this.loginFormGroup.value))
       .pipe(first())
@@ -48,7 +45,6 @@ export class LoginComponent {
           this.router.navigate(['/arpa']);
         },
         error => {
-          this.loadingService.loadingOff();
           // following lines are workaround to identify if confirmation link should be recent
           // will not work when backend send error text in other language or text will change
           error.forEach((v: string) => {
