@@ -57,3 +57,7 @@ select:-webkit-autofill:focus {
 .p-formgroup-inline > .p-field + .p-field {
   margin-top: inherit;
 }
+
+.p-dialog-content {
+  overflow-y: visible !important;
+}

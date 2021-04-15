@@ -55,6 +55,7 @@
 
   "error": {
     "SOMETHING_WENT_WRONG": "Oh, something went wrong!",
+    "BAD_REQUEST": "An error happened",
     "ROUTE_NOT_FOUND": "Page not found",
     "FORBIDDEN": "Access denied",
     "CONNECTIONERROR": "Connection error, please try again later"
@@ -163,8 +164,8 @@
     "EXPECTATION": "Expectation",
     "DETAILSPUBLIC": "Public Details",
     "DETAILSINTERNAL": "Internal Details",
-    "EMOLUMENT": "Emolument",
-    "EMOLUMENTPATTERN": "Emolument Pattern",
+    "SALARY": "Salary",
+    "SALARYPATTERN": "Salary Pattern",
     "VENUE": "Venue",
     "ROOMS": "Rooms",
     "SECTIONS": "Sections/Department",

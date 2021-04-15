@@ -56,8 +56,8 @@ export class EditAppointmentComponent implements OnInit {
   resultOptions: SelectItem[] = this.config.data.resultOptions;
   categoryOptions: SelectItem[] = this.config.data.categoryOptions;
   statusOptions: SelectItem[] = this.config.data.statusOptions;
-  emolumentPatternOptions: SelectItem[] = this.config.data.emolumentPatternOptions;
-  emolumentOptions: SelectItem[] = this.config.data.emolumentOptions;
+  salaryPatternOptions: SelectItem[] = this.config.data.salaryPatternOptions;
+  salaryOptions: SelectItem[] = this.config.data.salaryOptions;
   expectationOptions: SelectItem[] = this.config.data.expectationOptions;
 
   participationTableItems: ParticipationTableItem[] = [];
@@ -339,8 +339,8 @@ export class EditAppointmentComponent implements OnInit {
       internalDetails: [null],
       categoryId: [null, [Validators.required]],
       statusId: [null, [Validators.required]],
-      emolumentId: [null, [Validators.required]],
-      emolumentPatternId: [null],
+      salaryId: [null, [Validators.required]],
+      salaryPatternId: [null],
       expectationId: [null],
     });
   }

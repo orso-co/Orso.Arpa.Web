@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotificationsService } from '../../core/services/notifications.service';
 import { ConfigService } from '../../core/services/config.service';
 import { AuthService } from '../../core/services/auth.service';
 import { first } from 'rxjs/operators';
+import { RecaptchaComponent } from 'ng-recaptcha';
 
 @Component({
   selector: 'arpa-register',
@@ -13,10 +14,11 @@ import { first } from 'rxjs/operators';
 })
 export class RegisterComponent {
 
+  @ViewChild('captchaRef') reCaptcha: RecaptchaComponent;
   registerRequest = false;
   registerFormGroup: FormGroup;
   hide = true;
-  captchaKey: string;
+  siteKey: string;
 
   constructor(formBuilder: FormBuilder,
               private router: Router,
@@ -25,7 +27,7 @@ export class RegisterComponent {
               private notificationsService: NotificationsService,
   ) {
 
-    this.captchaKey = configService.getEnv('captcha').key;
+    this.siteKey = configService.getEnv('captcha').key;
 
     this.registerFormGroup = formBuilder.group({
       userName: [null,
@@ -69,16 +71,34 @@ export class RegisterComponent {
     });
   }
 
+  onSubmit(): void {
+    this.reCaptcha.execute();
+  }
+
+  onError(): void {
+    this.notificationsService.error('error.SOMETHING_WENT_WRONG');
+  }
+
   submit(): void {
-    this.registerRequest = true;
     this.authService
       .register(Object.assign({}, this.registerFormGroup.value))
       .pipe(first())
       .subscribe(() => {
         this.notificationsService.info('register.THANKS');
         this.router.navigate(['login']);
+      }, error => {
+        if (error.status === 400 && error.errors) {
+          Object.keys(error.errors).forEach(prop => {
+            const formProp = prop[0].toLowerCase() + prop.slice(1);
+            const formControl = this.registerFormGroup.get(formProp);
+            if (formControl) {
+              formControl.setErrors({
+                resultError: error.errors[formProp],
+              });
+            }
+          });
+        }
       });
-    this.registerRequest = false;
   }
 
   onChange(): void {

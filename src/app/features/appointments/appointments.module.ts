@@ -10,8 +10,8 @@ import { AppointmentStatusListResolver } from '../../resolvers/appointment-statu
 import { AppointmentParticipationPredictionListResolver } from '../../resolvers/appointment-participation-prediction-list.resolver';
 import { AppointmentParticipationResultListResolver } from '../../resolvers/appointment-participation-result-list.resolver';
 import { AppointmentExpectationListResolver } from '../../resolvers/appointment-expectation-list.resolver';
-import { AppointmentEmolumentPatternListResolver } from '../../resolvers/appointment-emolument-pattern-list.resolver';
-import { AppointmentEmolumentListResolver } from '../../resolvers/appointment-emolument-list.resolver';
+import { AppointmentSalaryPatternListResolver } from '../../resolvers/appointment-salary-pattern-list.resolver';
+import { AppointmentSalaryListResolver } from '../../resolvers/appointment-salary-list.resolver';
 import { VenueListResolver } from '../../resolvers/venue-list.resolver';
 import { ProjectListResolver } from '../../resolvers/project-list.resolver';
 import { SectionListResolver } from '../../resolvers/section-list.resolver';
@@ -34,8 +34,8 @@ import { EditAppointmentComponent } from './edit-appointment/edit-appointment.co
     AppointmentParticipationPredictionListResolver,
     AppointmentParticipationResultListResolver,
     AppointmentExpectationListResolver,
-    AppointmentEmolumentPatternListResolver,
-    AppointmentEmolumentListResolver,
+    AppointmentSalaryPatternListResolver,
+    AppointmentSalaryListResolver,
     VenueListResolver,
     ProjectListResolver,
     SectionListResolver,

@@ -12,6 +12,7 @@ import { PrivacyComponent } from './privacy/privacy.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { EmailConfirmationComponent } from './emailconfirmation/email-confirmation.component';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { EmailConfirmationComponent } from './emailconfirmation/email-confirmati
     TranslateModule,
     ReactiveFormsModule,
     LayoutModule,
+    RecaptchaModule,
   ],
 })
 export class MainModule {

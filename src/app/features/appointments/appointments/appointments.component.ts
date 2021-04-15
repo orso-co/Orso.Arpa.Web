@@ -29,8 +29,8 @@ export class AppointmentsComponent {
   sectionsSubscription: Subscription;
   categoryOptions: SelectItem[] = [];
   statusOptions: SelectItem[] = [];
-  emolumentPatternOptions: SelectItem[] = [];
-  emolumentOptions: SelectItem[] = [];
+  salaryPatternOptions: SelectItem[] = [];
+  salaryOptions: SelectItem[] = [];
   expectationOptions: SelectItem[] = [];
   sections: ISectionDto[] = [];
   projects: IProjectDto[] = [];
@@ -64,8 +64,8 @@ export class AppointmentsComponent {
       .subscribe((data) => {
         this.projects = data.projects || [];
         this.venues = data.venues || [];
-        this.emolumentOptions = data.emoluments || [];
-        this.emolumentPatternOptions = data.emolumentPatterns || [];
+        this.salaryOptions = data.salaries || [];
+        this.salaryPatternOptions = data.salaryPatterns || [];
         this.expectationOptions = data.expectations || [];
         this.categoryOptions = data.categories || [];
         this.statusOptions = data.status || [];
@@ -190,8 +190,8 @@ export class AppointmentsComponent {
           expectationId: null,
           statusId: null,
           name: null,
-          emolumentPatternId: null,
-          emolumentId: null,
+          salaryPatternId: null,
+          salaryId: null,
           rooms: [],
           participations: [],
           projects: [],
@@ -209,8 +209,8 @@ export class AppointmentsComponent {
         resultOptions: this.resultOptions,
         categoryOptions: this.categoryOptions,
         statusOptions: this.statusOptions,
-        emolumentPatternOptions: this.emolumentPatternOptions,
-        emolumentOptions: this.emolumentOptions,
+        salaryPatternOptions: this.salaryPatternOptions,
+        salaryOptions: this.salaryOptions,
         expectationOptions: this.expectationOptions,
       },
       header: this.translate.instant('editappointments.CREATE'),
@@ -239,8 +239,8 @@ export class AppointmentsComponent {
         resultOptions: this.resultOptions,
         categoryOptions: this.categoryOptions,
         statusOptions: this.statusOptions,
-        emolumentPatternOptions: this.emolumentPatternOptions,
-        emolumentOptions: this.emolumentOptions,
+        salaryPatternOptions: this.salaryPatternOptions,
+        salaryOptions: this.salaryOptions,
         expectationOptions: this.expectationOptions,
       },
       header: this.translate.instant('editappointments.EDIT'),

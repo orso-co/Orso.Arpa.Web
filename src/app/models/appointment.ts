@@ -24,8 +24,8 @@ export interface IAppointmentDto extends IBaseEntityDto {
   publicDetails: string;
   internalDetails: string;
   statusId: string;
-  emolumentId: string;
-  emolumentPatternId: string;
+  salaryId: string;
+  salaryPatternId: string;
   venueId: string;
   rooms: IRoomDto[];
   projects: IProjectDto[];

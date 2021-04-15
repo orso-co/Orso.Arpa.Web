@@ -1,28 +1,28 @@
-<form [formGroup]='registerFormGroup' (ngSubmit)='submit()'>
+<form [formGroup]='registerFormGroup' (ngSubmit)='onSubmit()'>
 
   <div class='p-field'>
     <arpa-lang-switch></arpa-lang-switch>
   </div>
 
   <div class='p-field p-float-label'>
-    <input id='givenname' type='text' pInputText formControlName='givenName' (ngModelChange)='onChange()'>
+    <input type='text' pInputText formControlName='givenName' (ngModelChange)='onChange()'>
     <label for='float-input'>{{ 'GIVENNAME' | translate }}</label>
   </div>
 
 
   <div class='p-field p-float-label'>
-    <input id='givenname' type='text' pInputText formControlName='surname' (ngModelChange)='onChange()'>
+    <input type='text' pInputText formControlName='surname' (ngModelChange)='onChange()'>
     <label for='float-input'>{{ 'SURNAME' | translate }}</label>
   </div>
 
 
   <div class='p-field p-float-label'>
-    <input id='givenname' type='text' pInputText formControlName='email' (ngModelChange)='onChange()'>
+    <input type='text' pInputText formControlName='email' (ngModelChange)='onChange()'>
     <label for='float-input'>{{ 'EMAILADDRESS' | translate }}</label>
   </div>
 
   <div class='p-field p-float-label'>
-    <input id='givenname' type='text' pInputText formControlName='userName' (ngModelChange)='onChange()'>
+    <input type='text' pInputText formControlName='userName' (ngModelChange)='onChange()'>
     <label for='float-input'>{{ 'USERNAME' | translate }}</label>
   </div>
 
@@ -34,7 +34,7 @@
   </div>
 
   <div class='p-field-checkbox'>
-    <p-checkbox id='givenname' formControlName='privacyPolicy' ngDefaultControl></p-checkbox>
+    <p-checkbox formControlName='privacyPolicy' ngDefaultControl></p-checkbox>
     <label>
       <a [routerLink]="['/privacy']" style='color:currentColor;' title="{{ 'register.SHOWPRIVACY' | translate }}">
         {{ 'PRIVACYPOLICY' | translate }}
@@ -59,6 +59,13 @@
     </div>
   </div>
 
- <!--<p-captcha [siteKey]="captchaKey" theme="dark" size="invisible" language="en" (onResponse)="submit()"></p-captcha>-->
+  <re-captcha
+    #captchaRef='reCaptcha'
+    errorMode='handled'
+    size='invisible'
+    siteKey='{{ siteKey }}'
+    (resolved)="submit()"
+    (error)="onError()"
+  ></re-captcha>
 </form>
 

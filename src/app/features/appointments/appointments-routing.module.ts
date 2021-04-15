@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppointmentEmolumentListResolver } from '../../resolvers/appointment-emolument-list.resolver';
-import { AppointmentEmolumentPatternListResolver } from '../../resolvers/appointment-emolument-pattern-list.resolver';
+import { AppointmentSalaryListResolver } from '../../resolvers/appointment-salary-list.resolver';
+import { AppointmentSalaryPatternListResolver } from '../../resolvers/appointment-salary-pattern-list.resolver';
 import { AppointmentExpectationListResolver } from '../../resolvers/appointment-expectation-list.resolver';
 import { ProjectListResolver } from '../../resolvers/project-list.resolver';
 import { SectionListResolver } from '../../resolvers/section-list.resolver';
@@ -20,8 +20,8 @@ const routes: Routes = [
     data: { roles: [RoleNames.staff, RoleNames.admin] },
     component: AppointmentsComponent,
     resolve: {
-      emoluments: AppointmentEmolumentListResolver,
-      emolumentPatterns: AppointmentEmolumentPatternListResolver,
+      salaries: AppointmentSalaryListResolver,
+      salaryPatterns: AppointmentSalaryPatternListResolver,
       expectations: AppointmentExpectationListResolver,
       projects: ProjectListResolver,
       sectionsLoaded: SectionListResolver,
