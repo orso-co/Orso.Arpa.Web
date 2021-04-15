@@ -126,32 +126,32 @@
                 </div>
               </div>
               <div class="p-col-12">
-                <p-fieldset legend="{{ 'editappointments.EMOLUMENT' | translate }}">
+                <p-fieldset legend="{{ 'editappointments.SALARY' | translate }}">
                   <div class="p-col-12">
                     <div class="p-field">
-                      <label for="emolument">{{ 'editappointments.EMOLUMENT' | translate }} </label>
+                      <label for="salary">{{ 'editappointments.SALARY' | translate }} </label>
                       <p-dropdown
                         appendTo="body"
                         [required]="true"
-                        formControlName="emolumentId"
+                        formControlName="salaryId"
                         [showClear]="true"
-                        [options]="emolumentOptions"
+                        [options]="salaryOptions"
                         [autoDisplayFirst]="false"
-                        id="emolument"
+                        id="salary"
                         [style]="{ 'min-width': '50%' }"
                       ></p-dropdown>
                     </div>
                   </div>
                   <div class="p-col-12">
                     <div class="p-field">
-                      <label for="emolumentPattern">{{ 'editappointments.EMOLUMENTPATTERN' | translate }}</label>
+                      <label for="salaryPattern">{{ 'editappointments.SALARYPATTERN' | translate }}</label>
                       <p-dropdown
                         appendTo="body"
-                        formControlName="emolumentPatternId"
-                        [options]="emolumentPatternOptions"
+                        formControlName="salaryPatternId"
+                        [options]="salaryPatternOptions"
                         [showClear]="true"
                         [autoDisplayFirst]="false"
-                        id="emolumentPattern"
+                        id="salaryPattern"
                         [style]="{ 'min-width': '50%' }"
                       ></p-dropdown>
                     </div>
