@@ -49,9 +49,8 @@ export class EditProjectComponent implements OnInit {
       startDate: [null, [Validators.required]],
       endDate: [null, [Validators.required]],
       description: [null],
-      venues: [null],
       typeId: [null, [Validators.required]],
-      statusId: [null, [Validators.required]],
+      stateId: [null, [Validators.required]],
       genreId: [null, [Validators.required]],
       parentId: [null],
       isCompleted: [false, [Validators.required]]
@@ -70,14 +69,14 @@ export class EditProjectComponent implements OnInit {
 
   onSubmit(): void {
     if (this.isNew) {
-      this.saveNewProject({ ...this.project, ...this.formGroup.value});
+      this.saveNewProject({ ...this.project, ...this.formGroup.value} as IProjectDto);
     } else {
-      this.updateProject({ ...this.project, ...this.formGroup.value});
+      this.updateProject({ ...this.project, ...this.formGroup.value} as IProjectDto);
     }
   }
 
   private saveNewProject(project: IProjectDto): void {
-    console.log("save new");
+    console.log(typeof project);
     this.projectService.create(project)
       .pipe(first())
       .subscribe((result) => {

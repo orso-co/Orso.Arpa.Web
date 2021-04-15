@@ -72,7 +72,7 @@
           appendTo="body"
           [showClear]="true"
           [required]="true"
-          formControlName="statusId"
+          formControlName="stateId"
           [autoDisplayFirst]="false"
           [options]="statusOptions"
           id="status"
@@ -87,18 +87,6 @@
           [autoDisplayFirst]="false"
           [options]="parentProjectOptions"
           id="parent"
-        ></p-dropdown>
-      </div>
-      <div class="p-field p-col-12">
-        <label for="venues">{{ 'projects.VENUE' | translate }}</label>
-        <p-dropdown
-          appendTo="body"
-          [showClear]="true"
-          [required]="true"
-          formControlName="venues"
-          [autoDisplayFirst]="false"
-          [options]="venueOptions"
-          id="venues"
         ></p-dropdown>
       </div>
     </div>

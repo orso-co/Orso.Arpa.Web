@@ -57,10 +57,10 @@ export interface IProjectDto extends IBaseEntityDto {
   genreId: string;
   startDate: Date;
   endDate: Date;
+  urls: String[];
   stateId: string;
   parentId: number;
   isCompleted: boolean;
-  deleted: boolean;
 }
 
 export interface IAppointmentParticipationListItemDto {

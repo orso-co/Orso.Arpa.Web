@@ -39,10 +39,6 @@ export class ProjectListComponent {
       });
   }
 
-  filterActiveProjects(projects: IProjectDto[]): IProjectDto[] {
-    return projects.filter((u) => !u.deleted) ?? null;
-  }
-
   public openCreateProjectDialog(): void {
     const ref = this.dialogService.open(EditProjectComponent, {
       data: {
