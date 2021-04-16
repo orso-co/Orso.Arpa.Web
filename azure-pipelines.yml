@@ -24,6 +24,6 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: './dist'
-    ArtifactName: 'arpa-web-app'
+    ArtifactName: 'arpa-dev-web-app'
     publishLocation: 'Container'
   displayName: 'Publish Artifacts'
