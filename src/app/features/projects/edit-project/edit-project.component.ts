@@ -18,10 +18,11 @@ export class EditProjectComponent implements OnInit {
   project: IProjectDto = this.config.data.project;
   venues: IVenueDto[] = this.config.data.venues;
   venueOptions: SelectItem[] = [];
-  parentProjectOptions: IProjectDto[] = this.config.data.parentProjectOptions;
+  projects: IProjectDto[] = this.config.data.projects;
+  parentProjectOptions: SelectItem[] = [];
   typeOptions: SelectItem[] = this.config.data.typeOptions;
   genreOptions: SelectItem[] = this.config.data.genreOptions;
-  statusOptions: SelectItem[] = this.config.data.statusOptions;
+  stateOptions: SelectItem[] = this.config.data.stateOptions;
 
   formGroup: FormGroup;
 
@@ -38,20 +39,23 @@ export class EditProjectComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
-    this.fillForm();
+    if (!this.isNew) {
+      this.fillForm();
+    }
     this.venueOptions = this.venues.map((v) => this.mapVenueToSelectItem(v));
+    this.parentProjectOptions = this.projects.map((p) => this.mapParentProjectToSelectItem(p));
   }
 
   private createForm(): void {
     this.formGroup = this.formBuilder.group({
-      title: [null, [Validators.required]],
-      shortTitle: [null, [Validators.required]],
-      startDate: [null, [Validators.required]],
-      endDate: [null, [Validators.required]],
+      title: [null],
+      shortTitle: [null],
+      startDate: [null],
+      endDate: [null],
       description: [null],
-      typeId: [null, [Validators.required]],
-      stateId: [null, [Validators.required]],
-      genreId: [null, [Validators.required]],
+      typeId: [null],
+      stateId: [null],
+      genreId: [null],
       parentId: [null],
       isCompleted: [false, [Validators.required]]
     });
@@ -60,11 +64,17 @@ export class EditProjectComponent implements OnInit {
   private fillForm(): void {
     this.formGroup.reset({
       ...this.project,
+      startDate: new Date(this.project.startDate),
+      endDate: new Date(this.project.endDate),
     });
   }
 
   private mapVenueToSelectItem(venue: IVenueDto): SelectItem {
     return { label: `${venue.address.city} ${venue.address.urbanDistrict} | ${venue.name}`, value: venue.id };
+  }
+
+  private mapParentProjectToSelectItem(project: IProjectDto): SelectItem {
+    return { label: project.title, value: project.id };
   }
 
   onSubmit(): void {
@@ -76,7 +86,6 @@ export class EditProjectComponent implements OnInit {
   }
 
   private saveNewProject(project: IProjectDto): void {
-    console.log(typeof project);
     this.projectService.create(project)
       .pipe(first())
       .subscribe((result) => {
@@ -86,7 +95,12 @@ export class EditProjectComponent implements OnInit {
   }
 
   private updateProject(project: IProjectDto): void {
-    console.log("update");
+    this.projectService.update(project)
+      .pipe(first())
+      .subscribe((result) => {
+        this.notificationsService.success('projects.PROJECT_UPDATED');
+        this.ref.close(result);
+      });
   }
 
   cancel(): void {

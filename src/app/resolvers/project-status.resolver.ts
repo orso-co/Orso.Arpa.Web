@@ -12,14 +12,13 @@ import {SelectValueService} from '../core/services/select-value.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectStatusResolver implements Resolve<SelectItem[]> {
+export class ProjectStateResolver implements Resolve<SelectItem[]> {
   constructor(private selectValueService: SelectValueService) {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<SelectItem[]> {
-    // todo: change to project!
-    const tableName = 'Appointment';
-    const propertyName = 'Status';
+    const tableName = 'Project';
+    const propertyName = 'State';
 
     if (this.selectValueService.loaded(tableName, propertyName)) {
       return of(this.selectValueService.get(tableName, propertyName));

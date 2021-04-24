@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 import { IProjectDto } from '../models/appointment';
 import { ProjectService } from '../core/services/project.service';
+import {ProjectListComponent} from '../features/projects/project-list/project-list.component';
 
 @Injectable({ providedIn: 'root' })
 export class ProjectListResolver implements Resolve<IProjectDto[]> {
@@ -10,6 +11,11 @@ export class ProjectListResolver implements Resolve<IProjectDto[]> {
   }
 
   resolve(route: ActivatedRouteSnapshot): Observable<IProjectDto[]> {
-    return this.projectService.load();
+    if (route.component == ProjectListComponent) {
+      return this.projectService.load(true);
+    }
+    else {
+      return this.projectService.load();
+    }
   }
 }

@@ -1,32 +1,41 @@
-<button
-  pButton
-  class="p-ml-3"
-  type="button"
-  [label]="'projects.NEW_PROJECT' | translate"
-  (click)="openCreateProjectDialog()"
-></button>
+<div class="p-card">
 
-<div class="card">
-  <h3>{{ 'PROJECTS' | translate }}</h3>
-  <p-table [value]="projects">
-    <ng-template pTemplate="header">
+  <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+      <button pButton label=" {{ 'projects.NEW_PROJECT' | translate }}" icon="pi pi-plus" (click)="openCreateProjectDialog()"></button>
+    </ng-template>
+  </p-toolbar>
+
+  <div class="p-card-title">{{ 'PROJECTS' | translate }}</div>
+
+  <p-table [columns]="cols" [value]="projects" styleClass="p-datatable-responsive">
+    <ng-template pTemplate="header" let-columns>
       <tr>
-        <th pSortableColumn="name">{{ 'projects.NAME' | translate }}<p-sortIcon field="name"></p-sortIcon></th>
-        <th pSortableColumn="venue">{{ 'projects.VENUE' | translate }}<p-sortIcon field="venue"></p-sortIcon></th>
-        <th pSortableColumn="genre">{{ 'projects.GENRE' | translate }}<p-sortIcon field="genre"></p-sortIcon></th>
-        <th pSortableColumn="start">{{ 'projects.START' | translate }}<p-sortIcon field="start"></p-sortIcon></th>
-        <th pSortableColumn="end">{{ 'projects.END' | translate }}<p-sortIcon field="end"></p-sortIcon></th>
-        <th pSortableColumn="completed">{{ 'projects.STATUS' | translate }}<p-sortIcon field="completed"></p-sortIcon></th>
+        <th *ngFor="let col of columns" pSortableColumn>
+          {{ col.header }}
+          <p-sortIcon></p-sortIcon>
+        </th>
+      </tr>
+      <tr>
+        <th *ngFor="let col of columns">
+          <p-columnFilter type="text" [field]="col.field"></p-columnFilter>
+        </th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-project>
-      <tr (click)="openEditProjectDialog(project)">
-        <td>{{ project.title }}</td>
-        <td>venue placeholder</td>
-        <td>start placeholder</td>
-        <td>end placeholder</td>
-        <td *ngIf="project.isCompleted">{{ 'projects.COMPLETED' | translate }}</td>
-        <td *ngIf="!project.isCompleted">{{ 'projects.NOT_COMPLETED' | translate }}</td>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr (click)="openEditProjectDialog(rowData)" style="cursor:pointer">
+        <td *ngFor="let col of columns" [ngSwitch]="col.type">
+          <!--
+          Needed later when the mobile version works:
+          <span class="p-column-title">{{col.header}}</span>
+          -->
+          <span *ngSwitchCase="'date'">{{ rowData[col.field] | date: 'shortDate' : '' : translate.currentLang }}</span>
+          <span *ngSwitchCase="'boolean'">
+            <i class="pi pi-check" *ngIf="rowData[col.field]"></i>
+            <i class="pi pi-times" *ngIf="!rowData[col.field]"></i>
+          </span>
+          <span *ngSwitchDefault>{{ rowData[col.field] }}</span>
+        </td>
       </tr>
     </ng-template>
   </p-table>

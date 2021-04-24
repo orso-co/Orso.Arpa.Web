@@ -2,13 +2,12 @@
   <div class="p-fluid p-formgrid p-grid">
     <div class="p-col-12 p-md-4">
       <div class="p-field p-col-12">
-        <label for="title">{{ 'projects.NAME' | translate }} *</label>
-        <input required type="text" pInputText formControlName="title" maxlength="50" id="title" />
+        <label for="title">{{ 'projects.TITLE' | translate }} *</label>
+        <input type="text" pInputText formControlName="title" maxlength="50" id="title" />
       </div>
       <div class="p-field p-col-12">
-        <label for="startDate">{{ 'projects.START' | translate }} *</label>
+        <label for="startDate">{{ 'projects.START' | translate }}</label>
         <p-calendar
-          [required]="true"
           formControlName="startDate"
           id="startDate"
           dateFormat="dd MM yy"
@@ -16,9 +15,8 @@
         ></p-calendar>
       </div>
       <div class="p-field p-col-12">
-        <label for="endDate">{{ 'projects.END' | translate }} *</label>
+        <label for="endDate">{{ 'projects.END' | translate }}</label>
         <p-calendar
-          [required]="true"
           formControlName="endDate"
           id="endDate"
           dateFormat="dd MM yy"
@@ -37,10 +35,10 @@
     <div class="p-col-12 p-md-4">
       <div class="p-field p-col-12">
         <label for="shortTitle">{{ 'projects.ABBREVIATION' | translate }} *</label>
-        <input required type="text" pInputText formControlName="shortTitle" maxlength="50" id="shortTitle" />
+        <input type="text" pInputText formControlName="shortTitle" maxlength="50" id="shortTitle" />
       </div>
       <div class="p-field p-col-12">
-        <label for="genre">{{ 'projects.GENRE' | translate }} *</label>
+        <label for="genre">{{ 'projects.GENRE' | translate }}</label>
         <p-dropdown
           appendTo="body"
           [showClear]="true"
@@ -52,7 +50,7 @@
         ></p-dropdown>
       </div>
       <div class="p-field p-col-12">
-        <label for="type">{{ 'projects.TYPE' | translate }} *</label>
+        <label for="type">{{ 'projects.TYPE' | translate }}</label>
         <p-dropdown
           appendTo="body"
           [showClear]="true"
@@ -67,15 +65,14 @@
 
     <div class="p-col-12 p-md-4">
       <div class="p-field p-col-12">
-        <label for="status">{{ 'projects.STATUS' | translate }} *</label>
+        <label for="state">{{ 'projects.STATE' | translate }}</label>
         <p-dropdown
           appendTo="body"
           [showClear]="true"
-          [required]="true"
           formControlName="stateId"
           [autoDisplayFirst]="false"
-          [options]="statusOptions"
-          id="status"
+          [options]="stateOptions"
+          id="state"
         ></p-dropdown>
       </div>
       <div class="p-field p-col-12">
@@ -118,4 +115,3 @@
   iconPos="left"
   (click)="cancel()"
 ></button>
-

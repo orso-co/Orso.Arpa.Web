@@ -177,11 +177,11 @@
     "LEVEL": "(Semi-)Professional"
   },
   "projects": {
-    "NAME": "Name",
+    "TITLE": "Name",
     "VENUE": "Venue",
     "START": "Start",
     "END": "End",
-    "STATUS": "Status",
+    "STATE": "State",
     "COMPLETED": "Completed",
     "NOT_COMPLETED": "Ongoing",
     "GENRE": "Genre",

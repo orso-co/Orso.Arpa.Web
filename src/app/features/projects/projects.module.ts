@@ -10,7 +10,7 @@ import {VenueListResolver} from '../../resolvers/venue-list.resolver';
 import {ProjectListResolver} from '../../resolvers/project-list.resolver';
 import {ProjectGenreResolver} from '../../resolvers/project-genre.resolver';
 import {ProjectTypeResolver} from '../../resolvers/project-type.resolver';
-import {ProjectStatusResolver} from '../../resolvers/project-status.resolver';
+import {ProjectStateResolver} from '../../resolvers/project-status.resolver';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import {ProjectStatusResolver} from '../../resolvers/project-status.resolver';
     ProjectListResolver,
     ProjectGenreResolver,
     ProjectTypeResolver,
-    ProjectStatusResolver
+    ProjectStateResolver
   ]
 })
 export class ProjectsModule {
