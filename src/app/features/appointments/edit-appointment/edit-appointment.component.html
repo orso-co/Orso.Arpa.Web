@@ -52,7 +52,6 @@
                       appendTo="body"
                       placeholer="Select status"
                       [showClear]="true"
-                      [required]="true"
                       formControlName="statusId"
                       [autoDisplayFirst]="false"
                       [options]="statusOptions"
@@ -68,7 +67,6 @@
                       [autoDisplayFirst]="false"
                       placeholer="Select category"
                       [showClear]="true"
-                      [required]="true"
                       formControlName="categoryId"
                       [autoDisplayFirst]="false"
                       [options]="categoryOptions"
@@ -84,7 +82,6 @@
                       [autoDisplayFirst]="false"
                       placeholer="Select expectation"
                       [showClear]="true"
-                      [required]="true"
                       formControlName="expectationId"
                       [autoDisplayFirst]="false"
                       [options]="expectationOptions"
@@ -132,7 +129,6 @@
                       <label for="salary">{{ 'editappointments.SALARY' | translate }} </label>
                       <p-dropdown
                         appendTo="body"
-                        [required]="true"
                         formControlName="salaryId"
                         [showClear]="true"
                         [options]="salaryOptions"
