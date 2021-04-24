@@ -337,9 +337,9 @@ export class EditAppointmentComponent implements OnInit {
       endTime: [null, [Validators.required]],
       publicDetails: [null],
       internalDetails: [null],
-      categoryId: [null, [Validators.required]],
-      statusId: [null, [Validators.required]],
-      salaryId: [null, [Validators.required]],
+      categoryId: [null],
+      statusId: [null],
+      salaryId: [null],
       salaryPatternId: [null],
       expectationId: [null],
     });
