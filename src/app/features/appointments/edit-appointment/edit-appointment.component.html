@@ -14,7 +14,7 @@
                   </div>
                 </div>
                 <div class="p-col-12">
-                  <div class="p-field p-fluid">
+                  <div class="p-field p-fluid startTime">
                     <label for="starttime">{{ 'editappointments.START' | translate }} *</label>
                     <p-calendar
                       [required]="true"
@@ -26,6 +26,15 @@
                       hourFormat="24"
                       placeholder="{{ 'editappointments.START' | translate }} *"
                     ></p-calendar>
+                   
+                    <p-checkbox 
+                      [formControl]="$any(formGroup).controls['allDay']" 
+                      id="allDay" 
+                      (onChange)="onAllDayChanged($event.checked)" 
+                      [label]="'editappointments.ALLDAY' | translate"
+                      class="allDayCheckbox"
+                      [binary]="true"
+                    ></p-checkbox>
                   </div>
                 </div>
                 <div class="p-col-12">

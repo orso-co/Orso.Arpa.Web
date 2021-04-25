@@ -159,6 +159,7 @@
     "TITLE": "Appointment description",
     "START": "Start",
     "END": "End",
+    "ALLDAY": "all day event",
     "STATUS": "Status",
     "CATEGORY": "Category",
     "EXPECTATION": "Expectation",
