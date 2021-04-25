@@ -151,13 +151,6 @@ export class AppointmentsComponent {
       title: appointment.name,
       allDay: isAllDay
     };
-    // return {
-    //   id: appointment.id,
-    //   end: new Date(appointment.endTime),
-    //   start: new Date(appointment.startTime),
-    //   title: appointment.name,
-    //   allDay: isAllDay
-    // };
   }
 
   changeDates(oldEvent: ICalendarEvent, changedEvent: ICalendarEvent): void {
