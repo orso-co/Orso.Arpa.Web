@@ -11,10 +11,9 @@ export class ProjectListResolver implements Resolve<IProjectDto[]> {
   }
 
   resolve(route: ActivatedRouteSnapshot): Observable<IProjectDto[]> {
-    if (route.component == ProjectListComponent) {
+    if (route.component === ProjectListComponent) {
       return this.projectService.load(true);
-    }
-    else {
+    } else {
       return this.projectService.load();
     }
   }

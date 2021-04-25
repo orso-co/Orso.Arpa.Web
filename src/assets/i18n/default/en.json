@@ -192,6 +192,7 @@
     "TYPE": "Type",
     "PARENT": "Parent Project",
     "PROJECT_CREATED": "Project successfully created",
-    "PROJECT_UPDATED": "Project successfully updated"
+    "PROJECT_UPDATED": "Project successfully updated",
+    "NUMBER": "Number"
   }
 }

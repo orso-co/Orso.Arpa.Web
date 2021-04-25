@@ -23,6 +23,7 @@ export class EditProjectComponent implements OnInit {
   typeOptions: SelectItem[] = this.config.data.typeOptions;
   genreOptions: SelectItem[] = this.config.data.genreOptions;
   stateOptions: SelectItem[] = this.config.data.stateOptions;
+  completedOptions: SelectItem[] = this.config.data.completedOptions;
 
   formGroup: FormGroup;
 
@@ -42,14 +43,15 @@ export class EditProjectComponent implements OnInit {
     if (!this.isNew) {
       this.fillForm();
     }
-    this.venueOptions = this.venues.map((v) => this.mapVenueToSelectItem(v));
-    this.parentProjectOptions = this.projects.map((p) => this.mapParentProjectToSelectItem(p));
+    this.venueOptions = this.venues ? this.venues.map((v) => this.mapVenueToSelectItem(v)) : [];
+    this.parentProjectOptions = this.projects ? this.projects.filter(project => project !== this.project)
+      .map((p) => this.mapParentProjectToSelectItem(p)) : [];
   }
 
   private createForm(): void {
     this.formGroup = this.formBuilder.group({
-      title: [null],
-      shortTitle: [null],
+      title: [null, [Validators.required]],
+      shortTitle: [null, [Validators.required]],
       startDate: [null],
       endDate: [null],
       description: [null],
@@ -57,7 +59,9 @@ export class EditProjectComponent implements OnInit {
       stateId: [null],
       genreId: [null],
       parentId: [null],
-      isCompleted: [false, [Validators.required]]
+      // eslint-disable-next-line id-blacklist
+      number: [null, [Validators.required]],
+      isCompleted: [null, [Validators.required]]
     });
   }
 
@@ -78,10 +82,14 @@ export class EditProjectComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (this.formGroup.invalid || this.formGroup.pristine) {
+      return;
+    }
+    const project = { ...this.project, ...this.formGroup.value} as IProjectDto;
     if (this.isNew) {
-      this.saveNewProject({ ...this.project, ...this.formGroup.value} as IProjectDto);
+      this.saveNewProject(project);
     } else {
-      this.updateProject({ ...this.project, ...this.formGroup.value} as IProjectDto);
+      this.updateProject(project);
     }
   }
 
@@ -97,9 +105,9 @@ export class EditProjectComponent implements OnInit {
   private updateProject(project: IProjectDto): void {
     this.projectService.update(project)
       .pipe(first())
-      .subscribe((result) => {
+      .subscribe(() => {
         this.notificationsService.success('projects.PROJECT_UPDATED');
-        this.ref.close(result);
+        this.ref.close(project);
       });
   }
 

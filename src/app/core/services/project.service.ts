@@ -3,7 +3,7 @@ import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
-import {IAppointmentDto, IProjectDto} from '../../models/appointment';
+import { IProjectDto } from '../../models/appointment';
 
 @Injectable({
   providedIn: 'root',

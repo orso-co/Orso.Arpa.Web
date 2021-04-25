@@ -44,7 +44,7 @@ export class ProjectListComponent {
         this.venues = data.venues || [];
         this.genreOptions = data.genres || [];
         this.stateOptions = data.state || [];
-        this.typeOptions = data.types
+        this.typeOptions = data.types || [];
       });
   }
 
@@ -60,44 +60,31 @@ export class ProjectListComponent {
     ];
   }
 
-  public openCreateProjectDialog(): void {
+  public openProjectDetailDialog(oldProject: IProjectDto | null): void {
     const ref = this.dialogService.open(EditProjectComponent, {
       data: {
-        project: null,
-        venues: this.venues,
-        typeOptions: this.typeOptions,
-        genreOptions: this.genreOptions,
-        parentProjectOptions: this.projects,
-        stateOptions: this.stateOptions
-      },
-      header: this.translate.instant('projects.NEW_PROJECT'),
-    });
-    ref.onClose
-      .pipe(first())
-      .subscribe((project: IProjectDto) => {
-        if (project) {
-          this.projects = [...this.projects, project];
-        }
-      });
-  }
-
-  public openEditProjectDialog(project: any): void {
-    const ref = this.dialogService.open(EditProjectComponent, {
-      data: {
-        project: project as IProjectDto,
+        project: oldProject ? oldProject : null,
         venues: this.venues,
         typeOptions: this.typeOptions,
         genreOptions: this.genreOptions,
         projects: this.projects,
-        stateOptions: this.stateOptions
+        stateOptions: this.stateOptions,
+        completedOptions: [
+          {label: this.translate.instant('YES'), value: true},
+          {label: this.translate.instant('NO'), value: false}
+        ]
       },
-      header: this.translate.instant('projects.EDIT_PROJECT'),
+      header: oldProject ? this.translate.instant('projects.EDIT_PROJECT') : this.translate.instant('projects.NEW_PROJECT')
     });
     ref.onClose
       .pipe(first())
-      .subscribe((project: IProjectDto) => {
-        if (project) {
-          this.projects = [...this.projects, project];
+      .subscribe((newProject: IProjectDto) => {
+        if (!oldProject && newProject) {
+          this.projects = [...this.projects, newProject];
+        } else if (oldProject && newProject) {
+          const index = this.projects.findIndex((project) => oldProject.id === newProject.id);
+          this.projects[index] = newProject;
+          this.projects = [...this.projects];
         }
       });
   }

@@ -2,37 +2,33 @@
 
   <p-toolbar styleClass="p-mb-4">
     <ng-template pTemplate="left">
-      <button pButton label=" {{ 'projects.NEW_PROJECT' | translate }}" icon="pi pi-plus" (click)="openCreateProjectDialog()"></button>
+      <button pButton label=" {{ 'projects.NEW_PROJECT' | translate }}" icon="pi pi-plus" (click)="openProjectDetailDialog(null)"></button>
     </ng-template>
   </p-toolbar>
 
-  <div class="p-card-title">{{ 'PROJECTS' | translate }}</div>
+  <div class="p-card-title" style="padding: 20px">{{ 'PROJECTS' | translate }}</div>
 
   <p-table [columns]="cols" [value]="projects" styleClass="p-datatable-responsive">
+
     <ng-template pTemplate="header" let-columns>
       <tr>
-        <th *ngFor="let col of columns" pSortableColumn>
+        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
           {{ col.header }}
           <p-sortIcon></p-sortIcon>
         </th>
       </tr>
-      <tr>
-        <th *ngFor="let col of columns">
-          <p-columnFilter type="text" [field]="col.field"></p-columnFilter>
-        </th>
-      </tr>
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns">
-      <tr (click)="openEditProjectDialog(rowData)" style="cursor:pointer">
+      <tr (click)="openProjectDetailDialog(rowData)" style="cursor:pointer">
         <td *ngFor="let col of columns" [ngSwitch]="col.type">
           <!--
           Needed later when the mobile version works:
           <span class="p-column-title">{{col.header}}</span>
           -->
-          <span *ngSwitchCase="'date'">{{ rowData[col.field] | date: 'shortDate' : '' : translate.currentLang }}</span>
+          <span *ngSwitchCase="'date'">{{ rowData[col.field] | date }}</span>
           <span *ngSwitchCase="'boolean'">
             <i class="pi pi-check" *ngIf="rowData[col.field]"></i>
-            <i class="pi pi-times" *ngIf="!rowData[col.field]"></i>
+            <i class="pi pi-minus" *ngIf="!rowData[col.field]"></i>
           </span>
           <span *ngSwitchDefault>{{ rowData[col.field] }}</span>
         </td>
