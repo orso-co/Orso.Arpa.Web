@@ -39,6 +39,7 @@
   "DAY": "Day",
   "WEEK": "Week",
   "MONTH": "Month",
+  "DELETE": "Delete",
 
   "appointments": {
     "NEW_APPOINTMENT_CONFIRMATION": "Do you want to create a new appointment for {{value}}?"
@@ -151,6 +152,7 @@
   "editappointments": {
     "CREATE": "Create an appointment",
     "EDIT": "Edit appointment",
+    "ARE_YOU_SURE": "Are you sure that you want to irrevocably delete this appointment including all dependent data?",
     "SAVECLOSE": "Save and close",
     "SAVECONTINUE": "Save and continue",
     "BASICDATA": "Basic data",

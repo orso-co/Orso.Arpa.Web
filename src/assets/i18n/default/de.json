@@ -39,6 +39,7 @@
   "DAY": "Tag",
   "WEEK": "Woche",
   "MONTH": "Monat",
+  "DELETE": "Löschen",
 
   "appointments": {
     "NEW_APPOINTMENT_CONFIRMATION": "Möchtest du einen neuen Termin anlegen für {{value}}?"
@@ -151,6 +152,7 @@
   "editappointments": {
     "CREATE": "Termin erstellen",
     "EDIT": "Termin bearbeiten",
+    "ARE_YOU_SURE": "Sind Sie sicher, dass Sie den Termin inklusiver aller abhängigen Daten unwiderruflich löschen wollen?",
     "SAVECLOSE": "Speichern und schließen",
     "SAVECONTINUE": "Speichern und weiter",
     "BASICDATA": "Basisdaten",
