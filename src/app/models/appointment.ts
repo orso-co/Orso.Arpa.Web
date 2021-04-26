@@ -24,8 +24,8 @@ export interface IAppointmentDto extends IBaseEntityDto {
   publicDetails: string;
   internalDetails: string;
   statusId: string;
-  emolumentId: string;
-  emolumentPatternId: string;
+  salaryId: string;
+  salaryPatternId: string;
   venueId: string;
   rooms: IRoomDto[];
   projects: IProjectDto[];
@@ -51,10 +51,16 @@ export interface IProjectDto extends IBaseEntityDto {
   // eslint-disable-next-line id-blacklist
   number: number;
   title: string;
+  shortTitle: string;
   description: string;
+  typeId: string;
   genreId: string;
+  startDate: Date;
+  endDate: Date;
+  urls: String[];
+  stateId: string;
+  parentId: number;
   isCompleted: boolean;
-  deleted: boolean;
 }
 
 export interface IAppointmentParticipationListItemDto {

@@ -164,8 +164,8 @@
     "EXPECTATION": "Erwartung",
     "DETAILSPUBLIC": "Öffentliche Details",
     "DETAILSINTERNAL": "Interne Details",
-    "EMOLUMENT": "Vergütung",
-    "EMOLUMENTPATTERN": "Vergütungsmuster",
+    "SALARY": "Vergütung",
+    "SALARYPATTERN": "Vergütungsmuster",
     "VENUE": "Ort",
     "ROOMS": "Räume",
     "SECTIONS": "Zielgruppe",
@@ -175,5 +175,24 @@
     "PREDICTION": "Vorhersage",
     "RESULT": "Ergebnis",
     "LEVEL": "(Semi-)Profi"
+  },
+  "projects": {
+    "TITLE": "Name",
+    "VENUE": "Ort",
+    "START": "Beginn",
+    "END": "Ende",
+    "STATE": "Status",
+    "COMPLETED": "Abgeschlossen",
+    "NOT_COMPLETED": "Laufend",
+    "GENRE": "Genre",
+    "NEW_PROJECT": "Neues Projekt anlegen",
+    "EDIT_PROJECT": "Projekt bearbeiten",
+    "DESCRIPTION": "Beschreibung",
+    "ABBREVIATION": "Kürzel",
+    "TYPE": "Typ",
+    "PARENT": "Übergeordnetes Projekt",
+    "PROJECT_CREATED": "Projekt erfolgreich angelegt",
+    "PROJECT_UPDATED": "Projekt erfolgreich bearbeitet",
+    "NUMBER": "Nummer"
   }
 }

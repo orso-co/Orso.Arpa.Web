@@ -164,8 +164,8 @@
     "EXPECTATION": "Expectation",
     "DETAILSPUBLIC": "Public Details",
     "DETAILSINTERNAL": "Internal Details",
-    "EMOLUMENT": "Emolument",
-    "EMOLUMENTPATTERN": "Emolument Pattern",
+    "SALARY": "Salary",
+    "SALARYPATTERN": "Salary Pattern",
     "VENUE": "Venue",
     "ROOMS": "Rooms",
     "SECTIONS": "Sections/Department",
@@ -175,5 +175,24 @@
     "PREDICTION": "Prediction",
     "RESULT": "Result",
     "LEVEL": "(Semi-)Professional"
+  },
+  "projects": {
+    "TITLE": "Name",
+    "VENUE": "Venue",
+    "START": "Start",
+    "END": "End",
+    "STATE": "State",
+    "COMPLETED": "Completed",
+    "NOT_COMPLETED": "Ongoing",
+    "GENRE": "Genre",
+    "NEW_PROJECT": "Create New Project",
+    "EDIT_PROJECT": "Edit Project",
+    "DESCRIPTION": "Description",
+    "ABBREVIATION": "Abbreviation",
+    "TYPE": "Type",
+    "PARENT": "Parent Project",
+    "PROJECT_CREATED": "Project successfully created",
+    "PROJECT_UPDATED": "Project successfully updated",
+    "NUMBER": "Number"
   }
 }

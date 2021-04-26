@@ -24,4 +24,12 @@ export class ProjectService {
 
     return this.apiService.get<IProjectDto[]>(this.baseUrl).pipe(shareReplay());
   }
+
+  create(project: IProjectDto): Observable<IProjectDto> {
+    return this.apiService.post<IProjectDto>(this.baseUrl, project);
+  }
+
+  update(project: IProjectDto): Observable<any> {
+    return this.apiService.put(`${this.baseUrl}/${project.id}`, project).pipe(shareReplay());
+  }
 }

@@ -28,7 +28,7 @@ export class JwtService {
       expiryDate: new Date(token.exp * 1000),
       creationDate: new Date(token.iat * 1000),
       username: token.nameid,
-      displayName: token.name,
+      displayName: token.unique_name,
       roles: this.normalizeRoles(token),
     };
   }
