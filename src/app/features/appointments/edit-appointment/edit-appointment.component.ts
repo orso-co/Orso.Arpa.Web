@@ -59,6 +59,7 @@ export class EditAppointmentComponent implements OnInit {
   salaryPatternOptions: SelectItem[] = this.config.data.salaryPatternOptions;
   salaryOptions: SelectItem[] = this.config.data.salaryOptions;
   expectationOptions: SelectItem[] = this.config.data.expectationOptions;
+  isAllDayEvent: boolean = this.config.data.isAllDayEvent;
 
   participationTableItems: ParticipationTableItem[] = [];
   projectOptions: IProjectDto[] = [];
@@ -317,6 +318,31 @@ export class EditAppointmentComponent implements OnInit {
       });
   }
 
+<<<<<<< Updated upstream
+=======
+  onAllDayChanged(isAllDay: boolean){
+    if(isAllDay){
+
+      const endDate = new Date(this.formGroup.get('endTime')?.value);
+      const startDate = new Date(this.formGroup.get('startTime')?.value);
+
+      startDate.setHours(0, 0);
+      endDate.setHours(23, 59);
+
+      this.formGroup.get('endTime')?.setValue(endDate);
+      this.appointment.endTime = this.formGroup.get('endTime')?.value;
+
+      this.formGroup.get('startTime')?.setValue(startDate);
+      this.appointment.startTime = this.formGroup.get('startTime')?.value;
+      this.formGroup.markAsDirty();
+
+      // TO DO:
+      // depending on further decisions whether to split date and time selection:
+      // if time selection ends up separate, disable time selection control for end date to avoid confusion.
+    }
+  }
+
+>>>>>>> Stashed changes
   showDeleteConfirmation(event: Event): void {
     this.confirmationService.confirm({
       target: event.target || undefined,
@@ -368,6 +394,10 @@ export class EditAppointmentComponent implements OnInit {
       ...this.appointment,
       startTime: new Date(this.appointment.startTime),
       endTime: new Date(this.appointment.endTime),
+<<<<<<< Updated upstream
+=======
+      allDay:this.isAllDayEvent,
+>>>>>>> Stashed changes
     });
   }
 
