@@ -318,8 +318,6 @@ export class EditAppointmentComponent implements OnInit {
       });
   }
 
-<<<<<<< Updated upstream
-=======
   onAllDayChanged(isAllDay: boolean){
     if(isAllDay){
 
@@ -342,7 +340,6 @@ export class EditAppointmentComponent implements OnInit {
     }
   }
 
->>>>>>> Stashed changes
   showDeleteConfirmation(event: Event): void {
     this.confirmationService.confirm({
       target: event.target || undefined,
@@ -394,10 +391,7 @@ export class EditAppointmentComponent implements OnInit {
       ...this.appointment,
       startTime: new Date(this.appointment.startTime),
       endTime: new Date(this.appointment.endTime),
-<<<<<<< Updated upstream
-=======
       allDay:this.isAllDayEvent,
->>>>>>> Stashed changes
     });
   }
 

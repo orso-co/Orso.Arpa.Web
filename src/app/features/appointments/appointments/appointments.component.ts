@@ -125,10 +125,6 @@ export class AppointmentsComponent {
   }
 
   mapAppointmentToCalendarEvent(appointment: IAppointmentDto): ICalendarEvent {
-<<<<<<< Updated upstream
-    // let allDay = false;
-    // if(new Date(appointment.endTime).getHours() - new Date(appointment.startTime).getHours() <= 7) allDay = true;
-=======
     const isAllDay = this.isAllDayEvent(appointment);
 
     /* fullCalendar multiple day all day events display one day short. This is an issue if an event
@@ -141,7 +137,6 @@ export class AppointmentsComponent {
       endAdjusted.setDate(endAdjusted.getDate() + 1);
     }
 
->>>>>>> Stashed changes
     return {
       id: appointment.id,
       end: new Date(appointment.endTime),
