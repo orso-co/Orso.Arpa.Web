@@ -59,6 +59,7 @@ export class EditAppointmentComponent implements OnInit {
   salaryPatternOptions: SelectItem[] = this.config.data.salaryPatternOptions;
   salaryOptions: SelectItem[] = this.config.data.salaryOptions;
   expectationOptions: SelectItem[] = this.config.data.expectationOptions;
+  isAllDayEvent: boolean = this.config.data.isAllDayEvent;
 
   participationTableItems: ParticipationTableItem[] = [];
   projectOptions: IProjectDto[] = [];
@@ -319,14 +320,11 @@ export class EditAppointmentComponent implements OnInit {
 
   onAllDayChanged(isAllDay: boolean){
     if(isAllDay){
-      // get date from startTime
+
       const endDate = new Date(this.formGroup.get('endTime')?.value);
-
-      // update startDate to 00 hours
       const startDate = new Date(this.formGroup.get('startTime')?.value);
-      startDate.setHours(0, 0);
 
-      //endDate.setDate(endDate.getDate() + 1);
+      startDate.setHours(0, 0);
       endDate.setHours(23, 59);
 
       this.formGroup.get('endTime')?.setValue(endDate);
@@ -390,20 +388,11 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   private fillForm(): void {
-     // calculate all-day event:
-     let isAllDay = false;
-     const startT = new Date(this.appointment.startTime);
-     const endT = new Date(this.appointment.endTime);
-
-     if(endT.getHours() === 23 && endT.getMinutes() === 59 && startT.getHours() === 0 && !(startT.getDate() === endT.getDate())){
-       isAllDay = true;
-     }
-
     this.formGroup.reset({
       ...this.appointment,
       startTime: new Date(this.appointment.startTime),
       endTime: new Date(this.appointment.endTime),
-      allDay:isAllDay
+      allDay:this.isAllDayEvent,
     });
   }
 

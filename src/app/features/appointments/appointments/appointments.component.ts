@@ -125,13 +125,7 @@ export class AppointmentsComponent {
   }
 
   mapAppointmentToCalendarEvent(appointment: IAppointmentDto): ICalendarEvent {
-    let isAllDay = false;
-    const startT = new Date(appointment.startTime);
-    const endT = new Date(appointment.endTime);
-
-    if(endT.getHours() === 23 && endT.getMinutes() === 59 && startT.getHours() === 0 && !(startT.getDate() === endT.getDate())){
-      isAllDay = true;
-    }
+    const isAllDay = this.isAllDayEvent(appointment);
 
     /* fullCalendar multiple day all day events display one day short. This is an issue if an event
     /  spans several days but does not end at last day + 1 at 00:00 h but e.g. last day 20:00 - thus: add 1 day
@@ -139,7 +133,7 @@ export class AppointmentsComponent {
     / (see: https://stackoverflow.com/questions/27604359/fullcalendar-event-spanning-all-day-are-one-day-too-short)
     / workaround: add one day. */
     const endAdjusted = new Date(appointment.endTime);
-    if(isAllDay && (endT.getHours() !== 0)) {
+    if(isAllDay && (endAdjusted.getHours() !== 0)) {
       endAdjusted.setDate(endAdjusted.getDate() + 1);
     }
 
@@ -151,6 +145,21 @@ export class AppointmentsComponent {
       title: appointment.name,
       allDay: isAllDay
     };
+  }
+
+  isAllDayEvent(appointment: IAppointmentDto | undefined): boolean {
+    if(appointment === undefined){
+      return false;
+    }
+
+    let isAllDay = false;
+    const startT = new Date(appointment.startTime);
+    const endT = new Date(appointment.endTime);
+
+    if(endT.getHours() === 23 && endT.getMinutes() === 59 && startT.getHours() === 0 && !(startT.getDate() === endT.getDate())){
+      isAllDay = true;
+    }
+    return isAllDay;
   }
 
   changeDates(oldEvent: ICalendarEvent, changedEvent: ICalendarEvent): void {
@@ -198,7 +207,6 @@ export class AppointmentsComponent {
         appointment: {
           startTime: appointmentDate,
           endTime: appointmentDate,
-          // allDay:false,
           id: null,
           internalDetails: null,
           publicDetails: null,
@@ -258,6 +266,7 @@ export class AppointmentsComponent {
         salaryPatternOptions: this.salaryPatternOptions,
         salaryOptions: this.salaryOptions,
         expectationOptions: this.expectationOptions,
+        isAllDayEvent: this.isAllDayEvent(appointment)
       },
       header: this.translate.instant('editappointments.EDIT'),
       style: { 'max-width': '1500px' },
