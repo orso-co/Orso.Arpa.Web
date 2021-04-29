@@ -6,6 +6,7 @@ import { TranslateMockModule } from '../../../../testing/translate.mock.module';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { DummyComponent } from '../../../shared/dummy/dummy.component';
+import {DialogService} from 'primeng/dynamicdialog';
 
 describe('ProjectListComponent', () => {
   let component: ProjectListComponent;
@@ -19,12 +20,10 @@ describe('ProjectListComponent', () => {
           TranslateMockModule,
         ],
         declarations: [ProjectListComponent, DummyComponent],
-        providers: [{
-          provide: ActivatedRoute,
-          useValue: {
-            data: of({ projects: [] }),
-          },
-        }],
+        providers: [
+          { provide: DialogService, useValue: {} },
+          { provide: ActivatedRoute, useValue: { data: of({})} },
+        ],
       }).compileComponents();
     }),
   );

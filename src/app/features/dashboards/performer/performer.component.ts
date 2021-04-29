@@ -14,10 +14,6 @@ export class PerformerComponent {
   constructor(
     route: ActivatedRoute,
   ) {
-    route.data.pipe(map((routeData) => routeData.projects)).subscribe((project) => (this.projects = this.filterActiveProjects(project)));
-  }
-
-  filterActiveProjects(projects: IProjectDto[]): IProjectDto[] {
-    return projects.filter((u) => !u.deleted) ?? null;
+    route.data.pipe(map((routeData) => routeData.projects)).subscribe((projects) => (this.projects = projects));
   }
 }

@@ -39,10 +39,14 @@ export class TopbarComponent {
   }
 
   getInitials(token: IToken): string {
-    return `${token.displayName
-      .split(' ')
-      .map((name) => name[0].toUpperCase())
-      .join('')}`;
+    if (token.displayName) {
+      return `${token.displayName
+        .split(' ')
+        .map((name) => name[0].toUpperCase())
+        .join('')}`;
+    } else {
+      return token.displayName;
+    }
   }
 
   private initialiseUserMenu(): void {

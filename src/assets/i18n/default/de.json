@@ -55,11 +55,13 @@
   },
 
   "error": {
-    "SOMETHING_WENT_WRONG": "Da ist etwas schiefgelaufen!",
+    "SOMETHING_WENT_WRONG": "Da ist etwas schiefgelaufen",
     "BAD_REQUEST": "Es ist ein Fehler aufgetreten",
     "ROUTE_NOT_FOUND": "Seite nicht gefunden",
     "FORBIDDEN": "Zugriff verweigert",
-    "CONNECTION_ERROR": "Verbindungsfehler, bitte später nochmal probieren"
+    "CONNECTION_ERROR": "Verbindungsfehler, bitte später nochmal probieren",
+    "USER_CREDENTIALS": "Benutzername oder Passwort nicht korrekt",
+    "NOT_AUTHENTICATED": "Nicht angemeldet"
   },
   "logout": {
     "LOGGED_OUT": "Bis zum nächsten Mal bei ARPA",
@@ -67,8 +69,7 @@
   },
   "login": {
     "RESENDCONFIRMATION": "Bestätigungslink nochmal zusenden",
-    "RESENDDONE": "Bestätigungslink wurde erneut versendet, bitte Mailbox prüfen",
-    "LOGIN_FIRST": "Bitte loggen Sie sich zunächst ein"
+    "RESENDDONE": "Bestätigungslink wurde erneut versendet, bitte Mailbox prüfen"
   },
   "forgotpassword": {
     "BUTTON": "Passwort vergessen",
@@ -150,11 +151,22 @@
     "weekHeader": "Woche"
   },
   "editappointments": {
+    "APPOINTMENT_CREATED": "Termin angelegt",
+    "APPOINTMENT_DELETED": "Termin gelöscht",
+    "APPOINTMENT_UPDATED": "Termin aktualisiert",
+    "ARE_YOU_SURE": "Sind Sie sicher, dass Sie den Termin inklusiver aller abhängigen Daten unwiderruflich löschen wollen?",
     "CREATE": "Termin erstellen",
     "EDIT": "Termin bearbeiten",
-    "ARE_YOU_SURE": "Sind Sie sicher, dass Sie den Termin inklusiver aller abhängigen Daten unwiderruflich löschen wollen?",
+    "PROJECT_ADDED": "Projekt hinzugefügt",
+    "PROJECT_REMOVED": "Projekt entfernt",
+    "RESULT_SET": "Ergebnis gesetzt",
+    "ROOM_ADDED": "Raum hinzugefügt",
+    "ROOM_REMOVED": "Raum entfernt",
     "SAVECLOSE": "Speichern und schließen",
     "SAVECONTINUE": "Speichern und weiter",
+    "SECTION_ADDED": "Register hinzugefügt",
+    "SECTION_REMOVED": "Register entfernt",
+    "VENUE_SET": "Veranstaltungsort gesetzt",
     "BASICDATA": "Basisdaten",
     "ADDITIONALDATA": "Details",
     "PARTICIPATION": "Teilnahmestatus",
@@ -178,5 +190,24 @@
     "PREDICTION": "Vorhersage",
     "RESULT": "Ergebnis",
     "LEVEL": "(Semi-)Profi"
+  },
+  "projects": {
+    "TITLE": "Name",
+    "VENUE": "Ort",
+    "START": "Beginn",
+    "END": "Ende",
+    "STATE": "Status",
+    "COMPLETED": "Abgeschlossen",
+    "NOT_COMPLETED": "Laufend",
+    "GENRE": "Genre",
+    "NEW_PROJECT": "Neues Projekt anlegen",
+    "EDIT_PROJECT": "Projekt bearbeiten",
+    "DESCRIPTION": "Beschreibung",
+    "ABBREVIATION": "Kürzel",
+    "TYPE": "Typ",
+    "PARENT": "Übergeordnetes Projekt",
+    "PROJECT_CREATED": "Projekt erfolgreich angelegt",
+    "PROJECT_UPDATED": "Projekt erfolgreich bearbeitet",
+    "NUMBER": "Nummer"
   }
 }

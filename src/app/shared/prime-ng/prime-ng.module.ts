@@ -33,6 +33,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { TableModule } from 'primeng/table';
 import { CaptchaModule } from 'primeng/captcha';
 import { SidebarModule } from 'primeng/sidebar';
+import {ToolbarModule} from 'primeng/toolbar';
 
 const MODULES = [
   InputTextModule,
@@ -67,6 +68,7 @@ const MODULES = [
   AutoCompleteModule,
   TableModule,
   SidebarModule,
+  ToolbarModule
 ];
 
 @NgModule({

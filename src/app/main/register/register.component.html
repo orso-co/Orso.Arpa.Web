@@ -5,30 +5,30 @@
   </div>
 
   <div class='p-field p-float-label'>
-    <input type='text' pInputText formControlName='givenName' (ngModelChange)='onChange()'>
+    <input type='text' pInputText formControlName='givenName' (ngModelChange)='onChange()' autocomplete="given-name">
     <label for='float-input'>{{ 'GIVENNAME' | translate }}</label>
   </div>
 
 
   <div class='p-field p-float-label'>
-    <input type='text' pInputText formControlName='surname' (ngModelChange)='onChange()'>
+    <input type='text' pInputText formControlName='surname' (ngModelChange)='onChange()' autocomplete="family-name">
     <label for='float-input'>{{ 'SURNAME' | translate }}</label>
   </div>
 
 
   <div class='p-field p-float-label'>
-    <input type='text' pInputText formControlName='email' (ngModelChange)='onChange()'>
+    <input type='text' pInputText formControlName='email' (ngModelChange)='onChange()' autocomplete="email">
     <label for='float-input'>{{ 'EMAILADDRESS' | translate }}</label>
   </div>
 
   <div class='p-field p-float-label'>
-    <input type='text' pInputText formControlName='userName' (ngModelChange)='onChange()'>
+    <input type='text' pInputText formControlName='userName' (ngModelChange)='onChange()' autocomplete="username">
     <label for='float-input'>{{ 'USERNAME' | translate }}</label>
   </div>
 
   <div class='p-field p-float-label'>
     <input id='password' type='text' pInputText formControlName='password' pPassword [feedback]=false
-           [type]="hide ? 'password' : 'text'" (ngModelChange)='onChange()'>
+           [type]="hide ? 'password' : 'text'" (ngModelChange)='onChange()' autocomplete="new-password">
     <label for='float-input'>{{ 'PASSWORD' | translate }}</label>
     <i id='eyeButton' class="p-ml-2 pi {{hide ? 'pi-eye-slash' : 'pi-eye'}}" (click)='hide = !hide'></i>
   </div>

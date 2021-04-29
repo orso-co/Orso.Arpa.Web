@@ -51,7 +51,6 @@ export class AuthService {
   ) {
     const { protocol, baseUrl } = this.configService.getEnv('web');
     this.clientUriBase = `${protocol}://${baseUrl}`;
-    // ToDo: Introspection endpoint would be nice if token is still valid.
   }
 
   populate() {
@@ -74,7 +73,9 @@ export class AuthService {
   }
 
   refreshToken() {
-    return this.apiService.post<ITokenDto>('/api/Auth/refreshtoken', {}).pipe(tap((tokenDto: ITokenDto) => {
+    return this.apiService.post<ITokenDto>('/Auth/refreshtoken', {
+      token: this.jwtService.getToken()
+    }).pipe(tap((tokenDto: ITokenDto) => {
       this.jwtService.saveToken(tokenDto.token);
     }));
   }

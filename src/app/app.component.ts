@@ -13,6 +13,11 @@ import { AuthService } from './core/services/auth.service';
 @Component({
   selector: 'arpa-root',
   template: `
+    <p-toast
+      class='arpa-toast'
+      [preventOpenDuplicates]='true'
+      [showTransformOptions]="'translateY(-100%)'"
+    ></p-toast>
     <arpa-loading></arpa-loading>
     <router-outlet></router-outlet>`,
 })
@@ -43,6 +48,7 @@ export class AppComponent implements OnInit {
         },
       });
     }
+
     this.authService.populate();
   }
 

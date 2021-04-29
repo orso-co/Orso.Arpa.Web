@@ -67,7 +67,7 @@ export class ApiInterceptor implements HttpInterceptor {
   handleResponseError(error: any, request?: HttpRequest<unknown>, next?: HttpHandler): Observable<any> {
     if (error.status === 400) {
       this.notificationsService.error('error.BAD_REQUEST');
-    } else if (next && request && error.status === 401) {
+    } else if (next && request && error.status === 401 && !error.url.endsWith('/login')) {
       return this.refreshToken().pipe(
         switchMap(() => {
           if (request) {
@@ -84,7 +84,7 @@ export class ApiInterceptor implements HttpInterceptor {
           }
           return of(e);
         }));
-    } else if (error.status === 403) {
+    } else if (error.status === 403 && !error.url.endsWith('/login')) {
       this.notificationsService.error('error.FORBIDDEN');
       this.authService.logout();
     } else if (error.status === 500) {

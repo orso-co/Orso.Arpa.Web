@@ -61,3 +61,13 @@ select:-webkit-autofill:focus {
 .p-dialog-content {
   overflow-y: visible !important;
 }
+
+.arpa-toast {
+  & > .p-toast {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    top: 20px;
+    right: unset;
+  }
+}
