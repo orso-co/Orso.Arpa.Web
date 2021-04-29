@@ -85,7 +85,7 @@ export class EditAppointmentComponent implements OnInit {
     private translate: TranslateService,
     private confirmationService: ConfirmationService,
   ) {
-  }
+   }
 
   ngOnInit(): void {
     this.createForm();
@@ -358,6 +358,7 @@ export class EditAppointmentComponent implements OnInit {
       name: [null, [Validators.required]],
       startTime: [null, [Validators.required]],
       endTime: [null, [Validators.required]],
+      allDay: [{checked: this.config.data.allDay}],
       publicDetails: [null],
       internalDetails: [null],
       categoryId: [null],

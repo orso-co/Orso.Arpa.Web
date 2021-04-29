@@ -139,11 +139,11 @@ export class AppointmentsComponent {
 
     return {
       id: appointment.id,
-      end: new Date(appointment.endTime),
+      //end: new Date(appointment.endTime),
+      end: endAdjusted,
       start: new Date(appointment.startTime),
       title: appointment.name,
-      // allDay: appointment.allDay,
-      allDay: false,
+      allDay: isAllDay
     };
   }
 
