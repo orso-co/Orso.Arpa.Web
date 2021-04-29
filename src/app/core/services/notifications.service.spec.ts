@@ -4,8 +4,7 @@ import { NotificationsService } from './notifications.service';
 import { TranslateService } from '@ngx-translate/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TranslateMockModule } from '../../../testing/translate.mock.module';
-import { ToastrService } from 'ngx-toastr';
-import { NotificationsMockService } from '../../../testing/notifications.mock.service';
+import { MessageService } from 'primeng/api';
 
 describe('NotificationsService', () => {
   let service: NotificationsService;
@@ -18,7 +17,7 @@ describe('NotificationsService', () => {
       ],
       providers: [
         TranslateService,
-        { provider: ToastrService, useClass: NotificationsMockService },
+        MessageService,
       ],
     });
     service = TestBed.inject(NotificationsService);

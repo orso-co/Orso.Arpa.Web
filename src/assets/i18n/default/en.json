@@ -39,6 +39,7 @@
   "DAY": "Day",
   "WEEK": "Week",
   "MONTH": "Month",
+  "DELETE": "Delete",
 
   "appointments": {
     "NEW_APPOINTMENT_CONFIRMATION": "Do you want to create a new appointment for {{value}}?"
@@ -58,7 +59,9 @@
     "BAD_REQUEST": "An error happened",
     "ROUTE_NOT_FOUND": "Page not found",
     "FORBIDDEN": "Access denied",
-    "CONNECTIONERROR": "Connection error, please try again later"
+    "CONNECTIONERROR": "Connection error, please try again later",
+    "USER_CREDENTIALS": "Username or Password invalid.",
+    "NOT_AUTHENTICATED": "Not logged in"
   },
   "logout": {
     "LOGGED_OUT": "See you again soon on ARPA!",
@@ -149,10 +152,22 @@
     "weekHeader": "Wk"
   },
   "editappointments": {
+    "APPOINTMENT_CREATED": "Appointment created",
+    "APPOINTMENT_DELETED": "Appointment deleted",
+    "APPOINTMENT_UPDATED": "Appointment updated",
+    "ARE_YOU_SURE": "Are you sure that you want to irrevocably delete this appointment including all dependent data?",
     "CREATE": "Create an appointment",
     "EDIT": "Edit appointment",
+    "PROJECT_ADDED": "Project added",
+    "PROJECT_REMOVED": "Project removed",
+    "RESULT_SET": "Result set",
+    "ROOM_ADDED": "Room added",
+    "ROOM_REMOVED": "Room removed",
     "SAVECLOSE": "Save and close",
     "SAVECONTINUE": "Save and continue",
+    "SECTION_ADDED": "Section added",
+    "SECTION_REMOVED": "Section removed",
+    "VENUE_SET": "Venue set",
     "BASICDATA": "Basic data",
     "ADDITIONALDATA": "Additional data",
     "PARTICIPATION": "Participations",

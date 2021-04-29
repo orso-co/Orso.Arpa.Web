@@ -5,12 +5,12 @@
   </div>
 
   <div class="p-field p-float-label">
-    <input id="usernameOrEmail" type="text" pInputText formControlName="usernameOrEmail">
+    <input id="usernameOrEmail" type="text" pInputText formControlName="usernameOrEmail" autocomplete="username">
     <label for="float-input">{{ 'USERNAMEOREMAIL' | translate }}</label>
   </div>
 
   <div class="p-field p-float-label">
-    <input id="password" type="text" pInputText formControlName="password" pPassword [feedback]=false [type]="hide ? 'password' : 'text'">
+    <input id="password" type="text" pInputText formControlName="password" pPassword [feedback]=false [type]="hide ? 'password' : 'text'" autocomplete="current-password">
     <label for="float-input">{{ 'PASSWORD' | translate }}</label>
     <i id="eyeButton" class="p-ml-2 pi {{hide ? 'pi-eye-slash' : 'pi-eye'}}" (click)="hide = !hide"></i>
   </div>

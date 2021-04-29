@@ -57,7 +57,7 @@ export interface IProjectDto extends IBaseEntityDto {
   genreId: string;
   startDate: Date;
   endDate: Date;
-  urls: String[];
+  urls: string[];
   stateId: string;
   parentId: number;
   isCompleted: boolean;

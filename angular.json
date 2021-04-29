@@ -41,8 +41,7 @@
               "node_modules/primeng/resources/themes/arya-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css",
-              "node_modules/primeflex/primeflex.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/primeflex/primeflex.css"
             ],
             "scripts": [
               "node_modules/@fullcalendar/core/main.min.js",

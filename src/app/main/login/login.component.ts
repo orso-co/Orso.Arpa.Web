@@ -45,13 +45,21 @@ export class LoginComponent {
           this.router.navigate(['/arpa']);
         },
         error => {
-          // following lines are workaround to identify if confirmation link should be recent
-          // will not work when backend send error text in other language or text will change
-          error.forEach((v: string) => {
-            if (v.startsWith('Your email address is not confirmed')) {
-              this.resendConfirmationLink();
-            }
-          });
+          if (error.status === 401) {
+            this.notificationsService.error('error.USER_CREDENTIALS');
+          } else if (error.status === 403) {
+            this.notificationsService.error(error.title);
+          } else if (Object.keys(error.errors).length) {
+            Object.keys(error.errors).forEach((e) => {
+              error.errors[e].forEach((message: string) => {
+                this.notificationsService.error(message);
+                if (message.startsWith('Your email address is not confirmed')) {
+                  // ToDo: This could lead to spamming users.
+                  this.resendConfirmationLink();
+                }
+              });
+            });
+          }
         });
   }
 
