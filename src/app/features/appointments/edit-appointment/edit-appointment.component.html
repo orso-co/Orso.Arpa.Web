@@ -14,7 +14,7 @@
                   </div>
                 </div>
                 <div class="p-col-12">
-                  <div class="p-field p-fluid">
+                  <div class="p-field p-fluid startTime">
                     <label for="starttime">{{ 'editappointments.START' | translate }} *</label>
                     <p-calendar
                       [required]="true"
@@ -26,6 +26,15 @@
                       hourFormat="24"
                       placeholder="{{ 'editappointments.START' | translate }} *"
                     ></p-calendar>
+                   
+                    <p-checkbox 
+                      [formControl]="$any(formGroup).controls['allDay']" 
+                      id="allDay" 
+                      (onChange)="onAllDayChanged($event.checked)" 
+                      [label]="'editappointments.ALLDAY' | translate"
+                      class="allDayCheckbox"
+                      [binary]="true"
+                    ></p-checkbox>
                   </div>
                 </div>
                 <div class="p-col-12">
@@ -52,7 +61,6 @@
                       appendTo="body"
                       placeholer="Select status"
                       [showClear]="true"
-                      [required]="true"
                       formControlName="statusId"
                       [autoDisplayFirst]="false"
                       [options]="statusOptions"
@@ -68,7 +76,6 @@
                       [autoDisplayFirst]="false"
                       placeholer="Select category"
                       [showClear]="true"
-                      [required]="true"
                       formControlName="categoryId"
                       [autoDisplayFirst]="false"
                       [options]="categoryOptions"
@@ -84,7 +91,6 @@
                       [autoDisplayFirst]="false"
                       placeholer="Select expectation"
                       [showClear]="true"
-                      [required]="true"
                       formControlName="expectationId"
                       [autoDisplayFirst]="false"
                       [options]="expectationOptions"
@@ -132,7 +138,6 @@
                       <label for="salary">{{ 'editappointments.SALARY' | translate }} </label>
                       <p-dropdown
                         appendTo="body"
-                        [required]="true"
                         formControlName="salaryId"
                         [showClear]="true"
                         [options]="salaryOptions"
