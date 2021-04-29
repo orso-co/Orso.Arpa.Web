@@ -1,0 +1,136 @@
+<form [formGroup]="formGroup">
+  <div class="p-fluid p-formgrid p-grid">
+    <div class="p-col-12 p-md-4">
+      <div class="p-field p-col-12">
+        <label for="title">{{ 'projects.TITLE' | translate }} *</label>
+        <input type="text" pInputText formControlName="title" maxlength="50" id="title" />
+      </div>
+      <div class="p-field p-col-12">
+        <label for="startDate">{{ 'projects.START' | translate }}</label>
+        <p-calendar
+          formControlName="startDate"
+          id="startDate"
+          dateFormat="dd MM yy"
+          [showWeek]="true"
+        ></p-calendar>
+      </div>
+      <div class="p-field p-col-12">
+        <label for="endDate">{{ 'projects.END' | translate }}</label>
+        <p-calendar
+          formControlName="endDate"
+          id="endDate"
+          dateFormat="dd MM yy"
+          [showWeek]="true"
+        ></p-calendar>
+      </div>
+      <div class="p-field p-col-12">
+        <label for="isCompleted">{{ 'projects.COMPLETED' | translate }} *</label>
+        <p-dropdown
+          appendTo="body"
+          [showClear]="true"
+          [required]="true"
+          formControlName="isCompleted"
+          [autoDisplayFirst]="false"
+          [options]="completedOptions"
+          id="isCompleted"
+        ></p-dropdown>
+      </div>
+    </div>
+
+    <div class="p-col-12 p-md-4">
+      <div class="p-field p-col-12">
+        <label for="shortTitle">{{ 'projects.ABBREVIATION' | translate }} *</label>
+        <input type="text" pInputText formControlName="shortTitle" maxlength="50" id="shortTitle" />
+      </div>
+      <div class="p-field p-col-12">
+        <label for="genre">{{ 'projects.GENRE' | translate }}</label>
+        <p-dropdown
+          appendTo="body"
+          [showClear]="true"
+          formControlName="genreId"
+          [autoDisplayFirst]="false"
+          [options]="genreOptions"
+          id="genre"
+        ></p-dropdown>
+      </div>
+      <div class="p-field p-col-12">
+        <label for="type">{{ 'projects.TYPE' | translate }}</label>
+        <p-dropdown
+          appendTo="body"
+          [showClear]="true"
+          formControlName="typeId"
+          [autoDisplayFirst]="false"
+          [options]="typeOptions"
+          id="type"
+        ></p-dropdown>
+      </div>
+      <div class="p-field p-col-12">
+          <label for="venue">{{ 'editappointments.VENUE' | translate }}</label>
+          <p-dropdown
+            appendTo="body"
+            [autoDisplayFirst]="false"
+            [showClear]="true"
+            [autoDisplayFirst]="false"
+            [options]="venueOptions"
+            id="venue"
+            name="venue"
+          ></p-dropdown>
+        </div>
+    </div>
+
+    <div class="p-col-12 p-md-4">
+      <div class="p-field p-col-12">
+        <label for="number">{{ 'projects.NUMBER' | translate }} *</label>
+        <input type="text" pInputText formControlName="number" maxlength="50" id="number" />
+      </div>
+      <div class="p-field p-col-12">
+        <label for="parent">{{ 'projects.PARENT' | translate }}</label>
+        <p-dropdown
+          appendTo="body"
+          [showClear]="true"
+          formControlName="parentId"
+          [autoDisplayFirst]="false"
+          [options]="parentProjectOptions"
+          id="parent"
+        ></p-dropdown>
+      </div>
+      <div class="p-field p-col-12">
+        <label for="state">{{ 'projects.STATE' | translate }}</label>
+        <p-dropdown
+          appendTo="body"
+          [showClear]="true"
+          formControlName="stateId"
+          [autoDisplayFirst]="false"
+          [options]="stateOptions"
+          id="state"
+        ></p-dropdown>
+      </div>
+      <div class="p-field p-col-12">
+        <label for="description">{{ 'projects.DESCRIPTION' | translate }}</label>
+        <textarea
+          formControlName="description"
+          id="description"
+        ></textarea>
+      </div>
+    </div>
+  </div>
+
+</form>
+<button
+  pButton
+  type="submit"
+  [label]="'editappointments.SAVECLOSE' | translate"
+  icon="pi pi-check"
+  iconPos="left"
+  [disabled]="formGroup.pristine || formGroup.invalid"
+  (click)="onSubmit()"
+></button>
+<button
+  pButton
+  class="p-ml-3 p-button-danger"
+  type="button"
+  [label]="'CANCEL' | translate"
+  icon="pi pi-times"
+  iconPos="left"
+  (click)="cancel()"
+></button>

@@ -1,17 +1,38 @@
-<h3>{{ 'PROJECTS' | translate }}</h3>
+<div class="p-card">
 
-<p-listbox
-  [options]="projects!"
-  optionLabel="title"
-  optionValue="description"
-  [filter]="true"
->
-  <ng-template pTemplate="header"></ng-template>
-  <ng-template let-project pTemplate="item">
-    <div class="project-item">
-      {{project.title}}
-      {{project.description}}
-      {{project.isCompleted}}
-    </div>
-  </ng-template>
-</p-listbox>
+  <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+      <button pButton label=" {{ 'projects.NEW_PROJECT' | translate }}" icon="pi pi-plus" (click)="openProjectDetailDialog(null)"></button>
+    </ng-template>
+  </p-toolbar>
+
+  <div class="p-card-title" style="padding: 20px">{{ 'PROJECTS' | translate }}</div>
+
+  <p-table [columns]="cols" [value]="projects" styleClass="p-datatable-responsive">
+
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+          {{ col.header }}
+          <p-sortIcon></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr (click)="openProjectDetailDialog(rowData)" style="cursor:pointer">
+        <td *ngFor="let col of columns" [ngSwitch]="col.type">
+          <!--
+          Needed later when the mobile version works:
+          <span class="p-column-title">{{col.header}}</span>
+          -->
+          <span *ngSwitchCase="'date'">{{ rowData[col.field] | date }}</span>
+          <span *ngSwitchCase="'boolean'">
+            <i class="pi pi-check" *ngIf="rowData[col.field]"></i>
+            <i class="pi pi-minus" *ngIf="!rowData[col.field]"></i>
+          </span>
+          <span *ngSwitchDefault>{{ rowData[col.field] }}</span>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
