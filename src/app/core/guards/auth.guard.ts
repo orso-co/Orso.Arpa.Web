@@ -19,10 +19,11 @@ export class AuthGuard implements CanActivate {
     return this.authService.isAuthenticated.pipe(
       map(loggedIn => {
         if (!loggedIn) {
-          this.notificationsService.info('Login.LOGIN_FIRST');
+          this.notificationsService.info('error.NOT_AUTHENTICATED');
           this.router.navigate(['/login']);
           return false;
         }
+
         return true;
       }),
     );

@@ -39,6 +39,7 @@
   "DAY": "Tag",
   "WEEK": "Woche",
   "MONTH": "Monat",
+  "DELETE": "Löschen",
 
   "appointments": {
     "NEW_APPOINTMENT_CONFIRMATION": "Möchtest du einen neuen Termin anlegen für {{value}}?"
@@ -54,11 +55,13 @@
   },
 
   "error": {
-    "SOMETHING_WENT_WRONG": "Da ist etwas schiefgelaufen!",
+    "SOMETHING_WENT_WRONG": "Da ist etwas schiefgelaufen",
     "BAD_REQUEST": "Es ist ein Fehler aufgetreten",
     "ROUTE_NOT_FOUND": "Seite nicht gefunden",
     "FORBIDDEN": "Zugriff verweigert",
-    "CONNECTION_ERROR": "Verbindungsfehler, bitte später nochmal probieren"
+    "CONNECTION_ERROR": "Verbindungsfehler, bitte später nochmal probieren",
+    "USER_CREDENTIALS": "Benutzername oder Passwort nicht korrekt",
+    "NOT_AUTHENTICATED": "Nicht angemeldet"
   },
   "logout": {
     "LOGGED_OUT": "Bis zum nächsten Mal bei ARPA",
@@ -66,8 +69,7 @@
   },
   "login": {
     "RESENDCONFIRMATION": "Bestätigungslink nochmal zusenden",
-    "RESENDDONE": "Bestätigungslink wurde erneut versendet, bitte Mailbox prüfen",
-    "LOGIN_FIRST": "Bitte loggen Sie sich zunächst ein"
+    "RESENDDONE": "Bestätigungslink wurde erneut versendet, bitte Mailbox prüfen"
   },
   "forgotpassword": {
     "BUTTON": "Passwort vergessen",
@@ -149,10 +151,22 @@
     "weekHeader": "Woche"
   },
   "editappointments": {
+    "APPOINTMENT_CREATED": "Termin angelegt",
+    "APPOINTMENT_DELETED": "Termin gelöscht",
+    "APPOINTMENT_UPDATED": "Termin aktualisiert",
+    "ARE_YOU_SURE": "Sind Sie sicher, dass Sie den Termin inklusiver aller abhängigen Daten unwiderruflich löschen wollen?",
     "CREATE": "Termin erstellen",
     "EDIT": "Termin bearbeiten",
+    "PROJECT_ADDED": "Projekt hinzugefügt",
+    "PROJECT_REMOVED": "Projekt entfernt",
+    "RESULT_SET": "Ergebnis gesetzt",
+    "ROOM_ADDED": "Raum hinzugefügt",
+    "ROOM_REMOVED": "Raum entfernt",
     "SAVECLOSE": "Speichern und schließen",
     "SAVECONTINUE": "Speichern und weiter",
+    "SECTION_ADDED": "Register hinzugefügt",
+    "SECTION_REMOVED": "Register entfernt",
+    "VENUE_SET": "Veranstaltungsort gesetzt",
     "BASICDATA": "Basisdaten",
     "ADDITIONALDATA": "Details",
     "PARTICIPATION": "Teilnahmestatus",
