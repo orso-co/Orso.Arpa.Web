@@ -156,7 +156,7 @@ export class AppointmentsComponent {
     const startT = new Date(appointment.startTime);
     const endT = new Date(appointment.endTime);
 
-    if(endT.getHours() === 23 && endT.getMinutes() === 59 && startT.getHours() === 0 && !(startT.getDate() === endT.getDate())){
+    if(endT.getHours() === 23 && endT.getMinutes() === 59 && startT.getHours() === 0){
       isAllDay = true;
     }
     return isAllDay;
