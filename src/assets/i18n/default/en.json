@@ -210,5 +210,8 @@
     "PROJECT_CREATED": "Project successfully created",
     "PROJECT_UPDATED": "Project successfully updated",
     "NUMBER": "Number"
+  },
+  "mupro": {
+    "PROFILE": "Musician Profile"
   }
 }

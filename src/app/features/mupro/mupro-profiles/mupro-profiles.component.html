@@ -1,0 +1,24 @@
+<h1>{{ 'mupro.PROFILE' | translate }}</h1>
+<div class='p-grid profile'>
+    <div class="p-col-12 p-md-6 p-lg-5">
+      <div class='p-grid'>
+        <div class="p-col-12 p-md-4" style='text-align: center'>
+          <arpa-avatar [user]='user | async' [image]='true'></arpa-avatar>
+        </div>
+        <div class="p-col-12 p-md-8 details">
+          <div>
+            <div class='name'>{{(user | async)?.displayName}}</div>
+            <div class='profile'>Instrument</div>
+            <div class='country'>Deutschland, Berlin</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p-col-12 p-md-6 p-lg-7">
+
+    </div>
+</div>
+<div class='form-dummy'>
+  <div>profile form</div>
+</div>
+<arpa-mupro-details></arpa-mupro-details>

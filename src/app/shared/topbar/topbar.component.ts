@@ -52,7 +52,7 @@ export class TopbarComponent {
   private initialiseUserMenu(): void {
     this.userProfileItems = [
       { label: this.translate.instant('logout.LOG_OUT'), icon: 'pi pi-sign-out', routerLink: ['/logout'] },
-      { label: this.translate.instant('PROFILE'), icon: 'pi pi-user-edit', routerLink: ['/arpa/profile'] },
+      { label: this.translate.instant('PROFILE'), icon: 'pi pi-user-edit', routerLink: ['/arpa/mupro-profile'] },
       { separator: true },
     ];
     this.translate.getLangs().forEach(lang =>

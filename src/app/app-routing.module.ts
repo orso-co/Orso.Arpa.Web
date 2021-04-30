@@ -51,7 +51,7 @@ const routes: Routes = [
         loadChildren: () => import('./features/appointments/appointments.module').then(m => m.AppointmentsModule),
       },
       {
-        path: 'profile',
+        path: 'mupro-profile',
         loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule),
       },
       {
@@ -61,6 +61,10 @@ const routes: Routes = [
       {
         path: 'me',
         loadChildren: () => import('./features/me/me.module').then((mod) => mod.MeModule),
+      },
+      {
+        path: 'mupro',
+        loadChildren: () => import('./features/mupro/mupro.module').then((mod) => mod.MuProModule),
       },
     ],
   },

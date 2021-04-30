@@ -53,9 +53,9 @@ export class ProfileComponent implements OnInit {
   onSubmit(): void {
     this.meService.putProfile(this.userProfile).subscribe(data => {
         if (data == null) {
-          this.notificationsService.info('profile.UPDATE');
+          this.notificationsService.info('mupro-profile.UPDATE');
         } else {
-          this.notificationsService.error('profile.ISSUE');
+          this.notificationsService.error('mupro-profile.ISSUE');
         }
       },
     );

@@ -1,0 +1,9 @@
+:host ::ng-deep {
+  [size="xxlarge"] {
+    .p-avatar.p-avatar-image {
+      width: 8rem;
+      height: 8rem;
+      font-size: 6rem;
+    }
+  }
+}

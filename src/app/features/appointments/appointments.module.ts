@@ -17,6 +17,7 @@ import { ProjectListResolver } from '../../resolvers/project-list.resolver';
 import { SectionListResolver } from '../../resolvers/section-list.resolver';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { EditAppointmentComponent } from './edit-appointment/edit-appointment.component';
+import { FullCalendarModule } from 'primeng/fullcalendar';
 
 @NgModule({
   declarations: [AppointmentsComponent, EditAppointmentComponent],
@@ -27,6 +28,7 @@ import { EditAppointmentComponent } from './edit-appointment/edit-appointment.co
     TranslateModule,
     FormsModule,
     ReactiveFormsModule,
+    FullCalendarModule
   ],
   providers: [
     AppointmentCategoryListResolver,

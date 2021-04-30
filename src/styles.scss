@@ -71,3 +71,16 @@ select:-webkit-autofill:focus {
     right: unset;
   }
 }
+
+.p-dialog-mask {
+  overflow-y: auto;
+}
+
+@import "~primeng/resources/themes/arya-blue/theme.css";
+@import "~primeng/resources/primeng.css";
+@import "~primeicons/primeicons.css";
+@import "~primeflex/primeflex.css";
+
+@import "~@fullcalendar/core/main.css";
+@import "~@fullcalendar/daygrid/main.css";
+@import "~@fullcalendar/timegrid/main.css";

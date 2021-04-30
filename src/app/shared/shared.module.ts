@@ -10,6 +10,7 @@ import { BackButtonDirective } from './directives/back-button.directive';
 import { TopbarComponent } from './topbar/topbar.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { DummyComponent } from './dummy/dummy.component';
+import { AvatarComponent } from './avatar/avatar.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { DummyComponent } from './dummy/dummy.component';
     BackButtonDirective,
     TopbarComponent,
     DummyComponent,
+    AvatarComponent,
   ],
   imports: [
     CommonModule,
@@ -37,6 +39,7 @@ import { DummyComponent } from './dummy/dummy.component';
     BackButtonDirective,
     TopbarComponent,
     DummyComponent,
+    AvatarComponent,
   ],
 })
 export class SharedModule {

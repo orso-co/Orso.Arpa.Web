@@ -1,0 +1,69 @@
+:host ::ng-deep {
+  h1 {
+    margin-bottom: 2em;
+    display: block;
+    text-align: center;
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+  .profile {
+    .p-mr-3 {
+      margin-right: inherit!important;
+    }
+    @media (min-width: 768px) {
+      [size="xxlarge"] {
+        .p-avatar.p-avatar-image {
+          width: 6rem;
+          height: 6rem;
+          font-size: 4rem;
+        }
+      }
+    }
+
+    .details {
+      text-align: center;
+
+      @media (min-width: 768px) {
+        text-align: left;
+        align-items: center;
+        display: flex;
+      }
+
+      & > div {
+        & > div {
+          display: block;
+          width: 100%;
+          line-height: 128%;
+
+          &.name {
+            font-size: 1.5em;
+          }
+
+          &.profile {
+            font-weight: 200;
+          }
+
+          &.country {
+            font-size: .8em;
+            font-weight: 200;
+            opacity: .8;
+          }
+        }
+      }
+    }
+  }
+
+  .form-dummy {
+    background-color: var(--surface-d);
+    padding: 3em;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    div {
+      opacity: .25;
+      font-size: 2em;
+      text-align: center;
+    }
+  }
+
+}
