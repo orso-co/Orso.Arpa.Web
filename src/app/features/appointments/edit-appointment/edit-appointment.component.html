@@ -26,11 +26,11 @@
                       hourFormat="24"
                       placeholder="{{ 'editappointments.START' | translate }} *"
                     ></p-calendar>
-                   
-                    <p-checkbox 
-                      [formControl]="$any(formGroup).controls['allDay']" 
-                      id="allDay" 
-                      (onChange)="onAllDayChanged($event.checked)" 
+
+                    <p-checkbox
+                      [formControl]="$any(formGroup).controls['allDay']"
+                      id="allDay"
+                      (onChange)="onAllDayChanged($event.checked)"
                       [label]="'editappointments.ALLDAY' | translate"
                       class="allDayCheckbox"
                       [binary]="true"
@@ -385,7 +385,7 @@
               ></p-dropdown>
             </td>
             <td class="p-fluid">
-              <span class="p-column-title">{{ 'editappointments.RESULT' | translate }}</span>
+              <span class="p-column-title">{{ 'editappointments.RESULTS' | translate }}</span>
               <p-dropdown
                 appendTo="body"
                 placeholer="Select result"

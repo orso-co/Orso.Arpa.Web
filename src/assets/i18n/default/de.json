@@ -160,6 +160,7 @@
     "PROJECT_ADDED": "Projekt hinzugefügt",
     "PROJECT_REMOVED": "Projekt entfernt",
     "RESULT_SET": "Ergebnis gesetzt",
+    "RESULTS": "Ergebnis",
     "ROOM_ADDED": "Raum hinzugefügt",
     "ROOM_REMOVED": "Raum entfernt",
     "SAVECLOSE": "Speichern und schließen",
@@ -189,7 +190,7 @@
     "PARTICIPATIONS": "Teilnahmen",
     "PREDICTION": "Vorhersage",
     "RESULT": "Ergebnis",
-    "LEVEL": "(Semi-)Profi"
+    "LEVEL": "Qualifikation"
   },
   "projects": {
     "TITLE": "Name",
