@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, ReplaySubject, combineLatest, of } from 'rxjs';
 
 import { ApiService } from './api.service';
@@ -43,7 +42,6 @@ export class AuthService {
 
   constructor(
     private apiService: ApiService,
-    private http: HttpClient,
     private jwtService: JwtService,
     private configService: ConfigService,
     private roleService: RoleService,
@@ -55,7 +53,7 @@ export class AuthService {
 
   populate() {
     if (!this.jwtService.isExpired()) {
-      this.currentUserSubject.next(this.jwtService.decode());
+      this.currentUserSubject.next(this.jwtService.decode(this.jwtService.getToken()));
       this.isAuthenticatedSubject.next(true);
     } else {
       this.purgeAuth();
@@ -86,7 +84,7 @@ export class AuthService {
       tap((tokenDto: ITokenDto) => {
         this.jwtService.saveToken(tokenDto.token);
       }),
-      map((tokenDto: ITokenDto) => this.jwtService.decode()!),
+      map((tokenDto: ITokenDto) => this.jwtService.decode(tokenDto.token)!),
       tap((token) => {
         this.currentUserSubject.next(token);
         this.isAuthenticatedSubject.next(true);
