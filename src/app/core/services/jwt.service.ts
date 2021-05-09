@@ -19,8 +19,8 @@ export class JwtService {
     return token ? this.jwtHelperService.isTokenExpired(token) : true;
   }
 
-  decode() {
-    const token = this.jwtHelperService.decodeToken(this.getToken());
+  decode(tokenString: string) {
+    const token = this.jwtHelperService.decodeToken(tokenString);
 
     return {
       audience: token.aud,
@@ -28,8 +28,10 @@ export class JwtService {
       expiryDate: new Date(token.exp * 1000),
       creationDate: new Date(token.iat * 1000),
       username: token.nameid,
-      displayName: token.unique_name,
+      displayName: token.name,
       roles: this.normalizeRoles(token),
+      userId: token.sub,
+      personId: token[`${token.aud}/person_id`]
     };
   }
 
