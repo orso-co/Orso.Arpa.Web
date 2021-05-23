@@ -1,12 +1,6 @@
+import { IBaseEntityDto } from './IBaseEntityDto';
+import { IProjectDto } from './IProjectDto';
 import { ISectionDto } from './section';
-
-export interface IBaseEntityDto {
-  id: string;
-  createdBy: string;
-  createdAt: Date;
-  modifiedBy: string;
-  modifiedAt: Date | null;
-}
 
 export interface ICalendarEvent {
   id: string;
@@ -34,33 +28,12 @@ export interface IAppointmentDto extends IBaseEntityDto {
   expectationId: string;
 }
 
-export interface ISelectValueDto extends IBaseEntityDto {
-  name: string;
-  description: string;
-}
-
 export interface IRoomDto extends IBaseEntityDto {
   id: string;
   building: string;
   floor: string;
   name: string;
   venueId: string;
-}
-
-export interface IProjectDto extends IBaseEntityDto {
-  // eslint-disable-next-line id-blacklist
-  number: number;
-  title: string;
-  shortTitle: string;
-  description: string;
-  typeId: string;
-  genreId: string;
-  startDate: Date;
-  endDate: Date;
-  urls: string[];
-  stateId: string;
-  parentId: number;
-  isCompleted: boolean;
 }
 
 export interface IAppointmentParticipationListItemDto {

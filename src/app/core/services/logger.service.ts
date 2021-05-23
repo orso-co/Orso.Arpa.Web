@@ -18,6 +18,7 @@ export class LoggerService implements ILoggerService {
 
   info(value: any, ...rest: any[]): void {
     if (!environment.production) {
+      // eslint-disable-next-line no-console
       console.info(value, rest);
     }
   }
