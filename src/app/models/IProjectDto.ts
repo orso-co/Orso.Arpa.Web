@@ -1,5 +1,4 @@
-import { IBaseEntityDto } from "./IBaseEntityDto";
-
+import { IBaseEntityDto } from './IBaseEntityDto';
 
 export interface IProjectDto extends IBaseEntityDto {
   code: number;
