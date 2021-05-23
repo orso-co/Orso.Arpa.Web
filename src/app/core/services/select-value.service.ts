@@ -3,7 +3,7 @@ import { SelectItem } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { map, shareReplay, tap } from 'rxjs/operators';
 import { ApiService } from './api.service';
-import { ISelectValueDto } from '../../models/appointment';
+import { ISelectValueDto } from "../../models/ISelectValueDto";
 
 @Injectable({
   providedIn: 'root',

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import {IProjectDto, IVenueDto} from '../../../models/appointment';
+import {IVenueDto} from '../../../models/appointment';
+import { IProjectDto } from "../../../models/IProjectDto";
 import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 import {Unsubscribe} from '../../../core/decorators/unsubscribe.decorator';

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IProjectDto } from '../../../models/appointment';
+import { IProjectDto } from "../../../models/IProjectDto";
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 

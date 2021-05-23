@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
-import { IProjectDto } from '../models/appointment';
+import { IProjectDto } from "../models/IProjectDto";
 import { ProjectService } from '../core/services/project.service';
 import {ProjectListComponent} from '../features/projects/project-list/project-list.component';
 

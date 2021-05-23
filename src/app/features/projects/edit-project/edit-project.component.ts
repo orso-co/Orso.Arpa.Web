@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DynamicDialogConfig, DynamicDialogRef} from 'primeng/dynamicdialog';
-import {IProjectDto, IVenueDto} from '../../../models/appointment';
+import {IVenueDto} from '../../../models/appointment';
+import { IProjectDto } from "../../../models/IProjectDto";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TranslateService} from '@ngx-translate/core';
 import {first} from 'rxjs/operators';
