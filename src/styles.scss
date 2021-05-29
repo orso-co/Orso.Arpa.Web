@@ -97,8 +97,10 @@ select:-webkit-autofill:focus {
   &.hasSelection {
     .split-view-content {
       display: flex;
-      transform: translateX(-100%);
       width: 100%;
+      @media (max-width: 768px) {
+        transform: translateX(-100%);
+      }
     }
   }
 
