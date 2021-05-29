@@ -1,6 +1,34 @@
 :host {
   display: block;
 }
+:host ::ng-deep {
+  p-sidebar {
+    .arpa-menu {
+      .p-menu {
+        border: 0;
+        width: 100%;
+      }
+      ul.p-menu-list {
+        margin: 0;
+        padding: 4em 0 0;
+        width: 100%;
+        list-style: none;
+        li {
+          list-style: none;
+          a {
+            & > span {
+              &:before {
+                font-size: 1.8em;
+                margin-right: .5em;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 .topbar {
   position: fixed;
   z-index: 500;
@@ -44,10 +72,11 @@
     }
   }
 
-  .welcome {
+  .page-title {
     margin: auto;
     font-weight: 600;
     font-size: 1.2em;
+    text-align: left;
   }
 
   ul.topbar-menu {
@@ -66,7 +95,7 @@
           transition: color 0.3s;
           position: relative;
           display: inline-block;
-          p-avatar {
+          arpa-avatar {
             margin-top: auto;
             display: inline-block;
             float: right;
@@ -101,37 +130,17 @@
   }
 }
 
-p-sidebar {
-  ul.p-menu {
-    margin: 0;
-    padding: 4em 0 0;
-    border: 0;
-    width: 100%;
-    list-style: none;
-    li {
-      list-style: none;
-      a {
-        & > span {
-          &:before {
-            font-size: 1.8em;
-            margin-right: 1em;
-          }
-        }
-      }
-    }
-  }
-}
-
 @media (min-width: 768px) {
   .topbar {
     padding: 0 1em 0 0;
     height: 70px;
     justify-content: space-between;
 
-    .welcome {
+    .page-title {
       margin: auto;
       font-weight: 600;
       font-size: 1.5em;
+      text-align: left;
     }
 
     ul.topbar-menu {

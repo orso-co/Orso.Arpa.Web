@@ -1,24 +1,18 @@
 import { Injectable } from '@angular/core';
-import {
-  Router, Resolve,
-  RouterStateSnapshot,
-  ActivatedRouteSnapshot
-} from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { SelectItem } from 'primeng/api';
 import { Observable, of } from 'rxjs';
-import {SelectValueService} from '../core/services/select-value.service';
-import {SelectItem} from 'primeng/api';
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { SelectValueService } from '../../../core/services/select-value.service';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class ProjectGenreResolver implements Resolve<SelectItem[]> {
+@Injectable()
+export class AppointmentSalaryListResolver implements Resolve<SelectItem[]> {
   constructor(private selectValueService: SelectValueService) {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<SelectItem[]> {
-    const tableName = 'Project';
-    const propertyName = 'Genre';
+    const tableName = 'Appointment';
+    const propertyName = 'Salary';
 
     if (this.selectValueService.loaded(tableName, propertyName)) {
       return of(this.selectValueService.get(tableName, propertyName));

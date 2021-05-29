@@ -9,17 +9,17 @@ import { IUserAppointmentListDto } from '../../models/appointment';
   providedIn: 'root',
 })
 export class MeService {
-  private baseUrl = '/users/me';
+  private baseUrl = '/me';
 
   constructor(private apiService: ApiService) {
   }
 
   getMyProfile(): Observable<IUserProfileDto> {
-    return this.apiService.get<IUserProfileDto>(`${this.baseUrl}/profile`).pipe(shareReplay());
+    return this.apiService.get<IUserProfileDto>(`${this.baseUrl}/profiles/user`).pipe(shareReplay());
   }
 
   putProfile(profileDto: IUserProfileDto): Observable<any> {
-    return this.apiService.put(`${this.baseUrl}/profile`, profileDto).pipe(shareReplay());
+    return this.apiService.put(`${this.baseUrl}/profiles/user`, profileDto).pipe(shareReplay());
   }
 
   getMyAppointments(take: number | null, skip: number | null): Observable<IUserAppointmentListDto> {

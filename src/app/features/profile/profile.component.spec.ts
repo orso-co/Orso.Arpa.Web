@@ -7,6 +7,7 @@ import {NotificationsService} from '../../core/services/notifications.service';
 import {NotificationsMockService} from '../../../testing/notifications.mock.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProfileService } from './profile.service';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
@@ -21,7 +22,17 @@ describe('ProfileComponent', () => {
         FormsModule,
         ReactiveFormsModule,
       ],
-      providers: [{provide: NotificationsService, useClass: NotificationsMockService}],
+      providers: [
+        { provide: NotificationsService, useClass: NotificationsMockService },
+        {
+          provide: ProfileService, useValue: {
+            menuEvents: {
+              subscribe: () => {
+              },
+            },
+          },
+        },
+      ],
       declarations: [ProfileComponent],
     })
       .compileComponents();

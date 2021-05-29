@@ -1,20 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MuproComponent } from './mupro.component';
-import { UserListResolver } from '../../resolvers/user-list.resolver';
 import { MuproProfilesComponent } from './mupro-profiles/mupro-profiles.component';
-import { ProjectListResolver } from '../../resolvers/project-list.resolver';
 import { ProjectListComponent } from '../projects/project-list/project-list.component';
+import { PersonsService } from './services/persons.service';
+import { ProjectListResolver } from '../../core/resolvers/project-list.resolver';
+import { MusicianProfileResolver } from './resolvers/musician-profile.resolver';
 
 const routes: Routes = [
   {
     path: '',
     component: MuproComponent,
-    resolve: { users: UserListResolver },
+    resolve: { users: PersonsService },
     children: [
       {
         path: ':id',
         component: MuproProfilesComponent,
+        resolve: {
+          profiles: MusicianProfileResolver,
+        },
         children: [
           {
             path: '',

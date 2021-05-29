@@ -7,7 +7,6 @@ import { MuproDetailsComponent } from './mupro-details/mupro-details.component';
 import { MuproCardComponent } from './mupro-card/mupro-card.component';
 import { MuproProfilesComponent } from './mupro-profiles/mupro-profiles.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { FormsModule } from '@angular/forms';
 import { MuproService } from './services/mupro.service';
 
 
@@ -18,7 +17,6 @@ import { MuproService } from './services/mupro.service';
     SharedModule,
     MuProRoutingModule,
     TranslateModule,
-    FormsModule,
   ],
   providers: [
     MuproService

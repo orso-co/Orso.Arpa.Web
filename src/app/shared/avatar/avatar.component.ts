@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IUserDto } from '../../models/IUserDto';
 
 @Component({
   selector: 'arpa-avatar',
@@ -9,10 +8,13 @@ import { IUserDto } from '../../models/IUserDto';
 export class AvatarComponent implements OnInit {
 
   @Input()
-  user: IUserDto | null;
+  user: any;
 
   @Input()
-  image: boolean = false;
+  size = 'xxlarge';
+
+  @Input()
+  image = false;
 
   constructor() {
   }
@@ -20,13 +22,16 @@ export class AvatarComponent implements OnInit {
   private hashStr(str: string) {
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
+      // eslint-disable-next-line no-bitwise
       hash = str.charCodeAt(i) + ((hash << 5) - hash);
     }
     return hash;
   }
 
   getColor() {
-    return `hsl(${this.hashStr(this.user?.displayName || this.user?.userName || '') % 360}, 28%, 50%)`;
+    const str = this.user?.displayName ? this.user?.displayName :
+      (this.user?.givenName || '') + (this.user?.surname || '');
+    return `hsl(${this.hashStr(str) % 360}, 28%, 50%)`;
   }
 
   getImage() {
@@ -34,10 +39,16 @@ export class AvatarComponent implements OnInit {
   }
 
   getInitials(): string {
-    return `${this.user?.displayName
-      .split(' ')
-      .map((name) => name[0].toUpperCase())
-      .join('')}`;
+    if (this.user?.displayName) {
+      return `${this.user?.displayName
+        .split(' ')
+        .map((name: string) => name[0].toUpperCase())
+        .join('').toUpperCase()}`;
+    } else {
+      const [first] = this.user?.givenName || '';
+      const [last] = this.user?.surname || '';
+      return `${first[0].toUpperCase()}${last[0].toUpperCase()}`;
+    }
   }
 
   ngOnInit(): void {

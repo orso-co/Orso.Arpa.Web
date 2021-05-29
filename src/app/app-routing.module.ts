@@ -45,26 +45,57 @@ const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: () => import('./features/dashboards/dashboards.module').then(m => m.DashboardsModule),
+        data: {
+          title: 'DASHBOARD',
+          menu: {
+            name: 'feature',
+            label: 'DASHBOARD',
+            icon: 'icon-list',
+          }
+        }
       },
       {
         path: 'appointments',
         loadChildren: () => import('./features/appointments/appointments.module').then(m => m.AppointmentsModule),
+        data: {
+          title: 'APPOINTMENTS',
+          menu: {
+            name: 'feature',
+            label: 'APPOINTMENTS',
+            icon: 'icon-calendar',
+          }
+        }
       },
       {
-        path: 'mupro-profile',
+        path: 'profile',
         loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule),
+        data: {
+          title: 'PROFILE',
+        }
       },
       {
         path: 'projects',
         loadChildren: () => import('./features/projects/projects.module').then(m => m.ProjectsModule),
-      },
-      {
-        path: 'me',
-        loadChildren: () => import('./features/me/me.module').then((mod) => mod.MeModule),
+        data: {
+          title: 'PROJECTS',
+          menu: {
+            name: 'feature',
+            label: 'PROJECTS',
+            icon: 'icon-stack',
+          }
+        }
       },
       {
         path: 'mupro',
         loadChildren: () => import('./features/mupro/mupro.module').then((mod) => mod.MuProModule),
+        data: {
+          title: 'MUPRO',
+          menu: {
+            name: 'feature',
+            label: 'MUPRO',
+            icon: 'icon-stack',
+          }
+        }
       },
     ],
   },

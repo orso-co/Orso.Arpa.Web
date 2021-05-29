@@ -11,6 +11,7 @@ import { TopbarComponent } from './topbar/topbar.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { DummyComponent } from './dummy/dummy.component';
 import { AvatarComponent } from './avatar/avatar.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AvatarComponent } from './avatar/avatar.component';
     TopbarComponent,
     DummyComponent,
     AvatarComponent,
+    MenuComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +34,8 @@ import { AvatarComponent } from './avatar/avatar.component';
   ],
   exports: [
     PrimeNgModule,
+    FormsModule,
+    ReactiveFormsModule,
     LoadingComponent,
     ProgressSpinnerModule,
     LangSwitchComponent,
@@ -40,6 +44,7 @@ import { AvatarComponent } from './avatar/avatar.component';
     TopbarComponent,
     DummyComponent,
     AvatarComponent,
+    MenuComponent,
   ],
 })
 export class SharedModule {

@@ -2,16 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {DynamicDialogConfig, DynamicDialogRef} from 'primeng/dynamicdialog';
 import {IProjectDto, IVenueDto} from '../../../models/appointment';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {TranslateService} from '@ngx-translate/core';
-import {first} from 'rxjs/operators';
-import {ProjectService} from '../../../core/services/project.service';
-import {NotificationsService} from '../../../core/services/notifications.service';
 import {SelectItem} from 'primeng/api';
 
 @Component({
   selector: 'arpa-edit-project',
   templateUrl: './edit-project.component.html',
-  styleUrls: ['./edit-project.component.scss']
+  styleUrls: ['./edit-project.component.scss'],
 })
 export class EditProjectComponent implements OnInit {
 
@@ -33,10 +29,8 @@ export class EditProjectComponent implements OnInit {
 
   constructor(public config: DynamicDialogConfig,
               private formBuilder: FormBuilder,
-              private translate: TranslateService,
-              public ref: DynamicDialogRef,
-              private projectService: ProjectService,
-              private notificationsService: NotificationsService) { }
+              public ref: DynamicDialogRef
+  ) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -85,34 +79,10 @@ export class EditProjectComponent implements OnInit {
     if (this.formGroup.invalid || this.formGroup.pristine) {
       return;
     }
-    const project = { ...this.project, ...this.formGroup.value} as IProjectDto;
-    if (this.isNew) {
-      this.saveNewProject(project);
-    } else {
-      this.updateProject(project);
-    }
-  }
-
-  private saveNewProject(project: IProjectDto): void {
-    this.projectService.create(project)
-      .pipe(first())
-      .subscribe((result) => {
-        this.notificationsService.success('projects.PROJECT_CREATED');
-        this.ref.close(result);
-      });
-  }
-
-  private updateProject(project: IProjectDto): void {
-    this.projectService.update(project)
-      .pipe(first())
-      .subscribe(() => {
-        this.notificationsService.success('projects.PROJECT_UPDATED');
-        this.ref.close(project);
-      });
+    this.ref.close({ ...this.project, ...this.formGroup.value} as IProjectDto);
   }
 
   cancel(): void {
     this.ref.close(null);
   }
-
 }

@@ -8,6 +8,8 @@ import {DialogService} from 'primeng/dynamicdialog';
 import {TranslateService} from '@ngx-translate/core';
 import {SelectItem} from 'primeng/api';
 import {Subscription} from 'rxjs';
+import { ProjectService } from '../../../core/services/project.service';
+import { NotificationsService } from '../../../core/services/notifications.service';
 
 @Component({
   selector: 'arpa-project-list',
@@ -30,6 +32,8 @@ export class ProjectListComponent {
     private route: ActivatedRoute,
     private dialogService: DialogService,
     public translate: TranslateService,
+    private projectService: ProjectService,
+    private notificationsService: NotificationsService
   ) {
     this.getRouteData();
     this.initializeColumns();
@@ -78,14 +82,33 @@ export class ProjectListComponent {
     });
     ref.onClose
       .pipe(first())
-      .subscribe((newProject: IProjectDto) => {
-        if (!oldProject && newProject) {
-          this.projects = [...this.projects, newProject];
-        } else if (oldProject && newProject) {
-          const index = this.projects.findIndex((project) => oldProject.id === newProject.id);
-          this.projects[index] = newProject;
-          this.projects = [...this.projects];
+      .subscribe((project: IProjectDto) => {
+        if (!oldProject && project) {
+          this.saveNewProject(project);
+        } else if (oldProject && project) {
+          this.updateProject(project, oldProject);
         }
+      });
+  }
+
+
+  private saveNewProject(project: IProjectDto): void {
+    this.projectService.create(project)
+      .pipe(first())
+      .subscribe((result) => {
+        this.projects = [...this.projects, project];
+        this.notificationsService.success('projects.PROJECT_CREATED');
+      });
+  }
+
+  private updateProject(project: IProjectDto, oldProject: IProjectDto): void {
+    this.projectService.update(project)
+      .pipe(first())
+      .subscribe(() => {
+        const index = this.projects.findIndex((p) => oldProject.id === p.id);
+        this.projects[index] = project;
+        this.projects = [...this.projects];
+        this.notificationsService.success('projects.PROJECT_UPDATED');
       });
   }
 }
