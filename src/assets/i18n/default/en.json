@@ -193,7 +193,7 @@
     "LEVEL": "(Semi-)Professional"
   },
   "projects": {
-    "TITLE": "Name",
+    "TITLE": "Full Name",
     "VENUE": "Venue",
     "START": "Start",
     "END": "End",
@@ -204,12 +204,12 @@
     "NEW_PROJECT": "Create New Project",
     "EDIT_PROJECT": "Edit Project",
     "DESCRIPTION": "Description",
-    "ABBREVIATION": "Abbreviation",
+    "ABBREVIATION": "Short Title",
     "TYPE": "Type",
     "PARENT": "Parent Project",
     "PROJECT_CREATED": "Project successfully created",
     "PROJECT_UPDATED": "Project successfully updated",
-    "NUMBER": "Number"
+    "CODE": "Code"
   },
   "auditlogs": {
     "TIME": "Time",

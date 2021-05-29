@@ -1,7 +1,7 @@
 import { IBaseEntityDto } from './IBaseEntityDto';
 
 export interface IProjectDto extends IBaseEntityDto {
-  code: number;
+  code: string;
   title: string;
   shortTitle: string;
   description: string;

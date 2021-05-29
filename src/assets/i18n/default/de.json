@@ -204,12 +204,12 @@
     "NEW_PROJECT": "Neues Projekt anlegen",
     "EDIT_PROJECT": "Projekt bearbeiten",
     "DESCRIPTION": "Beschreibung",
-    "ABBREVIATION": "Kürzel",
+    "ABBREVIATION": "Kurzform",
     "TYPE": "Typ",
     "PARENT": "Übergeordnetes Projekt",
     "PROJECT_CREATED": "Projekt erfolgreich angelegt",
     "PROJECT_UPDATED": "Projekt erfolgreich bearbeitet",
-    "NUMBER": "Nummer"
+    "CODE": "Code"
   },
   "auditlogs": {
     "TIME": "Uhrzeit",
