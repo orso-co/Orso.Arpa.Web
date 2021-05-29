@@ -54,8 +54,7 @@ export class EditProjectComponent implements OnInit {
       stateId: [null],
       genreId: [null],
       parentId: [null],
-      // eslint-disable-next-line id-blacklist
-      number: [null, [Validators.required]],
+      code: [null, [Validators.required]],
       isCompleted: [null, [Validators.required]]
     });
   }
