@@ -210,5 +210,13 @@
     "PROJECT_CREATED": "Projekt erfolgreich angelegt",
     "PROJECT_UPDATED": "Projekt erfolgreich bearbeitet",
     "NUMBER": "Nummer"
+  },
+  "auditlogs": {
+    "TIME": "Uhrzeit",
+    "CHANGED_BY": "Geändert von",
+    "TYPE": "Typ",
+    "TABLE": "Tabelle",
+    "OLD_VALUES": "Alte Werte",
+    "NEW_VALUES": "Neue Werte"
   }
 }
