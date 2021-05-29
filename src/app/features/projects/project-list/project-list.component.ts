@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import {IProjectDto, IVenueDto} from '../../../models/appointment';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 import {Unsubscribe} from '../../../core/decorators/unsubscribe.decorator';
@@ -10,6 +9,8 @@ import {SelectItem} from 'primeng/api';
 import {Subscription} from 'rxjs';
 import { ProjectService } from '../../../core/services/project.service';
 import { NotificationsService } from '../../../core/services/notifications.service';
+import { IProjectDto } from '../../../models/IProjectDto';
+import { IVenueDto } from '../../../models/appointment';
 
 @Component({
   selector: 'arpa-project-list',

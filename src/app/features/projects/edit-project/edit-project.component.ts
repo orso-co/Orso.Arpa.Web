@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {DynamicDialogConfig, DynamicDialogRef} from 'primeng/dynamicdialog';
-import {IProjectDto, IVenueDto} from '../../../models/appointment';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SelectItem} from 'primeng/api';
+import { IProjectDto } from '../../../models/IProjectDto';
+import { IVenueDto } from '../../../models/appointment';
 
 @Component({
   selector: 'arpa-edit-project',

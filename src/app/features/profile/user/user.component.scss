@@ -1,0 +1,13 @@
+input {
+  width: 100%;
+}
+
+textarea {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .show-mobile {
+    display: none;
+  }
+}
