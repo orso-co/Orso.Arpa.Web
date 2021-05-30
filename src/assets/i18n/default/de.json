@@ -228,6 +228,7 @@
     "LEVEL_ASSESSMENT": "Qualifikation"
   },
   "auditlogs": {
+    "AUDITLOGS": "Auditlogs",
     "TIME": "Uhrzeit",
     "CHANGED_BY": "Geändert von",
     "TYPE": "Typ",

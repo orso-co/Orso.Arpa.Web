@@ -227,6 +227,7 @@
     "LEVEL_ASSESSMENT": "Qualification"
   },
   "auditlogs": {
+    "AUDITLOGS": "Auditlogs",
     "TIME": "Time",
     "CHANGED_BY": "Changed by",
     "TYPE": "Type",

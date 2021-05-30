@@ -100,7 +100,20 @@ const routes: Routes = [
           },
         }
       },
-      { path: 'auditlogs', component: AuditLogComponent, resolve: { auditLogs: AuditLogResolver} },
+      {
+        path: 'auditlogs',
+        component: AuditLogComponent,
+        resolve: { auditLogs: AuditLogResolver},
+        data: {
+          roles: ['staff', 'admin'],
+          title: 'auditlogs.AUDITLOGS',
+          menu: {
+            name: 'feature',
+            label: 'auditlogs.AUDITLOGS',
+            icon: 'icon-stack',
+          },
+        }
+      },
     ],
   },
   { path: '**', redirectTo: '/error' },
