@@ -19,6 +19,7 @@ export class ProfileService {
       },
       {
         label: 'MUSICIAN_PROFILE',
+        roles: ['performer'],
         command: (event) => {
           this.menuEvents.next(event);
           this.router.navigate(['/arpa/profile/musician']);

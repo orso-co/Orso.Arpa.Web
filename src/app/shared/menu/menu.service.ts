@@ -116,13 +116,13 @@ export class MenuService {
     // ToDo: respect roles config data
     Object.values<Route>(config).forEach((root) => {
       if(root.data?.menu) {
-        const {name, label, icon} = root.data.menu;
-        this.add(name, [{label, icon, routerLink: `${basePath}${root.path}`}]);
+        const { roles, menu: { name, label, icon } } = root.data;
+        this.add(name, [{ label, icon, routerLink: `${basePath}${root.path}`, roles }]);
       }
       root.children?.forEach((route) => {
         if(route.data?.menu) {
-          const { name, label, icon } = route.data.menu;
-          this.add(name, [{ label, icon, routerLink: `${basePath}${root.path}/${route.path}` }]);
+          const { roles, menu: { name, label, icon } } = route.data;
+          this.add(name, [{ label, icon, routerLink: `${basePath}${root.path}/${route.path}`, roles }]);
         }
       });
     });

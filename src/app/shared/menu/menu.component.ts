@@ -5,11 +5,14 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { MenuService } from './menu.service';
+import { MenuItemArpa, MenuService } from './menu.service';
 import { MenuItem } from 'primeng/api';
 import { Menu } from 'primeng/menu';
 import { Unsubscribe } from '../../core/decorators/unsubscribe.decorator';
 import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { AuthService } from '../../core/services/auth.service';
+import { intersection } from 'lodash-es';
 
 export interface MenuItemTplContext {
   $implicit: () => void;
@@ -38,12 +41,17 @@ export class MenuComponent implements OnInit {
   menuSubscription: Subscription;
   menuItems: MenuItem[] = [];
 
-  constructor(private menuService: MenuService, private el: ElementRef) {
+  constructor(private menuService: MenuService, private el: ElementRef, private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.menuSubscription = this.menuService.getMenuEvent(this.name).subscribe((v) => {
-      this.menuItems = v;
+    this.authService.currentUser.subscribe((token) => {
+      this.menuSubscription = this.menuService.getMenuEvent(this.name)
+        .pipe(map((items: MenuItemArpa[]) => items
+          .filter((item: MenuItemArpa) => item.roles ? intersection(token.roles, item.roles).length > 0 : true)))
+        .subscribe((v: any) => {
+          this.menuItems = v;
+        });
     });
   }
 

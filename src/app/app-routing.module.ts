@@ -89,12 +89,13 @@ const routes: Routes = [
         path: 'mupro',
         loadChildren: () => import('./features/mupro/mupro.module').then((mod) => mod.MuProModule),
         data: {
+          roles: ['staff', 'admin'],
           title: 'MUPRO',
           menu: {
             name: 'feature',
             label: 'MUPRO',
             icon: 'icon-stack',
-          }
+          },
         }
       },
     ],
