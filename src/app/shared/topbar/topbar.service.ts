@@ -17,6 +17,14 @@ export class TopbarService {
     private titleService: RouteTitleService) {
     this.menuService.add('user', this.initialiseUserMenu());
 
+    this.menuService.add('feature', [
+      {
+        label: 'MY_APPOINTMENTS',
+        routerLink: '/arpa/profile/appointments',
+        icon: 'icon-calendar',
+      },
+    ]);
+
     this.title = this.titleService.titleEvent;
   }
 
