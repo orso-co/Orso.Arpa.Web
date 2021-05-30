@@ -1,0 +1,89 @@
+<p-card header="Audit Log">
+
+  <p-table [value]="auditLogs"
+           styleClass="p-datatable-responsive"
+           [paginator]="true"
+           [rows]="5"
+           [rowsPerPageOptions]="[5,10,15,20]">
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="id">
+          <div class="col-name">Id
+            <p-sortIcon field="id"></p-sortIcon></div>
+          <div><p-columnFilter type="text" field="id"></p-columnFilter></div>
+        </th>
+
+        <th pSortableColumn="createdAt">
+          <div class="col-name">{{ 'auditlogs.TIME' | translate }}
+            <p-sortIcon field="createdAt"></p-sortIcon></div>
+          <div>-</div>
+        </th>
+
+        <th pSortableColumn="createdBy">
+          <div class="col-name">{{ 'auditlogs.CHANGED_BY' | translate }}
+            <p-sortIcon field="createdBy"></p-sortIcon></div>
+          <div><p-columnFilter type="text" field="createdBy"></p-columnFilter></div>
+        </th>
+
+        <th pSortableColumn="type">
+          <div class="col-name">{{ 'auditlogs.TYPE' | translate }}
+            <p-sortIcon field="type"></p-sortIcon></div>
+          <div>-</div>
+        </th>
+
+        <th pSortableColumn="tableName">
+          <div class="col-name">{{ 'auditlogs.TABLE' | translate }}
+            <p-sortIcon field="tableName"></p-sortIcon></div>
+          <div><p-columnFilter type="text" field="tableName"></p-columnFilter></div>
+        </th>
+
+        <th>
+          <div class="col-name">{{ 'auditlogs.OLD_VALUES' | translate }}</div>
+          <div>-</div>
+        </th>
+
+        <th>
+          <div class="col-name">{{ 'auditlogs.NEW_VALUES' | translate }}</div>
+          <div>-</div>
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-auditLog>
+      <tr>
+        <td>
+          {{ auditLog.id }}
+        </td>
+        <td>
+          {{ auditLog.createdAt | date: 'short' }}
+        </td>
+        <td>
+          {{ auditLog.createdBy }}
+        </td>
+        <td>
+          {{ getTypeName(auditLog.type) }}
+        </td>
+        <td>
+          {{ auditLog.tableName }}
+        </td>
+        <td>
+          <div *ngFor="let oldValue of auditLog.oldValues | keyvalue">
+            <div *ngIf="oldValue.value" class="values">
+              {{ oldValue.key }}: {{ oldValue.value}}
+            </div>
+          </div>
+        </td>
+        <td>
+          <div *ngFor="let newValue of auditLog.newValues | keyvalue">
+            <div *ngIf="newValue.value" class="values">
+              {{ newValue.key }}: {{ newValue.value}}
+            </div>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+  </p-table>
+
+</p-card>
