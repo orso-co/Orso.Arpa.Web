@@ -31,6 +31,7 @@ import { CaptchaModule } from 'primeng/captcha';
 import { SidebarModule } from 'primeng/sidebar';
 import { ToolbarModule } from 'primeng/toolbar';
 import { AccordionModule } from 'primeng/accordion';
+import { RatingModule } from 'primeng/rating';
 
 const MODULES = [
   InputTextModule,
@@ -62,6 +63,7 @@ const MODULES = [
   SidebarModule,
   ToolbarModule,
   AccordionModule,
+  RatingModule,
 ];
 
 @NgModule({

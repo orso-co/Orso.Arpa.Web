@@ -11,9 +11,17 @@ import { ProfileResolver } from './resolvers/profile.resolver';
 import { MyAppointmentsComponent } from './my-appointments/my-appointments.component';
 import { CalendarSheetComponent } from './calendar-sheet/calendar-sheet.component';
 import { AppointmentParticipationPredictionListResolver } from '../../core/resolvers/appointment-participation-prediction-list.resolver';
+import { EditMusicianProfileComponent } from './edit-musician-profile/edit-musician-profile.component';
 
 @NgModule({
-  declarations: [ProfileComponent, UserComponent, MyAppointmentsComponent, MusicianComponent, CalendarSheetComponent],
+  declarations: [
+    ProfileComponent,
+    UserComponent,
+    MyAppointmentsComponent,
+    MusicianComponent,
+    CalendarSheetComponent,
+    EditMusicianProfileComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,

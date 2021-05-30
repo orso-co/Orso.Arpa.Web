@@ -18,6 +18,7 @@
   "NOTFOUND_NICE": "Oops! There's nothing here. Sorry!",
   "FORBIDDEN_NICE": "Oops! Seems you don't have permission for that. Sorry!",
   "SAVE": "Save",
+  "CREATE": "Create",
   "NO": "No",
   "YES": "Yes",
   "MESSAGES": "Messages",
@@ -216,6 +217,13 @@
     "CODE": "Code"
   },
   "mupro": {
-    "PROFILE": "Musician Profile"
+    "PROFILE": "Musician Profile",
+    "MAIN_INSTURMENT": "Main Instrument",
+    "MY_PROFILES": "My Profiles",
+    "UPDATED": "Profile Updated",
+    "CREATED": "Profile Created",
+    "CREATE": "Create Profile",
+    "EDIT": "Edit Profile",
+    "LEVEL_ASSESSMENT": "Qualification"
   }
 }

@@ -18,6 +18,7 @@
   "NOTFOUND_NICE": "Oups! Hier ist nichts. Sorry!",
   "FORBIDDEN_NICE": "Autsch! Leider erlauben deine Zugriffsrechte diesen Schritt nicht. Sorry!",
   "SAVE": "Speichern",
+  "CREATE": "Erstellen",
   "NO": "Nein",
   "YES": "Ja",
   "MESSAGES": "Nachrichten",
@@ -217,6 +218,13 @@
     "CODE": "Code"
   },
   "mupro": {
-    "PROFILE": "Musikerprofil"
+    "PROFILE": "Musikerprofil",
+    "MAIN_INSTURMENT": "Hauptinstrument",
+    "MY_PROFILES": "Meine Profile",
+    "UPDATED": "Musikerprofil Aktualisiert",
+    "CREATED": "Musikerprofil Erstellt",
+    "CREATE": "Musikerprofil Erstellen",
+    "EDIT": "Musikerprofil Bearbeiten",
+    "LEVEL_ASSESSMENT": "Qualifikation"
   }
 }

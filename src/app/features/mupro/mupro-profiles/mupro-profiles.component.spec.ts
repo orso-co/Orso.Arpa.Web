@@ -9,6 +9,7 @@ import { TranslateMockModule } from '../../../../testing/translate.mock.module';
 import { SharedModule } from '../../../shared/shared.module';
 import { MuproDetailsComponent } from '../mupro-details/mupro-details.component';
 import { CoreModule } from '../../../core/core.module';
+import { of } from 'rxjs';
 
 describe('ProfileComponent', () => {
   let component: MuproProfilesComponent;
@@ -28,10 +29,7 @@ describe('ProfileComponent', () => {
         { provide: MuproService, useValue: {} },
         {
           provide: ProfileService, useValue: {
-            menuEvents: {
-              subscribe: () => {
-              },
-            },
+            menuEvents: of(),
           },
         },
       ],

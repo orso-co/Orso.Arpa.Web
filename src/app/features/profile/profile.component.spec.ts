@@ -8,6 +8,7 @@ import {NotificationsMockService} from '../../../testing/notifications.mock.serv
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileService } from './profile.service';
+import { of } from 'rxjs';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
@@ -26,10 +27,7 @@ describe('ProfileComponent', () => {
         { provide: NotificationsService, useClass: NotificationsMockService },
         {
           provide: ProfileService, useValue: {
-            menuEvents: {
-              subscribe: () => {
-              },
-            },
+            menuEvents: of(),
           },
         },
       ],

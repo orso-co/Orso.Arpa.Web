@@ -1,13 +1,18 @@
-<div class="card p-m-auto" style="max-width: 800px">
+<div class='p-grid p-jc-center'>
+  <div class='p-col-12 p-md-6 p-text-center'>
+    <h1>{{ 'MY_APPOINTMENTS' | translate}}</h1>
+  </div>
+</div>
+<div class='card p-m-auto' style='max-width: 800px'>
   <p-dataView
     #dv
-    [value]="(userAppointments$ | async) || []"
-    [paginator]="true"
-    [rows]="itemsPerPage"
-    paginatorPosition="both"
-    [lazy]="true"
-    (onLazyLoad)="loadData($event.rows, $event.first)"
-    [totalRecords]="(totalRecordsCount$ | async) || 0"
+    [value]='(userAppointments$ | async) || []'
+    [paginator]='true'
+    [rows]='itemsPerPage'
+    paginatorPosition='both'
+    [lazy]='true'
+    (onLazyLoad)='loadData($event.rows, $event.first)'
+    [totalRecords]='(totalRecordsCount$ | async) || 0'
   >
     <p-header>
       <div class="p-helper-clearfix">

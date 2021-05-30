@@ -7,6 +7,8 @@ import { ProfileResolver } from './resolvers/profile.resolver';
 import { MyAppointmentsComponent } from './my-appointments/my-appointments.component';
 import { RoleNames } from '../../models/role-names';
 import { AppointmentParticipationPredictionListResolver } from '../../core/resolvers/appointment-participation-prediction-list.resolver';
+import { ProfileMusicianResolver } from './resolvers/profile-musician.resolver';
+import { SectionsResolver } from './resolvers/sections.resolver';
 
 const routes: Routes = [
   {
@@ -39,7 +41,11 @@ const routes: Routes = [
       {
         path: 'musician',
         component: MusicianComponent,
-      }
+        resolve: {
+          profiles: ProfileMusicianResolver,
+          sections: SectionsResolver,
+        },
+      },
     ]
   }
 ];

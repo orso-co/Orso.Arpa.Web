@@ -5,7 +5,7 @@ import { MuproProfilesComponent } from './mupro-profiles/mupro-profiles.componen
 import { ProjectListComponent } from '../projects/project-list/project-list.component';
 import { PersonsService } from './services/persons.service';
 import { ProjectListResolver } from '../../core/resolvers/project-list.resolver';
-import { MusicianProfileResolver } from './resolvers/musician-profile.resolver';
+import { ProfileMusicianResolver } from './resolvers/profile-musician.resolver';
 
 const routes: Routes = [
   {
@@ -17,7 +17,7 @@ const routes: Routes = [
         path: ':id',
         component: MuproProfilesComponent,
         resolve: {
-          profiles: MusicianProfileResolver,
+          profiles: ProfileMusicianResolver,
         },
         children: [
           {

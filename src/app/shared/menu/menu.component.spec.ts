@@ -4,6 +4,8 @@ import { MenuComponent } from './menu.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MenuService } from './menu.service';
 import { TranslateMockModule } from '../../../testing/translate.mock.module';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { of } from 'rxjs';
 
 describe('MenuComponent', () => {
   let component: MenuComponent;
@@ -15,14 +17,12 @@ describe('MenuComponent', () => {
       imports: [
         RouterTestingModule,
         TranslateMockModule,
+        HttpClientTestingModule,
       ],
       providers: [
         {
           provide: MenuService, useValue: {
-            getMenuEvent: () => ({
-              subscribe: () => {
-              },
-            }),
+            getMenuEvent: () => of(),
           },
         },
       ],

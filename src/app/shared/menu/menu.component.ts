@@ -18,12 +18,12 @@ export interface MenuItemTplContext {
   $implicit: () => void;
 }
 
-@Unsubscribe()
 @Component({
   selector: 'arpa-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
 })
+@Unsubscribe()
 export class MenuComponent implements OnInit {
 
   @Input()

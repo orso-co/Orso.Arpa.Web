@@ -11,7 +11,7 @@ import { IMusicianProfileDto } from '../../../models/appointment';
 @Injectable({
   providedIn: 'root',
 })
-export class MusicianProfileResolver implements Resolve<IMusicianProfileDto> {
+export class ProfileMusicianResolver implements Resolve<IMusicianProfileDto> {
   constructor(private personService: PersonsService) {
   }
 

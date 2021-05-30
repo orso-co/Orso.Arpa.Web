@@ -1,0 +1,45 @@
+<form [formGroup]='form' (submit)='$event.preventDefault()'>
+  <div class='p-fluid p-formgrid p-grid'>
+    <div class='p-field p-col'>
+      <label for='instrumentId'>{{ 'mupro.MAIN_INSTURMENT' | translate}}</label>
+      <p-dropdown
+        [options]='(sections | async) || []'
+        optionLabel='name'
+        optionValue='id'
+        formControlName='instrumentId'
+        [placeholder]='"NOTHING_SELECT" | translate'
+        [filter]='true'
+      ></p-dropdown>
+    </div>
+  </div>
+  <div class='p-fluid p-formgrid p-grid'>
+    <div class='p-field p-col'>
+      <label for='levelAssessmentPerformer'>{{ 'mupro.LEVEL_ASSESSMENT' | translate }}</label>
+      <p-rating formControlName='levelAssessmentPerformer' [stars]='5'></p-rating>
+    </div>
+  </div>
+  <div class='p-formgroup-inline footer'>
+    <div class='p-field p-col'>
+      <button
+        pButton
+        class='p-button-danger'
+        type='button'
+        [label]="'CANCEL' | translate"
+        icon='pi pi-times'
+        iconPos='left'
+        (click)='cancel()'
+      ></button>
+    </div>
+    <div class='p-field p-col p-text-right'>
+      <button
+        pButton
+        type='button'
+        [label]="'CREATE' | translate"
+        icon='pi pi-check'
+        iconPos='left'
+        [disabled]='form.pristine || form.invalid'
+        (click)='onSubmit()'
+      ></button>
+    </div>
+  </div>
+</form>
