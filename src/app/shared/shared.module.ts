@@ -12,6 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { DummyComponent } from './dummy/dummy.component';
 import { AvatarComponent } from './avatar/avatar.component';
 import { MenuComponent } from './menu/menu.component';
+import { AuditLogComponent } from './audit-log/audit-log.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MenuComponent } from './menu/menu.component';
     DummyComponent,
     AvatarComponent,
     MenuComponent,
+    AuditLogComponent,
   ],
   imports: [
     CommonModule,

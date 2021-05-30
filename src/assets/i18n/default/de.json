@@ -226,5 +226,13 @@
     "CREATE": "Musikerprofil Erstellen",
     "EDIT": "Musikerprofil Bearbeiten",
     "LEVEL_ASSESSMENT": "Qualifikation"
+  },
+  "auditlogs": {
+    "TIME": "Uhrzeit",
+    "CHANGED_BY": "Geändert von",
+    "TYPE": "Typ",
+    "TABLE": "Tabelle",
+    "OLD_VALUES": "Alte Werte",
+    "NEW_VALUES": "Neue Werte"
   }
 }

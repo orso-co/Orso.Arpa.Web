@@ -12,6 +12,8 @@ import { LogoutComponent } from './main/logout/logout.component';
 import { EmailConfirmationComponent } from './main/emailconfirmation/email-confirmation.component';
 import { ForgotPasswordComponent } from './main/forgot-password/forgot-password.component';
 import { SessionGuard } from './core/guards/session.guard';
+import {AuditLogComponent} from './shared/audit-log/audit-log.component';
+import {AuditLogResolver} from './resolvers/auditlog.resolver';
 
 const routes: Routes = [
   {
@@ -98,6 +100,7 @@ const routes: Routes = [
           },
         }
       },
+      { path: 'auditlogs', component: AuditLogComponent, resolve: { auditLogs: AuditLogResolver} },
     ],
   },
   { path: '**', redirectTo: '/error' },
