@@ -1,5 +1,5 @@
 import { PrimeNGConfig } from 'primeng/api';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'arpa-calendar-sheet',

@@ -1,8 +1,5 @@
 <div class='p-d-flex wrapper' [class.hasSelection]='member'>
   <div class='layout-sidebar'>
-    <!-- // component mit filter und api subscribe
-    // click -> list click function or route
-    <arpa-list arpaResource='users' > </arpa-list> -->
     <p-listbox
       [options]='users'
       optionValue='id'
@@ -13,9 +10,9 @@
       filterPlaceHolder='Search'
     >
       <ng-template let-user pTemplate='item'>
-        <arpa-avatar [user]='user'></arpa-avatar>
+        <arpa-avatar [user]='user' [image]='(user.surname=== "Admin")' size='large'></arpa-avatar>
         <div class='details'>
-          <div class='name'>{{user.displayName}}</div>
+          <div class='name'>{{user.givenName}} {{user.surname}}</div>
           <div class='profile'>Instrument</div>
           <div class='country'>Deutschland, Berlin</div>
         </div>

@@ -13,6 +13,8 @@ import { DummyComponent } from './dummy/dummy.component';
 import { AvatarComponent } from './avatar/avatar.component';
 import { MenuComponent } from './menu/menu.component';
 import { AuditLogComponent } from './audit-log/audit-log.component';
+import { AuditDialogDirective } from './audit-log/audit-dialog.directive';
+import { AuditDialogComponent } from './audit-dialog/audit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { AuditLogComponent } from './audit-log/audit-log.component';
     AvatarComponent,
     MenuComponent,
     AuditLogComponent,
+    AuditDialogDirective,
+    AuditDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -47,6 +51,7 @@ import { AuditLogComponent } from './audit-log/audit-log.component';
     DummyComponent,
     AvatarComponent,
     MenuComponent,
+    AuditDialogDirective,
   ],
 })
 export class SharedModule {

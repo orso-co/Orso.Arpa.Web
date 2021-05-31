@@ -44,8 +44,10 @@
   "DAY": "Day",
   "WEEK": "Week",
   "MONTH": "Month",
-  "DELETE": "Delete",,
+  "DELETE": "Delete",
   "NOTHING_SELECTED": "No Selection",
+  "CLEAR": "Clear",
+  "SEARCH": "Search",
 
   "appointments": {
     "NEW_APPOINTMENT_CONFIRMATION": "Do you want to create a new appointment for {{value}}?"
@@ -238,6 +240,7 @@
     "TYPE": "Type",
     "TABLE": "Table",
     "OLD_VALUES": "Old Values",
-    "NEW_VALUES": "New Values"
+    "NEW_VALUES": "New Values",
+    "DETAILS": "Entity Details"
   }
 }

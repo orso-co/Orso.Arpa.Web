@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { NotificationsService } from '../../../core/services/notifications.service';
 import { first } from 'rxjs/operators';
 import { MeService } from '../../../core/services/me.service';

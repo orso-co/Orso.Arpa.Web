@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
 import { RouteTitleService } from './route-title.service';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TranslateMockModule } from '../../../testing/translate.mock.module';
 
 describe('RouteTitleService', () => {

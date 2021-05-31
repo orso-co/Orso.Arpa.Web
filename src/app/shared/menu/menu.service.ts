@@ -2,14 +2,12 @@ import { Injectable } from '@angular/core';
 import {
   NavigationEnd,
   Route,
-  RouteConfigLoadEnd,
-  RouteConfigLoadStart,
   Router,
 } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { MenuItem } from 'primeng/api';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 export interface MenuItemArpa extends MenuItem {
   menu?: string;

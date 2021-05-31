@@ -22,9 +22,10 @@
             </div>
             <div class='p-flex-column'>
               <button pButton type='button' icon="pi pi-pencil" (click)='openDialog(profile)' class="p-button-rounded p-button-text p-button-icon-only"></button>
+              <button pButton type='button' class='p-button-rounded p-button-text p-button-icon-only'
+                      icon='pi pi-search-plus' [arpaAuditDialog]='profile.id'></button>
             </div>
           </td>
-
         </tr>
       </ng-template>
     </p-table>

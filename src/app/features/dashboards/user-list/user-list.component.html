@@ -33,7 +33,6 @@
             (click)='showDeleteConfirmation($event)'
             [pTooltip]="'userlist.DELETE_USER' | translate"
             pButton
-            pRipple
             type='button'
             icon='pi pi-trash'
             class='p-button-rounded p-button-danger p-button-outlined p-button-sm p-ml-2'
@@ -62,7 +61,7 @@
               ></p-checkbox>
               <label [for]='role.roleName'>{{ role.roleName }}</label>
             </div>
-            <button pButton pRipple type='button' [label]="'SAVE' | translate" class='p-button-outlined'
+            <button pButton type='button' [label]="'SAVE' | translate" class='p-button-outlined'
                     (click)='saveRoles(op)'></button>
           </fieldset>
         </div>

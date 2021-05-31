@@ -47,6 +47,8 @@
   "MONTH": "Monat",
   "DELETE": "Löschen",
   "NOTHING_SELECTED": "Keine Auswahl",
+  "CLEAR": "Zurücksetzen",
+  "SEARCH": "Suchen",
 
   "appointments": {
     "NEW_APPOINTMENT_CONFIRMATION": "Möchtest du einen neuen Termin anlegen für {{value}}?"
@@ -239,6 +241,7 @@
     "TYPE": "Typ",
     "TABLE": "Tabelle",
     "OLD_VALUES": "Alte Werte",
-    "NEW_VALUES": "Neue Werte"
+    "NEW_VALUES": "Neue Werte",
+    "DETAILS": "Entity Details"
   }
 }
