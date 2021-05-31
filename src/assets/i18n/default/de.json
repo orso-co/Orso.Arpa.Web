@@ -46,6 +46,7 @@
   "WEEK": "Woche",
   "MONTH": "Monat",
   "DELETE": "Löschen",
+  "NOTHING_SELECTED": "Keine Auswahl",
 
   "appointments": {
     "NEW_APPOINTMENT_CONFIRMATION": "Möchtest du einen neuen Termin anlegen für {{value}}?"
@@ -219,13 +220,17 @@
   },
   "mupro": {
     "PROFILE": "Musikerprofil",
+    "MAIN_PROFILE": "Hauptprofil",
     "MAIN_INSTURMENT": "Hauptinstrument",
     "MY_PROFILES": "Meine Profile",
     "UPDATED": "Musikerprofil Aktualisiert",
     "CREATED": "Musikerprofil Erstellt",
     "CREATE": "Musikerprofil Erstellen",
     "EDIT": "Musikerprofil Bearbeiten",
-    "LEVEL_ASSESSMENT": "Qualifikation"
+    "LEVEL_ASSESSMENT": "Level",
+    "INQUIRY_STATUS": "Verfügbarkeit",
+    "PREFERRED_POSITIONS": "Bevorzugte Position",
+    "PREFERRED_PARTS": "Preferred Parts"
   },
   "auditlogs": {
     "AUDITLOGS": "Auditlogs",

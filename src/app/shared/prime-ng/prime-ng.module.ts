@@ -32,6 +32,8 @@ import { SidebarModule } from 'primeng/sidebar';
 import { ToolbarModule } from 'primeng/toolbar';
 import { AccordionModule } from 'primeng/accordion';
 import { RatingModule } from 'primeng/rating';
+import { PaginatorModule } from 'primeng/paginator';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 const MODULES = [
   InputTextModule,
@@ -64,6 +66,8 @@ const MODULES = [
   ToolbarModule,
   AccordionModule,
   RatingModule,
+  PaginatorModule,
+  MultiSelectModule,
 ];
 
 @NgModule({

@@ -7,7 +7,7 @@
         optionLabel='name'
         optionValue='id'
         formControlName='instrumentId'
-        [placeholder]='"NOTHING_SELECT" | translate'
+        [placeholder]='"NOTHING_SELECTED" | translate'
         [filter]='true'
       ></p-dropdown>
     </div>
@@ -15,10 +15,54 @@
   <div class='p-fluid p-formgrid p-grid'>
     <div class='p-field p-col'>
       <label for='levelAssessmentPerformer'>{{ 'mupro.LEVEL_ASSESSMENT' | translate }}</label>
-      <p-rating formControlName='levelAssessmentPerformer' [stars]='5'></p-rating>
+      <p-rating formControlName='levelAssessmentPerformer' [cancel]='false' [stars]='5'></p-rating>
     </div>
   </div>
-  <div class='p-formgroup-inline footer'>
+  <div class='p-fluid p-formgrid p-grid' *ngIf='(preferredParts | async)'>
+    <div class='p-field p-col'>
+      <label for='preferredPartsPerformer'>{{ 'mupro.PREFERRED_PARTS' | translate}}</label>
+      <p-multiSelect
+        [options]='(preferredParts | async) || []'
+        optionLabel='label'
+        optionValue='value'
+        formControlName='preferredPartsPerformer'
+        display='chip'
+        [placeholder]='"NOTHING_SELECTED" | translate'
+      ></p-multiSelect>
+    </div>
+  </div>
+  <div class='p-fluid p-formgrid p-grid'>
+    <div class='p-field p-col'>
+      <label for='inquiryStatusPerformerId'>{{ 'mupro.INQUIRY_STATUS' | translate}}</label>
+      <p-dropdown
+        [options]='(inquiryStatus | async) || []'
+        optionLabel='label'
+        optionValue='value'
+        formControlName='inquiryStatusPerformerId'
+        [placeholder]='"NOTHING_SELECTED" | translate'
+      ></p-dropdown>
+    </div>
+  </div>
+  <div class='p-fluid p-formgrid p-grid'>
+    <div class='p-field p-col'>
+      <label for='preferredPositionsPerformerIds'>{{ 'mupro.PREFERRED_POSITIONS' | translate}}</label>
+      <p-multiSelect
+        [options]='(preferredPositions | async) || []'
+        optionLabel='label'
+        optionValue='value'
+        formControlName='preferredPositionsPerformerIds'
+        display='chip'
+        [placeholder]='"NOTHING_SELECTED" | translate'
+      ></p-multiSelect>
+    </div>
+  </div>
+  <div class='p-fluid p-formgrid p-grid'>
+    <div class='p-field-checkbox p-col'>
+      <p-checkbox name="isMainProfile" formControlName='isMainProfile' [binary]="true"></p-checkbox>
+      <label for='isMainProfile'>{{ 'mupro.MAIN_PROFILE' | translate}}</label>
+    </div>
+  </div>
+  <div class='p-formgroup-inline p-jc-between'>
     <div class='p-field p-col'>
       <button
         pButton
@@ -30,7 +74,7 @@
         (click)='cancel()'
       ></button>
     </div>
-    <div class='p-field p-col p-text-right'>
+    <div class='p-field p-col p-text-right' style='margin-right: 0'>
       <button
         pButton
         type='button'
