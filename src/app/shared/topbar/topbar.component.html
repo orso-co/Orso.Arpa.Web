@@ -3,7 +3,7 @@
   <a routerLink='/' class='logo-link'>
     <img src='assets/organization/icons/organisation_icon.png' class='topbar-logo' routerLink='/' />
   </a>
-  <div class='page-title p-d-none p-d-sm-inline-flex'>{{ pageTitle | translate }}</div>
+  <div class='p-d-none p-d-sm-inline-flex'><h1 class='page-title p-ml-4'>{{ pageTitle | translate }}</h1></div>
   <ul class='topbar-menu'>
     <li class='user-profile-item' *ngIf='token$ | async as token'>
       <a href='#' (click)='userprofilemenu.toggle($event); $event.preventDefault();'>
