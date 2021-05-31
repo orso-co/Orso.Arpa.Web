@@ -18,8 +18,7 @@
           </td>
           <td class='p-d-flex p-jc-between'>
             <div class="p-mr-2">
-              <h3>{{ "mupro.MAIN_INSTURMENT" | translate }}</h3>
-              {{ (getSection(profile) | async) }}
+              <h3>{{ (getSection(profile) | async) }}</h3>
             </div>
             <div class='p-flex-column'>
               <button pButton type='button' icon="pi pi-pencil" (click)='openDialog(profile)' class="p-button-rounded p-button-text p-button-icon-only"></button>
