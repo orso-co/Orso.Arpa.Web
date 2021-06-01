@@ -81,8 +81,8 @@
       <td>
         {{ project.stateId }}
       </td>
-      <td>
-        {{ project.isCompleted }}
+      <td style='text-align: center'>
+        <i *ngIf='project.isCompleted' class='pi pi-check-square'></i>
       </td>
       <td style='text-align: right'>
         <button
