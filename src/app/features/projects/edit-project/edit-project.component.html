@@ -113,23 +113,28 @@
       </div>
     </div>
   </div>
-
+  <div class='p-formgroup-inline p-jc-between'>
+    <div class='p-field p-col'>
+      <button
+        pButton
+        class="p-ml-3 p-button-danger"
+        type="button"
+        [label]="'CANCEL' | translate"
+        icon="pi pi-times"
+        iconPos="left"
+        (click)="cancel()"
+      ></button>
+    </div>
+    <div class='p-field p-col p-text-right' style='margin-right: 0'>
+      <button
+        pButton
+        type="submit"
+        [label]="'editappointments.SAVECLOSE' | translate"
+        icon="pi pi-check"
+        iconPos="left"
+        [disabled]="form.pristine || form.invalid"
+        (click)="onSubmit()"
+      ></button>
+    </div>
+  </div>
 </form>
-<button
-  pButton
-  type="submit"
-  [label]="'editappointments.SAVECLOSE' | translate"
-  icon="pi pi-check"
-  iconPos="left"
-  [disabled]="form.pristine || form.invalid"
-  (click)="onSubmit()"
-></button>
-<button
-  pButton
-  class="p-ml-3 p-button-danger"
-  type="button"
-  [label]="'CANCEL' | translate"
-  icon="pi pi-times"
-  iconPos="left"
-  (click)="cancel()"
-></button>
