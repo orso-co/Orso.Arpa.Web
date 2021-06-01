@@ -207,3 +207,32 @@ p-dynamicDialog {
   }
 }
 
+.p-datatable .p-datatable-thead > tr > th {
+  color: var(--text-color-secondary);
+  border-top: 0;
+}
+.p-datatable .p-datatable-header {
+  border: 0;
+}
+.p-datatable .p-datatable-tbody > tr {
+  &:hover {
+    background-color: var(--surface-d);
+  }
+  &.disabled {
+    color: var(--text-color-secondary);
+  }
+  &.clickable {
+    cursor: pointer;
+  }
+}
+
+p-table {
+  ::ng-deep {
+    thead {
+      th {
+        color: red;
+      }
+    }
+  }
+}
+
