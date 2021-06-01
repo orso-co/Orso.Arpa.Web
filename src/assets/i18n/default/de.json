@@ -218,7 +218,12 @@
     "PARENT": "Übergeordnetes Projekt",
     "PROJECT_CREATED": "Projekt erfolgreich angelegt",
     "PROJECT_UPDATED": "Projekt erfolgreich bearbeitet",
-    "CODE": "Code"
+    "CODE": "Code",
+    "PARTICIPATION_MUPRO": "Musikerprofil",
+    "PARTICIPATION_STATUS": "Status",
+    "PARTICIPATION_COMMENT": "Kommentar",
+    "EDIT_PARTICIPATION": "Projekt Teilnahme",
+    "SHOW_PARTICIPANTS": "Projekt Teilnehmer"
   },
   "mupro": {
     "PROFILE": "Musikerprofil",

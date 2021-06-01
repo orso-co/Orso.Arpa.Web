@@ -217,7 +217,12 @@
     "PARENT": "Parent Project",
     "PROJECT_CREATED": "Project successfully created",
     "PROJECT_UPDATED": "Project successfully updated",
-    "CODE": "Code"
+    "CODE": "Code",
+    "PARTICIPATION_MUPRO": "Musician Profile",
+    "PARTICIPATION_STATUS": "Status",
+    "PARTICIPATION_COMMENT": "Comment",
+    "EDIT_PARTICIPATION": "Project Participation",
+    "SHOW_PARTICIPANTS": "Project Participants"
   },
   "mupro": {
     "PROFILE": "Musician Profile",

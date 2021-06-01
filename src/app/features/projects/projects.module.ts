@@ -9,11 +9,13 @@ import { EditProjectComponent } from './edit-project/edit-project.component';
 import {ProjectGenreResolver} from './resolvers/project-genre.resolver';
 import {ProjectTypeResolver} from './resolvers/project-type.resolver';
 import {ProjectStateResolver} from './resolvers/project-status.resolver';
+import { ProjectParticipationComponent } from './project-participation/project-participation.component';
 
 @NgModule({
   declarations: [
     ProjectListComponent,
     EditProjectComponent,
+    ProjectParticipationComponent,
   ],
   imports: [
     CommonModule,

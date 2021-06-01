@@ -96,7 +96,7 @@ const routes: Routes = [
           menu: {
             name: 'feature',
             label: 'MUPRO',
-            icon: 'icon-stack',
+            icon: 'pi pi-users',
           },
         }
       },
@@ -110,7 +110,7 @@ const routes: Routes = [
           menu: {
             name: 'feature',
             label: 'auditlogs.AUDITLOGS',
-            icon: 'icon-stack',
+            icon: 'pi pi-search-plus',
           },
         }
       },

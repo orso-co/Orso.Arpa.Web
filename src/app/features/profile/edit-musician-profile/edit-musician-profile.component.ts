@@ -38,6 +38,10 @@ export class EditMusicianProfileComponent implements OnInit {
       .pipe(map(() => this.selectValueService.get('MusicianProfile', property)));
   }
 
+  get isNew(): boolean {
+    return !this.profile;
+  }
+
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       levelAssessmentPerformer: [1, [Validators.min(1), Validators.max(6)]],

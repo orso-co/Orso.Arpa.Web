@@ -34,7 +34,6 @@ describe('ProjectListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProjectListComponent);
     component = fixture.componentInstance;
-    component.projects = [];
     fixture.detectChanges();
   });
 

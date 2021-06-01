@@ -34,6 +34,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { RatingModule } from 'primeng/rating';
 import { PaginatorModule } from 'primeng/paginator';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 const MODULES = [
   InputTextModule,
@@ -68,6 +69,7 @@ const MODULES = [
   RatingModule,
   PaginatorModule,
   MultiSelectModule,
+  InputTextareaModule,
 ];
 
 @NgModule({

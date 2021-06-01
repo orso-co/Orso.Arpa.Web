@@ -78,7 +78,7 @@
       <button
         pButton
         type='button'
-        [label]="'CREATE' | translate"
+        [label]="(isNew? 'CREATE' : 'SAVE') | translate"
         icon='pi pi-check'
         iconPos='left'
         [disabled]='form.pristine || form.invalid'

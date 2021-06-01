@@ -48,6 +48,7 @@ export interface IAppointmentParticipationDto extends IBaseEntityDto {
 }
 
 export interface IMusicianProfileDto {
+  id: string;
   sectionName: string;
   qualification: string;
   instrumentId: string;

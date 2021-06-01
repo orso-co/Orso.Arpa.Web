@@ -21,7 +21,7 @@ export class TopbarService {
       {
         label: 'MY_APPOINTMENTS',
         routerLink: '/arpa/profile/appointments',
-        icon: 'icon-calendar',
+        icon: 'pi pi-check-square',
       },
     ]);
 

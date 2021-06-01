@@ -4,6 +4,7 @@ import { shareReplay } from 'rxjs/operators';
 import { ApiService } from './api.service';
 import { IUserProfileDto } from '../../models/IUserProfileDto';
 import { IMusicianProfileDto, IUserAppointmentListDto } from '../../models/appointment';
+import { IProjectParticipationStatus } from '../../models/projects';
 
 @Injectable({
   providedIn: 'root',
@@ -45,5 +46,13 @@ export class MeService {
 
   putProfileMusician(profileMusician: IMusicianProfileDto): Observable<any> {
     return this.apiService.post(`${this.baseUrl}/profiles/musician`, profileMusician).pipe(shareReplay());
+  }
+
+  putProjectParticipation<T>(id: string, projectId: string, projectParticipationStatus: IProjectParticipationStatus){
+    return this.apiService
+      .put<T>(
+        `${this.baseUrl}/profiles/musician/${id}/projects/${projectId}/participation`,
+        projectParticipationStatus
+      ).pipe(shareReplay());
   }
 }
