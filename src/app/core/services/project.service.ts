@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
 import { IProjectDto } from '../../models/IProjectDto';
+import { IProjectParticipation } from '../../models/projects';
 
 @Injectable({
   providedIn: 'root',
@@ -31,5 +32,9 @@ export class ProjectService {
 
   public update(project: IProjectDto): Observable<any> {
     return this.apiService.put(`${this.baseUrl}/${project.id}`, project).pipe(shareReplay());
+  }
+
+  public getParticipations(id: string): Observable<IProjectParticipation[]> {
+    return this.apiService.get<IProjectParticipation[]>(`${this.baseUrl}/${id}/participations`).pipe(shareReplay());
   }
 }
