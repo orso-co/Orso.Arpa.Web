@@ -18,7 +18,7 @@ export class EditProjectComponent implements OnInit {
   project: IProjectDto = this.config.data.project;
   venues: Observable<SelectItem[]> = this.config.data.venues.pipe(map(
     (venues: IVenueDto[]) => venues.map((v) => ({
-      label: `${v.address.city} ${v.address.urbanDistrict} | ${v.name}`,
+      label: this.getAddress(v),
       value: v.id,
     } as SelectItem)),
   ));
@@ -46,6 +46,16 @@ export class EditProjectComponent implements OnInit {
               public ref: DynamicDialogRef,
               private translate: TranslateService,
   ) {}
+
+  private getAddress(venue: IVenueDto): string{
+    if(venue.address) {
+      const { city, urbanDistrict } = venue.address;
+      const comb = `${(city?city:'')}${(city&&urbanDistrict?' ': '')}${urbanDistrict?urbanDistrict:''}`;
+      return `${comb}${comb?' | ':''}${venue.name}`;
+    } else{
+      return venue.name;
+    }
+  }
 
   public ngOnInit(): void {
     this.form = this.formBuilder.group({
