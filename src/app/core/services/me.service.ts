@@ -3,23 +3,24 @@ import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
 import { ApiService } from './api.service';
 import { IUserProfileDto } from '../../models/IUserProfileDto';
-import { IUserAppointmentListDto } from '../../models/appointment';
+import { IMusicianProfileDto, IUserAppointmentListDto } from '../../models/appointment';
+import { IProjectParticipationStatus } from '../../models/projects';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MeService {
-  private baseUrl = '/users/me';
+  private baseUrl = '/me';
 
   constructor(private apiService: ApiService) {
   }
 
   getMyProfile(): Observable<IUserProfileDto> {
-    return this.apiService.get<IUserProfileDto>(`${this.baseUrl}/profile`).pipe(shareReplay());
+    return this.apiService.get<IUserProfileDto>(`${this.baseUrl}/profiles/user`).pipe(shareReplay());
   }
 
   putProfile(profileDto: IUserProfileDto): Observable<any> {
-    return this.apiService.put(`${this.baseUrl}/profile`, profileDto).pipe(shareReplay());
+    return this.apiService.put(`${this.baseUrl}/profiles/user`, profileDto).pipe(shareReplay());
   }
 
   getMyAppointments(take: number | null, skip: number | null): Observable<IUserAppointmentListDto> {
@@ -33,5 +34,25 @@ export class MeService {
       `${this.baseUrl}/appointments/${appointmentId}/participation/prediction/${predictionId}`
       , {},
     ).pipe(shareReplay());
+  }
+
+  getProfileMusician<T>(id?: string): Observable<IMusicianProfileDto | IMusicianProfileDto[]> | T {
+    if (id) {
+      return this.apiService.get<IMusicianProfileDto>(`${this.baseUrl}/profiles/musician/${id}`).pipe(shareReplay());
+    } else {
+      return this.apiService.get<IMusicianProfileDto[]>(`${this.baseUrl}/profiles/musician`).pipe(shareReplay());
+    }
+  }
+
+  putProfileMusician(profileMusician: IMusicianProfileDto): Observable<any> {
+    return this.apiService.post(`${this.baseUrl}/profiles/musician`, profileMusician).pipe(shareReplay());
+  }
+
+  putProjectParticipation<T>(id: string, projectId: string, projectParticipationStatus: IProjectParticipationStatus){
+    return this.apiService
+      .put<T>(
+        `${this.baseUrl}/profiles/musician/${id}/projects/${projectId}/participation`,
+        projectParticipationStatus
+      ).pipe(shareReplay());
   }
 }

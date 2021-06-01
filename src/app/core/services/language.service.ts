@@ -40,6 +40,10 @@ export class LanguageService {
     return name ? name : code;
   }
 
+  public getLangs(){
+    return this.translate.getLangs();
+  }
+
   private initialiseLanguageSettings(): void {
     this.translate.addLangs(['de', 'en']);
     this.translate.setDefaultLang('de');

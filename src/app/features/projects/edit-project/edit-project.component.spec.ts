@@ -9,6 +9,7 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {httpLoaderFactory} from '../../../core/core.module';
 import {HttpClient} from '@angular/common/http';
+import { of } from 'rxjs';
 
 describe('EditProjectComponent', () => {
   let component: EditProjectComponent;
@@ -33,7 +34,16 @@ describe('EditProjectComponent', () => {
       ],
       providers: [
         { provide: DynamicDialogRef, useValue: {} },
-        { provide: DynamicDialogConfig, useValue: { data: { projects: [], venues: [] } } },
+        {
+          provide: DynamicDialogConfig, useValue: {
+            data: {
+              projects: of([]),
+              venues: of([]),
+              genre: of([]),
+              state: of([])
+            },
+          },
+        },
       ],
     })
     .compileComponents();

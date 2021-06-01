@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PerformerComponent } from './performer/performer.component';
 import { RoleNames } from '../../models/role-names';
-import { ProjectListResolver } from '../../resolvers/project-list.resolver';
 import { AdministratorComponent } from './administrator/administrator.component';
-import { SectionTreeResolver } from '../../resolvers/section-tree.resolver';
-import { UserListResolver } from '../../resolvers/user-list.resolver';
+import { SectionTreeResolver } from './resolvers/section-tree.resolver';
 import { StaffComponent } from './staff/staff.component';
 import { NoRoleComponent } from './no-role/no-role.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardGuard } from './guards/dashboard.guard';
-import { RoleListResolver } from '../../resolvers/roles-list.resolver';
+import { UserService } from '../../core/services/user.service';
+import { RoleService } from '../../core/services/role.service';
+import { ProjectListResolver } from '../../core/resolvers/project-list.resolver';
 
 const routes: Routes = [
   {
@@ -28,7 +28,7 @@ const routes: Routes = [
         path: 'admin',
         component: AdministratorComponent,
         data: { roles: [RoleNames.admin], treeMaxLevel: 2 },
-        resolve: { users: UserListResolver, sectionTreeLoaded: SectionTreeResolver, rolesLoaded: RoleListResolver },
+        resolve: { users: UserService, sectionTreeLoaded: SectionTreeResolver, rolesLoaded: RoleService },
       },
       {
         path: 'staff', component: StaffComponent,

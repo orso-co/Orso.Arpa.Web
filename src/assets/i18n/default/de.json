@@ -18,12 +18,18 @@
   "NOTFOUND_NICE": "Oups! Hier ist nichts. Sorry!",
   "FORBIDDEN_NICE": "Autsch! Leider erlauben deine Zugriffsrechte diesen Schritt nicht. Sorry!",
   "SAVE": "Speichern",
+  "CREATE": "Erstellen",
   "NO": "Nein",
   "YES": "Ja",
   "MESSAGES": "Nachrichten",
   "APPOINTMENTS": "Termine",
   "MY_APPOINTMENTS": "Meine Termine",
+  "USER_PROFILE": "Benutzerprofil",
+  "USER_PROFILE_DATA": "Meine Daten",
+  "MUSICIAN_PROFILE": "Musikerprofil",
   "PROJECTS": "Projekte",
+  "DASHBOARD": "Dashboard",
+  "MUPRO": "Musikerprofile",
   "LIBRARY": "Bibliothek",
   "TASKS": "Aufgaben",
   "RECENT_ACTIVITY": "Aktivitätsverlauf",
@@ -40,6 +46,9 @@
   "WEEK": "Woche",
   "MONTH": "Monat",
   "DELETE": "Löschen",
+  "NOTHING_SELECTED": "Keine Auswahl",
+  "CLEAR": "Zurücksetzen",
+  "SEARCH": "Suchen",
 
   "appointments": {
     "NEW_APPOINTMENT_CONFIRMATION": "Möchtest du einen neuen Termin anlegen für {{value}}?"
@@ -209,14 +218,37 @@
     "PARENT": "Übergeordnetes Projekt",
     "PROJECT_CREATED": "Projekt erfolgreich angelegt",
     "PROJECT_UPDATED": "Projekt erfolgreich bearbeitet",
-    "CODE": "Code"
+    "CODE": "Code",
+    "PARTICIPATION_MUPRO": "Musikerprofil",
+    "PARTICIPATION_STATUS": "Status",
+    "PARTICIPATION_COMMENT": "Kommentar",
+    "EDIT_PARTICIPATION": "Projekt Teilnahme",
+    "SHOW_PARTICIPANTS": "Projekt Teilnehmer",
+    "PARTICIPANTS": "Teilnehmer",
+    "INSTRUMENT": "Instrument"
+  },
+  "mupro": {
+    "PROFILE": "Musikerprofil",
+    "MAIN_PROFILE": "Hauptprofil",
+    "MAIN_INSTURMENT": "Hauptinstrument",
+    "MY_PROFILES": "Meine Profile",
+    "UPDATED": "Musikerprofil Aktualisiert",
+    "CREATED": "Musikerprofil Erstellt",
+    "CREATE": "Musikerprofil Erstellen",
+    "EDIT": "Musikerprofil Bearbeiten",
+    "LEVEL_ASSESSMENT": "Level",
+    "INQUIRY_STATUS": "Verfügbarkeit",
+    "PREFERRED_POSITIONS": "Bevorzugte Position",
+    "PREFERRED_PARTS": "Bevorzugte Stimmen"
   },
   "auditlogs": {
+    "AUDITLOGS": "Auditlogs",
     "TIME": "Uhrzeit",
     "CHANGED_BY": "Geändert von",
     "TYPE": "Typ",
     "TABLE": "Tabelle",
     "OLD_VALUES": "Alte Werte",
-    "NEW_VALUES": "Neue Werte"
+    "NEW_VALUES": "Neue Werte",
+    "DETAILS": "Entity Details"
   }
 }

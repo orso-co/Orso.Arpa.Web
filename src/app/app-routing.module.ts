@@ -47,24 +47,73 @@ const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: () => import('./features/dashboards/dashboards.module').then(m => m.DashboardsModule),
+        data: {
+          title: 'DASHBOARD',
+          menu: {
+            name: 'feature',
+            label: 'DASHBOARD',
+            icon: 'icon-list',
+          }
+        }
       },
       {
         path: 'appointments',
         loadChildren: () => import('./features/appointments/appointments.module').then(m => m.AppointmentsModule),
+        data: {
+          title: 'APPOINTMENTS',
+          menu: {
+            name: 'feature',
+            label: 'APPOINTMENTS',
+            icon: 'icon-calendar',
+          }
+        }
       },
       {
         path: 'profile',
         loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule),
+        data: {
+          title: 'PROFILE',
+        }
       },
       {
         path: 'projects',
         loadChildren: () => import('./features/projects/projects.module').then(m => m.ProjectsModule),
+        data: {
+          title: 'PROJECTS',
+          menu: {
+            name: 'feature',
+            label: 'PROJECTS',
+            icon: 'icon-stack',
+          }
+        }
       },
       {
-        path: 'me',
-        loadChildren: () => import('./features/me/me.module').then((mod) => mod.MeModule),
+        path: 'mupro',
+        loadChildren: () => import('./features/mupro/mupro.module').then((mod) => mod.MuProModule),
+        data: {
+          roles: ['staff', 'admin'],
+          title: 'MUPRO',
+          menu: {
+            name: 'feature',
+            label: 'MUPRO',
+            icon: 'pi pi-users',
+          },
+        }
       },
-      { path: 'auditlogs', component: AuditLogComponent, resolve: { auditLogs: AuditLogResolver} },
+      {
+        path: 'auditlogs',
+        component: AuditLogComponent,
+        resolve: { auditLogs: AuditLogResolver},
+        data: {
+          roles: ['staff', 'admin'],
+          title: 'auditlogs.AUDITLOGS',
+          menu: {
+            name: 'feature',
+            label: 'auditlogs.AUDITLOGS',
+            icon: 'pi pi-search-plus',
+          },
+        }
+      },
     ],
   },
   { path: '**', redirectTo: '/error' },

@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { ListboxModule } from 'primeng/listbox';
@@ -19,29 +17,31 @@ import { TreeModule } from 'primeng/tree';
 import { MenuModule } from 'primeng/menu';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { DataViewModule } from 'primeng/dataview';
-import { SpinnerModule } from 'primeng/spinner';
 import { DropdownModule } from 'primeng/dropdown';
 import { FieldsetModule } from 'primeng/fieldset';
 import { PanelModule } from 'primeng/panel';
 import { InputNumberModule } from 'primeng/inputnumber';
-import { FullCalendarModule } from 'primeng/fullcalendar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DialogService } from 'primeng/dynamicdialog';
 import { StepsModule } from 'primeng/steps';
 import { CalendarModule } from 'primeng/calendar';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { TableModule } from 'primeng/table';
 import { CaptchaModule } from 'primeng/captcha';
 import { SidebarModule } from 'primeng/sidebar';
-import {ToolbarModule} from 'primeng/toolbar';
+import { ToolbarModule } from 'primeng/toolbar';
+import { AccordionModule } from 'primeng/accordion';
+import { RatingModule } from 'primeng/rating';
+import { PaginatorModule } from 'primeng/paginator';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { BadgeModule } from 'primeng/badge';
 
 const MODULES = [
   InputTextModule,
   ButtonModule,
   PasswordModule,
-  MessagesModule,
   MessageModule,
-  ProgressSpinnerModule,
   TabMenuModule,
   ListboxModule,
   AvatarModule,
@@ -54,21 +54,24 @@ const MODULES = [
   MenuModule,
   SelectButtonModule,
   DataViewModule,
-  SpinnerModule,
   DropdownModule,
   FieldsetModule,
   PanelModule,
   InputNumberModule,
-  FullCalendarModule,
   ConfirmDialogModule,
-  DynamicDialogModule,
   CaptchaModule,
   StepsModule,
   CalendarModule,
   AutoCompleteModule,
   TableModule,
   SidebarModule,
-  ToolbarModule
+  ToolbarModule,
+  AccordionModule,
+  RatingModule,
+  PaginatorModule,
+  MultiSelectModule,
+  InputTextareaModule,
+  BadgeModule
 ];
 
 @NgModule({

@@ -1,54 +1,20 @@
 <div class='topbar clearfix'>
   <a class='icon-menu' (click)='sideBarDisplay = true'></a>
-
   <a routerLink='/' class='logo-link'>
     <img src='assets/organization/icons/organisation_icon.png' class='topbar-logo' routerLink='/' />
   </a>
-
-  <div class='welcome p-d-none p-d-sm-inline-flex'>{{ "performerWELCOME" | translate }}</div>
-
+  <div class='p-d-none p-d-sm-inline-flex'><h1 class='page-title p-ml-4'>{{ pageTitle | translate }}</h1></div>
   <ul class='topbar-menu'>
     <li class='user-profile-item' *ngIf='token$ | async as token'>
       <a href='#' (click)='userprofilemenu.toggle($event); $event.preventDefault();'>
-        <p-avatar
-          [label]='getInitials(token)'
-          size='large'
-          [style]="{ 'background-color': '#64B5F6', color: 'rgba(255, 255, 255, 0.87)' }"
-          shape='circle'
-        ></p-avatar>
+        <arpa-avatar [user]='token' [image]='true' [size]='"large"'></arpa-avatar>
         <span class='user-profile-name'>{{ token.displayName }}</span>
         <span class='user-profile-role'>{{ getRoleNames(token) }}</span>
       </a>
     </li>
   </ul>
 </div>
-
-<p-menu class='user-menu' #userprofilemenu [popup]='true' [model]='userProfileItems'></p-menu>
-
+<arpa-menu name='user' #userprofilemenu menuClass='topbar-menu' [popup]='true'></arpa-menu>
 <p-sidebar [(visible)]='sideBarDisplay'>
-  <ul class='p-menu'>
-    <li class='p-menuitem'>
-      <a class='p-menuitem-link' routerLink='/arpa/dashboard'><span class='icon-list'></span>{{ "Dashboard" | translate }}</a>
-    </li>
-    <li class='p-menuitem'>
-      <a class=' p-menuitem-link' routerLink='/arpa/projects'><span
-        class='icon-stack'></span>{{ "PROJECTS" | translate }}</a>
-    </li>
-
-    <li class='p-menuitem'>
-      <a class=' p-menuitem-link' routerLink='/arpa/appointments'><span class='icon-calendar'></span>{{ "APPOINTMENTS" | translate }}</a>
-    </li>
-
-    <li class='p-menuitem'>
-      <a class=' p-menuitem-link' routerLink='/arpa/me/appointments'><span class='icon-calendar'></span>{{ "MY_APPOINTMENTS" | translate }}</a>
-    </li>
-    <li class='p-menuitem'>
-      <a class=' p-menuitem-link' routerLink='/arpa/404'><span
-        class='icon-stack'></span>{{ "LIBRARY" | translate }}</a>
-    </li>
-    <li class='p-menuitem'>
-      <a class='p-menuitem-link' routerLink='/arpa/auditlogs'><span
-        class='icon-stack'></span>Audit Log</a>
-    </li>
-  </ul>
+  <arpa-menu name='feature'></arpa-menu>
 </p-sidebar>

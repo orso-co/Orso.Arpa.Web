@@ -1,63 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import { NotificationsService } from '../../core/services/notifications.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProfileService } from './profile.service';
 import { IUserProfileDto } from '../../models/IUserProfileDto';
-import { MeService } from '../../core/services/me.service';
+import { Unsubscribe } from '../../core/decorators/unsubscribe.decorator';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'arpa-appointments',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
+@Unsubscribe()
 export class ProfileComponent implements OnInit {
 
-  userProfile: IUserProfileDto;
-  profileFormGroup: FormGroup;
+  public selection: boolean;
+  public profile: IUserProfileDto;
+  private menuEventSubscription: Subscription;
 
-  constructor(private meService: MeService,
-              private router: Router,
-              private fb: FormBuilder,
-              private notificationsService: NotificationsService,
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private profileService: ProfileService,
   ) {
-    this.profileFormGroup = this.fb.group({
-      userName: [{ value: '', disabled: true }],
-      givenName: ['', Validators.required],
-      surname: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', Validators.pattern('[- +()0-9]+')],
+    this.menuEventSubscription = profileService.menuEvents.subscribe(() => {
+      this.selection = true;
     });
   }
 
   ngOnInit(): void {
-    this.meService.getMyProfile().subscribe(data => {
-      this.userProfile = data;
-      this.profileFormGroup.setValue(this.userProfile);
+    this.profile = this.route.snapshot.data.profile;
+  }
+
+  return(event: Event) {
+    this.selection = false;
+    this.router.navigate(['.'], {
+      relativeTo: this.route,
     });
-
-    this.profileFormGroup.valueChanges.subscribe(data => {
-      this.userProfile = data;
-    });
-  }
-
-  // workaround to display formGroup fields in original order
-  returnZero(): number {
-    return 0;
-  }
-
-  goToDashboard(): void {
-    this.router.navigate(['/arpa/dashboard']);
-
-  }
-
-  onSubmit(): void {
-    this.meService.putProfile(this.userProfile).subscribe(data => {
-        if (data == null) {
-          this.notificationsService.info('profile.UPDATE');
-        } else {
-          this.notificationsService.error('profile.ISSUE');
-        }
-      },
-    );
+    event.preventDefault();
   }
 }

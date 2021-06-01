@@ -9,6 +9,6 @@ export class AuditLogResolver implements Resolve<IAuditLog[]> {
   constructor(private auditLogService: AuditLogService) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<IAuditLog[]> {
-    return this.auditLogService.loadAll();
+    return this.auditLogService.load(0, 400);
   }
 }

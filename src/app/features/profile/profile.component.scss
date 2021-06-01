@@ -1,0 +1,44 @@
+:host ::ng-deep {
+  .split-view-sidebar {
+    arpa-avatar {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      margin-top: 2em;
+      margin-bottom: 2em;
+    }
+    .arpa-menu {
+      .p-menu {
+        border: 0;
+        width: 100%;
+        background-color: inherit;
+      }
+      ul.p-menu-list {
+        margin: 0;
+        padding: 4em 10px 0;
+        width: 100%;
+        list-style: none;
+        li {
+          border-bottom: 1px;
+          border-top: 0;
+          border-left: 0;
+          border-right: 0;
+          border-color: var(--surface-d);
+          border-style: solid;
+          list-style: none;
+          a {
+            & > span {
+              &:before {
+                font-size: 1.8em;
+                margin-right: .5em;
+              }
+            }
+            &.p-menuitem-link-active {
+              background: rgba(100, 181, 246, 0.16);
+            }
+          }
+        }
+      }
+    }
+  }
+}

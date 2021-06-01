@@ -1,0 +1,152 @@
+.profiles {
+}
+
+
+.profiles {
+  background-color: var(--surface-d);
+  margin-bottom: 4rem;
+
+  ul, li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .profile {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+
+
+    .performer-details {
+      border-right: 1px solid var(--surface-e);
+      @media (max-width: 768px) {
+        border-bottom: 1px solid var(--surface-e);
+        border-right: 0;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+      }
+    }
+
+    .staff-details {
+      display: flex;
+      flex: 1;
+    }
+
+    .section-detail {
+      display: flex;
+      flex: 1 auto;
+      h2 {
+        margin-top: 0;
+      }
+    }
+
+    .staff-details, .performer-details {
+      h3 {
+        margin-top: 0;
+        color: var(--text-color-secondary);
+      }
+    }
+  }
+
+  .p-steps-number {
+    cursor: pointer;
+  }
+}
+
+:host ::ng-deep {
+
+  .p-steps ul {
+    justify-content: center;
+  }
+
+  .dot-profile {
+    &.p-steps .p-steps-item .p-menuitem-link .p-steps-number {
+      background: rgba(100, 181, 246, 0.16);
+      color: transparent;
+      cursor: pointer;
+      min-width: 1rem;
+      height: 1rem;
+      line-height: 1rem;
+      font-size: inherit;
+
+      margin-top: .5rem;
+      margin-bottom: .5rem;
+    }
+
+    .p-steps-item {
+      flex: inherit;
+      margin-left: .5rem;
+      margin-right: .5rem;
+    }
+
+
+
+    &.p-steps .p-steps-item.p-highlight .p-steps-number {
+      background: rgba(100, 181, 246, 0.56);
+      cursor: default;
+    }
+
+    &.p-steps .p-steps-item.p-highlight .p-steps-number {
+      color: transparent;
+    }
+  }
+
+
+  h1 {
+    margin-bottom: 2em;
+    display: block;
+    text-align: center;
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  .profile {
+    .p-mr-3 {
+      margin-right: inherit!important;
+    }
+    @media (min-width: 768px) {
+      [size="xxlarge"] {
+        .p-avatar.p-avatar-image {
+          width: 6rem;
+          height: 6rem;
+          font-size: 4rem;
+        }
+      }
+    }
+
+    .details {
+      text-align: center;
+
+      @media (min-width: 768px) {
+        text-align: left;
+        align-items: center;
+        display: flex;
+      }
+
+      & > div {
+        & > div {
+          display: block;
+          width: 100%;
+          line-height: 128%;
+
+          &.name {
+            font-size: 1.5em;
+          }
+
+          &.profile {
+            font-weight: 200;
+          }
+
+          &.country {
+            font-size: .8em;
+            font-weight: 200;
+            opacity: .8;
+          }
+        }
+      }
+    }
+  }
+
+}

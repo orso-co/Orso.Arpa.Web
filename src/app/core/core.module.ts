@@ -40,10 +40,9 @@ export const translateInitializerFactory = (translate: TranslateService, configS
       deps: [TranslateService, ConfigService],
       multi: true,
     },
-
   ],
   exports: [
-    ToastModule
+    ToastModule,
   ]
 })
 export class CoreModule {
@@ -58,7 +57,7 @@ export class CoreModule {
 
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
     if (parentModule) {
-      throw new Error('CoreModule has already been loaded. You should only import Core modules in the AppModule only.');
+      throw new Error('CoreModule has already been loaded. You should import Core modules in the AppModule only.');
     }
   }
 }

@@ -1,0 +1,65 @@
+<form [formGroup] = "form" (ngSubmit)="submit()" class="p-jc-center">
+  <div class='p-grid p-jc-center'>
+    <div class='p-col-12 p-md-6 p-text-center'>
+      <h1>{{ 'USER_PROFILE_DATA' | translate}}</h1>
+    </div>
+  </div>
+  <div class='p-grid p-jc-center show-mobile'>
+    <div class='p-col-12 p-md-6 p-text-center'>
+      <arpa-avatar [user]='profile' [image]='true'></arpa-avatar>
+    </div>
+  </div>
+  <div class='p-grid p-jc-center'>
+    <div class='p-col-12 p-md-3'>
+      <div class="p-field p-float-label">
+        <input id="givenName" type="text" pInputText formControlName="givenName" autocomplete="givenName">
+        <label for="float-input">{{ 'GIVENNAME' | translate }}</label>
+      </div>
+    </div>
+    <div class='p-col-12 p-md-3'>
+      <div class="p-field p-float-label">
+        <input id="surname" type="text" pInputText formControlName="surname" autocomplete="surname">
+        <label for="float-input">{{ 'SURNAME' | translate }}</label>
+      </div>
+    </div>
+  </div>
+  <div class='p-grid p-jc-center'>
+    <div class='p-col-12 p-md-3'>
+      <div class="p-field p-float-label">
+        <input id="email" type="text" pInputText formControlName="email" autocomplete="email">
+        <label for="float-input">{{ 'EMAIL' | translate }}</label>
+      </div>
+    </div>
+    <div class='p-col-12 p-md-3'>
+    </div>
+  </div>
+  <div class='p-grid p-jc-center'>
+    <div class='p-col-12 p-md-3'>
+      <div class="p-field p-float-label">
+        <input id="phoneNumber" type="text" pInputText formControlName="phoneNumber" autocomplete="phonenumber">
+        <label for="float-input">{{ 'PHONENUMBER' | translate }}</label>
+      </div>
+    </div>
+    <div class='p-col-12 p-md-3'>
+    </div>
+  </div>
+  <div class='p-grid p-jc-center'>
+    <div class='p-col-12 p-md-6'>
+      <div class="p-field p-float-label">
+        <textarea id="aboutMe" type="text" pInputText formControlName="aboutMe" autocomplete="aboutMe"></textarea>
+        <label for="float-input">{{ 'ABOUT_ME' | translate }}</label>
+      </div>
+    </div>
+  </div>
+  <div class='p-grid p-jc-center'>
+    <div class='p-col-12 p-md-6 p-text-right'>
+      <div class="p-field">
+        <button
+          pButton
+          label="{{ 'SAVE' | translate }}"
+          [disabled]="form.invalid || form.pristine ">
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

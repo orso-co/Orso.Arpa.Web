@@ -38,7 +38,7 @@ export class AuthService {
   private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
   public isAuthenticated: Observable<boolean> = this.isAuthenticatedSubject.asObservable();
 
-  private clientUriBase: string;
+  private readonly clientUriBase: string;
 
   constructor(
     private apiService: ApiService,

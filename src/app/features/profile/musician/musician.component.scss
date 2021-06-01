@@ -1,0 +1,9 @@
+.status {
+  width: 2px;
+  &.inactive {
+    background-color: red;
+  }
+  &.active {
+    background-color: green;
+  }
+}

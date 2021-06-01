@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { IVenueDto } from '../../../models/appointment';
-import { IProjectDto } from '../../../models/IProjectDto';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
-import { first } from 'rxjs/operators';
-import { ProjectService } from '../../../core/services/project.service';
-import { NotificationsService } from '../../../core/services/notifications.service';
 import { SelectItem } from 'primeng/api';
+import { IProjectDto } from '../../../models/IProjectDto';
+import { IVenueDto } from '../../../models/appointment';
+import { Observable } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'arpa-edit-project',
@@ -15,44 +14,41 @@ import { SelectItem } from 'primeng/api';
   styleUrls: ['./edit-project.component.scss'],
 })
 export class EditProjectComponent implements OnInit {
-  project: IProjectDto = this.config.data.project;
-  venues: IVenueDto[] = this.config.data.venues;
-  venueOptions: SelectItem[] = [];
-  projects: IProjectDto[] = this.config.data.projects;
-  parentProjectOptions: SelectItem[] = [];
-  typeOptions: SelectItem[] = this.config.data.typeOptions;
-  genreOptions: SelectItem[] = this.config.data.genreOptions;
-  stateOptions: SelectItem[] = this.config.data.stateOptions;
-  completedOptions: SelectItem[] = this.config.data.completedOptions;
 
-  formGroup: FormGroup;
+  project: IProjectDto = this.config.data.project;
+  venues: Observable<SelectItem[]> = this.config.data.venues.pipe(map(
+    (venues: IVenueDto[]) => venues.map((v) => ({
+      label: `${v.address.city} ${v.address.urbanDistrict} | ${v.name}`,
+      value: v.id,
+    } as SelectItem)),
+  ));
+  type: Observable<SelectItem[]> = this.config.data.type;
+  genre: Observable<SelectItem[]> = this.config.data.genre;
+  state: Observable<SelectItem[]> = this.config.data.state;
+  completedOptions: SelectItem[] = [
+    { label: this.translate.instant('YES'), value: true },
+    { label: this.translate.instant('NO'), value: false },
+  ];
+  parentProject: Observable<SelectItem[]> = this.config.data.projects.pipe(map(
+    (projects: IProjectDto[]) => projects
+      .filter((project: IProjectDto) => project !== this.project)
+      .map((project) => ({ label: project.title, value: project.id } as SelectItem)),
+  ));
+
+  form: FormGroup;
 
   get isNew(): boolean {
     return !this.project;
   }
 
-  constructor(
-    public config: DynamicDialogConfig,
-    private formBuilder: FormBuilder,
-    private translate: TranslateService,
-    public ref: DynamicDialogRef,
-    private projectService: ProjectService,
-    private notificationsService: NotificationsService
+  constructor(public config: DynamicDialogConfig,
+              private formBuilder: FormBuilder,
+              public ref: DynamicDialogRef,
+              private translate: TranslateService,
   ) {}
 
-  ngOnInit(): void {
-    this.createForm();
-    if (!this.isNew) {
-      this.fillForm();
-    }
-    this.venueOptions = this.venues ? this.venues.map((v) => this.mapVenueToSelectItem(v)) : [];
-    this.parentProjectOptions = this.projects
-      ? this.projects.filter((project) => project !== this.project).map((p) => this.mapParentProjectToSelectItem(p))
-      : [];
-  }
-
-  private createForm(): void {
-    this.formGroup = this.formBuilder.group({
+  public ngOnInit(): void {
+    this.form = this.formBuilder.group({
       title: [null, [Validators.required]],
       shortTitle: [null, [Validators.required]],
       startDate: [null],
@@ -62,61 +58,27 @@ export class EditProjectComponent implements OnInit {
       stateId: [null],
       genreId: [null],
       parentId: [null],
-      // eslint-disable-next-line id-blacklist
       code: [null, [Validators.required]],
       isCompleted: [null, [Validators.required]],
     });
+
+    if (!this.isNew) {
+      this.form.patchValue({
+        ...this.project,
+        startDate: new Date(this.project.startDate),
+        endDate: new Date(this.project.endDate),
+      });
+    }
   }
 
-  private fillForm(): void {
-    this.formGroup.reset({
-      ...this.project,
-      startDate: new Date(this.project.startDate),
-      endDate: new Date(this.project.endDate),
-    });
-  }
-
-  private mapVenueToSelectItem(venue: IVenueDto): SelectItem {
-    return { label: `${venue.address.city} ${venue.address.urbanDistrict} | ${venue.name}`, value: venue.id };
-  }
-
-  private mapParentProjectToSelectItem(project: IProjectDto): SelectItem {
-    return { label: project.title, value: project.id };
-  }
-
-  onSubmit(): void {
-    if (this.formGroup.invalid || this.formGroup.pristine) {
+  public onSubmit(): void {
+    if (this.form.invalid || this.form.pristine) {
       return;
     }
-    const project = { ...this.project, ...this.formGroup.value } as IProjectDto;
-    if (this.isNew) {
-      this.saveNewProject(project);
-    } else {
-      this.updateProject(project);
-    }
+    this.ref.close({ ...this.project, ...this.form.value } as IProjectDto);
   }
 
-  private saveNewProject(project: IProjectDto): void {
-    this.projectService
-      .create(project)
-      .pipe(first())
-      .subscribe((result) => {
-        this.notificationsService.success('projects.PROJECT_CREATED');
-        this.ref.close(result);
-      });
-  }
-
-  private updateProject(project: IProjectDto): void {
-    this.projectService
-      .update(project)
-      .pipe(first())
-      .subscribe(() => {
-        this.notificationsService.success('projects.PROJECT_UPDATED');
-        this.ref.close(project);
-      });
-  }
-
-  cancel(): void {
+  public cancel(): void {
     this.ref.close(null);
   }
 }

@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { DummyComponent } from '../../../shared/dummy/dummy.component';
 import {DialogService} from 'primeng/dynamicdialog';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ProjectListComponent', () => {
   let component: ProjectListComponent;
@@ -18,6 +19,7 @@ describe('ProjectListComponent', () => {
         imports: [
           RouterTestingModule,
           TranslateMockModule,
+          HttpClientTestingModule,
         ],
         declarations: [ProjectListComponent, DummyComponent],
         providers: [
@@ -32,7 +34,6 @@ describe('ProjectListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProjectListComponent);
     component = fixture.componentInstance;
-    component.projects = [];
     fixture.detectChanges();
   });
 

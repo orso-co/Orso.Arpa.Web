@@ -1,0 +1,31 @@
+<div class='p-d-flex wrapper' [class.hasSelection]='person'>
+  <div class='layout-sidebar'>
+    <p-listbox
+      [options]='persons'
+      optionValue='id'
+      optionLabel='userName'
+      [(ngModel)]='person'
+      [filter]='true'
+      (onClick)='select($event)'
+      filterPlaceHolder='Search'
+    >
+      <ng-template let-user pTemplate='item'>
+        <arpa-avatar [user]='user' [image]='(user.surname=== "Admin")' size='large'></arpa-avatar>
+        <div class='details'>
+          <div class='name'>{{user.givenName}} {{user.surname}}</div>
+          <div class='profile'>Instrument</div>
+          <div class='country'>Deutschland, Berlin</div>
+        </div>
+      </ng-template>
+    </p-listbox>
+  </div>
+  <div class='layout-content'>
+    <div *ngIf='!person' class='default p-d-flex'>
+      <i class='pi pi-user'></i>
+    </div>
+    <div *ngIf='person' class='back-link'>
+      <a [routerLink]="['.']"><i class='pi pi-arrow-left'></i></a>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

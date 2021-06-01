@@ -1,4 +1,4 @@
-<form [formGroup]="formGroup">
+<form [formGroup]="form">
   <div class="p-fluid p-formgrid p-grid">
     <div class="p-col-12 p-md-4">
       <div class="p-field p-col-12">
@@ -49,7 +49,7 @@
           [showClear]="true"
           formControlName="genreId"
           [autoDisplayFirst]="false"
-          [options]="genreOptions"
+          [options]="(genre | async) || []"
           id="genre"
         ></p-dropdown>
       </div>
@@ -60,7 +60,7 @@
           [showClear]="true"
           formControlName="typeId"
           [autoDisplayFirst]="false"
-          [options]="typeOptions"
+          [options]="(type | async) || []"
           id="type"
         ></p-dropdown>
       </div>
@@ -70,8 +70,7 @@
             appendTo="body"
             [autoDisplayFirst]="false"
             [showClear]="true"
-            [autoDisplayFirst]="false"
-            [options]="venueOptions"
+            [options]="(venues | async) || []"
             id="venue"
             name="venue"
           ></p-dropdown>
@@ -90,18 +89,18 @@
           [showClear]="true"
           formControlName="parentId"
           [autoDisplayFirst]="false"
-          [options]="parentProjectOptions"
+          [options]="(parentProject | async) || []"
           id="parent"
         ></p-dropdown>
       </div>
       <div class="p-field p-col-12">
-        <label for="state">{{ 'projects.STATE' | translate }}</label>
+        <label for="stateId">{{ 'projects.STATE' | translate }}</label>
         <p-dropdown
           appendTo="body"
           [showClear]="true"
           formControlName="stateId"
           [autoDisplayFirst]="false"
-          [options]="stateOptions"
+          [options]="(state | async) || []"
           id="state"
         ></p-dropdown>
       </div>
@@ -114,23 +113,28 @@
       </div>
     </div>
   </div>
-
+  <div class='p-formgroup-inline p-jc-between'>
+    <div class='p-field p-col'>
+      <button
+        pButton
+        class="p-ml-3 p-button-danger"
+        type="button"
+        [label]="'CANCEL' | translate"
+        icon="pi pi-times"
+        iconPos="left"
+        (click)="cancel()"
+      ></button>
+    </div>
+    <div class='p-field p-col p-text-right' style='margin-right: 0'>
+      <button
+        pButton
+        type="submit"
+        [label]="'editappointments.SAVECLOSE' | translate"
+        icon="pi pi-check"
+        iconPos="left"
+        [disabled]="form.pristine || form.invalid"
+        (click)="onSubmit()"
+      ></button>
+    </div>
+  </div>
 </form>
-<button
-  pButton
-  type="submit"
-  [label]="'editappointments.SAVECLOSE' | translate"
-  icon="pi pi-check"
-  iconPos="left"
-  [disabled]="formGroup.pristine || formGroup.invalid"
-  (click)="onSubmit()"
-></button>
-<button
-  pButton
-  class="p-ml-3 p-button-danger"
-  type="button"
-  [label]="'CANCEL' | translate"
-  icon="pi pi-times"
-  iconPos="left"
-  (click)="cancel()"
-></button>
