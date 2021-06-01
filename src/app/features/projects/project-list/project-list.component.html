@@ -86,6 +86,7 @@
       </td>
       <td>
         <button
+          *ngIf='!project.isCompleted'
           pButton
           type='button' (click)='openParticipationDialog($event, project.id)'
           [label]='"projects.EDIT_PARTICIPATION" | translate'
