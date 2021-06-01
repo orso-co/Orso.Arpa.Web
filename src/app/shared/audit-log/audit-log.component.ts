@@ -21,10 +21,6 @@ export class AuditLogComponent {
     this.auditLogs = this.route.data.pipe<IAuditLog[]>(map((data) => data.auditLogs));
   }
 
-  public getTypeName(type: number): string {
-    return this.auditLogService.getTypeName(type);
-  }
-
   public clear(ref: Table) {
     ref.clear();
   }
