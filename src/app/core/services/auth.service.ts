@@ -7,7 +7,6 @@ import { map, distinctUntilChanged, filter, tap, catchError } from 'rxjs/operato
 import { ILoginDto } from '../../models/ILoginDto';
 import { ITokenDto } from '../../models/ITokenDto';
 import { IUserRegisterDto } from '../../models/IUserRegisterDto';
-import { ConfigService } from './config.service';
 import { ICreateEmailConfirmationTokenDto } from '../../models/ICreateEmailConfirmationTokenDto';
 import { IConfirmEmailDto } from '../../models/IConfirmEmailDto';
 import { ICreateNewPasswordDto } from '../../models/ICreateNewPasswordDto';
@@ -43,12 +42,10 @@ export class AuthService {
   constructor(
     private apiService: ApiService,
     private jwtService: JwtService,
-    private configService: ConfigService,
     private roleService: RoleService,
     private logger: LoggerService,
   ) {
-    const { protocol, baseUrl } = this.configService.getEnv('web');
-    this.clientUriBase = `${protocol}://${baseUrl}`;
+    this.clientUriBase = `${window.location.origin}`;
   }
 
   populate() {
