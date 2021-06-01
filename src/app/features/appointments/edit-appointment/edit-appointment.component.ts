@@ -143,7 +143,7 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   mapVenueToSelectItem(venue: IVenueDto): SelectItem {
-    return { label: `${venue.address.city} ${venue.address.urbanDistrict} | ${venue.name}`, value: venue.id };
+    return { label: `${venue?.address?.city} ${venue?.address?.urbanDistrict} | ${venue?.name}`, value: venue?.id };
   }
 
   mapMusicianProfileToSectionSelectItem(musicianProfile: IMusicianProfileDto): SelectItem {
