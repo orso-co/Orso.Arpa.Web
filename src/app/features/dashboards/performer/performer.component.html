@@ -1,64 +1,99 @@
 <div class="p-grid">
+
+
   <div class="p-col-12 p-md-6 p-lg-4">
     <arpa-dummy [icon]='"messages"' class='arpa-dummy'>
-      <h3>{{ 'MESSAGES' | translate }}</h3>
-      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
+      <h2>{{ 'MESSAGES' | translate }}</h2>
+     <p-accordion>
+       <p-accordionTab header="Heutige Probe für Chor früher!">
+        <p>Um eine Kollision mit Orchesteraufbau zu vermeiden, startet das Einsingen bereits um 18:30 </p>
+        <p-skeleton styleClass="rectangle" width=50% heigt="1rem"></p-skeleton>
       <br>
+      <p-skeleton styleClass="rectangle" width=80% heigt="1rem"></p-skeleton>
+      </p-accordionTab>
+      <p-accordionTab header="Programmänderung kommendes Konzert">
+        Erste Zugabe wird ausgetauscht, siehe neues Material in Bibliothek.<br>Wolfgang arbeitet derzeit noch Korrekturen in Schneeköniginpartitur ein. Stay tuned!
+        <p-skeleton styleClass="rectangle" width=50% heigt="1rem"></p-skeleton>
+        <br>
+        <p-skeleton styleClass="rectangle" width=80% heigt="1rem"></p-skeleton>
+        <br>
+        <p-skeleton styleClass="rectangle" width=20% heigt="1rem"></p-skeleton>
+      </p-accordionTab>
+      <p-accordionTab header="Neue Probentermine verfügbar">
+        Schaut mal rein und gebt uns Rückmeldung, wie's mit eurer Teilnahme ausschaut. Danke! :-)
+        <p-skeleton styleClass="rectangle" width=50% height="1rem"></p-skeleton>
+        <br>
+        <p-skeleton styleClass="rectangle" width=80% height="1rem"></p-skeleton>
+        <br>
+        <p-skeleton styleClass="rectangle" width=20% height="1rem"></p-skeleton>
+      </p-accordionTab>
+      <p-accordionTab header="Für RoSy @Bphil nur noch Kat. 5 verfügbar">
+        Evtl. bekommen wir noch von Eventim Karten zurück für die höheren Kategorien.
+        <br>
+        <p-skeleton styleClass="rectangle" width=20% height="1rem"></p-skeleton>
+      </p-accordionTab>
+     </p-accordion>
+     <br>
+      <p-skeleton styleClass="rectangle" width=70% height="1rem"></p-skeleton>
       <br>
-      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
+      <p-skeleton styleClass="rectangle" width=40% height="1rem"></p-skeleton>
       <br>
-      <br>
-      <br>
-      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
-      <br>
-      <br>
-      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
-      <br>
-      <br>
-      <br>
-      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
-      <br>
-      <br>
-      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
+      <p-skeleton styleClass="rectangle" width=60% height="1rem"></p-skeleton>
+
     </arpa-dummy>
   </div>
+
   <div class="p-col-12 p-md-6 p-lg-4">
     <arpa-dummy [icon]='"appointments"'>
-      <h3>{{ 'APPOINTMENTS' | translate }}</h3>
-      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
+     <a routerLink='/arpa/appointments'><h2>{{ 'APPOINTMENTS' | translate }}</h2></a>
+     <p>3. Juni 2021 20-22 Uhr - RoSy-Chorprobe</p>
+     <p>22. Juni 2021 Anmeldeschluss "Festival em Trancoso" (Brasilien-Tour)</p>
+     <p>22. Dezember 2021 - Konzerttag @Bphil | Die Schneekönigin</p>
+      <p-skeleton styleClass="rectangle" width=50% height="1rem"></p-skeleton>
       <br>
+      <p-skeleton styleClass="rectangle" width=80% height="1rem"></p-skeleton>
       <br>
-      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
+      <p-skeleton styleClass="rectangle" width=20% height="1rem"></p-skeleton>
       <br>
-      <br>
-      <br>
-      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
-      <br>
-      <br>
-      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
+      <p-skeleton styleClass="square" width=33% height="6rem">Termin</p-skeleton>
     </arpa-dummy>
-    <hr>
-    <h3>{{ 'PROJECTS' | translate }}</h3>
+    <br>
+
+    <a routerLink='/arpa/projects'><h2>{{ 'PROJECTS' | translate }}</h2></a>
+    <p-skeleton styleClass="rectangle" width=50% height="1rem"></p-skeleton>
+      <br>
+      <p-skeleton styleClass="rectangle" width=80% height="1rem"></p-skeleton>
+      <br>
+      <p-skeleton styleClass="rectangle" width=20% height="1rem"></p-skeleton>
+      <br>
+      <p-skeleton shape="square" styleClass="p-mr-2" width=25% height="5rem"></p-skeleton>
   </div>
+
+
   <div class="p-col-12 p-md-6 p-lg-4">
     <arpa-dummy [icon]='"tasks"'>
-      <h3>{{ 'TASKS' | translate }}</h3>
-      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
+      <h2>{{ 'TASKS' | translate }}</h2>
+      <p>Bitte Rückmeldung zu Projekt "Schneeköngin" geben</p>
+      <p>Zylinder & Schal abgeben bis 31.12.2021</p>
+      <p>Bitte IBAN für Reisekosten übermitteln</p>
+      <p>Für externes PWE Bettenbelegung checken</p>
+      <p>Wir brauchen deinen Reisepass für Flugbuchung</p>
+      <p-skeleton styleClass="rectangle" width=50% height="1rem"></p-skeleton>
       <br>
+      <p-skeleton styleClass="rectangle" width=80% height="1rem"></p-skeleton>
       <br>
-      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
+      <p-skeleton styleClass="rectangle" width=20% height="1rem"></p-skeleton>
       <br>
-      <br>
-      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
-      <br>
-      <br>
-      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
-      <br>
-      <br>
-      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="20%" height='30'>
-      <br>
-      <br>
-      <img src="assets/common/images/dummy.gif" alt="Placeholder" width="100%" height='30'>
+      <div class="p-field p-col-12 p-md-6">
+        <h3>Crowdwork-Pipeline</h3>
+        <h4>Wer hat gerade Zeit und kann was übernehmen?</h4>
+        <div class="p-d-flex p-ai-end">
+            <p-skeleton shape="circle" size="4rem" styleClass="p-mr-2"></p-skeleton>
+            <p-skeleton shape="circle" size="4rem" styleClass="p-mr-2"></p-skeleton>
+            <p-skeleton shape="circle" size="4rem" styleClass="p-mr-2"></p-skeleton>
+            <p-skeleton shape="circle" size="4rem"></p-skeleton>
+        </div>
+    </div>
     </arpa-dummy>
   </div>
 </div>
