@@ -13,7 +13,6 @@ export class PerformerComponent {
   projects: IProjectDto[] = [];
 
   constructor(
-    private skeletonModule: SkeletonModule,
     route: ActivatedRoute) {
     route.data.pipe(map((routeData) => routeData.projects)).subscribe((projects) => (this.projects = projects));
   }
