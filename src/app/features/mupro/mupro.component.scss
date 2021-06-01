@@ -1,0 +1,173 @@
+:host ::ng-deep {
+  .p-listbox .p-listbox-list .p-listbox-item {
+    border-bottom: 1px;
+    border-color: var(--surface-d);
+    border-style: solid;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .p-listbox-list {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+
+  @media (min-width: 768px) {
+    .p-listbox-list {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+
+  p-listbox {
+    & > div {
+      border: 0;
+      background-color: inherit;
+
+      .p-listbox-header {
+        background-color: inherit;
+      }
+      .p-listbox-item {
+        .details {
+          display: block;
+          width: 100%;
+          & > div {
+            display: block;
+            width: 100%;
+            font-size: .8em;
+            line-height: 128%;
+            &.name {
+
+            }
+            &.profile {
+              font-weight: 200;
+            }
+            &.country {
+              font-size: .8em;
+              font-weight: 200;
+              opacity: .8;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+:host {
+  .default {
+    height: 100%;
+    text-align: center;
+    align-items: center;
+    display: flex;
+
+    .pi-user {
+      font-size: 4em;
+      opacity: 0.4;
+      text-align: center;
+      display: block;
+      width: 100%;
+    }
+  }
+
+  .wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow-x: hidden;
+  }
+
+  .layout-sidebar {
+    flex-direction: column;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    padding-top: 6em;
+  }
+
+  .layout-content {
+    position: absolute;
+    flex-direction: column;
+    display:flex;
+    min-height: 100%;
+    top: 0;
+    width: 100%;
+    left: 100%;
+    transition: transform .4s cubic-bezier(.05, .74, .2, .99);
+    z-index: 600;
+    background-color: var(--surface-b);
+    overflow-x: hidden;
+    padding: 0 20px 4em;
+  }
+
+  .hasSelection {
+    .layout-content {
+      display: flex;
+      transform: translateX(-100%);
+      width: 100%;
+    }
+  }
+
+  .back-link {
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    display: block;
+    width: 60px;
+    height: 60px;
+    text-align: left;
+    left: 0;
+    a {
+      color: var(--text-color);
+      padding: 14px;
+      font-weight: 200;
+      display: block;
+      i {
+        font-size: 1.8em;
+        padding: 2px;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .back-link {
+      display: none;
+    }
+    .layout-sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100%;
+      background-color: var(--surface-a);
+      width: 250px;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      transition: transform .4s cubic-bezier(.05, .74, .2, .99);
+      flex-direction: column;
+      z-index: 20;
+    }
+
+    .layout-content {
+      left: 0;
+      z-index: 10;
+      height: 100%;
+      padding-top: 6em;
+      padding-bottom: 0;
+      padding-left: 270px;
+      padding-right: 20px;
+    }
+
+    .hasSelection {
+      .layout-content {
+        display: inherit;
+        transform: unset;
+      }
+    }
+  }
+
+}

@@ -7,6 +7,7 @@ import { concatMap, finalize, tap } from 'rxjs/operators';
 })
 export class LoadingService {
   private loadingSubject = new BehaviorSubject<boolean>(false);
+  private calls = 0;
 
   loading$: Observable<boolean> = this.loadingSubject.asObservable();
 
@@ -19,10 +20,19 @@ export class LoadingService {
   }
 
   loadingOn(): void {
+    this.calls++;
     this.loadingSubject.next(true);
   }
 
   loadingOff(): void {
-    this.loadingSubject.next(false);
+    this.calls--;
+    if(this.calls <= 0) {
+      this.loadingSubject.next(false);
+    }
+  }
+
+  reset(): void {
+    //this.calls = 0;
+    this.loadingOff();
   }
 }

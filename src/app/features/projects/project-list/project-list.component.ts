@@ -1,13 +1,23 @@
-import { Component, Input } from '@angular/core';
-import {IProjectDto, IVenueDto} from '../../../models/appointment';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { first } from 'rxjs/operators';
-import {Unsubscribe} from '../../../core/decorators/unsubscribe.decorator';
-import {EditProjectComponent} from '../edit-project/edit-project.component';
-import {DialogService} from 'primeng/dynamicdialog';
-import {TranslateService} from '@ngx-translate/core';
-import {SelectItem} from 'primeng/api';
-import {Subscription} from 'rxjs';
+import { first, map } from 'rxjs/operators';
+import { Unsubscribe } from '../../../core/decorators/unsubscribe.decorator';
+import { EditProjectComponent } from '../edit-project/edit-project.component';
+import { DialogService } from 'primeng/dynamicdialog';
+import { TranslateService } from '@ngx-translate/core';
+import { Observable, Subscription } from 'rxjs';
+import { ProjectService } from '../../../core/services/project.service';
+import { NotificationsService } from '../../../core/services/notifications.service';
+import { IProjectDto } from '../../../models/IProjectDto';
+import { IMusicianProfileDto } from '../../../models/appointment';
+import { ProjectParticipationComponent } from '../project-participation/project-participation.component';
+import { MeService } from '../../../core/services/me.service';
+import { SelectValueService } from '../../../core/services/select-value.service';
+import { Table } from 'primeng/table';
+import { VenueService } from '../../../core/services/venue.service';
+import { SectionService } from '../../../core/services/section.service';
+import { ProjectParticipantsComponent } from '../project-participants/project-participants.component';
+import { SelectItem } from 'primeng/api';
 
 @Component({
   selector: 'arpa-project-list',
@@ -17,11 +27,8 @@ import {Subscription} from 'rxjs';
 @Unsubscribe()
 export class ProjectListComponent {
 
-  projects: IProjectDto[];
-  venues: IVenueDto[];
-  typeOptions: SelectItem[] = [];
-  genreOptions: SelectItem[] = [];
-  stateOptions: SelectItem[] = [];
+  projects: Observable<IProjectDto[]>;
+  state: Observable<SelectItem[]>;
 
   cols: any[];
   langChangeListener: Subscription;
@@ -30,62 +37,99 @@ export class ProjectListComponent {
     private route: ActivatedRoute,
     private dialogService: DialogService,
     public translate: TranslateService,
+    private projectService: ProjectService,
+    private notificationsService: NotificationsService,
+    private meService: MeService,
+    private selectValueService: SelectValueService,
+    private venueService: VenueService,
+    private sectionService: SectionService,
   ) {
-    this.getRouteData();
-    this.initializeColumns();
-    this.langChangeListener = this.translate.onLangChange.subscribe(() => this.initializeColumns());
+    this.projects = this.route.data.pipe<IProjectDto[]>(map((data) => data.projects));
+    this.state = this.selectValueService.load('Project', 'State')
+      .pipe(map(() => this.selectValueService.get('Project', 'State')));
   }
 
-  private getRouteData(): void {
-    this.route.data
-      .pipe(first())
-      .subscribe((data) => {
-        this.projects = data.projects || [];
-        this.venues = data.venues || [];
-        this.genreOptions = data.genres || [];
-        this.stateOptions = data.state || [];
-        this.typeOptions = data.types || [];
-      });
+  public getState(id: string) {
+    return this.state.pipe<string>(map((items: SelectItem[]) => {
+      const item: any = items.find((i) => i.value === id);
+      return item? item.label : '';
+    }));
   }
 
-  private initializeColumns(): void {
-    this.cols = [
-      { field: 'title', header: this.translate.instant('projects.TITLE') },
-      { field: 'shortTitle', header: this.translate.instant('projects.ABBREVIATION') },
-      { field: 'venue', header: this.translate.instant('projects.VENUE') },
-      { field: 'startDate', header: this.translate.instant('projects.START'), type: 'date' },
-      { field: 'endDate', header: this.translate.instant('projects.END'), type: 'date' },
-      { field: 'stateId', header: this.translate.instant('projects.STATE') },
-      { field: 'isCompleted', header: this.translate.instant('projects.COMPLETED'), type: 'boolean' },
-    ];
-  }
-
-  public openProjectDetailDialog(oldProject: IProjectDto | null): void {
+  public openProjectDetailDialog(selection: IProjectDto | null): void {
     const ref = this.dialogService.open(EditProjectComponent, {
       data: {
-        project: oldProject ? oldProject : null,
-        venues: this.venues,
-        typeOptions: this.typeOptions,
-        genreOptions: this.genreOptions,
+        project: selection ? selection : null,
         projects: this.projects,
-        stateOptions: this.stateOptions,
-        completedOptions: [
-          {label: this.translate.instant('YES'), value: true},
-          {label: this.translate.instant('NO'), value: false}
-        ]
+        venues: this.venueService.load(),
+        type: this.selectValueService.load('Project', 'Type').pipe(map(() => this.selectValueService.get('Project', 'Type'))),
+        genre: this.selectValueService.load('Project', 'Genre').pipe(map(() => this.selectValueService.get('Project', 'Genre'))),
+        state: this.state,
       },
-      header: oldProject ? this.translate.instant('projects.EDIT_PROJECT') : this.translate.instant('projects.NEW_PROJECT')
+      header: selection ? this.translate.instant('projects.EDIT_PROJECT') : this.translate.instant('projects.NEW_PROJECT')
     });
     ref.onClose
       .pipe(first())
-      .subscribe((newProject: IProjectDto) => {
-        if (!oldProject && newProject) {
-          this.projects = [...this.projects, newProject];
-        } else if (oldProject && newProject) {
-          const index = this.projects.findIndex((project) => oldProject.id === newProject.id);
-          this.projects[index] = newProject;
-          this.projects = [...this.projects];
+      .subscribe((project: IProjectDto) => {
+        if (!selection && project) {
+          this.saveNewProject(project);
+        } else if (selection && project) {
+          this.updateProject(project, selection);
         }
+      });
+  }
+
+  public openParticipationDialog(event: MouseEvent, id: string) {
+    event.stopPropagation();
+    const ref = this.dialogService.open(ProjectParticipationComponent, {
+      data: {
+        projectParticipation: this.selectValueService.load('ProjectParticipation', 'ParticipationStatusInner'),
+        musicianProfiles: this.meService.getProfileMusician<IMusicianProfileDto[]>(),
+        sections: this.sectionService.load(),
+        id,
+      },
+      header: this.translate.instant('projects.EDIT_PARTICIPATION'),
+    });
+
+    ref.onClose
+      .pipe(first())
+      .subscribe((result) => {
+        if (result) {
+          this.meService.putProjectParticipation(result.musicianId, id, {
+            statusId: result.statusId,
+            comment: result.comment,
+          }).subscribe(() => this.notificationsService.success('projects.SET_PARTICIPATION_STATUS'));
+        }
+      });
+  }
+
+  public openParticipationListDialog(event: MouseEvent, project: IProjectDto) {
+    event.stopPropagation();
+    this.dialogService.open(ProjectParticipantsComponent, {
+      data: {
+        project,
+      },
+      header: `${this.translate.instant('projects.PARTICIPANTS')}: ${project.title}` ,
+    });
+  }
+
+  public clear(ref: Table) {
+    ref.clear();
+  }
+
+  private saveNewProject(project: IProjectDto): void {
+    this.projectService.create(project)
+      .subscribe((result) => {
+        this.projects = this.projectService.load();
+        this.notificationsService.success('projects.PROJECT_CREATED');
+      });
+  }
+
+  private updateProject(project: IProjectDto, oldProject: IProjectDto): void {
+    this.projectService.update(project)
+      .subscribe(() => {
+        this.projects = this.projectService.load();
+        this.notificationsService.success('projects.PROJECT_UPDATED');
       });
   }
 }

@@ -1,0 +1,56 @@
+<form [formGroup]='form' (submit)='$event.preventDefault()'>
+  <div class='p-fluid p-formgrid p-grid'>
+    <div class='p-field p-col'>
+      <label for='musicianId'>{{ 'projects.PARTICIPATION_MUPRO' | translate}}</label>
+      <p-dropdown
+        [options]='(musicianProfiles | async) || []'
+        optionLabel='label'
+        optionValue='value'
+        formControlName='musicianId'
+        [placeholder]='"NOTHING_SELECTED" | translate'
+      ></p-dropdown>
+    </div>
+  </div>
+  <div class='p-fluid p-formgrid p-grid'>
+    <div class='p-field p-col'>
+      <label for='statusId'>{{ 'projects.PARTICIPATION_STATUS' | translate}}</label>
+      <p-dropdown
+        [options]='(projectParticipation | async) || []'
+        optionLabel='label'
+        optionValue='value'
+        formControlName='statusId'
+        [placeholder]='"NOTHING_SELECTED" | translate'
+      ></p-dropdown>
+    </div>
+  </div>
+  <div class='p-fluid p-formgrid p-grid'>
+    <div class='p-field p-col'>
+      <label for='comment'>{{ 'projects.PARTICIPATION_COMMENT' | translate}}</label>
+      <textarea pInputTextarea formControlName='comment' [autoResize]='true'></textarea>
+    </div>
+  </div>
+  <div class='p-formgroup-inline p-jc-between'>
+    <div class='p-field p-col'>
+      <button
+        pButton
+        class='p-button-danger'
+        type='button'
+        [label]="'CANCEL' | translate"
+        icon='pi pi-times'
+        iconPos='left'
+        (click)='cancel()'
+      ></button>
+    </div>
+    <div class='p-field p-col p-text-right' style='margin-right: 0'>
+      <button
+        pButton
+        type='button'
+        [label]="'SAVE' | translate"
+        icon='pi pi-check'
+        iconPos='left'
+        [disabled]='form.pristine || form.invalid'
+        (click)='onSubmit()'
+      ></button>
+    </div>
+  </div>
+</form>

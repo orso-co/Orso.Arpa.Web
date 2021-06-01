@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from './core/services/config.service';
 import {
+  ActivatedRoute,
   NavigationCancel,
   NavigationEnd,
   NavigationError,
@@ -9,6 +10,9 @@ import {
 } from '@angular/router';
 import { LoadingService } from './core/services/loading.service';
 import { AuthService } from './core/services/auth.service';
+import { Title } from '@angular/platform-browser';
+import { filter, map } from 'rxjs/operators';
+import { RouteTitleService } from './core/services/route-title.service';
 
 @Component({
   selector: 'arpa-root',
@@ -22,17 +26,71 @@ import { AuthService } from './core/services/auth.service';
     <router-outlet></router-outlet>`,
 })
 export class AppComponent implements OnInit {
-  title = 'Orso-Arpa-Web';
+  readonly defaultTitle: string;
 
   constructor(
     private configService: ConfigService,
     private router: Router,
     private loadingService: LoadingService,
     private authService: AuthService,
+    private activatedRoute: ActivatedRoute,
+    private titleService: Title,
+    private routeTitleService: RouteTitleService,
   ) {
+    this.defaultTitle = this.titleService.getTitle();
     this.router.events.subscribe((event) => {
       this.navigationInterceptor(event);
     });
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        map(() => this.router),
+      )
+      .subscribe((event) => {
+          const title = this.getTitle(this.router.routerState, this.router.routerState.root);
+          this.routeTitleService.setTitle(title.join(' '));
+        },
+      );
+    this.routeTitleService.titleEvent.subscribe((title) => {
+      if(title.length > 0) {
+        this.titleService.setTitle(`${title} | ${this.defaultTitle}`);
+      } else {
+        this.titleService.setTitle(this.defaultTitle);
+      }
+    });
+  }
+
+  /**
+   * Global navigation handling.
+   *
+   * @param event
+   * @private
+   */
+  private navigationInterceptor(event: any): void {
+    if (event instanceof NavigationStart) {
+      this.loadingService.loadingOn();
+    } else if (event instanceof NavigationEnd ||
+      event instanceof NavigationCancel ||
+      event instanceof NavigationError) {
+      this.loadingService.loadingOff();
+    }
+  }
+
+  /**
+   * Get title from routes.
+   *
+   * @param state
+   * @param parent
+   * @private
+   */
+  private getTitle(state: any, parent: any): any {
+    const data = [];
+    if (parent && parent.snapshot.data && parent.snapshot.data.title) {
+      data.push(parent.snapshot.data.title);
+    } else if (state && parent) {
+      data.push(...this.getTitle(state, state.firstChild(parent)));
+    }
+    return data;
   }
 
   ngOnInit() {
@@ -50,20 +108,5 @@ export class AppComponent implements OnInit {
     }
 
     this.authService.populate();
-  }
-
-  navigationInterceptor(event: any): void {
-    if (event instanceof NavigationStart) {
-      this.loadingService.loadingOn();
-    }
-    if (event instanceof NavigationEnd) {
-      this.loadingService.loadingOff();
-    }
-    if (event instanceof NavigationCancel) {
-      this.loadingService.loadingOff();
-    }
-    if (event instanceof NavigationError) {
-      this.loadingService.loadingOff();
-    }
   }
 }

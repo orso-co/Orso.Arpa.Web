@@ -10,7 +10,7 @@ import { DateRange } from '../../models/date-range';
   providedIn: 'root',
 })
 export class AppointmentService {
-  private baseUrl: string;
+  private readonly baseUrl: string;
 
   constructor(private apiService: ApiService) {
     this.baseUrl = '/appointments';

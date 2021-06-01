@@ -3,19 +3,20 @@ import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
-import { IProjectDto } from '../../models/appointment';
+import { IProjectDto } from '../../models/IProjectDto';
+import { IProjectParticipation } from '../../models/projects';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProjectService {
-  private baseUrl: string;
+  readonly baseUrl: string;
 
   constructor(private apiService: ApiService) {
     this.baseUrl = '/projects';
   }
 
-  load(includeCompleted?: boolean): Observable<IProjectDto[]> {
+  public load(includeCompleted?: boolean): Observable<IProjectDto[]> {
     if (includeCompleted) {
       const params = new HttpParams().set('includeCompleted', includeCompleted.toString());
 
@@ -25,11 +26,15 @@ export class ProjectService {
     return this.apiService.get<IProjectDto[]>(this.baseUrl).pipe(shareReplay());
   }
 
-  create(project: IProjectDto): Observable<IProjectDto> {
+  public create(project: IProjectDto): Observable<IProjectDto> {
     return this.apiService.post<IProjectDto>(this.baseUrl, project);
   }
 
-  update(project: IProjectDto): Observable<any> {
+  public update(project: IProjectDto): Observable<any> {
     return this.apiService.put(`${this.baseUrl}/${project.id}`, project).pipe(shareReplay());
+  }
+
+  public getParticipations(id: string): Observable<IProjectParticipation[]> {
+    return this.apiService.get<IProjectParticipation[]>(`${this.baseUrl}/${id}/participations`).pipe(shareReplay());
   }
 }

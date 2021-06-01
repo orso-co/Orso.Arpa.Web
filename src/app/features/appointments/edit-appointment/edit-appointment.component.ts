@@ -2,7 +2,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, SelectItem, ConfirmationService } from 'primeng/api';
-import { IAppointmentDto, IMusicianProfileDto, IProjectDto, IRoomDto, IVenueDto } from 'src/app/models/appointment';
+import { IAppointmentDto, IMusicianProfileDto, IRoomDto, IVenueDto } from 'src/app/models/appointment';
+import { IProjectDto } from 'src/app/models/IProjectDto';
 import { ISectionDto } from 'src/app/models/section';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { sortBy, uniq } from 'lodash-es';
@@ -26,7 +27,7 @@ class ParticipationTableItem {
     sections: string,
     qualification: string,
     predictionId: string,
-    resultId: string,
+    resultId: string
   ) {
     this.givenName = givenName;
     this.surname = surname;
@@ -83,9 +84,8 @@ export class EditAppointmentComponent implements OnInit {
     private appointmentService: AppointmentService,
     private formBuilder: FormBuilder,
     private translate: TranslateService,
-    private confirmationService: ConfirmationService,
-  ) {
-   }
+    private confirmationService: ConfirmationService
+  ) {}
 
   ngOnInit(): void {
     this.createForm();
@@ -94,15 +94,25 @@ export class EditAppointmentComponent implements OnInit {
     this.venueOptions = this.venues.map((v) => this.mapVenueToSelectItem(v));
 
     if (this.appointment.participations) {
-      this.sectionSelectItems = sortBy(uniq(this.appointment.participations
-        .map((p) => p.musicianProfiles)
-        .reduce((a, b) => a.concat(b), [])
-        .map((mp) => this.mapMusicianProfileToSectionSelectItem(mp))), selectItem => selectItem.label);
+      this.sectionSelectItems = sortBy(
+        uniq(
+          this.appointment.participations
+            .map((p) => p.musicianProfiles)
+            .reduce((a, b) => a.concat(b), [])
+            .map((mp) => this.mapMusicianProfileToSectionSelectItem(mp))
+        ),
+        (selectItem) => selectItem.label
+      );
 
-      this.qualificationOptions = sortBy(uniq(this.appointment.participations
-        .map((p) => p.musicianProfiles)
-        .reduce((a, b) => a.concat(b), [])
-        .map((mp) => this.mapMusicianProfileToQualificationSelectItem(mp))), selectItem => selectItem.label);
+      this.qualificationOptions = sortBy(
+        uniq(
+          this.appointment.participations
+            .map((p) => p.musicianProfiles)
+            .reduce((a, b) => a.concat(b), [])
+            .map((mp) => this.mapMusicianProfileToQualificationSelectItem(mp))
+        ),
+        (selectItem) => selectItem.label
+      );
 
       this.mapParticipations();
     }
@@ -145,7 +155,8 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   updateAppointment(appointment: IAppointmentDto, continueToNextStep: boolean): void {
-    this.appointmentService.update(appointment)
+    this.appointmentService
+      .update(appointment)
       .pipe(first())
       .subscribe(() => {
         this.notificationsService.success('editappointments.APPOINTMENT_UPDATED');
@@ -160,7 +171,8 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   createAppointment(appointment: IAppointmentDto, continueToNextStep: boolean): void {
-    this.appointmentService.create(appointment)
+    this.appointmentService
+      .create(appointment)
       .pipe(first())
       .subscribe((result) => {
         this.notificationsService.success('editappointments.APPOINTMENT_CREATED');
@@ -189,27 +201,26 @@ export class EditAppointmentComponent implements OnInit {
   searchProject(event: any): void {
     this.projectOptions = this.projects.filter(
       (p) =>
-        p.title.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.projects.map((r) => r.id).includes(p.id),
+        p.title.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.projects.map((r) => r.id).includes(p.id)
     );
   }
 
   searchSection(event: any): void {
     this.sectionOptions = this.sections.filter(
       (p) =>
-        p.name.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) &&
-        !this.appointment.sections.map((r) => r.id).includes(p.id),
+        p.name.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.sections.map((r) => r.id).includes(p.id)
     );
   }
 
   searchRoom(event: any): void {
     this.roomOptions = this.rooms.filter(
-      (p) => p.name.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) &&
-        !this.appointment.rooms.map((r) => r.id).includes(p.id),
+      (p) => p.name.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.rooms.map((r) => r.id).includes(p.id)
     );
   }
 
   onVenueChanged(event: any): void {
-    this.appointmentService.setVenue(this.appointment.id, event.value)
+    this.appointmentService
+      .setVenue(this.appointment.id, event.value)
       .pipe(first())
       .subscribe((_) => {
         this.notificationsService.success('editappointments.VENUE_SET');
@@ -246,7 +257,8 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   removeRoom(roomId: string, showToast: boolean): void {
-    this.appointmentService.removeRoom(this.appointment.id, roomId)
+    this.appointmentService
+      .removeRoom(this.appointment.id, roomId)
       .pipe(first())
       .subscribe((_) => {
         if (showToast) {
@@ -256,7 +268,8 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   addRoom(roomId: string): void {
-    this.appointmentService.addRoom(this.appointment.id, roomId)
+    this.appointmentService
+      .addRoom(this.appointment.id, roomId)
       .pipe(first())
       .subscribe((_) => {
         this.notificationsService.success('editappointments.ROOM_ADDED');
@@ -264,7 +277,8 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   removeSection(sectionId: string): void {
-    this.appointmentService.removeSection(this.appointment.id, sectionId)
+    this.appointmentService
+      .removeSection(this.appointment.id, sectionId)
       .pipe(first())
       .subscribe((result) => {
         this.appointment = result;
@@ -274,16 +288,16 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   addSection(sectionId: string): void {
-    this.appointmentService.addSection(this.appointment.id, sectionId)
-      .subscribe((result) => {
-        this.appointment = result;
-        this.mapParticipations();
-        this.notificationsService.success('editappointments.SECTION_ADDED');
-      });
+    this.appointmentService.addSection(this.appointment.id, sectionId).subscribe((result) => {
+      this.appointment = result;
+      this.mapParticipations();
+      this.notificationsService.success('editappointments.SECTION_ADDED');
+    });
   }
 
   removeProject(projectId: string): void {
-    this.appointmentService.removeProject(this.appointment.id, projectId)
+    this.appointmentService
+      .removeProject(this.appointment.id, projectId)
       .pipe(first())
       .subscribe((result) => {
         this.appointment = result;
@@ -293,7 +307,8 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   addProject(projectId: string): void {
-    this.appointmentService.addProject(this.appointment.id, projectId)
+    this.appointmentService
+      .addProject(this.appointment.id, projectId)
       .pipe(first())
       .subscribe((result) => {
         this.appointment = result;
@@ -311,16 +326,16 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   onResultChanged(item: ParticipationTableItem, event: any): void {
-    this.appointmentService.setResult(item.personId, this.appointment.id, event.value)
+    this.appointmentService
+      .setResult(item.personId, this.appointment.id, event.value)
       .pipe(first())
       .subscribe((_) => {
         this.notificationsService.success('editappointments.RESULT_SET');
       });
   }
 
-  onAllDayChanged(isAllDay: boolean){
-    if(isAllDay){
-
+  onAllDayChanged(isAllDay: boolean) {
+    if (isAllDay) {
       const endDate = new Date(this.formGroup.get('endTime')?.value);
       const startDate = new Date(this.formGroup.get('startTime')?.value);
 
@@ -358,7 +373,7 @@ export class EditAppointmentComponent implements OnInit {
       name: [null, [Validators.required]],
       startTime: [null, [Validators.required]],
       endTime: [null, [Validators.required]],
-      allDay: [{checked: this.config.data.allDay}],
+      allDay: [{ checked: this.config.data.allDay }],
       publicDetails: [null],
       internalDetails: [null],
       categoryId: [null],
@@ -392,7 +407,7 @@ export class EditAppointmentComponent implements OnInit {
       ...this.appointment,
       startTime: new Date(this.appointment.startTime),
       endTime: new Date(this.appointment.endTime),
-      allDay:this.isAllDayEvent,
+      allDay: this.isAllDayEvent,
     });
   }
 

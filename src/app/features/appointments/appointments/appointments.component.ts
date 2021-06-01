@@ -2,7 +2,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
 import { SelectItem } from 'primeng/api';
-import { IAppointmentDto, ICalendarEvent, IProjectDto, IVenueDto } from 'src/app/models/appointment';
+import { IAppointmentDto, ICalendarEvent, IVenueDto } from 'src/app/models/appointment';
+import { IProjectDto } from 'src/app/models/IProjectDto';
 import { DateRange } from 'src/app/models/date-range';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -24,7 +25,6 @@ import { Unsubscribe } from '../../../core/decorators/unsubscribe.decorator';
 })
 @Unsubscribe()
 export class AppointmentsComponent {
-
   langChangeListener: Subscription;
   sectionsSubscription: Subscription;
   categoryOptions: SelectItem[] = [];
@@ -57,21 +57,19 @@ export class AppointmentsComponent {
     private route: ActivatedRoute,
     private translate: TranslateService,
     private dialogService: DialogService,
-    private sectionService: SectionService,
+    private sectionService: SectionService
   ) {
-    this.route.data
-      .pipe(first())
-      .subscribe((data) => {
-        this.projects = data.projects || [];
-        this.venues = data.venues || [];
-        this.salaryOptions = data.salaries || [];
-        this.salaryPatternOptions = data.salaryPatterns || [];
-        this.expectationOptions = data.expectations || [];
-        this.categoryOptions = data.categories || [];
-        this.statusOptions = data.status || [];
-        this.predictionOptions = data.predictions || [];
-        this.resultOptions = data.results || [];
-      });
+    this.route.data.pipe(first()).subscribe((data) => {
+      this.projects = data.projects || [];
+      this.venues = data.venues || [];
+      this.salaryOptions = data.salaries || [];
+      this.salaryPatternOptions = data.salaryPatterns || [];
+      this.expectationOptions = data.expectations || [];
+      this.categoryOptions = data.categories || [];
+      this.statusOptions = data.status || [];
+      this.predictionOptions = data.predictions || [];
+      this.resultOptions = data.results || [];
+    });
     this.sectionsSubscription = this.sectionService.sections$.subscribe((sections) => (this.sections = sections || []));
     this.langChangeListener = this.translate.onLangChange.subscribe(() => this.setOptions());
     this.setOptions();
@@ -120,7 +118,7 @@ export class AppointmentsComponent {
         datesRender: (info: any) => {
           this.setAppointments(info.view.type, info.view.calendar.component.props.currentDate);
         },
-      })),
+      }))
     );
   }
 
@@ -133,7 +131,7 @@ export class AppointmentsComponent {
     / (see: https://stackoverflow.com/questions/27604359/fullcalendar-event-spanning-all-day-are-one-day-too-short)
     / workaround: add one day. */
     const endAdjusted = new Date(appointment.endTime);
-    if(isAllDay && (endAdjusted.getHours() !== 0)) {
+    if (isAllDay && endAdjusted.getHours() !== 0) {
       endAdjusted.setDate(endAdjusted.getDate() + 1);
     }
 
@@ -143,12 +141,12 @@ export class AppointmentsComponent {
       end: endAdjusted,
       start: new Date(appointment.startTime),
       title: appointment.name,
-      allDay: isAllDay
+      allDay: isAllDay,
     };
   }
 
   isAllDayEvent(appointment: IAppointmentDto | undefined): boolean {
-    if(appointment === undefined){
+    if (appointment === undefined) {
       return false;
     }
 
@@ -156,7 +154,7 @@ export class AppointmentsComponent {
     const startT = new Date(appointment.startTime);
     const endT = new Date(appointment.endTime);
 
-    if(endT.getHours() === 23 && endT.getMinutes() === 59 && startT.getHours() === 0){
+    if (endT.getHours() === 23 && endT.getMinutes() === 59 && startT.getHours() === 0) {
       isAllDay = true;
     }
     return isAllDay;
@@ -182,7 +180,8 @@ export class AppointmentsComponent {
   }
 
   setAppointments(viewType: string, date: Date): void {
-    this.appointmentService.get(this.getRange(viewType), date)
+    this.appointmentService
+      .get(this.getRange(viewType), date)
       .pipe(first())
       .subscribe((result) => (this.appointments = result));
   }
@@ -242,13 +241,11 @@ export class AppointmentsComponent {
       dismissableMask: true,
     });
 
-    ref.onClose
-      .pipe(first())
-      .subscribe((appointment: IAppointmentDto) => {
-        if (appointment) {
-          this.appointments = [...this.appointments, appointment];
-        }
-      });
+    ref.onClose.pipe(first()).subscribe((appointment: IAppointmentDto) => {
+      if (appointment) {
+        this.appointments = [...this.appointments, appointment];
+      }
+    });
   }
 
   private openEditDialog(appointmentId: string): void {
@@ -266,26 +263,27 @@ export class AppointmentsComponent {
         salaryPatternOptions: this.salaryPatternOptions,
         salaryOptions: this.salaryOptions,
         expectationOptions: this.expectationOptions,
-        isAllDayEvent: this.isAllDayEvent(appointment)
+        isAllDayEvent: this.isAllDayEvent(appointment),
       },
       header: this.translate.instant('editappointments.EDIT'),
       style: { 'max-width': '1500px' },
       dismissableMask: true,
     });
 
-    ref.onClose
-      .pipe(first())
-      .subscribe((result: IAppointmentDto | string) => {
-        if (result) {
-          if (typeof result === 'string') {
-            this.appointments.splice(this.appointments.findIndex(a => a.id === appointmentId), 1);
-            this.appointments = [...this.appointments];
-          } else {
-            const index = this.appointments.findIndex((a) => a.id === result.id);
-            this.appointments[index] = result;
-            this.appointments = [...this.appointments];
-          }
+    ref.onClose.pipe(first()).subscribe((result: IAppointmentDto | string) => {
+      if (result) {
+        if (typeof result === 'string') {
+          this.appointments.splice(
+            this.appointments.findIndex((a) => a.id === appointmentId),
+            1
+          );
+          this.appointments = [...this.appointments];
+        } else {
+          const index = this.appointments.findIndex((a) => a.id === result.id);
+          this.appointments[index] = result;
+          this.appointments = [...this.appointments];
         }
-      });
+      }
+    });
   }
 }

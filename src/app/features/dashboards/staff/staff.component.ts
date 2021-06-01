@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IProjectDto } from '../../../models/appointment';
+import { IProjectDto } from '../../../models/IProjectDto';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 
@@ -11,10 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class StaffComponent {
   projects: IProjectDto[] = [];
 
-  constructor(
-    route: ActivatedRoute,
-  ) {
+  constructor(route: ActivatedRoute) {
     route.data.pipe(map((routeData) => routeData.projects)).subscribe((projects) => (this.projects = projects));
   }
-
 }
