@@ -16,6 +16,7 @@ import { SelectValueService } from '../../../core/services/select-value.service'
 import { Table } from 'primeng/table';
 import { VenueService } from '../../../core/services/venue.service';
 import { SectionService } from '../../../core/services/section.service';
+import { ProjectParticipantsComponent } from '../project-participants/project-participants.component';
 
 @Component({
   selector: 'arpa-project-list',
@@ -89,6 +90,16 @@ export class ProjectListComponent {
           }).subscribe(() => this.notificationsService.success('projects.SET_PARTICIPATION_STATUS'));
         }
       });
+  }
+
+  public openParticipationListDialog(event: MouseEvent, project: IProjectDto) {
+    event.stopPropagation();
+    this.dialogService.open(ProjectParticipantsComponent, {
+      data: {
+        project,
+      },
+      header: `${this.translate.instant('projects.PARTICIPANTS')}: ${project.title}` ,
+    });
   }
 
   public clear(ref: Table) {

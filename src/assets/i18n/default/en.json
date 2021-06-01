@@ -222,7 +222,9 @@
     "PARTICIPATION_STATUS": "Status",
     "PARTICIPATION_COMMENT": "Comment",
     "EDIT_PARTICIPATION": "Project Participation",
-    "SHOW_PARTICIPANTS": "Project Participants"
+    "SHOW_PARTICIPANTS": "Project Participants",
+    "PARTICIPANTS": "Participants",
+    "INSTRUMENT": "Instrument"
   },
   "mupro": {
     "PROFILE": "Musician Profile",

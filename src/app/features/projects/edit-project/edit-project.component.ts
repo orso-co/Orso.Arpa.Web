@@ -3,11 +3,10 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 import { IProjectDto } from '../../../models/IProjectDto';
-import { IMusicianProfileDto, IVenueDto } from '../../../models/appointment';
+import { IVenueDto } from '../../../models/appointment';
 import { Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { map } from 'rxjs/operators';
-import { ISectionDto } from '../../../models/section';
 
 @Component({
   selector: 'arpa-edit-project',

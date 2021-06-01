@@ -223,7 +223,9 @@
     "PARTICIPATION_STATUS": "Status",
     "PARTICIPATION_COMMENT": "Kommentar",
     "EDIT_PARTICIPATION": "Projekt Teilnahme",
-    "SHOW_PARTICIPANTS": "Projekt Teilnehmer"
+    "SHOW_PARTICIPANTS": "Projekt Teilnehmer",
+    "PARTICIPANTS": "Teilnehmer",
+    "INSTRUMENT": "Instrument"
   },
   "mupro": {
     "PROFILE": "Musikerprofil",

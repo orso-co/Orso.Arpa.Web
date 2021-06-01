@@ -92,6 +92,13 @@
           [label]='"projects.EDIT_PARTICIPATION" | translate'
           class='p-button-rounded p-button-text p-button-icon-only'
           icon='pi pi-sign-in'></button>
+        <button
+          pButton
+          type='button'
+          [label]='"projects.SHOW_PARTICIPANTS" | translate'
+          (click)='openParticipationListDialog($event, project)'
+          class='p-button-rounded p-button-text p-button-icon-only'
+          icon='pi pi-users'></button>
       </td>
     </tr>
   </ng-template>
