@@ -22,7 +22,7 @@ export class MuproDetailsComponent {
   }
 
   getActiveItem(menuItems: MenuItem[]): MenuItem {
-    const child = this.route.children[0];
+    const child = this.route.children && this.route.children[0];
     if (!child) {
       return menuItems[0];
     }

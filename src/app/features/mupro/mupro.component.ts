@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FilterService } from 'primeng/api';
 import { map } from 'rxjs/operators';
-import { IUserDto } from '../../models/IUserDto';
-import { MuproService } from './services/mupro.service';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'arpa-mupro',
@@ -13,21 +10,24 @@ import { of } from 'rxjs';
 })
 export class MuproComponent implements OnInit {
 
-  users: any;
-  member: any;
+  persons: any;
+  person: any;
   routeData: any;
 
-  constructor(public route: ActivatedRoute, private router: Router, private filter: FilterService, private muproService: MuproService) {
-    this.routeData = route.data.pipe(map((routeData) => routeData.users)).subscribe((users) => (this.users = users));
+  constructor(public route: ActivatedRoute,
+              private router: Router,
+  ) {
+    this.routeData = route.data
+      .pipe(map((routeData) => routeData.persons))
+      .subscribe((person) => (this.persons = person));
   }
 
   ngOnInit(): void {
-    this.member = this.route.firstChild?.snapshot.params.id;
+    this.person = this.route.firstChild?.snapshot.params.id;
   }
 
   public select({ option }: any) {
-    this.member = option.id;
-    this.muproService.user = of<IUserDto>(option);
+    this.person = option.id;
     this.router.navigate([option.id], { relativeTo: this.route });
   }
 }

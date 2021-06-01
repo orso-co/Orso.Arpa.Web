@@ -53,6 +53,8 @@ export interface IMusicianProfileDto {
   qualification: string;
   instrumentId: string;
   isMainProfile: boolean;
+  levelAssessmentPerformer: number;
+  levelAssessmentStaff: number;
 }
 
 export interface IPersonDto extends IBaseEntityDto {

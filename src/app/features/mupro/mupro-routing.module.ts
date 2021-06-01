@@ -6,18 +6,20 @@ import { ProjectListComponent } from '../projects/project-list/project-list.comp
 import { PersonsService } from './services/persons.service';
 import { ProjectListResolver } from '../../core/resolvers/project-list.resolver';
 import { ProfileMusicianResolver } from './resolvers/profile-musician.resolver';
+import { SectionsResolver } from '../profile/resolvers/sections.resolver';
 
 const routes: Routes = [
   {
     path: '',
     component: MuproComponent,
-    resolve: { users: PersonsService },
+    resolve: { persons: PersonsService },
     children: [
       {
         path: ':id',
         component: MuproProfilesComponent,
         resolve: {
           profiles: ProfileMusicianResolver,
+          sections: SectionsResolver,
         },
         children: [
           {

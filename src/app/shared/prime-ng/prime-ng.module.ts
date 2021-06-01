@@ -35,6 +35,7 @@ import { RatingModule } from 'primeng/rating';
 import { PaginatorModule } from 'primeng/paginator';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { BadgeModule } from 'primeng/badge';
 
 const MODULES = [
   InputTextModule,
@@ -70,6 +71,7 @@ const MODULES = [
   PaginatorModule,
   MultiSelectModule,
   InputTextareaModule,
+  BadgeModule
 ];
 
 @NgModule({

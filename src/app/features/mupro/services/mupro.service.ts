@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
 import { IUserDto } from '../../../models/IUserDto';
 import { Observable } from 'rxjs';
+import { IPersonDto } from '../../../models/appointment';
 
 @Injectable()
 export class MuproService {
 
-  _user: Observable<IUserDto>;
+  _person: IPersonDto;
 
-  get user(): Observable<IUserDto> {
-    return this._user;
+  get person(): IPersonDto {
+    return this._person;
   }
 
-  set user(user: Observable<IUserDto>) {
-    this._user = user;
+  set person(person: IPersonDto) {
+    this._person = person;
   }
 
   constructor() {

@@ -3,23 +3,59 @@
     <div class="p-col-12 p-md-6 p-lg-5">
       <div class='p-grid'>
         <div class="p-col-12 p-md-4" style='text-align: center'>
-          <arpa-avatar [user]='user | async' [image]='true'></arpa-avatar>
+          <arpa-avatar [user]='(person | async) || {}' [image]='true'></arpa-avatar>
         </div>
-        <div class="p-col-12 p-md-8 details">
+        <div class='p-col-12 p-md-8 details'>
           <div>
-            <div class='name'>{{(user | async)?.displayName}}</div>
-            <div class='profile'>Instrument</div>
+            <div class='name'>{{ getName(person | async) }}</div>
             <div class='country'>Deutschland, Berlin</div>
           </div>
         </div>
       </div>
     </div>
-    <div class="p-col-12 p-md-6 p-lg-7">
+  <div class='p-col-12 p-md-6 p-lg-7'>
 
-    </div>
+  </div>
 </div>
-<div class='form-dummy'>
-  <div>profile form</div>
+<div class='profiles'>
+  <ul>
+    <ng-container *ngFor='let profile of (profiles | async) || []; let i = index'>
+      <li *ngIf='activeIndex === i'>
+        <div class='profile'>
+          <div class='p-grid'>
+            <div class='p-col-12 section-detail p-jc-between'>
+              <h2>{{ getSection(profile) | async }}</h2>
+              <p-badge [value]="'mupro.MAIN_PROFILE' | translate " *ngIf='profile.isMainProfile'></p-badge>
+            </div>
+            <div class='p-col-12 p-md-6 performer-details'>
+              <h3>Performer</h3>
+              <p-rating [(ngModel)]='profile.levelAssessmentPerformer' [disabled]='true' [cancel]='false'></p-rating>
+            </div>
+            <div class='p-col-12 p-md-6 staff-details p-jc-between'>
+              <div>
+                <h3>Staff</h3>
+                <p-rating [(ngModel)]='profile.levelAssessmentStaff' [disabled]='true' [cancel]='false'></p-rating>
+              </div>
+              <div>
+                <button
+                  pButton
+                  type='button'
+                  icon='pi pi-pencil'
+                  (click)='editProfile(profile)'
+                  class='p-button-rounded p-button-text p-button-icon-only'
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+  <p-steps [model]='(profileNav | async) || []'
+           [readonly]='false'
+           [activeIndex]='activeIndex'
+           styleClass='dot-profile'
+  ></p-steps>
 </div>
-<p-paginator [rows]='10' [totalRecords]='100'></p-paginator>
+
 <arpa-mupro-details></arpa-mupro-details>
