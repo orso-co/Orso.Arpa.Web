@@ -17,6 +17,7 @@ import { Table } from 'primeng/table';
 import { VenueService } from '../../../core/services/venue.service';
 import { SectionService } from '../../../core/services/section.service';
 import { ProjectParticipantsComponent } from '../project-participants/project-participants.component';
+import { SelectItem } from 'primeng/api';
 
 @Component({
   selector: 'arpa-project-list',
@@ -27,6 +28,7 @@ import { ProjectParticipantsComponent } from '../project-participants/project-pa
 export class ProjectListComponent {
 
   projects: Observable<IProjectDto[]>;
+  state: Observable<SelectItem[]>;
 
   cols: any[];
   langChangeListener: Subscription;
@@ -40,9 +42,18 @@ export class ProjectListComponent {
     private meService: MeService,
     private selectValueService: SelectValueService,
     private venueService: VenueService,
-    private sectionService: SectionService
+    private sectionService: SectionService,
   ) {
     this.projects = this.route.data.pipe<IProjectDto[]>(map((data) => data.projects));
+    this.state = this.selectValueService.load('Project', 'State')
+      .pipe(map(() => this.selectValueService.get('Project', 'State')));
+  }
+
+  public getState(id: string) {
+    return this.state.pipe<string>(map((items: SelectItem[]) => {
+      const item: any = items.find((i) => i.value === id);
+      return item? item.label : '';
+    }));
   }
 
   public openProjectDetailDialog(selection: IProjectDto | null): void {
@@ -53,7 +64,7 @@ export class ProjectListComponent {
         venues: this.venueService.load(),
         type: this.selectValueService.load('Project', 'Type').pipe(map(() => this.selectValueService.get('Project', 'Type'))),
         genre: this.selectValueService.load('Project', 'Genre').pipe(map(() => this.selectValueService.get('Project', 'Genre'))),
-        state: this.selectValueService.load('Project', 'State').pipe(map(() => this.selectValueService.get('Project', 'State'))),
+        state: this.state,
       },
       header: selection ? this.translate.instant('projects.EDIT_PROJECT') : this.translate.instant('projects.NEW_PROJECT')
     });

@@ -79,7 +79,7 @@
         {{ project.endDate | date }}
       </td>
       <td>
-        {{ project.stateId }}
+        {{ getState(project.stateId) | async }}
       </td>
       <td style='text-align: center'>
         <i *ngIf='project.isCompleted' class='pi pi-check-square'></i>
