@@ -29,7 +29,7 @@ export class EditMusicianProfileComponent implements OnInit {
               private formBuilder: FormBuilder,
               public ref: DynamicDialogRef,
               private selectValueService: SelectValueService) {
-    this.inquiryStatus = this.resolveSelect('InquiryStatusPerformer');
+    this.inquiryStatus = this.resolveSelect('InquiryStatusInner');
     this.preferredPositions = this.resolveSelect('PreferredPositions');
   }
 
@@ -44,12 +44,12 @@ export class EditMusicianProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      levelAssessmentPerformer: [1, [Validators.min(1), Validators.max(6)]],
+      LevelAssesmentInner: [1, [Validators.min(1), Validators.max(6)]],
       instrumentId: [null, [Validators.required]],
       doublingInstruments: [null, []],
-      preferredPartsPerformer: [null, []],
-      inquiryStatusPerformerId: [null, []],
-      preferredPositionsPerformerIds: [null, []],
+      PreferredPartsInner: [null, []],
+      InquiryStatusInnerId: [null, []],
+      PreferredPositionsInnerIds: [null, []],
       isMainProfile: [false, []],
     });
 
