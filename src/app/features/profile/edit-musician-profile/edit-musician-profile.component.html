@@ -14,18 +14,18 @@
   </div>
   <div class='p-fluid p-formgrid p-grid'>
     <div class='p-field p-col'>
-      <label for='LevelAssesmentInner'>{{ 'mupro.LEVEL_ASSESSMENT' | translate }}</label>
-      <p-rating formControlName='LevelAssesmentInner' [cancel]='false' [stars]='5'></p-rating>
+      <label for='levelAssessmentInner'>{{ 'mupro.LEVEL_ASSESSMENT' | translate }}</label>
+      <p-rating formControlName='levelAssessmentInner' [cancel]='false' [stars]='5'></p-rating>
     </div>
   </div>
   <div class='p-fluid p-formgrid p-grid' *ngIf='(preferredParts | async)'>
     <div class='p-field p-col'>
-      <label for='PreferredPartsInner'>{{ 'mupro.PREFERRED_PARTS' | translate}}</label>
+      <label for='preferredPartsInner'>{{ 'mupro.PREFERRED_PARTS' | translate}}</label>
       <p-multiSelect
         [options]='(preferredParts | async) || []'
         optionLabel='label'
         optionValue='value'
-        formControlName='PreferredPartsInner'
+        formControlName='preferredPartsInner'
         display='chip'
         [placeholder]='"NOTHING_SELECTED" | translate'
       ></p-multiSelect>
@@ -33,7 +33,7 @@
   </div>
   <div class='p-fluid p-formgrid p-grid'>
     <div class='p-field p-col'>
-      <label for='InquiryStatusInnerId'>{{ 'mupro.INQUIRY_STATUS' | translate}}</label>
+      <label for='inquiryStatusInnerId'>{{ 'mupro.INQUIRY_STATUS' | translate}}</label>
       <p-dropdown
         [options]='(inquiryStatus | async) || []'
         optionLabel='label'
@@ -45,12 +45,12 @@
   </div>
   <div class='p-fluid p-formgrid p-grid'>
     <div class='p-field p-col'>
-      <label for='PreferredPositionsInnerIds'>{{ 'mupro.PREFERRED_POSITIONS' | translate}}</label>
+      <label for='preferredPositionsInnerIds'>{{ 'mupro.PREFERRED_POSITIONS' | translate}}</label>
       <p-multiSelect
         [options]='(preferredPositions | async) || []'
         optionLabel='label'
         optionValue='value'
-        formControlName='PreferredPositionsInnerIds'
+        formControlName='preferredPositionsInnerIds'
         display='chip'
         [placeholder]='"NOTHING_SELECTED" | translate'
       ></p-multiSelect>

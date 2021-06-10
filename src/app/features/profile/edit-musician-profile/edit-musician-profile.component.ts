@@ -44,12 +44,12 @@ export class EditMusicianProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      LevelAssesmentInner: [1, [Validators.min(1), Validators.max(6)]],
+      levelAssessmentInner: [1, [Validators.min(1), Validators.max(6)]],
       instrumentId: [null, [Validators.required]],
       doublingInstruments: [null, []],
-      PreferredPartsInner: [null, []],
-      InquiryStatusInnerId: [null, []],
-      PreferredPositionsInnerIds: [null, []],
+      preferredPartsInner: [null, []],
+      inquiryStatusInnerId: [null, []],
+      preferredPositionsInnerIds: [null, []],
       isMainProfile: [false, []],
     });
 
