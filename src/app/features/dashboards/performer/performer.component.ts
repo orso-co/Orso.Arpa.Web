@@ -12,8 +12,7 @@ import { SkeletonModule } from 'primeng/skeleton';
 export class PerformerComponent {
   projects: IProjectDto[] = [];
 
-  constructor(
-    route: ActivatedRoute) {
+  constructor(route: ActivatedRoute) {
     route.data.pipe(map((routeData) => routeData.projects)).subscribe((projects) => (this.projects = projects));
   }
 }
