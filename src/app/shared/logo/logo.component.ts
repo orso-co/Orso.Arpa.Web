@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ConfigService } from '../../core/services/config.service';
 
 @Component({
@@ -6,15 +6,11 @@ import { ConfigService } from '../../core/services/config.service';
   templateUrl: './logo.component.html',
   styleUrls: ['./logo.component.scss'],
 })
-export class LogoComponent implements OnInit {
+export class LogoComponent {
 
   arpaUrl: string;
 
   constructor(private configService: ConfigService) {
     this.arpaUrl = configService.getEnv('arpa').url;
   }
-
-  ngOnInit(): void {
-  }
-
 }

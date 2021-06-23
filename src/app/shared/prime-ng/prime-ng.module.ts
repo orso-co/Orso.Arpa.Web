@@ -1,3 +1,4 @@
+import { Skeleton, SkeletonModule } from 'primeng/skeleton';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
@@ -71,7 +72,8 @@ const MODULES = [
   PaginatorModule,
   MultiSelectModule,
   InputTextareaModule,
-  BadgeModule
+  BadgeModule,
+  SkeletonModule
 ];
 
 @NgModule({

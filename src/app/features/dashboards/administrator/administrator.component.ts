@@ -1,9 +1,9 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { IRoleDto } from 'src/app/models/IRoleDto';
+import { IRoleDto } from '../../../models/IRoleDto';
 import { Observable } from 'rxjs';
-import { ISectionTreeDto } from 'src/app/models/section';
+import { ISectionTreeDto } from '../../../models/section';
 import { IUserDto } from '../../../models/IUserDto';
 import { RoleService } from '../../../core/services/role.service';
 import { SectionService } from '../../../core/services/section.service';

@@ -15,6 +15,7 @@ import { MenuComponent } from './menu/menu.component';
 import { AuditLogComponent } from './audit-log/audit-log.component';
 import { AuditDialogDirective } from './audit-log/audit-dialog.directive';
 import { AuditDialogComponent } from './audit-dialog/audit-dialog.component';
+import { SplitViewComponent } from './split-view/split-view.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { AuditDialogComponent } from './audit-dialog/audit-dialog.component';
     AuditLogComponent,
     AuditDialogDirective,
     AuditDialogComponent,
+    SplitViewComponent
   ],
   imports: [
     CommonModule,
@@ -52,6 +54,7 @@ import { AuditDialogComponent } from './audit-dialog/audit-dialog.component';
     AvatarComponent,
     MenuComponent,
     AuditDialogDirective,
+    SplitViewComponent
   ],
 })
 export class SharedModule {
