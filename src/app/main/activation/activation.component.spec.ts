@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ActivationComponent } from './activation.component';
+import { TranslateMockModule } from '../../../testing/translate.mock.module';
 
 describe('ActivationComponent', () => {
   let component: ActivationComponent;
@@ -8,7 +9,10 @@ describe('ActivationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ActivationComponent ]
+      declarations: [ ActivationComponent ],
+      imports: [
+        TranslateMockModule
+      ]
     })
     .compileComponents();
   });

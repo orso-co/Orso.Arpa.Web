@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'arpa-activation',
   templateUrl: './activation.component.html',
   styleUrls: ['./activation.component.scss']
 })
-export class ActivationComponent implements OnInit {
+export class ActivationComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }
