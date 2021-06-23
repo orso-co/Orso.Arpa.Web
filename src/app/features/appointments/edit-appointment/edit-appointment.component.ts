@@ -2,9 +2,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, SelectItem, ConfirmationService } from 'primeng/api';
-import { IAppointmentDto, IMusicianProfileDto, IRoomDto, IVenueDto } from 'src/app/models/appointment';
-import { IProjectDto } from 'src/app/models/IProjectDto';
-import { ISectionDto } from 'src/app/models/section';
+import { IAppointmentDto, IMusicianProfileDto, IRoomDto, IVenueDto } from '../../../models/appointment';
+import { IProjectDto } from '../../../models/IProjectDto';
+import { ISectionDto } from '../../../models/section';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { sortBy, uniq } from 'lodash-es';
 import { NotificationsService } from '../../../core/services/notifications.service';
@@ -97,9 +97,9 @@ export class EditAppointmentComponent implements OnInit {
       this.sectionSelectItems = sortBy(
         uniq(
           this.appointment.participations
-            .map((p) => p.musicianProfiles)
-            .reduce((a, b) => a.concat(b), [])
-            .map((mp) => this.mapMusicianProfileToSectionSelectItem(mp))
+            .map((p: any) => p.musicianProfiles)
+            .reduce((a: any, b: any) => a.concat(b), [])
+            .map((mp: any) => this.mapMusicianProfileToSectionSelectItem(mp))
         ),
         (selectItem) => selectItem.label
       );
@@ -108,8 +108,8 @@ export class EditAppointmentComponent implements OnInit {
         uniq(
           this.appointment.participations
             .map((p) => p.musicianProfiles)
-            .reduce((a, b) => a.concat(b), [])
-            .map((mp) => this.mapMusicianProfileToQualificationSelectItem(mp))
+            .reduce((a: any, b: any) => a.concat(b), [])
+            .map((mp: any) => this.mapMusicianProfileToQualificationSelectItem(mp))
         ),
         (selectItem) => selectItem.label
       );
@@ -201,14 +201,14 @@ export class EditAppointmentComponent implements OnInit {
   searchProject(event: any): void {
     this.projectOptions = this.projects.filter(
       (p) =>
-        p.title.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.projects.map((r) => r.id).includes(p.id)
+        p.title.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.projects.map((r: any) => r.id).includes(p.id)
     );
   }
 
   searchSection(event: any): void {
     this.sectionOptions = this.sections.filter(
       (p) =>
-        p.name.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.sections.map((r) => r.id).includes(p.id)
+        p.name.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.sections.map((r: any) => r.id).includes(p.id)
     );
   }
 
@@ -224,7 +224,7 @@ export class EditAppointmentComponent implements OnInit {
       .pipe(first())
       .subscribe((_) => {
         this.notificationsService.success('editappointments.VENUE_SET');
-        this.appointment.rooms.forEach((room) => {
+        this.appointment.rooms.forEach((room: any) => {
           this.removeRoom(room.id, false);
         });
         this.appointment.rooms = [];
@@ -386,16 +386,16 @@ export class EditAppointmentComponent implements OnInit {
 
   private mapParticipations(): void {
     this.participationTableItems = [];
-    this.appointment.participations.forEach((element) => {
+    this.appointment.participations.forEach((element: any) => {
       this.participationTableItems.push(
         new ParticipationTableItem(
           element.person.id,
           element.person.givenName,
           element.person.surname,
           this.getSectionNames(element.musicianProfiles),
-          element.musicianProfiles.map((mp) => mp.qualification).join(', '),
+          element.musicianProfiles.map((mp: any) => mp.qualification).join(', '),
           element.participation ? element.participation.predictionId : '',
-          element.participation ? element.participation.resultId : ''
+          element.participation ? element.participation.resultId : '',
         )
       );
     });

@@ -3,15 +3,15 @@
   <div class='p-field'>
     <arpa-lang-switch></arpa-lang-switch>
   </div>
-
+<div class='p-fluid'>
   <div class='p-field p-float-label'>
-    <input type='text' pInputText formControlName='givenName' (ngModelChange)='onChange()' autocomplete="given-name">
+    <input type='text' pInputText formControlName='givenName' (ngModelChange)='onChange()' autocomplete='given-name'>
     <label for='float-input'>{{ 'GIVENNAME' | translate }}</label>
   </div>
 
 
   <div class='p-field p-float-label'>
-    <input type='text' pInputText formControlName='surname' (ngModelChange)='onChange()' autocomplete="family-name">
+    <input type='text' pInputText formControlName='surname' (ngModelChange)='onChange()' autocomplete='family-name'>
     <label for='float-input'>{{ 'SURNAME' | translate }}</label>
   </div>
 
@@ -22,15 +22,13 @@
   </div>
 
   <div class='p-field p-float-label'>
-    <input type='text' pInputText formControlName='userName' (ngModelChange)='onChange()' autocomplete="username">
+    <input type='text' pInputText formControlName='userName' (ngModelChange)='onChange()' autocomplete="new-username">
     <label for='float-input'>{{ 'USERNAME' | translate }}</label>
   </div>
 
   <div class='p-field p-float-label'>
-    <input id='password' type='text' pInputText formControlName='password' pPassword [feedback]=false
-           [type]="hide ? 'password' : 'text'" (ngModelChange)='onChange()' autocomplete="new-password">
+    <p-password formControlName='password' [toggleMask]='true' [feedback]='false' autocomplete="new-password"></p-password>
     <label for='float-input'>{{ 'PASSWORD' | translate }}</label>
-    <i id='eyeButton' class="p-ml-2 pi {{hide ? 'pi-eye-slash' : 'pi-eye'}}" (click)='hide = !hide'></i>
   </div>
 
   <div class='p-field-checkbox'>
@@ -41,20 +39,20 @@
       </a>
     </label>
   </div>
-
+</div>
   <div class='p-formgroup-inline'>
-    <div class='p-field'>
-      <button
-        pButton
-        label="{{ 'REGISTER' | translate }}"
-        [disabled]='registerFormGroup.invalid || registerFormGroup.pristine || registerRequest'>
-      </button>
-    </div>
     <div class='p-field'>
       <button *ngIf='!registerRequest'
               pButton
               label="{{ 'CANCEL' | translate }}"
               (click)='goToLogin()'>
+      </button>
+    </div>
+    <div class='p-field'>
+      <button
+        pButton
+        label="{{ 'REGISTER' | translate }}"
+        [disabled]='registerFormGroup.invalid || registerFormGroup.pristine || registerRequest'>
       </button>
     </div>
   </div>

@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'arpa-avatar',
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.scss'],
 })
-export class AvatarComponent implements OnInit {
+export class AvatarComponent {
 
   @Input()
   user: any;
@@ -49,10 +49,6 @@ export class AvatarComponent implements OnInit {
       const [last] = this.user?.surname || '';
       return `${first[0].toUpperCase()}${last[0].toUpperCase()}`;
     }
-  }
-
-  ngOnInit(): void {
-
   }
 
 }

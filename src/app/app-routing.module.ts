@@ -123,6 +123,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, {
     preloadingStrategy: PreloadAllModules,
     paramsInheritanceStrategy: 'always',
+    onSameUrlNavigation: "reload",
   })],
   exports: [RouterModule],
 })

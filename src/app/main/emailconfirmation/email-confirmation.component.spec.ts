@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { IConfirmEmailDto } from 'src/app/models/IConfirmEmailDto';
+import { IConfirmEmailDto } from '../../models/IConfirmEmailDto';
 import { of } from 'rxjs';
 import { httpLoaderFactory } from '../../core/core.module';
 import { AuthService } from '../../core/services/auth.service';

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
@@ -13,7 +13,7 @@ import { first } from 'rxjs/operators';
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.scss'],
 })
-export class ForgotPasswordComponent implements OnInit {
+export class ForgotPasswordComponent {
 
   forgotPasswordRequest = false;
   forgotPasswordFormGroup: FormGroup;
@@ -35,9 +35,6 @@ export class ForgotPasswordComponent implements OnInit {
         ],
       ],
     });
-  }
-
-  ngOnInit(): void {
   }
 
   submit(): void {
