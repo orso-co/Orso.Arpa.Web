@@ -48,7 +48,7 @@ export class UserListComponent implements OnChanges {
   getInitials(user: IUserDto): string {
     return `${user.displayName
       .split(' ')
-      .map((name) => name[0].toUpperCase())
+      .map((name) => name.length && name[0].toUpperCase() || '')
       .join('')}`;
   }
 

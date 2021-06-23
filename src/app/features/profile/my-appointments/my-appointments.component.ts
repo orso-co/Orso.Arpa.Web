@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'primeng/api';
 import { Observable, of } from 'rxjs';
 import { first, map } from 'rxjs/operators';
-import { IRoomDto, IUserAppointmentDto, IVenueDto } from 'src/app/models/appointment';
-import { IProjectDto } from 'src/app/models/IProjectDto';
+import { IRoomDto, IUserAppointmentDto, IVenueDto } from '../../../models/appointment';
+import { IProjectDto } from '../../../models/IProjectDto';
 import { MeService } from '../../../core/services/me.service';
 import { NotificationsService } from '../../../core/services/notifications.service';
 

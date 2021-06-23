@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './error.component.html',
   styleUrls: ['./error.component.scss'],
 })
-export class ErrorComponent implements OnInit {
+export class ErrorComponent {
 
   public error = 0;
   public type = '';
@@ -21,8 +21,5 @@ export class ErrorComponent implements OnInit {
       // Assign static data by default.
       Object.assign(this, this.activatedRoute.snapshot.data);
     }
-  }
-
-  ngOnInit(): void {
   }
 }

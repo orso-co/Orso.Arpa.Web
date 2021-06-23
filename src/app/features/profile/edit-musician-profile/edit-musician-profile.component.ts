@@ -59,7 +59,6 @@ export class EditMusicianProfileComponent implements OnInit {
         map(sections => sections.find(section => section.id === id) as ISectionDto),
         first(),
       ).subscribe((section: ISectionDto) => {
-        console.log(section);
         if (section.instrumentPartCount > 0) {
           const options = [];
           for (let i = 0; i < section.instrumentPartCount; i++) {

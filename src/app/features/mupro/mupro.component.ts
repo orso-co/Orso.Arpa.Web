@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FilterService } from 'primeng/api';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -18,8 +17,11 @@ export class MuproComponent implements OnInit {
               private router: Router,
   ) {
     this.routeData = route.data
-      .pipe(map((routeData) => routeData.persons))
-      .subscribe((person) => (this.persons = person));
+      .pipe(map((routeData) => routeData.persons || []))
+      .subscribe((persons) => (this.persons = persons.map((person: any) => ({
+        ...person,
+        filterOption: person.givenName + person.surName,
+      }))));
   }
 
   ngOnInit(): void {

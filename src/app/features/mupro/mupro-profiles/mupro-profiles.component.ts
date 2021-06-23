@@ -57,7 +57,6 @@ export class MuproProfilesComponent implements OnInit {
   }
 
   editProfile(profile: IMusicianProfileDto) {
-    console.log(profile);
   }
 
 }

@@ -1,35 +1,35 @@
-<form [formGroup] = "loginFormGroup" (ngSubmit)="submit()" class="p-jc-center">
+<form [formGroup]='loginFormGroup' (ngSubmit)='submit()' class='p-jc-center'>
 
   <div class='p-field'>
     <arpa-lang-switch></arpa-lang-switch>
   </div>
+  <div class='p-fluid'>
+    <div class='p-field p-float-label'>
+      <input id='usernameOrEmail' type='text' pInputText formControlName='usernameOrEmail' autocomplete='username'>
+      <label for='float-input'>{{ 'USERNAMEOREMAIL' | translate }}</label>
+    </div>
 
-  <div class="p-field p-float-label">
-    <input id="usernameOrEmail" type="text" pInputText formControlName="usernameOrEmail" autocomplete="username">
-    <label for="float-input">{{ 'USERNAMEOREMAIL' | translate }}</label>
+    <div class='p-field p-float-label'>
+      <p-password formControlName='password' [toggleMask]='true' [feedback]='false'></p-password>
+      <label for='float-input'>{{ 'PASSWORD' | translate }}</label>
+    </div>
+
+    <div class='p-field'>
+      <button
+        pButton
+        label="{{ 'LOGIN' | translate }}"
+        [disabled]='loginFormGroup.invalid || loginFormGroup.pristine '>
+      </button>
+    </div>
+
+    <div class='p-formgroup-inline'>
+      <div class='p-field'>
+        <p-button label="{{ 'forgotpassword.BUTTON' | translate }}" styleClass='p-button-text no-margin'
+                  (click)='forgotPassword()'></p-button>
+      </div>
+      <div class='p-field p-text-right'>
+        <p-button label="{{ 'REGISTER' | translate }}" styleClass='p-button-text' (click)='goToRegister()'></p-button>
+      </div>
+    </div>
   </div>
-
-  <div class="p-field p-float-label">
-    <input id="password" type="text" pInputText formControlName="password" pPassword [feedback]=false [type]="hide ? 'password' : 'text'" autocomplete="current-password">
-    <label for="float-input">{{ 'PASSWORD' | translate }}</label>
-    <i id="eyeButton" class="p-ml-2 pi {{hide ? 'pi-eye-slash' : 'pi-eye'}}" (click)="hide = !hide"></i>
-  </div>
-
-  <div class="p-field">
-    <button
-      pButton
-      label="{{ 'LOGIN' | translate }}"
-      [disabled]="loginFormGroup.invalid || loginFormGroup.pristine ">
-    </button>
-  </div>
-
-
-  <div class="p-field">
-    <p-button label="{{ 'REGISTER' | translate }}" styleClass="p-button-text" (click)="goToRegister()"></p-button>
-  </div>
-
-  <div class="p-field">
-    <p-button label="{{ 'forgotpassword.BUTTON' | translate }}" styleClass="p-button-text no-margin" (click)="forgotPassword()"></p-button>
-  </div>
-
 </form>

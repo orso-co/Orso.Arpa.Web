@@ -1,5 +1,5 @@
 import { Observable, Subscription } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService, IToken } from '../../core/services/auth.service';
 import { Unsubscribe } from '../../core/decorators/unsubscribe.decorator';
 import { TopbarService } from './topbar.service';
@@ -12,7 +12,7 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./topbar.component.scss'],
 })
 @Unsubscribe()
-export class TopbarComponent implements OnInit{
+export class TopbarComponent {
 
   token$: Observable<IToken | null>;
   langChangeListener: Subscription;
@@ -36,9 +36,5 @@ export class TopbarComponent implements OnInit{
 
   getRoleNames(token: IToken): string {
     return token.roles.map((role) => role.charAt(0).toUpperCase() + role.slice(1)).join(', ');
-  }
-
-  ngOnInit(): void {
-
   }
 }

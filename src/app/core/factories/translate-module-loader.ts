@@ -17,7 +17,9 @@ export class TranslateModuleLoader implements TranslateLoader {
     const requests = this.modules.map(module => {
       const path = `/assets/i18n/${module}/${lang}.json`;
       return this.http.get(path).pipe(catchError(res => {
+        // eslint-disable-next-line no-console
         console.error('Something went wrong for the following translation file:', path);
+        // eslint-disable-next-line no-console
         console.error(res.message);
         return of({});
       }));

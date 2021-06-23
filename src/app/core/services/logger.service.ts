@@ -25,18 +25,21 @@ export class LoggerService implements ILoggerService {
 
   log(value: any, ...rest: any[]): void {
     if (!environment.production) {
+      // eslint-disable-next-line no-console
       console.log(value, rest);
     }
   }
 
   warn(value: any, ...rest: any[]): void {
     if (!environment.production) {
+      // eslint-disable-next-line no-console
       console.warn(value, rest);
     }
   }
 
   error(value: any, ...rest: any[]): void {
     if (!environment.production) {
+      // eslint-disable-next-line no-console
       console.error(value, rest);
     }
   }
