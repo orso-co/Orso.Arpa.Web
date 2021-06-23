@@ -1,45 +1,51 @@
-<form [formGroup]='registerFormGroup' (ngSubmit)='onSubmit()'>
+<form autocomplete='off' [formGroup]='registerFormGroup' (ngSubmit)='onSubmit()'>
 
   <div class='p-field'>
     <arpa-lang-switch></arpa-lang-switch>
   </div>
-<div class='p-fluid'>
-  <div class='p-field p-float-label'>
-    <input type='text' pInputText formControlName='givenName' (ngModelChange)='onChange()' autocomplete='given-name'>
-    <label for='float-input'>{{ 'GIVENNAME' | translate }}</label>
+  <div class='p-fluid'>
+    <div class='p-field p-float-label'>
+      <input type='text' pInputText formControlName='givenName' (ngModelChange)='onChange()' autocomplete='given-name'>
+      <label for='float-input'>{{ 'GIVENNAME' | translate }}</label>
+    </div>
+
+
+    <div class='p-field p-float-label'>
+      <input type='text' pInputText formControlName='surname' (ngModelChange)='onChange()' autocomplete='family-name'>
+      <label for='float-input'>{{ 'SURNAME' | translate }}</label>
+    </div>
+
+
+    <div class='p-field p-float-label'>
+      <input type='text' pInputText formControlName='email' (ngModelChange)='onChange()' autocomplete='email'>
+      <label for='float-input'>{{ 'EMAILADDRESS' | translate }}</label>
+    </div>
+
+    <div class='p-field p-float-label'>
+      <input type='text' pInputText formControlName='userName' (ngModelChange)='onChange()' autocomplete='off'>
+      <label for='float-input'>{{ 'USERNAME' | translate }}</label>
+    </div>
+
+    <div class='p-field p-float-label'>
+      <p-password formControlName='password' [toggleMask]='true' [feedback]='false' autocomplete='off'></p-password>
+      <label for='float-input'>{{ 'PASSWORD' | translate }}</label>
+    </div>
+
+    <div class='p-field p-float-label' *ngIf='registerFormGroup.get("password")?.value'>
+      <p-password formControlName='confirmPassword' [toggleMask]='false' [feedback]='false'
+                  autocomplete='off'></p-password>
+      <label for='float-input'>{{ 'register.PASSWORD_CONFIRM' | translate }}</label>
+    </div>
+
+    <div class='p-field-checkbox'>
+      <p-checkbox formControlName='privacyPolicy' ngDefaultControl></p-checkbox>
+      <label>
+        <a [routerLink]="['/privacy']" style='color:currentColor;' title="{{ 'register.SHOWPRIVACY' | translate }}">
+          {{ 'PRIVACYPOLICY' | translate }}
+        </a>
+      </label>
+    </div>
   </div>
-
-
-  <div class='p-field p-float-label'>
-    <input type='text' pInputText formControlName='surname' (ngModelChange)='onChange()' autocomplete='family-name'>
-    <label for='float-input'>{{ 'SURNAME' | translate }}</label>
-  </div>
-
-
-  <div class='p-field p-float-label'>
-    <input type='text' pInputText formControlName='email' (ngModelChange)='onChange()' autocomplete="email">
-    <label for='float-input'>{{ 'EMAILADDRESS' | translate }}</label>
-  </div>
-
-  <div class='p-field p-float-label'>
-    <input type='text' pInputText formControlName='userName' (ngModelChange)='onChange()' autocomplete="new-username">
-    <label for='float-input'>{{ 'USERNAME' | translate }}</label>
-  </div>
-
-  <div class='p-field p-float-label'>
-    <p-password formControlName='password' [toggleMask]='true' [feedback]='false' autocomplete="new-password"></p-password>
-    <label for='float-input'>{{ 'PASSWORD' | translate }}</label>
-  </div>
-
-  <div class='p-field-checkbox'>
-    <p-checkbox formControlName='privacyPolicy' ngDefaultControl></p-checkbox>
-    <label>
-      <a [routerLink]="['/privacy']" style='color:currentColor;' title="{{ 'register.SHOWPRIVACY' | translate }}">
-        {{ 'PRIVACYPOLICY' | translate }}
-      </a>
-    </label>
-  </div>
-</div>
   <div class='p-formgroup-inline'>
     <div class='p-field'>
       <button *ngIf='!registerRequest'
