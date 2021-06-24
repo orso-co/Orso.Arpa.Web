@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { NotificationsService } from '../../core/services/notifications.service';
 import { ConfigService } from '../../core/services/config.service';
 import { AuthService } from '../../core/services/auth.service';
-import { first } from 'rxjs/operators';
+import { finalize, first } from 'rxjs/operators';
 import { RecaptchaComponent } from 'ng-recaptcha';
 import { LoadingService } from '../../core/services/loading.service';
 
@@ -84,6 +84,7 @@ export class RegisterComponent {
   }
 
   onSubmit(): void {
+    this.loadingService.loadingOn();
     this.reCaptcha.execute();
   }
 
@@ -94,9 +95,12 @@ export class RegisterComponent {
   submit(): void {
     this.authService
       .register(Object.assign({}, this.registerFormGroup.value))
-      .pipe(first())
+      .pipe(
+        first(),
+        finalize(() => {
+          this.loadingService.reset();
+        }))
       .subscribe(() => {
-        this.loadingService.reset();
         this.notificationsService.info('register.THANKS');
         this.router.navigate(['activation']);
       }, error => {
