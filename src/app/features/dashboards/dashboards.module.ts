@@ -1,3 +1,4 @@
+import { ChartModule } from 'primeng/chart';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../shared/shared.module';
@@ -11,6 +12,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdministratorComponent } from './administrator/administrator.component';
 import { DashboardsRoutingModule } from './dashboards-routing.module';
 import { ProjectsModule } from '../projects/projects.module';
+import { UserchartComponent } from './userchart/userchart.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { ProjectsModule } from '../projects/projects.module';
     NoRoleComponent,
     DashboardComponent,
     AdministratorComponent,
+    UserchartComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +32,7 @@ import { ProjectsModule } from '../projects/projects.module';
     ReactiveFormsModule,
     DashboardsRoutingModule,
     ProjectsModule,
+
   ],
 })
 export class DashboardsModule {
