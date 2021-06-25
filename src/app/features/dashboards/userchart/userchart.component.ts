@@ -7,26 +7,38 @@ import { Component } from '@angular/core';
 })
 export class UserchartComponent{
   data: any;
+  options: any;
 
   constructor() {
     this.data = {
-      labels: ['Admins','Staff','Performer', 'Without Role'],
+      labels: ['Performer','Staff','Admins', 'No Role'],
       datasets: [
           {
-              data: [2 , 1, 2, 1],
+              data: [263 , 16, 5, 42],
               backgroundColor: [
-                  "#C0392B",
-                  "#36A2EB",
-                  "#F4D03F",
-                  "#8E44AD"
+                "#F4D03F",
+                "#C0392B",
+                "#36A2EB",
+                "#8E44AD"
               ],
               hoverBackgroundColor: [
-                  "#CD6155",
-                  "#36A2E0",
-                  "#F9E79F",
-                  "#BB8FCE"
+                "#F9E79F",
+                "#CD6155",
+                "#36A2E0",
+                "#BB8FCE"
               ]
           }]
       };
-  }
+    this.options = {
+      title: {
+        display: true,
+        text: 'This is only fake data for demo',
+        fontSize: 14
+
+      },
+      legend: {
+        position: 'bottom'
+      }
+    }
+    }
 }
