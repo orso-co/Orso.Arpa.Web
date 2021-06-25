@@ -45,8 +45,8 @@ export class AvatarComponent {
         .map((name: string) => name[0].toUpperCase())
         .join('').toUpperCase()}`;
     } else {
-      const [first] = this.user?.givenName || '';
-      const [last] = this.user?.surname || '';
+      const [first] = this.user?.givenName || ' ';
+      const [last] = this.user?.surname || ' ';
       return `${first[0].toUpperCase()}${last[0].toUpperCase()}`;
     }
   }

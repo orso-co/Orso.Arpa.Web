@@ -8,7 +8,7 @@
     width: 95px;
     p {
       margin: 0;
-      color: var(--primary-color-text);
+      color: var(--text-color-secondary);
     }
 
     .day {
@@ -17,7 +17,8 @@
       line-height: 0.8;
     }
     .passed {
-      color: gray;
+      color: var(--text-color);
+      opacity: .85;
     }
   }
 }
