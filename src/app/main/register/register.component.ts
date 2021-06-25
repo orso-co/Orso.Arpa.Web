@@ -110,7 +110,7 @@ export class RegisterComponent {
             const formControl = this.registerFormGroup.get(formProp);
             if (formControl) {
               formControl.setErrors({
-                resultError: error.errors[formProp],
+                resultError: error.errors[prop],
               });
             }
           });

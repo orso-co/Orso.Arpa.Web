@@ -36,6 +36,17 @@
                   autocomplete='off'></p-password>
       <label for='float-input'>{{ 'register.PASSWORD_CONFIRM' | translate }}</label>
     </div>
+    <div
+      *ngIf="registerFormGroup.controls['password'].invalid && (registerFormGroup.controls['password'].dirty || registerFormGroup.controls['password'].touched)" class='alert'>
+      <div *ngIf="registerFormGroup.controls['password'].errors">
+        <div *ngIf="registerFormGroup.controls['password'].errors.resultError">
+          {{ registerFormGroup.controls['password'].errors.resultError.join('') }}
+        </div>
+        <div *ngIf="registerFormGroup.controls['password'].errors.pattern">
+          {{ 'register.PASSWORD_ERROR_PATTERN' | translate }}
+        </div>
+      </div>
+    </div>
 
     <div class='p-field-checkbox'>
       <p-checkbox formControlName='privacyPolicy' ngDefaultControl></p-checkbox>
