@@ -4,8 +4,9 @@ import { Router } from '@angular/router';
 import { NotificationsService } from '../../core/services/notifications.service';
 import { ConfigService } from '../../core/services/config.service';
 import { AuthService } from '../../core/services/auth.service';
-import { first } from 'rxjs/operators';
+import { finalize, first } from 'rxjs/operators';
 import { RecaptchaComponent } from 'ng-recaptcha';
+import { LoadingService } from '../../core/services/loading.service';
 
 @Component({
   selector: 'arpa-register',
@@ -25,6 +26,7 @@ export class RegisterComponent {
               private authService: AuthService,
               private configService: ConfigService,
               private notificationsService: NotificationsService,
+              private loadingService: LoadingService,
   ) {
 
     this.siteKey = configService.getEnv('captcha').key;
@@ -62,16 +64,27 @@ export class RegisterComponent {
           Validators.pattern(configService.getEnv('validation').password),
         ],
       ],
+      confirmPassword: [
+        null,
+        [],
+      ],
       privacyPolicy: [
         null,
         [
           Validators.required,
         ],
       ],
-    });
+    }, { validators: this.comparePasswords });
+  }
+
+  comparePasswords(group: FormGroup) {
+    const password = group.get('password')?.value;
+    const confirmPassword = group.get('confirmPassword')?.value;
+    return password === confirmPassword ? null : { notSame: true };
   }
 
   onSubmit(): void {
+    this.loadingService.loadingOn();
     this.reCaptcha.execute();
   }
 
@@ -82,12 +95,16 @@ export class RegisterComponent {
   submit(): void {
     this.authService
       .register(Object.assign({}, this.registerFormGroup.value))
-      .pipe(first())
+      .pipe(
+        first(),
+        finalize(() => {
+          this.loadingService.reset();
+        }))
       .subscribe(() => {
         this.notificationsService.info('register.THANKS');
-        this.router.navigate(['login']);
+        this.router.navigate(['activation']);
       }, error => {
-        if (error.status === 400 && error.errors) {
+        if (error.status < 500 && error.errors) {
           Object.keys(error.errors).forEach(prop => {
             const formProp = prop[0].toLowerCase() + prop.slice(1);
             const formControl = this.registerFormGroup.get(formProp);
@@ -97,6 +114,8 @@ export class RegisterComponent {
               });
             }
           });
+        } else {
+          this.router.navigate(['regError']);
         }
       });
   }

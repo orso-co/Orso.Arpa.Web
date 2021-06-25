@@ -7,7 +7,7 @@
   <ul class='topbar-menu'>
     <li class='user-profile-item' *ngIf='token$ | async as token'>
       <a href='#' (click)='userprofilemenu.toggle($event); $event.preventDefault();'>
-        <arpa-avatar [user]='token' [image]='true' [size]='"large"'></arpa-avatar>
+        <arpa-avatar [user]='token' [image]='false' [size]='"large"'></arpa-avatar>
         <span class='user-profile-name'>{{ token.displayName }}</span>
         <span class='user-profile-role'>{{ getRoleNames(token) }}</span>
       </a>

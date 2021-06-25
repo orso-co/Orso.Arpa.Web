@@ -2,7 +2,7 @@
   [style]="{ 'background-color': getColor(), color: 'rgba(255, 255, 255, 0.87)' }"
   [label]='getInitials()'
   styleClass='p-mr-3'
-  size='large'
+  [size]='size'
   shape='circle'
 ></p-avatar>
 <p-avatar *ngIf="image"

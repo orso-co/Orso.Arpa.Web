@@ -14,6 +14,8 @@ import { ForgotPasswordComponent } from './main/forgot-password/forgot-password.
 import { SessionGuard } from './core/guards/session.guard';
 import {AuditLogComponent} from './shared/audit-log/audit-log.component';
 import {AuditLogResolver} from './resolvers/auditlog.resolver';
+import { ActivationComponent } from './main/activation/activation.component';
+import { RegErrorComponent } from './main/reg-error/reg-error.component';
 
 const routes: Routes = [
   {
@@ -30,6 +32,8 @@ const routes: Routes = [
       },
       { path: 'login', component: LoginComponent, data: { sessionPrevent: true } },
       { path: 'register', component: RegisterComponent, data: { sessionPrevent: true } },
+      { path: 'activation', component: ActivationComponent, data: { sessionPrevent: true } },
+      { path: 'regError', component: RegErrorComponent, data: { sessionPrevent: true } },
       { path: 'forgotPassword', component: ForgotPasswordComponent, data: { sessionPrevent: true } },
       { path: 'eMailConfirmation', component: EmailConfirmationComponent, data: { sessionPrevent: true } },
       { path: 'logout', component: LogoutComponent },

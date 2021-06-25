@@ -20,7 +20,7 @@ export class MuproComponent implements OnInit {
       .pipe(map((routeData) => routeData.persons || []))
       .subscribe((persons) => (this.persons = persons.map((person: any) => ({
         ...person,
-        filterOption: person.givenName + person.surName,
+        filterOption: person.givenName + ' ' + person.surname,
       }))));
   }
 

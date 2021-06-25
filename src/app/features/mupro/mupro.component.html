@@ -11,10 +11,10 @@
         filterPlaceHolder='Search'
       >
         <ng-template let-user pTemplate='item'>
-          <arpa-avatar [user]='user' [image]='(user.surname=== "Admin")' size='large'></arpa-avatar>
+          <arpa-avatar [user]='user' [image]='false' size='large'></arpa-avatar>
           <div class='details'>
             <div class='name'>{{user.givenName}} {{user.surname}}</div>
-            <div class='profile'>Instrument</div>
+            <div class='profile'>...</div>
             <div class='country'>Deutschland, Berlin</div>
           </div>
         </ng-template>

@@ -64,27 +64,34 @@
   <ng-template pTemplate='body' let-project>
     <tr (click)='openProjectDetailDialog(project)' class='clickable'>
       <td>
+        <span class="p-column-title">{{ 'projects.TITLE' | translate }}</span>
         {{ project.title }}
       </td>
       <td>
+        <span class="p-column-title">{{ 'projects.ABBREVIATION' | translate }}</span>
         {{ project.shortTitle }}
       </td>
       <td>
+        <span class="p-column-title">{{ 'projects.VENUE' | translate }}</span>
         {{ project.venue }}
       </td>
       <td>
+        <span class="p-column-title">{{ 'projects.START' | translate }}</span>
         {{ project.startDate | date }}
       </td>
       <td>
+        <span class="p-column-title">{{ 'projects.END' | translate }}</span>
         {{ project.endDate | date }}
       </td>
       <td>
+        <span class="p-column-title">{{ 'projects.STATE' | translate }}</span>
         {{ getState(project.stateId) | async }}
       </td>
-      <td style='text-align: center'>
+      <td class='p-text-lg-center'>
+        <span class="p-column-title">{{ 'projects.COMPLETED' | translate }}</span>
         <i *ngIf='project.isCompleted' class='pi pi-check-square'></i>
       </td>
-      <td style='text-align: right'>
+      <td class='p-text-lg-right'>
         <button
           *ngIf='!project.isCompleted'
           pButton
