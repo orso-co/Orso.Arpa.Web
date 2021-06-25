@@ -11,6 +11,7 @@ import {ProjectTypeResolver} from './resolvers/project-type.resolver';
 import {ProjectStateResolver} from './resolvers/project-status.resolver';
 import { ProjectParticipationComponent } from './project-participation/project-participation.component';
 import { ProjectParticipantsComponent } from './project-participants/project-participants.component';
+import { ProjectchartParticipantsComponent } from './projectchart-participants/projectchart-participants.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ProjectParticipantsComponent } from './project-participants/project-par
     EditProjectComponent,
     ProjectParticipationComponent,
     ProjectParticipantsComponent,
+    ProjectchartParticipantsComponent,
   ],
   imports: [
     CommonModule,

@@ -37,6 +37,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { BadgeModule } from 'primeng/badge';
+import { ChartModule } from 'primeng/chart';
 
 const MODULES = [
   InputTextModule,
@@ -73,7 +74,8 @@ const MODULES = [
   MultiSelectModule,
   InputTextareaModule,
   BadgeModule,
-  SkeletonModule
+  SkeletonModule,
+  ChartModule
 ];
 
 @NgModule({

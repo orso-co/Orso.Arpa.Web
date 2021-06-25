@@ -32,7 +32,7 @@ export class LoadingService {
   }
 
   reset(): void {
-    //this.calls = 0;
+    this.calls = 0;
     this.loadingOff();
   }
 }

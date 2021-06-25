@@ -78,7 +78,8 @@
   },
   "login": {
     "RESENDCONFIRMATION": "Bestätigungslink nochmal zusenden",
-    "RESENDDONE": "Bestätigungslink wurde erneut versendet, bitte Mailbox prüfen"
+    "RESENDDONE": "Bestätigungslink wurde erneut versendet, bitte Mailbox prüfen",
+    "LOGIN_FIRST": "Please login first"
   },
   "forgotpassword": {
     "BUTTON": "Passwort vergessen",
@@ -92,7 +93,12 @@
   },
   "register": {
     "THANKS": "Vielen Dank für die Registrierung bei ARPA. Bitte prüfe deine Mailbox und bestätige deine Mailaddresse.",
-    "SHOWPRIVACY": "Datenschutzbestimmungen"
+    "SHOWPRIVACY": "Datenschutzbestimmungen",
+    "MAIL_ACTIVATION": "Wir haben dir eine Email geschickt. Bitte bestätige deinen Account.",
+    "ERROR": "Bitte versuchen es später noch einmal.",
+    "BACK": "ZURÜCK ZUM LOGIN",
+    "PASSWORD_CONFIRM": "Passwort bestätigen",
+    "PASSWORD_ERROR_PATTERN": "Passwort nicht gültig"
   },
   "dashboardselector": {
     "SELECT_DASHBOARD": "Wähle das Dashboard, zu dem du wechseln möchtest"

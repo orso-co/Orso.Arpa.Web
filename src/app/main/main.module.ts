@@ -13,6 +13,8 @@ import { LogoutComponent } from './logout/logout.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { EmailConfirmationComponent } from './emailconfirmation/email-confirmation.component';
 import { RecaptchaModule } from 'ng-recaptcha';
+import { ActivationComponent } from './activation/activation.component';
+import { RegErrorComponent } from './reg-error/reg-error.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { RecaptchaModule } from 'ng-recaptcha';
     LogoutComponent,
     ForgotPasswordComponent,
     EmailConfirmationComponent,
+    ActivationComponent,
+    RegErrorComponent,
   ],
   imports: [
     CommonModule,

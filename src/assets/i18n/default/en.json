@@ -92,7 +92,12 @@
   },
   "register": {
     "THANKS": "Thanks for your registration with ARPA. Please check your inbox and confirm your email address.",
-    "SHOWPRIVACY": "Privacy Policy"
+    "SHOWPRIVACY": "Privacy Policy",
+    "MAIL_ACTIVATION": "We have sent you an email. Please confirm your account.",
+    "ERROR": "Please try again later.",
+    "BACK": "BACK TO LOGIN",
+    "PASSWORD_CONFIRM": "Confirm Password",
+    "PASSWORD_ERROR_PATTERN": "Password not valid"
   },
   "dashboardselector": {
     "SELECT_DASHBOARD": "Select the dashboard you want to switch to"
