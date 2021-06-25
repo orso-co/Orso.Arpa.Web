@@ -35,7 +35,8 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/@fullcalendar/core/locales-all.min.js"
+              "node_modules/@fullcalendar/core/locales-all.min.js",
+              "node_modules/chart.js/dist/Chart.js"
             ],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json",
@@ -65,7 +66,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "2mb"
+                  "maximumError": "3mb"
                 },
                 {
                   "type": "anyComponentStyle",
