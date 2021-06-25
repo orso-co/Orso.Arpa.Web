@@ -13,6 +13,7 @@ import { AdministratorComponent } from './administrator/administrator.component'
 import { DashboardsRoutingModule } from './dashboards-routing.module';
 import { ProjectsModule } from '../projects/projects.module';
 import { UserchartComponent } from './userchart/userchart.component';
+import { ProjectgenrechartComponent } from './projectgenrechart/projectgenrechart.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { UserchartComponent } from './userchart/userchart.component';
     DashboardComponent,
     AdministratorComponent,
     UserchartComponent,
+    ProjectgenrechartComponent,
   ],
   imports: [
     CommonModule,
