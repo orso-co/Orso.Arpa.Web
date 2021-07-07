@@ -14,6 +14,8 @@ import { DashboardsRoutingModule } from './dashboards-routing.module';
 import { ProjectsModule } from '../projects/projects.module';
 import { UserchartComponent } from './userchart/userchart.component';
 import { ProjectgenrechartComponent } from './projectgenrechart/projectgenrechart.component';
+import { TestchildComponent } from './testchild/testchild.component';
+import { ChoirGridComponent } from './choir-grid/choir-grid.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { ProjectgenrechartComponent } from './projectgenrechart/projectgenrechar
     AdministratorComponent,
     UserchartComponent,
     ProjectgenrechartComponent,
+    TestchildComponent,
+    ChoirGridComponent,
   ],
   imports: [
     CommonModule,

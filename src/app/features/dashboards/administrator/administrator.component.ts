@@ -1,3 +1,4 @@
+import { RoleNames } from './../../../models/role-names';
 import { ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
@@ -18,6 +19,14 @@ export class AdministratorComponent {
   usersWithRole: IUserDto[] = [];
   roles$: Observable<IRoleDto[]>;
   sectionTree$: Observable<ISectionTreeDto>;
+
+get usersWithoutRoleCount ():number {
+  return this.users.length
+}
+get usersTotalCount (): number {
+  return this.users.length + this.usersWithRole.length
+}
+
 
   constructor(
     route: ActivatedRoute,

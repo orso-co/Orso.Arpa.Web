@@ -22,6 +22,7 @@
 
   <div class="p-col-12 p-md-6 p-lg-4">
     <h3>User gesamt: {{users.length + usersWithRole.length}}</h3>
-<arpa-userchart></arpa-userchart>
+<arpa-userchart> [usersWithRole]="usersWithRole.length" [usersWithoutRoleCount]="usersWithoutRoleCount" </arpa-userchart>
   </div>
 </div>
+<arpa-testchild [usersWithRoleCount]="usersWithRole.length" [usersWithoutRoleCount]="usersWithoutRoleCount" [usersTotalCount]="usersTotalCount"></arpa-testchild>
