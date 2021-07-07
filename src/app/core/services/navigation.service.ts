@@ -27,4 +27,8 @@ export class NavigationService {
       this.router.navigateByUrl('/');
     }
   }
+
+  close(): void {
+    window.close();
+  }
 }
