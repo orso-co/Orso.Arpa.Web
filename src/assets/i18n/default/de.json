@@ -55,7 +55,8 @@
   },
   "navigation": {
     "BACKTODASHBOARD": "zurück zum Dashboard",
-    "BACK": "zurück"
+    "BACK": "zurück",
+    "CLOSE": "schliessen"
   },
 
   "profile": {

@@ -16,6 +16,7 @@ import { AuditLogComponent } from './audit-log/audit-log.component';
 import { AuditDialogDirective } from './audit-log/audit-dialog.directive';
 import { AuditDialogComponent } from './audit-dialog/audit-dialog.component';
 import { SplitViewComponent } from './split-view/split-view.component';
+import { CloseButtonDirective } from './directives/close-button.directive';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SplitViewComponent } from './split-view/split-view.component';
     AuditLogComponent,
     AuditDialogDirective,
     AuditDialogComponent,
-    SplitViewComponent
+    SplitViewComponent,
+    CloseButtonDirective,
   ],
   imports: [
     CommonModule,
