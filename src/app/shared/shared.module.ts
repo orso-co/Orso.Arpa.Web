@@ -18,6 +18,7 @@ import { AuditDialogComponent } from './audit-dialog/audit-dialog.component';
 import { SplitViewComponent } from './split-view/split-view.component';
 import { FormFieldComponent } from './form-field/form-field.component';
 import { PasswordStrengthComponent } from './password-strength/password-strength.component';
+import { CloseButtonDirective } from './directives/close-button.directive';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PasswordStrengthComponent } from './password-strength/password-strength
     AuditDialogComponent,
     SplitViewComponent,
     FormFieldComponent,
-    PasswordStrengthComponent
+    PasswordStrengthComponent,
+    CloseButtonDirective,
   ],
   imports: [
     CommonModule,
