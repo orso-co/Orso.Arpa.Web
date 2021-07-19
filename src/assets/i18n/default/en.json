@@ -71,6 +71,15 @@
     "USER_CREDENTIALS": "Username or Password invalid.",
     "NOT_AUTHENTICATED": "Not logged in"
   },
+  "form": {
+    "GENERIC": "Please check your input",
+    "REQUIRED": "This field is required",
+    "MIN_LENGTH": "Expect {{requiredLength}} but got {{actualLength}}",
+    "INVALID_EMAIL": "Invalid email address",
+    "PASSWORD_WEAK": "to weak",
+    "PASSWORD_NORMAL": "ok",
+    "PASSWORD_STRONG": "strong"
+  },
   "logout": {
     "LOGGED_OUT": "See you again soon on ARPA!",
     "LOG_OUT": "Log out"
@@ -97,7 +106,9 @@
     "ERROR": "Please try again later.",
     "BACK": "BACK TO LOGIN",
     "PASSWORD_CONFIRM": "Confirm Password",
-    "PASSWORD_ERROR_PATTERN": "Password not valid"
+    "PASSWORD_ERROR_PATTERN": "Password not valid",
+    "PASSWORD_ERROR_CONFIRM": "Password not equal",
+    "PASSWORD_INFO": "The password must be at least 6 characters long and contain lower and upper case letters, a number and a special character."
   },
   "dashboardselector": {
     "SELECT_DASHBOARD": "Select the dashboard you want to switch to"

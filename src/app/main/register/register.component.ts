@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotificationsService } from '../../core/services/notifications.service';
 import { ConfigService } from '../../core/services/config.service';
@@ -66,7 +66,10 @@ export class RegisterComponent {
       ],
       confirmPassword: [
         null,
-        [],
+        [
+          Validators.required,
+          this.comparePasswords,
+        ],
       ],
       privacyPolicy: [
         null,
@@ -74,13 +77,17 @@ export class RegisterComponent {
           Validators.required,
         ],
       ],
-    }, { validators: this.comparePasswords });
+    });
   }
 
-  comparePasswords(group: FormGroup) {
-    const password = group.get('password')?.value;
-    const confirmPassword = group.get('confirmPassword')?.value;
-    return password === confirmPassword ? null : { notSame: true };
+  comparePasswords(formControl: AbstractControl) {
+    if(formControl['_parent']) {
+      const password = formControl['_parent'].get('password')?.value;
+      const confirmPassword = formControl.value;
+      return password === confirmPassword ? null : { notSame: true };
+    } else {
+      return { notSame: true };
+    }
   }
 
   onSubmit(): void {

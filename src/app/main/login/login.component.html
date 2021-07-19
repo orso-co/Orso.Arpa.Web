@@ -4,15 +4,12 @@
     <arpa-lang-switch></arpa-lang-switch>
   </div>
   <div class='p-fluid'>
-    <div class='p-field p-float-label'>
+    <arpa-form-field label='USERNAMEOREMAIL'>
       <input id='usernameOrEmail' type='text' pInputText formControlName='usernameOrEmail' autocomplete='username'>
-      <label for='float-input'>{{ 'USERNAMEOREMAIL' | translate }}</label>
-    </div>
-
-    <div class='p-field p-float-label'>
+    </arpa-form-field>
+    <arpa-form-field label='PASSWORD'>
       <p-password formControlName='password' [toggleMask]='true' [feedback]='false' autocomplete='password'></p-password>
-      <label for='float-input'>{{ 'PASSWORD' | translate }}</label>
-    </div>
+    </arpa-form-field>
 
     <div class='p-field'>
       <button

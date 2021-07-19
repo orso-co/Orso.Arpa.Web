@@ -16,6 +16,8 @@ import { AuditLogComponent } from './audit-log/audit-log.component';
 import { AuditDialogDirective } from './audit-log/audit-dialog.directive';
 import { AuditDialogComponent } from './audit-dialog/audit-dialog.component';
 import { SplitViewComponent } from './split-view/split-view.component';
+import { FormFieldComponent } from './form-field/form-field.component';
+import { PasswordStrengthComponent } from './password-strength/password-strength.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { SplitViewComponent } from './split-view/split-view.component';
     AuditLogComponent,
     AuditDialogDirective,
     AuditDialogComponent,
-    SplitViewComponent
+    SplitViewComponent,
+    FormFieldComponent,
+    PasswordStrengthComponent
   ],
   imports: [
     CommonModule,
@@ -54,7 +58,9 @@ import { SplitViewComponent } from './split-view/split-view.component';
     AvatarComponent,
     MenuComponent,
     AuditDialogDirective,
-    SplitViewComponent
+    SplitViewComponent,
+    FormFieldComponent,
+    PasswordStrengthComponent
   ],
 })
 export class SharedModule {

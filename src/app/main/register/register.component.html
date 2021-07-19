@@ -4,59 +4,48 @@
     <arpa-lang-switch></arpa-lang-switch>
   </div>
   <div class='p-fluid'>
-    <div class='p-field p-float-label'>
+    <arpa-form-field label='GIVENNAME'>
       <input type='text' pInputText formControlName='givenName' (ngModelChange)='onChange()' autocomplete='given-name'>
-      <label for='float-input'>{{ 'GIVENNAME' | translate }}</label>
-    </div>
+    </arpa-form-field>
 
-
-    <div class='p-field p-float-label'>
+    <arpa-form-field label='SURNAME'>
       <input type='text' pInputText formControlName='surname' (ngModelChange)='onChange()' autocomplete='family-name'>
-      <label for='float-input'>{{ 'SURNAME' | translate }}</label>
-    </div>
+    </arpa-form-field>
 
-
-    <div class='p-field p-float-label'>
+    <arpa-form-field label='EMAILADDRESS' [customError]='"form.INVALID_EMAIL"'>
       <input type='text' pInputText formControlName='email' (ngModelChange)='onChange()' autocomplete='email'>
-      <label for='float-input'>{{ 'EMAILADDRESS' | translate }}</label>
-    </div>
+    </arpa-form-field>
 
-    <div class='p-field p-float-label'>
+    <arpa-form-field label='USERNAME'>
       <input type='text' pInputText formControlName='userName' (ngModelChange)='onChange()' autocomplete='off'>
-      <label for='float-input'>{{ 'USERNAME' | translate }}</label>
-    </div>
+    </arpa-form-field>
 
-    <div class='p-field p-float-label'>
+    <arpa-form-field label='PASSWORD' [showErrors]='false'>
       <p-password formControlName='password' [toggleMask]='true' [feedback]='false' autocomplete='off'></p-password>
-      <label for='float-input'>{{ 'PASSWORD' | translate }}</label>
-    </div>
+      <ng-template #footerTemplate>
+        <arpa-password-strength  [control]="registerFormGroup.controls['password']"></arpa-password-strength>
+        <p class='passwordInfo'>
+          <i class='pi pi-info-circle'></i>{{ 'register.PASSWORD_INFO' | translate }}
+        </p>
+      </ng-template>
+    </arpa-form-field>
 
-    <div class='p-field p-float-label' *ngIf='registerFormGroup.get("password")?.value'>
+    <arpa-form-field  *ngIf='registerFormGroup.get("password")?.valid' label='register.PASSWORD_CONFIRM'
+                      [customError]='"register.PASSWORD_ERROR_CONFIRM"'>
       <p-password formControlName='confirmPassword' [toggleMask]='false' [feedback]='false'
                   autocomplete='off'></p-password>
-      <label for='float-input'>{{ 'register.PASSWORD_CONFIRM' | translate }}</label>
-    </div>
-    <div
-      *ngIf="registerFormGroup.controls['password'].invalid && (registerFormGroup.controls['password'].dirty || registerFormGroup.controls['password'].touched)" class='alert'>
-      <div *ngIf="registerFormGroup.controls['password'].errors">
-        <div *ngIf="registerFormGroup.controls['password'].errors.resultError">
-          {{ registerFormGroup.controls['password'].errors.resultError.join('') }}
-        </div>
-        <div *ngIf="registerFormGroup.controls['password'].errors.pattern">
-          {{ 'register.PASSWORD_ERROR_PATTERN' | translate }}
-        </div>
-      </div>
-    </div>
+    </arpa-form-field>
 
-    <div class='p-field-checkbox'>
+    <arpa-form-field type='checkbox'>
       <p-checkbox formControlName='privacyPolicy' ngDefaultControl></p-checkbox>
-      <label>
+      <label for='privacyPolicy'>
         <a [routerLink]="['/privacy']" style='color:currentColor;' title="{{ 'register.SHOWPRIVACY' | translate }}" target="new window">
           {{ 'PRIVACYPOLICY' | translate }}
         </a>
       </label>
-    </div>
+    </arpa-form-field>
   </div>
+
   <div class='p-formgroup-inline'>
     <div class='p-field'>
       <button *ngIf='!registerRequest'
