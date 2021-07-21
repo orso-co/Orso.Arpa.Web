@@ -80,7 +80,7 @@ export class AppointmentsComponent {
       map((translation) => ({
         plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
         calendarWeekends: true,
-        defaultView: 'timeGridWeek',
+        defaultView: 'dayGridMonth',
         defaultDate: new Date(),
         eventResize: (e: any) => {
           this.changeDates(e.prevEvent, e.event);
@@ -103,9 +103,9 @@ export class AppointmentsComponent {
           },
         },
         header: {
-          left: 'prevYear,prev,next,nextYear today',
+          left: 'dayGridMonth,timeGridWeek,timeGridDay, prevYear,prev,next,nextYear, today',
           center: 'title',
-          right: 'btnAddAppointment dayGridMonth,timeGridWeek,timeGridDay',
+          right: 'btnAddAppointment',
         },
         editable: true,
         locale: this.translate.currentLang,

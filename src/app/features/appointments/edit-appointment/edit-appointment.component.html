@@ -20,7 +20,7 @@
                       [required]="true"
                       formControlName="startTime"
                       id="starttime"
-                      dateFormat="dd.MM yy"
+                      dateFormat="dd. MM yy"
                       [showWeek]="true"
                       [showTime]="true"
                       hourFormat="24"
@@ -43,7 +43,7 @@
                     <p-calendar
                       [required]="true"
                       formControlName="endTime"
-                      dateFormat="dd.MM yy"
+                      dateFormat="dd. MM yy"
                       [showWeek]="true"
                       id="endtime"
                       [showTime]="true"
@@ -121,7 +121,7 @@
                     <textarea
                       id="internalDetails"
                       formControlName="internalDetails"
-                      [rows]="3"
+                      [rows]="5"
                       [cols]="30"
                       pInputTextarea
                       maxlength="1000"
@@ -132,7 +132,7 @@
                 </div>
               </div>
               <div class="p-col-12">
-                <p-fieldset legend="{{ 'editappointments.SALARY' | translate }}">
+                <p-fieldset legend="{{ 'editappointments.SALARY' | translate }}" [toggleable]=true [collapsed]=true>
                   <div class="p-col-12">
                     <div class="p-field">
                       <label for="salary">{{ 'editappointments.SALARY' | translate }} </label>
