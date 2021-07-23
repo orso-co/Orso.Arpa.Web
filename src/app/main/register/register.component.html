@@ -24,20 +24,17 @@
       <p-password formControlName='password'
                   [toggleMask]='true'
                   [feedback]='false'
-                  (animationstart)='reValidate(registerFormGroup.controls["password"])'
                   autocomplete='off'></p-password>
       <ng-template #footerTemplate>
-        <arpa-password-strength  [control]="registerFormGroup.controls['password']"></arpa-password-strength>
+        <arpa-password-strength [control]="registerFormGroup.controls['password']"></arpa-password-strength>
         <p class='passwordInfo'>
           <i class='pi pi-info-circle'></i>{{ 'register.PASSWORD_INFO' | translate }}
         </p>
       </ng-template>
     </arpa-form-field>
 
-    <arpa-form-field  *ngIf='registerFormGroup.get("password")?.valid' label='register.PASSWORD_CONFIRM'
-                      [customError]='"register.PASSWORD_ERROR_CONFIRM"'>
-      <p-password formControlName='confirmPassword' [toggleMask]='false' [feedback]='false'
-                  autocomplete='off'></p-password>
+    <arpa-form-field label='register.PASSWORD_CONFIRM' [customError]='"register.PASSWORD_ERROR_CONFIRM"'>
+      <p-password formControlName='confirmPassword' [toggleMask]='false' [feedback]='false' autocomplete='off'></p-password>
     </arpa-form-field>
 
     <arpa-form-field type='checkbox'>

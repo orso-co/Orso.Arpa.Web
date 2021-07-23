@@ -80,10 +80,6 @@ export class RegisterComponent {
     });
   }
 
-  reValidate(el: AbstractControl) {
-    el.updateValueAndValidity();
-  }
-
   comparePasswords(formControl: AbstractControl) {
     if (formControl['_parent']) {
       const password = formControl['_parent'].get('password')?.value;
