@@ -23,6 +23,8 @@ export class NavigationService {
     this.history.pop();
     if (this.history.length > 0) {
       this.location.back();
+    } else {
+      this.router.navigateByUrl('/');
     }
   }
 
