@@ -20,7 +20,7 @@ export const environment = {
     url: 'http://arpa.orso.berlin/',
   },
   validation: {
-    password: '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9].{5,256}',
+    password: '(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}\\[\\]:;<>,.?/~_+-=|]).{5,256}',
     email: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,4}$',
   },
   config: {

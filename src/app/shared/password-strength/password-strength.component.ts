@@ -59,13 +59,13 @@ export class PasswordStrengthComponent implements OnInit, OnDestroy {
     }
 
     let barIndex = 0;
-    if(idx <= 2 ) {
+    if(idx <= 3 ) {
       barIndex = 1;
       this.strength = 'weak';
-    } else if (idx <= 3) {
+    } else if (idx <= 4) {
       barIndex = 2;
       this.strength = 'normal';
-    } else if (idx > 3) {
+    } else if (idx > 4) {
       barIndex = 3;
       this.strength = 'strong';
     }
