@@ -10,4 +10,9 @@ export class PrivacyComponent {
   constructor() {
   }
 
+  close($event: Event) {
+    $event.preventDefault();
+    window.close();
+  }
+
 }

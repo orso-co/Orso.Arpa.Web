@@ -1,65 +1,71 @@
 <form [formGroup]='form' (submit)='$event.preventDefault()'>
   <div class='p-fluid p-formgrid p-grid'>
-    <div class='p-field p-col'>
-      <label for='instrumentId'>{{ 'mupro.MAIN_INSTURMENT' | translate}}</label>
-      <p-dropdown
-        [options]='(sections | async) || []'
-        optionLabel='name'
-        optionValue='id'
-        formControlName='instrumentId'
-        [placeholder]='"NOTHING_SELECTED" | translate'
-        [filter]='true'
-      ></p-dropdown>
+    <div class='p-col'>
+      <arpa-form-field label='mupro.MAIN_INSTURMENT' type='field'>
+        <p-dropdown
+          [options]='(sections | async) || []'
+          optionLabel='name'
+          optionValue='id'
+          formControlName='instrumentId'
+          [placeholder]='"NOTHING_SELECTED" | translate'
+          [filter]='true'
+        ></p-dropdown>
+      </arpa-form-field>
     </div>
   </div>
   <div class='p-fluid p-formgrid p-grid'>
-    <div class='p-field p-col'>
-      <label for='levelAssessmentInner'>{{ 'mupro.LEVEL_ASSESSMENT' | translate }}</label>
-      <p-rating formControlName='levelAssessmentInner' [cancel]='false' [stars]='5'></p-rating>
+    <div class='p-col'>
+      <arpa-form-field label='mupro.LEVEL_ASSESSMENT' type='field'>
+        <p-rating formControlName='levelAssessmentInner' [cancel]='false' [stars]='5'></p-rating>
+      </arpa-form-field>
     </div>
   </div>
   <div class='p-fluid p-formgrid p-grid' *ngIf='(preferredParts | async)'>
-    <div class='p-field p-col'>
-      <label for='preferredPartsInner'>{{ 'mupro.PREFERRED_PARTS' | translate}}</label>
-      <p-multiSelect
-        [options]='(preferredParts | async) || []'
-        optionLabel='label'
-        optionValue='value'
-        formControlName='preferredPartsInner'
-        display='chip'
-        [placeholder]='"NOTHING_SELECTED" | translate'
-      ></p-multiSelect>
+    <div class='p-col'>
+      <arpa-form-field label='mupro.PREFERRED_PARTS' type='field'>
+        <p-multiSelect
+          [options]='(preferredParts | async) || []'
+          optionLabel='label'
+          optionValue='value'
+          formControlName='preferredPartsInner'
+          display='chip'
+          [placeholder]='"NOTHING_SELECTED" | translate'
+        ></p-multiSelect>
+      </arpa-form-field>
     </div>
   </div>
   <div class='p-fluid p-formgrid p-grid'>
-    <div class='p-field p-col'>
-      <label for='inquiryStatusInnerId'>{{ 'mupro.INQUIRY_STATUS' | translate}}</label>
-      <p-dropdown
-        [options]='(inquiryStatus | async) || []'
-        optionLabel='label'
-        optionValue='value'
-        formControlName='inquiryStatusInnerId'
-        [placeholder]='"NOTHING_SELECTED" | translate'
-      ></p-dropdown>
+    <div class='p-col'>
+      <arpa-form-field label='mupro.INQUIRY_STATUS' type='field'>
+        <p-dropdown
+          [options]='(inquiryStatus | async) || []'
+          optionLabel='label'
+          optionValue='value'
+          formControlName='inquiryStatusInnerId'
+          [placeholder]='"NOTHING_SELECTED" | translate'
+        ></p-dropdown>
+      </arpa-form-field>
     </div>
   </div>
   <div class='p-fluid p-formgrid p-grid'>
-    <div class='p-field p-col'>
-      <label for='preferredPositionsInnerIds'>{{ 'mupro.PREFERRED_POSITIONS' | translate}}</label>
-      <p-multiSelect
-        [options]='(preferredPositions | async) || []'
-        optionLabel='label'
-        optionValue='value'
-        formControlName='preferredPositionsInnerIds'
-        display='chip'
-        [placeholder]='"NOTHING_SELECTED" | translate'
-      ></p-multiSelect>
+    <div class='p-col'>
+      <arpa-form-field label='mupro.PREFERRED_POSITIONS' type='field'>
+        <p-multiSelect
+          [options]='(preferredPositions | async) || []'
+          optionLabel='label'
+          optionValue='value'
+          formControlName='preferredPositionsInnerIds'
+          display='chip'
+          [placeholder]='"NOTHING_SELECTED" | translate'
+        ></p-multiSelect>
+      </arpa-form-field>
     </div>
   </div>
   <div class='p-fluid p-formgrid p-grid'>
-    <div class='p-field-checkbox p-col'>
-      <p-checkbox name="isMainProfile" formControlName='isMainProfile' [binary]="true"></p-checkbox>
-      <label for='isMainProfile'>{{ 'mupro.MAIN_PROFILE' | translate}}</label>
+    <div class='p-col'>
+      <arpa-form-field label='mupro.MAIN_PROFILE' type='checkbox'>
+        <p-checkbox name="isMainProfile" formControlName='isMainProfile' [binary]="true"></p-checkbox>
+      </arpa-form-field>
     </div>
   </div>
   <div class='p-formgroup-inline p-jc-between'>

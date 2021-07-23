@@ -1,5 +1,5 @@
 {
-  "EMAILADDRESS": "E-Mailadresse",
+  "EMAILADDRESS": "E-Mail-Adresse",
   "EMAIL": "E-Mail",
   "PHONENUMBER": "Telefonnummer",
   "USERNAME": "Benutzername",
@@ -7,7 +7,7 @@
   "SURNAME": "Nachname",
   "PASSWORD": "Passwort",
   "PRIVACYPOLICY": "Ich habe die Hinweise zum Datenschutz gelesen und akzeptiere diese.",
-  "USERNAMEOREMAIL": "Benutzername oder e-Mail",
+  "USERNAMEOREMAIL": "Benutzername oder E-Mail",
   "LOGIN": "Einloggen",
   "LOGOUT": "Abmelden",
   "REGISTER": "Registrieren",
@@ -73,6 +73,15 @@
     "USER_CREDENTIALS": "Benutzername oder Passwort nicht korrekt",
     "NOT_AUTHENTICATED": "Nicht angemeldet"
   },
+  "form": {
+    "GENERIC": "Bitte Eingabe überprüfen",
+    "REQUIRED": "Pflichtfeld darf nicht leer sein",
+    "MIN_LENGTH": "Mindestlänge {{requiredLength}} - aktuell {{actualLength}}",
+    "INVALID_EMAIL": "Addresse nicht gültig",
+    "PASSWORD_WEAK": "zu schwach",
+    "PASSWORD_NORMAL": "ausreichend",
+    "PASSWORD_STRONG": "stark"
+  },
   "logout": {
     "LOGGED_OUT": "Bis zum nächsten Mal bei ARPA",
     "LOG_OUT": "Ausloggen"
@@ -84,7 +93,7 @@
   },
   "forgotpassword": {
     "BUTTON": "Passwort vergessen",
-    "SENT": "Ein Link zum Vergeben eines neuen Passworts wurde an deine e-Mailadresse gesendet.",
+    "SENT": "Ein Link zum Vergeben eines neuen Passworts wurde an deine E-Mail-Adresse gesendet.",
     "CONFIRM": "Passwort ändern.",
     "CHANGED": "Dein Passwort wurde geändert.",
     "PASSWORD": "Neues Passwort"
@@ -95,11 +104,13 @@
   "register": {
     "THANKS": "Vielen Dank für die Registrierung bei ARPA. Bitte prüfe deine Mailbox und bestätige deine Mailaddresse.",
     "SHOWPRIVACY": "Datenschutzbestimmungen",
-    "MAIL_ACTIVATION": "Wir haben dir eine Email geschickt. Bitte bestätige deinen Account.",
+    "MAIL_ACTIVATION": "Wir haben dir eine E-Mail geschickt. Bitte bestätige deinen Account.",
     "ERROR": "Bitte versuchen es später noch einmal.",
     "BACK": "ZURÜCK ZUM LOGIN",
     "PASSWORD_CONFIRM": "Passwort bestätigen",
-    "PASSWORD_ERROR_PATTERN": "Passwort nicht gültig"
+    "PASSWORD_ERROR_PATTERN": "Passwort nicht gültig",
+    "PASSWORD_ERROR_CONFIRM": "Passwort nicht gleich",
+    "PASSWORD_INFO": "Das Passwort muss mindestens 6 Zeichen lang sein, Klein- sowie Großbuchstaben, eine Zahl, und ein Sonderzeichen enthalten."
   },
   "dashboardselector": {
     "SELECT_DASHBOARD": "Wähle das Dashboard, zu dem du wechseln möchtest"

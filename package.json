@@ -36,6 +36,7 @@
     "flag-icon-css": "^3.5.0",
     "lodash-es": "^4.17.21",
     "ng-recaptcha": "^8.0.0",
+    "ngx-take-until-destroy": "^5.4.0",
     "primeflex": "^2.0.0",
     "primeicons": "^4.1.0",
     "primeng": "*",
