@@ -21,7 +21,11 @@
     </arpa-form-field>
 
     <arpa-form-field label='PASSWORD' [showErrors]='false'>
-      <p-password formControlName='password' [toggleMask]='true' [feedback]='false' autocomplete='off'></p-password>
+      <p-password formControlName='password'
+                  [toggleMask]='true'
+                  [feedback]='false'
+                  (animationstart)='reValidate(registerFormGroup.controls["password"])'
+                  autocomplete='off'></p-password>
       <ng-template #footerTemplate>
         <arpa-password-strength  [control]="registerFormGroup.controls['password']"></arpa-password-strength>
         <p class='passwordInfo'>
