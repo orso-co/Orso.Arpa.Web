@@ -1,4 +1,4 @@
-import { Component, ContentChild, ElementRef, Input, TemplateRef } from '@angular/core';
+import { Component, ContentChild, ElementRef, HostBinding, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControlName } from '@angular/forms';
 import { errorTransitionAnimations } from './animations';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,24 +9,35 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./form-field.component.scss'],
   animations: [errorTransitionAnimations],
 })
-export class FormFieldComponent {
+export class FormFieldComponent implements OnInit {
 
   @Input() showErrors: boolean = true;
   @Input() label: string;
   @Input() type: string = 'input';
   @Input() customError: string;
   @ContentChild(FormControlName) formControl: FormControlName;
-  @ContentChild(FormControlName, {read: ElementRef}) input: ElementRef;
-  @ContentChild('footerTemplate', { static: false })
-  footerTemplateRef: TemplateRef<any>;
+  @ContentChild(FormControlName, { read: ElementRef }) input: ElementRef;
+  @ContentChild('footerTemplate', { static: false }) footerTemplateRef: TemplateRef<any>;
+  @ViewChild('wrapper', { static: true }) wrapper: ElementRef;
+
 
   constructor(private translate: TranslateService) { }
 
-  get hasErrors():boolean {
+  ngOnInit(): void {
+    if (this.type === 'field') {
+      this.wrapper.nativeElement.className = 'p-field';
+    } else if (this.type === 'checkbox') {
+      this.wrapper.nativeElement.className = 'p-field p-field-checkbox';
+    } else {
+      this.wrapper.nativeElement.className = 'p-field p-float-label';
+    }
+  }
+
+  get hasErrors(): boolean {
     return !!(this.formControl.touched && !this.formControl.valid && this.formControl.errors);
   }
 
-  get errorMessage ():string | void {
+  get errorMessage(): string | void {
     if (this.formControl.errors) {
       const errorType: string = Object.keys(this.formControl.errors)[0];
       let errorMessage = '';
@@ -36,7 +47,7 @@ export class FormFieldComponent {
           break;
         case 'minlength':
           errorMessage = this.translate.instant('form.MIN_LENGTH', {
-            ...this.formControl.errors[errorType]
+            ...this.formControl.errors[errorType],
           });
           break;
         default:

@@ -1,10 +1,4 @@
-<div
-  [ngClass]='{
-    "p-field p-float-label" : type === "input",
-    "p-field-checkbox" : type === "checkbox",
-    "p-field" : type === "field"
-  }'
->
+<div #wrapper>
   <label *ngIf='label && type !== "input" && type !== "checkbox"'
          [attr.for]="this.formControl.name"
   >{{ label | translate }}</label>
