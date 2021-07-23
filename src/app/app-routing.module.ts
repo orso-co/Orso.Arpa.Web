@@ -64,6 +64,7 @@ const routes: Routes = [
         path: 'appointments',
         loadChildren: () => import('./features/appointments/appointments.module').then(m => m.AppointmentsModule),
         data: {
+          roles: ['performer', 'staff'],
           title: 'APPOINTMENTS',
           menu: {
             name: 'feature',
@@ -83,6 +84,7 @@ const routes: Routes = [
         path: 'projects',
         loadChildren: () => import('./features/projects/projects.module').then(m => m.ProjectsModule),
         data: {
+          roles: ['performer', 'staff'],
           title: 'PROJECTS',
           menu: {
             name: 'feature',
@@ -95,7 +97,7 @@ const routes: Routes = [
         path: 'mupro',
         loadChildren: () => import('./features/mupro/mupro.module').then((mod) => mod.MuProModule),
         data: {
-          roles: ['staff', 'admin'],
+          roles: ['staff'],
           title: 'MUPRO',
           menu: {
             name: 'feature',
