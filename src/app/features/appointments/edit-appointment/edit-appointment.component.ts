@@ -1,15 +1,18 @@
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { MenuItem, SelectItem, ConfirmationService } from 'primeng/api';
-import { IAppointmentDto, IMusicianProfileDto, IRoomDto, IVenueDto } from '../../../models/appointment';
-import { IProjectDto } from '../../../models/IProjectDto';
-import { ISectionDto } from '../../../models/section';
+import { ConfirmationService, MenuItem, SelectItem } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { sortBy, uniq } from 'lodash-es';
 import { NotificationsService } from '../../../core/services/notifications.service';
 import { AppointmentService } from '../../../core/services/appointment.service';
 import { first } from 'rxjs/operators';
+import { AppointmentDto } from '../../../model/appointmentDto';
+import { SectionDto } from '../../../model/sectionDto';
+import { ProjectDto } from '../../../model/projectDto';
+import { VenueDto } from '../../../model/venueDto';
+import { RoomDto } from '../../../model/roomDto';
+import { MusicianProfileDto } from '../../../model/musicianProfileDto';
 
 class ParticipationTableItem {
   givenName: string;
@@ -49,10 +52,10 @@ export class EditAppointmentComponent implements OnInit {
   activeIndex = 0;
   formGroup: FormGroup;
 
-  appointment: IAppointmentDto = this.config.data.appointment;
-  sections: ISectionDto[] = this.config.data.sections;
-  projects: IProjectDto[] = this.config.data.projects;
-  venues: IVenueDto[] = this.config.data.venues;
+  appointment: AppointmentDto = this.config.data.appointment;
+  sections: SectionDto[] = this.config.data.sections;
+  projects: ProjectDto[] = this.config.data.projects;
+  venues: VenueDto[] = this.config.data.venues;
   predictionOptions: SelectItem[] = this.config.data.predictionOptions;
   resultOptions: SelectItem[] = this.config.data.resultOptions;
   categoryOptions: SelectItem[] = this.config.data.categoryOptions;
@@ -63,10 +66,10 @@ export class EditAppointmentComponent implements OnInit {
   isAllDayEvent: boolean = this.config.data.isAllDayEvent;
 
   participationTableItems: ParticipationTableItem[] = [];
-  projectOptions: IProjectDto[] = [];
-  sectionOptions: ISectionDto[] = [];
-  roomOptions: IRoomDto[] = [];
-  rooms: IRoomDto[] = [];
+  projectOptions: ProjectDto[] = [];
+  sectionOptions: SectionDto[] = [];
+  roomOptions: RoomDto[] = [];
+  rooms: RoomDto[] = [];
   venueOptions: SelectItem[] = [];
   sectionSelectItems: SelectItem[] = [];
   columns: any[] = [];
@@ -142,19 +145,19 @@ export class EditAppointmentComponent implements OnInit {
     }
   }
 
-  mapVenueToSelectItem(venue: IVenueDto): SelectItem {
+  mapVenueToSelectItem(venue: VenueDto): SelectItem {
     return { label: `${venue?.address?.city} ${venue?.address?.urbanDistrict} | ${venue?.name}`, value: venue?.id };
   }
 
-  mapMusicianProfileToSectionSelectItem(musicianProfile: IMusicianProfileDto): SelectItem {
+  mapMusicianProfileToSectionSelectItem(musicianProfile: MusicianProfileDto): SelectItem {
     return { label: musicianProfile.sectionName, value: musicianProfile.sectionName };
   }
 
-  mapMusicianProfileToQualificationSelectItem(musicianProfile: IMusicianProfileDto): SelectItem {
+  mapMusicianProfileToQualificationSelectItem(musicianProfile: MusicianProfileDto): SelectItem {
     return { label: musicianProfile.qualification, value: musicianProfile.qualification };
   }
 
-  updateAppointment(appointment: IAppointmentDto, continueToNextStep: boolean): void {
+  updateAppointment(appointment: AppointmentDto, continueToNextStep: boolean): void {
     this.appointmentService
       .update(appointment)
       .pipe(first())
@@ -170,7 +173,7 @@ export class EditAppointmentComponent implements OnInit {
       });
   }
 
-  createAppointment(appointment: IAppointmentDto, continueToNextStep: boolean): void {
+  createAppointment(appointment: AppointmentDto, continueToNextStep: boolean): void {
     this.appointmentService
       .create(appointment)
       .pipe(first())
@@ -191,7 +194,7 @@ export class EditAppointmentComponent implements OnInit {
     if (venueId && this.venues) {
       const venue = this.venues.find((v) => v.id === venueId);
       if (venue) {
-        this.rooms = venue.rooms;
+        this.rooms = venue.rooms || [];
         return;
       }
       this.rooms = [];
@@ -317,7 +320,7 @@ export class EditAppointmentComponent implements OnInit {
       });
   }
 
-  getSectionNames(musicianProfiles: IMusicianProfileDto[]): string {
+  getSectionNames(musicianProfiles: MusicianProfileDto[]): string {
     return musicianProfiles.map((p) => p.sectionName).join(', ');
   }
 

@@ -10,6 +10,19 @@
     </div>
   </div>
   <div class='p-grid p-jc-center'>
+    <div class='p-col-12 p-md-6'>
+      <arpa-form-field label='GENDER' type='field'>
+        <p-dropdown
+          [options]='(genderSelectValue | async) || []'
+          optionLabel='label'
+          optionValue='value'
+          formControlName='genderId'
+          [placeholder]='"SELECT_GENDER" | translate'
+        ></p-dropdown>
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class='p-grid p-jc-center'>
     <div class='p-col-12 p-md-3'>
       <arpa-form-field label='GIVENNAME'>
         <input id="givenName" type="text" pInputText formControlName="givenName" autocomplete="givenName">

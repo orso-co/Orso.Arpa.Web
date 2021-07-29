@@ -3,10 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'primeng/api';
 import { Observable, of } from 'rxjs';
 import { first, map } from 'rxjs/operators';
-import { IRoomDto, IUserAppointmentDto, IVenueDto } from '../../../models/appointment';
-import { IProjectDto } from '../../../models/IProjectDto';
 import { MeService } from '../../../core/services/me.service';
 import { NotificationsService } from '../../../core/services/notifications.service';
+import { MyAppointmentDto } from '../../../model/myAppointmentDto';
+import { ProjectDto } from '../../../model/projectDto';
+import { VenueDto } from '../../../model/venueDto';
+import { RoomDto } from '../../../model/roomDto';
 
 @Component({
   selector: 'arpa-my-appointments',
@@ -14,7 +16,7 @@ import { NotificationsService } from '../../../core/services/notifications.servi
   styleUrls: ['./my-appointments.component.scss'],
 })
 export class MyAppointmentsComponent implements OnInit {
-  userAppointments$: Observable<IUserAppointmentDto[]> = of([]);
+  userAppointments$: Observable<MyAppointmentDto[]> = of([]);
   totalRecordsCount$: Observable<number> = of(0);
   predictionOptions$: Observable<SelectItem[]> = of([]);
   itemsPerPage = 3;
@@ -27,15 +29,15 @@ export class MyAppointmentsComponent implements OnInit {
 
   loadData(take: number, skip: number): void {
     const loadResult$ = this.meService.getMyAppointments(take, skip);
-    this.userAppointments$ = loadResult$.pipe(map((result) => result.userAppointments));
-    this.totalRecordsCount$ = loadResult$.pipe(map((result) => result.totalRecordsCount));
+    this.userAppointments$ = loadResult$.pipe(map((result) => result.userAppointments || []));
+    this.totalRecordsCount$ = loadResult$.pipe(map((result) => result.totalRecordsCount || 0));
   }
 
-  getProjectNames(projects: IProjectDto[]): string {
+  getProjectNames(projects: ProjectDto[]): string {
     return projects.map((p) => p.title).join(', ');
   }
 
-  getVenueTooltip(venue: IVenueDto): string {
+  getVenueTooltip(venue: VenueDto): string {
     if (!venue) {
       return '';
     }
@@ -61,11 +63,11 @@ export class MyAppointmentsComponent implements OnInit {
     return tooltip;
   }
 
-  getRoomNames(rooms: IRoomDto[]): string {
+  getRoomNames(rooms: RoomDto[]): string {
     return rooms.map((r) => r.name).join(', ');
   }
 
-  onPredictionChanged(event: { value: string }, userAppointment: IUserAppointmentDto): void {
+  onPredictionChanged(event: { value: string }, userAppointment: MyAppointmentDto): void {
     this.meService
       .setAppointmentPrediction(userAppointment.id, event.value)
       .pipe(first())

@@ -20,6 +20,7 @@ export class RegisterComponent {
   registerFormGroup: FormGroup;
   hide = true;
   siteKey: string;
+  genderSelectValue: any;
 
   constructor(formBuilder: FormBuilder,
               private router: Router,

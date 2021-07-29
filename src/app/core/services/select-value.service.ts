@@ -3,7 +3,7 @@ import { SelectItem } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { map, shareReplay, tap } from 'rxjs/operators';
 import { ApiService } from './api.service';
-import { ISelectValueDto } from '../../models/ISelectValueDto';
+import { SelectValueDto } from '../../model/selectValueDto';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +17,7 @@ export class SelectValueService {
   }
 
   load(tableName: string, propertyName: string): Observable<SelectItem[]> {
-    return this.apiService.get<ISelectValueDto[]>(`${this.baseUrl}/${tableName}/properties/${propertyName}`).pipe(
+    return this.apiService.get<SelectValueDto[]>(`${this.baseUrl}/${tableName}/properties/${propertyName}`).pipe(
       shareReplay(),
       map((dtos) => dtos.map((v) => this.mapSelectValueToSelectItem(v))),
       tap((selectItems) => this.selectValues.set(this.getMapKey(tableName, propertyName), selectItems))
@@ -36,7 +36,7 @@ export class SelectValueService {
     return `${tableName}|${propertyName}`;
   }
 
-  private mapSelectValueToSelectItem(selectValue: ISelectValueDto): SelectItem {
+  private mapSelectValueToSelectItem(selectValue: SelectValueDto): SelectItem {
     return { label: selectValue.name, value: selectValue.id };
   }
 }

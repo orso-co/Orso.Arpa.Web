@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { NotificationsService } from '../../core/services/notifications.service';
-import { IResetPasswordDto } from '../../models/IResetPasswordDto';
 import { ConfigService } from '../../core/services/config.service';
 import { first } from 'rxjs/operators';
+import { ResetPasswordDto } from '../../model/resetPasswordDto';
 
 @Component({
   selector: 'arpa-forgot-password',
@@ -42,7 +41,7 @@ export class ForgotPasswordComponent {
     this.route.queryParams
       .pipe(first())
       .subscribe(params => {
-        const resetPassword: IResetPasswordDto = {
+        const resetPassword: ResetPasswordDto = {
           usernameOrEmail: params.email,
           password: this.forgotPasswordFormGroup.value.password,
           token: params.token,

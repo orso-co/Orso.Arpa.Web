@@ -3,7 +3,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { AuditLogService } from '../../core/services/audit-log.service';
 import { AuditDialogComponent } from '../audit-dialog/audit-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
-import { IAuditLog } from '../../models/IAuditLog';
+import { AuditLogDto } from '../../model/auditLogDto';
 
 @Directive({
   selector: '[arpaAuditDialog]',
@@ -13,7 +13,7 @@ export class AuditDialogDirective {
   @Input('arpaAuditDialog')
   resourceId?: string;
   @Input()
-  auditDetail: IAuditLog;
+  auditDetail: AuditLogDto;
 
   constructor(private dialogService: DialogService,
               private auditLogService: AuditLogService,

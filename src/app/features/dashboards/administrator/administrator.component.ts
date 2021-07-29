@@ -1,13 +1,13 @@
-import { RoleNames } from './../../../models/role-names';
 import { ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { IRoleDto } from '../../../models/IRoleDto';
 import { Observable } from 'rxjs';
-import { ISectionTreeDto } from '../../../models/section';
-import { IUserDto } from '../../../models/IUserDto';
 import { RoleService } from '../../../core/services/role.service';
 import { SectionService } from '../../../core/services/section.service';
+import { SectionTreeDto } from '../../../model/sectionTreeDto';
+import { UserDto } from '../../../model/userDto';
+import { RoleDto } from '../../../model/roleDto';
+import { indexOf } from 'lodash-es';
 
 @Component({
   selector: 'arpa-administrator',
@@ -15,17 +15,18 @@ import { SectionService } from '../../../core/services/section.service';
   styleUrls: ['./administrator.component.scss'],
 })
 export class AdministratorComponent {
-  users: IUserDto[] = [];
-  usersWithRole: IUserDto[] = [];
-  roles$: Observable<IRoleDto[]>;
-  sectionTree$: Observable<ISectionTreeDto>;
+  users: UserDto[] = [];
+  usersWithRole: UserDto[] = [];
+  roles$: Observable<RoleDto[]>;
+  sectionTree$: Observable<SectionTreeDto>;
 
-get usersWithoutRoleCount ():number {
-  return this.users.length
-}
-get usersTotalCount (): number {
-  return this.users.length + this.usersWithRole.length
-}
+  get usersWithoutRoleCount(): number {
+    return this.users.length;
+  }
+
+  get usersTotalCount(): number {
+    return this.users.length + this.usersWithRole.length;
+  }
 
 
   constructor(
@@ -40,15 +41,15 @@ get usersTotalCount (): number {
     this.sectionTree$ = route.data.pipe(map((routeData) => sectionService.getTree(routeData.treeMaxLevel)!));
   }
 
-  filterUsersWithoutRole(users: IUserDto[]): IUserDto[] {
-    return users.filter((u) => u.roleNames.length === 0) ?? null;
+  filterUsersWithoutRole(users: UserDto[]): UserDto[] {
+    return users.filter((u) => u.roleNames && u.roleNames.length === 0) ?? null;
   }
 
-  filterUsersWithRole(users: IUserDto[]): IUserDto[] {
-    return users.filter((u) => u.roleNames.length !== 0) ?? null;
+  filterUsersWithRole(users: UserDto[]): UserDto[] {
+    return users.filter((u) => u.roleNames && u.roleNames.length !== 0) ?? null;
   }
 
-  onUserChanged(username: string): void {
+  onUserChanged(username: any): void {
     this.users = this.users.filter((u) => u.userName !== username);
   }
 

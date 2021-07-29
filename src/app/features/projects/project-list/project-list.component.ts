@@ -8,8 +8,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable, Subscription } from 'rxjs';
 import { ProjectService } from '../../../core/services/project.service';
 import { NotificationsService } from '../../../core/services/notifications.service';
-import { IProjectDto } from '../../../models/IProjectDto';
-import { IMusicianProfileDto } from '../../../models/appointment';
 import { ProjectParticipationComponent } from '../project-participation/project-participation.component';
 import { MeService } from '../../../core/services/me.service';
 import { SelectValueService } from '../../../core/services/select-value.service';
@@ -18,6 +16,8 @@ import { VenueService } from '../../../core/services/venue.service';
 import { SectionService } from '../../../core/services/section.service';
 import { ProjectParticipantsComponent } from '../project-participants/project-participants.component';
 import { SelectItem } from 'primeng/api';
+import { ProjectDto } from '../../../model/projectDto';
+import { MusicianProfileDto } from '../../../model/musicianProfileDto';
 
 @Component({
   selector: 'arpa-project-list',
@@ -27,7 +27,7 @@ import { SelectItem } from 'primeng/api';
 @Unsubscribe()
 export class ProjectListComponent {
 
-  projects: Observable<IProjectDto[]>;
+  projects: Observable<ProjectDto[]>;
   state: Observable<SelectItem[]>;
 
   cols: any[];
@@ -44,7 +44,7 @@ export class ProjectListComponent {
     private venueService: VenueService,
     private sectionService: SectionService,
   ) {
-    this.projects = this.route.data.pipe<IProjectDto[]>(map((data) => data.projects));
+    this.projects = this.route.data.pipe<ProjectDto[]>(map((data) => data.projects));
     this.state = this.selectValueService.load('Project', 'State')
       .pipe(map(() => this.selectValueService.get('Project', 'State')));
   }
@@ -56,7 +56,7 @@ export class ProjectListComponent {
     }));
   }
 
-  public openProjectDetailDialog(selection: IProjectDto | null): void {
+  public openProjectDetailDialog(selection: ProjectDto | null): void {
     const ref = this.dialogService.open(EditProjectComponent, {
       data: {
         project: selection ? selection : null,
@@ -70,7 +70,7 @@ export class ProjectListComponent {
     });
     ref.onClose
       .pipe(first())
-      .subscribe((project: IProjectDto) => {
+      .subscribe((project: ProjectDto) => {
         if (!selection && project) {
           this.saveNewProject(project);
         } else if (selection && project) {
@@ -84,7 +84,7 @@ export class ProjectListComponent {
     const ref = this.dialogService.open(ProjectParticipationComponent, {
       data: {
         projectParticipation: this.selectValueService.load('ProjectParticipation', 'ParticipationStatusInner'),
-        musicianProfiles: this.meService.getProfileMusician<IMusicianProfileDto[]>(),
+        musicianProfiles: this.meService.getProfileMusician<MusicianProfileDto[]>(),
         sections: this.sectionService.load(),
         id,
       },
@@ -96,14 +96,14 @@ export class ProjectListComponent {
       .subscribe((result) => {
         if (result) {
           this.meService.putProjectParticipation(result.musicianId, id, {
-            statusId: result.statusId,
-            comment: result.comment,
+            invitationStatusId: result.invitationStatusId,
+            commentByPerformerInner: result.commentByPerformerInner,
           }).subscribe(() => this.notificationsService.success('projects.SET_PARTICIPATION_STATUS'));
         }
       });
   }
 
-  public openParticipationListDialog(event: MouseEvent, project: IProjectDto) {
+  public openParticipationListDialog(event: MouseEvent, project: ProjectDto) {
     event.stopPropagation();
     this.dialogService.open(ProjectParticipantsComponent, {
       data: {
@@ -117,7 +117,7 @@ export class ProjectListComponent {
     ref.clear();
   }
 
-  private saveNewProject(project: IProjectDto): void {
+  private saveNewProject(project: ProjectDto): void {
     this.projectService.create(project)
       .subscribe((result) => {
         this.projects = this.projectService.load();
@@ -125,7 +125,7 @@ export class ProjectListComponent {
       });
   }
 
-  private updateProject(project: IProjectDto, oldProject: IProjectDto): void {
+  private updateProject(project: ProjectDto, oldProject: ProjectDto): void {
     this.projectService.update(project)
       .subscribe(() => {
         this.projects = this.projectService.load();

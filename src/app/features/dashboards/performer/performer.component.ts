@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { IProjectDto } from '../../../models/IProjectDto';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { SkeletonModule } from 'primeng/skeleton';
+import { PersonDto } from '../../../model/personDto';
 
 @Component({
   selector: 'arpa-performer',
@@ -10,7 +9,7 @@ import { SkeletonModule } from 'primeng/skeleton';
   styleUrls: ['./performer.component.scss'],
 })
 export class PerformerComponent {
-  projects: IProjectDto[] = [];
+  projects: PersonDto[] = [];
 
   constructor(route: ActivatedRoute) {
     route.data.pipe(map((routeData) => routeData.projects)).subscribe((projects) => (this.projects = projects));

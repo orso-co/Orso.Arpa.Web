@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { NotificationsService } from '../../../core/services/notifications.service';
-import { first } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 import { MeService } from '../../../core/services/me.service';
-import { IUserProfileDto } from '../../../models/IUserProfileDto';
+import { SelectValueService } from '../../../core/services/select-value.service';
+import { MyUserProfileDto } from '../../../model/myUserProfileDto';
 
 @Component({
   selector: 'arpa-user',
@@ -13,15 +14,22 @@ import { IUserProfileDto } from '../../../models/IUserProfileDto';
 })
 export class UserComponent implements OnInit {
   public form: FormGroup;
-  public profile: IUserProfileDto;
+  public profile: MyUserProfileDto;
+  genderSelectValue: any;
 
   constructor(
     formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private meService: MeService,
     private notificationsService: NotificationsService,
+    private selectValueService: SelectValueService,
   ) {
+
+    this.genderSelectValue = this.selectValueService.load('Person', 'gender')
+      .pipe(map(() => this.selectValueService.get('Person', 'gender')));
+
     this.form = formBuilder.group({
+      genderId: [null, [Validators.required]],
       email: [null],
       phoneNumber: [null,
         [
@@ -35,6 +43,7 @@ export class UserComponent implements OnInit {
       surname: [
         null,
       ],
+
       aboutMe: [
         null,
       ],

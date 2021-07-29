@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IMusicianProfileDto } from '../../../models/appointment';
-import { ISectionDto } from '../../../models/section';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 import { SelectValueService } from '../../../core/services/select-value.service';
 import { SelectItem } from 'primeng/api';
+import { MusicianProfileDto } from '../../../model/musicianProfileDto';
+import { SectionDto } from '../../../model/sectionDto';
 
 @Component({
   selector: 'arpa-edit-musician-profile',
@@ -17,8 +17,8 @@ export class EditMusicianProfileComponent implements OnInit {
 
   public form: FormGroup;
 
-  public profile: IMusicianProfileDto = this.config.data.profile;
-  public sections: Observable<ISectionDto[]> = this.config.data.sections;
+  public profile: MusicianProfileDto = this.config.data.profile;
+  public sections: Observable<SectionDto[]> = this.config.data.sections;
   public inquiryStatus: Observable<SelectItem[]>;
   public preferredParts: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
 
@@ -56,10 +56,10 @@ export class EditMusicianProfileComponent implements OnInit {
     this.form.controls.instrumentId.valueChanges.subscribe((id) => {
       // instrumentPartCount
       this.sections.pipe(
-        map(sections => sections.find(section => section.id === id) as ISectionDto),
+        map(sections => sections.find(section => section.id === id) as SectionDto),
         first(),
-      ).subscribe((section: ISectionDto) => {
-        if (section.instrumentPartCount > 0) {
+      ).subscribe((section: SectionDto) => {
+        if (section.instrumentPartCount && section.instrumentPartCount > 0) {
           const options = [];
           for (let i = 0; i < section.instrumentPartCount; i++) {
             options.push({ label: ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'][i], value: i + 1 });
@@ -82,7 +82,7 @@ export class EditMusicianProfileComponent implements OnInit {
     if (this.form.invalid || this.form.pristine) {
       return;
     }
-    this.ref.close({ ...this.profile, ...this.form.value } as IMusicianProfileDto);
+    this.ref.close({ ...this.profile, ...this.form.value } as MusicianProfileDto);
   }
 
   cancel(): void {

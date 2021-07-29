@@ -7,11 +7,11 @@ import { SectionListResolver } from './resolvers/section-list.resolver';
 import { AppointmentCategoryListResolver } from './resolvers/appointment-category-list.resolver';
 import { AppointmentStatusListResolver } from './resolvers/appointment-status-list.resolver';
 import { AppointmentParticipationResultListResolver } from './resolvers/appointment-participation-result-list.resolver';
-import { RoleNames } from '../../models/role-names';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { VenueService } from '../../core/services/venue.service';
 import { ProjectListResolver } from '../../core/resolvers/project-list.resolver';
 import { AppointmentParticipationPredictionListResolver } from '../../core/resolvers/appointment-participation-prediction-list.resolver';
+import { RoleNames } from '../../model/roleNames';
 
 const routes: Routes = [
   {

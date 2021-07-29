@@ -3,8 +3,8 @@ import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
-import { IAppointmentDto } from '../../models/appointment';
-import { DateRange } from '../../models/date-range';
+import { AppointmentDto } from '../../model/appointmentDto';
+import { DateRange } from '../../model/dateRange';
 
 @Injectable({
   providedIn: 'root',
@@ -16,21 +16,21 @@ export class AppointmentService {
     this.baseUrl = '/appointments';
   }
 
-  get(range: DateRange, date: Date): Observable<IAppointmentDto[]> {
+  get(range: DateRange, date: Date): Observable<AppointmentDto[]> {
     const params = new HttpParams().set('date', date.toISOString()).set('range', DateRange[range]);
 
-    return this.apiService.get<IAppointmentDto[]>(this.baseUrl, params);
+    return this.apiService.get<AppointmentDto[]>(this.baseUrl, params);
   }
 
-  getById(id: string): Observable<IAppointmentDto> {
-    return this.apiService.get<IAppointmentDto>(`${this.baseUrl}/${id}`);
+  getById(id: string): Observable<AppointmentDto> {
+    return this.apiService.get<AppointmentDto>(`${this.baseUrl}/${id}`);
   }
 
-  create(appointment: IAppointmentDto): Observable<IAppointmentDto> {
-    return this.apiService.post<IAppointmentDto>(this.baseUrl, appointment);
+  create(appointment: AppointmentDto): Observable<AppointmentDto> {
+    return this.apiService.post<AppointmentDto>(this.baseUrl, appointment);
   }
 
-  update(appointment: IAppointmentDto): Observable<any> {
+  update(appointment: AppointmentDto): Observable<any> {
     return this.apiService.put(`${this.baseUrl}/${appointment.id}`, appointment).pipe(shareReplay());
   }
 
@@ -46,29 +46,29 @@ export class AppointmentService {
     return this.apiService.post(`${this.baseUrl}/${id}/rooms/${roomId}`, {}).pipe(shareReplay());
   }
 
-  removeSection(id: string, sectionId: string): Observable<IAppointmentDto> {
-    return this.apiService.delete<IAppointmentDto>(`${this.baseUrl}/${id}/sections/${sectionId}`).pipe(shareReplay());
+  removeSection(id: string, sectionId: string): Observable<AppointmentDto> {
+    return this.apiService.delete<AppointmentDto>(`${this.baseUrl}/${id}/sections/${sectionId}`).pipe(shareReplay());
   }
 
-  addSection(id: string, sectionId: string): Observable<IAppointmentDto> {
-    return this.apiService.post<IAppointmentDto>(`${this.baseUrl}/${id}/sections/${sectionId}`, {}).pipe(shareReplay());
+  addSection(id: string, sectionId: string): Observable<AppointmentDto> {
+    return this.apiService.post<AppointmentDto>(`${this.baseUrl}/${id}/sections/${sectionId}`, {}).pipe(shareReplay());
   }
 
-  removeProject(id: string, projectId: string): Observable<IAppointmentDto> {
-    return this.apiService.delete<IAppointmentDto>(`${this.baseUrl}/${id}/projects/${projectId}`).pipe(shareReplay());
+  removeProject(id: string, projectId: string): Observable<AppointmentDto> {
+    return this.apiService.delete<AppointmentDto>(`${this.baseUrl}/${id}/projects/${projectId}`).pipe(shareReplay());
   }
 
-  addProject(id: string, projectId: string): Observable<IAppointmentDto> {
-    return this.apiService.post<IAppointmentDto>(`${this.baseUrl}/${id}/projects/${projectId}`, {}).pipe(shareReplay());
+  addProject(id: string, projectId: string): Observable<AppointmentDto> {
+    return this.apiService.post<AppointmentDto>(`${this.baseUrl}/${id}/projects/${projectId}`, {}).pipe(shareReplay());
   }
 
   setVenue(id: string, venueId: string | null): Observable<any> {
     return this.apiService.put(`${this.baseUrl}/${id}/venue/set/${venueId}`, {}).pipe(shareReplay());
   }
 
-  setDates(id: string, startTime: Date | null, endTime: Date | null): Observable<IAppointmentDto> {
+  setDates(id: string, startTime: Date | null, endTime: Date | null): Observable<AppointmentDto> {
     return this.apiService
-      .put<IAppointmentDto>(`${this.baseUrl}/${id}/dates/set`, { startTime, endTime })
+      .put<AppointmentDto>(`${this.baseUrl}/${id}/dates/set`, { startTime, endTime })
       .pipe(shareReplay());
   }
 

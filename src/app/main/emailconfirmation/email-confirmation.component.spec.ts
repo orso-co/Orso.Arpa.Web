@@ -4,11 +4,11 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { IConfirmEmailDto } from '../../models/IConfirmEmailDto';
 import { of } from 'rxjs';
 import { httpLoaderFactory } from '../../core/core.module';
 import { AuthService } from '../../core/services/auth.service';
 import { NotificationsService } from '../../core/services/notifications.service';
+import { ConfirmEmailDto } from '../../model/confirmEmailDto';
 
 describe('EmailconfirmationComponent', () => {
   let component: EmailConfirmationComponent;
@@ -32,7 +32,7 @@ describe('EmailconfirmationComponent', () => {
         }),
       ],
       providers: [
-        { provide: AuthService, useValue: { confirmMail: (confirmEmail: IConfirmEmailDto) => of(null) } },
+        { provide: AuthService, useValue: { confirmMail: (confirmEmail: ConfirmEmailDto) => of(null) } },
         { provide: NotificationsService, useValue: { success: () => of(null) } }],
     })
       .compileComponents();

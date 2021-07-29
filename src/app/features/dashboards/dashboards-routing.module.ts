@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PerformerComponent } from './performer/performer.component';
-import { RoleNames } from '../../models/role-names';
+import { RoleNames } from '../../model/roleNames';
 import { AdministratorComponent } from './administrator/administrator.component';
 import { SectionTreeResolver } from './resolvers/section-tree.resolver';
 import { StaffComponent } from './staff/staff.component';

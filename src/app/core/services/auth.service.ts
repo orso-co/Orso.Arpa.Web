@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, ReplaySubject, combineLatest, of } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable, of, ReplaySubject } from 'rxjs';
 
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
-import { map, distinctUntilChanged, filter, tap, catchError } from 'rxjs/operators';
-import { ILoginDto } from '../../models/ILoginDto';
-import { ITokenDto } from '../../models/ITokenDto';
-import { IUserRegisterDto } from '../../models/IUserRegisterDto';
-import { ICreateEmailConfirmationTokenDto } from '../../models/ICreateEmailConfirmationTokenDto';
-import { IConfirmEmailDto } from '../../models/IConfirmEmailDto';
-import { ICreateNewPasswordDto } from '../../models/ICreateNewPasswordDto';
-import { IResetPasswordDto } from '../../models/IResetPasswordDto';
+import { catchError, distinctUntilChanged, filter, map, tap } from 'rxjs/operators';
 import { intersection } from 'lodash-es';
-import { RoleNames } from '../../models/role-names';
-import { ISetRoleDto } from '../../models/ISetRoleDto';
+import { RoleNames } from '../../model/roleNames';
 import { RoleService } from './role.service';
 import { LoggerService } from './logger.service';
+import { TokenDto } from '../../model/tokenDto';
+import { LoginDto } from '../../model/loginDto';
+import { UserRegisterDto } from '../../model/userRegisterDto';
+import { CreateEmailConfirmationTokenDto } from '../../model/createEmailConfirmationTokenDto';
+import { ConfirmEmailDto } from '../../model/confirmEmailDto';
+import { SetRoleDto } from '../../model/setRoleDto';
+import { ResetPasswordDto } from '../../model/resetPasswordDto';
 
 export interface IToken {
   audience: string;
@@ -68,20 +67,20 @@ export class AuthService {
   }
 
   refreshToken() {
-    return this.apiService.post<ITokenDto>('/Auth/refreshtoken', {
+    return this.apiService.post<TokenDto>('/Auth/refreshtoken', {
       token: this.jwtService.getToken()
-    }).pipe(tap((tokenDto: ITokenDto) => {
-      this.jwtService.saveToken(tokenDto.token);
+    }).pipe(tap((result: TokenDto) => {
+      this.jwtService.saveToken(result.token);
     }));
   }
 
-  login(loginDto: ILoginDto): Observable<IToken> {
-    return this.apiService.post<ITokenDto>('/auth/login', loginDto).pipe(
+  login(loginDto: LoginDto): Observable<IToken> {
+    return this.apiService.post<TokenDto>('/auth/login', loginDto).pipe(
       filter((tokenDto) => !!tokenDto),
-      tap((tokenDto: ITokenDto) => {
+      tap((tokenDto: TokenDto) => {
         this.jwtService.saveToken(tokenDto.token);
       }),
-      map((tokenDto: ITokenDto) => this.jwtService.decode(tokenDto.token)!),
+      map((tokenDto: TokenDto) => this.jwtService.decode(tokenDto.token)!),
       tap((token) => {
         this.currentUserSubject.next(token);
         this.isAuthenticatedSubject.next(true);
@@ -107,32 +106,32 @@ export class AuthService {
     );
   }
 
-  register(userRegisterDto: IUserRegisterDto): Observable<ITokenDto> {
+  register(userRegisterDto: UserRegisterDto): Observable<TokenDto> {
     userRegisterDto.clientUri = `${this.clientUriBase}/eMailConfirmation`;
-    return this.apiService.post<ITokenDto>(`/auth/register`, userRegisterDto);
+    return this.apiService.post<TokenDto>(`/auth/register`, userRegisterDto);
   }
 
-  resendConfirmationLink(usernameOrEmail: string): Observable<ITokenDto> {
-    const createEmailConfirmationTokenDto: ICreateEmailConfirmationTokenDto = {
+  resendConfirmationLink(usernameOrEmail: string): Observable<TokenDto> {
+    const createEmailConfirmationTokenDto: CreateEmailConfirmationTokenDto = {
       usernameOrEmail,
       clientUri: `${this.clientUriBase}/eMailConfirmation`,
     };
-    return this.apiService.post<ITokenDto>(`/auth/emailconfirmationtoken`, createEmailConfirmationTokenDto);
+    return this.apiService.post<TokenDto>(`/auth/emailconfirmationtoken`, createEmailConfirmationTokenDto);
   }
 
-  confirmMail(confirmEmail: IConfirmEmailDto): Observable<any> {
+  confirmMail(confirmEmail: ConfirmEmailDto): Observable<any> {
     return this.apiService.post<any>(`/auth/confirmemail`, confirmEmail);
   }
 
   forgotPassword(usernameOrEmail: string): Observable<any> {
-    const createNewPasswordDto: ICreateNewPasswordDto = {
+    const createNewPasswordDto: CreateEmailConfirmationTokenDto = {
       usernameOrEmail,
       clientUri: `${this.clientUriBase}/forgotPassword`,
     };
     return this.apiService.post(`/auth/forgotpassword`, createNewPasswordDto);
   }
 
-  resetPassword(resetPassword: IResetPasswordDto): Observable<any> {
+  resetPassword(resetPassword: ResetPasswordDto): Observable<any> {
     return this.apiService.post(`/auth/resetpassword`, resetPassword);
   }
 
@@ -140,7 +139,7 @@ export class AuthService {
     return this.currentUser.pipe(map((token) => (token ? intersection(token.roles, roles).length > 0 : false)));
   }
 
-  public setUserRoles(setRole: ISetRoleDto): Observable<any> {
+  public setUserRoles(setRole: SetRoleDto): Observable<any> {
     return this.apiService.put(`/auth/role`, setRole);
   }
 

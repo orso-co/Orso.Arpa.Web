@@ -1,9 +1,9 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { first } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { IAuditLog } from '../../models/IAuditLog';
 import { AuditLogService } from '../../core/services/audit-log.service';
+import { AuditLogDto } from '../../model/auditLogDto';
 
 @Component({
   selector: 'arpa-audit-dialog',
@@ -12,8 +12,8 @@ import { AuditLogService } from '../../core/services/audit-log.service';
 })
 export class AuditDialogComponent {
 
-  public detail: IAuditLog;
-  public entries: Observable<IAuditLog[]>;
+  public detail: AuditLogDto;
+  public entries: Observable<AuditLogDto[]>;
 
   constructor(public config: DynamicDialogConfig, private auditLogService: AuditLogService) {
     this.detail = this.config.data.detail;

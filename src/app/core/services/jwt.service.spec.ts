@@ -1,4 +1,4 @@
-import { RoleNames } from './../../models/role-names';
+import { RoleNames } from './../../model/roleNames';
 import { TestBed } from '@angular/core/testing';
 
 import { JwtService } from './jwt.service';
