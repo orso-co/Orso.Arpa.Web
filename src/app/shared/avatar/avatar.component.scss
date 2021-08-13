@@ -6,10 +6,17 @@
       font-size: 6rem;
     }
   }
+
   [size="large"] {
     .p-avatar.p-avatar-image {
       width: 3rem;
       height: 3rem;
+    }
+  }
+
+  .p-avatar.p-avatar-circle {
+    & > span {
+      opacity: .65;
     }
   }
 }

@@ -14,8 +14,9 @@ const routes: Routes = [
   {
     path: '',
     component: ProfileComponent,
+    runGuardsAndResolvers: 'always',
     resolve: {
-      profile: ProfileResolver
+      profile: ProfileResolver,
     },
     children: [
       {
@@ -45,6 +46,14 @@ const routes: Routes = [
           profiles: ProfileMusicianResolver,
           sections: SectionsResolver,
         },
+        runGuardsAndResolvers: 'always',
+        children: [
+          {
+            path: '',
+            outlet: 'modal',
+            loadChildren: () => import('../musician-profile/musician-profile.module').then(m => m.MusicianProfileModule),
+          },
+        ],
       },
     ]
   }

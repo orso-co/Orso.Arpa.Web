@@ -62,7 +62,7 @@ import { CloseButtonDirective } from './directives/close-button.directive';
     AuditDialogDirective,
     SplitViewComponent,
     FormFieldComponent,
-    PasswordStrengthComponent
+    PasswordStrengthComponent,
   ],
 })
 export class SharedModule {

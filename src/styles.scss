@@ -54,7 +54,7 @@ select:-webkit-autofill:focus {
 }
 
 .p-field.p-float-label, .p-field + .p-field {
-  margin-top: 3em;
+  margin-top: 1.6em;
 }
 
 .p-formgroup-inline > .p-field + .p-field {
@@ -100,20 +100,38 @@ table {
 }
 
 p-dynamicDialog {
+  .p-dialog-mask {
+    align-items: flex-start;
+    padding-top: 0;
+    @media (min-width: 768px) {
+      padding-top: 6rem;
+    }
+  }
+
+  .form-modal {
+    &.p-dialog .p-dialog-content {
+      padding-bottom: 0;
+    }
+
+    min-width: 90%;
+    // min-height: 90%;
+    background-color: #1e1e1e;
+  }
+
   .p-dialog {
     margin-left: .5rem;
     margin-right: 0.5rem;
     max-width: 98%;
-    overflow-x: hidden;
+    overflow-x: visible;
 
     @media (max-width: 768px) {
+      top: 4rem;
       width: 100%;
-      height: 100%;
       background-color: var(--surface-a);
     }
 
     .p-col {
-      margin-bottom: 3rem;
+      margin-bottom: .5rem;
     }
   }
 }
@@ -146,4 +164,5 @@ p-table {
     }
   }
 }
+
 

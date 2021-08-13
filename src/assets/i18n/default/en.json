@@ -27,6 +27,7 @@
   "USER_PROFILE": "User Profile",
   "USER_PROFILE_DATA": "My Profile",
   "MUSICIAN_PROFILE": "Musician Profiles",
+  "MY_PROFILES": "My Profiles",
   "PROJECTS": "Projects",
   "DASHBOARD": "Dashboard",
   "MUPRO": "Musician Profiles",
@@ -48,7 +49,11 @@
   "NOTHING_SELECTED": "No Selection",
   "CLEAR": "Clear",
   "SEARCH": "Search",
-
+  "GENDER": "Gender",
+  "DESCRIPTION": "Description",
+  "ADD": "Add",
+  "DEACTIVATE": "Deactivate",
+  "DOCUMENTS": "Documents",
   "appointments": {
     "NEW_APPOINTMENT_CONFIRMATION": "Do you want to create a new appointment for {{value}}?"
   },
@@ -56,7 +61,6 @@
     "BACKTODASHBOARD": "Back to dashboard",
     "BACK": "back"
   },
-
   "profile": {
   "UPDATE": "Profile update done.",
   "ISSUE": "Could not update profile."
@@ -241,20 +245,6 @@
     "SHOW_PARTICIPANTS": "Project Participants",
     "PARTICIPANTS": "Participants",
     "INSTRUMENT": "Instrument"
-  },
-  "mupro": {
-    "PROFILE": "Musician Profile",
-    "MAIN_PROFILE": "Main Profile",
-    "MAIN_INSTURMENT": "Main Instrument",
-    "MY_PROFILES": "My Profiles",
-    "UPDATED": "Profile Updated",
-    "CREATED": "Profile Created",
-    "CREATE": "Create Profile",
-    "EDIT": "Edit Profile",
-    "LEVEL_ASSESSMENT": "Level",
-    "INQUIRY_STATUS": "Availability",
-    "PREFERRED_POSITIONS": "Preferred Position",
-    "PREFERRED_PARTS": "Preferred Parts"
   },
   "auditlogs": {
     "AUDITLOGS": "Auditlogs",

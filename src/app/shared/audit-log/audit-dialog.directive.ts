@@ -29,6 +29,7 @@ export class AuditDialogDirective {
         ...(this.resourceId && { entries: this.auditLogService.loadForEntity(this.resourceId as any)}),
       },
       header: this.translate.instant('auditlogs.DETAILS'),
+      styleClass: 'form-modal',
     });
   }
 }

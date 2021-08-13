@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { PageLayoutComponent } from './main/layout/page-layout/page-layout.component';
 import { ErrorComponent } from './main/error/error.component';
 import { DefaultLayoutComponent } from './main/layout/default-layout/default-layout.component';
@@ -12,8 +12,8 @@ import { LogoutComponent } from './main/logout/logout.component';
 import { EmailConfirmationComponent } from './main/emailconfirmation/email-confirmation.component';
 import { ForgotPasswordComponent } from './main/forgot-password/forgot-password.component';
 import { SessionGuard } from './core/guards/session.guard';
-import {AuditLogComponent} from './shared/audit-log/audit-log.component';
-import {AuditLogResolver} from './resolvers/auditlog.resolver';
+import { AuditLogComponent } from './shared/audit-log/audit-log.component';
+import { AuditLogResolver } from './resolvers/auditlog.resolver';
 import { ActivationComponent } from './main/activation/activation.component';
 import { RegErrorComponent } from './main/reg-error/reg-error.component';
 
@@ -127,7 +127,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    preloadingStrategy: PreloadAllModules,
+    // preloadingStrategy: PreloadAllModules,
     paramsInheritanceStrategy: 'always',
     onSameUrlNavigation: "reload",
   })],

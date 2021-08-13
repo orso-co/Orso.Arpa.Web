@@ -1,0 +1,47 @@
+<form (submit)='$event.preventDefault()' [formGroup]='form'>
+  <div class='p-fluid p-formgrid p-grid'>
+    <div class='p-col'>
+      <arpa-form-field label='DEACTIVATION_DATE'>
+        <p-calendar
+          formControlName="deactivationStart"
+          id="deactivationStart"
+          dateFormat="dd MM yy"
+          [showWeek]="true"
+          [minDate]='minDate'
+        ></p-calendar>
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class='p-fluid p-formgrid p-grid'>
+    <div class='p-col'>
+      <arpa-form-field label='PURPOSE'>
+        <textarea id="purpose" type="text" pInputText formControlName="purpose"></textarea>
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class='p-formgroup-inline p-jc-between'>
+    <div class='p-field p-col'>
+      <button
+        *ngIf='profile.deactivation'
+        (click)='activate()'
+        [label]="'ACTIVATE' | translate"
+        icon='pi pi-check'
+        iconPos='left'
+        pButton
+        type='button'
+      ></button>
+    </div>
+    <div class='p-field p-col p-text-right' style='margin-right: 0'>
+      <button
+        (click)='deactivate()'
+        [disabled]='form.pristine || form.invalid'
+        [label]="'DEACTIVATE' | translate"
+        class='p-button-danger'
+        icon='pi pi-times'
+        iconPos='left'
+        pButton
+        type='button'
+      ></button>
+    </div>
+  </div>
+</form>

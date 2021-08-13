@@ -1,0 +1,54 @@
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { shareReplay } from 'rxjs/operators';
+import { ApiService } from '../../../core/services/api.service';
+import { MusicianProfileDto } from '../../../model/musicianProfileDto';
+import { MusicianProfileDeactivationCreateDto } from '../../../model/musicianProfileDeactivationCreateDto';
+import { MyMusicianProfileAddDocumentDto } from '../../../model/myMusicianProfileAddDocumentDto';
+import { EducationDto } from '../../../model/educationDto';
+import { EducationCreateDto } from '../../../model/educationCreateDto';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MusicianService {
+  private baseUrl = '/profiles/musicians';
+  private baseUrlMe = '/me/profiles/musician';
+
+  constructor(private apiService: ApiService) {
+  }
+
+  createProfile(profile: MusicianProfileDto): Observable<any> {
+    return this.apiService.post(`${this.baseUrlMe}`, profile).pipe(shareReplay());
+  }
+
+  deactivateProfile(id: any, data: MusicianProfileDeactivationCreateDto): Observable<any> {
+    return this.apiService.post(`${this.baseUrl}/${id}/deactivation`, data).pipe(shareReplay());
+  }
+
+  activateProfile(id: any): Observable<any> {
+    return this.apiService.delete(`${this.baseUrl}/${id}/deactivation`).pipe(shareReplay());
+  }
+
+  updateProfile(profile: MusicianProfileDto): Observable<any> {
+    const { id } = profile;
+    return this.apiService.put(`${this.baseUrlMe}/${id}`, profile).pipe(shareReplay());
+  }
+
+  addDocument(id: any, document: MyMusicianProfileAddDocumentDto): Observable<any> {
+    const { documentId, ...data } = document;
+    return this.apiService.post(`${this.baseUrlMe}/${id}/documents/${documentId}`, data).pipe(shareReplay());
+  }
+
+  removeDocument(id: any, documentId: any): Observable<any> {
+    return this.apiService.delete(`${this.baseUrlMe}/${id}/documents/${documentId}`).pipe(shareReplay());
+  }
+
+  addEducation(id: any, data: EducationCreateDto): Observable<any> {
+    return this.apiService.post(`${this.baseUrlMe}/${id}/educations`, data).pipe(shareReplay());
+  }
+
+  removeEducation(data: EducationDto): Observable<any> {
+    return this.apiService.delete(`/educations/${data.id}`).pipe(shareReplay());
+  }
+}

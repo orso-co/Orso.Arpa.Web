@@ -1,6 +1,6 @@
 :host ::ng-deep {
 
-  router-outlet + * {
+  router-outlet:not([name]) + * {
     display: flex;
     height: 100%;
     min-height: 100%;
@@ -29,6 +29,7 @@
     height: 100%;
     max-height: 100%;
     overflow-y: scroll;
+    padding-bottom: 2rem;
   }
 
   &.desktop {

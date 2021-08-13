@@ -66,7 +66,8 @@ export class ProjectListComponent {
         genre: this.selectValueService.load('Project', 'Genre').pipe(map(() => this.selectValueService.get('Project', 'Genre'))),
         state: this.state,
       },
-      header: selection ? this.translate.instant('projects.EDIT_PROJECT') : this.translate.instant('projects.NEW_PROJECT')
+      header: selection ? this.translate.instant('projects.EDIT_PROJECT') : this.translate.instant('projects.NEW_PROJECT'),
+      styleClass: 'form-modal',
     });
     ref.onClose
       .pipe(first())
@@ -89,6 +90,7 @@ export class ProjectListComponent {
         id,
       },
       header: this.translate.instant('projects.EDIT_PARTICIPATION'),
+      styleClass: 'form-modal',
     });
 
     ref.onClose
@@ -109,7 +111,8 @@ export class ProjectListComponent {
       data: {
         project,
       },
-      header: `${this.translate.instant('projects.PARTICIPANTS')}: ${project.title}` ,
+      header: `${this.translate.instant('projects.PARTICIPANTS')}: ${project.title}`,
+      styleClass: 'form-modal',
     });
   }
 

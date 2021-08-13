@@ -246,7 +246,7 @@ export class AppointmentsComponent {
         expectationOptions: this.expectationOptions,
       },
       header: this.translate.instant('editappointments.CREATE'),
-      style: { 'max-width': '1500px' },
+      styleClass: 'form-modal',
       dismissableMask: true,
     });
 
@@ -275,7 +275,7 @@ export class AppointmentsComponent {
         isAllDayEvent: this.isAllDayEvent(appointment),
       },
       header: this.translate.instant('editappointments.EDIT'),
-      style: { 'max-width': '1500px' },
+      styleClass: 'form-modal',
       dismissableMask: true,
     });
 

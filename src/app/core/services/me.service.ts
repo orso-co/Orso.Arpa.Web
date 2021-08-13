@@ -45,15 +45,20 @@ export class MeService {
     }
   }
 
-  putProfileMusician(profileMusician: MusicianProfileDto): Observable<any> {
+  createProfileMusician(profileMusician: MusicianProfileDto): Observable<any> {
     return this.apiService.post(`${this.baseUrl}/profiles/musician`, profileMusician).pipe(shareReplay());
   }
 
-  putProjectParticipation<T>(id: string, projectId: string, projectParticipationStatus: ProjectParticipationDto){
+  updateProfileMusician(profileMusician: MusicianProfileDto): Observable<any> {
+    const { id } = profileMusician;
+    return this.apiService.put(`${this.baseUrl}/profiles/musician/${id}`, profileMusician).pipe(shareReplay());
+  }
+
+  putProjectParticipation<T>(id: string, projectId: string, projectParticipationStatus: ProjectParticipationDto) {
     return this.apiService
       .put<T>(
         `${this.baseUrl}/profiles/musician/${id}/projects/${projectId}/participation`,
-        projectParticipationStatus
+        projectParticipationStatus,
       ).pipe(shareReplay());
   }
 }

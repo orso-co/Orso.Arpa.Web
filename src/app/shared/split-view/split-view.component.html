@@ -1,5 +1,5 @@
 <div class='wrapper' [ngClass]="{'desktop':isDesktop}">
-  <div class='side-view p-mb-2 p-mr-2'>
+  <div class='side-view p-mr-2'>
     <ng-container
       [ngTemplateOutlet]='sideViewTemplateRef || defaultSideViewTemplate'
       [ngTemplateOutletContext]='{ $implicit: this }'
@@ -22,6 +22,7 @@
       (activate)='onRouteActivation($event)'
       (deactivate)='onRouteDeactivation()'
       #outlet='outlet'></router-outlet>
+    <router-outlet name='modal'></router-outlet>
   </div>
 </div>
 

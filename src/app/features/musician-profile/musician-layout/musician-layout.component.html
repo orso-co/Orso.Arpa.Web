@@ -1,0 +1,22 @@
+<p-tabView [(activeIndex)]='index'>
+  <p-tabPanel header="{{'MAIN_INSTURMENT' | translate}}" leftIcon='pi pi-map-marker'
+              tooltip="{{'MAIN_INSTURMENT' | translate}}">
+    <arpa-musician-main-instrument (viewState)='viewStateEvents($event)'></arpa-musician-main-instrument>
+  </p-tabPanel>
+  <p-tabPanel *ngIf='profile | async' header="{{'DOUBLING_INSTRUMENT' | translate}}" leftIcon='pi pi-th-large'
+              tooltip="{{'DOUBLING_INSTRUMENT' | translate}}">
+    <arpa-musician-doubling-instrument></arpa-musician-doubling-instrument>
+  </p-tabPanel>
+  <p-tabPanel *ngIf='profile | async' header="{{'EDUCATION' | translate}}" leftIcon='pi pi-id-card'
+              tooltip="{{'EDUCATION' | translate}}">
+    <arpa-musician-education></arpa-musician-education>
+  </p-tabPanel>
+  <p-tabPanel *ngIf='profile | async' header="{{'DOCUMENTS' | translate}}" leftIcon='pi pi-copy'
+              tooltip="{{'DOCUMENTS' | translate}}">
+    <arpa-musician-documents></arpa-musician-documents>
+  </p-tabPanel>
+  <p-tabPanel *ngIf='profile | async' leftIcon='pi pi-eye-slash' tooltip="{{'DEACTIVATE' | translate}}">
+    <arpa-musician-deactivation></arpa-musician-deactivation>
+  </p-tabPanel>
+</p-tabView>
+

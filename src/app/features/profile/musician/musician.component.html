@@ -1,6 +1,6 @@
 <div class='p-grid p-jc-center'>
   <div class='p-col-12 p-md-6 p-text-center'>
-    <h1>{{ 'mupro.MY_PROFILES' | translate}}</h1>
+    <h1>{{ 'MY_PROFILES' | translate}}</h1>
   </div>
 </div>
 <div class='p-grid p-jc-center' style='margin-top: 4rem'>
@@ -17,11 +17,13 @@
           >
           </td>
           <td class='p-d-flex p-jc-between'>
-            <div class="p-mr-2">
+            <div class='p-mr-2'>
               <h3>{{ (getSection(profile) | async) }}</h3>
             </div>
             <div class='p-flex-column'>
-              <button pButton type='button' icon="pi pi-pencil" (click)='openDialog(profile)' class="p-button-rounded p-button-text p-button-icon-only"></button>
+              <button [routerLink]='[{outlets: {modal: [profile.id]}}]' class='p-button-rounded p-button-text p-button-icon-only' icon='pi pi-pencil'
+                      pButton
+                      type='button'></button>
             </div>
           </td>
         </tr>
@@ -32,8 +34,9 @@
 <div class='p-grid p-jc-center' style='margin-top: 4rem'>
   <div class='p-col-12 p-md-6 p-text-center'>
     <button pButton type='button' icon='pi pi-plus' [attr.title]='"ADD_PROFILE" | translate'
-            (click)='openDialog()'></button>
+            [routerLink]="[{outlets: {modal: ['create']}}]"></button>
   </div>
 </div>
+<router-outlet name='modal'></router-outlet>
 
 

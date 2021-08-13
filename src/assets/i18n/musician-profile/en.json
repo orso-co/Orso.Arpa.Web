@@ -1,0 +1,22 @@
+{
+  "PROFILE": "Musician Profile",
+  "MAIN_PROFILE": "Main Profile",
+  "MAIN_INSTURMENT": "Main Instrument",
+  "MY_PROFILES": "My Profiles",
+  "UPDATED": "Profile Updated",
+  "CREATED": "Profile Created",
+  "CREATE": "Create Profile",
+  "EDIT": "Edit Profile",
+  "LEVEL_ASSESSMENT": "Level",
+  "INQUIRY_STATUS": "Availability",
+  "PREFERRED_POSITIONS": "Preferred Position",
+  "PREFERRED_PARTS": "Preferred Parts",
+  "DOUBLING_INSTRUMENT": "Doubling Instrument",
+  "EDUCATION_TYPE": "Education",
+  "EDUCATION": "Education",
+  "INSTITUTION": "Institution",
+  "TIMESPAN": "Timespan",
+  "EDUCATION_DETAILS": "Details",
+  "PURPOSE": "Reason",
+  "DEACTIVATION_DATE": "Date of deactivation"
+}
