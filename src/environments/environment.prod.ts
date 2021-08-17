@@ -5,7 +5,7 @@ export const environment = {
   },
   api: {
     protocol: 'https',
-    baseUrl: 'orso-arpa.azurewebsites.net',
+    baseUrl: 'wa-deployment.azurewebsites.net/arpa-api',
   },
   graphql: {
     protocol: 'https',
@@ -14,7 +14,7 @@ export const environment = {
   web:
     {
       protocol: 'https',
-      baseUrl: 'orsoarpastorage.z1.web.core.windows.net',
+      baseUrl: 'wa-deployment.azurewebsites.net',
     },
   arpa: {
     url: 'http://arpa.orso.berlin/',
@@ -25,7 +25,7 @@ export const environment = {
   },
   config: {
     protocol: 'https',
-    baseUrl: 'orso-arpa.azurewebsites.net/swagger/v1/swagger.json',
+    baseUrl: 'wa-deployment.azurewebsites.net/arpa-api/swagger/v1/swagger.json',
   },
   locale: {
     default: 'de',

@@ -9,7 +9,7 @@ export const environment = {
   },
   api: {
     protocol: 'http',
-    baseUrl: 'localhost:5000',
+    baseUrl: 'wa-deployment.azurewebsites.net/arpa-api',
   },
   graphql: {
     protocol: 'http',
@@ -18,7 +18,7 @@ export const environment = {
   web:
     {
       protocol: 'http',
-      baseUrl: 'localhost:4200',
+      baseUrl: 'wa-deployment.azurewebsites.net',
     },
   arpa: {
     url: 'http://arpa.orso.berlin/',
@@ -29,7 +29,7 @@ export const environment = {
   },
   config: {
     protocol: 'http',
-    baseUrl: 'localhost:5000/swagger/v1/swagger.json',
+    baseUrl: 'wa-deployment.azurewebsites.net/arpa-api/swagger/v1/swagger.json',
   },
   locale: {
     default: 'de',
