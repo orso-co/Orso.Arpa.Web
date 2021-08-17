@@ -8,7 +8,7 @@ export const environment = {
     key: '6LfS2X0aAAAAADWnno_N6FJzl2OhGI3ibz2EqPQQ',
   },
   api: {
-    protocol: 'http',
+    protocol: 'https',
     baseUrl: 'wa-deployment.azurewebsites.net/arpa-api',
   },
   graphql: {
@@ -17,7 +17,7 @@ export const environment = {
   },
   web:
     {
-      protocol: 'http',
+      protocol: 'https',
       baseUrl: 'wa-deployment.azurewebsites.net',
     },
   arpa: {
@@ -28,7 +28,7 @@ export const environment = {
     email: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,4}$',
   },
   config: {
-    protocol: 'http',
+    protocol: 'https',
     baseUrl: 'wa-deployment.azurewebsites.net/arpa-api/swagger/v1/swagger.json',
   },
   locale: {
