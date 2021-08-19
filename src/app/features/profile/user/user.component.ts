@@ -6,6 +6,14 @@ import { first, map } from 'rxjs/operators';
 import { MeService } from '../../../core/services/me.service';
 import { SelectValueService } from '../../../core/services/select-value.service';
 import { MyUserProfileDto } from '../../../model/myUserProfileDto';
+import { Apollo, gql } from 'apollo-angular';
+
+const CurrentUserForProfile = gql`
+  query {
+  musicianProfiles(first: 3) {
+    edges {node{isMainProfile}}
+  }
+}`;
 
 @Component({
   selector: 'arpa-user',
@@ -23,8 +31,15 @@ export class UserComponent implements OnInit {
     private meService: MeService,
     private notificationsService: NotificationsService,
     private selectValueService: SelectValueService,
+    private apollo: Apollo,
   ) {
-
+    this.apollo.watchQuery<any>({
+      query: CurrentUserForProfile,
+    })
+      .valueChanges
+      .subscribe(({ data, loading }) => {
+        console.log(data);
+      });
     this.genderSelectValue = this.selectValueService.load('Person', 'gender')
       .pipe(map(() => this.selectValueService.get('Person', 'gender')));
 

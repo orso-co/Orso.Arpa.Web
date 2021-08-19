@@ -42,6 +42,7 @@ export class MusicianDialogEntryComponent {
       data: {
         profile: new BehaviorSubject(selection),
         sections,
+        comboInstrumentView: this.route.snapshot.queryParamMap.get('comboInstruments') || false,
       },
       header: selection ? this.translate.instant('EDIT') : this.translate.instant('CREATE'),
       styleClass: 'form-modal',

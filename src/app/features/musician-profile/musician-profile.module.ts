@@ -12,6 +12,8 @@ import { MusicianMainInstrumentComponent } from './musician-main-instrument/musi
 import { HttpClient } from '@angular/common/http';
 import { TranslateModuleLoader } from '../../core/factories/translate-module-loader';
 import { MusicianDeactivationComponent } from './musician-deactivation/musician-deactivation.component';
+import { MusicianInstrumentsComponent } from './musician-instruments/musician-instruments.component';
+import { AccordionModule } from 'primeng/accordion';
 
 export const HttpLoaderFactory = (http: HttpClient) => new TranslateModuleLoader(http, ['musician-profile']);
 
@@ -24,10 +26,12 @@ export const HttpLoaderFactory = (http: HttpClient) => new TranslateModuleLoader
     MusicianDoublingInstrumentComponent,
     MusicianMainInstrumentComponent,
     MusicianDeactivationComponent,
+    MusicianInstrumentsComponent,
   ],
   imports: [
     CommonModule,
     MusicianRoutingModule,
+    AccordionModule,
     SharedModule,
     TranslateModule.forChild({
       defaultLanguage: 'en',

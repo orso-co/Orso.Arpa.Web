@@ -1,9 +1,13 @@
 <p-tabView [(activeIndex)]='index'>
+  <p-tabPanel *ngIf='comboInstrumentView' header="{{ 'INSTRUMENTS' | translate }}">
+    <arpa-musician-instruments></arpa-musician-instruments>
+  </p-tabPanel>
   <p-tabPanel header="{{'MAIN_INSTURMENT' | translate}}" leftIcon='pi pi-map-marker'
-              tooltip="{{'MAIN_INSTURMENT' | translate}}">
+              *ngIf='!comboInstrumentView' tooltip="{{'MAIN_INSTURMENT' | translate}}">
     <arpa-musician-main-instrument (viewState)='viewStateEvents($event)'></arpa-musician-main-instrument>
   </p-tabPanel>
-  <p-tabPanel *ngIf='profile | async' header="{{'DOUBLING_INSTRUMENT' | translate}}" leftIcon='pi pi-th-large'
+  <p-tabPanel *ngIf='(profile | async) && !comboInstrumentView' header="{{'DOUBLING_INSTRUMENT' | translate}}"
+              leftIcon='pi pi-th-large'
               tooltip="{{'DOUBLING_INSTRUMENT' | translate}}">
     <arpa-musician-doubling-instrument></arpa-musician-doubling-instrument>
   </p-tabPanel>

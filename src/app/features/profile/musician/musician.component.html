@@ -5,38 +5,66 @@
 </div>
 <div class='p-grid p-jc-center' style='margin-top: 4rem'>
   <div class='p-col-12 p-md-10 p-lg-6'>
+    <h2>
+      {{ 'MAIN_PROFILE' | translate }}
+    </h2>
     <p-table [value]='(profiles | async) || []'>
       <ng-template pTemplate='header'>
       </ng-template>
       <ng-template pTemplate='body' let-profile>
-        <tr>
-          <td
-            class='status'
-            [class.active]='profile.isMainProfile'
-            [class.inactive]='profile.isDeactivated'
-          >
-          </td>
-          <td class='p-d-flex p-jc-between'>
-            <div class='p-mr-2'>
-              <h3>{{ (getSection(profile) | async) }}</h3>
-            </div>
-            <div class='p-flex-column'>
-              <button [routerLink]='[{outlets: {modal: [profile.id]}}]' class='p-button-rounded p-button-text p-button-icon-only' icon='pi pi-pencil'
-                      pButton
-                      type='button'></button>
-            </div>
-          </td>
-        </tr>
+        <ng-container *ngIf='profile.isMainProfile'>
+          <ng-container *ngTemplateOutlet='listElement; context: {$implicit: profile}'></ng-container>
+        </ng-container>
+      </ng-template>
+    </p-table>
+    <h2>
+      {{ 'ADDITIONAL_PROFILES' | translate }}
+    </h2>
+    <p-table [value]='(profiles | async) || []'>
+      <ng-template pTemplate='header'>
+      </ng-template>
+      <ng-template let-profile pTemplate='body'>
+        <ng-container *ngIf='!profile.isMainProfile && !profile.deactivation'>
+          <ng-container *ngTemplateOutlet='listElement; context: {$implicit: profile}'></ng-container>
+        </ng-container>
+      </ng-template>
+    </p-table>
+    <h2>
+      {{ 'DEACTIVATED_PROFILES' | translate }}
+    </h2>
+    <p-table [value]='(profiles | async) || []'>
+      <ng-template pTemplate='header'>
+      </ng-template>
+      <ng-template let-profile pTemplate='body'>
+        <ng-container *ngIf='!profile.isMainProfile && profile.deactivation'>
+          <ng-container *ngTemplateOutlet='listElement; context: {$implicit: profile}'></ng-container>
+        </ng-container>
       </ng-template>
     </p-table>
   </div>
 </div>
 <div class='p-grid p-jc-center' style='margin-top: 4rem'>
   <div class='p-col-12 p-md-6 p-text-center'>
-    <button pButton type='button' icon='pi pi-plus' [attr.title]='"ADD_PROFILE" | translate'
-            [routerLink]="[{outlets: {modal: ['create']}}]"></button>
+    <button [attr.title]='"ADD_PROFILE" | translate' [routerLink]="[{outlets: {modal: ['create']}}]" icon='pi pi-plus' pButton
+            type='button'></button>
   </div>
 </div>
 <router-outlet name='modal'></router-outlet>
+
+<ng-template #listElement let-profile>
+  <tr>
+    <td class='p-d-flex p-jc-between'>
+      <div class='p-mr-2'>
+        <h3>{{ (getSection(profile) | async) }}</h3>
+      </div>
+      <div class='p-flex-column'>
+        <button [routerLink]='[{outlets: {modal: [profile.id]}}]'
+                class='p-button-rounded p-button-text p-button-icon-only' icon='pi pi-pencil'
+                pButton
+                type='button'></button>
+      </div>
+    </td>
+  </tr>
+</ng-template>
 
 

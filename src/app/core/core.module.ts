@@ -8,6 +8,10 @@ import { ErrorHandler as CustomErrorHandler } from './error-handler';
 import { HttpLoaderInterceptor } from './interceptors/http-loader-interceptor.service';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { APOLLO_OPTIONS } from 'apollo-angular';
+import { HttpLink } from 'apollo-angular/http';
+import { ApolloClientOptions, ApolloLink, InMemoryCache } from '@apollo/client/core';
+import { setContext } from '@apollo/client/link/context';
 
 export const httpLoaderFactory = (http: HttpClient) => new TranslateModuleLoader(http, [
   'default',
@@ -16,6 +20,25 @@ export const httpLoaderFactory = (http: HttpClient) => new TranslateModuleLoader
 export const translateInitializerFactory = (translate: TranslateService, configService: ConfigService) => () => {
   translate.setDefaultLang(configService.getEnv('locale').default);
   return translate.use(configService.getEnv('locale').default).toPromise();
+};
+
+export const createApollo = (httpLink: HttpLink, configService: ConfigService): ApolloClientOptions<any> => {
+  const { protocol, baseUrl } = configService.getEnv('graphql');
+  const uri = `${protocol}://${baseUrl}`;
+  const basic = setContext(() => ({
+      headers: {
+        Accept: 'charset=utf-8',
+      },
+    }),
+  );
+
+  const link = ApolloLink.from([basic, httpLink.create({ uri })]);
+  const cache = new InMemoryCache();
+
+  return {
+    link,
+    cache,
+  };
 };
 
 @NgModule({
@@ -39,6 +62,11 @@ export const translateInitializerFactory = (translate: TranslateService, configS
       useFactory: translateInitializerFactory,
       deps: [TranslateService, ConfigService],
       multi: true,
+    },
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: createApollo,
+      deps: [HttpLink, ConfigService],
     },
   ],
   exports: [

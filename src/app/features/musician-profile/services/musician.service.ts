@@ -7,6 +7,8 @@ import { MusicianProfileDeactivationCreateDto } from '../../../model/musicianPro
 import { MyMusicianProfileAddDocumentDto } from '../../../model/myMusicianProfileAddDocumentDto';
 import { EducationDto } from '../../../model/educationDto';
 import { EducationCreateDto } from '../../../model/educationCreateDto';
+import { MyDoublingInstrumentModifyDto } from '../../../model/myDoublingInstrumentModifyDto';
+import { MyDoublingInstrumentCreateDto } from '../../../model/myDoublingInstrumentCreateDto';
 
 @Injectable({
   providedIn: 'root',
@@ -46,6 +48,18 @@ export class MusicianService {
 
   addEducation(id: any, data: EducationCreateDto): Observable<any> {
     return this.apiService.post(`${this.baseUrlMe}/${id}/educations`, data).pipe(shareReplay());
+  }
+
+  addDoublingInstrument(id: any, data: MyDoublingInstrumentCreateDto): Observable<any> {
+    return this.apiService.post(`${this.baseUrlMe}/${id}/doublinginstruments`, data).pipe(shareReplay());
+  }
+
+  updateDoublingInstrument(id: any, data: MyDoublingInstrumentModifyDto): Observable<any> {
+    return this.apiService.put(`${this.baseUrlMe}/${id}/doublinginstruments/${data.id}`, data).pipe(shareReplay());
+  }
+
+  getDoublingInstruments(id: any): Observable<any> {
+    return this.apiService.get(`/sections/${id}/doublinginstruments`).pipe(shareReplay());
   }
 
   removeEducation(data: EducationDto): Observable<any> {

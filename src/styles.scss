@@ -165,4 +165,14 @@ p-table {
   }
 }
 
+hr {
+  border-top: 1px solid #fff;
+  border-bottom: 0;
+  opacity: .25;
+}
 
+@media (max-width: 767px) {
+  .hidden-xs {
+    display: none !important;
+  }
+}

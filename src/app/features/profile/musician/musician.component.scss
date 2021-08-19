@@ -1,9 +1,31 @@
 .status {
   width: 2px;
+
   &.inactive {
     background-color: red;
   }
+
   &.active {
     background-color: green;
+  }
+}
+
+h2 {
+  margin-top: 3rem;
+  opacity: .75;
+}
+
+:host ::ng-deep {
+  .p-datatable .p-datatable-tbody > tr {
+    //background-color: transparent;
+    border-top: 1px solid #383838;
+
+    & > td {
+      border-bottom: none;
+    }
+
+    &:first-child {
+      border-top: none;
+    }
   }
 }

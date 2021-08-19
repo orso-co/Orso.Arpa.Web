@@ -17,10 +17,12 @@ export enum ViewState {
 })
 export class MusicianLayoutComponent {
 
+  public comboInstrumentView: boolean = this.config.data.comboInstrumentView;
   public index = 0;
   public profile: Observable<MusicianProfileDto> = this.config.data.profile;
 
   constructor(public config: DynamicDialogConfig) {
+
   }
 
   viewStateEvents(event: any) {

@@ -1,6 +1,8 @@
 {
   "PROFILE": "Musikerprofil",
   "MAIN_PROFILE": "Hauptprofil",
+  "ADDITIONAL_PROFILES": "Weitere Profile",
+  "DEACTIVATED_PROFILES": "Deactivierte Profile",
   "MAIN_INSTURMENT": "Hauptinstrument",
   "MY_PROFILES": "Meine Profile",
   "UPDATED": "Musikerprofil Aktualisiert",
@@ -19,5 +21,8 @@
   "TIMESPAN": "Zeitraum",
   "EDUCATION_DETAILS": "Details",
   "PURPOSE": "Grund",
-  "DEACTIVATION_DATE": "Datum der Deaktivierung"
+  "DEACTIVATION_DATE": "Datum der Deaktivierung",
+  "ADD_PROFILE": "Erstellen",
+  "INSTRUMENTS": "Instrumente",
+  "DOUBLING_INSTRUMENTS": "Doppelinstrumente"
 }

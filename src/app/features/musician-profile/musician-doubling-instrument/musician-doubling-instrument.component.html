@@ -1,1 +1,117 @@
-<!-- ToDo: deactivated -->
+<form (submit)='$event.preventDefault()' [formGroup]='form'>
+  <div class='p-fluid p-formgrid p-grid'>
+    <div class='p-col'>
+      <arpa-form-field label='INSTURMENT' type='field'>
+        <p-dropdown
+          [filter]='true'
+          [options]='(sections | async) || []'
+          [placeholder]='"NOTHING_SELECTED" | translate'
+          formControlName='instrumentId'
+          optionLabel='name'
+          optionValue='id'
+        ></p-dropdown>
+      </arpa-form-field>
+    </div>
+    <div class='p-col'>
+      <arpa-form-field label='AVAILABILITY' type='field'>
+        <p-dropdown
+          [options]='(availability | async) || []'
+          [placeholder]='"NOTHING_SELECTED" | translate'
+          formControlName='availabilityId'
+          optionLabel='label'
+          optionValue='value'
+        ></p-dropdown>
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class='p-fluid p-formgrid p-grid'>
+    <div class='p-col'>
+      <arpa-form-field label='LEVEL_ASSESSMENT' type='field'>
+        <p-rating [cancel]='false' [stars]='5' formControlName='levelAssessmentInner'></p-rating>
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class='p-fluid p-formgrid p-grid'>
+    <div class='p-col'>
+      <arpa-form-field label='COMMENT'>
+        <textarea formControlName='comment' id='comment' pInputText type='text'></textarea>
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class='p-fluid p-formgrid p-grid'>
+    <div class='p-field p-col'></div>
+    <div class='p-field p-col p-text-right' style='margin-right: 0'>
+      <button
+        (click)='add()'
+        [disabled]='form.pristine || form.invalid'
+        [label]="'ADD' | translate"
+        icon='pi pi-check'
+        iconPos='right'
+        pButton
+        type='button'
+      ></button>
+    </div>
+  </div>
+</form>
+<H3 *ngIf='doublingInstruments.length > 0'>{{ 'DOUBLING_INSTRUMENTS' | translate }}</H3>
+<p-accordion styleClass='accordionTable'>
+  <p-accordionTab *ngFor='let instrument of doublingInstruments'>
+    <ng-template pTemplate='header'>
+      <div class='p-d-flex'>
+        <div class='p-mr-6 name'>
+          Instrument Name
+        </div>
+        <div class='p-mr-4 rating'>
+          <p-rating [(ngModel)]='instrument.levelAssessmentInner' [cancel]='false' [readonly]='true'
+                    [stars]='5'></p-rating>
+        </div>
+        <div class='p-mr-auto p-text-right hidden-xs'>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate='content'>
+      <form [formGroup]='instrument.formGroup'>
+        <div class='p-fluid p-formgrid p-grid'>
+          <div class='p-col'>
+            <arpa-form-field label='LEVEL_ASSESSMENT' type='field'>
+              <p-rating [cancel]='false' [stars]='5'
+                        formControlName='levelAssessmentInner'></p-rating>
+            </arpa-form-field>
+          </div>
+          <div class='p-col'>
+            <arpa-form-field label='AVAILABILITY' type='field'>
+              <p-dropdown
+                [options]='(availability | async) || []'
+                [placeholder]='"NOTHING_SELECTED" | translate'
+                formControlName='availabilityId'
+                optionLabel='label'
+                optionValue='value'
+              ></p-dropdown>
+            </arpa-form-field>
+          </div>
+        </div>
+        <div class='p-fluid p-formgrid p-grid'>
+          <div class='p-col'>
+            <arpa-form-field label='COMMENT'>
+              <textarea formControlName='comment' pInputText type='text'></textarea>
+            </arpa-form-field>
+          </div>
+        </div>
+        <div *ngIf='!instrument.formGroup.pristine' class='p-fluid p-formgrid p-grid'>
+          <div class='p-field p-col'></div>
+          <div class='p-field p-col p-text-right' style='margin-right: 0'>
+            <button
+              (click)='update(instrument.formGroup)'
+              [disabled]='instrument.formGroup.invalid'
+              [label]="'UPDATE' | translate"
+              icon='pi pi-check'
+              iconPos='right'
+              pButton
+              type='button'
+            ></button>
+          </div>
+        </div>
+      </form>
+    </ng-template>
+  </p-accordionTab>
+</p-accordion>

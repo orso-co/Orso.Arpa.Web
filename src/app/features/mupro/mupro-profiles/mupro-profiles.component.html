@@ -41,7 +41,7 @@
                   pButton
                   type='button'
                   icon='pi pi-pencil'
-                  (click)='editProfile(profile)'
+                  [routerLink]='[{outlets: {modal: [profile.id]}}]'
                   class='p-button-rounded p-button-text p-button-icon-only'
                 ></button>
               </div>
@@ -57,5 +57,5 @@
            styleClass='dot-profile'
   ></p-steps>
 </div>
-
+<router-outlet name='modal'></router-outlet>
 <arpa-mupro-details></arpa-mupro-details>

@@ -14,7 +14,6 @@ export class RoleService implements Resolve<boolean> {
   roles$: Observable<RoleDto[]> = this.roles$$.asObservable();
 
   constructor(private apiService: ApiService) {
-    const a = '';
   }
 
   loadRoles(): Observable<RoleDto[]> {

@@ -11,6 +11,10 @@ export const environment = {
     protocol: 'http',
     baseUrl: 'localhost:5000',
   },
+  graphql: {
+    protocol: 'http',
+    baseUrl: 'localhost:5000/graphql',
+  },
   web:
     {
       protocol: 'http',

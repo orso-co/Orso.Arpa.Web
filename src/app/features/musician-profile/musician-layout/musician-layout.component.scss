@@ -16,4 +16,35 @@
   .p-tabview-title:empty {
     margin-left: 0;
   }
+
+  .accordionTable {
+    .p-accordion-header.p-highlight .p-accordion-header-link {
+      background-color: var(--surface-d);
+    }
+
+    .p-accordion-header .p-accordion-header-link {
+      border: 0;
+      padding-left: 0;
+      padding-right: 0;
+      background-color: lighten(#1e1e1e, 5%);
+      font-weight: 400;
+      margin-bottom: .5rem;
+
+      &:hover {
+        background-color: var(--surface-d);
+      }
+    }
+
+    .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
+      margin-left: .5rem;
+      margin-right: 1rem;
+    }
+
+    .p-accordion-content {
+      border: 0;
+      margin-bottom: .5rem;
+    }
+  }
+
+
 }
