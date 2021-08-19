@@ -4,6 +4,16 @@
     <arpa-lang-switch></arpa-lang-switch>
   </div>
   <div class='p-fluid'>
+    <arpa-form-field type='field'>
+      <p-dropdown
+        [options]='(genderSelectValue | async) || []'
+        [placeholder]='"SELECT_GENDER" | translate'
+        formControlName='genderId'
+        optionLabel='label'
+        optionValue='value'
+      ></p-dropdown>
+    </arpa-form-field>
+
     <arpa-form-field label='GIVENNAME'>
       <input type='text' pInputText formControlName='givenName' (ngModelChange)='onChange()' autocomplete='given-name'>
     </arpa-form-field>

@@ -4,9 +4,10 @@ import { Router } from '@angular/router';
 import { NotificationsService } from '../../core/services/notifications.service';
 import { ConfigService } from '../../core/services/config.service';
 import { AuthService } from '../../core/services/auth.service';
-import { finalize, first } from 'rxjs/operators';
+import { finalize, first, map } from 'rxjs/operators';
 import { RecaptchaComponent } from 'ng-recaptcha';
 import { LoadingService } from '../../core/services/loading.service';
+import { SelectValueService } from '../../core/services/select-value.service';
 
 @Component({
   selector: 'arpa-register',
@@ -20,6 +21,7 @@ export class RegisterComponent {
   registerFormGroup: FormGroup;
   hide = true;
   siteKey: string;
+  genderSelectValue: any;
 
   constructor(formBuilder: FormBuilder,
               private router: Router,
@@ -27,11 +29,16 @@ export class RegisterComponent {
               private configService: ConfigService,
               private notificationsService: NotificationsService,
               private loadingService: LoadingService,
+              private selectValueService: SelectValueService,
   ) {
 
     this.siteKey = configService.getEnv('captcha').key;
 
+    this.genderSelectValue = this.selectValueService.load('Person', 'gender')
+      .pipe(map(() => this.selectValueService.get('Person', 'gender')));
+
     this.registerFormGroup = formBuilder.group({
+      genderId: [null, [Validators.required]],
       userName: [null,
         [
           Validators.required,
