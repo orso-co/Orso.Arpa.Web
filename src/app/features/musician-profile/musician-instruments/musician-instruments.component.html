@@ -1,1 +1,154 @@
-<!-- ToDo still the api problems -->
+<h3>{{ instrumentName }} - {{ 'MAIN_INSTRUMENT' | translate }}</h3>
+<div class='p-d-flex p-flex-column p-flex-md-row'>
+  <div class='p-mb-4 p-mr-6'>
+    <div class='p-d-flex p-flex-row'>
+      <div class='p-mr-3'>{{ 'LEVEL_ASSESSMENT' | translate}}:</div>
+      <div class='p-mr-2'>
+        <p-rating [(ngModel)]='profile.levelAssessmentInner'
+                  [cancel]='false'
+                  [readonly]='true'
+                  [stars]='5'
+        ></p-rating>
+      </div>
+    </div>
+  </div>
+  <div class='p-mb-4 p-mr-6'>
+    <div class='p-d-flex p-flex-row'>
+      <div class='p-mr-3'>{{ 'INQUIRY_STATUS' | translate}}:</div>
+      <div class='p-mr-2'>
+        {{ profile.inquiryStatusInnerId | selectValue: inquiryStatus }}
+      </div>
+    </div>
+  </div>
+  <div class='p-mb-4 p-mr-6' *ngIf='profile.preferredPartsInner.length > 0'>
+    <div class='p-d-flex p-flex-row'>
+      <div class='p-mr-3'>{{ 'PREFERRED_PARTS' | translate}}:</div>
+      <div class='p-mr-2'>
+        {{ profile.preferredPartsInner | instrumentParts }}
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<form (submit)='$event.preventDefault()' [formGroup]='form'>
+  <div class='p-fluid p-mt-3 p-formgrid p-grid'>
+    <div class='p-col'>
+      <arpa-form-field label='LEVEL_ASSESSMENT_TEAM' type='field'>
+        <p-rating [cancel]='false' [stars]='5'
+                  formControlName='levelAssessmentTeam'></p-rating>
+      </arpa-form-field>
+    </div>
+    <div class='p-field p-col' style='margin-right: 0'>
+      <arpa-form-field label='INQUIRY_STATUS' type='field'>
+        <p-dropdown
+          [options]='(inquiryStatus | async) || []'
+          [placeholder]='"NOTHING_SELECTED" | translate'
+          formControlName='inquiryStatusTeamId'
+          optionLabel='label'
+          optionValue='value'
+        ></p-dropdown>
+      </arpa-form-field>
+    </div>
+  </div>
+  <div *ngIf='(preferredParts | async)' class='p-fluid p-formgrid p-grid'>
+    <div class='p-col'>
+      <arpa-form-field label='PREFERRED_PARTS' type='field'>
+        <p-multiSelect
+          [options]='(preferredParts | async) || []'
+          [placeholder]='"NOTHING_SELECTED" | translate'
+          display='chip'
+          formControlName='preferredPartsTeam'
+          optionLabel='label'
+          optionValue='value'
+        ></p-multiSelect>
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class='p-fluid p-mt-3 p-formgrid p-grid'>
+    <div class='p-col'>
+      <arpa-form-field label='SALARY' type='field'>
+        <p-dropdown
+          [options]='(salary | async) || []'
+          [placeholder]='"NOTHING_SELECTED" | translate'
+          formControlName='salaryId'
+          optionLabel='label'
+          optionValue='value'
+        ></p-dropdown>
+      </arpa-form-field>
+    </div>
+    <div class='p-field p-col p-text-right' style='margin-right: 0'>
+      <arpa-form-field label='SALARY_COMMENT'>
+        <input id='salaryComment' type='text' pInputText formControlName='salaryComment' autocomplete='off'>
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class='p-fluid p-formgrid p-grid'>
+    <div class='p-col'>
+    </div>
+    <div class='p-field p-col p-text-right' style='margin-right: 0'>
+      <button
+        (click)='update()'
+        [disabled]='form.pristine && form.invalid'
+        [label]="'UPDATE' | translate"
+        icon='pi pi-check'
+        iconPos='right'
+        pButton
+        type='button'
+      ></button>
+    </div>
+  </div>
+</form>
+
+<h3 *ngIf='doublingInstruments.length > 0'>{{ 'DOUBLING_INSTRUMENTS' | translate }}</h3>
+<p-accordion styleClass='accordionTable'>
+  <p-accordionTab *ngFor='let instrument of doublingInstruments'>
+    <ng-template pTemplate='header'>
+      <div class='p-d-flex'>
+        <div class='p-mr-6 name'>
+          Instrument Name
+        </div>
+        <div class='p-mr-4 rating'>
+          <p-rating [(ngModel)]='instrument.levelAssessmentInner'
+                    [cancel]='false'
+                    [readonly]='true'
+                    [stars]='5'
+          ></p-rating>
+          <span>({{ instrument.levelAssessmentTeam || 0 }})</span>
+        </div>
+        <div class='p-mr-auto p-text-right hidden-xs'>
+          {{ instrument.availabilityId | selectValue: availability }}
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate='content'>
+      <form [formGroup]='instrument.formGroup'>
+        <div class='p-fluid p-formgrid p-grid'>
+          <div class='p-col'>
+            {{ instrument.comment }}
+          </div>
+        </div>
+        <hr>
+        <div class='p-fluid p-formgrid p-grid'>
+          <div class='p-col'>
+            <arpa-form-field label='LEVEL_ASSESSMENT_TEAM' type='field'>
+              <p-rating [cancel]='false' [stars]='5'
+                        formControlName='levelAssessmentTeam'></p-rating>
+            </arpa-form-field>
+          </div>
+          <div class='p-field p-col p-text-right' style='margin-right: 0'>
+            <button
+              *ngIf='!instrument.formGroup.pristine'
+              (click)='updateDoubling(instrument.formGroup)'
+              [disabled]='instrument.formGroup.invalid'
+              [label]="'UPDATE' | translate"
+              icon='pi pi-check'
+              iconPos='right'
+              pButton
+              type='button'
+            ></button>
+          </div>
+        </div>
+      </form>
+    </ng-template>
+  </p-accordionTab>
+</p-accordion>

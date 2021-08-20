@@ -53,7 +53,7 @@
     </div>
   </div>
 </form>
-<H3 *ngIf='doublingInstruments.length > 0'>{{ 'DOUBLING_INSTRUMENTS' | translate }}</H3>
+<h3 *ngIf='doublingInstruments.length > 0'>{{ 'DOUBLING_INSTRUMENTS' | translate }}</h3>
 <p-accordion styleClass='accordionTable'>
   <p-accordionTab *ngFor='let instrument of doublingInstruments'>
     <ng-template pTemplate='header'>

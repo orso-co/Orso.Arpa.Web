@@ -1,5 +1,7 @@
 <p-tabView [(activeIndex)]='index'>
-  <p-tabPanel *ngIf='comboInstrumentView' header="{{ 'INSTRUMENTS' | translate }}">
+  <p-tabPanel *ngIf='comboInstrumentView'
+              header="{{ 'INSTRUMENTS' | translate }}"
+              leftIcon='pi pi-th-large'>
     <arpa-musician-instruments></arpa-musician-instruments>
   </p-tabPanel>
   <p-tabPanel header="{{'MAIN_INSTURMENT' | translate}}" leftIcon='pi pi-map-marker'

@@ -10,6 +10,7 @@
   "CREATE": "Create Profile",
   "EDIT": "Edit Profile",
   "LEVEL_ASSESSMENT": "Level",
+  "LEVEL_ASSESSMENT_TEAM": "Level Team",
   "INQUIRY_STATUS": "Availability",
   "PREFERRED_POSITIONS": "Preferred Position",
   "PREFERRED_PARTS": "Preferred Parts",
@@ -23,5 +24,8 @@
   "DEACTIVATION_DATE": "Date of deactivation",
   "ADD_PROFILE": "Create",
   "INSTRUMENTS": "Instruments",
-  "DOUBLING_INSTRUMENTS": "Doubling Instruments"
+  "MAIN_INSTRUMENT": "Main Instrument",
+  "DOUBLING_INSTRUMENTS": "Doubling Instruments",
+  "SALARY": "Salary",
+  "SALARY_COMMENT": "Salary comment"
 }

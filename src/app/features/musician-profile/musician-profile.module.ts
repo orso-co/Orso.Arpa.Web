@@ -14,6 +14,7 @@ import { TranslateModuleLoader } from '../../core/factories/translate-module-loa
 import { MusicianDeactivationComponent } from './musician-deactivation/musician-deactivation.component';
 import { MusicianInstrumentsComponent } from './musician-instruments/musician-instruments.component';
 import { AccordionModule } from 'primeng/accordion';
+import { InstrumentPartsPipe } from './pipes/instrument-parts.pipe';
 
 export const HttpLoaderFactory = (http: HttpClient) => new TranslateModuleLoader(http, ['musician-profile']);
 
@@ -27,6 +28,7 @@ export const HttpLoaderFactory = (http: HttpClient) => new TranslateModuleLoader
     MusicianMainInstrumentComponent,
     MusicianDeactivationComponent,
     MusicianInstrumentsComponent,
+    InstrumentPartsPipe,
   ],
   imports: [
     CommonModule,

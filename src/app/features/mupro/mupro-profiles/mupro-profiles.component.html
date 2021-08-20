@@ -25,7 +25,7 @@
           <div class='p-grid'>
             <div class='p-col-12 section-detail p-jc-between'>
               <h2>{{ getSection(profile) | async }}</h2>
-              <p-badge [value]="'mupro.MAIN_PROFILE' | translate " *ngIf='profile.isMainProfile'></p-badge>
+              <p-badge [value]="'MAIN_PROFILE' | translate " *ngIf='profile.isMainProfile'></p-badge>
             </div>
             <div class='p-col-12 p-md-6 performer-details'>
               <h3>Performer</h3>
@@ -42,6 +42,7 @@
                   type='button'
                   icon='pi pi-pencil'
                   [routerLink]='[{outlets: {modal: [profile.id]}}]'
+                  [queryParams]="{comboInstruments: true}"
                   class='p-button-rounded p-button-text p-button-icon-only'
                 ></button>
               </div>

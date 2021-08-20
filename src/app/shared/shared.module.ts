@@ -19,6 +19,7 @@ import { SplitViewComponent } from './split-view/split-view.component';
 import { FormFieldComponent } from './form-field/form-field.component';
 import { PasswordStrengthComponent } from './password-strength/password-strength.component';
 import { CloseButtonDirective } from './directives/close-button.directive';
+import { SelectValuePipe } from './pipes/select-value.pipe';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { CloseButtonDirective } from './directives/close-button.directive';
     FormFieldComponent,
     PasswordStrengthComponent,
     CloseButtonDirective,
+    SelectValuePipe,
   ],
   imports: [
     CommonModule,
@@ -63,6 +65,7 @@ import { CloseButtonDirective } from './directives/close-button.directive';
     SplitViewComponent,
     FormFieldComponent,
     PasswordStrengthComponent,
+    SelectValuePipe
   ],
 })
 export class SharedModule {

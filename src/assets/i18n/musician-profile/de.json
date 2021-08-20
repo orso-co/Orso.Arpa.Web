@@ -10,9 +10,11 @@
   "CREATE": "Musikerprofil Erstellen",
   "EDIT": "Musikerprofil Bearbeiten",
   "LEVEL_ASSESSMENT": "Level",
+  "LEVEL_ASSESSMENT_TEAM": "Level Team",
   "INQUIRY_STATUS": "Verfügbarkeit",
   "PREFERRED_POSITIONS": "Bevorzugte Position",
   "PREFERRED_PARTS": "Bevorzugte Stimmen",
+  "MAIN_INSTRUMENT": "Hauptinstrument",
   "DOUBLING_INSTRUMENT": "Doppelinstrument",
   "EDUCATION": "Bildung",
   "INSTURMENT": "Instrument",
@@ -24,5 +26,7 @@
   "DEACTIVATION_DATE": "Datum der Deaktivierung",
   "ADD_PROFILE": "Erstellen",
   "INSTRUMENTS": "Instrumente",
-  "DOUBLING_INSTRUMENTS": "Doppelinstrumente"
+  "DOUBLING_INSTRUMENTS": "Doppelinstrumente",
+  "SALARY": "Vergütung",
+  "SALARY_COMMENT": "Vergütungshinweis"
 }
