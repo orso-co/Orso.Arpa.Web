@@ -17,11 +17,15 @@ h2 {
 
 :host ::ng-deep {
   .p-datatable .p-datatable-tbody > tr {
-    //background-color: transparent;
-    border-top: 1px solid #383838;
+    background-color: transparent;
 
     & > td {
       border-bottom: none;
+      margin-bottom: .5rem;
+      border-radius: 3px;
+      background-color: lighten(#1e1e1e, 5%);
+      font-size: 1rem;
+      align-items: center;
     }
 
     &:first-child {

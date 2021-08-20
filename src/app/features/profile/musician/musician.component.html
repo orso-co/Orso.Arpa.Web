@@ -55,7 +55,7 @@
   <tr>
     <td class='p-d-flex p-jc-between'>
       <div class='p-mr-2'>
-        <h3>{{ (getSection(profile) | async) }}</h3>
+        {{ (getSection(profile) | async) }}
       </div>
       <div class='p-flex-column'>
         <button [routerLink]='[{outlets: {modal: [profile.id]}}]'
