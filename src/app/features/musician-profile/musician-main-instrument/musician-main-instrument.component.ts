@@ -114,9 +114,9 @@ export class MusicianMainInstrumentComponent implements OnInit {
     if (this.isNew) {
       this.musicianService.createProfile(profile)
         .pipe(first())
-        .subscribe(() => {
-          this.config.data.profile.next(profile);
-          this.notificationsService.success('CREATED');
+        .subscribe((result) => {
+          this.config.data.profile.next(result);
+          this.notificationsService.success('musician-profile.CREATED');
           this.state = 'created';
         });
     } else {
@@ -124,7 +124,7 @@ export class MusicianMainInstrumentComponent implements OnInit {
         .pipe(first())
         .subscribe((result) => {
           this.config.data.profile.next(profile);
-          this.notificationsService.success('UPDATED');
+          this.notificationsService.success('musician-profile.INSTRUMENT_UPDATED');
           this.close();
         });
     }

@@ -20,6 +20,10 @@ export class MusicianService {
   constructor(private apiService: ApiService) {
   }
 
+  getProfile<T>(id?: string): Observable<MusicianProfileDto | MusicianProfileDto[]> | T {
+    return this.apiService.get<MusicianProfileDto>(`${this.baseUrl}/${id}`).pipe(shareReplay());
+  }
+
   createProfile(profile: MusicianProfileDto): Observable<any> {
     return this.apiService.post(`${this.baseUrlMe}`, profile).pipe(shareReplay());
   }
@@ -56,6 +60,10 @@ export class MusicianService {
 
   updateDoublingInstrument(profileId: any, instrumentId: string, data: MyDoublingInstrumentModifyDto): Observable<any> {
     return this.apiService.put(`${this.baseUrlMe}/${profileId}/doublinginstruments/${instrumentId}`, data).pipe(shareReplay());
+  }
+
+  removeDoublingInstrument(profileId: any, instrumentId: string): Observable<any> {
+    return this.apiService.delete(`${this.baseUrl}/${profileId}/doublinginstruments/${instrumentId}`).pipe(shareReplay());
   }
 
   getDoublingInstruments(id: any): Observable<any> {

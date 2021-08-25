@@ -91,8 +91,10 @@ select:-webkit-autofill:focus {
 
 table {
   font-size: .85rem;
+
   .p-column-filter-clear-button, .p-column-filter-menu-button {
     opacity: .25;
+
     &:hover {
       opacity: inherit;
     }
@@ -108,20 +110,27 @@ p-dynamicDialog {
     }
   }
 
-  .form-modal {
-    &.p-dialog .p-dialog-content {
-      padding-bottom: 0;
+  .p-dialog {
+
+    &.form-modal {
+      &.p-dialog .p-dialog-content {
+        padding-bottom: 0;
+      }
+
+      background-color: #1e1e1e;
+
+      min-width: 90%;
+      max-width: 90%;
+      max-height: unset;
+
+      @media (min-width: 1200px) {
+        max-width: 1000px;
+        min-width: 1000px;
+      }
     }
 
-    min-width: 90%;
-    // min-height: 90%;
-    background-color: #1e1e1e;
-  }
-
-  .p-dialog {
     margin-left: .5rem;
     margin-right: 0.5rem;
-    max-width: 98%;
     overflow-x: visible;
 
     @media (max-width: 768px) {
@@ -140,35 +149,23 @@ p-dynamicDialog {
   color: var(--text-color-secondary);
   border-top: 0;
 }
+
 .p-datatable .p-datatable-header {
   border: 0;
 }
+
 .p-datatable .p-datatable-tbody > tr {
   &:hover {
     background-color: var(--surface-d);
   }
+
   &.disabled {
     color: var(--text-color-secondary);
   }
+
   &.clickable {
     cursor: pointer;
   }
-}
-
-p-table {
-  ::ng-deep {
-    thead {
-      th {
-        color: red;
-      }
-    }
-  }
-}
-
-hr {
-  border-top: 1px solid #fff;
-  border-bottom: 0;
-  opacity: .25;
 }
 
 @media (max-width: 767px) {

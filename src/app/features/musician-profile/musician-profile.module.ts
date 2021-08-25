@@ -13,6 +13,7 @@ import { MusicianInstrumentsComponent } from './musician-instruments/musician-in
 import { AccordionModule } from 'primeng/accordion';
 import { InstrumentPartsPipe } from './pipes/instrument-parts.pipe';
 import { CommonTranslateModule } from '../../common/translate';
+import { SectionPipe } from './pipes/section.pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CommonTranslateModule } from '../../common/translate';
     MusicianDeactivationComponent,
     MusicianInstrumentsComponent,
     InstrumentPartsPipe,
+    SectionPipe,
   ],
   imports: [
     CommonModule,

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { MusicianProfileDto } from '../../../model/musicianProfileDto';
 import { Observable } from 'rxjs';
+import { DoublingInstrumentDto } from '../../../model/doublingInstrumentDto';
 
 export enum ViewState {
   MAIN_INSTRUMENT,
@@ -20,6 +21,7 @@ export class MusicianLayoutComponent {
   public comboInstrumentView: boolean = this.config.data.comboInstrumentView;
   public index = 0;
   public profile: Observable<MusicianProfileDto> = this.config.data.profile;
+  public doublingInstruments: Observable<DoublingInstrumentDto[]> = this.config.data.doublingInstruments;
 
   constructor(public config: DynamicDialogConfig) {
 
@@ -28,5 +30,4 @@ export class MusicianLayoutComponent {
   viewStateEvents(event: any) {
     this.index = event.state || 0;
   }
-
 }

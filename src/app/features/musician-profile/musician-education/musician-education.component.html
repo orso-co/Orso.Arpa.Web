@@ -1,12 +1,12 @@
-<form (submit)='$event.preventDefault()' [formGroup]='form'>
+<form [formGroup]='form'>
   <div class='p-fluid p-formgrid p-grid'>
     <div class='p-col'>
-      <arpa-form-field label='TIMESPAN'>
+      <arpa-form-field label='musician-profile.TIMESPAN'>
         <input type='text' pInputText formControlName='timeSpan' autocomplete='off'>
       </arpa-form-field>
     </div>
     <div class='p-col'>
-      <arpa-form-field label='EDUCATION_TYPE' type='field'>
+      <arpa-form-field label='musician-profile.EDUCATION_TYPE' type='field'>
         <p-dropdown
           [options]='(educationTypes | async) || []'
           [placeholder]='"NOTHING_SELECTED" | translate'
@@ -19,14 +19,14 @@
   </div>
   <div class='p-fluid p-formgrid p-grid'>
     <div class='p-col'>
-      <arpa-form-field label='INSTITUTION'>
+      <arpa-form-field label='musician-profile.EDUCATION_INSTITUTION'>
         <input type='text' pInputText formControlName='institution' autocomplete='off'>
       </arpa-form-field>
     </div>
   </div>
   <div class='p-fluid p-formgrid p-grid'>
     <div class='p-col'>
-      <arpa-form-field label='DESCRIPTION'>
+      <arpa-form-field label='musician-profile.EDUCATION_DESCRIPTION'>
         <textarea id='description' type='text' pInputText formControlName='description'></textarea>
       </arpa-form-field>
     </div>
@@ -47,12 +47,12 @@
     </div>
   </div>
 </form>
-<H3>{{ 'EDUCATION_DETAILS' | translate }}</H3>
+<H3>{{ 'musician-profile.EDUCATION_DETAILS' | translate }}</H3>
 <p-table [value]='educations'>
   <ng-template pTemplate='header'>
     <tr>
-      <th>{{ 'TIMESPAN' | translate }}</th>
-      <th>{{ 'INSTITUTION' | translate }}</th>
+      <th>{{ 'musician-profile.TIMESPAN' | translate }}</th>
+      <th>{{ 'musician-profile.EDUCATION_INSTITUTION' | translate }}</th>
       <th></th>
       <th></th>
     </tr>
@@ -70,7 +70,7 @@
         <button
           pButton
           type='button'
-          [label]='"DELETE" | translate'
+          [label]='"musician-profile.DELETE" | translate'
           (click)='remove(education)'
           class='p-button-rounded p-button-text p-button-icon-only'
           icon='pi pi-trash'></button>

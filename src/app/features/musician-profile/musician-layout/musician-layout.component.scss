@@ -24,14 +24,18 @@
 
     .p-accordion-header .p-accordion-header-link {
       border: 0;
-      padding-left: 0;
-      padding-right: 0;
+      padding: .5rem 0;
+      padding-right: 1rem;
       background-color: lighten(#1e1e1e, 5%);
       font-weight: 400;
       margin-bottom: .5rem;
 
       &:hover {
         background-color: var(--surface-d);
+      }
+      .p-d-flex {
+        align-items: center;
+        flex: 1;
       }
     }
 

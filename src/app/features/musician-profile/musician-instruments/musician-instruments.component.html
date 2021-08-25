@@ -1,8 +1,8 @@
-<h3>{{ instrumentName }} - {{ 'MAIN_INSTRUMENT' | translate }}</h3>
+<h3>{{ instrumentName }} - {{ 'musician-profile.MAIN_INSTRUMENT' | translate }}</h3>
 <div class='p-d-flex p-flex-column p-flex-md-row'>
   <div class='p-mb-4 p-mr-6'>
     <div class='p-d-flex p-flex-row'>
-      <div class='p-mr-3'>{{ 'LEVEL_ASSESSMENT' | translate}}:</div>
+      <div class='p-mr-3'>{{ 'musician-profile.LEVEL_ASSESSMENT' | translate}}:</div>
       <div class='p-mr-2'>
         <p-rating [(ngModel)]='profile.levelAssessmentInner'
                   [cancel]='false'
@@ -14,7 +14,7 @@
   </div>
   <div class='p-mb-4 p-mr-6'>
     <div class='p-d-flex p-flex-row'>
-      <div class='p-mr-3'>{{ 'INQUIRY_STATUS' | translate}}:</div>
+      <div class='p-mr-3'>{{ 'musician-profile.INQUIRY_STATUS' | translate}}:</div>
       <div class='p-mr-2'>
         {{ profile.inquiryStatusInnerId | selectValue: inquiryStatus }}
       </div>
@@ -22,7 +22,8 @@
   </div>
   <div class='p-mb-4 p-mr-6' *ngIf='profile.preferredPartsInner.length > 0'>
     <div class='p-d-flex p-flex-row'>
-      <div class='p-mr-3'>{{ 'PREFERRED_PARTS' | translate}}:</div>
+      <div class='p-mr-3'>{{ 'musician-profile.PREFERRED_PARTS' | translate}}:</div>
+      <div class='p-mr-3'>{{ 'musician-profile.PREFERRED_PARTS' | translate}}:</div>
       <div class='p-mr-2'>
         {{ profile.preferredPartsInner | instrumentParts }}
       </div>
@@ -33,13 +34,13 @@
 <form (submit)='$event.preventDefault()' [formGroup]='form'>
   <div class='p-fluid p-mt-3 p-formgrid p-grid'>
     <div class='p-col'>
-      <arpa-form-field label='LEVEL_ASSESSMENT_TEAM' type='field'>
+      <arpa-form-field label='musician-profile.LEVEL_ASSESSMENT_TEAM' type='field'>
         <p-rating [cancel]='false' [stars]='5'
                   formControlName='levelAssessmentTeam'></p-rating>
       </arpa-form-field>
     </div>
     <div class='p-field p-col' style='margin-right: 0'>
-      <arpa-form-field label='INQUIRY_STATUS' type='field'>
+      <arpa-form-field label='musician-profile.INQUIRY_STATUS' type='field'>
         <p-dropdown
           [options]='(inquiryStatus | async) || []'
           [placeholder]='"NOTHING_SELECTED" | translate'
@@ -52,7 +53,7 @@
   </div>
   <div *ngIf='(preferredParts | async)' class='p-fluid p-formgrid p-grid'>
     <div class='p-col'>
-      <arpa-form-field label='PREFERRED_PARTS' type='field'>
+      <arpa-form-field label='musician-profile.PREFERRED_PARTS' type='field'>
         <p-multiSelect
           [options]='(preferredParts | async) || []'
           [placeholder]='"NOTHING_SELECTED" | translate'
@@ -66,7 +67,7 @@
   </div>
   <div class='p-fluid p-mt-3 p-formgrid p-grid'>
     <div class='p-col'>
-      <arpa-form-field label='SALARY' type='field'>
+      <arpa-form-field label='musician-profile.SALARY' type='field'>
         <p-dropdown
           [options]='(salary | async) || []'
           [placeholder]='"NOTHING_SELECTED" | translate'
@@ -77,7 +78,7 @@
       </arpa-form-field>
     </div>
     <div class='p-field p-col p-text-right' style='margin-right: 0'>
-      <arpa-form-field label='SALARY_COMMENT'>
+      <arpa-form-field label='musician-profile.SALARY_COMMENT'>
         <input id='salaryComment' type='text' pInputText formControlName='salaryComment' autocomplete='off'>
       </arpa-form-field>
     </div>
@@ -89,7 +90,7 @@
       <button
         (click)='update()'
         [disabled]='form.pristine && form.invalid'
-        [label]="'UPDATE' | translate"
+        [label]="'musician-profile.UPDATE' | translate"
         icon='pi pi-check'
         iconPos='right'
         pButton
@@ -99,13 +100,13 @@
   </div>
 </form>
 
-<h3 *ngIf='doublingInstruments.length > 0'>{{ 'DOUBLING_INSTRUMENTS' | translate }}</h3>
+<h3 *ngIf='doublingInstruments.length > 0'>{{ 'musician-profile.DOUBLING_INSTRUMENTS' | translate }}</h3>
 <p-accordion styleClass='accordionTable'>
   <p-accordionTab *ngFor='let instrument of doublingInstruments'>
     <ng-template pTemplate='header'>
       <div class='p-d-flex'>
         <div class='p-mr-6 name'>
-          Instrument Name
+          {{ instrument.instrumentId | section: sections}}
         </div>
         <div class='p-mr-4 rating'>
           <p-rating [(ngModel)]='instrument.levelAssessmentInner'
@@ -130,7 +131,7 @@
         <hr>
         <div class='p-fluid p-formgrid p-grid'>
           <div class='p-col'>
-            <arpa-form-field label='LEVEL_ASSESSMENT_TEAM' type='field'>
+            <arpa-form-field label='musician-profile.LEVEL_ASSESSMENT_TEAM' type='field'>
               <p-rating [cancel]='false' [stars]='5'
                         formControlName='levelAssessmentTeam'></p-rating>
             </arpa-form-field>
@@ -140,7 +141,7 @@
               *ngIf='!instrument.formGroup.pristine'
               (click)='updateDoubling(instrument.formGroup)'
               [disabled]='instrument.formGroup.invalid'
-              [label]="'UPDATE' | translate"
+              [label]="'musician-profile.UPDATE' | translate"
               icon='pi pi-check'
               iconPos='right'
               pButton

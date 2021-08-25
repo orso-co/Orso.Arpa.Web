@@ -45,15 +45,6 @@ export class MeService {
     }
   }
 
-  createProfileMusician(profileMusician: MusicianProfileDto): Observable<any> {
-    return this.apiService.post(`${this.baseUrl}/profiles/musician`, profileMusician).pipe(shareReplay());
-  }
-
-  updateProfileMusician(profileMusician: MusicianProfileDto): Observable<any> {
-    const { id } = profileMusician;
-    return this.apiService.put(`${this.baseUrl}/profiles/musician/${id}`, profileMusician).pipe(shareReplay());
-  }
-
   putProjectParticipation<T>(id: string, projectId: string, data: SetMyProjectParticipationBodyDto) {
     return this.apiService
       .put<T>(

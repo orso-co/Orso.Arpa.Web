@@ -60,7 +60,7 @@
         {{ (getSection(profile) | async) }}
       </div>
       <div class='p-flex-column'>
-        <button [routerLink]='[{outlets: {modal: [profile.id]}}]'
+        <button [routerLink]='[{outlets: {modal: ["me", profile.id]}}]'
                 class='p-button-rounded p-button-text p-button-icon-only' icon='pi pi-pencil'
                 pButton
                 type='button'></button>

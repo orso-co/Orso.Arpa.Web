@@ -1,7 +1,7 @@
 <form (submit)='$event.preventDefault()' [formGroup]='form'>
   <div class='p-fluid p-formgrid p-grid'>
     <div class='p-col'>
-      <arpa-form-field label='DEACTIVATION_DATE'>
+      <arpa-form-field label='musician-profile.DEACTIVATION_DATE'>
         <p-calendar
           formControlName="deactivationStart"
           id="deactivationStart"
@@ -14,7 +14,7 @@
   </div>
   <div class='p-fluid p-formgrid p-grid'>
     <div class='p-col'>
-      <arpa-form-field label='PURPOSE'>
+      <arpa-form-field label='musician-profile.PURPOSE'>
         <textarea id="purpose" type="text" pInputText formControlName="purpose"></textarea>
       </arpa-form-field>
     </div>
@@ -24,7 +24,7 @@
       <button
         *ngIf='profile.deactivation'
         (click)='activate()'
-        [label]="'ACTIVATE' | translate"
+        [label]="'musician-profile.ACTIVATE' | translate"
         icon='pi pi-check'
         iconPos='left'
         pButton
@@ -35,7 +35,7 @@
       <button
         (click)='deactivate()'
         [disabled]='form.pristine || form.invalid'
-        [label]="'DEACTIVATE' | translate"
+        [label]="'musician-profile.DEACTIVATE' | translate"
         class='p-button-danger'
         icon='pi pi-times'
         iconPos='left'

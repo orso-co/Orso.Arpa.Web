@@ -5,10 +5,11 @@ import { NotificationsService } from '../../../core/services/notifications.servi
 import { MusicianProfileDto } from '../../../model/musicianProfileDto';
 import { TranslateService } from '@ngx-translate/core';
 import { MusicianLayoutComponent } from '../musician-layout/musician-layout.component';
-import { first, map } from 'rxjs/operators';
+import { first, map, switchMap } from 'rxjs/operators';
 import { LoggerService } from '../../../core/services/logger.service';
 import { SectionDto } from '../../../model/sectionDto';
-import { BehaviorSubject, combineLatest } from 'rxjs';
+import { BehaviorSubject, combineLatest, of } from 'rxjs';
+import { MusicianService } from '../services/musician.service';
 
 @Component({
   selector: 'arpa-musician-dialog-entry',
@@ -19,6 +20,7 @@ export class MusicianDialogEntryComponent {
               private route: ActivatedRoute,
               private dialogService: DialogService,
               private translate: TranslateService,
+              private musicianService: MusicianService,
               private notificationsService: NotificationsService,
               private logger: LoggerService) {
     this.route.data.pipe(first()).subscribe((data) => {
@@ -38,10 +40,23 @@ export class MusicianDialogEntryComponent {
         ));
       })));
 
+    const profile = new BehaviorSubject(selection);
+
+    // Fetch doubling instruments for current main instrument.
+    const doublingInstruments = profile.pipe(map(value => value as MusicianProfileDto),
+      switchMap((currentProfile: MusicianProfileDto) => {
+        if (currentProfile) {
+          return this.musicianService.getDoublingInstruments(currentProfile.instrumentId);
+        } else {
+          return of();
+        }
+      }));
+
     const ref = this.dialogService.open(MusicianLayoutComponent, {
       data: {
-        profile: new BehaviorSubject(selection),
+        profile,
         sections,
+        doublingInstruments,
         comboInstrumentView: this.route.snapshot.queryParamMap.get('comboInstruments') || false,
       },
       header: selection ? this.translate.instant('EDIT') : this.translate.instant('CREATE'),

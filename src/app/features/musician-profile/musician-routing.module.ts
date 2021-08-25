@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { MusicianDialogEntryComponent } from './musician-dialog-entry/musician-dialog-entry.component';
 import { RouterModule, Routes } from '@angular/router';
-import { ProfileMusicianResolver } from '../profile/resolvers/profile-musician.resolver';
+import { ProfileResolver } from './resolvers/musician.resolver';
 import { SectionsResolver } from './resolvers/sections.resolver';
 
 const routes: Routes = [
@@ -13,10 +13,18 @@ const routes: Routes = [
     },
   },
   {
+    path: 'me/:id',
+    component: MusicianDialogEntryComponent,
+    resolve: {
+      musicianProfile: ProfileResolver,
+      sections: SectionsResolver,
+    },
+  },
+  {
     path: ':id',
     component: MusicianDialogEntryComponent,
     resolve: {
-      musicianProfile: ProfileMusicianResolver,
+      musicianProfile: ProfileResolver,
       sections: SectionsResolver,
     },
   },
