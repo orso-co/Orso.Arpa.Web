@@ -245,7 +245,7 @@ export class AppointmentsComponent {
         salaryOptions: this.salaryOptions,
         expectationOptions: this.expectationOptions,
       },
-      header: this.translate.instant('editappointments.CREATE'),
+      header: this.translate.instant('appointments.CREATE'),
       styleClass: 'form-modal',
       dismissableMask: true,
     });
@@ -274,7 +274,7 @@ export class AppointmentsComponent {
         expectationOptions: this.expectationOptions,
         isAllDayEvent: this.isAllDayEvent(appointment),
       },
-      header: this.translate.instant('editappointments.EDIT'),
+      header: this.translate.instant('appointments.EDIT'),
       styleClass: 'form-modal',
       dismissableMask: true,
     });

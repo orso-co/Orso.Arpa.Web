@@ -1,12 +1,11 @@
-import { waitForAsync } from '@angular/core/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { NoRoleComponent } from './no-role.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { httpLoaderFactory } from '../../../core/core.module';
+import { httpLoaderFactory } from '../../../common/translate/translate.module';
 
 describe('NoRoleComponent', () => {
   let component: NoRoleComponent;

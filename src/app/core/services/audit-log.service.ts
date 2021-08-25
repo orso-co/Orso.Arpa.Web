@@ -30,9 +30,9 @@ export class AuditLogService {
     });
     return this.apiService.get<AuditLogDto[]>(this.baseUrl, params).pipe(
       map((result) => result.map((entry: any) => ({
-          ...entry,
-          type: this.getTypeName(entry.type),
-        } as AuditLogDto))),
+        ...entry,
+        type: this.getTypeName(entry.type),
+      } as AuditLogDto))),
       shareReplay(),
     );
   }

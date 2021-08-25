@@ -9,12 +9,12 @@ describe('RegErrorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RegErrorComponent ],
+      declarations: [RegErrorComponent],
       imports: [
-        TranslateMockModule
-      ]
+        TranslateMockModule,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

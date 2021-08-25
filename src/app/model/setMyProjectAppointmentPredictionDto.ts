@@ -1,5 +1,4 @@
-
 export interface SetMyProjectAppointmentPredictionDto {
-    id: string;
-    predictionId: string;
+  id: string;
+  predictionId: string;
 }

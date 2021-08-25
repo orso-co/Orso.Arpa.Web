@@ -59,7 +59,7 @@
     <ng-template pTemplate='header'>
       <div class='p-d-flex'>
         <div class='p-mr-6 name'>
-          Instrument Name
+          {{ instrument.id | selectValue: sections}}
         </div>
         <div class='p-mr-4 rating'>
           <p-rating [(ngModel)]='instrument.levelAssessmentInner' [cancel]='false' [readonly]='true'

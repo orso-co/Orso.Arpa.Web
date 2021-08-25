@@ -11,14 +11,14 @@ export class ProfileService {
   constructor(private menuService: MenuService, private router: Router) {
     this.menuService.add('profile', [
       {
-        label: 'USER_PROFILE',
+        label: 'profile.USER_PROFILE',
         command: (event) => {
           this.menuEvents.next(event);
           this.router.navigate(['/arpa/profile/user']);
         },
       },
       {
-        label: 'MUSICIAN_PROFILE',
+        label: 'profile.MUSICIAN_PROFILE',
         roles: ['performer'],
         command: (event) => {
           this.menuEvents.next(event);
@@ -26,7 +26,7 @@ export class ProfileService {
         },
       },
       {
-        label: 'MY_APPOINTMENTS',
+        label: 'profile.MY_APPOINTMENTS',
         command: (event) => {
           this.menuEvents.next(event);
           this.router.navigate(['/arpa/profile/appointments']);

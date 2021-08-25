@@ -13,16 +13,6 @@ export class NotificationsService {
     return this.injector.get(MessageService);
   }
 
-  private add(severity: string, messageKey: string, sticky: boolean) {
-    this.translateService.get(messageKey).subscribe((detail) => {
-      this.messageService.add({
-        sticky,
-        severity,
-        detail,
-      });
-    });
-  }
-
   public success(messageKey: string, sticky: boolean = false): void {
     this.add('success', messageKey, sticky);
   }
@@ -41,5 +31,15 @@ export class NotificationsService {
 
   public clear(key?: string): void {
     this.messageService.clear(key);
+  }
+
+  private add(severity: string, messageKey: string, sticky: boolean) {
+    this.translateService.get(messageKey).subscribe((detail) => {
+      this.messageService.add({
+        sticky,
+        severity,
+        detail,
+      });
+    });
   }
 }

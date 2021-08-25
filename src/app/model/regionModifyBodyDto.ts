@@ -1,4 +1,3 @@
-
 export interface RegionModifyBodyDto {
-    name: string;
+  name: string;
 }

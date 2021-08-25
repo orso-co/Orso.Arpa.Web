@@ -1,8 +1,7 @@
-
 export interface CurriculumVitaeReferenceModifyBodyDto {
-    timeSpan: string;
-    institution?: string;
-    typeId?: string;
-    description?: string;
-    sortOrder?: number;
+  timeSpan: string;
+  institution?: string;
+  typeId?: string;
+  description?: string;
+  sortOrder?: number;
 }

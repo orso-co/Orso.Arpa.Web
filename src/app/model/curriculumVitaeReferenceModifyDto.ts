@@ -1,6 +1,6 @@
 import { CurriculumVitaeReferenceModifyBodyDto } from './curriculumVitaeReferenceModifyBodyDto';
 
 export interface CurriculumVitaeReferenceModifyDto {
-    id: string;
-    body: CurriculumVitaeReferenceModifyBodyDto;
+  id: string;
+  body: CurriculumVitaeReferenceModifyBodyDto;
 }

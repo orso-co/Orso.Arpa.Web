@@ -9,12 +9,12 @@ describe('ActivationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ActivationComponent ],
+      declarations: [ActivationComponent],
       imports: [
-        TranslateMockModule
-      ]
+        TranslateMockModule,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

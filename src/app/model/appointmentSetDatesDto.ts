@@ -1,6 +1,6 @@
 import { AppointmentSetDatesBodyDto } from './appointmentSetDatesBodyDto';
 
 export interface AppointmentSetDatesDto {
-    id: string;
-    body: AppointmentSetDatesBodyDto;
+  id: string;
+  body: AppointmentSetDatesBodyDto;
 }

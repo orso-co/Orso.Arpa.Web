@@ -10,8 +10,8 @@ import { AppointmentParticipationResultListResolver } from './resolvers/appointm
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { VenueService } from '../../core/services/venue.service';
 import { ProjectListResolver } from '../../core/resolvers/project-list.resolver';
-import { AppointmentParticipationPredictionListResolver } from '../../core/resolvers/appointment-participation-prediction-list.resolver';
 import { RoleNames } from '../../model/roleNames';
+import { AppointmentParticipationPredictionListResolver } from './resolvers/appointment-participation-prediction-list.resolver';
 
 const routes: Routes = [
   {

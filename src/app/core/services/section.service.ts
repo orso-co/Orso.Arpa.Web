@@ -10,11 +10,11 @@ import { SectionDto } from '../../model/sectionDto';
   providedIn: 'root',
 })
 export class SectionService {
+  sectionsLoaded = false;
   private baseUrl: string;
   private sectionTrees = new Map<number | undefined, SectionTreeDto>();
   private sections$$ = new BehaviorSubject<SectionDto[]>([]);
   sections$: Observable<SectionDto[]> = this.sections$$.asObservable();
-  sectionsLoaded = false;
 
   constructor(private apiService: ApiService) {
     this.baseUrl = '/sections';

@@ -1,6 +1,6 @@
 import { PersonModifyBodyDto } from './personModifyBodyDto';
 
 export interface PersonModifyDto {
-    id: string;
-    body: PersonModifyBodyDto;
+  id: string;
+  body: PersonModifyBodyDto;
 }

@@ -1,5 +1,4 @@
-
 export interface ForgotPasswordDto {
-    usernameOrEmail: string;
-    clientUri: string;
+  usernameOrEmail: string;
+  clientUri: string;
 }

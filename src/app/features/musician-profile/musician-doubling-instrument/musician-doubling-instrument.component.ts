@@ -6,8 +6,7 @@ import { SelectValueService } from '../../../core/services/select-value.service'
 import { MusicianService } from '../services/musician.service';
 import { NotificationsService } from '../../../core/services/notifications.service';
 import { first, map } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
-import { SectionDto } from '../../../model/sectionDto';
+import { Observable } from 'rxjs';
 import { SelectItem } from 'primeng/api';
 import { MyDoublingInstrumentDto } from '../../../model/myDoublingInstrumentDto';
 
@@ -25,7 +24,7 @@ export class MusicianDoublingInstrumentComponent implements OnInit {
   public form: FormGroup;
 
   public profile: MusicianProfileDto;
-  public sections: Observable<SectionDto[]>;
+  public sections: Observable<any[]>;
 
   public availability: Observable<SelectItem[]>;
 
@@ -40,6 +39,9 @@ export class MusicianDoublingInstrumentComponent implements OnInit {
 
     this.config.data.profile.pipe(first()).subscribe((profile: MusicianProfileDto) => {
       this.profile = profile;
+      if (profile.doublingInstruments?.length) {
+        profile.doublingInstruments.forEach(instrument => this.doublingInstruments.push(this.getFormGroup(instrument)));
+      }
     });
 
     this.availability = this.selectValueService.load('MusicianProfileSection', 'InstrumentAvailability')
@@ -47,8 +49,7 @@ export class MusicianDoublingInstrumentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sections = of([]);
-    // this.sections = this.musicianService.getDoublingInstruments(this.profile.instrumentId);
+    this.sections = this.musicianService.getDoublingInstruments(this.profile.instrumentId);
     this.form = this.formBuilder.group({
       instrumentId: [null, []],
       levelAssessmentInner: [1, [Validators.min(1), Validators.max(6)]],
@@ -58,38 +59,30 @@ export class MusicianDoublingInstrumentComponent implements OnInit {
   }
 
   add(): void {
-    this.form.value.instrumentId = '1994cb6c-877e-4d7c-aeca-26e68967c2ab';
-    this.doublingInstruments.push(this.getFormGroup({ ...this.form.value }));
-    this.notificationsService.success('DOUBLINGINSTRUMENT_ADDED');
-    /**
-     * Still deactivated because of a bug in the backend
-     * this.musicianService.addDoublingInstrument(this.profile.id, { ...this.form.value })
-     .pipe(first())
-     .subscribe(() => {
+    this.musicianService.addDoublingInstrument(this.profile.id, { ...this.form.value })
+      .pipe(first())
+      .subscribe(() => {
         this.doublingInstruments.push(this.form.value);
         this.notificationsService.success('DOUBLINGINSTRUMENT_ADDED');
-      });*/
+      });
   }
 
   update(formGroup: FormGroup): void {
-    this.doublingInstruments = this.doublingInstruments.filter((instrument) => {
-      return instrument.id !== formGroup.value.instrumentId;
-    });
-    this.doublingInstruments.push(this.getFormGroup({ ...formGroup.value }));
-    this.notificationsService.success('DOUBLINGINSTRUMENT_ADDED');
-    /**this.musicianService.updateDoublingInstrument(this.profile.id, { ...formGroup.value })
-     .pipe(first())
-     .subscribe(() => {
+    const {id, ...data} = formGroup.value;
+    this.musicianService.updateDoublingInstrument(this.profile.id, id, data)
+      .pipe(first())
+      .subscribe(() => {
         this.doublingInstruments = this.doublingInstruments.filter((instrument) => {
           return instrument.id !== formGroup.value.instrumentId;
         });
         this.doublingInstruments.push(this.getFormGroup({ ...formGroup.value }));
         this.notificationsService.success('DOUBLINGINSTRUMENT_ADDED');
-      });*/
+      });
   }
 
   private getFormGroup(data: MyDoublingInstrumentDto): FormList {
     const formGroup = this.formBuilder.group({
+      id: [data.id, [Validators.required]],
       levelAssessmentInner: [1, [Validators.min(1), Validators.max(6)]],
       availabilityId: [null, [Validators.required]],
       comment: [null, []],

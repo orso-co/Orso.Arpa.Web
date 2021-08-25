@@ -1,7 +1,5 @@
 import { APP_INITIALIZER, ErrorHandler, ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
-import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { TranslateModuleLoader } from './factories/translate-module-loader';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ApiInterceptor } from './interceptors/api.interceptor';
 import { ConfigService } from './services/config.service';
 import { ErrorHandler as CustomErrorHandler } from './error-handler';
@@ -12,10 +10,8 @@ import { APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { ApolloClientOptions, ApolloLink, InMemoryCache } from '@apollo/client/core';
 import { setContext } from '@apollo/client/link/context';
-
-export const httpLoaderFactory = (http: HttpClient) => new TranslateModuleLoader(http, [
-  'default',
-]);
+import { CommonTranslateModule } from '../common/translate';
+import { TranslateService } from '@ngx-translate/core';
 
 export const translateInitializerFactory = (translate: TranslateService, configService: ConfigService) => () => {
   translate.setDefaultLang(configService.getEnv('locale').default);
@@ -44,13 +40,7 @@ export const createApollo = (httpLink: HttpLink, configService: ConfigService): 
 @NgModule({
   imports: [
     HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: httpLoaderFactory,
-        deps: [HttpClient],
-      },
-    }),
+    CommonTranslateModule.forRoot(['default']),
     ToastModule,
   ],
   providers: [
@@ -58,22 +48,28 @@ export const createApollo = (httpLink: HttpLink, configService: ConfigService): 
     { provide: ErrorHandler, useClass: CustomErrorHandler },
     { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
     {
+      provide: APOLLO_OPTIONS,
+      useFactory: createApollo,
+      deps: [HttpLink, ConfigService],
+    },
+    {
       provide: APP_INITIALIZER,
       useFactory: translateInitializerFactory,
       deps: [TranslateService, ConfigService],
       multi: true,
     },
-    {
-      provide: APOLLO_OPTIONS,
-      useFactory: createApollo,
-      deps: [HttpLink, ConfigService],
-    },
   ],
   exports: [
     ToastModule,
-  ]
+  ],
 })
 export class CoreModule {
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
+    if (parentModule) {
+      throw new Error('CoreModule has already been loaded. You should import Core modules in the AppModule only.');
+    }
+  }
+
   static forRoot(): ModuleWithProviders<any> {
     return {
       ngModule: CoreModule,
@@ -81,11 +77,5 @@ export class CoreModule {
         MessageService,
       ],
     };
-  }
-
-  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
-    if (parentModule) {
-      throw new Error('CoreModule has already been loaded. You should import Core modules in the AppModule only.');
-    }
   }
 }

@@ -1,5 +1,4 @@
-
 export interface UrlAddRoleDto {
-    id: string;
-    roleId: string;
+  id: string;
+  roleId: string;
 }

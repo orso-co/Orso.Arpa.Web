@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { ErrorComponent } from './error/error.component';
 import { LayoutModule } from './layout/layout.module';
 import { LoginComponent } from './login/login.component';
-import { TranslateModule } from '@ngx-translate/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { RegisterComponent } from './register/register.component';
@@ -15,6 +14,7 @@ import { EmailConfirmationComponent } from './emailconfirmation/email-confirmati
 import { RecaptchaModule } from 'ng-recaptcha';
 import { ActivationComponent } from './activation/activation.component';
 import { RegErrorComponent } from './reg-error/reg-error.component';
+import { CommonTranslateModule } from '../common/translate';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ import { RegErrorComponent } from './reg-error/reg-error.component';
   imports: [
     CommonModule,
     SharedModule,
-    TranslateModule,
+    CommonTranslateModule,
     ReactiveFormsModule,
     LayoutModule,
     RecaptchaModule,

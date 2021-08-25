@@ -5,7 +5,7 @@ import { ApiService } from './api.service';
 import { MyUserProfileDto } from '../../model/myUserProfileDto';
 import { MyAppointmentListDto } from '../../model/myAppointmentListDto';
 import { MusicianProfileDto } from '../../model/musicianProfileDto';
-import { ProjectParticipationDto } from '../../model/projectParticipationDto';
+import { SetMyProjectParticipationBodyDto } from '../../model/setMyProjectParticipationBodyDto';
 
 @Injectable({
   providedIn: 'root',
@@ -54,11 +54,11 @@ export class MeService {
     return this.apiService.put(`${this.baseUrl}/profiles/musician/${id}`, profileMusician).pipe(shareReplay());
   }
 
-  putProjectParticipation<T>(id: string, projectId: string, projectParticipationStatus: ProjectParticipationDto) {
+  putProjectParticipation<T>(id: string, projectId: string, data: SetMyProjectParticipationBodyDto) {
     return this.apiService
       .put<T>(
         `${this.baseUrl}/profiles/musician/${id}/projects/${projectId}/participation`,
-        projectParticipationStatus,
+        data,
       ).pipe(shareReplay());
   }
 }

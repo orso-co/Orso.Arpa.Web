@@ -8,6 +8,7 @@ import { MyUserProfileDto } from '../../../model/myUserProfileDto';
 export class ProfileResolver implements Resolve<MyUserProfileDto> {
   constructor(private meService: MeService) {
   }
+
   public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<MyUserProfileDto> {
     return this.meService.getMyProfile();
   }

@@ -1,6 +1,6 @@
 import { ProjectModifyBodyDto } from './projectModifyBodyDto';
 
 export interface ProjectModifyDto {
-    id: string;
-    body: ProjectModifyBodyDto;
+  id: string;
+  body: ProjectModifyBodyDto;
 }

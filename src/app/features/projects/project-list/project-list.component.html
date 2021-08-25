@@ -1,17 +1,17 @@
-<p-table [value]='(projects | async) || []' #dt1 dataKey='id'
-         [rows]='10'
+<p-table #dt1 [globalFilterFields]="['title','venue']" [paginator]='true'
          [rowsPerPageOptions]='[10,25,50]'
-         [paginator]='true'
-         [globalFilterFields]="['title','venue']">>
+         [rows]='10'
+         [value]='(projects | async) || []'
+         dataKey='id'>>
   <ng-template pTemplate='caption'>
     <div class='p-d-flex'>
       <span class='p-input-icon-left p-mr-auto'>
           <i class='pi pi-search'></i>
-          <input pInputText type='text' (input)="dt1.filterGlobal($event.target.value, 'contains')"
-                 [placeholder]='"SEARCH" | translate' />
+          <input (input)="dt1.filterGlobal($event.target.value, 'contains')" [placeholder]='"SEARCH" | translate' pInputText
+                 type='text' />
       </span>
-      <button pButton [label]='"CLEAR" | translate' class='p-button-outlined' icon='pi pi-filter-slash'
-              (click)='clear(dt1)'></button>
+      <button (click)='clear(dt1)' [label]='"CLEAR" | translate' class='p-button-outlined' icon='pi pi-filter-slash'
+              pButton></button>
     </div>
   </ng-template>
   <ng-template pTemplate='header'>
@@ -19,93 +19,93 @@
       <th pSortableColumn='title'>
         <div class='p-d-flex p-jc-between p-ai-center'>
           {{ 'projects.TITLE' | translate }}
-          <p-columnFilter type='text' field='title' display='menu'></p-columnFilter>
+          <p-columnFilter display='menu' field='title' type='text'></p-columnFilter>
         </div>
       </th>
       <th pSortableColumn='shortTitle'>
         <div class='p-d-flex p-jc-between p-ai-center'>
           {{ 'projects.ABBREVIATION' | translate }}
-          <p-columnFilter type='text' field='shortTitle' display='menu'></p-columnFilter>
+          <p-columnFilter display='menu' field='shortTitle' type='text'></p-columnFilter>
         </div>
       </th>
       <th pSortableColumn='venue'>
         <div class='p-d-flex p-jc-between p-ai-center'>
           {{ 'projects.VENUE' | translate }}
-          <p-columnFilter type='text' field='venue' display='menu'></p-columnFilter>
+          <p-columnFilter display='menu' field='venue' type='text'></p-columnFilter>
         </div>
       </th>
       <th pSortableColumn='startDate'>
         <div class='p-d-flex p-jc-between p-ai-center'>
           {{ 'projects.START' | translate }}
-          <p-columnFilter type='date' field='startDate' display='menu'></p-columnFilter>
+          <p-columnFilter display='menu' field='startDate' type='date'></p-columnFilter>
         </div>
       </th>
       <th pSortableColumn='endDate'>
         <div class='p-d-flex p-jc-between p-ai-center'>
           {{ 'projects.END' | translate }}
-          <p-columnFilter type='date' field='endDate' display='menu'></p-columnFilter>
+          <p-columnFilter display='menu' field='endDate' type='date'></p-columnFilter>
         </div>
       </th>
       <th pSortableColumn='stateId'>
         <div class='p-d-flex p-jc-between p-ai-center'>
           {{ 'projects.STATE' | translate }}
-          <p-columnFilter type='text' field='stateId' display='menu'></p-columnFilter>
+          <p-columnFilter display='menu' field='stateId' type='text'></p-columnFilter>
         </div>
       </th>
       <th pSortableColumn='isCompleted'>
         <div class='p-d-flex p-jc-between p-ai-center'>
           {{ 'projects.COMPLETED' | translate }}
-          <p-columnFilter type='boolean' field='isCompleted' display='menu'></p-columnFilter>
+          <p-columnFilter display='menu' field='isCompleted' type='boolean'></p-columnFilter>
         </div>
       </th>
       <th></th>
     </tr>
   </ng-template>
-  <ng-template pTemplate='body' let-project>
+  <ng-template let-project pTemplate='body'>
     <tr (click)='openProjectDetailDialog(project)' class='clickable'>
       <td>
-        <span class="p-column-title">{{ 'projects.TITLE' | translate }}</span>
+        <span class='p-column-title'>{{ 'projects.TITLE' | translate }}</span>
         {{ project.title }}
       </td>
       <td>
-        <span class="p-column-title">{{ 'projects.ABBREVIATION' | translate }}</span>
+        <span class='p-column-title'>{{ 'projects.ABBREVIATION' | translate }}</span>
         {{ project.shortTitle }}
       </td>
       <td>
-        <span class="p-column-title">{{ 'projects.VENUE' | translate }}</span>
+        <span class='p-column-title'>{{ 'projects.VENUE' | translate }}</span>
         {{ project.venue }}
       </td>
       <td>
-        <span class="p-column-title">{{ 'projects.START' | translate }}</span>
+        <span class='p-column-title'>{{ 'projects.START' | translate }}</span>
         {{ project.startDate | date }}
       </td>
       <td>
-        <span class="p-column-title">{{ 'projects.END' | translate }}</span>
+        <span class='p-column-title'>{{ 'projects.END' | translate }}</span>
         {{ project.endDate | date }}
       </td>
       <td>
-        <span class="p-column-title">{{ 'projects.STATE' | translate }}</span>
+        <span class='p-column-title'>{{ 'projects.STATE' | translate }}</span>
         {{ getState(project.stateId) | async }}
       </td>
       <td class='p-text-lg-center'>
-        <span class="p-column-title">{{ 'projects.COMPLETED' | translate }}</span>
+        <span class='p-column-title'>{{ 'projects.COMPLETED' | translate }}</span>
         <i *ngIf='project.isCompleted' class='pi pi-check-square'></i>
       </td>
       <td class='p-text-lg-right'>
         <button
+          (click)='openParticipationDialog($event, project.id)'
           *ngIf='!project.isCompleted'
+          [label]='"projects.EDIT_PARTICIPATION" | translate' class='p-button-rounded p-button-text p-button-icon-only'
+          icon='pi pi-sign-in'
           pButton
-          type='button' (click)='openParticipationDialog($event, project.id)'
-          [label]='"projects.EDIT_PARTICIPATION" | translate'
-          class='p-button-rounded p-button-text p-button-icon-only'
-          icon='pi pi-sign-in'></button>
+          type='button'></button>
         <button
-          pButton
-          type='button'
-          [label]='"projects.SHOW_PARTICIPANTS" | translate'
           (click)='openParticipationListDialog($event, project)'
+          [label]='"projects.SHOW_PARTICIPANTS" | translate'
           class='p-button-rounded p-button-text p-button-icon-only'
-          icon='pi pi-users'></button>
+          icon='pi pi-users'
+          pButton
+          type='button'></button>
       </td>
     </tr>
   </ng-template>
@@ -113,10 +113,10 @@
 <div class='p-formgroup-inline p-jc-between'>
   <div class='p-field p-col p-text-right' style='margin-right: 0'>
     <button
-      pButton
-      label=" {{ 'projects.NEW_PROJECT' | translate }}"
+      (click)='openProjectDetailDialog(null)'
       icon='pi pi-plus'
-      (click)='openProjectDetailDialog(null)'></button>
+      label=" {{ 'projects.NEW_PROJECT' | translate }}"
+      pButton></button>
   </div>
 </div>
 

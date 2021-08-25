@@ -8,7 +8,7 @@ import { AuditLogDto } from '../../model/auditLogDto';
 @Component({
   selector: 'arpa-audit-dialog',
   templateUrl: './audit-dialog.component.html',
-  styleUrls: ['./audit-dialog.component.scss']
+  styleUrls: ['./audit-dialog.component.scss'],
 })
 export class AuditDialogComponent {
 

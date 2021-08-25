@@ -1,5 +1,4 @@
-
 export interface MusicianProfileDeactivationCreateBodyDto {
-    deactivationStart: Date;
-    purpose?: string;
+  deactivationStart: Date;
+  purpose?: string;
 }

@@ -30,14 +30,23 @@ export class TopbarService {
   }
 
   /**
+   * Set current locale.
+   *
+   * @param language
+   */
+  updateLanguage(language: string): void {
+    this.languageService.setLanguage(language);
+  }
+
+  /**
    * Create custom profile menu.
    *
    * @private
    */
   private initialiseUserMenu(): Array<MenuItemArpa> {
     const userProfileItems: Array<MenuItemArpa> = [
-      { label: 'logout.LOG_OUT', icon: 'pi pi-sign-out', routerLink: ['/logout'] },
-      { label: 'PROFILE', icon: 'pi pi-user-edit', routerLink: ['/arpa/profile'] },
+      { label: 'auth.LOGOUT', icon: 'pi pi-sign-out', routerLink: ['/logout'] },
+      { label: 'MY_PROFILE', icon: 'pi pi-user-edit', routerLink: ['/arpa/profile'] },
       { separator: true },
     ];
     this.languageService.getLangs().forEach(lang =>
@@ -47,14 +56,5 @@ export class TopbarService {
       }));
 
     return userProfileItems;
-  }
-
-  /**
-   * Set current locale.
-   *
-   * @param language
-   */
-  updateLanguage(language: string): void {
-    this.languageService.updateLanguage(language);
   }
 }

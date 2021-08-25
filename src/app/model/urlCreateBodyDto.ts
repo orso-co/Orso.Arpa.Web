@@ -1,5 +1,4 @@
-
 export interface UrlCreateBodyDto {
-    href: string;
-    anchorText?: string;
+  href: string;
+  anchorText?: string;
 }

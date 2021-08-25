@@ -77,7 +77,7 @@ const MODULES = [
   InputTextareaModule,
   BadgeModule,
   SkeletonModule,
-  ChartModule
+  ChartModule,
 ];
 
 @NgModule({

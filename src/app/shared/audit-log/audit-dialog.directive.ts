@@ -25,8 +25,8 @@ export class AuditDialogDirective {
     $event.preventDefault();
     this.dialogService.open(AuditDialogComponent, {
       data: {
-        ...(this.auditDetail && { detail: this.auditDetail}),
-        ...(this.resourceId && { entries: this.auditLogService.loadForEntity(this.resourceId as any)}),
+        ...(this.auditDetail && { detail: this.auditDetail }),
+        ...(this.resourceId && { entries: this.auditLogService.loadForEntity(this.resourceId as any) }),
       },
       header: this.translate.instant('auditlogs.DETAILS'),
       styleClass: 'form-modal',

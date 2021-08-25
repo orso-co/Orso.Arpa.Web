@@ -1,5 +1,4 @@
-
 export interface MyMusicianProfileAddDocumentDto {
-    id: string;
-    documentId: string;
+  id: string;
+  documentId: string;
 }

@@ -1,5 +1,4 @@
-
 export interface AppointmentRemoveProjectDto {
-    id: string;
-    projectId: string;
+  id: string;
+  projectId: string;
 }

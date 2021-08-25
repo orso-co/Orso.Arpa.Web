@@ -1,4 +1,3 @@
-
 export interface RegionCreateDto {
-    name: string;
+  name: string;
 }

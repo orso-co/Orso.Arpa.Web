@@ -1,17 +1,17 @@
 <arpa-split-view>
   <ng-template #sideViewTemplate>
-    <div class='p-flex-column' [class.hasSelection]='person'>
+    <div [class.hasSelection]='person' class='p-flex-column'>
       <p-listbox
-        [options]='persons'
-        optionValue='id'
-        optionLabel='filterOption'
+        (onClick)='select($event)'
         [(ngModel)]='person'
         [filter]='true'
-        (onClick)='select($event)'
+        [options]='persons'
         filterPlaceHolder='Search'
+        optionLabel='filterOption'
+        optionValue='id'
       >
         <ng-template let-user pTemplate='item'>
-          <arpa-avatar [user]='user' [image]='false' size='large'></arpa-avatar>
+          <arpa-avatar [image]='false' [user]='user' size='large'></arpa-avatar>
           <div class='details'>
             <div class='name'>{{user.givenName}} {{user.surname}}</div>
             <div class='profile'>...</div>

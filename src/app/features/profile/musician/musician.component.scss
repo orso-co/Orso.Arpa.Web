@@ -10,26 +10,3 @@
   }
 }
 
-h2 {
-  margin-top: 3rem;
-  opacity: .75;
-}
-
-:host ::ng-deep {
-  .p-datatable .p-datatable-tbody > tr {
-    background-color: transparent;
-
-    & > td {
-      border-bottom: none;
-      margin-bottom: .5rem;
-      border-radius: 3px;
-      background-color: lighten(#1e1e1e, 5%);
-      font-size: 1rem;
-      align-items: center;
-    }
-
-    &:first-child {
-      border-top: none;
-    }
-  }
-}

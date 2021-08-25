@@ -7,7 +7,8 @@ import { ProjectDto } from '../../model/projectDto';
 
 @Injectable({ providedIn: 'root' })
 export class ProjectListResolver implements Resolve<ProjectDto[]> {
-  constructor(private projectService: ProjectService) {}
+  constructor(private projectService: ProjectService) {
+  }
 
   resolve(route: ActivatedRouteSnapshot): Observable<ProjectDto[]> {
     if (route.component === ProjectListComponent) {

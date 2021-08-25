@@ -1,8 +1,6 @@
-import { ChartModule } from 'primeng/chart';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../shared/shared.module';
-import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserListComponent } from './user-list/user-list.component';
 import { StaffComponent } from './staff/staff.component';
@@ -16,6 +14,9 @@ import { UserchartComponent } from './userchart/userchart.component';
 import { ProjectgenrechartComponent } from './projectgenrechart/projectgenrechart.component';
 import { TestchildComponent } from './testchild/testchild.component';
 import { ChoirGridComponent } from './choir-grid/choir-grid.component';
+import { CommonTranslateModule } from '../../common/translate';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../../core/services/language.service';
 
 @NgModule({
   declarations: [
@@ -33,13 +34,22 @@ import { ChoirGridComponent } from './choir-grid/choir-grid.component';
   imports: [
     CommonModule,
     SharedModule,
-    TranslateModule,
     FormsModule,
     ReactiveFormsModule,
     DashboardsRoutingModule,
     ProjectsModule,
-
+    CommonTranslateModule.forChild(['dashboard']),
   ],
 })
 export class DashboardsModule {
+  constructor(private translateService: TranslateService, private languageService: LanguageService) {
+    languageService.languageEvent.subscribe(lang => {
+      /**
+       * Reset lang for lazy module.
+       * Fixes: https://github.com/ngx-translate/core/issues/1193
+       */
+      translateService.currentLang = '';
+      translateService.use(lang);
+    });
+  }
 }

@@ -5,10 +5,10 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { of } from 'rxjs';
-import { httpLoaderFactory } from '../../core/core.module';
 import { AuthService } from '../../core/services/auth.service';
 import { NotificationsService } from '../../core/services/notifications.service';
 import { ConfirmEmailDto } from '../../model/confirmEmailDto';
+import { httpLoaderFactory } from '../../common/translate/translate.module';
 
 describe('EmailconfirmationComponent', () => {
   let component: EmailConfirmationComponent;

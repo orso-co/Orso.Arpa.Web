@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { PrimeNGConfig } from 'primeng/api';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LanguageService {
 
-  private languageMap = new Map<string, string>([
+  languageEvent: BehaviorSubject<string>;
+
+  private localeMap = new Map<string, string>([
       ['de', 'Deutsch'],
       ['en', 'English'],
     ],
@@ -15,44 +18,30 @@ export class LanguageService {
 
   constructor(private translate: TranslateService,
               private primengConfig: PrimeNGConfig) {
-    this.initialiseLanguageSettings();
-  }
-
-  /**
-   * Sets the language to use and saves it in local storage in case page is refreshed
-   *
-   * @param newLanguage code of new language to use e.g. 'en'
-   */
-  public updateLanguage(newLanguage: string): void {
-    this.translate.use(newLanguage);
+    this.translate.addLangs(['de', 'en']);
+    const lang = localStorage.getItem('locale') || this.getBrowserLang();
+    this.languageEvent = new BehaviorSubject(lang);
+    this.setLanguage(lang);
     this.translate.get('primeng').subscribe((res) => this.primengConfig.setTranslation(res));
-    localStorage.setItem('language', newLanguage);
   }
 
-  /**
-   * Returns the pre-defined name corresponding to the language code
-   * If no name has been defined returns the code
-   *
-   * @param code e.g. 'en', 'de'
-   */
+  public setLanguage(lang: string): void {
+    this.translate.use(lang);
+    this.languageEvent.next(lang);
+    localStorage.setItem('locale', lang);
+  }
+
   public getLanguageName(code: string): string {
-    const name = this.languageMap.get(code);
+    const name = this.localeMap.get(code);
     return name ? name : code;
   }
 
-  public getLangs(){
+  public getLangs() {
     return this.translate.getLangs();
   }
 
-  private initialiseLanguageSettings(): void {
-    this.translate.addLangs(['de', 'en']);
-    this.translate.setDefaultLang('de');
-    const existingLang = localStorage.getItem('language');
-    if (existingLang) {
-      this.updateLanguage(existingLang);
-    } else {
-      const browserLang = this.translate.getBrowserLang();
-      this.updateLanguage(browserLang.match(/en|de/) ? browserLang : 'de');
-    }
+  private getBrowserLang(): string {
+    const browserLang = this.translate.getBrowserLang();
+    return browserLang.match(/en|de/) ? browserLang : 'de';
   }
 }

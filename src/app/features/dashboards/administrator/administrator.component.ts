@@ -7,7 +7,6 @@ import { SectionService } from '../../../core/services/section.service';
 import { SectionTreeDto } from '../../../model/sectionTreeDto';
 import { UserDto } from '../../../model/userDto';
 import { RoleDto } from '../../../model/roleDto';
-import { indexOf } from 'lodash-es';
 
 @Component({
   selector: 'arpa-administrator',

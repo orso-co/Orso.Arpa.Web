@@ -50,7 +50,7 @@ export class ForgotPasswordComponent {
           .resetPassword(resetPassword)
           .pipe(first())
           .subscribe(() => {
-            this.notificationsService.success('forgotpassword.CHANGED');
+            this.notificationsService.success('PASSWORD_CHANGE_SUCCESS');
             this.router.navigate(['/login']);
           });
       });

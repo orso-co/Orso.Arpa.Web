@@ -15,16 +15,15 @@ import { MusicianProfileDto } from '../../../model/musicianProfileDto';
 export class ProjectParticipationComponent implements OnInit {
 
   public form: FormGroup;
+  public sections: Observable<SectionDto> = this.config.data.sections;
   public musicianProfiles: Observable<SelectItem[]> = this.config.data.musicianProfiles.pipe(
     concatMap((profiles: MusicianProfileDto[]) => this.sections.pipe(
-      map((sections: any) => profiles.map((profile: MusicianProfileDto) => {
+        map((sections: any) => profiles.map((profile: MusicianProfileDto) => {
           const find = sections.find((section: SectionDto) => section.id === profile.instrumentId);
-          return { label: find.name, value: profile.id} as SelectItem;
+          return { label: find.name, value: profile.id } as SelectItem;
         })),
       ),
     ));
-
-  public sections: Observable<SectionDto> = this.config.data.sections;
   public projectParticipation: Observable<any[]> = this.config.data.projectParticipation;
 
   constructor(

@@ -1,5 +1,4 @@
-
 export interface UrlRemoveRoleDto {
-    id: string;
-    roleId: string;
+  id: string;
+  roleId: string;
 }

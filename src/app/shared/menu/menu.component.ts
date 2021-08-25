@@ -1,10 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  Input,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { MenuItemArpa, MenuService } from './menu.service';
 import { MenuItem } from 'primeng/api';
 import { Menu } from 'primeng/menu';

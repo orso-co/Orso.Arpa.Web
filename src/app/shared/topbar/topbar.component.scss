@@ -1,6 +1,7 @@
 :host {
   display: block;
 }
+
 :host ::ng-deep {
   p-sidebar {
     .arpa-menu {
@@ -8,13 +9,16 @@
         border: 0;
         width: 100%;
       }
+
       ul.p-menu-list {
         margin: 0;
         padding: 4em 0 0;
         width: 100%;
         list-style: none;
+
         li {
           list-style: none;
+
           a {
             & > span {
               &:before {
@@ -51,10 +55,12 @@
     transition: all .25s;
     font-size: 2em;
     padding: .5em;
+
     &:hover {
       cursor: pointer;
       background-color: var(--surface-d);
     }
+
     border-right: 1px solid var(--surface-d);
   }
 
@@ -91,10 +97,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
         a {
           transition: color 0.3s;
           position: relative;
           display: inline-block;
+
           arpa-avatar {
             margin-top: auto;
             display: inline-block;
@@ -102,9 +110,11 @@
             right: 0;
             margin-left: 1em;
           }
+
           span {
             display: none;
             margin-top: .5em;
+
             &.user-profile-name {
               float: left;
               font-size: 16px;

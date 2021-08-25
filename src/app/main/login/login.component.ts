@@ -72,7 +72,7 @@ export class LoginComponent {
       .resendConfirmationLink(this.loginFormGroup.value.usernameOrEmail)
       .pipe(first())
       .subscribe(() => {
-        this.notificationsService.info('login.RESENDDONE');
+        this.notificationsService.info('auth.RESEND_DONE');
       });
   }
 
@@ -80,7 +80,7 @@ export class LoginComponent {
     this.authService.forgotPassword(this.loginFormGroup.value.usernameOrEmail)
       .pipe(first())
       .subscribe(() => {
-        this.notificationsService.success('forgotpassword.SENT');
+        this.notificationsService.success('auth.FORGOT_PASSWORD_SEND_MAIL_SUCCESS');
       });
   }
 }

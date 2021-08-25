@@ -1,6 +1,5 @@
-
 export interface SectionDto {
-    name: string;
-    id: string;
-    instrumentPartCount?: number;
+  name: string;
+  id: string;
+  instrumentPartCount?: number;
 }

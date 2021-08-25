@@ -52,7 +52,7 @@ export class ProjectListComponent {
   public getState(id: string) {
     return this.state.pipe<string>(map((items: SelectItem[]) => {
       const item: any = items.find((i) => i.value === id);
-      return item? item.label : '';
+      return item ? item.label : '';
     }));
   }
 
@@ -97,10 +97,7 @@ export class ProjectListComponent {
       .pipe(first())
       .subscribe((result) => {
         if (result) {
-          this.meService.putProjectParticipation(result.musicianId, id, {
-            invitationStatusId: result.invitationStatusId,
-            commentByPerformerInner: result.commentByPerformerInner,
-          }).subscribe(() => this.notificationsService.success('projects.SET_PARTICIPATION_STATUS'));
+          this.meService.putProjectParticipation(result.musicianId, id, result).subscribe(() => this.notificationsService.success('projects.SET_PARTICIPATION_STATUS'));
         }
       });
   }

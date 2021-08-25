@@ -1,7 +1,6 @@
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService } from 'primeng/api';
-import { waitForAsync } from '@angular/core/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { UserListComponent } from './user-list.component';
 import { NotificationsService } from '../../../core/services/notifications.service';
 import { UserService } from '../../../core/services/user.service';

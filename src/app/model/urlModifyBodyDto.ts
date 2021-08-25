@@ -1,5 +1,4 @@
-
 export interface UrlModifyBodyDto {
-    href: string;
-    anchorText?: string;
+  href: string;
+  anchorText?: string;
 }

@@ -11,7 +11,8 @@ export class SelectValuePipe implements OnDestroy, PipeTransform {
   private subscription: Subscription;
   private currentValue: any;
 
-  constructor(private _ref: ChangeDetectorRef) {}
+  constructor(private _ref: ChangeDetectorRef) {
+  }
 
   transform(id: any, values: Observable<SelectItem[]>): any {
     if (values) {

@@ -1,5 +1,4 @@
-
 export interface AppointmentAddProjectDto {
-    id: string;
-    projectId: string;
+  id: string;
+  projectId: string;
 }

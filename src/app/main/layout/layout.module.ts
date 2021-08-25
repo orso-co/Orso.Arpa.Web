@@ -6,7 +6,7 @@ import { DefaultLayoutComponent } from './default-layout/default-layout.componen
 import { DefaultHeaderComponent } from './default-header/default-header.component';
 import { AppRoutingModule } from '../../app-routing.module';
 import { SharedModule } from '../../shared/shared.module';
-import { TranslateModule } from '@ngx-translate/core';
+import { CommonTranslateModule } from '../../common/translate';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [
     CommonModule,
     AppRoutingModule,
-    TranslateModule,
+    CommonTranslateModule,
     SharedModule,
   ],
 })

@@ -1,5 +1,4 @@
-
 export interface AppointmentRemoveRoomDto {
-    id: string;
-    roomId: string;
+  id: string;
+  roomId: string;
 }

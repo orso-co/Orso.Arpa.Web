@@ -1,5 +1,4 @@
-
 export interface AppointmentAddRoomDto {
-    id: string;
-    roomId: string;
+  id: string;
+  roomId: string;
 }

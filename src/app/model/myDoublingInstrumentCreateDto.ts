@@ -1,6 +1,6 @@
 import { MyDoublingInstrumentCreateBodyDto } from './myDoublingInstrumentCreateBodyDto';
 
 export interface MyDoublingInstrumentCreateDto {
-    id: string;
-    body: MyDoublingInstrumentCreateBodyDto;
+  id: string;
+  body: MyDoublingInstrumentCreateBodyDto;
 }

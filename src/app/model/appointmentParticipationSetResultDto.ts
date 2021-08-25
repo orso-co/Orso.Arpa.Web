@@ -1,6 +1,5 @@
-
 export interface AppointmentParticipationSetResultDto {
-    id: string;
-    personId: string;
-    resultId: string;
+  id: string;
+  personId: string;
+  resultId: string;
 }

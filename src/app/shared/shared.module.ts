@@ -8,7 +8,6 @@ import { PrimeNgModule } from './prime-ng/prime-ng.module';
 import { LogoComponent } from './logo/logo.component';
 import { BackButtonDirective } from './directives/back-button.directive';
 import { TopbarComponent } from './topbar/topbar.component';
-import { TranslateModule } from '@ngx-translate/core';
 import { DummyComponent } from './dummy/dummy.component';
 import { AvatarComponent } from './avatar/avatar.component';
 import { MenuComponent } from './menu/menu.component';
@@ -20,6 +19,8 @@ import { FormFieldComponent } from './form-field/form-field.component';
 import { PasswordStrengthComponent } from './password-strength/password-strength.component';
 import { CloseButtonDirective } from './directives/close-button.directive';
 import { SelectValuePipe } from './pipes/select-value.pipe';
+import { SelectDialogModule } from './select-dialog/select-dialog.module';
+import { CommonTranslateModule } from '../common/translate';
 
 @NgModule({
   declarations: [
@@ -43,10 +44,11 @@ import { SelectValuePipe } from './pipes/select-value.pipe';
   imports: [
     CommonModule,
     ProgressSpinnerModule,
-    TranslateModule,
+    CommonTranslateModule,
     FormsModule,
     ReactiveFormsModule,
     PrimeNgModule,
+    SelectDialogModule,
   ],
   exports: [
     PrimeNgModule,
@@ -65,7 +67,8 @@ import { SelectValuePipe } from './pipes/select-value.pipe';
     SplitViewComponent,
     FormFieldComponent,
     PasswordStrengthComponent,
-    SelectValuePipe
+    SelectValuePipe,
+    SelectDialogModule,
   ],
 })
 export class SharedModule {

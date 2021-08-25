@@ -1,30 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'primeng/api';
 import { Observable, of } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 import { MeService } from '../../../core/services/me.service';
-import { NotificationsService } from '../../../core/services/notifications.service';
 import { MyAppointmentDto } from '../../../model/myAppointmentDto';
 import { ProjectDto } from '../../../model/projectDto';
-import { VenueDto } from '../../../model/venueDto';
 import { RoomDto } from '../../../model/roomDto';
+import { SelectValueService } from '../../../core/services/select-value.service';
+import { NotificationsService } from '../../../core/services/notifications.service';
 
 @Component({
   selector: 'arpa-my-appointments',
   templateUrl: './my-appointments.component.html',
   styleUrls: ['./my-appointments.component.scss'],
 })
-export class MyAppointmentsComponent implements OnInit {
+export class MyAppointmentsComponent implements AfterViewInit {
   userAppointments$: Observable<MyAppointmentDto[]> = of([]);
   totalRecordsCount$: Observable<number> = of(0);
-  predictionOptions$: Observable<SelectItem[]> = of([]);
-  itemsPerPage = 3;
+  predictions: Observable<SelectItem[]>;
+  itemsPerPage = 10;
 
-  constructor(private meService: MeService, private route: ActivatedRoute, private notificationsService: NotificationsService) {}
+  constructor(
+    private meService: MeService,
+    private route: ActivatedRoute,
+    private selectValueService: SelectValueService,
+    private notificationsService: NotificationsService,
+  ) {
+  }
 
-  ngOnInit(): void {
-    this.predictionOptions$ = this.route.data.pipe(map((data) => data.predictions || []));
+  ngAfterViewInit(): void {
+    this.predictions = this.selectValueService.load('AppointmentParticipation', 'Prediction').pipe(
+      map(() => this.selectValueService.get('AppointmentParticipation', 'Prediction')),
+    );
   }
 
   loadData(take: number, skip: number): void {
@@ -37,40 +45,17 @@ export class MyAppointmentsComponent implements OnInit {
     return projects.map((p) => p.title).join(', ');
   }
 
-  getVenueTooltip(venue: VenueDto): string {
-    if (!venue) {
-      return '';
-    }
-
-    let tooltip = `<p><b>${venue.name}</b>`;
-    if (venue.description) {
-      tooltip += `<br/><small>${venue.description}</small>`;
-    }
-    tooltip += '</p>';
-    if (venue.address) {
-      if (venue.address.address1) {
-        tooltip += `<p>${venue.address.address1}`;
-      }
-      if (venue.address.address2) {
-        tooltip += `<br/>${venue.address.address2}</p>`;
-      }
-      tooltip += `<br/>${venue.address.zip} ${venue.address.city}`;
-      if (venue.address.urbanDistrict) {
-        tooltip += ` (${venue.address.urbanDistrict})`;
-      }
-      tooltip += '</p>';
-    }
-    return tooltip;
-  }
-
   getRoomNames(rooms: RoomDto[]): string {
     return rooms.map((r) => r.name).join(', ');
   }
 
-  onPredictionChanged(event: { value: string }, userAppointment: MyAppointmentDto): void {
+  onPredictionChanged(event: any): void {
     this.meService
-      .setAppointmentPrediction(userAppointment.id, event.value)
+      .setAppointmentPrediction(event.ctx.id, event.value)
       .pipe(first())
-      .subscribe(() => this.notificationsService.success('myappointments.PREDICTION_SET'));
+      .subscribe(() => {
+        event.ctx.predictionId = event.value;
+        this.notificationsService.success('profile.PREDICTION_SET');
+      });
   }
 }

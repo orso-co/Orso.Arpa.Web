@@ -20,7 +20,7 @@ export class SelectValueService {
     return this.apiService.get<SelectValueDto[]>(`${this.baseUrl}/${tableName}/properties/${propertyName}`).pipe(
       shareReplay(),
       map((dtos) => dtos.map((v) => this.mapSelectValueToSelectItem(v))),
-      tap((selectItems) => this.selectValues.set(this.getMapKey(tableName, propertyName), selectItems))
+      tap((selectItems) => this.selectValues.set(this.getMapKey(tableName, propertyName), selectItems)),
     );
   }
 

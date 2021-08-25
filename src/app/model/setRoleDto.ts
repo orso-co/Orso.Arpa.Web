@@ -1,5 +1,4 @@
-
 export interface SetRoleDto {
-    userName?: string;
-    roleNames?: Array<string>;
+  userName?: string;
+  roleNames?: Array<string>;
 }

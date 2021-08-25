@@ -1,5 +1,4 @@
-
 export interface CreateEmailConfirmationTokenDto {
-    usernameOrEmail: string;
-    clientUri: string;
+  usernameOrEmail: string;
+  clientUri: string;
 }

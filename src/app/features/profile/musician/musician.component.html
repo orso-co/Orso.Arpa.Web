@@ -1,42 +1,43 @@
 <div class='p-grid p-jc-center'>
   <div class='p-col-12 p-md-6 p-text-center'>
-    <h1>{{ 'MY_PROFILES' | translate}}</h1>
+    <h1>{{ 'profile.MY_PROFILES' | translate}}</h1>
   </div>
 </div>
-<div class='p-grid p-jc-center' style='margin-top: 4rem'>
+<div class='p-grid p-jc-center p-mt-4'>
   <div class='p-col-12 p-md-10 p-lg-6'>
-    <h2>
-      {{ 'MAIN_PROFILE' | translate }}
-    </h2>
-    <p-table [value]='(profiles | async) || []'>
+    <p-table [value]='(profiles | async) || []' tableStyleClass='arpa-table-list'>
       <ng-template pTemplate='header'>
+        <h2>
+          {{ 'profile.MAIN_PROFILE' | translate }}
+        </h2>
       </ng-template>
-      <ng-template pTemplate='body' let-profile>
+      <ng-template let-profile pTemplate='body'>
         <ng-container *ngIf='profile.isMainProfile'>
           <ng-container *ngTemplateOutlet='listElement; context: {$implicit: profile}'></ng-container>
         </ng-container>
       </ng-template>
     </p-table>
-    <h2>
-      {{ 'ADDITIONAL_PROFILES' | translate }}
-    </h2>
-    <p-table [value]='(profiles | async) || []'>
-      <ng-template pTemplate='header'>
+    <p-table [columns]='(profiles | async) || []' [value]='(profiles | async) || []' tableStyleClass='arpa-table-list'>
+      <ng-template let-columns pTemplate='header'>
+        <h2 *ngIf='columns.length > 1'>
+          {{ 'profile.ADDITIONAL_PROFILES' | translate }}
+        </h2>
       </ng-template>
       <ng-template let-profile pTemplate='body'>
-        <ng-container *ngIf='!profile.isMainProfile && !profile.deactivation'>
+        <ng-container *ngIf='!profile.isMainProfile'>
           <ng-container *ngTemplateOutlet='listElement; context: {$implicit: profile}'></ng-container>
         </ng-container>
       </ng-template>
     </p-table>
-    <h2>
-      {{ 'DEACTIVATED_PROFILES' | translate }}
-    </h2>
-    <p-table [value]='(profiles | async) || []'>
-      <ng-template pTemplate='header'>
+    <p-table [columns]='(deactivatedProfiles | async) || []' [value]='(deactivatedProfiles | async) || []'
+             tableStyleClass='arpa-table-list'>
+      <ng-template let-columns pTemplate='header'>
+        <h2 *ngIf='columns.length > 0'>
+          {{ 'profile.DEACTIVATED_PROFILES' | translate }}
+        </h2>
       </ng-template>
       <ng-template let-profile pTemplate='body'>
-        <ng-container *ngIf='!profile.isMainProfile && profile.deactivation'>
+        <ng-container>
           <ng-container *ngTemplateOutlet='listElement; context: {$implicit: profile}'></ng-container>
         </ng-container>
       </ng-template>
@@ -45,7 +46,8 @@
 </div>
 <div class='p-grid p-jc-center' style='margin-top: 4rem'>
   <div class='p-col-12 p-md-6 p-text-center'>
-    <button [attr.title]='"ADD_PROFILE" | translate' [routerLink]="[{outlets: {modal: ['create']}}]" icon='pi pi-plus' pButton
+    <button [attr.title]='"PROFILE.ADD_PROFILE" | translate' [routerLink]="[{outlets: {modal: ['create']}}]"
+            icon='pi pi-plus' pButton
             type='button'></button>
   </div>
 </div>

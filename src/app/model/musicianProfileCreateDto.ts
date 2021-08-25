@@ -1,6 +1,6 @@
 import { MusicianProfileCreateBodyDto } from './musicianProfileCreateBodyDto';
 
 export interface MusicianProfileCreateDto {
-    id: string;
-    body: MusicianProfileCreateBodyDto;
+  id: string;
+  body: MusicianProfileCreateBodyDto;
 }

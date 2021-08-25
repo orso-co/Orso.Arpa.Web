@@ -7,9 +7,8 @@ import { concatMap, finalize, tap } from 'rxjs/operators';
 })
 export class LoadingService {
   private loadingSubject = new BehaviorSubject<boolean>(false);
-  private calls = 0;
-
   loading$: Observable<boolean> = this.loadingSubject.asObservable();
+  private calls = 0;
 
   showLoaderUntilCompleted<T>(obs$: Observable<T>): Observable<T> {
     return of(null).pipe(
@@ -26,7 +25,7 @@ export class LoadingService {
 
   loadingOff(): void {
     this.calls--;
-    if(this.calls <= 0) {
+    if (this.calls <= 0) {
       this.loadingSubject.next(false);
     }
   }

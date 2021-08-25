@@ -1,6 +1,5 @@
-
 export interface RoleDto {
-    id: string;
-    roleName: string;
-    roleLevel: number;
+  id: string;
+  roleName: string;
+  roleLevel: number;
 }

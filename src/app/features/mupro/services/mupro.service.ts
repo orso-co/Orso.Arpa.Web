@@ -4,6 +4,9 @@ import { PersonDto } from '../../../model/personDto';
 @Injectable()
 export class MuproService {
 
+  constructor() {
+  }
+
   _person: PersonDto;
 
   get person(): PersonDto {
@@ -12,8 +15,5 @@ export class MuproService {
 
   set person(person: PersonDto) {
     this._person = person;
-  }
-
-  constructor() {
   }
 }

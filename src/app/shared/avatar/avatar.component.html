@@ -1,14 +1,14 @@
-<p-avatar *ngIf="!image"
-  [style]="{ 'background-color': getColor(), color: 'rgba(255, 255, 255, 0.87)' }"
-  [label]='getInitials()'
-  styleClass='p-mr-3'
-  [size]='size'
-  shape='circle'
-></p-avatar>
-<p-avatar *ngIf="image"
+<p-avatar *ngIf='!image'
+          [label]='getInitials()'
+          [size]='size'
           [style]="{ 'background-color': getColor(), color: 'rgba(255, 255, 255, 0.87)' }"
-          [image]='getImage()'
-          styleClass='p-mr-3'
-          [attr.size]='size'
           shape='circle'
+          styleClass='p-mr-3'
+></p-avatar>
+<p-avatar *ngIf='image'
+          [attr.size]='size'
+          [image]='getImage()'
+          [style]="{ 'background-color': getColor(), color: 'rgba(255, 255, 255, 0.87)' }"
+          shape='circle'
+          styleClass='p-mr-3'
 ></p-avatar>

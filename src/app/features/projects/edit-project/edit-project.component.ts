@@ -37,24 +37,15 @@ export class EditProjectComponent implements OnInit {
 
   form: FormGroup;
 
-  get isNew(): boolean {
-    return !this.project;
-  }
-
   constructor(public config: DynamicDialogConfig,
               private formBuilder: FormBuilder,
               public ref: DynamicDialogRef,
               private translate: TranslateService,
-  ) {}
+  ) {
+  }
 
-  private getAddress(venue: VenueDto): string{
-    if(venue.address) {
-      const { city, urbanDistrict } = venue.address;
-      const comb = `${(city?city:'')}${(city&&urbanDistrict?' ': '')}${urbanDistrict?urbanDistrict:''}`;
-      return `${comb}${comb?' | ':''}${venue.name}`;
-    } else{
-      return venue.name;
-    }
+  get isNew(): boolean {
+    return !this.project;
   }
 
   public ngOnInit(): void {
@@ -90,5 +81,15 @@ export class EditProjectComponent implements OnInit {
 
   public cancel(): void {
     this.ref.close(null);
+  }
+
+  private getAddress(venue: VenueDto): string {
+    if (venue.address) {
+      const { city, urbanDistrict } = venue.address;
+      const comb = `${(city ? city : '')}${(city && urbanDistrict ? ' ' : '')}${urbanDistrict ? urbanDistrict : ''}`;
+      return `${comb}${comb ? ' | ' : ''}${venue.name}`;
+    } else {
+      return venue.name;
+    }
   }
 }

@@ -125,10 +125,10 @@ export class EditAppointmentComponent implements OnInit {
     this.columns = [
       { field: 'surname', header: this.translate.instant('SURNAME') },
       { field: 'givenName', header: this.translate.instant('GIVENNAME') },
-      { field: 'sections', header: this.translate.instant('editappointments.SECTIONS') },
-      { field: 'qualification', header: this.translate.instant('editappointments.LEVEL') },
-      { field: 'predictionId', header: this.translate.instant('editappointments.PREDICTION') },
-      { field: 'resultId', header: this.translate.instant('editappointments.RESULTS') },
+      { field: 'sections', header: this.translate.instant('appointments.SECTIONS') },
+      { field: 'qualification', header: this.translate.instant('appointments.LEVEL') },
+      { field: 'predictionId', header: this.translate.instant('appointments.PREDICTION') },
+      { field: 'resultId', header: this.translate.instant('appointments.RESULTS') },
     ];
 
     this.createStepperMenu();
@@ -162,7 +162,7 @@ export class EditAppointmentComponent implements OnInit {
       .update(appointment)
       .pipe(first())
       .subscribe(() => {
-        this.notificationsService.success('editappointments.APPOINTMENT_UPDATED');
+        this.notificationsService.success('appointments.APPOINTMENT_UPDATED');
         if (continueToNextStep) {
           this.appointment = appointment;
           this.fillForm();
@@ -178,7 +178,7 @@ export class EditAppointmentComponent implements OnInit {
       .create(appointment)
       .pipe(first())
       .subscribe((result) => {
-        this.notificationsService.success('editappointments.APPOINTMENT_CREATED');
+        this.notificationsService.success('appointments.APPOINTMENT_CREATED');
         if (continueToNextStep) {
           this.appointment = result;
           this.fillForm();
@@ -226,7 +226,7 @@ export class EditAppointmentComponent implements OnInit {
       .setVenue(this.appointment.id, event.value)
       .pipe(first())
       .subscribe((_) => {
-        this.notificationsService.success('editappointments.VENUE_SET');
+        this.notificationsService.success('appointments.VENUE_SET');
         this.appointment.rooms.forEach((room: any) => {
           this.removeRoom(room.id, false);
         });
@@ -265,7 +265,7 @@ export class EditAppointmentComponent implements OnInit {
       .pipe(first())
       .subscribe((_) => {
         if (showToast) {
-          this.notificationsService.success('editappointments.ROOM_REMOVED');
+          this.notificationsService.success('appointments.ROOM_REMOVED');
         }
       });
   }
@@ -275,7 +275,7 @@ export class EditAppointmentComponent implements OnInit {
       .addRoom(this.appointment.id, roomId)
       .pipe(first())
       .subscribe((_) => {
-        this.notificationsService.success('editappointments.ROOM_ADDED');
+        this.notificationsService.success('appointments.ROOM_ADDED');
       });
   }
 
@@ -286,7 +286,7 @@ export class EditAppointmentComponent implements OnInit {
       .subscribe((result) => {
         this.appointment = result;
         this.mapParticipations();
-        this.notificationsService.success('editappointments.SECTION_REMOVED');
+        this.notificationsService.success('appointments.SECTION_REMOVED');
       });
   }
 
@@ -294,7 +294,7 @@ export class EditAppointmentComponent implements OnInit {
     this.appointmentService.addSection(this.appointment.id, sectionId).subscribe((result) => {
       this.appointment = result;
       this.mapParticipations();
-      this.notificationsService.success('editappointments.SECTION_ADDED');
+      this.notificationsService.success('appointments.SECTION_ADDED');
     });
   }
 
@@ -305,7 +305,7 @@ export class EditAppointmentComponent implements OnInit {
       .subscribe((result) => {
         this.appointment = result;
         this.mapParticipations();
-        this.notificationsService.success('editappointments.PROJECT_REMOVED');
+        this.notificationsService.success('appointments.PROJECT_REMOVED');
       });
   }
 
@@ -316,7 +316,7 @@ export class EditAppointmentComponent implements OnInit {
       .subscribe((result) => {
         this.appointment = result;
         this.mapParticipations();
-        this.notificationsService.success('editappointments.PROJECT_ADDED');
+        this.notificationsService.success('appointments.PROJECT_ADDED');
       });
   }
 
@@ -333,7 +333,7 @@ export class EditAppointmentComponent implements OnInit {
       .setResult(item.personId, this.appointment.id, event.value)
       .pipe(first())
       .subscribe((_) => {
-        this.notificationsService.success('editappointments.RESULT_SET');
+        this.notificationsService.success('appointments.RESULT_SET');
       });
   }
 
@@ -361,7 +361,7 @@ export class EditAppointmentComponent implements OnInit {
   showDeleteConfirmation(event: Event): void {
     this.confirmationService.confirm({
       target: event.target || undefined,
-      message: this.translate.instant('editappointments.ARE_YOU_SURE'),
+      message: this.translate.instant('appointments.ARE_YOU_SURE'),
       icon: 'pi pi-exclamation-triangle',
       acceptLabel: this.translate.instant('YES'),
       rejectLabel: this.translate.instant('NO'),
@@ -417,20 +417,20 @@ export class EditAppointmentComponent implements OnInit {
   private createStepperMenu(): void {
     this.items = [
       {
-        label: this.translate.instant('editappointments.BASICDATA'),
+        label: this.translate.instant('appointments.BASICDATA'),
         command: (event: any) => {
           this.activeIndex = 0;
         },
       },
       {
-        label: this.translate.instant('editappointments.ADDITIONALDATA'),
+        label: this.translate.instant('appointments.ADDITIONALDATA'),
         disabled: this.isNew,
         command: (event: any) => {
           this.activeIndex = 1;
         },
       },
       {
-        label: this.translate.instant('editappointments.PARTICIPATIONS'),
+        label: this.translate.instant('appointments.PARTICIPATIONS'),
         disabled: this.isNew,
         command: (event: any) => {
           this.activeIndex = 2;
@@ -441,7 +441,7 @@ export class EditAppointmentComponent implements OnInit {
 
   private deleteAppointment(): void {
     this.appointmentService.delete(this.appointment.id).subscribe(() => {
-      this.notificationsService.success('editappointments.APPOINTMENT_DELETED');
+      this.notificationsService.success('appointments.APPOINTMENT_DELETED');
       this.ref.close(this.appointment.id);
     });
   }

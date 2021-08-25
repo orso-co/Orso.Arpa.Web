@@ -29,6 +29,6 @@ export class LangSwitchComponent {
   }
 
   updateLanguage(): void {
-    this.langService.updateLanguage(this.currentLanguage);
+    this.langService.setLanguage(this.currentLanguage);
   }
 }

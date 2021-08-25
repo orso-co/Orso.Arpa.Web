@@ -1,5 +1,4 @@
-
 export interface AppointmentAddSectionDto {
-    id: string;
-    sectionId: string;
+  id: string;
+  sectionId: string;
 }

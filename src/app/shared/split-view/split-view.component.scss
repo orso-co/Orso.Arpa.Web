@@ -9,6 +9,7 @@
   }
 
 }
+
 .wrapper {
 
   flex-direction: row !important;
@@ -36,8 +37,9 @@
     .side-view {
       width: 14rem;
     }
+
     .content-view {
-      position: inherit!important;
+      position: inherit !important;
       background-color: inherit;
       padding: 1rem 1rem 0 0;
     }

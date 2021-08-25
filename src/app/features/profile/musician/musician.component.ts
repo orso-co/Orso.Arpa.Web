@@ -13,10 +13,18 @@ import { SectionDto } from '../../../model/sectionDto';
 export class MusicianComponent {
 
   public profiles: Observable<MusicianProfileDto[]>;
+  public deactivatedProfiles: Observable<MusicianProfileDto[]>;
   public sections: Observable<SectionDto[]>;
 
   constructor(private route: ActivatedRoute) {
-    this.profiles = this.route.data.pipe<MusicianProfileDto[]>(map((data) => data.profiles));
+    this.profiles = this.route.data.pipe<MusicianProfileDto[]>(
+      map((data) => data.profiles.filter(({ deactivation }: MusicianProfileDto) => deactivation === null)),
+    );
+
+    this.deactivatedProfiles = this.route.data.pipe<MusicianProfileDto[]>(
+      map((data) => data.profiles.filter(({ deactivation }: MusicianProfileDto) => deactivation !== null)),
+    );
+
     this.sections = this.route.data.pipe<SectionDto[]>(map((data) => data.sections));
   }
 

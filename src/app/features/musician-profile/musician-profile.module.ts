@@ -7,16 +7,12 @@ import { MusicianDocumentsComponent } from './musician-documents/musician-docume
 import { MusicianEducationComponent } from './musician-education/musician-education.component';
 import { MusicianDoublingInstrumentComponent } from './musician-doubling-instrument/musician-doubling-instrument.component';
 import { SharedModule } from '../../shared/shared.module';
-import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MusicianMainInstrumentComponent } from './musician-main-instrument/musician-main-instrument.component';
-import { HttpClient } from '@angular/common/http';
-import { TranslateModuleLoader } from '../../core/factories/translate-module-loader';
 import { MusicianDeactivationComponent } from './musician-deactivation/musician-deactivation.component';
 import { MusicianInstrumentsComponent } from './musician-instruments/musician-instruments.component';
 import { AccordionModule } from 'primeng/accordion';
 import { InstrumentPartsPipe } from './pipes/instrument-parts.pipe';
-
-export const HttpLoaderFactory = (http: HttpClient) => new TranslateModuleLoader(http, ['musician-profile']);
+import { CommonTranslateModule } from '../../common/translate';
 
 @NgModule({
   declarations: [
@@ -35,21 +31,8 @@ export const HttpLoaderFactory = (http: HttpClient) => new TranslateModuleLoader
     MusicianRoutingModule,
     AccordionModule,
     SharedModule,
-    TranslateModule.forChild({
-      defaultLanguage: 'en',
-      extend: true,
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-    }),
+    CommonTranslateModule.forChild(['musician-profile']),
   ],
 })
 export class MusicianProfileModule {
-  constructor(private translateService: TranslateService) {
-    const currentLang = translateService.currentLang;
-    translateService.currentLang = '';
-    translateService.use(currentLang);
-  }
 }

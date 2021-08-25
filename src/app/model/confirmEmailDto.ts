@@ -1,5 +1,4 @@
-
 export interface ConfirmEmailDto {
-    token: string;
-    email: string;
+  token: string;
+  email: string;
 }

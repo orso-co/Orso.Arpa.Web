@@ -16,7 +16,7 @@ describe('DetailsComponent', () => {
         RouterTestingModule,
       ],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

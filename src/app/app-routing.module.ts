@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { PageLayoutComponent } from './main/layout/page-layout/page-layout.component';
 import { ErrorComponent } from './main/error/error.component';
 import { DefaultLayoutComponent } from './main/layout/default-layout/default-layout.component';
@@ -52,7 +52,7 @@ const routes: Routes = [
         path: 'dashboard',
         loadChildren: () => import('./features/dashboards/dashboards.module').then(m => m.DashboardsModule),
         data: {
-          title: 'DASHBOARD',
+          title: 'dashboard.PAGE_TITLE',
           menu: {
             name: 'feature',
             label: 'DASHBOARD',
@@ -65,7 +65,7 @@ const routes: Routes = [
         loadChildren: () => import('./features/appointments/appointments.module').then(m => m.AppointmentsModule),
         data: {
           roles: ['performer', 'staff'],
-          title: 'APPOINTMENTS',
+          title: 'appointments.PAGE_TITLE',
           menu: {
             name: 'feature',
             label: 'APPOINTMENTS',
@@ -77,7 +77,7 @@ const routes: Routes = [
         path: 'profile',
         loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule),
         data: {
-          title: 'PROFILE',
+          title: 'profile.PAGE_TITLE',
         }
       },
       {
@@ -85,7 +85,7 @@ const routes: Routes = [
         loadChildren: () => import('./features/projects/projects.module').then(m => m.ProjectsModule),
         data: {
           roles: ['performer', 'staff'],
-          title: 'PROJECTS',
+          title: 'projects.PAGE_TITLE',
           menu: {
             name: 'feature',
             label: 'PROJECTS',
@@ -98,7 +98,7 @@ const routes: Routes = [
         loadChildren: () => import('./features/mupro/mupro.module').then((mod) => mod.MuProModule),
         data: {
           roles: ['staff'],
-          title: 'MUPRO',
+          title: 'mupro.PAGE_TITLE',
           menu: {
             name: 'feature',
             label: 'MUPRO',
@@ -127,7 +127,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    // preloadingStrategy: PreloadAllModules,
+    preloadingStrategy: PreloadAllModules,
     paramsInheritanceStrategy: 'always',
     onSameUrlNavigation: "reload",
   })],

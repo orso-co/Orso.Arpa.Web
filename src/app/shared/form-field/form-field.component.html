@@ -1,13 +1,14 @@
 <div #wrapper>
   <label *ngIf='label && type !== "input" && type !== "checkbox"'
-         [attr.for]="this.formControl.name"
+         [attr.for]='this.formControl.name'
   >{{ label | translate }}</label>
   <ng-content></ng-content>
   <label *ngIf='label && type === "input" || type === "checkbox"'
-         [attr.for]="this.formControl.name"
+         [attr.for]='this.formControl.name'
   >{{ label | translate }}</label>
 </div>
-<ng-container [ngTemplateOutlet]='footerTemplateRef || null' [ngTemplateOutletContext]='{ $implicit: this }'></ng-container>
-<div class='error' *ngIf="hasErrors && showErrors" [@inOutAnimation]>
+<ng-container [ngTemplateOutletContext]='{ $implicit: this }'
+              [ngTemplateOutlet]='footerTemplateRef || null'></ng-container>
+<div *ngIf='hasErrors && showErrors' [@inOutAnimation] class='error'>
   <span><i class='pi pi-exclamation-triangle'></i> {{ errorMessage }}</span>
 </div>

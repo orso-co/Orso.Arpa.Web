@@ -54,8 +54,8 @@ export class MusicianService {
     return this.apiService.post(`${this.baseUrlMe}/${id}/doublinginstruments`, data).pipe(shareReplay());
   }
 
-  updateDoublingInstrument(id: any, data: MyDoublingInstrumentModifyDto): Observable<any> {
-    return this.apiService.put(`${this.baseUrlMe}/${id}/doublinginstruments/${data.id}`, data).pipe(shareReplay());
+  updateDoublingInstrument(profileId: any, instrumentId: string, data: MyDoublingInstrumentModifyDto): Observable<any> {
+    return this.apiService.put(`${this.baseUrlMe}/${profileId}/doublinginstruments/${instrumentId}`, data).pipe(shareReplay());
   }
 
   getDoublingInstruments(id: any): Observable<any> {

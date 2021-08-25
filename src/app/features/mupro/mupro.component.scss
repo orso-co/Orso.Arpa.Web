@@ -6,6 +6,7 @@
     padding-left: 10px;
     padding-right: 10px;
   }
+
   .p-listbox-list {
     padding-left: 20px;
     padding-right: 20px;
@@ -27,21 +28,26 @@
       .p-listbox-header {
         background-color: inherit;
       }
+
       .p-listbox-item {
         .details {
           display: block;
           width: 100%;
+
           & > div {
             display: block;
             width: 100%;
             font-size: .8em;
             line-height: 128%;
+
             &.name {
 
             }
+
             &.profile {
               font-weight: 200;
             }
+
             &.country {
               font-size: .8em;
               font-weight: 200;
@@ -93,7 +99,7 @@
   .layout-content {
     position: absolute;
     flex-direction: column;
-    display:flex;
+    display: flex;
     min-height: 100%;
     top: 0;
     width: 100%;
@@ -122,11 +128,13 @@
     height: 60px;
     text-align: left;
     left: 0;
+
     a {
       color: var(--text-color);
       padding: 14px;
       font-weight: 200;
       display: block;
+
       i {
         font-size: 1.8em;
         padding: 2px;

@@ -1,10 +1,10 @@
 <ng-container *ngIf='detail'>
   <div class='p-d-flex'>
     <div class='p-mr-4 title'>
-      {{ 'auditlogs.TIME' | translate }}<br>
-      {{ 'auditlogs.TABLE' | translate }}<br>
-      {{ 'auditlogs.TYPE' | translate }}<br>
-      {{ 'auditlogs.CHANGED_BY' | translate }}<br>
+      {{ 'AUDITLOGS.TIME' | translate }}<br>
+      {{ 'AUDITLOGS.TABLE' | translate }}<br>
+      {{ 'AUDITLOGS.TYPE' | translate }}<br>
+      {{ 'AUDITLOGS.CHANGED_BY' | translate }}<br>
     </div>
     <div class='p-mr-2 value'>
       {{ detail.createdAt | date: 'short' }}<br>
@@ -15,11 +15,11 @@
   </div>
   <div class='p-grid p-mt-4'>
     <div class='p-col-12 p-md-6 p-pr-2 new'>
-      <h3>{{ "auditlogs.NEW_VALUES" | translate }}</h3>
+      <h3>{{ "AUDITLOGS.NEW_VALUES" | translate }}</h3>
       <pre>{{ detail.newValues | json }}</pre>
     </div>
     <div class='p-col-12 p-md-6 p-pl-2 old'>
-      <h3>{{ "auditlogs.OLD_VALUES" | translate }}</h3>
+      <h3>{{ "AUDITLOGS.OLD_VALUES" | translate }}</h3>
       <pre>{{ detail.oldValues | json }}</pre>
     </div>
   </div>

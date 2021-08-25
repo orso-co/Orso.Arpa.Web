@@ -1,6 +1,5 @@
 import { RouterTestingModule } from '@angular/router/testing';
-import { waitForAsync } from '@angular/core/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DashboardComponent } from './dashboard.component';
 import { of } from 'rxjs';
 import { AuthService } from '../../../core/services/auth.service';

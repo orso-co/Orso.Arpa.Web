@@ -9,8 +9,8 @@ describe('NavigationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
-      ]
+        RouterTestingModule,
+      ],
     });
     service = TestBed.inject(NavigationService);
   });

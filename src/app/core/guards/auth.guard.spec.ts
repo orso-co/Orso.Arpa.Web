@@ -13,8 +13,9 @@ describe('AuthGuard', () => {
       imports: [
         RouterTestingModule,
         HttpClientTestingModule,
-        TranslateMockModule
-      ]});
+        TranslateMockModule,
+      ],
+    });
     guard = TestBed.inject(AuthGuard);
   });
 

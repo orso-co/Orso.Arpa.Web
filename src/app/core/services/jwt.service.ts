@@ -36,7 +36,7 @@ export class JwtService {
       displayName: token.name,
       roles: this.normalizeRoles(token),
       userId: token.sub,
-      personId: token[`${token.aud}/person_id`]
+      personId: token[`${token.aud}/person_id`],
     };
   }
 

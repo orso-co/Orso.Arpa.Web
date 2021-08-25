@@ -1,6 +1,5 @@
-
 export interface MyDoublingInstrumentModifyBodyDto {
-    levelAssessmentInner?: number;
-    availabilityId?: string;
-    comment?: string;
+  levelAssessmentInner?: number;
+  availabilityId?: string;
+  comment?: string;
 }

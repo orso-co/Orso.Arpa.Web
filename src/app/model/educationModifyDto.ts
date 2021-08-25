@@ -1,6 +1,6 @@
 import { EducationModifyBodyDto } from './educationModifyBodyDto';
 
 export interface EducationModifyDto {
-    id: string;
-    body: EducationModifyBodyDto;
+  id: string;
+  body: EducationModifyBodyDto;
 }

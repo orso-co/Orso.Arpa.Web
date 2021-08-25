@@ -1,9 +1,8 @@
-
 export interface RegionDto {
-    id?: string;
-    createdBy?: string;
-    createdAt?: Date;
-    modifiedBy?: string;
-    modifiedAt?: Date;
-    name?: string;
+  id?: string;
+  createdBy?: string;
+  createdAt?: Date;
+  modifiedBy?: string;
+  modifiedAt?: Date;
+  name?: string;
 }
