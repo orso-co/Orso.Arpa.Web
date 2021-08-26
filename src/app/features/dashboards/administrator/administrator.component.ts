@@ -48,7 +48,7 @@ export class AdministratorComponent {
     return users.filter((u) => u.roleNames && u.roleNames.length !== 0) ?? null;
   }
 
-  onUserChanged(username: any): void {
+  onUserChanged(username: string): void {
     this.users = this.users.filter((u) => u.userName !== username);
   }
 
