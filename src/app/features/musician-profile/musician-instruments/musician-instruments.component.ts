@@ -51,25 +51,10 @@ export class MusicianInstrumentsComponent implements OnInit {
 
     this.config.data.profile.pipe(first()).subscribe((profile: MusicianProfileDto) => {
       this.profile = profile;
+      if (profile.doublingInstruments?.length) {
+        profile.doublingInstruments.forEach(instrument => this.doublingInstruments.push(this.getFormGroup(instrument)));
+      }
     });
-
-    [
-      {
-        'id': '1994cb6c-877e-4d7c-aeca-26e68967c2ab',
-        'instrumentId': '1994cb6c-877e-4d7c-aeca-26e68967c2ab',
-        'levelAssessmentInner': 3,
-        'levelAssessmentTeam': 2,
-        'availabilityId': 'c6b28eb5-e9d6-4250-bc79-6fa9bfbdbc5a',
-        'comment': 'sdfsfsfsdf',
-      }, {
-      'id': '1994cb6c-877e-4d7c-aeca-26e68967c2cb',
-      'instrumentId': '1994cb6c-877e-4d7c-aeca-26e68967c2cb',
-      'levelAssessmentInner': 6,
-      'levelAssessmentTeam': 0,
-      'availabilityId': 'c6b28eb5-e9d6-4250-bc79-6fa9bfbdbc5a',
-      'comment': 'sdfsfsfsdf',
-    },
-    ].forEach(i => this.doublingInstruments.push(this.getFormGroup(i)));
   }
 
   private resolveSelect(property: string): Observable<SelectItem[]> {
@@ -146,7 +131,7 @@ export class MusicianInstrumentsComponent implements OnInit {
       .pipe(first())
       .subscribe((result) => {
         this.config.data.profile.next(this.profile);
-        this.notificationsService.success('UPDATED');
+        this.notificationsService.success('musician-profile.INSTRUMENT_UPDATED');
       });
   }
 

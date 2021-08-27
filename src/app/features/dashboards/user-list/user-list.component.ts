@@ -22,7 +22,7 @@ export class UserListComponent implements OnChanges {
   @Input() roles: RoleDto[] = [];
   @Input() sectionTree: SectionTreeDto | undefined;
   @Output() userDeleted = new EventEmitter<string>();
-  @Output() rolesSet = new EventEmitter<SetRoleDto>();
+  @Output() rolesSet = new EventEmitter<string>();
   usersWithoutRole: UserDto[] | undefined = [];
   selectedUser: UserDto | null = null;
   selectedRoles: string[] = [];
@@ -66,7 +66,7 @@ export class UserListComponent implements OnChanges {
   saveRoles(panel: OverlayPanel): void {
     const dto: SetRoleDto = { userName: this.selectedUser!.userName, roleNames: this.selectedRoles };
     this.authService.setUserRoles(dto).subscribe(() => {
-      this.rolesSet.emit(dto);
+      this.rolesSet.emit(dto.userName);
       panel.hide();
       this.notificationsService.success('userlist.USER_ROLES_SET');
     });
@@ -92,13 +92,6 @@ export class UserListComponent implements OnChanges {
   getSections(stakeholderGoupIds: string[]): TreeNode[] {
     return this.mapSectionTree(this.sectionTree!, stakeholderGoupIds);
   }
-
-  private reset(): void {
-    this.selectedUser = null;
-    this.selectedRoles = [];
-    this.selectedUserSections = [];
-  }
-
   private deleteSelectedUser(): void {
     if (this.selectedUser!.userName) {
       this.userService.deleteUser(this.selectedUser!.userName).subscribe(() => {

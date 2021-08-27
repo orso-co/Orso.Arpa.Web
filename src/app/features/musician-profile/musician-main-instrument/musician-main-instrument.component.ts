@@ -1,7 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MusicianProfileDto } from '../../../model/musicianProfileDto';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, from, interval, Observable, zip } from 'rxjs';
 import { SectionDto } from '../../../model/sectionDto';
 import { SelectItem } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';

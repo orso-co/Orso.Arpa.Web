@@ -21,6 +21,8 @@ import { CloseButtonDirective } from './directives/close-button.directive';
 import { SelectValuePipe } from './pipes/select-value.pipe';
 import { SelectDialogModule } from './select-dialog/select-dialog.module';
 import { CommonTranslateModule } from '../common/translate';
+import { CoreModule } from '../core/core.module';
+import { GraphQlFeedComponent } from './graph-ql-feed/graph-ql-feed.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { CommonTranslateModule } from '../common/translate';
     PasswordStrengthComponent,
     CloseButtonDirective,
     SelectValuePipe,
+    GraphQlFeedComponent
   ],
   imports: [
     CommonModule,
@@ -69,6 +72,7 @@ import { CommonTranslateModule } from '../common/translate';
     PasswordStrengthComponent,
     SelectValuePipe,
     SelectDialogModule,
+    GraphQlFeedComponent,
   ],
 })
 export class SharedModule {
