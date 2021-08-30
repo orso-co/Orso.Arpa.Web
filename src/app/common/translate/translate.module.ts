@@ -35,8 +35,8 @@ export class CommonTranslateModule {
     });
   }
 
-  static forChild(modules: string[], config?: TranslateModuleConfig): ModuleWithProviders<TranslateModule> {
-    return TranslateModule.forChild({
+  static forChild(modules: string[] = [], config?: TranslateModuleConfig): ModuleWithProviders<TranslateModule> {
+    const module = TranslateModule.forChild({
       ...defaultConfig(modules),
       extend: true,
       missingTranslationHandler: {
@@ -45,5 +45,7 @@ export class CommonTranslateModule {
       },
       ...config,
     });
+
+    return module;
   }
 }

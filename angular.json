@@ -27,7 +27,19 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss",
+              {
+                "input": "src/themes/dark.scss",
+                "bundleName": "arpa-dark",
+                "inject": false
+              },
+              {
+                "input": "src/themes/light.scss",
+                "bundleName": "arpa-light",
+                "inject": false
+              }
+            ],
             "scripts": ["node_modules/@fullcalendar/core/locales-all.min.js", "node_modules/chart.js/dist/Chart.js"],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json",

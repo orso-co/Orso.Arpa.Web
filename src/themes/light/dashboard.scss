@@ -1,0 +1,7 @@
+.mat-card {
+  background-color: var(--surface-100);
+  color: var(--text-color);
+  &:not([class*=mat-elevation-z]) {
+    box-shadow: none;
+  }
+}

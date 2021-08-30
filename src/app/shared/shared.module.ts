@@ -21,8 +21,14 @@ import { CloseButtonDirective } from './directives/close-button.directive';
 import { SelectValuePipe } from './pipes/select-value.pipe';
 import { SelectDialogModule } from './select-dialog/select-dialog.module';
 import { CommonTranslateModule } from '../common/translate';
-import { CoreModule } from '../core/core.module';
 import { GraphQlFeedComponent } from './graph-ql-feed/graph-ql-feed.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { ThemeSwitcherService } from './theme-switcher/theme-switcher.service';
+import { ThemeSwitcherComponent } from './theme-switcher/theme-switcher.component';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 @NgModule({
   declarations: [
@@ -42,7 +48,9 @@ import { GraphQlFeedComponent } from './graph-ql-feed/graph-ql-feed.component';
     PasswordStrengthComponent,
     CloseButtonDirective,
     SelectValuePipe,
-    GraphQlFeedComponent
+    GraphQlFeedComponent,
+    ThemeSwitcherComponent
+
   ],
   imports: [
     CommonModule,
@@ -52,6 +60,14 @@ import { GraphQlFeedComponent } from './graph-ql-feed/graph-ql-feed.component';
     ReactiveFormsModule,
     PrimeNgModule,
     SelectDialogModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule,
+    MatIconModule,
+    InputSwitchModule,
+  ],
+  providers: [
+    ThemeSwitcherService,
   ],
   exports: [
     PrimeNgModule,
@@ -73,7 +89,7 @@ import { GraphQlFeedComponent } from './graph-ql-feed/graph-ql-feed.component';
     SelectValuePipe,
     SelectDialogModule,
     GraphQlFeedComponent,
+    ThemeSwitcherComponent
   ],
 })
-export class SharedModule {
-}
+export class SharedModule {}

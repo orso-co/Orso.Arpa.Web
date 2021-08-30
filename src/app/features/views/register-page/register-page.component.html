@@ -1,0 +1,86 @@
+<form (ngSubmit)='onSubmit()' [formGroup]='registerFormGroup' autocomplete='off' class='p-jc-center'>
+  <div class='p-fluid'>
+    <arpa-form-field type='field'>
+      <p-dropdown
+        [options]='(genderSelectValue | async) || []'
+        [placeholder]='"GENDER" | translate'
+        formControlName='genderId'
+        optionLabel='label'
+        optionValue='value'
+      ></p-dropdown>
+    </arpa-form-field>
+
+    <arpa-form-field label='GIVENNAME'>
+      <input (ngModelChange)='onChange()' autocomplete='given-name' formControlName='givenName' pInputText type='text'>
+    </arpa-form-field>
+
+    <arpa-form-field label='SURNAME'>
+      <input (ngModelChange)='onChange()' autocomplete='family-name' formControlName='surname' pInputText type='text'>
+    </arpa-form-field>
+
+    <arpa-form-field [customError]='"form.INVALID_EMAIL"' label='EMAILADDRESS'>
+      <input (ngModelChange)='onChange()' autocomplete='email' formControlName='email' pInputText type='text'>
+    </arpa-form-field>
+
+    <arpa-form-field label='USERNAME'>
+      <input (ngModelChange)='onChange()' autocomplete='off' formControlName='userName' pInputText type='text'>
+    </arpa-form-field>
+
+    <arpa-form-field [showErrors]='false' label='PASSWORD'>
+      <p-password (blur)='reValidate(registerFormGroup.controls["password"])'
+                  [feedback]='false'
+                  [toggleMask]='true'
+                  autocomplete='off'
+                  formControlName='password'></p-password>
+      <ng-template #footerTemplate>
+        <arpa-password-strength [control]="registerFormGroup.controls['password']"></arpa-password-strength>
+        <p class='passwordInfo'>
+          <i class='pi pi-info-circle'></i>{{ 'auth.PASSWORD_INFO' | translate }}
+        </p>
+      </ng-template>
+    </arpa-form-field>
+
+    <arpa-form-field *ngIf='registerFormGroup.get("password")?.valid' [customError]='"auth.PASSWORD_ERROR_CONFIRM"'
+                     label='register.PASSWORD_CONFIRM'>
+      <p-password [feedback]='false' [toggleMask]='false' autocomplete='off'
+                  formControlName='confirmPassword'></p-password>
+    </arpa-form-field>
+
+    <arpa-form-field type='checkbox'>
+      <p-checkbox formControlName='privacyPolicy' ngDefaultControl></p-checkbox>
+      <label for='privacyPolicy'>
+        <a [routerLink]="['/privacy']" style='color:currentColor;' target='new window'
+           title="{{ 'auth.SHOW_PRIVACY' | translate }}">
+          {{ 'auth.PRIVACY_POLICY' | translate }}
+        </a>
+      </label>
+    </arpa-form-field>
+  </div>
+
+  <div class='p-formgroup-inline'>
+    <div class='p-field'>
+      <button (click)='goToLogin()'
+              *ngIf='!registerRequest'
+              label="{{ 'CANCEL' | translate }}"
+              pButton>
+      </button>
+    </div>
+    <div class='p-field'>
+      <button
+        [disabled]='registerFormGroup.invalid || registerFormGroup.pristine || registerRequest'
+        label="{{ 'REGISTER' | translate }}"
+        pButton>
+      </button>
+    </div>
+  </div>
+
+  <re-captcha
+    #captchaRef='reCaptcha'
+    (error)='onError()'
+    (resolved)='submit()'
+    errorMode='handled'
+    siteKey='{{ siteKey }}'
+    size='invisible'
+  ></re-captcha>
+</form>
+

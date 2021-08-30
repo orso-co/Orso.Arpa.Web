@@ -1,0 +1,25 @@
+.page {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding-top: 2em;
+  padding-bottom: 2em;
+
+  @media (min-width: 768px) {
+    padding: 2rem 0 2rem;
+  }
+
+  & > footer {
+    display: flex;
+    flex: 1;
+
+    margin-top: 4rem;
+
+    arpa-theme-switcher {
+      margin-right: 10rem;
+    }
+  }
+}
+

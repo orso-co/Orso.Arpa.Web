@@ -6,8 +6,66 @@
   <base href='/'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <link rel='icon' type='image/x-icon' href='favicon.ico'>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    #app-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgb(16, 16, 16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 1.5s ease-in-out;
+      z-index: 1000;
+    }
+
+    #app-loader.done {
+      opacity: 0;
+    }
+
+    .arpa-spinner {
+      display: block;
+      width: 10rem;
+      height: 10rem;
+    }
+
+    .arpa-spinner img {
+      width: 100%;
+      height: auto;
+    }
+
+    .arpa-spinner .spinner {
+      margin: 20px auto 0;
+      border: .5rem solid rgba(52, 152, 219, 0.28);
+      border-top: .5rem solid rgb(52, 152, 219);
+      border-radius: 50%;
+      width: 4rem;
+      height: 4rem;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
 </head>
 <body>
+<div id="app-loader">
+  <div class="arpa-spinner">
+    <img src="assets/common/logos/arpa_logo.png"/>
+    <div class='spinner'></div>
+  </div>
+</div>
 <arpa-root>
   <div id='message'></div>
 </arpa-root>

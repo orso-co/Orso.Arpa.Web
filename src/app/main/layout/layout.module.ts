@@ -1,26 +1,35 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { PageLayoutComponent } from './page-layout/page-layout.component';
-import { PageHeaderComponent } from './page-header/page-header.component';
-import { DefaultLayoutComponent } from './default-layout/default-layout.component';
-import { DefaultHeaderComponent } from './default-header/default-header.component';
-import { AppRoutingModule } from '../../app-routing.module';
-import { SharedModule } from '../../shared/shared.module';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {LayoutDefaultComponent} from './layout-default/layout-default.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatButtonModule} from "@angular/material/button";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatIconModule} from "@angular/material/icon";
+import {MatListModule} from "@angular/material/list";
+import {LayoutModule as AngularLayoutModule} from '@angular/cdk/layout';
+import {RouterModule} from "@angular/router";
+import {LayoutPageComponent} from './layout-page/layout-page.component';
+import {SharedModule} from "../../shared/shared.module";
 import { CommonTranslateModule } from '../../common/translate';
+
 
 @NgModule({
   declarations: [
-    PageLayoutComponent,
-    PageHeaderComponent,
-    DefaultLayoutComponent,
-    DefaultHeaderComponent,
+    LayoutDefaultComponent,
+    LayoutPageComponent
   ],
   imports: [
     CommonModule,
-    AppRoutingModule,
-    CommonTranslateModule,
+    AngularLayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    RouterModule,
     SharedModule,
-  ],
+    CommonTranslateModule,
+  ]
 })
 export class LayoutModule {
 }

@@ -4,7 +4,8 @@ import { AuthService, IToken } from '../../core/services/auth.service';
 import { Unsubscribe } from '../../core/decorators/unsubscribe.decorator';
 import { TopbarService } from './topbar.service';
 import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { filter, map, shareReplay } from 'rxjs/operators';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'arpa-topbar',
@@ -21,7 +22,13 @@ export class TopbarComponent {
   pageTitle: string;
   sideBarDisplay: boolean;
 
-  constructor(private router: Router, private topBarService: TopbarService, private authService: AuthService) {
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches),
+      shareReplay(),
+    );
+
+  constructor(private breakpointObserver: BreakpointObserver, private router: Router, private topBarService: TopbarService, private authService: AuthService) {
     this.token$ = this.authService.currentUser;
     this.pageTitle = 'performerWELCOME';
     this.titleSubscription = topBarService.title.subscribe((title) => {

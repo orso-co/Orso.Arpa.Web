@@ -75,6 +75,7 @@ export class GraphQlFeedComponent implements OnInit, OnDestroy {
       variables: {
         cursor: null,
         searchQuery: 'a',
+        ...this.variables
       },
     });
 

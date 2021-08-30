@@ -23,20 +23,20 @@
         "no-underscore-dangle": "off",
         "@typescript-eslint/member-ordering": "off",
         "@typescript-eslint/no-non-null-assertion": "off",
-        "@angular-eslint/component-selector": [
-          "error",
-          {
-            "type": "element",
-            "prefix": "arpa",
-            "style": "kebab-case"
-          }
-        ],
         "@angular-eslint/directive-selector": [
           "error",
           {
             "type": "attribute",
             "prefix": "arpa",
             "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "arpa",
+            "style": "kebab-case"
           }
         ]
       }

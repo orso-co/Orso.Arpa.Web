@@ -1,177 +1,71 @@
-@import "assets/common/fonts/icomoon/style.css";
 
-html {
-  min-height: 100%;
-  height: 100%;
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '~@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$Orso-Arpa-Web-primary: mat.define-palette(mat.$indigo-palette);
+$Orso-Arpa-Web-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$Orso-Arpa-Web-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$Orso-Arpa-Web-theme: mat.define-dark-theme((
+  color: (
+    primary: $Orso-Arpa-Web-primary,
+    accent: $Orso-Arpa-Web-accent,
+    warn: $Orso-Arpa-Web-warn,
+  )
+));
+
+.arpa-light {
+  // Create the theme object. A theme consists of configurations for individual
+  // theming systems such as "color" or "typography".
+  $Orso-Arpa-Web-theme: mat.define-light-theme((
+    color: (
+      primary: $Orso-Arpa-Web-primary,
+      accent: $Orso-Arpa-Web-accent,
+      warn: $Orso-Arpa-Web-warn,
+    )
+  ));
 }
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.core-theme($Orso-Arpa-Web-theme);
+@include mat.sidenav-theme($Orso-Arpa-Web-theme);
+@include mat.toolbar-theme($Orso-Arpa-Web-theme);
+@include mat.card-theme($Orso-Arpa-Web-theme);
+@include mat.button-theme($Orso-Arpa-Web-theme);
+@include mat.menu-theme($Orso-Arpa-Web-theme);
+
+/* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
 
 body {
-  background-color: var(--surface-b);
-  color: var(--text-color);
-  padding: 0;
   margin: 0;
-  height: 100%;
-  font-family: var(--font-family);
-  font-size: 14px;
-
-  a {
-    text-decoration: none;
-    color: whitesmoke;
-
-
-  }
 }
 
-.clearfix:after {
-  content: " ";
-  display: block;
-  clear: both;
-}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-arpa-root {
-  & > #message {
-    padding: 40% 0;
-    text-align: center;
-    font-size: 2em;
-  }
-}
 
-/* Change Autocomplete styles in Chrome*/
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus,
-select:-webkit-autofill,
-select:-webkit-autofill:hover,
-select:-webkit-autofill:focus {
-  background-color: inherit;
-}
-
-[arpaBAckButton] {
-  cursor: pointer;
-}
-
-.p-field.p-float-label, .p-field + .p-field {
-  margin-top: 1.6em;
-}
-
-.p-formgroup-inline > .p-field + .p-field {
-  margin-top: inherit;
-}
-
-.p-dialog-content {
-  overflow-y: visible !important;
-}
-
-.arpa-toast {
-  & > .p-toast {
-    width: 100%;
-    padding-left: 20px;
-    padding-right: 20px;
-    top: 20px;
-    right: unset;
-  }
-}
-
-.p-dialog-mask {
-  overflow-y: auto;
-}
-
-@import "~primeng/resources/themes/arya-blue/theme.css";
-@import "~primeng/resources/primeng.css";
 @import "~primeicons/primeicons.css";
+@import "~primeng/resources/primeng.min.css";
+@import "assets/common/fonts/icomoon/style.css";
 @import "~primeflex/primeflex.css";
 @import "~flag-icon-css/sass/flag-icon";
 
 @import "~@fullcalendar/core/main.css";
 @import "~@fullcalendar/daygrid/main.css";
 @import "~@fullcalendar/timegrid/main.css";
-
-table {
-  font-size: .85rem;
-
-  .p-column-filter-clear-button, .p-column-filter-menu-button {
-    opacity: .25;
-
-    &:hover {
-      opacity: inherit;
-    }
-  }
-}
-
-p-dynamicDialog {
-  .p-dialog-mask {
-    align-items: flex-start;
-    padding-top: 0;
-    @media (min-width: 768px) {
-      padding-top: 6rem;
-    }
-  }
-
-  .p-dialog {
-
-    &.form-modal {
-      &.p-dialog .p-dialog-content {
-        padding-bottom: 0;
-      }
-
-      background-color: #1e1e1e;
-
-      min-width: 90%;
-      max-width: 90%;
-      max-height: unset;
-
-      @media (min-width: 1200px) {
-        max-width: 1000px;
-        min-width: 1000px;
-      }
-    }
-
-    margin-left: .5rem;
-    margin-right: 0.5rem;
-    overflow-x: visible;
-
-    @media (max-width: 768px) {
-      top: 4rem;
-      width: 100%;
-      background-color: var(--surface-a);
-    }
-
-    .p-col {
-      margin-bottom: .5rem;
-    }
-  }
-}
-
-.p-datatable .p-datatable-thead > tr > th {
-  color: var(--text-color-secondary);
-  border-top: 0;
-}
-
-.p-datatable .p-datatable-header {
-  border: 0;
-}
-
-.p-datatable .p-datatable-tbody > tr {
-  &:hover {
-    background-color: var(--surface-d);
-  }
-
-  &.disabled {
-    color: var(--text-color-secondary);
-  }
-
-  &.clickable {
-    cursor: pointer;
-  }
-}
-
-@media (max-width: 767px) {
-  .hidden-xs {
-    display: none !important;
-  }
-}
-
-@import "./arpa-theme";

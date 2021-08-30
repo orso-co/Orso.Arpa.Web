@@ -11,8 +11,10 @@ import {
 import { LoadingService } from './core/services/loading.service';
 import { AuthService } from './core/services/auth.service';
 import { Title } from '@angular/platform-browser';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, shareReplay } from 'rxjs/operators';
 import { RouteTitleService } from './core/services/route-title.service';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'arpa-root',
@@ -22,11 +24,17 @@ import { RouteTitleService } from './core/services/route-title.service';
       [preventOpenDuplicates]='true'
       [showTransformOptions]="'translateY(-100%)'"
     ></p-toast>
-    <arpa-loading></arpa-loading>
-    <router-outlet></router-outlet>`,
+    <section [ngClass]="{'mobile' : (isHandset$ | async)}">
+    <router-outlet></router-outlet>
+    </section>`,
 })
 export class AppComponent implements OnInit {
   readonly defaultTitle: string;
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
 
   constructor(
     private configService: ConfigService,
@@ -36,6 +44,7 @@ export class AppComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
     private routeTitleService: RouteTitleService,
+    private breakpointObserver: BreakpointObserver
   ) {
     this.defaultTitle = this.titleService.getTitle();
     this.router.events.subscribe((event) => {

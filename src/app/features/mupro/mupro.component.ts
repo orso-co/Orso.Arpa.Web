@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { gql } from 'apollo-angular';
+import { DocumentNode } from 'graphql';
 
 
 const MusicianProfiles = gql`
@@ -59,7 +60,7 @@ export class MuproComponent implements OnInit {
   person: any;
   routeData: any;
 
-  query = MusicianProfiles;
+  query: DocumentNode = MusicianProfiles;
 
   constructor(public route: ActivatedRoute,
               private router: Router,

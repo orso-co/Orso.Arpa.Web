@@ -14,44 +14,47 @@
     </div>
   </div>
   <div class='p-col-12 p-md-6 p-lg-7'>
-
   </div>
 </div>
 <div class='profiles'>
-  <ul>
-    <ng-container *ngFor='let profile of (profiles | async) || []; let i = index'>
-      <li *ngIf='activeIndex === i'>
-        <div class='profile'>
-          <div class='p-grid'>
-            <div class='p-col-12 section-detail p-jc-between'>
-              <h2>{{ getSection(profile) | async }}</h2>
-              <p-badge *ngIf='profile.isMainProfile' [value]="'MAIN_PROFILE' | translate "></p-badge>
-            </div>
-            <div class='p-col-12 p-md-6 performer-details'>
-              <h3>Performer</h3>
-              <p-rating [(ngModel)]='profile.levelAssessmentInner' [cancel]='false' [disabled]='true'></p-rating>
-            </div>
-            <div class='p-col-12 p-md-6 staff-details p-jc-between'>
-              <div>
-                <h3>Staff</h3>
-                <p-rating [(ngModel)]='profile.levelAssessmentTeam' [cancel]='false' [disabled]='true'></p-rating>
+  <arpa-graph-ql-feed [contentTemplate]='feed' [query]='query' [variables]='{personId:personId}'>
+    <ng-template #feed let-feed>
+      <ul>
+        <ng-container *ngFor='let profile of $any((feed.values | async) || []); let i = index'>
+          <li >
+            <div class='profile'>
+              <div class='p-grid'>
+                <div class='p-col-12 section-detail p-jc-between'>
+                  <h2>{{ profile.instrument.name }}</h2>
+                  <p-badge *ngIf='profile.isMainProfile' [value]="'musician-profile.MAIN_PROFILE' | translate "></p-badge>
+                </div>
+                <div class='p-col-12 p-md-6 performer-details'>
+                  <h3>Performer</h3>
+                  <p-rating [(ngModel)]='profile.levelAssessmentInner' [cancel]='false' [disabled]='true'></p-rating>
+                </div>
+                <div class='p-col-12 p-md-6 staff-details p-jc-between'>
+                  <div>
+                    <h3>Staff</h3>
+                    <p-rating [(ngModel)]='profile.levelAssessmentTeam' [cancel]='false' [disabled]='true'></p-rating>
+                  </div>
+                  <div>
+                    <button
+                      [queryParams]='{comboInstruments: true}'
+                      [routerLink]='[{outlets: {modal: [profile.id]}}]'
+                      class='p-button-rounded p-button-text p-button-icon-only'
+                      icon='pi pi-pencil'
+                      pButton
+                      type='button'
+                    ></button>
+                  </div>
+                </div>
               </div>
-              <div>
-                <button
-                  [queryParams]='{comboInstruments: true}'
-                  [routerLink]='[{outlets: {modal: [profile.id]}}]'
-                  class='p-button-rounded p-button-text p-button-icon-only'
-                  icon='pi pi-pencil'
-                  pButton
-                  type='button'
-                ></button>
-              </div>
             </div>
-          </div>
-        </div>
-      </li>
-    </ng-container>
-  </ul>
+          </li>
+        </ng-container>
+      </ul>
+    </ng-template>
+  </arpa-graph-ql-feed>
   <p-steps [activeIndex]='activeIndex'
            [model]='(profileNav | async) || []'
            [readonly]='false'

@@ -1,20 +1,13 @@
-<div class='topbar clearfix'>
-  <a (click)='sideBarDisplay = true' class='icon-menu'></a>
-  <a class='logo-link' routerLink='/'>
-    <img class='topbar-logo' routerLink='/' src='assets/organization/icons/organisation_icon.png' />
-  </a>
-  <div class='p-d-none p-d-sm-inline-flex'><h1 class='page-title p-ml-4'>{{ pageTitle | translate }}</h1></div>
-  <ul class='topbar-menu'>
-    <li *ngIf='token$ | async as token' class='user-profile-item'>
-      <a (click)='userprofilemenu.toggle($event); $event.preventDefault();' href='#'>
-        <arpa-avatar [image]='false' [size]='"large"' [user]='token'></arpa-avatar>
-        <span class='user-profile-name'>{{ token.displayName }}</span>
-        <span class='user-profile-role'>{{ getRoleNames(token) }}</span>
-      </a>
-    </li>
-  </ul>
-</div>
+<span>{{ pageTitle | translate }}</span>
+<div class='nav'>
+<ng-container *ngIf='token$ | async as token'>
+  <div *ngIf='(isHandset$ | async) !== true' class='user'>
+    <span class='user-profile-name'>{{ token.displayName }}</span>
+    <span class='user-profile-role'>{{ getRoleNames(token) }}</span>
+  </div>
+  <arpa-avatar [image]='false' [size]='"large"' [user]='token'
+               (click)='userprofilemenu.toggle($event)'
+  ></arpa-avatar>
+</ng-container>
 <arpa-menu #userprofilemenu [popup]='true' menuClass='topbar-menu' name='user'></arpa-menu>
-<p-sidebar [(visible)]='sideBarDisplay'>
-  <arpa-menu name='feature'></arpa-menu>
-</p-sidebar>
+</div>

@@ -9,6 +9,15 @@ if (environment.production) {
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule)
+  .then(() => {
+    let splashScreen = document.getElementById('app-loader');
+    if (splashScreen) {
+      splashScreen.setAttribute('class', 'done');
+      setTimeout(() => { // @ts-ignore
+        splashScreen.remove();
+      }, 1500);
+    }
+  })
   .catch(err => {
     const messageElement = document.querySelector('#message');
     let message = 'Application initialization failed';

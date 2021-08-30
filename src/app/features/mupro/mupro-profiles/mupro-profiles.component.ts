@@ -1,12 +1,47 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { MenuItem } from 'primeng/api';
-import { map } from 'rxjs/operators';
+import { concatAll, flatMap, groupBy, map, mergeAll, tap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { PersonsService } from '../services/persons.service';
 import { PersonDto } from '../../../model/personDto';
 import { MusicianProfileDto } from '../../../model/musicianProfileDto';
 import { SectionDto } from '../../../model/sectionDto';
+import { gql } from 'apollo-angular';
+
+
+const ProfileQuery = gql`
+  query Profile($personId: Uuid){
+    musicianProfiles(first:50, order: { isMainProfile: DESC } where: {
+      personId: { equals: $personId },
+    }
+    ) {
+      pageInfo {
+        hasNextPage,
+        startCursor,
+        endCursor,
+        hasPreviousPage
+      }
+
+      edges {
+        cursor
+        node{
+          id,
+          isMainProfile,
+          levelAssessmentInner,
+          levelAssessmentTeam,
+          deactivation {
+            deactivationStart,
+          },
+          instrument {
+            name,
+            createdAt
+          },
+        }
+      }
+    }
+  }`;
+
 
 @Component({
   selector: 'arpa-mupro-profiles',
@@ -20,11 +55,14 @@ export class MuproProfilesComponent implements OnInit {
   public profiles: Observable<MusicianProfileDto[]>;
   public sections: Observable<SectionDto[]>;
   public activeIndex = 0;
+  public query = ProfileQuery;
+  public personId;
 
   constructor(
     private personService: PersonsService,
     private route: ActivatedRoute,
   ) {
+    this.personId = this.route.snapshot.params?.id;
     this.person = personService.getPerson(this.route.snapshot.params?.id);
   }
 
@@ -59,5 +97,4 @@ export class MuproProfilesComponent implements OnInit {
 
   editProfile(profile: MusicianProfileDto) {
   }
-
 }

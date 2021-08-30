@@ -9,6 +9,8 @@ import { MainModule } from './main/main.module';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { ThemeSwitcherService } from './shared/theme-switcher/theme-switcher.service';
+import { MatIconRegistry } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -35,4 +37,8 @@ import { HttpClientModule } from '@angular/common/http';
   bootstrap: [AppComponent],
 })
 export class AppModule {
+  constructor(private themeService: ThemeSwitcherService, private iconRegistry: MatIconRegistry) {
+    themeService.setTheme();
+    iconRegistry.registerFontClassAlias('icomoon', '');
+  }
 }
