@@ -1,3 +1,4 @@
+import { PersonsListComponent } from './features/persons/persons-list/persons-list.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../@arpa/guards/auth.guard';
@@ -85,6 +86,19 @@ const routes: Routes = [
             icon: 'pi pi-search-plus',
           },
         },
+      },
+      {
+        path: 'persons',
+        component: PersonsListComponent,
+        data: {
+          roles: ['staff'],
+          title: 'persons.PERSONS',
+          menu: {
+            name: 'feature',
+            label: 'persons.PERSONS',
+            icon: 'pi pi-users',
+          },
+        }
       },
     ],
   },

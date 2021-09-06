@@ -204,5 +204,8 @@
     "OLD_VALUES": "Alte Werte",
     "NEW_VALUES": "Neue Werte",
     "DETAILS": "Entity Details"
+  },
+  "persons": {
+    "PERSONS": "Personen"
   }
 }
