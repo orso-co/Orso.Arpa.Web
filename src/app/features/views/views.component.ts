@@ -4,11 +4,6 @@ import { Component, OnInit } from '@angular/core';
   selector: 'arpa-views',
   template: '<router-outlet></router-outlet>',
 })
-export class ViewsComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class ViewsComponent {
 
 }
