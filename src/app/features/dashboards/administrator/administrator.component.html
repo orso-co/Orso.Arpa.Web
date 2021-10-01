@@ -6,7 +6,7 @@
       [roles]="(roles$ | async)!"
       [sectionTree]="(sectionTree$ | async)!"
       (userDeleted)="onUserChanged($event)"
-      (rolesSet)="onUserChanged($event.userName)"
+      (rolesSet)="onUserChanged($event)"
     ></arpa-user-list>
   </div>
 
@@ -17,7 +17,7 @@
       [roles]="(roles$ | async)!"
       [sectionTree]="(sectionTree$ | async)!"
       (userDeleted)="onUserChanged($event)"
-      (rolesSet)="onUserChanged($event.userName)"
+      (rolesSet)="onUserChanged($event)"
     ></arpa-user-list>
   </div>
 

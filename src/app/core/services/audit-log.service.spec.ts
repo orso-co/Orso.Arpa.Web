@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { AuditLogService } from './audit-log.service';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ApiService } from './api.service';
 
 describe('AuditLogService', () => {
@@ -14,7 +14,7 @@ describe('AuditLogService', () => {
         {
           provide: ApiService,
           useValue: {},
-        }
+        },
       ],
     });
     service = TestBed.inject(AuditLogService);

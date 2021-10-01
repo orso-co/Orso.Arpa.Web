@@ -1,18 +1,18 @@
 <h1>{{ 'mupro.PROFILE' | translate }}</h1>
 <div class='p-grid profile'>
-    <div class="p-col-12 p-md-6 p-lg-5">
-      <div class='p-grid'>
-        <div class="p-col-12 p-md-4" style='text-align: center'>
-          <arpa-avatar [user]='(person | async) || {}' [image]='false' size='xlarge'></arpa-avatar>
-        </div>
-        <div class='p-col-12 p-md-8 details'>
-          <div>
-            <div class='name'>{{ getName(person | async) }}</div>
-            <div class='country'>Deutschland, Berlin</div>
-          </div>
+  <div class='p-col-12 p-md-6 p-lg-5'>
+    <div class='p-grid'>
+      <div class='p-col-12 p-md-4' style='text-align: center'>
+        <arpa-avatar [image]='false' [user]='(person | async) || {}' size='xlarge'></arpa-avatar>
+      </div>
+      <div class='p-col-12 p-md-8 details'>
+        <div>
+          <div class='name'>{{ getName(person | async) }}</div>
+          <div class='country'>Deutschland, Berlin</div>
         </div>
       </div>
     </div>
+  </div>
   <div class='p-col-12 p-md-6 p-lg-7'>
 
   </div>
@@ -25,24 +25,25 @@
           <div class='p-grid'>
             <div class='p-col-12 section-detail p-jc-between'>
               <h2>{{ getSection(profile) | async }}</h2>
-              <p-badge [value]="'mupro.MAIN_PROFILE' | translate " *ngIf='profile.isMainProfile'></p-badge>
+              <p-badge *ngIf='profile.isMainProfile' [value]="'MAIN_PROFILE' | translate "></p-badge>
             </div>
             <div class='p-col-12 p-md-6 performer-details'>
               <h3>Performer</h3>
-              <p-rating [(ngModel)]='profile.levelAssessmentInner' [disabled]='true' [cancel]='false'></p-rating>
+              <p-rating [(ngModel)]='profile.levelAssessmentInner' [cancel]='false' [disabled]='true'></p-rating>
             </div>
             <div class='p-col-12 p-md-6 staff-details p-jc-between'>
               <div>
                 <h3>Staff</h3>
-                <p-rating [(ngModel)]='profile.levelAssessmentTeam' [disabled]='true' [cancel]='false'></p-rating>
+                <p-rating [(ngModel)]='profile.levelAssessmentTeam' [cancel]='false' [disabled]='true'></p-rating>
               </div>
               <div>
                 <button
+                  [queryParams]='{comboInstruments: true}'
+                  [routerLink]='[{outlets: {modal: [profile.id]}}]'
+                  class='p-button-rounded p-button-text p-button-icon-only'
+                  icon='pi pi-pencil'
                   pButton
                   type='button'
-                  icon='pi pi-pencil'
-                  (click)='editProfile(profile)'
-                  class='p-button-rounded p-button-text p-button-icon-only'
                 ></button>
               </div>
             </div>
@@ -51,11 +52,11 @@
       </li>
     </ng-container>
   </ul>
-  <p-steps [model]='(profileNav | async) || []'
+  <p-steps [activeIndex]='activeIndex'
+           [model]='(profileNav | async) || []'
            [readonly]='false'
-           [activeIndex]='activeIndex'
            styleClass='dot-profile'
   ></p-steps>
 </div>
-
+<router-outlet name='modal'></router-outlet>
 <arpa-mupro-details></arpa-mupro-details>

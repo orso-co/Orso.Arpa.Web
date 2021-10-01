@@ -119,7 +119,7 @@ export class RegisterComponent {
           this.loadingService.reset();
         }))
       .subscribe(() => {
-        this.notificationsService.info('register.THANKS');
+        this.notificationsService.info('auth.REGISTER_SUCCESS');
         this.router.navigate(['activation']);
       }, error => {
         if (error.status < 500 && error.errors) {

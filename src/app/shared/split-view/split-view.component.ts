@@ -1,10 +1,4 @@
-import {
-  Component,
-  ContentChild,
-  HostListener,
-  Input, NgZone, OnDestroy, OnInit,
-  TemplateRef,
-} from '@angular/core';
+import { Component, ContentChild, HostListener, Input, NgZone, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { routeTransitionAnimations } from './animations';
 import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { filter, pairwise, startWith, takeUntil } from 'rxjs/operators';
@@ -36,36 +30,11 @@ export class SplitViewComponent implements OnDestroy, OnInit {
 
   @ContentChild('contentDefaultTemplate', { static: false })
   contentDefaultTemplateRef: TemplateRef<any>;
-
-  @HostListener('window:resize', ['$event'])
-  onResize() {
-    if (window.innerWidth > this.desktopBreakPoint) {
-      this.viewType = ViewType.Desktop;
-      this.setViewState(ViewState.Show);
-    } else {
-      this.viewType = ViewType.Mobile;
-      if(!this.activeComponent) {
-        this.setViewState(ViewState.Hide);
-      } else {
-        this.setViewState(ViewState.Show);
-      }
-    }
-  }
-
   public _animating: boolean;
-
   public activeComponent: any;
-
   public viewType: string = ViewType.Desktop;
-
   public viewState: string;
-
-  get isDesktop(): boolean {
-    return window.innerWidth >= this.desktopBreakPoint;
-  }
-
   public destroyed = new Subject<any>();
-
   public initialCall: boolean;
 
   constructor(private ngZone: NgZone, private router: Router) {
@@ -77,6 +46,25 @@ export class SplitViewComponent implements OnDestroy, OnInit {
     }
     this.initialCall = true;
     this.setViewState(ViewState.Hide);
+  }
+
+  get isDesktop(): boolean {
+    return window.innerWidth >= this.desktopBreakPoint;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    if (window.innerWidth > this.desktopBreakPoint) {
+      this.viewType = ViewType.Desktop;
+      this.setViewState(ViewState.Show);
+    } else {
+      this.viewType = ViewType.Mobile;
+      if (!this.activeComponent) {
+        this.setViewState(ViewState.Hide);
+      } else {
+        this.setViewState(ViewState.Show);
+      }
+    }
   }
 
   ngOnInit(): void {

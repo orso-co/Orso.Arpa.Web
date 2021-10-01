@@ -8,14 +8,14 @@
 }
 
 img {
-    opacity: 0.7;
-    filter: alpha(opacity=50);
-    width: 100%;
-    padding:10px;
-    transition: all .25s;
+  opacity: 0.7;
+  filter: alpha(opacity=50);
+  width: 100%;
+  padding: 10px;
+  transition: all .25s;
 }
 
 img:hover {
-    opacity: 1.0;
-    filter: alpha(opacity=100);
+  opacity: 1.0;
+  filter: alpha(opacity=100);
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from './profile.service';
-import { IUserProfileDto } from '../../models/IUserProfileDto';
 import { Unsubscribe } from '../../core/decorators/unsubscribe.decorator';
 import { Subscription } from 'rxjs';
+import { MyUserProfileDto } from '../../model/myUserProfileDto';
 
 @Component({
   selector: 'arpa-appointments',
@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
 export class ProfileComponent implements OnInit {
 
   public selection: boolean;
-  public profile: IUserProfileDto;
+  public profile: MyUserProfileDto;
   private menuEventSubscription: Subscription;
 
   constructor(

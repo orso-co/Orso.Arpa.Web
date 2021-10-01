@@ -1,0 +1,112 @@
+<ng-container *ngIf='state === "createOrUpdate"'>
+  <form (submit)='$event.preventDefault()' [formGroup]='form'>
+    <div class='p-fluid p-formgrid p-grid'>
+      <div class='p-col'>
+        <arpa-form-field label='musician-profile.INSTRUMENT' type='field'>
+          <p-dropdown
+            [filter]='true'
+            [options]='(sections | async) || []'
+            [placeholder]='"NOTHING_SELECTED" | translate'
+            formControlName='instrumentId'
+            optionLabel='name'
+            optionValue='id'
+          ></p-dropdown>
+        </arpa-form-field>
+      </div>
+    </div>
+    <div class='p-fluid p-formgrid p-grid'>
+      <div class='p-col'>
+        <arpa-form-field label='musician-profile.LEVEL_ASSESSMENT' type='field'>
+          <p-rating [cancel]='false' [stars]='5' formControlName='levelAssessmentInner'></p-rating>
+        </arpa-form-field>
+      </div>
+    </div>
+    <div *ngIf='(preferredParts | async)' class='p-fluid p-formgrid p-grid'>
+      <div class='p-col'>
+        <arpa-form-field label='musician-profile.PREFERRED_PARTS' type='field'>
+          <p-multiSelect
+            [options]='(preferredParts | async) || []'
+            [placeholder]='"NOTHING_SELECTED" | translate'
+            display='chip'
+            formControlName='preferredPartsInner'
+            optionLabel='label'
+            optionValue='value'
+          ></p-multiSelect>
+        </arpa-form-field>
+      </div>
+    </div>
+    <div class='p-fluid p-formgrid p-grid'>
+      <div class='p-col'>
+        <arpa-form-field label='musician-profile.INQUIRY_STATUS' type='field'>
+          <p-dropdown
+            [options]='(inquiryStatus | async) || []'
+            [placeholder]='"NOTHING_SELECTED" | translate'
+            formControlName='inquiryStatusInnerId'
+            optionLabel='label'
+            optionValue='value'
+          ></p-dropdown>
+        </arpa-form-field>
+      </div>
+    </div>
+    <div class='p-fluid p-formgrid p-grid'>
+      <div class='p-col'>
+        <arpa-form-field label='musician-profile.PREFERRED_POSITIONS' type='field'>
+          <p-multiSelect
+            [options]='(preferredPositions | async) || []'
+            [placeholder]='"NOTHING_SELECTED" | translate'
+            display='chip'
+            formControlName='preferredPositionsInnerIds'
+            optionLabel='label'
+            optionValue='value'
+          ></p-multiSelect>
+        </arpa-form-field>
+      </div>
+    </div>
+    <div class='p-fluid p-formgrid p-grid'>
+      <div class='p-col'>
+        <arpa-form-field label='musician-profile.MAIN_PROFILE' type='checkbox'>
+          <p-checkbox [binary]='true' formControlName='isMainProfile' name='isMainProfile'></p-checkbox>
+        </arpa-form-field>
+      </div>
+    </div>
+    <div class='p-formgroup-inline p-jc-between'>
+      <div class='p-field p-col'>
+        <button
+          (click)='cancel()'
+          [label]="'CANCEL' | translate"
+          class='p-button-danger'
+          icon='pi pi-times'
+          iconPos='left'
+          pButton
+          type='button'
+        ></button>
+      </div>
+      <div class='p-field p-col p-text-right' style='margin-right: 0'>
+        <button
+          (click)='onSubmit()'
+          [disabled]='form.pristine || form.invalid'
+          [label]="(isNew? 'musician-profile.CREATE' : 'SAVE') | translate"
+          icon='pi pi-check'
+          iconPos='left'
+          pButton
+          type='button'
+        ></button>
+      </div>
+    </div>
+  </form>
+</ng-container>
+<ng-container *ngIf='state === "created"'>
+  <div class='p-field p-col p-text-center'>
+    <h1>{{ 'musician-profile.SUCCESSFUL_CREATED' | translate }}</h1>
+  </div>
+  <div class='p-field p-col p-text-center'>
+    <button
+      (click)='close()'
+      [label]="'CLOSE' | translate"
+      icon='pi pi-check'
+      iconPos='left'
+      pButton
+      type='button'
+    ></button>
+  </div>
+</ng-container>

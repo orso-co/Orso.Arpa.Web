@@ -1,39 +1,40 @@
-import { Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap, shareReplay } from 'rxjs/operators';
-import { ISectionDto, ISectionTreeDto } from '../../models/section';
+import { shareReplay, tap } from 'rxjs/operators';
 import { ApiService } from './api.service';
+import { SectionTreeDto } from '../../model/sectionTreeDto';
+import { SectionDto } from '../../model/sectionDto';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SectionService {
-  private baseUrl: string;
-  private sectionTrees = new Map<number | undefined, ISectionTreeDto>();
-  private sections$$ = new BehaviorSubject<ISectionDto[]>([]);
-  sections$: Observable<ISectionDto[]> = this.sections$$.asObservable();
   sectionsLoaded = false;
+  private baseUrl: string;
+  private sectionTrees = new Map<number | undefined, SectionTreeDto>();
+  private sections$$ = new BehaviorSubject<SectionDto[]>([]);
+  sections$: Observable<SectionDto[]> = this.sections$$.asObservable();
 
   constructor(private apiService: ApiService) {
     this.baseUrl = '/sections';
   }
 
-  load(): Observable<ISectionDto[]> {
-    return this.apiService.get<ISectionDto[]>(this.baseUrl).pipe(
+  load(): Observable<SectionDto[]> {
+    return this.apiService.get<SectionDto[]>(this.baseUrl).pipe(
       shareReplay(),
       tap((sections) => (this.sections$$.next(sections))),
       tap(sections => this.sectionsLoaded = true),
     );
   }
 
-  loadTree(treeMaxLevel?: number): Observable<ISectionTreeDto> {
+  loadTree(treeMaxLevel?: number): Observable<SectionTreeDto> {
     let params: HttpParams = new HttpParams();
     if (treeMaxLevel) {
       params = params.set('maxLevel', treeMaxLevel!.toString());
     }
     return this.apiService
-      .get<ISectionTreeDto>(`${this.baseUrl}/tree`, params)
+      .get<SectionTreeDto>(`${this.baseUrl}/tree`, params)
       .pipe(
         shareReplay(),
         tap((tree) => this.sectionTrees.set(treeMaxLevel, tree)),
@@ -44,7 +45,7 @@ export class SectionService {
     return this.sectionTrees.has(treeMaxLevel);
   }
 
-  getTree(treeMaxLevel?: number): ISectionTreeDto | undefined {
+  getTree(treeMaxLevel?: number): SectionTreeDto | undefined {
     return this.sectionTrees.get(treeMaxLevel);
   }
 }

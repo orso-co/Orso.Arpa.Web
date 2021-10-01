@@ -8,7 +8,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ForgotPasswordComponent } from './forgot-password.component';
 import { AuthService } from '../../core/services/auth.service';
 import { NotificationsService } from '../../core/services/notifications.service';
-import { httpLoaderFactory } from '../../core/core.module';
+import { httpLoaderFactory } from '../../common/translate/translate.module';
 
 describe('ForgotPasswordComponent', () => {
   let component: ForgotPasswordComponent;

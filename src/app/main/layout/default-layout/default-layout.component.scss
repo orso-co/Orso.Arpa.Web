@@ -4,4 +4,7 @@
   height: 100%;
   position: relative;
   overflow-x: hidden;
+  @media (min-width: 768px) {
+    padding-top: 3.85rem;
+  }
 }

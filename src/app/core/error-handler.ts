@@ -12,13 +12,13 @@ export class ErrorHandler {
   }
 
   handleError(error: Error | any) {
-    if(error) {
+    if (error) {
       this.zone.run(() => {
         this.loaderService.reset();
         this.logger.error(error);
-        if(error.message) {
+        if (error.message) {
           this.notificationsService.error(error.message);
-        } else if(error.title) {
+        } else if (error.title) {
           this.notificationsService.error(error.title);
         }
       });

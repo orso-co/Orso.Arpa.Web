@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditProjectComponent } from './edit-project.component';
-import {DynamicDialogConfig, DynamicDialogRef} from 'primeng/dynamicdialog';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {PrimeNgModule} from '../../../shared/prime-ng/prime-ng.module';
-import {RouterTestingModule} from '@angular/router/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {httpLoaderFactory} from '../../../core/core.module';
-import {HttpClient} from '@angular/common/http';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PrimeNgModule } from '../../../shared/prime-ng/prime-ng.module';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
+import { httpLoaderFactory } from '../../../common/translate/translate.module';
 
 describe('EditProjectComponent', () => {
   let component: EditProjectComponent;
@@ -17,7 +17,7 @@ describe('EditProjectComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditProjectComponent ],
+      declarations: [EditProjectComponent],
       imports: [
         FormsModule,
         ReactiveFormsModule,
@@ -40,13 +40,13 @@ describe('EditProjectComponent', () => {
               projects: of([]),
               venues: of([]),
               genre: of([]),
-              state: of([])
+              state: of([]),
             },
           },
         },
       ],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

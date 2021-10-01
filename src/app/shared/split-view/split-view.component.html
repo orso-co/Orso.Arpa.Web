@@ -1,27 +1,28 @@
-<div class='wrapper' [ngClass]="{'desktop':isDesktop}">
-  <div class='side-view p-mb-2 p-mr-2'>
+<div [ngClass]="{'desktop':isDesktop}" class='wrapper'>
+  <div class='side-view p-mr-2'>
     <ng-container
-      [ngTemplateOutlet]='sideViewTemplateRef || defaultSideViewTemplate'
       [ngTemplateOutletContext]='{ $implicit: this }'
+      [ngTemplateOutlet]='sideViewTemplateRef || defaultSideViewTemplate'
     ></ng-container>
   </div>
-  <div class='content-view'
-       [@stateTrigger]='trigger(viewState)'
+  <div (@stateTrigger.done)='animating(false)'
        (@stateTrigger.start)='animating(true)'
-       (@stateTrigger.done)='animating(false)'
+       [@stateTrigger]='trigger(viewState)'
+       class='content-view'
   >
     <ng-container>
-      <i class='pi pi-arrow-left back-link' (click)='hideContentView()'></i>
+      <i (click)='hideContentView()' class='pi pi-arrow-left back-link'></i>
     </ng-container>
     <ng-container
       *ngIf='!outlet.isActivated'
-      [ngTemplateOutlet]='contentDefaultTemplateRef || contentDefaultTemplate'
       [ngTemplateOutletContext]='{ $implicit: this }'
+      [ngTemplateOutlet]='contentDefaultTemplateRef || contentDefaultTemplate'
     ></ng-container>
     <router-outlet
+      #outlet='outlet'
       (activate)='onRouteActivation($event)'
-      (deactivate)='onRouteDeactivation()'
-      #outlet='outlet'></router-outlet>
+      (deactivate)='onRouteDeactivation()'></router-outlet>
+    <router-outlet name='modal'></router-outlet>
   </div>
 </div>
 

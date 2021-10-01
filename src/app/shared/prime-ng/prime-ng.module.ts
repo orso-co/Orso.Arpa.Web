@@ -1,4 +1,4 @@
-import { Skeleton, SkeletonModule } from 'primeng/skeleton';
+import { SkeletonModule } from 'primeng/skeleton';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
@@ -38,6 +38,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { BadgeModule } from 'primeng/badge';
 import { ChartModule } from 'primeng/chart';
+import { TabViewModule } from 'primeng/tabview';
 
 const MODULES = [
   InputTextModule,
@@ -45,6 +46,7 @@ const MODULES = [
   PasswordModule,
   MessageModule,
   TabMenuModule,
+  TabViewModule,
   ListboxModule,
   AvatarModule,
   CardModule,
@@ -75,7 +77,7 @@ const MODULES = [
   InputTextareaModule,
   BadgeModule,
   SkeletonModule,
-  ChartModule
+  ChartModule,
 ];
 
 @NgModule({

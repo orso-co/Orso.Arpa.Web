@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
-import { IConfirmEmailDto } from '../../models/IConfirmEmailDto';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { NotificationsService } from '../../core/services/notifications.service';
 import { first } from 'rxjs/operators';
+import { ConfirmEmailDto } from '../../model/confirmEmailDto';
 
 @Component({
   selector: 'arpa-emailconfirmation',
@@ -22,7 +21,7 @@ export class EmailConfirmationComponent implements OnInit {
     this.route.queryParams
       .pipe(first())
       .subscribe(params => {
-        const confirmEmail: IConfirmEmailDto = { token: params.token, email: params.email };
+        const confirmEmail: ConfirmEmailDto = { token: params.token, email: params.email };
         this.authService
           .confirmMail(confirmEmail)
           .pipe(first())

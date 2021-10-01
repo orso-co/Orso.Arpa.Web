@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuditLogComponent } from './audit-log.component';
-import {PrimeNgModule} from '../prime-ng/prime-ng.module';
-import {RouterTestingModule} from '@angular/router/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {httpLoaderFactory} from '../../core/core.module';
-import {HttpClient} from '@angular/common/http';
+import { PrimeNgModule } from '../prime-ng/prime-ng.module';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { httpLoaderFactory } from '../../common/translate/translate.module';
 
 describe('AuditLogComponent', () => {
   let component: AuditLogComponent;
@@ -14,7 +14,7 @@ describe('AuditLogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AuditLogComponent ],
+      declarations: [AuditLogComponent],
       imports: [
         PrimeNgModule,
         RouterTestingModule,
@@ -28,7 +28,7 @@ describe('AuditLogComponent', () => {
         }),
       ],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

@@ -20,7 +20,7 @@ describe('MuproComponent', () => {
         { provide: MuproService, useValue: {} },
       ],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

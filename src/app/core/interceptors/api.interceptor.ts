@@ -1,18 +1,13 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor,
-} from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable, of, Subject, throwError } from 'rxjs';
 import { JwtService } from '../services/jwt.service';
 import { Router } from '@angular/router';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 import { ConfigService } from '../services/config.service';
-import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../services/auth.service';
 import { NotificationsService } from '../services/notifications.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {

@@ -5,8 +5,7 @@ import { UserComponent } from './user/user.component';
 import { MusicianComponent } from './musician/musician.component';
 import { ProfileResolver } from './resolvers/profile.resolver';
 import { MyAppointmentsComponent } from './my-appointments/my-appointments.component';
-import { RoleNames } from '../../models/role-names';
-import { AppointmentParticipationPredictionListResolver } from '../../core/resolvers/appointment-participation-prediction-list.resolver';
+import { RoleNames } from '../../model/roleNames';
 import { ProfileMusicianResolver } from './resolvers/profile-musician.resolver';
 import { SectionsResolver } from './resolvers/sections.resolver';
 
@@ -14,8 +13,9 @@ const routes: Routes = [
   {
     path: '',
     component: ProfileComponent,
+    runGuardsAndResolvers: 'always',
     resolve: {
-      profile: ProfileResolver
+      profile: ProfileResolver,
     },
     children: [
       {
@@ -27,16 +27,13 @@ const routes: Routes = [
         path: 'user',
         component: UserComponent,
         resolve: {
-          profile: ProfileResolver
+          profile: ProfileResolver,
         },
       },
       {
         path: 'appointments',
         component: MyAppointmentsComponent,
         data: { roles: [RoleNames.performer, RoleNames.staff, RoleNames.admin] },
-        resolve: {
-          predictions: AppointmentParticipationPredictionListResolver,
-        },
       },
       {
         path: 'musician',
@@ -45,9 +42,17 @@ const routes: Routes = [
           profiles: ProfileMusicianResolver,
           sections: SectionsResolver,
         },
+        runGuardsAndResolvers: 'always',
+        children: [
+          {
+            path: '',
+            outlet: 'modal',
+            loadChildren: () => import('../musician-profile/musician-profile.module').then(m => m.MusicianProfileModule),
+          },
+        ],
       },
-    ]
-  }
+    ],
+  },
 ];
 
 @NgModule({

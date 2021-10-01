@@ -3,8 +3,8 @@ import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
-import { IProjectDto } from '../../models/IProjectDto';
-import { IProjectParticipation } from '../../models/projects';
+import { ProjectDto } from '../../model/projectDto';
+import { ProjectParticipationDto } from '../../model/projectParticipationDto';
 
 @Injectable({
   providedIn: 'root',
@@ -16,25 +16,25 @@ export class ProjectService {
     this.baseUrl = '/projects';
   }
 
-  public load(includeCompleted?: boolean): Observable<IProjectDto[]> {
+  public load(includeCompleted?: boolean): Observable<ProjectDto[]> {
     if (includeCompleted) {
       const params = new HttpParams().set('includeCompleted', includeCompleted.toString());
 
-      return this.apiService.get<IProjectDto[]>(this.baseUrl, params).pipe(shareReplay());
+      return this.apiService.get<ProjectDto[]>(this.baseUrl, params).pipe(shareReplay());
     }
 
-    return this.apiService.get<IProjectDto[]>(this.baseUrl).pipe(shareReplay());
+    return this.apiService.get<ProjectDto[]>(this.baseUrl).pipe(shareReplay());
   }
 
-  public create(project: IProjectDto): Observable<IProjectDto> {
-    return this.apiService.post<IProjectDto>(this.baseUrl, project);
+  public create(project: ProjectDto): Observable<ProjectDto> {
+    return this.apiService.post<ProjectDto>(this.baseUrl, project);
   }
 
-  public update(project: IProjectDto): Observable<any> {
+  public update(project: ProjectDto): Observable<any> {
     return this.apiService.put(`${this.baseUrl}/${project.id}`, project).pipe(shareReplay());
   }
 
-  public getParticipations(id: string): Observable<IProjectParticipation[]> {
-    return this.apiService.get<IProjectParticipation[]>(`${this.baseUrl}/${id}/participations`).pipe(shareReplay());
+  public getParticipations(id: string): Observable<ProjectParticipationDto[]> {
+    return this.apiService.get<ProjectParticipationDto[]>(`${this.baseUrl}/${id}/participations`).pipe(shareReplay());
   }
 }

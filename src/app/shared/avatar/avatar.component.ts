@@ -19,15 +19,6 @@ export class AvatarComponent {
   constructor() {
   }
 
-  private hashStr(str: string) {
-    let hash = 0;
-    for (let i = 0; i < str.length; i++) {
-      // eslint-disable-next-line no-bitwise
-      hash = str.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    return hash;
-  }
-
   getColor() {
     const str = this.user?.displayName ? this.user?.displayName :
       (this.user?.givenName || '') + (this.user?.surname || '');
@@ -49,6 +40,15 @@ export class AvatarComponent {
       const [last] = this.user?.surname || ' ';
       return `${first[0].toUpperCase()}${last[0].toUpperCase()}`;
     }
+  }
+
+  private hashStr(str: string) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      // eslint-disable-next-line no-bitwise
+      hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return hash;
   }
 
 }

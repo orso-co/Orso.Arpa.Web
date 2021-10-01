@@ -1,0 +1,10 @@
+<ul>
+  <li (click)='onSelect(option)' *ngFor='let option of options'>
+    <div class='p-d-flex'>
+      <div class='selected p-ml-2 p-mr-2'>
+        <i *ngIf='selected === option.value' class='pi pi-check'></i>
+      </div>
+      <div class='label'>{{option.label}}</div>
+    </div>
+  </li>
+</ul>

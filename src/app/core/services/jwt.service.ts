@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { RoleNames } from '../../models/role-names';
+import { RoleNames } from '../../model/roleNames';
 
 const JWT_TOKEN_KEY = 'jwtToken';
 
@@ -36,7 +36,7 @@ export class JwtService {
       displayName: token.name,
       roles: this.normalizeRoles(token),
       userId: token.sub,
-      personId: token[`${token.aud}/person_id`]
+      personId: token[`${token.aud}/person_id`],
     };
   }
 

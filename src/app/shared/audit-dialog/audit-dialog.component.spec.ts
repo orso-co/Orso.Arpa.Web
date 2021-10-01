@@ -12,10 +12,10 @@ describe('AuditDialogComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        AuditDialogComponent
+        AuditDialogComponent,
       ],
       imports: [
-        TranslateMockModule
+        TranslateMockModule,
       ],
       providers: [
         {
@@ -27,9 +27,10 @@ describe('AuditDialogComponent', () => {
         {
           provide: AuditLogService,
           useValue: {
-            getTypeName: () => {},
+            getTypeName: () => {
+            },
           },
-        }
+        },
       ],
     })
       .compileComponents();

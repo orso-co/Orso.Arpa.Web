@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
-import { IProjectDto } from '../../../models/IProjectDto';
-import { IVenueDto } from '../../../models/appointment';
 import { Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { map } from 'rxjs/operators';
+import { ProjectDto } from '../../../model/projectDto';
+import { VenueDto } from '../../../model/venueDto';
 
 @Component({
   selector: 'arpa-edit-project',
@@ -15,9 +15,9 @@ import { map } from 'rxjs/operators';
 })
 export class EditProjectComponent implements OnInit {
 
-  project: IProjectDto = this.config.data.project;
+  project: ProjectDto = this.config.data.project;
   venues: Observable<SelectItem[]> = this.config.data.venues.pipe(map(
-    (venues: IVenueDto[]) => venues.map((v) => ({
+    (venues: VenueDto[]) => venues.map((v) => ({
       label: this.getAddress(v),
       value: v.id,
     } as SelectItem)),
@@ -30,31 +30,22 @@ export class EditProjectComponent implements OnInit {
     { label: this.translate.instant('NO'), value: false },
   ];
   parentProject: Observable<SelectItem[]> = this.config.data.projects.pipe(map(
-    (projects: IProjectDto[]) => projects
-      .filter((project: IProjectDto) => project !== this.project)
+    (projects: ProjectDto[]) => projects
+      .filter((project: ProjectDto) => project !== this.project)
       .map((project) => ({ label: project.title, value: project.id } as SelectItem)),
   ));
 
   form: FormGroup;
 
-  get isNew(): boolean {
-    return !this.project;
-  }
-
   constructor(public config: DynamicDialogConfig,
               private formBuilder: FormBuilder,
               public ref: DynamicDialogRef,
               private translate: TranslateService,
-  ) {}
+  ) {
+  }
 
-  private getAddress(venue: IVenueDto): string{
-    if(venue.address) {
-      const { city, urbanDistrict } = venue.address;
-      const comb = `${(city?city:'')}${(city&&urbanDistrict?' ': '')}${urbanDistrict?urbanDistrict:''}`;
-      return `${comb}${comb?' | ':''}${venue.name}`;
-    } else{
-      return venue.name;
-    }
+  get isNew(): boolean {
+    return !this.project;
   }
 
   public ngOnInit(): void {
@@ -85,10 +76,20 @@ export class EditProjectComponent implements OnInit {
     if (this.form.invalid || this.form.pristine) {
       return;
     }
-    this.ref.close({ ...this.project, ...this.form.value } as IProjectDto);
+    this.ref.close({ ...this.project, ...this.form.value } as ProjectDto);
   }
 
   public cancel(): void {
     this.ref.close(null);
+  }
+
+  private getAddress(venue: VenueDto): string {
+    if (venue.address) {
+      const { city, urbanDistrict } = venue.address;
+      const comb = `${(city ? city : '')}${(city && urbanDistrict ? ' ' : '')}${urbanDistrict ? urbanDistrict : ''}`;
+      return `${comb}${comb ? ' | ' : ''}${venue.name}`;
+    } else {
+      return venue.name;
+    }
   }
 }

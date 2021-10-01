@@ -5,8 +5,10 @@ import { MuproComponent } from './mupro.component';
 import { MuProRoutingModule } from './mupro-routing.module';
 import { MuproDetailsComponent } from './mupro-details/mupro-details.component';
 import { MuproProfilesComponent } from './mupro-profiles/mupro-profiles.component';
-import { TranslateModule } from '@ngx-translate/core';
 import { MuproService } from './services/mupro.service';
+import { CommonTranslateModule } from '../../common/translate';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../../core/services/language.service';
 
 
 @NgModule({
@@ -15,11 +17,21 @@ import { MuproService } from './services/mupro.service';
     CommonModule,
     SharedModule,
     MuProRoutingModule,
-    TranslateModule,
+    CommonTranslateModule.forChild(['mupro', 'musician-profile']),
   ],
   providers: [
-    MuproService
-  ]
+    MuproService,
+  ],
 })
 export class MuProModule {
+  constructor(private translateService: TranslateService, private languageService: LanguageService) {
+    languageService.languageEvent.subscribe(lang => {
+      /**
+       * Reset lang for lazy module.
+       * Fixes: https://github.com/ngx-translate/core/issues/1193
+       */
+      translateService.currentLang = '';
+      translateService.use(lang);
+    });
+  }
 }

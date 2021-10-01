@@ -36,6 +36,7 @@
     .section-detail {
       display: flex;
       flex: 1 auto;
+
       h2 {
         margin-top: 0;
       }
@@ -81,7 +82,6 @@
     }
 
 
-
     &.p-steps .p-steps-item.p-highlight .p-steps-number {
       background: rgba(100, 181, 246, 0.56);
       cursor: default;
@@ -104,8 +104,9 @@
 
   .profile {
     .p-mr-3 {
-      margin-right: inherit!important;
+      margin-right: inherit !important;
     }
+
     @media (min-width: 768px) {
       [size="xxlarge"] {
         .p-avatar.p-avatar-image {

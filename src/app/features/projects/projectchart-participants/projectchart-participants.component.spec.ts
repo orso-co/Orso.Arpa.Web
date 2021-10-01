@@ -8,9 +8,9 @@ describe('ProjectchartParticipantsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProjectchartParticipantsComponent ]
+      declarations: [ProjectchartParticipantsComponent],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

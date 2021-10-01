@@ -2,21 +2,30 @@ import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
 import { SelectItem } from 'primeng/api';
-import { IAppointmentDto, ICalendarEvent, IVenueDto } from 'src/app/models/appointment';
-import { IProjectDto } from 'src/app/models/IProjectDto';
-import { DateRange } from 'src/app/models/date-range';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Observable, Subscription } from 'rxjs';
 import { first, map } from 'rxjs/operators';
-import { ISectionDto } from 'src/app/models/section';
 import { AppointmentService } from '../../../core/services/appointment.service';
 import { NotificationsService } from '../../../core/services/notifications.service';
 import { SectionService } from '../../../core/services/section.service';
 import { EditAppointmentComponent } from '../edit-appointment/edit-appointment.component';
 import { Unsubscribe } from '../../../core/decorators/unsubscribe.decorator';
+import { ProjectDto } from '../../../model/projectDto';
+import { VenueDto } from '../../../model/venueDto';
+import { AppointmentDto } from '../../../model/appointmentDto';
+import { SectionDto } from '../../../model/sectionDto';
+import { DateRange } from '../../../model/dateRange';
+
+export interface CalendarEvent {
+  id: string;
+  allDay: boolean;
+  start: Date;
+  end: Date;
+  title: string;
+}
 
 @Component({
   selector: 'arpa-appointments',
@@ -32,21 +41,21 @@ export class AppointmentsComponent {
   salaryPatternOptions: SelectItem[] = [];
   salaryOptions: SelectItem[] = [];
   expectationOptions: SelectItem[] = [];
-  sections: ISectionDto[] = [];
-  projects: IProjectDto[] = [];
-  venues: IVenueDto[] = [];
+  sections: SectionDto[] = [];
+  projects: ProjectDto[] = [];
+  venues: VenueDto[] = [];
   predictionOptions: SelectItem[] = [];
   resultOptions: SelectItem[] = [];
 
   fullCalendarOptions$: Observable<any>;
-  events: ICalendarEvent[] = [];
-  private _appointments: IAppointmentDto[] = [];
+  events: CalendarEvent[] = [];
+  private _appointments: AppointmentDto[] = [];
 
-  get appointments(): IAppointmentDto[] {
+  get appointments(): AppointmentDto[] {
     return this._appointments;
   }
 
-  set appointments(values: IAppointmentDto[]) {
+  set appointments(values: AppointmentDto[]) {
     this._appointments = values;
     this.events = values.map((a) => this.mapAppointmentToCalendarEvent(a));
   }
@@ -122,7 +131,7 @@ export class AppointmentsComponent {
     );
   }
 
-  mapAppointmentToCalendarEvent(appointment: IAppointmentDto): ICalendarEvent {
+  mapAppointmentToCalendarEvent(appointment: AppointmentDto): CalendarEvent {
     const isAllDay = this.isAllDayEvent(appointment);
 
     /* fullCalendar multiple day all day events display one day short. This is an issue if an event
@@ -145,7 +154,7 @@ export class AppointmentsComponent {
     };
   }
 
-  isAllDayEvent(appointment: IAppointmentDto | undefined): boolean {
+  isAllDayEvent(appointment: AppointmentDto | undefined): boolean {
     if (appointment === undefined) {
       return false;
     }
@@ -160,7 +169,7 @@ export class AppointmentsComponent {
     return isAllDay;
   }
 
-  changeDates(oldEvent: ICalendarEvent, changedEvent: ICalendarEvent): void {
+  changeDates(oldEvent: CalendarEvent, changedEvent: CalendarEvent): void {
     let newStartTime: Date | null = null;
     let newEndTime: Date | null = null;
     if (oldEvent.start !== changedEvent.start) {
@@ -236,12 +245,12 @@ export class AppointmentsComponent {
         salaryOptions: this.salaryOptions,
         expectationOptions: this.expectationOptions,
       },
-      header: this.translate.instant('editappointments.CREATE'),
-      style: { 'max-width': '1500px' },
+      header: this.translate.instant('appointments.CREATE'),
+      styleClass: 'form-modal',
       dismissableMask: true,
     });
 
-    ref.onClose.pipe(first()).subscribe((appointment: IAppointmentDto) => {
+    ref.onClose.pipe(first()).subscribe((appointment: AppointmentDto) => {
       if (appointment) {
         this.appointments = [...this.appointments, appointment];
       }
@@ -265,12 +274,12 @@ export class AppointmentsComponent {
         expectationOptions: this.expectationOptions,
         isAllDayEvent: this.isAllDayEvent(appointment),
       },
-      header: this.translate.instant('editappointments.EDIT'),
-      style: { 'max-width': '1500px' },
+      header: this.translate.instant('appointments.EDIT'),
+      styleClass: 'form-modal',
       dismissableMask: true,
     });
 
-    ref.onClose.pipe(first()).subscribe((result: IAppointmentDto | string) => {
+    ref.onClose.pipe(first()).subscribe((result: AppointmentDto | string) => {
       if (result) {
         if (typeof result === 'string') {
           this.appointments.splice(

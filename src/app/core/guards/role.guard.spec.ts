@@ -11,8 +11,8 @@ describe('RoleGuard', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        HttpClientTestingModule
-      ]
+        HttpClientTestingModule,
+      ],
     });
     guard = TestBed.inject(RoleGuard);
   });

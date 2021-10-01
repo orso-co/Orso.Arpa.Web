@@ -17,6 +17,7 @@ const routes: Routes = [
       {
         path: ':id',
         component: MuproProfilesComponent,
+        runGuardsAndResolvers: 'always',
         resolve: {
           profiles: ProfileMusicianResolver,
           sections: SectionsResolver,
@@ -25,6 +26,11 @@ const routes: Routes = [
           {
             path: '',
             redirectTo: 'projects',
+          },
+          {
+            path: '',
+            outlet: 'modal',
+            loadChildren: () => import('../musician-profile/musician-profile.module').then(m => m.MusicianProfileModule),
           },
           {
             path: 'projects', component: ProjectListComponent,

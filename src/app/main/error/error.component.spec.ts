@@ -12,7 +12,7 @@ describe('ErrorComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        TranslateMockModule
+        TranslateMockModule,
       ],
       declarations: [ErrorComponent],
     })

@@ -1,25 +1,29 @@
 <arpa-split-view>
   <ng-template #sideViewTemplate>
-    <div class='p-flex-column' [class.hasSelection]='person'>
-      <p-listbox
-        [options]='persons'
-        optionValue='id'
-        optionLabel='filterOption'
-        [(ngModel)]='person'
-        [filter]='true'
-        (onClick)='select($event)'
-        filterPlaceHolder='Search'
-      >
-        <ng-template let-user pTemplate='item'>
-          <arpa-avatar [user]='user' [image]='false' size='large'></arpa-avatar>
-          <div class='details'>
-            <div class='name'>{{user.givenName}} {{user.surname}}</div>
-            <div class='profile'>...</div>
-            <div class='country'>Deutschland, Berlin</div>
-          </div>
-        </ng-template>
-      </p-listbox>
-    </div>
+    <arpa-graph-ql-feed [contentTemplate]='feed' [query]='query'>
+      <ng-template #feed let-feed>
+        <div [class.hasSelection]='person' class='p-flex-column'>
+          <p-listbox
+            (onClick)='select($event)'
+            [(ngModel)]='person'
+            [filter]='true'
+            [options]='(feed.values | async) || []'
+            filterPlaceHolder='Search'
+            optionLabel='filterOption'
+            optionValue='id'
+          >
+            <ng-template let-profile pTemplate='item'>
+              <arpa-avatar [image]='false' [user]='profile.person' size='large'></arpa-avatar>
+              <div class='details'>
+                <div class='name'>{{profile.person.givenName}} {{profile.person.surname}}</div>
+                <div class='profile'>{{profile.instrument.name}}</div>
+                <div class='country'>Deutschland, Berlin</div>
+              </div>
+            </ng-template>
+          </p-listbox>
+        </div>
+      </ng-template>
+    </arpa-graph-ql-feed>
   </ng-template>
   <ng-template #contentDefaultTemplate>
     <div class='default p-d-flex'>

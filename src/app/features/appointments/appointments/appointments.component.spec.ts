@@ -1,8 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { DialogService } from 'primeng/dynamicdialog';
-import { waitForAsync } from '@angular/core/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AppointmentsComponent } from './appointments.component';
 import { of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';

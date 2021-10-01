@@ -1,4 +1,4 @@
-import {trigger, style, animate, transition, state } from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 const defaultStyles = {
   position: 'absolute',
@@ -7,7 +7,7 @@ const defaultStyles = {
   height: '100%',
   zIndex: 600,
   overflowX: 'hidden',
-}
+};
 
 export const routeTransitionAnimations = [
   trigger('stateTrigger', [
@@ -20,14 +20,14 @@ export const routeTransitionAnimations = [
         ...defaultStyles,
         left: '100%',
       }),
-      animate('.25s ease-in')
+      animate('.25s ease-in'),
     ]),
     transition('mobileHide => mobileShow', [
       style({
         ...defaultStyles,
         left: '100%',
       }),
-      animate('.25s ease-in')
+      animate('.25s ease-in'),
     ]),
     state('mobileHide', style({
       ...defaultStyles,
@@ -38,7 +38,7 @@ export const routeTransitionAnimations = [
         ...defaultStyles,
         left: 0,
       }),
-      animate('.125s ease-out')
+      animate('.125s ease-out'),
     ]),
-  ])
+  ]),
 ];

@@ -1,6 +1,6 @@
 :host ::ng-deep {
 
-  router-outlet + * {
+  router-outlet:not([name]) + * {
     display: flex;
     height: 100%;
     min-height: 100%;
@@ -9,6 +9,7 @@
   }
 
 }
+
 .wrapper {
 
   flex-direction: row !important;
@@ -29,14 +30,16 @@
     height: 100%;
     max-height: 100%;
     overflow-y: scroll;
+    padding-bottom: 2rem;
   }
 
   &.desktop {
     .side-view {
       width: 14rem;
     }
+
     .content-view {
-      position: inherit!important;
+      position: inherit !important;
       background-color: inherit;
       padding: 1rem 1rem 0 0;
     }

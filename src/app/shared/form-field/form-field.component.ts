@@ -1,4 +1,4 @@
-import { Component, ContentChild, ElementRef, HostBinding, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ContentChild, ElementRef, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControlName } from '@angular/forms';
 import { errorTransitionAnimations } from './animations';
 import { TranslateService } from '@ngx-translate/core';
@@ -21,16 +21,7 @@ export class FormFieldComponent implements OnInit {
   @ViewChild('wrapper', { static: true }) wrapper: ElementRef;
 
 
-  constructor(private translate: TranslateService) { }
-
-  ngOnInit(): void {
-    if (this.type === 'field') {
-      this.wrapper.nativeElement.className = 'p-field';
-    } else if (this.type === 'checkbox') {
-      this.wrapper.nativeElement.className = 'p-field p-field-checkbox';
-    } else {
-      this.wrapper.nativeElement.className = 'p-field p-float-label';
-    }
+  constructor(private translate: TranslateService) {
   }
 
   get hasErrors(): boolean {
@@ -51,13 +42,23 @@ export class FormFieldComponent implements OnInit {
           });
           break;
         default:
-          if(this.customError) {
+          if (this.customError) {
             errorMessage = this.translate.instant(this.customError);
           } else {
             errorMessage = this.translate.instant('form.GENERIC');
           }
       }
       return errorMessage;
+    }
+  }
+
+  ngOnInit(): void {
+    if (this.type === 'field') {
+      this.wrapper.nativeElement.className = 'p-field';
+    } else if (this.type === 'checkbox') {
+      this.wrapper.nativeElement.className = 'p-field p-field-checkbox';
+    } else {
+      this.wrapper.nativeElement.className = 'p-field p-float-label';
     }
   }
 }
