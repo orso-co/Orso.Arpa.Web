@@ -26,25 +26,17 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/manifest.webmanifest"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": [
-              "node_modules/@fullcalendar/core/locales-all.min.js",
-              "node_modules/chart.js/dist/Chart.js"
-            ],
+            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
+            "styles": ["src/styles.scss"],
+            "scripts": ["node_modules/@fullcalendar/core/locales-all.min.js", "node_modules/chart.js/dist/Chart.js"],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json",
             "allowedCommonJsDependencies": [
               "@fullcalendar/timegrid",
               "@fullcalendar/daygrid",
               "@fullcalendar/interaction",
-              "@stoplight/json-ref-resolver"
+              "@stoplight/json-ref-resolver",
+              "chart.js"
             ]
           },
           "configurations": {
@@ -112,24 +104,15 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/manifest.webmanifest"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       }
