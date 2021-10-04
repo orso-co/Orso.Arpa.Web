@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslateService } from 'src/@arpa/translate';
 import { PersonsRoutingModule} from './persons-routing.module';
-import { PersonListComponent } from './person-list/persons-list.component';
+import { PersonListComponent } from './person-list/person-list.component';
 import { LanguageService } from 'src/@arpa/services/language.service';
 
 

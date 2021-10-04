@@ -1,4 +1,4 @@
-import { PersonListComponent } from './features/persons/person-list/persons-list.component';
+import { PersonListComponent } from './features/persons/person-list/person-list.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../@arpa/guards/auth.guard';
