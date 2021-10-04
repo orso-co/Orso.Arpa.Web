@@ -17,7 +17,6 @@ import { map } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RoleNames } from '../../../@arpa/models/roleNames';
 import { AuthService } from '../../../@arpa/services/auth.service';
 import { MenuItem } from 'primeng/api';
 import { WidgetComponent } from './widget/widget.component';
@@ -75,7 +74,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   routeRoleSubscription: Subscription;
   widgetRefsSubscription: Subscription;
   menuItems: Observable<MenuItem[]>;
-  dashboardRole: RoleNames;
+  dashboardRole: string;
   widgetLayout: Observable<CardLayout | Record<any, any>> = this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Small]).pipe(
     map(({ matches }) => {
       if (matches) {

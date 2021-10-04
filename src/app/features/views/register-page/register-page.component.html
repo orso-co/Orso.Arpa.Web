@@ -33,7 +33,8 @@
                   autocomplete='off'
                   formControlName='password'></p-password>
       <ng-template #footerTemplate>
-        <arpa-password-strength (valid)='setPasswordState($event)' [control]="registerFormGroup.controls['password']"></arpa-password-strength>
+        <arpa-password-strength (valid)='setPasswordState($event)'
+                                [control]="registerFormGroup.controls['password']"></arpa-password-strength>
         <p class='passwordInfo'>
           <i class='pi pi-info-circle'></i>{{ 'PASSWORD_INFO' | translate }}
         </p>

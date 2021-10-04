@@ -57,7 +57,7 @@ export class UserWidgetComponent implements OnDestroy {
     });
     this.getUsers();
     this.maxRoleLevel = this.authService.getMaxRoleLevelOfCurrentUser();
-    this.roles = this.roleService.getRoles();
+    this.roles = this.roleService.loadRoles();
     this.isMobile = breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Small]).pipe(map(({ matches }) => matches));
   }
 

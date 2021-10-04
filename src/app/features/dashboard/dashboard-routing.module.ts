@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { RoleDashboardResolver } from './role-dashboard-resolver.service';
+import { DashboardRoleGuard } from './dashboard-role.guard';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
   }, {
     path: ':role',
     runGuardsAndResolvers: 'paramsOrQueryParamsChange',
+    canActivate: [DashboardRoleGuard],
     component: DashboardComponent,
     resolve: {
       dashboardRole: RoleDashboardResolver,

@@ -9,9 +9,9 @@ Orso.Arpa.Web.git
 │   README.md
 │   ... npm and angular configurations ...
 │
-└─── .github // Global components library
+└─── .github Githooks
+└─── @arpa // Global components library
 └─── src
-    │    file011.txt
     └─── @arpa 
     └─── app 
     └─── assets 

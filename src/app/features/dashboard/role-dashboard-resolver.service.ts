@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AuthService } from '../../../@arpa/services/auth.service';
-import { RoleService } from '../../../@arpa/services/role.service';
-import { map, mergeMap, take } from 'rxjs/operators';
-import { RoleDto } from '../../../@arpa/models/roleDto';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +10,6 @@ import { RoleDto } from '../../../@arpa/models/roleDto';
 export class RoleDashboardResolver implements Resolve<string> {
   constructor(
     private authService: AuthService,
-    private roleService: RoleService,
   ) {
   }
 
@@ -20,20 +17,11 @@ export class RoleDashboardResolver implements Resolve<string> {
 
     let { role: roleName } = route.params;
 
-    return this.authService.getMaxRoleLevelOfCurrentUser()
-      .pipe(
-        take(1),
-        mergeMap(level => this.roleService.loadRoles()
-          .pipe(take(1), map((roles: RoleDto[]) => {
-            roles.forEach((role) => {
-              if (!roleName && level === role.roleLevel) {
-                roleName = role.roleName as string;
-              }
-            });
-            return roleName;
-          })),
-        ),
-        map(name => name),
-      );
+    return of(this.authService.getCurrentUser()).pipe(map((token) => {
+      if (!roleName) {
+        roleName = token.roles[0];
+      }
+      return roleName;
+    }));
   }
 }

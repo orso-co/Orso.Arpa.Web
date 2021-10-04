@@ -24,10 +24,6 @@ export class RoleService implements Resolve<boolean> {
       .pipe(tap(roles => this.roles$$.next(roles)), tap(roles => this.loaded = true));
   }
 
-  getRoles() {
-    return this.roles$$;
-  }
-
   resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
     return this.loadRoles().pipe(map(() => this.loaded));
   }
