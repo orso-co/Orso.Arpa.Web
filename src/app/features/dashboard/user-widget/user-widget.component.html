@@ -106,10 +106,10 @@
               class='pi pi-envelope p-mr-2'></i>{{ selectedUser!.email }}</a>
           </p>
           <p>
-            <span>{{ 'userlist.REGISTERED_SINCE' | translate }}</span> {{ selectedUser!.createdAt | date: 'short' }}
+            <span>{{ 'REGISTERED_SINCE' | translate }}</span> {{ selectedUser!.createdAt | date: 'short' }}
           </p>
           <fieldset>
-            <legend>{{ 'userlist.ASSIGN_ROLES' | translate }}</legend>
+            <legend>{{ 'ASSIGN_ROLES' | translate }}</legend>
             <div *ngFor='let role of (roles | async)' class='p-field-checkbox'>
               <p-checkbox
                 [(ngModel)]='selectedUserRoles'

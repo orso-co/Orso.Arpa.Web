@@ -62,10 +62,10 @@ export class FormFieldComponent implements OnInit, AfterViewInit, OnDestroy {
       let errorMessage = '';
       switch (errorType) {
         case 'required':
-          errorMessage = this.translate.instant('form.REQUIRED');
+          errorMessage = this.translate.instant('REQUIRED');
           break;
         case 'minlength':
-          errorMessage = this.translate.instant('form.MIN_LENGTH', {
+          errorMessage = this.translate.instant('MIN_LENGTH', {
             ...this.formControl.errors[errorType],
           });
           break;
@@ -73,7 +73,7 @@ export class FormFieldComponent implements OnInit, AfterViewInit, OnDestroy {
           if (this.customError) {
             errorMessage = this.translate.instant(this.customError);
           } else {
-            errorMessage = this.translate.instant('form.GENERIC');
+            errorMessage = this.translate.instant('GENERIC');
           }
       }
       return errorMessage;

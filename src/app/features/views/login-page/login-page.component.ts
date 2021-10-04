@@ -46,13 +46,13 @@ export class LoginPageComponent {
         },
         error => {
           if (error.status === 401) {
-            this.notificationsService.error('error.USER_CREDENTIALS');
+            this.notificationsService.error('USER_CREDENTIALS', 'views');
           } else if (error.status === 403) {
-            this.notificationsService.error(error.title);
+            this.notificationsService.error(error.title, 'views');
           } else if (Object.keys(error.errors).length) {
             Object.keys(error.errors).forEach((e) => {
               error.errors[e].forEach((message: string) => {
-                this.notificationsService.error(message);
+                this.notificationsService.error(message, 'views');
                 if (message.startsWith('Your email address is not confirmed')) {
                   // ToDo: This could lead to spamming users.
                   this.resendConfirmationLink();
@@ -72,7 +72,7 @@ export class LoginPageComponent {
       .resendConfirmationLink(this.loginFormGroup.value.usernameOrEmail)
       .pipe(first())
       .subscribe(() => {
-        this.notificationsService.info('auth.RESEND_DONE');
+        this.notificationsService.info('RESEND_DONE', 'views');
       });
   }
 
@@ -80,7 +80,7 @@ export class LoginPageComponent {
     this.authService.forgotPassword(this.loginFormGroup.value.usernameOrEmail)
       .pipe(first())
       .subscribe(() => {
-        this.notificationsService.success('auth.FORGOT_PASSWORD_SEND_MAIL_SUCCESS');
+        this.notificationsService.success('FORGOT_PASSWORD_SEND_MAIL_SUCCESS', 'views');
       });
   }
 }

@@ -13,27 +13,28 @@ export class NotificationsService {
     return this.injector.get(MessageService);
   }
 
-  public success(messageKey: string, sticky: boolean = false): void {
-    this.add('success', messageKey, sticky);
+  public success(messageKey: string, namespace: string = '', sticky: boolean = false): void {
+    this.add('success', messageKey, namespace, sticky);
   }
 
-  public info(messageKey: string, sticky: boolean = false): void {
-    this.add('info', messageKey, sticky);
+  public info(messageKey: string, namespace: string = '', sticky: boolean = false): void {
+    this.add('info', messageKey, namespace, sticky);
   }
 
-  public warning(messageKey: string, sticky: boolean = false): void {
-    this.add('warning', messageKey, sticky);
+  public warning(messageKey: string, namespace: string = '', sticky: boolean = false): void {
+    this.add('warning', messageKey, namespace, sticky);
   }
 
-  public error(messageKey: string, sticky: boolean = false): void {
-    this.add('error', messageKey, sticky);
+  public error(messageKey: string, namespace: string = '', sticky: boolean = false): void {
+    this.add('error', messageKey, namespace, sticky);
   }
 
   public clear(key?: string): void {
     this.messageService.clear(key);
   }
 
-  private add(severity: string, messageKey: string, sticky: boolean) {
+  private add(severity: string, messageKey: string, namespace: string, sticky: boolean) {
+    messageKey = namespace.length ? `${namespace}.${messageKey}` : messageKey;
     this.translateService.get(messageKey).subscribe((detail) => {
       this.messageService.add({
         sticky,

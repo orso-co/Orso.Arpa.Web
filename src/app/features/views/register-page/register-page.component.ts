@@ -17,9 +17,10 @@ import { ConfigService } from '../../../../@arpa/services/config.service';
 export class RegisterPageComponent {
 
   @ViewChild('captchaRef') reCaptcha: RecaptchaComponent;
-  registerRequest = false;
+  validPassword: boolean = false;
+  registerRequest: boolean = false;
   registerFormGroup: FormGroup;
-  hide = true;
+  hide: boolean = true;
   siteKey: string;
   genderSelectValue: any;
 
@@ -87,6 +88,10 @@ export class RegisterPageComponent {
     });
   }
 
+  setPasswordState(state: boolean) {
+    this.validPassword = state;
+  }
+
   reValidate(el: AbstractControl) {
     el.updateValueAndValidity();
   }
@@ -107,7 +112,7 @@ export class RegisterPageComponent {
   }
 
   onError(): void {
-    this.notificationsService.error('error.SOMETHING_WENT_WRONG');
+    this.notificationsService.error('SOMETHING_WENT_WRONG');
   }
 
   submit(): void {
@@ -119,7 +124,7 @@ export class RegisterPageComponent {
           this.loadingService.reset();
         }))
       .subscribe(() => {
-        this.notificationsService.info('auth.REGISTER_SUCCESS');
+        this.notificationsService.info('REGISTER_SUCCESS', 'views');
         this.router.navigate(['activation']);
       }, error => {
         if (error.status < 500 && error.errors) {
