@@ -26,7 +26,7 @@ export class EmailConfirmationPageComponent implements OnInit {
           .confirmMail(confirmEmail)
           .pipe(first())
           .subscribe(() => {
-            this.notificationsService.success('emailconfirmation.SUCCESS');
+            this.notificationsService.success('EMAIL_CONFIRM_SUCCESS', 'views');
           });
       });
     this.router.navigate(['/']);
