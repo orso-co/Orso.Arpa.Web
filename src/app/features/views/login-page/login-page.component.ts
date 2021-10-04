@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { NotificationsService } from '../../../core/services/notifications.service';
-import { AuthService } from '../../../core/services/auth.service';
+import { NotificationsService } from '../../../../@arpa/services/notifications.service';
+import { AuthService } from '../../../../@arpa/services/auth.service';
 
 @Component({
   selector: 'arpa-login-page',

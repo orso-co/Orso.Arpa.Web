@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { AuthService } from '../../../core/services/auth.service';
-import { NotificationsService } from '../../../core/services/notifications.service';
-import { ConfirmEmailDto } from '../../../model/confirmEmailDto';
+import { AuthService } from '../../../../@arpa/services/auth.service';
+import { NotificationsService } from '../../../../@arpa/services/notifications.service';
+import { ConfirmEmailDto } from '../../../../@arpa/models/confirmEmailDto';
 
 @Component({
   selector: 'arpa-emailconfirmation-page',

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { MenuItem } from 'primeng/api';
-import { concatAll, flatMap, groupBy, map, mergeAll, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { PersonsService } from '../services/persons.service';
-import { PersonDto } from '../../../model/personDto';
-import { MusicianProfileDto } from '../../../model/musicianProfileDto';
-import { SectionDto } from '../../../model/sectionDto';
+import { PersonDto } from '../../../../@arpa/models/personDto';
+import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
+import { SectionDto } from '../../../../@arpa/models/sectionDto';
 import { gql } from 'apollo-angular';
 
 

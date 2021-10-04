@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'arpa-views',
@@ -6,4 +6,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewsComponent {
 
+  constructor() {
+  }
 }

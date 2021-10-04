@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { DoublingInstrumentDto } from '../../../model/doublingInstrumentDto';
+import { DoublingInstrumentDto } from '../../../../@arpa/models/doublingInstrumentDto';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first, map } from 'rxjs/operators';
-import { MusicianProfileDto } from '../../../model/musicianProfileDto';
-import { SectionDto } from '../../../model/sectionDto';
+import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
+import { SectionDto } from '../../../../@arpa/models/sectionDto';
 import { SelectItem } from 'primeng/api';
-import { SelectValueService } from '../../../core/services/select-value.service';
+import { SelectValueService } from '../../../shared/services/select-value.service';
 import { MusicianService } from '../services/musician.service';
-import { NotificationsService } from '../../../core/services/notifications.service';
+import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 
 interface FormListElement extends DoublingInstrumentDto {
   formGroup: FormGroup;
@@ -55,23 +55,6 @@ export class MusicianInstrumentsComponent implements OnInit {
         profile.doublingInstruments.forEach(instrument => this.doublingInstruments.push(this.getFormGroup(instrument)));
       }
     });
-  }
-
-  private resolveSelect(property: string): Observable<SelectItem[]> {
-    return this.selectValueService.load('MusicianProfile', property)
-      .pipe(map(() => this.selectValueService.get('MusicianProfile', property)));
-  }
-
-  private getFormGroup(data: DoublingInstrumentDto): FormListElement {
-    const formGroup = this.formBuilder.group({
-      id: [null, [Validators.required]],
-      levelAssessmentTeam: [1, [Validators.min(1), Validators.max(6)]],
-    });
-    formGroup.patchValue(data);
-    return {
-      ...data,
-      formGroup,
-    };
   }
 
   ngOnInit(): void {
@@ -126,7 +109,7 @@ export class MusicianInstrumentsComponent implements OnInit {
       personId,
       instrumentId,
       deactivation,
-      ...this.form.value
+      ...this.form.value,
     } as MusicianProfileDto)
       .pipe(first())
       .subscribe((result) => {
@@ -137,5 +120,22 @@ export class MusicianInstrumentsComponent implements OnInit {
 
   updateDoubling(data: FormGroup) {
 
+  }
+
+  private resolveSelect(property: string): Observable<SelectItem[]> {
+    return this.selectValueService.load('MusicianProfile', property)
+      .pipe(map(() => this.selectValueService.get('MusicianProfile', property)));
+  }
+
+  private getFormGroup(data: DoublingInstrumentDto): FormListElement {
+    const formGroup = this.formBuilder.group({
+      id: [null, [Validators.required]],
+      levelAssessmentTeam: [1, [Validators.min(1), Validators.max(6)]],
+    });
+    formGroup.patchValue(data);
+    return {
+      ...data,
+      formGroup,
+    };
   }
 }

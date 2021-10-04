@@ -3,14 +3,25 @@ import { CommonModule } from '@angular/common';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
 import { TranslateService } from '@ngx-translate/core';
-import { SharedModule } from '../../shared/shared.module';
 import { UserComponent } from './user/user.component';
 import { MusicianComponent } from './musician/musician.component';
 import { ProfileService } from './profile.service';
 import { ProfileResolver } from './resolvers/profile.resolver';
 import { MyAppointmentsComponent } from './my-appointments/my-appointments.component';
-import { LanguageService } from '../../core/services/language.service';
-import { CommonTranslateModule } from '../../common/translate';
+import { LanguageService } from '../../../@arpa/services/language.service';
+import { MenuModule } from '../../../@arpa/components/menu/menu.module';
+import { AvatarModule } from '../../../@arpa/components/avatar/avatar.module';
+import { TranslateModule } from '../../../@arpa/translate';
+import { SelectValueModule } from '../../../@arpa/pipes/select-value/select-value.module';
+import { SplitViewModule } from '../../../@arpa/components/split-view/split-view.module';
+import { SelectDialogModule } from './select-dialog/select-dialog.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { FormFieldModule } from '../../../@arpa/components/form-field/form-field.module';
+import { DropdownModule } from 'primeng/dropdown';
+import { BadgeModule } from 'primeng/badge';
+import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -21,9 +32,23 @@ import { CommonTranslateModule } from '../../common/translate';
   ],
   imports: [
     CommonModule,
-    SharedModule,
     ProfileRoutingModule,
-    CommonTranslateModule.forChild(['profile']),
+    FormsModule,
+    ReactiveFormsModule,
+    SelectDialogModule,
+    // Arpa Lib
+    TranslateModule.forChild(['profile']),
+    MenuModule,
+    AvatarModule,
+    SplitViewModule,
+    SelectValueModule,
+    FormFieldModule,
+    // NG Prime Dependencies
+    ButtonModule,
+    DropdownModule,
+    BadgeModule,
+    TableModule,
+    InputTextModule,
   ],
   providers: [
     ProfileService,

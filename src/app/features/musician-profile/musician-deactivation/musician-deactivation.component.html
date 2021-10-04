@@ -3,11 +3,11 @@
     <div class='p-col'>
       <arpa-form-field label='musician-profile.DEACTIVATION_DATE'>
         <p-calendar
-          formControlName="deactivationStart"
-          id="deactivationStart"
-          dateFormat="dd MM yy"
-          [showWeek]="true"
           [minDate]='minDate'
+          [showWeek]='true'
+          dateFormat='dd MM yy'
+          formControlName='deactivationStart'
+          id='deactivationStart'
         ></p-calendar>
       </arpa-form-field>
     </div>
@@ -15,15 +15,15 @@
   <div class='p-fluid p-formgrid p-grid'>
     <div class='p-col'>
       <arpa-form-field label='musician-profile.PURPOSE'>
-        <textarea id="purpose" type="text" pInputText formControlName="purpose"></textarea>
+        <textarea formControlName='purpose' id='purpose' pInputText type='text'></textarea>
       </arpa-form-field>
     </div>
   </div>
   <div class='p-formgroup-inline p-jc-between'>
     <div class='p-field p-col'>
       <button
-        *ngIf='profile.deactivation'
         (click)='activate()'
+        *ngIf='profile.deactivation'
         [label]="'musician-profile.ACTIVATE' | translate"
         icon='pi pi-check'
         iconPos='left'

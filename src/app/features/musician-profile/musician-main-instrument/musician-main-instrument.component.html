@@ -16,14 +16,14 @@
     </div>
     <div class='p-fluid p-formgrid p-grid'>
       <div class='p-col'>
-        <arpa-form-field label='musician-profile.LEVEL_ASSESSMENT' type='field'>
+        <arpa-form-field label='musician-profile.LEVEL_ASSESSMENT' type='rating'>
           <p-rating [cancel]='false' [stars]='5' formControlName='levelAssessmentInner'></p-rating>
         </arpa-form-field>
       </div>
     </div>
     <div *ngIf='(preferredParts | async)' class='p-fluid p-formgrid p-grid'>
       <div class='p-col'>
-        <arpa-form-field label='musician-profile.PREFERRED_PARTS' type='field'>
+        <arpa-form-field label='musician-profile.PREFERRED_PARTS' type='select'>
           <p-multiSelect
             [options]='(preferredParts | async) || []'
             [placeholder]='"NOTHING_SELECTED" | translate'
@@ -50,7 +50,7 @@
     </div>
     <div class='p-fluid p-formgrid p-grid'>
       <div class='p-col'>
-        <arpa-form-field label='musician-profile.PREFERRED_POSITIONS' type='field'>
+        <arpa-form-field label='musician-profile.PREFERRED_POSITIONS' type='select'>
           <p-multiSelect
             [options]='(preferredPositions | async) || []'
             [placeholder]='"NOTHING_SELECTED" | translate'

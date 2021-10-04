@@ -8,16 +8,16 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Observable, Subscription } from 'rxjs';
 import { first, map } from 'rxjs/operators';
-import { AppointmentService } from '../../../core/services/appointment.service';
-import { NotificationsService } from '../../../core/services/notifications.service';
-import { SectionService } from '../../../core/services/section.service';
+import { AppointmentService } from '../services/appointment.service';
+import { NotificationsService } from '../../../../@arpa/services/notifications.service';
+import { SectionService } from '../../../shared/services/section.service';
 import { EditAppointmentComponent } from '../edit-appointment/edit-appointment.component';
-import { Unsubscribe } from '../../../core/decorators/unsubscribe.decorator';
-import { ProjectDto } from '../../../model/projectDto';
-import { VenueDto } from '../../../model/venueDto';
-import { AppointmentDto } from '../../../model/appointmentDto';
-import { SectionDto } from '../../../model/sectionDto';
-import { DateRange } from '../../../model/dateRange';
+import { ProjectDto } from '../../../../@arpa/models/projectDto';
+import { VenueDto } from '../../../../@arpa/models/venueDto';
+import { AppointmentDto } from '../../../../@arpa/models/appointmentDto';
+import { SectionDto } from '../../../../@arpa/models/sectionDto';
+import { DateRange } from '../../../../@arpa/models/dateRange';
+import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator';
 
 export interface CalendarEvent {
   id: string;
@@ -49,16 +49,6 @@ export class AppointmentsComponent {
 
   fullCalendarOptions$: Observable<any>;
   events: CalendarEvent[] = [];
-  private _appointments: AppointmentDto[] = [];
-
-  get appointments(): AppointmentDto[] {
-    return this._appointments;
-  }
-
-  set appointments(values: AppointmentDto[]) {
-    this._appointments = values;
-    this.events = values.map((a) => this.mapAppointmentToCalendarEvent(a));
-  }
 
   constructor(
     private appointmentService: AppointmentService,
@@ -66,7 +56,7 @@ export class AppointmentsComponent {
     private route: ActivatedRoute,
     private translate: TranslateService,
     private dialogService: DialogService,
-    private sectionService: SectionService
+    private sectionService: SectionService,
   ) {
     this.route.data.pipe(first()).subscribe((data) => {
       this.projects = data.projects || [];
@@ -84,51 +74,15 @@ export class AppointmentsComponent {
     this.setOptions();
   }
 
-  private setOptions(): void {
-    this.fullCalendarOptions$ = this.translate.get('NEW').pipe(
-      map((translation) => ({
-        plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
-        calendarWeekends: true,
-        defaultView: 'dayGridMonth',
-        defaultDate: new Date(),
-        eventResize: (e: any) => {
-          this.changeDates(e.prevEvent, e.event);
-        },
-        eventDrop: (e: any) => {
-          this.changeDates(e.oldEvent, e.event);
-        },
-        dateClick: (e: { date: Date }) => {
-          this.openCreateDialog(e.date);
-        },
-        eventClick: (e: any) => {
-          this.openEditDialog(e.event.id);
-        },
-        customButtons: {
-          btnAddAppointment: {
-            text: translation,
-            click: () => {
-              this.openCreateDialog();
-            },
-          },
-        },
-        header: {
-          left: 'dayGridMonth,timeGridWeek,timeGridDay, prevYear,prev,next,nextYear, today',
-          center: 'title',
-          right: 'btnAddAppointment',
-        },
-        editable: true,
-        locale: this.translate.currentLang,
-        firstDay: 1,
-        weekNumberCalculation: 'ISO',
-        weekNumbers: true,
-        weekNumbersWithinDays: true,
-        nowIndicator: true,
-        eventLimit: true,
-        datesRender: (info: any) => {
-          this.setAppointments(info.view.type, info.view.calendar.component.props.currentDate);
-        },
-      }))
-    );
+  private _appointments: AppointmentDto[] = [];
+
+  get appointments(): AppointmentDto[] {
+    return this._appointments;
+  }
+
+  set appointments(values: AppointmentDto[]) {
+    this._appointments = values;
+    this.events = values.map((a) => this.mapAppointmentToCalendarEvent(a));
   }
 
   mapAppointmentToCalendarEvent(appointment: AppointmentDto): CalendarEvent {
@@ -257,6 +211,53 @@ export class AppointmentsComponent {
     });
   }
 
+  private setOptions(): void {
+    this.fullCalendarOptions$ = this.translate.get('NEW').pipe(
+      map((translation) => ({
+        plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+        calendarWeekends: true,
+        defaultView: 'dayGridMonth',
+        defaultDate: new Date(),
+        eventResize: (e: any) => {
+          this.changeDates(e.prevEvent, e.event);
+        },
+        eventDrop: (e: any) => {
+          this.changeDates(e.oldEvent, e.event);
+        },
+        dateClick: (e: { date: Date }) => {
+          this.openCreateDialog(e.date);
+        },
+        eventClick: (e: any) => {
+          this.openEditDialog(e.event.id);
+        },
+        customButtons: {
+          btnAddAppointment: {
+            text: translation,
+            click: () => {
+              this.openCreateDialog();
+            },
+          },
+        },
+        header: {
+          left: 'dayGridMonth,timeGridWeek,timeGridDay, prevYear,prev,next,nextYear, today',
+          center: 'title',
+          right: 'btnAddAppointment',
+        },
+        editable: true,
+        locale: this.translate.currentLang,
+        firstDay: 1,
+        weekNumberCalculation: 'ISO',
+        weekNumbers: true,
+        weekNumbersWithinDays: true,
+        nowIndicator: true,
+        eventLimit: true,
+        datesRender: (info: any) => {
+          this.setAppointments(info.view.type, info.view.calendar.component.props.currentDate);
+        },
+      })),
+    );
+  }
+
   private openEditDialog(appointmentId: string): void {
     const appointment = this.appointments.find((a) => a.id === appointmentId);
     const ref = this.dialogService.open(EditAppointmentComponent, {
@@ -284,7 +285,7 @@ export class AppointmentsComponent {
         if (typeof result === 'string') {
           this.appointments.splice(
             this.appointments.findIndex((a) => a.id === appointmentId),
-            1
+            1,
           );
           this.appointments = [...this.appointments];
         } else {

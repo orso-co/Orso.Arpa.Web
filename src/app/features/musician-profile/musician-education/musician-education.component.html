@@ -2,11 +2,11 @@
   <div class='p-fluid p-formgrid p-grid'>
     <div class='p-col'>
       <arpa-form-field label='musician-profile.TIMESPAN'>
-        <input type='text' pInputText formControlName='timeSpan' autocomplete='off'>
+        <input autocomplete='off' formControlName='timeSpan' pInputText type='text'>
       </arpa-form-field>
     </div>
     <div class='p-col'>
-      <arpa-form-field label='musician-profile.EDUCATION_TYPE' type='field'>
+      <arpa-form-field label='musician-profile.EDUCATION_TYPE' type='select'>
         <p-dropdown
           [options]='(educationTypes | async) || []'
           [placeholder]='"NOTHING_SELECTED" | translate'
@@ -20,14 +20,14 @@
   <div class='p-fluid p-formgrid p-grid'>
     <div class='p-col'>
       <arpa-form-field label='musician-profile.EDUCATION_INSTITUTION'>
-        <input type='text' pInputText formControlName='institution' autocomplete='off'>
+        <input autocomplete='off' formControlName='institution' pInputText type='text'>
       </arpa-form-field>
     </div>
   </div>
   <div class='p-fluid p-formgrid p-grid'>
     <div class='p-col'>
       <arpa-form-field label='musician-profile.EDUCATION_DESCRIPTION'>
-        <textarea id='description' type='text' pInputText formControlName='description'></textarea>
+        <textarea formControlName='description' id='description' pInputText type='text'></textarea>
       </arpa-form-field>
     </div>
   </div>
@@ -57,7 +57,7 @@
       <th></th>
     </tr>
   </ng-template>
-  <ng-template pTemplate='body' let-education>
+  <ng-template let-education pTemplate='body'>
     <tr>
       <td>
         {{ education.timeSpan }}
@@ -68,12 +68,12 @@
       <td></td>
       <td class='p-text-right'>
         <button
-          pButton
-          type='button'
-          [label]='"musician-profile.DELETE" | translate'
           (click)='remove(education)'
+          [label]='"musician-profile.DELETE" | translate'
           class='p-button-rounded p-button-text p-button-icon-only'
-          icon='pi pi-trash'></button>
+          icon='pi pi-trash'
+          pButton
+          type='button'></button>
       </td>
     </tr>
   </ng-template>

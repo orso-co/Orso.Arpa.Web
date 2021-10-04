@@ -1,13 +1,13 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MusicianProfileDto } from '../../../model/musicianProfileDto';
-import { BehaviorSubject, from, interval, Observable, zip } from 'rxjs';
-import { SectionDto } from '../../../model/sectionDto';
+import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { SectionDto } from '../../../../@arpa/models/sectionDto';
 import { SelectItem } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { SelectValueService } from '../../../core/services/select-value.service';
+import { SelectValueService } from '../../../shared/services/select-value.service';
 import { first, map } from 'rxjs/operators';
-import { NotificationsService } from '../../../core/services/notifications.service';
+import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 import { ViewState } from '../musician-layout/musician-layout.component';
 import { MusicianService } from '../services/musician.service';
 
@@ -45,11 +45,6 @@ export class MusicianMainInstrumentComponent implements OnInit {
     this.config.data.profile.pipe(first()).subscribe((profile: MusicianProfileDto) => {
       this.profile = profile;
     });
-  }
-
-  private resolveSelect(property: string): Observable<SelectItem[]> {
-    return this.selectValueService.load('MusicianProfile', property)
-      .pipe(map(() => this.selectValueService.get('MusicianProfile', property)));
   }
 
   get isNew(): boolean {
@@ -108,6 +103,11 @@ export class MusicianMainInstrumentComponent implements OnInit {
       return;
     }
     this.ref.close();
+  }
+
+  private resolveSelect(property: string): Observable<SelectItem[]> {
+    return this.selectValueService.load('MusicianProfile', property)
+      .pipe(map(() => this.selectValueService.get('MusicianProfile', property)));
   }
 
   private createOrUpdate(profile: MusicianProfileDto): void {

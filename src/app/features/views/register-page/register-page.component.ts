@@ -3,11 +3,11 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 import { finalize, first, map } from 'rxjs/operators';
 import { RecaptchaComponent } from 'ng-recaptcha';
-import { AuthService } from '../../../core/services/auth.service';
-import { ConfigService } from '../../../core/services/config.service';
-import { NotificationsService } from '../../../core/services/notifications.service';
-import { LoadingService } from '../../../core/services/loading.service';
-import { SelectValueService } from '../../../core/services/select-value.service';
+import { AuthService } from '../../../../@arpa/services/auth.service';
+import { NotificationsService } from '../../../../@arpa/services/notifications.service';
+import { LoadingService } from '../../../../@arpa/services/loading.service';
+import { SelectValueService } from '../../../shared/services/select-value.service';
+import { ConfigService } from '../../../../@arpa/services/config.service';
 
 @Component({
   selector: 'arpa-register-page',

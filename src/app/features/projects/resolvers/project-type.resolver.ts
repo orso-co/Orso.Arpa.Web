@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { SelectValueService } from '../../../core/services/select-value.service';
+import { SelectValueService } from '../../../shared/services/select-value.service';
 import { SelectItem } from 'primeng/api';
 
 @Injectable({

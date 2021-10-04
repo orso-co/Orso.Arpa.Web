@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { ProjectService } from '../../../core/services/project.service';
+import { ProjectService } from '../../../shared/services/project.service';
 import { Observable } from 'rxjs';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
 import { map } from 'rxjs/operators';
-import { ProjectParticipationDto } from '../../../model/projectParticipationDto';
+import { ProjectParticipationDto } from '../../../../@arpa/models/projectParticipationDto';
 
 interface Participant {
   participant: string;

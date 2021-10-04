@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
-import { ApiService } from '../../../core/services/api.service';
-import { MusicianProfileDto } from '../../../model/musicianProfileDto';
-import { MusicianProfileDeactivationCreateDto } from '../../../model/musicianProfileDeactivationCreateDto';
-import { MyMusicianProfileAddDocumentDto } from '../../../model/myMusicianProfileAddDocumentDto';
-import { EducationDto } from '../../../model/educationDto';
-import { EducationCreateDto } from '../../../model/educationCreateDto';
-import { MyDoublingInstrumentModifyDto } from '../../../model/myDoublingInstrumentModifyDto';
-import { MyDoublingInstrumentCreateDto } from '../../../model/myDoublingInstrumentCreateDto';
+import { ApiService } from '../../../../@arpa/services/api.service';
+import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
+import { MusicianProfileDeactivationCreateDto } from '../../../../@arpa/models/musicianProfileDeactivationCreateDto';
+import { MyMusicianProfileAddDocumentDto } from '../../../../@arpa/models/myMusicianProfileAddDocumentDto';
+import { EducationDto } from '../../../../@arpa/models/educationDto';
+import { EducationCreateDto } from '../../../../@arpa/models/educationCreateDto';
+import { MyDoublingInstrumentModifyDto } from '../../../../@arpa/models/myDoublingInstrumentModifyDto';
+import { MyDoublingInstrumentCreateDto } from '../../../../@arpa/models/myDoublingInstrumentCreateDto';
 
 @Injectable({
   providedIn: 'root',

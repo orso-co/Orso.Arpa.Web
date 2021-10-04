@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { PersonsService } from '../services/persons.service';
-import { MusicianProfileDto } from '../../../model/musicianProfileDto';
+import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
 
 @Injectable({
   providedIn: 'root',

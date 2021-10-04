@@ -10,6 +10,12 @@
     margin-top: 1rem;
   }
 
+  arpa-password-strength {
+    .indicator {
+      margin-top: -1rem;
+    }
+  }
+
   .passwordInfo {
     margin-top: 0;
     opacity: .85;

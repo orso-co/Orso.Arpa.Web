@@ -11,7 +11,7 @@
   </div>
   <div class='p-grid p-jc-center'>
     <div class='p-col-12 p-md-6'>
-      <arpa-form-field label='GENDER' type='field'>
+      <arpa-form-field label='GENDER' type='select'>
         <p-dropdown
           [options]='(genderSelectValue | async) || []'
           [placeholder]='"NOTHING_SELECTED" | translate'
@@ -62,11 +62,7 @@
   <div class='p-grid p-jc-center'>
     <div class='p-col-12 p-md-6 p-text-right'>
       <div class='p-field'>
-        <button
-          [disabled]='form.invalid || form.pristine '
-          label="{{ 'SAVE' | translate }}"
-          pButton>
-        </button>
+        <p-button [disabled]='form.invalid || form.pristine ' label="{{ 'SAVE' | translate }}"></p-button>
       </div>
     </div>
   </div>

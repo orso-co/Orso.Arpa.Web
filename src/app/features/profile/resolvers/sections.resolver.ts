@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { SectionService } from '../../../core/services/section.service';
-import { SectionDto } from '../../../model/sectionDto';
+import { SectionService } from '../../../shared/services/section.service';
+import { SectionDto } from '../../../../@arpa/models/sectionDto';
 
 @Injectable({
   providedIn: 'root',

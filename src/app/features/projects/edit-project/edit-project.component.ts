@@ -5,8 +5,8 @@ import { SelectItem } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { map } from 'rxjs/operators';
-import { ProjectDto } from '../../../model/projectDto';
-import { VenueDto } from '../../../model/venueDto';
+import { ProjectDto } from '../../../../@arpa/models/projectDto';
+import { VenueDto } from '../../../../@arpa/models/venueDto';
 
 @Component({
   selector: 'arpa-edit-project',

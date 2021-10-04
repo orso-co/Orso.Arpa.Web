@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, OnDestroy, Pipe, PipeTransform } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { SectionDto } from '../../../model/sectionDto';
+import { SectionDto } from '../../../../@arpa/models/sectionDto';
 
 @Pipe({
   name: 'section',

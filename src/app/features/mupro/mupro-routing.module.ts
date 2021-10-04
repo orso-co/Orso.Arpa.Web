@@ -4,7 +4,7 @@ import { MuproComponent } from './mupro.component';
 import { MuproProfilesComponent } from './mupro-profiles/mupro-profiles.component';
 import { ProjectListComponent } from '../projects/project-list/project-list.component';
 import { PersonsService } from './services/persons.service';
-import { ProjectListResolver } from '../../core/resolvers/project-list.resolver';
+import { ProjectListResolver } from '../../shared/resolvers/project-list.resolver';
 import { ProfileMusicianResolver } from './resolvers/profile-musician.resolver';
 import { SectionsResolver } from '../profile/resolvers/sections.resolver';
 

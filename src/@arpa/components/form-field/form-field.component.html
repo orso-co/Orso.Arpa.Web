@@ -1,0 +1,33 @@
+<div #wrapper>
+  <div class='form-field-wrapper'>
+    <div class='form-field-flex'>
+
+      <div class='form-field-outline form-field-outline-state'>
+        <div class='form-field-outline-start' style='width: 7px;'></div>
+        <div class='form-field-outline-gap'>
+        <span class='form-field-label-wrapper'>
+          <label *ngIf='label && type === "input" || type !== "checkbox"'
+                 [attr.for]='this.formControl.name'
+          >{{ label | translate }}</label>
+        </span>
+        </div>
+        <div class='form-field-outline-end'></div>
+      </div>
+      <div class='form-field-infix'>
+        <span *ngIf='label && type === "rating"' class='form-field-label-wrapper'>
+          <label [attr.for]='this.formControl.name'
+          >{{ label | translate }}</label>
+        </span>
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+  <ng-container [ngTemplateOutletContext]='{ $implicit: this }'
+                [ngTemplateOutlet]='footerTemplateRef || null'></ng-container>
+  <div *ngIf='hasErrors && showErrors' [@inOutAnimation] class='error'>
+    <span><i class='pi pi-exclamation-triangle'></i> {{ errorMessage }}</span>
+  </div>
+</div>
+
+
+

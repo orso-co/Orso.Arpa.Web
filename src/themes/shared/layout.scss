@@ -1,3 +1,15 @@
 body, html {
   color: var(--text-color);
 }
+
+button {
+  margin-top: .25rem !important;
+}
+
+mat-toolbar {
+
+  button {
+    margin-top: 0 !important;
+  }
+
+}

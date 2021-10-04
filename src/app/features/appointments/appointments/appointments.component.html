@@ -1,13 +1,13 @@
-<div class="card p-m-auto" style="max-width: 1200px;">
-  <div class="p-grid">
-    <div class="p-col-12">
-        <p-fullCalendar
-          #calendar
-          [events]="events"
-          deepChangeDetection="true"
-          [options]="fullCalendarOptions$ | async"
-          id="calendar"
-        ></p-fullCalendar>
+<div class='card p-m-auto' style='max-width: 1200px;'>
+  <div class='p-grid'>
+    <div class='p-col-12'>
+      <p-fullCalendar
+        #calendar
+        [events]='events'
+        [options]='fullCalendarOptions$ | async'
+        deepChangeDetection='true'
+        id='calendar'
+      ></p-fullCalendar>
     </div>
   </div>
 </div>

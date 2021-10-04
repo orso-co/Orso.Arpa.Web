@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MusicianProfileDto } from '../../../model/musicianProfileDto';
+import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { SelectValueService } from '../../../core/services/select-value.service';
+import { SelectValueService } from '../../../shared/services/select-value.service';
 import { MusicianService } from '../services/musician.service';
-import { NotificationsService } from '../../../core/services/notifications.service';
+import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 import { first, map, take } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { SelectItem } from 'primeng/api';
-import { MyDoublingInstrumentDto } from '../../../model/myDoublingInstrumentDto';
-import { DoublingInstrumentDto } from '../../../model/doublingInstrumentDto';
+import { MyDoublingInstrumentDto } from '../../../../@arpa/models/myDoublingInstrumentDto';
+import { DoublingInstrumentDto } from '../../../../@arpa/models/doublingInstrumentDto';
 
 interface FormList extends MyDoublingInstrumentDto {
   formGroup: FormGroup;
@@ -60,30 +60,6 @@ export class MusicianDoublingInstrumentComponent implements OnInit {
       .pipe(map(() => this.selectValueService.get('MusicianProfileSection', 'InstrumentAvailability')));
   }
 
-  private getFormGroup(data: MyDoublingInstrumentDto): FormList {
-    const formGroup = this.formBuilder.group({
-      id: [data.id, [Validators.required]],
-      levelAssessmentInner: [1, [Validators.min(1), Validators.max(6)]],
-      availabilityId: [null, [Validators.required]],
-      comment: [null, []],
-    });
-    if (data) {
-      formGroup.patchValue(data);
-    }
-    return {
-      ...data,
-      formGroup,
-    };
-  }
-
-  private filterInstruments() {
-    this.instruments.next(this.availableInstruments.filter(({ id }) => {
-      return !this.doublingInstruments.some((instrument) => {
-        return instrument.instrumentId === id;
-      });
-    }));
-  }
-
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       instrumentId: [null, []],
@@ -129,6 +105,30 @@ export class MusicianDoublingInstrumentComponent implements OnInit {
         this.filterInstruments();
         this.notificationsService.success('musician-profile.DOUBLING_INSTRUMENT_REMOVED');
       });
+  }
+
+  private getFormGroup(data: MyDoublingInstrumentDto): FormList {
+    const formGroup = this.formBuilder.group({
+      id: [data.id, [Validators.required]],
+      levelAssessmentInner: [1, [Validators.min(1), Validators.max(6)]],
+      availabilityId: [null, [Validators.required]],
+      comment: [null, []],
+    });
+    if (data) {
+      formGroup.patchValue(data);
+    }
+    return {
+      ...data,
+      formGroup,
+    };
+  }
+
+  private filterInstruments() {
+    this.instruments.next(this.availableInstruments.filter(({ id }) => {
+      return !this.doublingInstruments.some((instrument) => {
+        return instrument.instrumentId === id;
+      });
+    }));
   }
 
 }

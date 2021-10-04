@@ -6,14 +6,27 @@ import { MusicianLayoutComponent } from './musician-layout/musician-layout.compo
 import { MusicianDocumentsComponent } from './musician-documents/musician-documents.component';
 import { MusicianEducationComponent } from './musician-education/musician-education.component';
 import { MusicianDoublingInstrumentComponent } from './musician-doubling-instrument/musician-doubling-instrument.component';
-import { SharedModule } from '../../shared/shared.module';
 import { MusicianMainInstrumentComponent } from './musician-main-instrument/musician-main-instrument.component';
 import { MusicianDeactivationComponent } from './musician-deactivation/musician-deactivation.component';
 import { MusicianInstrumentsComponent } from './musician-instruments/musician-instruments.component';
 import { AccordionModule } from 'primeng/accordion';
 import { InstrumentPartsPipe } from './pipes/instrument-parts.pipe';
-import { CommonTranslateModule } from '../../common/translate';
 import { SectionPipe } from './pipes/section.pipe';
+import { TranslateModule } from '../../../@arpa/translate';
+import { SelectValueModule } from '../../../@arpa/pipes/select-value/select-value.module';
+import { CheckboxModule } from 'primeng/checkbox';
+import { FormFieldModule } from '../../../@arpa/components/form-field/form-field.module';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RatingModule } from 'primeng/rating';
+import { PanelModule } from 'primeng/panel';
+import { ButtonModule } from 'primeng/button';
+import { TooltipModule } from 'primeng/tooltip';
+import { TabViewModule } from 'primeng/tabview';
+import { TableModule } from 'primeng/table';
+import { CalendarModule } from 'primeng/calendar';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -30,10 +43,26 @@ import { SectionPipe } from './pipes/section.pipe';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     MusicianRoutingModule,
+    // Arpa Lib
+    TranslateModule.forChild(['musician-profile']),
+    SelectValueModule,
+    FormFieldModule,
+    // NG Prime Dependencies
     AccordionModule,
-    SharedModule,
-    CommonTranslateModule.forChild(['musician-profile']),
+    CheckboxModule,
+    MultiSelectModule,
+    DropdownModule,
+    RatingModule,
+    PanelModule,
+    ButtonModule,
+    TooltipModule,
+    TabViewModule,
+    TableModule,
+    CalendarModule,
+    InputTextModule,
   ],
 })
 export class MusicianProfileModule {

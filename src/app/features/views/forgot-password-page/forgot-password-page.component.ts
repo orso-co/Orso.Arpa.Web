@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { AuthService } from '../../../core/services/auth.service';
-import { ConfigService } from '../../../core/services/config.service';
-import { NotificationsService } from '../../../core/services/notifications.service';
-import { ResetPasswordDto } from '../../../model/resetPasswordDto';
+import { AuthService } from '../../../../@arpa/services/auth.service';
+import { NotificationsService } from '../../../../@arpa/services/notifications.service';
+import { ResetPasswordDto } from '../../../../@arpa/models/resetPasswordDto';
+import { ConfigService } from '../../../../@arpa/services/config.service';
 
 @Component({
   selector: 'arpa-forgot-password-page',

@@ -1,0 +1,121 @@
+.p-datatable.mobile {
+  .p-datatable-thead {
+    display: none;
+  }
+
+  .p-datatable-tbody {
+    & > tr {
+      flex-direction: column;
+      border-bottom: 1px solid var(--surface-c);
+      position: relative;
+
+      td {
+        border: none;
+
+        &.start {
+          justify-content: left;
+        }
+
+        &.end {
+          position: absolute;
+          top: 0;
+          right: 0;
+          flex-grow: 0;
+        }
+      }
+    }
+  }
+}
+
+.p-datatable-scrollable .p-datatable-tbody > tr > td, .p-datatable-scrollable .p-datatable-thead > tr > th {
+
+  &.start {
+    flex-grow: 0;
+    min-width: 4rem;
+    align-items: center;
+    justify-content: center;
+
+    p-avatar .p-mr-3 {
+      margin-right: 0 !important;
+    }
+  }
+
+  &.end {
+    margin-left: auto;
+    flex-grow: 0;
+    min-width: 8rem;
+    justify-content: right;
+  }
+
+  &.fixed-right {
+    margin-left: auto;
+    flex-grow: 0;
+    min-width: 6rem;
+  }
+
+}
+
+
+.p-datatable {
+  .p-sortable-column.p-highlight {
+    background: inherit;
+  }
+
+  tr {
+    display: flex;
+  }
+
+  th, td {
+    text-align: left;
+    font-size: 0.875em;
+    display: flex;
+    flex-basis: 0;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: left;
+    max-width: 100%;
+  }
+
+  th {
+    .p-column-filter-menu {
+      margin-left: .5rem;
+
+      .p-column-filter-menu-button {
+        opacity: .5;
+        transition: all .5s ease-in-out;
+
+        &:hover {
+          opacity: .85;
+        }
+
+        &.p-column-filter-menu-button-active {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .p-datatable-thead > tr > th, .p-datatable-tbody > tr > td {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+  }
+}
+
+.user-detail-card {
+  .p-card-header {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.p-dropdown .p-dropdown-label {
+  text-align: left;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+  text-align: left;
+}
+
+p-badge {
+  white-space: nowrap;
+}

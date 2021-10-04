@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from './profile.service';
-import { Unsubscribe } from '../../core/decorators/unsubscribe.decorator';
 import { Subscription } from 'rxjs';
-import { MyUserProfileDto } from '../../model/myUserProfileDto';
+import { MyUserProfileDto } from '../../../@arpa/models/myUserProfileDto';
+import { Unsubscribe } from '../../../@arpa/decorators/unsubscribe.decorator';
 
 @Component({
   selector: 'arpa-appointments',

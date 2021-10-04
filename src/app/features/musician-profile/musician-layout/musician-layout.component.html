@@ -4,8 +4,8 @@
               leftIcon='pi pi-th-large'>
     <arpa-musician-instruments></arpa-musician-instruments>
   </p-tabPanel>
-  <p-tabPanel header="{{'musician-profile.MAIN_INSTRUMENT' | translate}}" leftIcon='pi pi-map-marker'
-              *ngIf='!comboInstrumentView' tooltip="{{'musician-profile.MAIN_INSTRUMENT' | translate}}">
+  <p-tabPanel *ngIf='!comboInstrumentView' header="{{'musician-profile.MAIN_INSTRUMENT' | translate}}"
+              leftIcon='pi pi-map-marker' tooltip="{{'musician-profile.MAIN_INSTRUMENT' | translate}}">
     <arpa-musician-main-instrument (viewState)='viewStateEvents($event)'></arpa-musician-main-instrument>
   </p-tabPanel>
   <p-tabPanel *ngIf='((doublingInstruments | async) || []).length > 0 && !comboInstrumentView'

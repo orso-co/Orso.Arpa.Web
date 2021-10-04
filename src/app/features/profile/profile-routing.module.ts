@@ -5,7 +5,7 @@ import { UserComponent } from './user/user.component';
 import { MusicianComponent } from './musician/musician.component';
 import { ProfileResolver } from './resolvers/profile.resolver';
 import { MyAppointmentsComponent } from './my-appointments/my-appointments.component';
-import { RoleNames } from '../../model/roleNames';
+import { RoleNames } from '../../../@arpa/models/roleNames';
 import { ProfileMusicianResolver } from './resolvers/profile-musician.resolver';
 import { SectionsResolver } from './resolvers/sections.resolver';
 

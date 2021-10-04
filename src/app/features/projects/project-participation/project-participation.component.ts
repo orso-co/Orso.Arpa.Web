@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { concatMap, map } from 'rxjs/operators';
 import { SelectItem } from 'primeng/api';
-import { SectionDto } from '../../../model/sectionDto';
-import { MusicianProfileDto } from '../../../model/musicianProfileDto';
+import { SectionDto } from '../../../../@arpa/models/sectionDto';
+import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
 
 @Component({
   selector: 'arpa-project-participation',

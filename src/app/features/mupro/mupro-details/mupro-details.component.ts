@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { AuthService } from '../../../core/services/auth.service';
+import { AuthService } from '../../../../@arpa/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

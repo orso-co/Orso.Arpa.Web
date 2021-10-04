@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { MeService } from '../../../core/services/me.service';
-import { MusicianProfileDto } from '../../../model/musicianProfileDto';
+import { MeService } from '../../../shared/services/me.service';
+import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
 
 @Injectable({
   providedIn: 'root',

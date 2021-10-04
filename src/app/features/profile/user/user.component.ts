@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { NotificationsService } from '../../../core/services/notifications.service';
+import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 import { first, map } from 'rxjs/operators';
-import { MeService } from '../../../core/services/me.service';
-import { SelectValueService } from '../../../core/services/select-value.service';
-import { MyUserProfileDto } from '../../../model/myUserProfileDto';
+import { MeService } from '../../../shared/services/me.service';
+import { SelectValueService } from '../../../shared/services/select-value.service';
+import { MyUserProfileDto } from '../../../../@arpa/models/myUserProfileDto';
 
 @Component({
   selector: 'arpa-user',

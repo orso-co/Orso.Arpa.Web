@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfigService } from './core/services/config.service';
 import {
   ActivatedRoute,
   NavigationCancel,
@@ -8,13 +7,14 @@ import {
   NavigationStart,
   Router,
 } from '@angular/router';
-import { LoadingService } from './core/services/loading.service';
-import { AuthService } from './core/services/auth.service';
 import { Title } from '@angular/platform-browser';
 import { filter, map, shareReplay } from 'rxjs/operators';
-import { RouteTitleService } from './core/services/route-title.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
+import { RouteTitleService } from '../@arpa/services/route-title.service';
+import { ConfigService } from '../@arpa/services/config.service';
+import { LoadingService } from '../@arpa/services/loading.service';
+import { AuthService } from '../@arpa/services/auth.service';
 
 @Component({
   selector: 'arpa-root',
@@ -25,7 +25,7 @@ import { Observable } from 'rxjs';
       [showTransformOptions]="'translateY(-100%)'"
     ></p-toast>
     <section [ngClass]="{'mobile' : (isHandset$ | async)}">
-    <router-outlet></router-outlet>
+      <router-outlet></router-outlet>
     </section>`,
 })
 export class AppComponent implements OnInit {
@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
-      shareReplay()
+      shareReplay(),
     );
 
   constructor(
@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
     private routeTitleService: RouteTitleService,
-    private breakpointObserver: BreakpointObserver
+    private breakpointObserver: BreakpointObserver,
   ) {
     this.defaultTitle = this.titleService.getTitle();
     this.router.events.subscribe((event) => {
@@ -61,12 +61,29 @@ export class AppComponent implements OnInit {
         },
       );
     this.routeTitleService.titleEvent.subscribe((title) => {
-      if(title.length > 0) {
+      if (title.length > 0) {
         this.titleService.setTitle(`${title} | ${this.defaultTitle}`);
       } else {
         this.titleService.setTitle(this.defaultTitle);
       }
     });
+  }
+
+  ngOnInit() {
+    /**
+     * Redirect to fatal error page if config is not ready.
+     */
+    if (!this.configService.isReady()) {
+      this.router.navigate(['error'], {
+        state: {
+          error: 500,
+          type: 'FatalError',
+          message: 'Could not load config!',
+        },
+      });
+    }
+
+    this.authService.populate();
   }
 
   /**
@@ -100,22 +117,5 @@ export class AppComponent implements OnInit {
       data.push(...this.getTitle(state, state.firstChild(parent)));
     }
     return data;
-  }
-
-  ngOnInit() {
-    /**
-     * Redirect to fatal error page if config is not ready.
-     */
-    if (!this.configService.isReady()) {
-      this.router.navigate(['error'], {
-        state: {
-          error: 500,
-          type: 'FatalError',
-          message: 'Could not load config!',
-        },
-      });
-    }
-
-    this.authService.populate();
   }
 }
