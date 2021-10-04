@@ -29,7 +29,7 @@ const routes: Routes = [
       {
         path: 'activation',
         component: ActivationPageComponent,
-        data: { sessionPrevent: true, title: 'views.AUDITLOGS' },
+        data: { sessionPrevent: true, title: 'views.ACCOUNT_ACTIVATION' },
       },
       {
         path: 'regError',

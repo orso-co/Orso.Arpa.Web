@@ -1,14 +1,14 @@
 {
-  "PAGE_TITLE": "Profile",
-  "USER_PROFILE": "User Profile",
-  "USER_PROFILE_DATA": "My Profile",
-  "MUSICIAN_PROFILE": "Musician Profiles",
-  "MAIN_PROFILE": "Main Profile",
   "ADDITIONAL_PROFILES": "Additional Profiles",
   "DEACTIVATED_PROFILES": "Deactivated Profiles",
+  "MAIN_PROFILE": "Main Profile",
+  "MUSICIAN_PROFILE": "Musician Profiles",
+  "MY_APPOINTMENTS": "My Appointments",
   "MY_PROFILES": "My Profiles",
+  "PAGE_TITLE": "Profile",
   "PREDICTION": "Appointment Prediction",
   "PREDICTION_SET": "Appointment participation prediction successfully set",
-  "MY_APPOINTMENTS": "My Appointments",
-  "UPCOMING": "Upcoming"
+  "UPCOMING": "Upcoming",
+  "USER_PROFILE": "User Profile",
+  "USER_PROFILE_DATA": "My Profile"
 }

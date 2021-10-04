@@ -21,7 +21,7 @@ export class LogoutPageComponent implements OnInit {
     this.authService.logout().pipe(first())
       .pipe(first())
       .subscribe(() => {
-        this.notificationsService.info('auth.LOGGED_OUT');
+        this.notificationsService.info('LOGGED_OUT', 'views');
         this.router.navigate(['/login']);
       });
   }

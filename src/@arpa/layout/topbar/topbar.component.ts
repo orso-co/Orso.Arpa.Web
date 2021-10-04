@@ -30,7 +30,7 @@ export class TopbarComponent {
 
   constructor(private breakpointObserver: BreakpointObserver, private router: Router, private topBarService: TopbarService, private authService: AuthService) {
     this.token$ = this.authService.currentUser;
-    this.pageTitle = 'performerWELCOME';
+    this.pageTitle = 'WELCOME';
     this.titleSubscription = topBarService.title.subscribe((title) => {
       this.pageTitle = title;
     });

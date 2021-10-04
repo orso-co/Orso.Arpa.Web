@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ConfigService } from '../../services/config.service';
@@ -11,7 +11,7 @@ import { ConfigService } from '../../services/config.service';
 export class PasswordStrengthComponent implements OnInit, OnDestroy {
 
   @Input() control: AbstractControl;
-
+  @Output() valid = new EventEmitter<boolean>();
   public bar0: string;
   public bar1: string;
   public bar2: string;
@@ -61,12 +61,15 @@ export class PasswordStrengthComponent implements OnInit, OnDestroy {
     if (idx <= 3) {
       barIndex = 1;
       this.strength = 'weak';
+      this.valid.emit(false);
     } else if (idx <= 4) {
       barIndex = 2;
       this.strength = 'normal';
+      this.valid.emit(true);
     } else if (idx > 4) {
       barIndex = 3;
       this.strength = 'strong';
+      this.valid.emit(true);
     }
     this.setColors(barIndex, this.strength);
   }

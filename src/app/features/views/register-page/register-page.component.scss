@@ -1,9 +1,9 @@
-:host {
+:host ::ng-deep {
   display: flex;
   justify-content: center;
 
   .p-field-checkbox {
-    margin-top: 4em;
+    margin-top: 2em;
   }
 
   .alert {
@@ -12,7 +12,7 @@
 
   arpa-password-strength {
     .indicator {
-      margin-top: -1rem;
+      margin-top: -2.5rem;
     }
   }
 

@@ -8,7 +8,7 @@ This directory contains all required and shared implementations to run arpa.
 │   arpa.module.ts
 │   error-handler.ts    
 │
-└─── components // Global components library
+└─── components // Global components
 └─── decorators // Custom decorators
 └─── directives // Global directives
 └─── guards // Global Guards
