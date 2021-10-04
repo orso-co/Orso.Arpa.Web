@@ -1,28 +1,41 @@
-import { PersonsListComponent } from './persons-list/persons-list.component';
-import { PersonsService } from './../mupro/services/persons.service';
+import { ButtonModule } from 'primeng/button';
+import { DropdownModule } from 'primeng/dropdown';
+import { TableModule } from 'primeng/table';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../../shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { TranslateService } from 'src/@arpa/translate';
 import { PersonsRoutingModule} from './persons-routing.module';
+import { PersonListComponent } from './person-list/persons-list.component';
+import { LanguageService } from 'src/@arpa/services/language.service';
 
 
 @NgModule({
   declarations: [
-    PersonsListComponent,
+    PersonListComponent,
   ],
   imports: [
-    CommonModule,
-    SharedModule,
     PersonsRoutingModule,
+    CommonModule,
     TranslateModule,
+    TableModule,
+    DropdownModule,
+    ButtonModule,
+
   ],
   exports: [
-    PersonsListComponent,
+    PersonListComponent,
   ],
-  providers: [
-    PersonsService
-  ]
+
 })
 export class PersonsModule {
-}
+  constructor(private translateService: TranslateService, private languageService: LanguageService) {
+    languageService.languageEvent.subscribe(lang => {
+      /**
+       * Reset lang for lazy module.
+       * Fixes: https://github.com/ngx-translate/core/issues/1193
+       */
+      translateService.currentLang = '';
+      translateService.use(lang);
+    });
+}}
