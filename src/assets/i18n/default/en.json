@@ -206,6 +206,7 @@
     "DETAILS": "Entity Details"
   },
   "persons": {
-    "PERSONS": "Persons"
+    "PERSONS": "Persons",
+    "ABOUTME": "About me"
   }
 }
