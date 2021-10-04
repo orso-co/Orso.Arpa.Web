@@ -3,7 +3,7 @@
     <arpa-form-field label='GENDER' type='select'>
       <p-dropdown
         [options]='(genderSelectValue | async) || []'
-        [placeholder]='"GENDER" | translate'
+        [placeholder]='"NOTHING_SELECTED" | translate'
         formControlName='genderId'
         optionLabel='label'
         optionValue='value'
@@ -18,7 +18,7 @@
       <input (ngModelChange)='onChange()' autocomplete='family-name' formControlName='surname' pInputText type='text'>
     </arpa-form-field>
 
-    <arpa-form-field [customError]='"form.INVALID_EMAIL"' label='EMAILADDRESS'>
+    <arpa-form-field [customError]='"INVALID_EMAIL"' label='EMAILADDRESS'>
       <input (ngModelChange)='onChange()' autocomplete='email' formControlName='email' pInputText type='text'>
     </arpa-form-field>
 
@@ -33,25 +33,25 @@
                   autocomplete='off'
                   formControlName='password'></p-password>
       <ng-template #footerTemplate>
-        <arpa-password-strength [control]="registerFormGroup.controls['password']"></arpa-password-strength>
+        <arpa-password-strength (valid)='setPasswordState($event)' [control]="registerFormGroup.controls['password']"></arpa-password-strength>
         <p class='passwordInfo'>
-          <i class='pi pi-info-circle'></i>{{ 'auth.PASSWORD_INFO' | translate }}
+          <i class='pi pi-info-circle'></i>{{ 'PASSWORD_INFO' | translate }}
         </p>
       </ng-template>
     </arpa-form-field>
 
-    <arpa-form-field *ngIf='registerFormGroup.get("password")?.valid' [customError]='"auth.PASSWORD_ERROR_CONFIRM"'
-                     label='register.PASSWORD_CONFIRM'>
+    <arpa-form-field *ngIf='registerFormGroup.get("password")?.valid && validPassword' [customError]='"NOT_EQUAL"'
+                     label='PASSWORD_CONFIRM'>
       <p-password [feedback]='false' [toggleMask]='false' autocomplete='off'
                   formControlName='confirmPassword'></p-password>
     </arpa-form-field>
 
     <arpa-form-field type='checkbox'>
-      <p-checkbox formControlName='privacyPolicy' ngDefaultControl></p-checkbox>
+      <p-checkbox [value]='true' formControlName='privacyPolicy'></p-checkbox>
       <label for='privacyPolicy'>
         <a [routerLink]="['/privacy']" style='color:currentColor;' target='new window'
-           title="{{ 'auth.SHOW_PRIVACY' | translate }}">
-          {{ 'auth.PRIVACY_POLICY' | translate }}
+           title="{{ 'SHOW_PRIVACY' | translate }}">
+          {{ 'PRIVACY_POLICY' | translate }}
         </a>
       </label>
     </arpa-form-field>
@@ -67,7 +67,7 @@
     <div class='p-field'>
       <p-button
         [disabled]='registerFormGroup.invalid || registerFormGroup.pristine || registerRequest'
-        label="{{ 'REGISTER' | translate }}">
+        label="{{ 'REGISTER' | translate }}" type='submit'>
       </p-button>
     </div>
   </div>

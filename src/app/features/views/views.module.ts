@@ -22,6 +22,7 @@ import { FormFieldModule } from '../../../@arpa/components/form-field/form-field
 import { PasswordModule } from 'primeng/password';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
+import { CheckboxModule } from 'primeng/checkbox';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { InputTextModule } from 'primeng/inputtext';
     PasswordModule,
     DropdownModule,
     InputTextModule,
+    CheckboxModule,
   ],
 })
 export class ViewsModule {

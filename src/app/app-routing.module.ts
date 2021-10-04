@@ -78,10 +78,10 @@ const routes: Routes = [
         loadChildren: () => import('./features/audit-log/audit-log.module').then((mod) => mod.AuditLogModule),
         data: {
           roles: ['staff', 'admin'],
-          title: 'auditlogs.AUDITLOGS',
+          title: 'AUDITLOG',
           menu: {
             name: 'feature',
-            label: 'auditlogs.AUDITLOGS',
+            label: 'AUDITLOG',
             icon: 'pi pi-search-plus',
           },
         },

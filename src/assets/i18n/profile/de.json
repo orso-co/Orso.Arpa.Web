@@ -1,14 +1,14 @@
 {
-  "PAGE_TITLE": "Profil",
-  "USER_PROFILE": "Benutzerprofil",
-  "USER_PROFILE_DATA": "Meine Daten",
-  "MUSICIAN_PROFILE": "Musikerprofil",
-  "MAIN_PROFILE": "Hauptprofil",
   "ADDITIONAL_PROFILES": "Weitere Profiles",
   "DEACTIVATED_PROFILES": "Deaktivierte Profile",
+  "MAIN_PROFILE": "Hauptprofil",
+  "MUSICIAN_PROFILE": "Musikerprofil",
+  "MY_APPOINTMENTS": "Meine Termine",
   "MY_PROFILES": "Meine Profile",
+  "PAGE_TITLE": "Profil",
   "PREDICTION": "Teilname Vorhersage",
   "PREDICTION_SET": "Vorhersage für Terminteilnahme erfolgreich gespeichert",
-  "MY_APPOINTMENTS": "Meine Termine",
-  "UPCOMING": "Bevorstehend"
+  "UPCOMING": "Bevorstehend",
+  "USER_PROFILE": "Benutzerprofil",
+  "USER_PROFILE_DATA": "Meine Daten"
 }

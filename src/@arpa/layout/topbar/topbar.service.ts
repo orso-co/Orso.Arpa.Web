@@ -45,7 +45,7 @@ export class TopbarService {
    */
   private initialiseUserMenu(): Array<MenuItemArpa> {
     const userProfileItems: Array<MenuItemArpa> = [
-      { label: 'auth.LOGOUT', icon: 'pi pi-sign-out', routerLink: ['/logout'] },
+      { label: 'LOGOUT', icon: 'pi pi-sign-out', routerLink: ['/logout'] },
       { label: 'MY_PROFILE', icon: 'pi pi-user-edit', routerLink: ['/arpa/profile'] },
       { separator: true },
     ];
