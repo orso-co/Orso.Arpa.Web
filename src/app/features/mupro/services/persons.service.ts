@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from '../../../core/services/api.service';
+import { ApiService } from '../../../../@arpa/services/api.service';
 import { Observable } from 'rxjs';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { PersonDto } from '../../../model/personDto';
-import { MusicianProfileDto } from '../../../model/musicianProfileDto';
+import { PersonDto } from '../../../../@arpa/models/personDto';
+import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
 
 @Injectable({
   providedIn: 'root',

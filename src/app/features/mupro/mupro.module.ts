@@ -1,23 +1,44 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../../shared/shared.module';
 import { MuproComponent } from './mupro.component';
 import { MuProRoutingModule } from './mupro-routing.module';
 import { MuproDetailsComponent } from './mupro-details/mupro-details.component';
 import { MuproProfilesComponent } from './mupro-profiles/mupro-profiles.component';
 import { MuproService } from './services/mupro.service';
-import { CommonTranslateModule } from '../../common/translate';
 import { TranslateService } from '@ngx-translate/core';
-import { LanguageService } from '../../core/services/language.service';
+import { AvatarModule } from '../../../@arpa/components/avatar/avatar.module';
+import { LanguageService } from '../../../@arpa/services/language.service';
+import { TranslateModule } from '../../../@arpa/translate';
+import { SplitViewModule } from '../../../@arpa/components/split-view/split-view.module';
+import { ListboxModule } from 'primeng/listbox';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GraphQlFeedModule } from '../../../@arpa/components/graph-ql-feed/graph-ql-feed.module';
+import { StepsModule } from 'primeng/steps';
+import { RatingModule } from 'primeng/rating';
+import { BadgeModule } from 'primeng/badge';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 @NgModule({
   declarations: [MuproComponent, MuproDetailsComponent, MuproProfilesComponent],
   imports: [
     CommonModule,
-    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
     MuProRoutingModule,
-    CommonTranslateModule.forChild(['mupro', 'musician-profile']),
+    // Arpa Lib
+    TranslateModule.forChild(['mupro', 'musician-profile']),
+    AvatarModule,
+    SplitViewModule,
+    GraphQlFeedModule,
+    // NG Prime Dependencies
+    ListboxModule,
+    StepsModule,
+    RatingModule,
+    BadgeModule,
+    TabMenuModule,
+    InputTextModule,
   ],
   providers: [
     MuproService,

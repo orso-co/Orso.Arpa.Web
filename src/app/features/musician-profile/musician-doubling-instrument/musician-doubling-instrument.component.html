@@ -1,4 +1,4 @@
-<form [formGroup]='form' *ngIf='((instruments | async) || []).length > 0'>
+<form *ngIf='((instruments | async) || []).length > 0' [formGroup]='form'>
   <div class='p-fluid p-formgrid p-grid'>
     <div class='p-col'>
       <arpa-form-field label='musician-profile.INSTRUMENT' type='field'>
@@ -26,7 +26,7 @@
   </div>
   <div class='p-fluid p-formgrid p-grid'>
     <div class='p-col'>
-      <arpa-form-field label='musician-profile.LEVEL_ASSESSMENT' type='field'>
+      <arpa-form-field label='musician-profile.LEVEL_ASSESSMENT' type='rating'>
         <p-rating [cancel]='false' [stars]='5' formControlName='levelAssessmentInner'></p-rating>
       </arpa-form-field>
     </div>
@@ -67,12 +67,12 @@
         </div>
         <div class='p-ml-auto p-text-right'>
           <button
-            pButton
-            type='button'
-            [label]='"musician-profile.DELETE" | translate'
             (click)='remove(instrument)'
+            [label]='"musician-profile.DELETE" | translate'
             class='p-button-rounded p-button-text p-button-icon-only'
-            icon='pi pi-trash'></button>
+            icon='pi pi-trash'
+            pButton
+            type='button'></button>
         </div>
       </div>
     </ng-template>
@@ -80,7 +80,7 @@
       <form [formGroup]='instrument.formGroup'>
         <div class='p-fluid p-formgrid p-grid'>
           <div class='p-col'>
-            <arpa-form-field label='musician-profile.LEVEL_ASSESSMENT' type='field'>
+            <arpa-form-field label='musician-profile.LEVEL_ASSESSMENT' type='rating'>
               <p-rating [cancel]='false' [stars]='5'
                         formControlName='levelAssessmentInner'></p-rating>
             </arpa-form-field>

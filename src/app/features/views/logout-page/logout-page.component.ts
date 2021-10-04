@@ -1,8 +1,8 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
-import { AuthService } from '../../../core/services/auth.service';
-import { NotificationsService } from '../../../core/services/notifications.service';
+import { AuthService } from '../../../../@arpa/services/auth.service';
+import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 
 @Component({
   selector: 'arpa-logout-page',

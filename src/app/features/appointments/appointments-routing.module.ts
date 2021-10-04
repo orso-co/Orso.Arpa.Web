@@ -8,9 +8,9 @@ import { AppointmentCategoryListResolver } from './resolvers/appointment-categor
 import { AppointmentStatusListResolver } from './resolvers/appointment-status-list.resolver';
 import { AppointmentParticipationResultListResolver } from './resolvers/appointment-participation-result-list.resolver';
 import { AppointmentsComponent } from './appointments/appointments.component';
-import { VenueService } from '../../core/services/venue.service';
-import { ProjectListResolver } from '../../core/resolvers/project-list.resolver';
-import { RoleNames } from '../../model/roleNames';
+import { VenueService } from '../../shared/services/venue.service';
+import { ProjectListResolver } from '../../shared/resolvers/project-list.resolver';
+import { RoleNames } from '../../../@arpa/models/roleNames';
 import { AppointmentParticipationPredictionListResolver } from './resolvers/appointment-participation-prediction-list.resolver';
 
 const routes: Routes = [

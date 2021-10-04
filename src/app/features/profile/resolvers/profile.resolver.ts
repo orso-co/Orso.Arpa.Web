@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { MeService } from '../../../core/services/me.service';
-import { MyUserProfileDto } from '../../../model/myUserProfileDto';
+import { MeService } from '../../../shared/services/me.service';
+import { MyUserProfileDto } from '../../../../@arpa/models/myUserProfileDto';
 
 @Injectable()
 export class ProfileResolver implements Resolve<MyUserProfileDto> {

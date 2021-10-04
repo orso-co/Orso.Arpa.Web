@@ -6,9 +6,9 @@ import { HttpClient } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { ForgotPasswordPageComponent } from './forgot-password-page.component';
-import { httpLoaderFactory } from '../../../common/translate/translate.module';
-import { AuthService } from '../../../core/services/auth.service';
-import { NotificationsService } from '../../../core/services/notifications.service';
+import { AuthService } from '../../../../@arpa/services/auth.service';
+import { NotificationsService } from '../../../../@arpa/services/notifications.service';
+import { httpLoaderFactory } from '../../../../@arpa/translate/translate.module';
 
 describe('ForgotPasswordComponent', () => {
   let component: ForgotPasswordPageComponent;

@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first, map } from 'rxjs/operators';
-import { SelectValueService } from '../../../core/services/select-value.service';
-import { MusicianProfileDto } from '../../../model/musicianProfileDto';
+import { SelectValueService } from '../../../shared/services/select-value.service';
+import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
 import { MusicianService } from '../services/musician.service';
-import { NotificationsService } from '../../../core/services/notifications.service';
+import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 import { Observable } from 'rxjs';
 import { SelectItem } from 'primeng/api';
 

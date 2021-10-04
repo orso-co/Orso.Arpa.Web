@@ -4,15 +4,15 @@ import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MenuItem, SelectItem } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { sortBy, uniq } from 'lodash-es';
-import { NotificationsService } from '../../../core/services/notifications.service';
-import { AppointmentService } from '../../../core/services/appointment.service';
+import { NotificationsService } from '../../../../@arpa/services/notifications.service';
+import { AppointmentService } from '../services/appointment.service';
 import { first } from 'rxjs/operators';
-import { AppointmentDto } from '../../../model/appointmentDto';
-import { SectionDto } from '../../../model/sectionDto';
-import { ProjectDto } from '../../../model/projectDto';
-import { VenueDto } from '../../../model/venueDto';
-import { RoomDto } from '../../../model/roomDto';
-import { MusicianProfileDto } from '../../../model/musicianProfileDto';
+import { AppointmentDto } from '../../../../@arpa/models/appointmentDto';
+import { SectionDto } from '../../../../@arpa/models/sectionDto';
+import { ProjectDto } from '../../../../@arpa/models/projectDto';
+import { VenueDto } from '../../../../@arpa/models/venueDto';
+import { RoomDto } from '../../../../@arpa/models/roomDto';
+import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
 
 class ParticipationTableItem {
   givenName: string;
@@ -30,7 +30,7 @@ class ParticipationTableItem {
     sections: string,
     qualification: string,
     predictionId: string,
-    resultId: string
+    resultId: string,
   ) {
     this.givenName = givenName;
     this.surname = surname;
@@ -76,10 +76,6 @@ export class EditAppointmentComponent implements OnInit {
   filteredDataCount: number;
   qualificationOptions: SelectItem[] = [];
 
-  get isNew(): boolean {
-    return !this.appointment.id;
-  }
-
   constructor(
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
@@ -87,8 +83,13 @@ export class EditAppointmentComponent implements OnInit {
     private appointmentService: AppointmentService,
     private formBuilder: FormBuilder,
     private translate: TranslateService,
-    private confirmationService: ConfirmationService
-  ) {}
+    private confirmationService: ConfirmationService,
+  ) {
+  }
+
+  get isNew(): boolean {
+    return !this.appointment.id;
+  }
 
   ngOnInit(): void {
     this.createForm();
@@ -102,9 +103,9 @@ export class EditAppointmentComponent implements OnInit {
           this.appointment.participations
             .map((p: any) => p.musicianProfiles)
             .reduce((a: any, b: any) => a.concat(b), [])
-            .map((mp: any) => this.mapMusicianProfileToSectionSelectItem(mp))
+            .map((mp: any) => this.mapMusicianProfileToSectionSelectItem(mp)),
         ),
-        (selectItem) => selectItem.label
+        (selectItem) => selectItem.label,
       );
 
       this.qualificationOptions = sortBy(
@@ -112,9 +113,9 @@ export class EditAppointmentComponent implements OnInit {
           this.appointment.participations
             .map((p) => p.musicianProfiles)
             .reduce((a: any, b: any) => a.concat(b), [])
-            .map((mp: any) => this.mapMusicianProfileToQualificationSelectItem(mp))
+            .map((mp: any) => this.mapMusicianProfileToQualificationSelectItem(mp)),
         ),
-        (selectItem) => selectItem.label
+        (selectItem) => selectItem.label,
       );
 
       this.mapParticipations();
@@ -204,20 +205,20 @@ export class EditAppointmentComponent implements OnInit {
   searchProject(event: any): void {
     this.projectOptions = this.projects.filter(
       (p) =>
-        p.title.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.projects.map((r: any) => r.id).includes(p.id)
+        p.title.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.projects.map((r: any) => r.id).includes(p.id),
     );
   }
 
   searchSection(event: any): void {
     this.sectionOptions = this.sections.filter(
       (p) =>
-        p.name.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.sections.map((r: any) => r.id).includes(p.id)
+        p.name.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.sections.map((r: any) => r.id).includes(p.id),
     );
   }
 
   searchRoom(event: any): void {
     this.roomOptions = this.rooms.filter(
-      (p) => p.name.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.rooms.map((r) => r.id).includes(p.id)
+      (p) => p.name.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.rooms.map((r) => r.id).includes(p.id),
     );
   }
 
@@ -399,7 +400,7 @@ export class EditAppointmentComponent implements OnInit {
           element.musicianProfiles.map((mp: any) => mp.qualification).join(', '),
           element.participation ? element.participation.predictionId : '',
           element.participation ? element.participation.resultId : '',
-        )
+        ),
       );
     });
     this.filteredDataCount = this.participationTableItems.length;

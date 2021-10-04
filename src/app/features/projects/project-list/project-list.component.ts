@@ -1,23 +1,23 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { first, map } from 'rxjs/operators';
-import { Unsubscribe } from '../../../core/decorators/unsubscribe.decorator';
 import { EditProjectComponent } from '../edit-project/edit-project.component';
 import { DialogService } from 'primeng/dynamicdialog';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, Subscription } from 'rxjs';
-import { ProjectService } from '../../../core/services/project.service';
-import { NotificationsService } from '../../../core/services/notifications.service';
+import { ProjectService } from '../../../shared/services/project.service';
+import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 import { ProjectParticipationComponent } from '../project-participation/project-participation.component';
-import { MeService } from '../../../core/services/me.service';
-import { SelectValueService } from '../../../core/services/select-value.service';
+import { MeService } from '../../../shared/services/me.service';
+import { SelectValueService } from '../../../shared/services/select-value.service';
 import { Table } from 'primeng/table';
-import { VenueService } from '../../../core/services/venue.service';
-import { SectionService } from '../../../core/services/section.service';
+import { VenueService } from '../../../shared/services/venue.service';
+import { SectionService } from '../../../shared/services/section.service';
 import { ProjectParticipantsComponent } from '../project-participants/project-participants.component';
 import { SelectItem } from 'primeng/api';
-import { ProjectDto } from '../../../model/projectDto';
-import { MusicianProfileDto } from '../../../model/musicianProfileDto';
+import { ProjectDto } from '../../../../@arpa/models/projectDto';
+import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
+import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator';
 
 @Component({
   selector: 'arpa-project-list',

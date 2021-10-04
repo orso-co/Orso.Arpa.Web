@@ -3,13 +3,18 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EditProjectComponent } from './edit-project.component';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PrimeNgModule } from '../../../shared/prime-ng/prime-ng.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
-import { httpLoaderFactory } from '../../../common/translate/translate.module';
+import { httpLoaderFactory } from '../../../../@arpa/translate/translate.module';
+import { DropdownModule } from 'primeng/dropdown';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { CalendarModule } from 'primeng/calendar';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputTextModule } from 'primeng/inputtext';
 
 describe('EditProjectComponent', () => {
   let component: EditProjectComponent;
@@ -21,7 +26,6 @@ describe('EditProjectComponent', () => {
       imports: [
         FormsModule,
         ReactiveFormsModule,
-        PrimeNgModule,
         RouterTestingModule,
         HttpClientTestingModule,
         TranslateModule.forRoot({
@@ -31,6 +35,12 @@ describe('EditProjectComponent', () => {
             deps: [HttpClient],
           },
         }),
+        DropdownModule,
+        TableModule,
+        ButtonModule,
+        CalendarModule,
+        InputTextareaModule,
+        InputTextModule,
       ],
       providers: [
         { provide: DynamicDialogRef, useValue: {} },

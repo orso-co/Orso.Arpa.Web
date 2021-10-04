@@ -21,12 +21,13 @@
     <ng-template #feed let-feed>
       <ul>
         <ng-container *ngFor='let profile of $any((feed.values | async) || []); let i = index'>
-          <li >
+          <li>
             <div class='profile'>
               <div class='p-grid'>
                 <div class='p-col-12 section-detail p-jc-between'>
                   <h2>{{ profile.instrument.name }}</h2>
-                  <p-badge *ngIf='profile.isMainProfile' [value]="'musician-profile.MAIN_PROFILE' | translate "></p-badge>
+                  <p-badge *ngIf='profile.isMainProfile'
+                           [value]="'musician-profile.MAIN_PROFILE' | translate "></p-badge>
                 </div>
                 <div class='p-col-12 p-md-6 performer-details'>
                   <h3>Performer</h3>

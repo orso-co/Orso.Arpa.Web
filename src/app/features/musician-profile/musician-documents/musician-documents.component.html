@@ -6,7 +6,7 @@
   </div>
   <div class='p-fluid p-formgrid p-grid'>
     <div class='p-col'>
-      <arpa-form-field type='field'>
+      <arpa-form-field label='DOCUMENT_TYPE' type='select'>
         <p-dropdown
           [options]='(documentTypes | async) || []'
           [placeholder]='"NOTHING_SELECTED" | translate'
@@ -32,7 +32,7 @@
 <H3>{{ 'musician-profile.DOCUMENTS' | translate }}</H3>
 <p-table [value]='documents'>
   <ng-template pTemplate='header'></ng-template>
-  <ng-template pTemplate='body' let-document>
+  <ng-template let-document pTemplate='body'>
     <tr>
       <td>
         <span class='pi pi-file-pdf'></span>
@@ -42,12 +42,12 @@
       </td>
       <td class='p-text-right'>
         <button
-          pButton
-          type='button'
-          [label]='"musician-profile.DELETE" | translate'
           (click)='remove(document)'
+          [label]='"musician-profile.DELETE" | translate'
           class='p-button-rounded p-button-text p-button-icon-only'
-          icon='pi pi-trash'></button>
+          icon='pi pi-trash'
+          pButton
+          type='button'></button>
       </td>
     </tr>
   </ng-template>

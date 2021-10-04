@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectsRoutingModule } from './projects-routing.module';
@@ -11,9 +10,15 @@ import { ProjectStateResolver } from './resolvers/project-status.resolver';
 import { ProjectParticipationComponent } from './project-participation/project-participation.component';
 import { ProjectParticipantsComponent } from './project-participants/project-participants.component';
 import { ProjectchartParticipantsComponent } from './projectchart-participants/projectchart-participants.component';
-import { CommonTranslateModule } from '../../common/translate';
 import { TranslateService } from '@ngx-translate/core';
-import { LanguageService } from '../../core/services/language.service';
+import { TranslateModule } from '../../../@arpa/translate';
+import { DropdownModule } from 'primeng/dropdown';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { CalendarModule } from 'primeng/calendar';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputTextModule } from 'primeng/inputtext';
+import { LanguageService } from '../../../@arpa/services/language.service';
 
 @NgModule({
   declarations: [
@@ -25,11 +30,18 @@ import { LanguageService } from '../../core/services/language.service';
   ],
   imports: [
     CommonModule,
-    SharedModule,
-    CommonTranslateModule.forChild(['projects']),
     FormsModule,
     ReactiveFormsModule,
     ProjectsRoutingModule,
+    // Arpa Lib
+    TranslateModule.forChild(['projects']),
+    // NG Prime Dependencies
+    DropdownModule,
+    TableModule,
+    ButtonModule,
+    CalendarModule,
+    InputTextareaModule,
+    InputTextModule,
   ],
   exports: [
     ProjectListComponent,

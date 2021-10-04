@@ -21,8 +21,10 @@ const routes: Routes = [
         path: 'error', component: ErrorPageComponent,
         data: { title: 'views.ERROR', error: 404, type: 'RouteNotFound', message: 'error.ROUTE_NOT_FOUND' },
       },
-      { path: 'login', component: LoginPageComponent,
-        data: { sessionPrevent: true, title: 'views.LOGIN' } },
+      {
+        path: 'login', component: LoginPageComponent,
+        data: { sessionPrevent: true, title: 'views.LOGIN' },
+      },
       { path: 'register', component: RegisterPageComponent, data: { sessionPrevent: true, title: 'views.REGISTER' } },
       {
         path: 'activation',

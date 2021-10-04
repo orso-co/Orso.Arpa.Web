@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './core/guards/auth.guard';
-import { RoleGuard } from './core/guards/role.guard';
-import { SessionGuard } from './core/guards/session.guard';
-import { AuditLogComponent } from './shared/audit-log/audit-log.component';
-import { AuditLogResolver } from './resolvers/auditlog.resolver';
-import { LayoutDefaultComponent } from './main/layout/layout-default/layout-default.component';
-import { LayoutPageComponent } from './main/layout/layout-page/layout-page.component';
+import { AuthGuard } from '../@arpa/guards/auth.guard';
+import { RoleGuard } from '../@arpa/guards/role.guard';
+import { SessionGuard } from '../@arpa/guards/session.guard';
+import { LayoutDefaultComponent } from '../@arpa/layout/layout-default/layout-default.component';
+import { LayoutPageComponent } from '../@arpa/layout/layout-page/layout-page.component';
 
 const routes: Routes = [
   {
@@ -19,9 +17,9 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
-        loadChildren: () => import('./features/dashboards/dashboards.module').then(m => m.DashboardsModule),
+        loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule),
         data: {
-          title: 'dashboard.PAGE_TITLE',
+          title: 'DASHBOARD',
           menu: {
             name: 'feature',
             label: 'DASHBOARD',
@@ -77,8 +75,7 @@ const routes: Routes = [
       },
       {
         path: 'auditlogs',
-        component: AuditLogComponent,
-        resolve: { auditLogs: AuditLogResolver },
+        loadChildren: () => import('./features/audit-log/audit-log.module').then((mod) => mod.AuditLogModule),
         data: {
           roles: ['staff', 'admin'],
           title: 'auditlogs.AUDITLOGS',
@@ -102,9 +99,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    // preloadingStrategy: PreloadAllModules,
-    // paramsInheritanceStrategy: 'always',
-    // onSameUrlNavigation: "reload",
+    scrollPositionRestoration: 'enabled',
+    relativeLinkResolution: 'corrected',
+    anchorScrolling: 'enabled',
   })],
   exports: [RouterModule],
 })

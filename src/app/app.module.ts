@@ -3,14 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ConfigService } from './core/services/config.service';
-import { CoreModule } from './core/core.module';
-import { MainModule } from './main/main.module';
-import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { ThemeSwitcherService } from './shared/theme-switcher/theme-switcher.service';
 import { MatIconRegistry } from '@angular/material/icon';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { ArpaModule } from '../@arpa/arpa.module';
+import { ThemeSwitcherService } from '../@arpa/components/theme-switcher/theme-switcher.service';
+import { ConfigService } from '../@arpa/services/config.service';
 
 @NgModule({
   declarations: [
@@ -20,10 +21,11 @@ import { MatIconRegistry } from '@angular/material/icon';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    CoreModule.forRoot(),
-    MainModule,
-    SharedModule,
     HttpClientModule,
+    StoreModule.forRoot({}, {}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+
+    ArpaModule.forRoot(),
   ],
   providers: [
     ConfigService,

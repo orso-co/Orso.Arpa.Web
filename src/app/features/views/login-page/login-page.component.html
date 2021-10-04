@@ -1,5 +1,4 @@
 <form (ngSubmit)='submit()' [formGroup]='loginFormGroup' class='p-jc-center'>
-
   <div class='p-fluid'>
     <arpa-form-field label='USERNAMEOREMAIL'>
       <input autocomplete='username' formControlName='usernameOrEmail' id='usernameOrEmail' pInputText type='text'>
@@ -10,13 +9,10 @@
     </arpa-form-field>
 
     <div class='p-field'>
-      <button
-        [disabled]='loginFormGroup.invalid || loginFormGroup.pristine '
-        label="{{ 'LOGIN' | translate }}"
-        pButton>
-      </button>
+      <p-button [disabled]='loginFormGroup.invalid || loginFormGroup.pristine'
+                label="{{ 'LOGIN' | translate }}"
+                type='submit'></p-button>
     </div>
-
     <div class='p-formgroup-inline'>
       <div class='p-field'>
         <p-button (click)='forgotPassword()' label="{{ 'auth.FORGOT_PASSWORD' | translate }}"

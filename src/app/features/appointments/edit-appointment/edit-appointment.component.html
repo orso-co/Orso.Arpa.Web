@@ -1,197 +1,198 @@
-<p-steps [model]="items" [(activeIndex)]="activeIndex" [readonly]="false"></p-steps>
-<div [ngSwitch]="activeIndex">
-  <ng-container *ngSwitchCase="0">
-    <form (submit)="onSubmit(false)" [formGroup]="formGroup">
-      <div class="p-grid">
-        <div class="p-col-12">
-          <div class="card card-w-title">
-            <div class="p-grid">
-              <div class="p-col-12 p-md-6 p-lg-4">
-                <div class="p-col-12">
-                  <div class="p-field">
-                    <label for="title">{{ 'appointments.TITLE' | translate }} *</label>
-                    <input required type="text" pInputText placeholder="{{ 'appointments.TITLE' | translate }} *" formControlName="name" maxlength="50" id="title" />
+<p-steps [(activeIndex)]='activeIndex' [model]='items' [readonly]='false'></p-steps>
+<div [ngSwitch]='activeIndex'>
+  <ng-container *ngSwitchCase='0'>
+    <form (submit)='onSubmit(false)' [formGroup]='formGroup'>
+      <div class='p-grid'>
+        <div class='p-col-12'>
+          <div class='card card-w-title'>
+            <div class='p-grid'>
+              <div class='p-col-12 p-md-6 p-lg-4'>
+                <div class='p-col-12'>
+                  <div class='p-field'>
+                    <label for='title'>{{ 'appointments.TITLE' | translate }} *</label>
+                    <input formControlName='name' id='title' maxlength='50' pInputText
+                           placeholder="{{ 'appointments.TITLE' | translate }} *" required type='text' />
                   </div>
                 </div>
-                <div class="p-col-12">
-                  <div class="p-field p-fluid startTime">
-                    <label for="starttime">{{ 'appointments.START' | translate }} *</label>
+                <div class='p-col-12'>
+                  <div class='p-field p-fluid startTime'>
+                    <label for='starttime'>{{ 'appointments.START' | translate }} *</label>
                     <p-calendar
-                      [required]="true"
-                      formControlName="startTime"
-                      id="starttime"
-                      dateFormat="dd. MM yy"
-                      [showWeek]="true"
-                      [showTime]="true"
-                      hourFormat="24"
+                      [required]='true'
+                      [showTime]='true'
+                      [showWeek]='true'
+                      dateFormat='dd. MM yy'
+                      formControlName='startTime'
+                      hourFormat='24'
+                      id='starttime'
                       placeholder="{{ 'appointments.START' | translate }} *"
                     ></p-calendar>
 
                     <p-checkbox
+                      (onChange)='onAllDayChanged($event.checked)'
+                      [binary]='true'
                       [formControl]="$any(formGroup).controls['allDay']"
-                      id="allDay"
-                      (onChange)="onAllDayChanged($event.checked)"
                       [label]="'appointments.ALLDAY' | translate"
-                      class="allDayCheckbox"
-                      [binary]="true"
+                      class='allDayCheckbox'
+                      id='allDay'
                     ></p-checkbox>
                   </div>
                 </div>
-                <div class="p-col-12">
-                  <div class="p-field p-fluid">
-                    <label for="endtime">{{ 'appointments.END' | translate }} *</label>
+                <div class='p-col-12'>
+                  <div class='p-field p-fluid'>
+                    <label for='endtime'>{{ 'appointments.END' | translate }} *</label>
                     <p-calendar
-                      [required]="true"
-                      formControlName="endTime"
-                      dateFormat="dd. MM yy"
-                      [showWeek]="true"
-                      id="endtime"
-                      [showTime]="true"
-                      hourFormat="24"
+                      [required]='true'
+                      [showTime]='true'
+                      [showWeek]='true'
+                      dateFormat='dd. MM yy'
+                      formControlName='endTime'
+                      hourFormat='24'
+                      id='endtime'
                       placeholder="{{ 'appointments.END' | translate }} *"
                     ></p-calendar>
                   </div>
                 </div>
               </div>
-              <div class="p-col-12 p-md-6 p-lg-4">
-                <div class="p-col-12">
-                  <div class="p-field p-fluid">
-                    <label for="status">{{ 'appointments.STATUS' | translate }} </label>
+              <div class='p-col-12 p-md-6 p-lg-4'>
+                <div class='p-col-12'>
+                  <div class='p-field p-fluid'>
+                    <label for='status'>{{ 'appointments.STATUS' | translate }} </label>
                     <p-dropdown
-                      appendTo="body"
-                      placeholer="Select status"
-                      [showClear]="true"
-                      formControlName="statusId"
-                      [autoDisplayFirst]="false"
-                      [options]="statusOptions"
-                      id="status"
+                      [autoDisplayFirst]='false'
+                      [options]='statusOptions'
+                      [showClear]='true'
+                      appendTo='body'
+                      formControlName='statusId'
+                      id='status'
+                      placeholer='Select status'
                     ></p-dropdown>
                   </div>
                 </div>
-                <div class="p-col-12">
-                  <div class="p-field p-fluid">
-                    <label for="category">{{ 'appointments.CATEGORY' | translate }}  </label>
+                <div class='p-col-12'>
+                  <div class='p-field p-fluid'>
+                    <label for='category'>{{ 'appointments.CATEGORY' | translate }}  </label>
                     <p-dropdown
-                      appendTo="body"
-                      [autoDisplayFirst]="false"
-                      placeholer="Select category"
-                      [showClear]="true"
-                      formControlName="categoryId"
-                      [autoDisplayFirst]="false"
-                      [options]="categoryOptions"
-                      id="category"
+                      [autoDisplayFirst]='false'
+                      [autoDisplayFirst]='false'
+                      [options]='categoryOptions'
+                      [showClear]='true'
+                      appendTo='body'
+                      formControlName='categoryId'
+                      id='category'
+                      placeholer='Select category'
                     ></p-dropdown>
                   </div>
                 </div>
-                <div class="p-col-12">
-                  <div class="p-field p-fluid">
-                    <label for="expectation">{{ 'appointments.EXPECTATION' | translate }} </label>
+                <div class='p-col-12'>
+                  <div class='p-field p-fluid'>
+                    <label for='expectation'>{{ 'appointments.EXPECTATION' | translate }} </label>
                     <p-dropdown
-                      appendTo="body"
-                      [autoDisplayFirst]="false"
-                      placeholer="Select expectation"
-                      [showClear]="true"
-                      formControlName="expectationId"
-                      [autoDisplayFirst]="false"
-                      [options]="expectationOptions"
-                      id="expectation"
+                      [autoDisplayFirst]='false'
+                      [autoDisplayFirst]='false'
+                      [options]='expectationOptions'
+                      [showClear]='true'
+                      appendTo='body'
+                      formControlName='expectationId'
+                      id='expectation'
+                      placeholer='Select expectation'
                     ></p-dropdown>
                   </div>
                 </div>
               </div>
-              <div class="p-col-12 p-md-6 p-lg-4">
-                <div class="p-col-12">
-                  <div class="p-field p-fluid">
-                    <label for="publicDetails">{{ 'appointments.DETAILSPUBLIC' | translate }}</label>
+              <div class='p-col-12 p-md-6 p-lg-4'>
+                <div class='p-col-12'>
+                  <div class='p-field p-fluid'>
+                    <label for='publicDetails'>{{ 'appointments.DETAILSPUBLIC' | translate }}</label>
                     <textarea
-                      formControlName="publicDetails"
-                      id="publicDetails"
-                      [rows]="3"
-                      [cols]="30"
+                      [autoResize]='true'
+                      [cols]='30'
+                      [rows]='3'
+                      formControlName='publicDetails'
+                      id='publicDetails'
+                      maxlength='1000'
                       pInputTextarea
                       placeholder="{{ 'appointments.DETAILSPUBLIC' | translate }}"
-                      maxlength="1000"
-                      [autoResize]="true"
                     ></textarea>
                   </div>
                 </div>
-                <div class="p-col-12">
-                  <div class="p-field">
-                    <label for="internalDetails">{{ 'appointments.DETAILSINTERNAL' | translate }}</label>
+                <div class='p-col-12'>
+                  <div class='p-field'>
+                    <label for='internalDetails'>{{ 'appointments.DETAILSINTERNAL' | translate }}</label>
                     <textarea
-                      id="internalDetails"
-                      formControlName="internalDetails"
-                      [rows]="5"
-                      [cols]="30"
+                      [autoResize]='true'
+                      [cols]='30'
+                      [rows]='5'
+                      formControlName='internalDetails'
+                      id='internalDetails'
+                      maxlength='1000'
                       pInputTextarea
-                      maxlength="1000"
                       placeholder="{{ 'appointments.DETAILSINTERNAL' | translate }}"
-                      [autoResize]="true"
                     ></textarea>
                   </div>
                 </div>
               </div>
-              <div class="p-col-12">
-                <p-fieldset legend="{{ 'appointments.SALARY' | translate }}" [toggleable]=true [collapsed]=true>
-                  <div class="p-col-12">
-                    <div class="p-field">
-                      <label for="salary">{{ 'appointments.SALARY' | translate }} </label>
+              <div class='p-col-12'>
+                <p-fieldset [collapsed]=true [toggleable]=true legend="{{ 'appointments.SALARY' | translate }}">
+                  <div class='p-col-12'>
+                    <div class='p-field'>
+                      <label for='salary'>{{ 'appointments.SALARY' | translate }} </label>
                       <p-dropdown
-                        appendTo="body"
-                        formControlName="salaryId"
-                        [showClear]="true"
-                        [options]="salaryOptions"
-                        [autoDisplayFirst]="false"
-                        id="salary"
+                        [autoDisplayFirst]='false'
+                        [options]='salaryOptions'
+                        [showClear]='true'
                         [style]="{ 'min-width': '50%' }"
+                        appendTo='body'
+                        formControlName='salaryId'
+                        id='salary'
                       ></p-dropdown>
                     </div>
                   </div>
-                  <div class="p-col-12">
-                    <div class="p-field">
-                      <label for="salaryPattern">{{ 'appointments.SALARYPATTERN' | translate }}</label>
+                  <div class='p-col-12'>
+                    <div class='p-field'>
+                      <label for='salaryPattern'>{{ 'appointments.SALARYPATTERN' | translate }}</label>
                       <p-dropdown
-                        appendTo="body"
-                        formControlName="salaryPatternId"
-                        [options]="salaryPatternOptions"
-                        [showClear]="true"
-                        [autoDisplayFirst]="false"
-                        id="salaryPattern"
+                        [autoDisplayFirst]='false'
+                        [options]='salaryPatternOptions'
+                        [showClear]='true'
                         [style]="{ 'min-width': '50%' }"
+                        appendTo='body'
+                        formControlName='salaryPatternId'
+                        id='salaryPattern'
                       ></p-dropdown>
                     </div>
                   </div>
                 </p-fieldset>
               </div>
-              <div class="p-col-12" style="display: flex; justify-content: space-between">
+              <div class='p-col-12' style='display: flex; justify-content: space-between'>
                 <div>
                   <button
-                    pButton
-                    type="submit"
+                    [disabled]='formGroup.pristine || formGroup.invalid'
                     [label]="'appointments.SAVECLOSE' | translate"
-                    icon="pi pi-check"
-                    iconPos="left"
-                    [disabled]="formGroup.pristine || formGroup.invalid"
+                    icon='pi pi-check'
+                    iconPos='left'
+                    pButton
+                    type='submit'
                   ></button>
                   <button
-                    pButton
-                    class="p-ml-3"
-                    type="button"
+                    (click)='onSubmit(true)'
+                    [disabled]='formGroup.pristine || formGroup.invalid'
                     [label]="'appointments.SAVECONTINUE' | translate"
-                    icon="pi pi-arrow-right"
-                    iconPos="left"
-                    [disabled]="formGroup.pristine || formGroup.invalid"
-                    (click)="onSubmit(true)"
+                    class='p-ml-3'
+                    icon='pi pi-arrow-right'
+                    iconPos='left'
+                    pButton
+                    type='button'
                   ></button>
                 </div>
                 <button
-                  pButton
-                  class="p-ml-3 p-button-danger"
-                  type="button"
+                  (click)='showDeleteConfirmation($event)'
                   [label]="'DELETE' | translate"
-                  icon="pi pi-trash"
-                  iconPos="left"
-                  (click)="showDeleteConfirmation($event)"
+                  class='p-ml-3 p-button-danger'
+                  icon='pi pi-trash'
+                  iconPos='left'
+                  pButton
+                  type='button'
                 ></button>
               </div>
             </div>
@@ -200,81 +201,81 @@
       </div>
     </form>
   </ng-container>
-  <ng-container *ngSwitchCase="1">
-    <div class="card card-w-title">
-      <div class="p-grid form-group">
-        <div class="p-col-12">
-          <div class="p-field p-fluid">
-            <label for="venue">{{ 'appointments.VENUE' | translate }}</label>
+  <ng-container *ngSwitchCase='1'>
+    <div class='card card-w-title'>
+      <div class='p-grid form-group'>
+        <div class='p-col-12'>
+          <div class='p-field p-fluid'>
+            <label for='venue'>{{ 'appointments.VENUE' | translate }}</label>
             <p-dropdown
-              appendTo="body"
-              [autoDisplayFirst]="false"
-              placeholer="Select venue"
-              [showClear]="true"
-              [autoDisplayFirst]="false"
-              [options]="venueOptions"
-              (onChange)="onVenueChanged($event)"
-              id="venue"
-              name="venue"
-              [(ngModel)]="appointment.venueId"
+              (onChange)='onVenueChanged($event)'
+              [(ngModel)]='appointment.venueId'
+              [autoDisplayFirst]='false'
+              [autoDisplayFirst]='false'
+              [options]='venueOptions'
+              [showClear]='true'
+              appendTo='body'
+              id='venue'
+              name='venue'
+              placeholer='Select venue'
             ></p-dropdown>
           </div>
         </div>
-        <div class="p-col-12">
-          <div class="p-field p-fluid">
-            <label for="rooms">{{ 'appointments.ROOMS' | translate }}</label>
+        <div class='p-col-12'>
+          <div class='p-field p-fluid'>
+            <label for='rooms'>{{ 'appointments.ROOMS' | translate }}</label>
             <p-autoComplete
-              appendTo="body"
-              [(ngModel)]="appointment.rooms"
-              field="name"
-              name="rooms"
-              id="rooms"
-              [suggestions]="roomOptions"
-              (completeMethod)="searchRoom($event)"
-              [disabled]="rooms.length === 0"
-              [multiple]="true"
-              [forceSelection]="true"
-              [dropdown]="true"
-              (onSelect)="onRoomAdded($event)"
-              (onUnselect)="onRoomRemoved($event)"
+              (completeMethod)='searchRoom($event)'
+              (onSelect)='onRoomAdded($event)'
+              (onUnselect)='onRoomRemoved($event)'
+              [(ngModel)]='appointment.rooms'
+              [disabled]='rooms.length === 0'
+              [dropdown]='true'
+              [forceSelection]='true'
+              [multiple]='true'
+              [suggestions]='roomOptions'
+              appendTo='body'
+              field='name'
+              id='rooms'
+              name='rooms'
             ></p-autoComplete>
           </div>
         </div>
-        <div class="p-col-12">
-          <div class="p-field p-fluid">
-            <label for="sections">{{ 'appointments.SECTIONS' | translate }}</label>
+        <div class='p-col-12'>
+          <div class='p-field p-fluid'>
+            <label for='sections'>{{ 'appointments.SECTIONS' | translate }}</label>
             <p-autoComplete
-              appendTo="body"
-              id="sections"
-              field="name"
-              [(ngModel)]="appointment.sections"
-              name="sections"
-              [suggestions]="sectionOptions"
-              (completeMethod)="searchSection($event)"
-              [multiple]="true"
-              [forceSelection]="true"
-              [dropdown]="true"
-              (onSelect)="onSectionAdded($event)"
-              (onUnselect)="onSectionRemoved($event)"
+              (completeMethod)='searchSection($event)'
+              (onSelect)='onSectionAdded($event)'
+              (onUnselect)='onSectionRemoved($event)'
+              [(ngModel)]='appointment.sections'
+              [dropdown]='true'
+              [forceSelection]='true'
+              [multiple]='true'
+              [suggestions]='sectionOptions'
+              appendTo='body'
+              field='name'
+              id='sections'
+              name='sections'
             ></p-autoComplete>
           </div>
         </div>
-        <div class="p-col-12">
-          <div class="p-field p-fluid">
-            <label for="projects">{{ 'appointments.PROJECTS' | translate }}</label>
+        <div class='p-col-12'>
+          <div class='p-field p-fluid'>
+            <label for='projects'>{{ 'appointments.PROJECTS' | translate }}</label>
             <p-autoComplete
-              appendTo="body"
-              [(ngModel)]="appointment.projects"
-              name="projects"
-              field="title"
-              id="projects"
-              [suggestions]="projectOptions"
-              (completeMethod)="searchProject($event)"
-              [multiple]="true"
-              [forceSelection]="true"
-              [dropdown]="true"
-              (onSelect)="onProjectAdded($event)"
-              (onUnselect)="onProjectRemoved($event)"
+              (completeMethod)='searchProject($event)'
+              (onSelect)='onProjectAdded($event)'
+              (onUnselect)='onProjectRemoved($event)'
+              [(ngModel)]='appointment.projects'
+              [dropdown]='true'
+              [forceSelection]='true'
+              [multiple]='true'
+              [suggestions]='projectOptions'
+              appendTo='body'
+              field='title'
+              id='projects'
+              name='projects'
             ></p-autoComplete>
           </div>
         </div>
@@ -282,128 +283,129 @@
     </div>
   </ng-container>
   <ng-container *ngSwitchDefault>
-    <div class="card card-w-title">
+    <div class='card card-w-title'>
       <p-table
         #participationTable
-        [columns]="columns"
-        [value]="participationTableItems"
-        [paginator]="true"
-        [rows]="5"
-        [responsive]="true"
-        (onFilter)="onTableFiltered($event)"
+        (onFilter)='onTableFiltered($event)'
+        [columns]='columns'
+        [paginator]='true'
+        [responsive]='true'
+        [rows]='5'
+        [value]='participationTableItems'
       >
-        <ng-template pTemplate="caption">{{ 'appointments.PARTICIPATIONS' | translate }}</ng-template>
-        <ng-template pTemplate="header" let-columns>
+        <ng-template pTemplate='caption'>{{ 'appointments.PARTICIPATIONS' | translate }}</ng-template>
+        <ng-template let-columns pTemplate='header'>
           <tr>
-            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+            <th *ngFor='let col of columns' [pSortableColumn]='col.field'>
               {{ col.header }}
-              <p-sortIcon [field]="col.field"></p-sortIcon>
+              <p-sortIcon [field]='col.field'></p-sortIcon>
             </th>
           </tr>
           <tr>
-            <th *ngFor="let col of columns" [ngSwitch]="col.field">
+            <th *ngFor='let col of columns' [ngSwitch]='col.field'>
               <input
+                (input)="participationTable.filter($event.target.value, col.field, 'contains')"
                 *ngSwitchCase="'surname'"
                 pInputText
-                type="text"
-                (input)="participationTable.filter($event.target.value, col.field, 'contains')"
+                type='text'
               />
               <input
+                (input)="participationTable.filter($event.target.value, col.field, 'contains')"
                 *ngSwitchCase="'givenName'"
                 pInputText
-                type="text"
-                (input)="participationTable.filter($event.target.value, col.field, 'contains')"
+                type='text'
               />
               <p-dropdown
-                appendTo="body"
+                (onChange)="participationTable.filter($event.value, col.field, 'equals')"
                 *ngSwitchCase="'predictionId'"
-                [showClear]="true"
-                [autoDisplayFirst]="false"
-                [options]="predictionOptions"
+                [autoDisplayFirst]='false'
+                [options]='predictionOptions'
+                [showClear]='true'
                 [style]="{ width: '100%' }"
-                (onChange)="participationTable.filter($event.value, col.field, 'equals')"
+                appendTo='body'
               ></p-dropdown>
               <p-dropdown
-                appendTo="body"
+                (onChange)="participationTable.filter($event.value, col.field, 'equals')"
                 *ngSwitchCase="'resultId'"
-                [showClear]="true"
-                [autoDisplayFirst]="false"
-                [options]="resultOptions"
+                [autoDisplayFirst]='false'
+                [options]='resultOptions'
+                [showClear]='true'
                 [style]="{ width: '100%' }"
-                (onChange)="participationTable.filter($event.value, col.field, 'equals')"
+                appendTo='body'
               ></p-dropdown>
               <p-dropdown
-                appendTo="body"
+                (onChange)="participationTable.filter($event.value, col.field, 'contains')"
                 *ngSwitchCase="'qualification'"
-                [showClear]="true"
-                [autoDisplayFirst]="false"
-                [options]="qualificationOptions"
+                [autoDisplayFirst]='false'
+                [options]='qualificationOptions'
+                [showClear]='true'
                 [style]="{ width: '100%' }"
-                (onChange)="participationTable.filter($event.value, col.field, 'contains')"
+                appendTo='body'
               ></p-dropdown>
               <p-dropdown
-                appendTo="body"
-                *ngSwitchCase="'sections'"
-                [showClear]="true"
-                [autoDisplayFirst]="false"
-                [options]="sectionSelectItems"
-                [style]="{ width: '100%' }"
                 (onChange)="participationTable.filter($event.value, col.field, 'contains')"
+                *ngSwitchCase="'sections'"
+                [autoDisplayFirst]='false'
+                [options]='sectionSelectItems'
+                [showClear]='true'
+                [style]="{ width: '100%' }"
+                appendTo='body'
               ></p-dropdown>
             </th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-item>
+        <ng-template let-item pTemplate='body'>
           <tr>
             <td>
-              <span class="p-column-title">{{ 'SURNAME' | translate }}</span>
+              <span class='p-column-title'>{{ 'SURNAME' | translate }}</span>
               {{ item.surname }}
             </td>
             <td>
-              <span class="p-column-title">{{ 'GIVENNAME' | translate }}</span>
+              <span class='p-column-title'>{{ 'GIVENNAME' | translate }}</span>
               {{ item.givenName }}
             </td>
             <td>
-              <span class="p-column-title">{{ 'SECTIONS' | translate }}</span>
+              <span class='p-column-title'>{{ 'SECTIONS' | translate }}</span>
               {{ item.sections }}
             </td>
             <td>
-              <span class="p-column-title">{{ 'appointments.LEVEL' | translate }}</span>
+              <span class='p-column-title'>{{ 'appointments.LEVEL' | translate }}</span>
               {{ item.qualification }}
             </td>
-            <td class="p-fluid">
-              <span class="p-column-title">{{ 'appointments.PREDICTION' | translate }}</span>
+            <td class='p-fluid'>
+              <span class='p-column-title'>{{ 'appointments.PREDICTION' | translate }}</span>
               <p-dropdown
-                appendTo="body"
-                *ngIf="item.predictionId"
-                placeholer="Select prediction"
-                [disabled]="true"
-                [autoDisplayFirst]="false"
-                [options]="predictionOptions"
+                *ngIf='item.predictionId'
+                [(ngModel)]='item.predictionId'
+                [autoDisplayFirst]='false'
+                [disabled]='true'
                 [name]="'prediction-' + item.id"
-                [(ngModel)]="item.predictionId"
+                [options]='predictionOptions'
+                appendTo='body'
+                placeholer='Select prediction'
               ></p-dropdown>
             </td>
-            <td class="p-fluid">
-              <span class="p-column-title">{{ 'appointments.RESULTS' | translate }}</span>
+            <td class='p-fluid'>
+              <span class='p-column-title'>{{ 'appointments.RESULTS' | translate }}</span>
               <p-dropdown
-                appendTo="body"
-                placeholer="Select result"
-                [autoDisplayFirst]="false"
-                [options]="resultOptions"
+                (onChange)='onResultChanged(item, $event)'
+                [(ngModel)]='item.resultId'
+                [autoDisplayFirst]='false'
                 [name]="'result-' + item.id"
-                (onChange)="onResultChanged(item, $event)"
-                [(ngModel)]="item.resultId"
+                [options]='resultOptions'
+                appendTo='body'
+                placeholer='Select result'
               ></p-dropdown>
             </td>
           </tr>
         </ng-template>
-        <ng-template pTemplate="emptymessage" let-columns>
+        <ng-template let-columns pTemplate='emptymessage'>
           <tr>
-            <td [attr.colspan]="columns.length">{{ 'appointments.NORECORDS' | translate }}</td>
+            <td [attr.colspan]='columns.length'>{{ 'appointments.NORECORDS' | translate }}</td>
           </tr>
         </ng-template>
-        <ng-template pTemplate="summary"> {{ filteredDataCount }} {{ 'appointments.PARTICIPATIONS' | translate }} </ng-template>
+        <ng-template
+          pTemplate='summary'> {{ filteredDataCount }} {{ 'appointments.PARTICIPATIONS' | translate }} </ng-template>
       </p-table>
     </div>
   </ng-container>

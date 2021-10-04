@@ -3,8 +3,8 @@ import { LogoutPageComponent } from './logout-page.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { AuthService } from '../../../core/services/auth.service';
-import { NotificationsService } from '../../../core/services/notifications.service';
+import { AuthService } from '../../../../@arpa/services/auth.service';
+import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 
 describe('LogoutComponent', () => {
   let component: LogoutPageComponent;

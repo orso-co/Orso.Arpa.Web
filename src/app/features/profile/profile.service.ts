@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { MenuItemArpa, MenuService } from '../../shared/menu/menu.service';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { MenuItemArpa, MenuService } from '../../../@arpa/components/menu/menu.service';
 
 @Injectable()
 export class ProfileService {

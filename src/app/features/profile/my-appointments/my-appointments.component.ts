@@ -3,12 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'primeng/api';
 import { Observable, of } from 'rxjs';
 import { first, map } from 'rxjs/operators';
-import { MeService } from '../../../core/services/me.service';
-import { MyAppointmentDto } from '../../../model/myAppointmentDto';
-import { ProjectDto } from '../../../model/projectDto';
-import { RoomDto } from '../../../model/roomDto';
-import { SelectValueService } from '../../../core/services/select-value.service';
-import { NotificationsService } from '../../../core/services/notifications.service';
+import { MeService } from '../../../shared/services/me.service';
+import { MyAppointmentDto } from '../../../../@arpa/models/myAppointmentDto';
+import { ProjectDto } from '../../../../@arpa/models/projectDto';
+import { RoomDto } from '../../../../@arpa/models/roomDto';
+import { SelectValueService } from '../../../shared/services/select-value.service';
+import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 
 @Component({
   selector: 'arpa-my-appointments',

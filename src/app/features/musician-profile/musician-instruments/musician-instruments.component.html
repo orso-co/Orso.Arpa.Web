@@ -20,7 +20,7 @@
       </div>
     </div>
   </div>
-  <div class='p-mb-4 p-mr-6' *ngIf='profile.preferredPartsInner.length > 0'>
+  <div *ngIf='profile.preferredPartsInner.length > 0' class='p-mb-4 p-mr-6'>
     <div class='p-d-flex p-flex-row'>
       <div class='p-mr-3'>{{ 'musician-profile.PREFERRED_PARTS' | translate}}:</div>
       <div class='p-mr-3'>{{ 'musician-profile.PREFERRED_PARTS' | translate}}:</div>
@@ -34,7 +34,7 @@
 <form (submit)='$event.preventDefault()' [formGroup]='form'>
   <div class='p-fluid p-mt-3 p-formgrid p-grid'>
     <div class='p-col'>
-      <arpa-form-field label='musician-profile.LEVEL_ASSESSMENT_TEAM' type='field'>
+      <arpa-form-field label='musician-profile.LEVEL_ASSESSMENT_TEAM' type='rating'>
         <p-rating [cancel]='false' [stars]='5'
                   formControlName='levelAssessmentTeam'></p-rating>
       </arpa-form-field>
@@ -53,7 +53,7 @@
   </div>
   <div *ngIf='(preferredParts | async)' class='p-fluid p-formgrid p-grid'>
     <div class='p-col'>
-      <arpa-form-field label='musician-profile.PREFERRED_PARTS' type='field'>
+      <arpa-form-field label='musician-profile.PREFERRED_PARTS' type='select'>
         <p-multiSelect
           [options]='(preferredParts | async) || []'
           [placeholder]='"NOTHING_SELECTED" | translate'
@@ -79,7 +79,7 @@
     </div>
     <div class='p-field p-col p-text-right' style='margin-right: 0'>
       <arpa-form-field label='musician-profile.SALARY_COMMENT'>
-        <input id='salaryComment' type='text' pInputText formControlName='salaryComment' autocomplete='off'>
+        <input autocomplete='off' formControlName='salaryComment' id='salaryComment' pInputText type='text'>
       </arpa-form-field>
     </div>
   </div>
@@ -121,11 +121,11 @@
         </div>
         <div class='p-ml-auto p-text-right'>
           <button
-            pButton
-            type='button'
             [label]='"musician-profile.DELETE" | translate'
             class='p-button-rounded p-button-text p-button-icon-only'
-            icon='pi pi-trash'></button>
+            icon='pi pi-trash'
+            pButton
+            type='button'></button>
         </div>
       </div>
     </ng-template>
@@ -139,15 +139,15 @@
         <hr>
         <div class='p-fluid p-formgrid p-grid'>
           <div class='p-col'>
-            <arpa-form-field label='musician-profile.LEVEL_ASSESSMENT_TEAM' type='field'>
+            <arpa-form-field label='musician-profile.LEVEL_ASSESSMENT_TEAM' type='rating'>
               <p-rating [cancel]='false' [stars]='5'
                         formControlName='levelAssessmentTeam'></p-rating>
             </arpa-form-field>
           </div>
           <div class='p-field p-col p-text-right' style='margin-right: 0'>
             <button
-              *ngIf='!instrument.formGroup.pristine'
               (click)='updateDoubling(instrument.formGroup)'
+              *ngIf='!instrument.formGroup.pristine'
               [disabled]='instrument.formGroup.invalid'
               [label]="'musician-profile.UPDATE' | translate"
               icon='pi pi-check'

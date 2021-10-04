@@ -1,3 +1,17 @@
 {
-  "PAGE_TITLE": "Dashboard"
+  "PAGE_TITLE": "Dashboard",
+  "USER_MANAGEMENT": "Benutzerverwaltung",
+  "DELETE_USER": "User löschen",
+  "USER_DELETED": "Der User wurde gelöscht",
+  "USER_ROLES_SET": "Benutzerrollen aktualisiert",
+  "PROCEED": "Soll dieser User wirklich unwiderruflich gelöscht werden?",
+  "ACTIVE": "aktiv",
+  "NOT_CONFIRMED": "unbestätigt",
+  "PENDING": "wartend",
+  "REGISTERED": "registriert",
+  "CANCELLED": "abgebrochen",
+  "DONE": "abgeschlossen",
+  "STATE": "Status",
+  "USERS": "Benutzer",
+  "REGISTRATION_DATE": "Regisrierung"
 }

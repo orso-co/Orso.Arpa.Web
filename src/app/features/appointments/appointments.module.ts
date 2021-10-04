@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AppointmentsRoutingModule } from './appointments-routing.module';
-import { SharedModule } from '../../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppointmentCategoryListResolver } from './resolvers/appointment-category-list.resolver';
 import { AppointmentStatusListResolver } from './resolvers/appointment-status-list.resolver';
@@ -15,20 +14,43 @@ import { AppointmentsComponent } from './appointments/appointments.component';
 import { EditAppointmentComponent } from './edit-appointment/edit-appointment.component';
 import { FullCalendarModule } from 'primeng/fullcalendar';
 import { AppointmentParticipationPredictionListResolver } from './resolvers/appointment-participation-prediction-list.resolver';
-import { CommonTranslateModule } from '../../common/translate';
 import { TranslateService } from '@ngx-translate/core';
-import { LanguageService } from '../../core/services/language.service';
+import { LanguageService } from '../../../@arpa/services/language.service';
+import { TranslateModule } from '../../../@arpa/translate';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { DropdownModule } from 'primeng/dropdown';
+import { TableModule } from 'primeng/table';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { FieldsetModule } from 'primeng/fieldset';
+import { CalendarModule } from 'primeng/calendar';
+import { CheckboxModule } from 'primeng/checkbox';
+import { StepsModule } from 'primeng/steps';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @NgModule({
   declarations: [AppointmentsComponent, EditAppointmentComponent],
   imports: [
     CommonModule,
     AppointmentsRoutingModule,
-    SharedModule,
     FormsModule,
     ReactiveFormsModule,
+    // Arpa Lib
+    TranslateModule.forChild(['appointments']),
+    // NG Prime Dependencies
     FullCalendarModule,
-    CommonTranslateModule.forChild(['appointments']),
+    ConfirmPopupModule,
+    DropdownModule,
+    TableModule,
+    AutoCompleteModule,
+    FieldsetModule,
+    CalendarModule,
+    CheckboxModule,
+    StepsModule,
+    InputTextareaModule,
+    InputTextModule,
+    InputNumberModule,
   ],
   providers: [
     AppointmentCategoryListResolver,
