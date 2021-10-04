@@ -29,6 +29,9 @@ export class MenuComponent implements OnInit {
   @Input()
   popup: boolean;
 
+  @Input()
+  appendTo: any;
+
   @ViewChild(Menu)
   menu: Menu;
 
