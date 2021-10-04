@@ -16,6 +16,7 @@ import { ApiInterceptor } from './interceptors/api.interceptor';
 import { APOLLO_OPTIONS } from 'apollo-angular';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 export const translateInitializerFactory = (translate: TranslateService, configService: ConfigService) => () => {
   translate.setDefaultLang(configService.getEnv('locale').default);
@@ -46,6 +47,8 @@ export const createApollo = (httpLink: HttpLink, configService: ConfigService): 
   imports: [
     CommonModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     TranslateModule.forRoot(['default']),
     LayoutModule,
     ToastModule,
