@@ -17,7 +17,7 @@ import { LanguageService } from 'src/@arpa/services/language.service';
   imports: [
     PersonsRoutingModule,
     CommonModule,
-    TranslateModule,
+    TranslateModule.forChild(['persons']),
     TableModule,
     DropdownModule,
     ButtonModule,

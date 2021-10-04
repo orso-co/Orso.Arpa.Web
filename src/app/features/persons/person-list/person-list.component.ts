@@ -1,4 +1,4 @@
-import { PersonService } from '../../../shared/services/person.service';
+import { PersonService } from '../services/person.service';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { first, map } from 'rxjs/operators';

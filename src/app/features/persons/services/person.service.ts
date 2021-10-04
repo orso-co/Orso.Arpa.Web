@@ -2,8 +2,8 @@ import { shareReplay } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiService } from '../../../@arpa/services/api.service';
-import { PersonDto } from '../../../@arpa/models/personDto';
+import { ApiService } from '../../../../@arpa/services/api.service';
+import { PersonDto } from '../../../../@arpa/models/personDto';
 
 @Injectable({
   providedIn: 'root',
