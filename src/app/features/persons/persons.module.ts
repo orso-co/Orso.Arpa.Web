@@ -1,3 +1,4 @@
+import { GraphQlFeedModule } from './../../../@arpa/components/graph-ql-feed/graph-ql-feed.module';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { TableModule } from 'primeng/table';
@@ -10,6 +11,7 @@ import { PersonListComponent } from './person-list/person-list.component';
 import { LanguageService } from 'src/@arpa/services/language.service';
 
 
+
 @NgModule({
   declarations: [
     PersonListComponent,
@@ -17,11 +19,13 @@ import { LanguageService } from 'src/@arpa/services/language.service';
   imports: [
     PersonsRoutingModule,
     CommonModule,
+    // ARPA Lib
     TranslateModule.forChild(['persons']),
+    GraphQlFeedModule,
+    // NG Prime Dependencies
     TableModule,
     DropdownModule,
     ButtonModule,
-
   ],
   exports: [
     PersonListComponent,

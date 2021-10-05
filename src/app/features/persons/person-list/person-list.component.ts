@@ -13,7 +13,29 @@ import { SectionService } from '../../../shared/services/section.service';
 import { SelectItem } from 'primeng/api';
 import { PersonDto } from '../../../../@arpa/models/personDto';
 import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator';
+import { gql } from 'apollo-angular';
 
+const PersonsQuery = gql`
+query Persons{
+  persons(first:50, order: { createdAt: DESC }
+  ) {
+    pageInfo {
+      hasNextPage,
+      startCursor,
+      endCursor,
+      hasPreviousPage
+    }
+
+    edges {
+  		cursor,
+      node {
+        givenName
+        surname
+        aboutMe
+      }
+    }
+  }
+}`;
 @Component({
   selector: 'arpa-person-list',
   templateUrl: './person-list.component.html',
@@ -24,6 +46,8 @@ import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator'
 export class PersonListComponent {
 
    persons: Observable<PersonDto[]>;
+
+   public query = PersonsQuery;
 
   constructor(
 
