@@ -1,4 +1,3 @@
-import { shareReplay } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -15,9 +14,9 @@ export class PersonService {
     this.baseUrl = '/persons';
   }
 
-  public load(): Observable<PersonDto[]> {
+  public getPersons(): Observable<PersonDto[]> {
 
-    return this.apiService.get<PersonDto[]>(this.baseUrl).pipe(shareReplay());
+    return this.apiService.get<PersonDto[]>(this.baseUrl);
   }
 
   public create(person: PersonDto): Observable<PersonDto> {
@@ -25,7 +24,7 @@ export class PersonService {
   }
 
   public update(person: PersonDto): Observable<any> {
-    return this.apiService.put(`${this.baseUrl}/${person.id}`, person).pipe(shareReplay());
+    return this.apiService.put(`${this.baseUrl}/${person.id}`, person);
   }
 
 

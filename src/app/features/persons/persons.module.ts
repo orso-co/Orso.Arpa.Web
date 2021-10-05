@@ -3,7 +3,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TableModule } from 'primeng/table';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule } from 'src/@arpa/translate/';
 import { TranslateService } from 'src/@arpa/translate';
 import { PersonsRoutingModule} from './persons-routing.module';
 import { PersonListComponent } from './person-list/person-list.component';

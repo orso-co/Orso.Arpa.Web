@@ -1,5 +1,5 @@
 import { PersonService } from '../services/person.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { first, map } from 'rxjs/operators';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -14,8 +14,6 @@ import { SelectItem } from 'primeng/api';
 import { PersonDto } from '../../../../@arpa/models/personDto';
 import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator';
 
-
-
 @Component({
   selector: 'arpa-person-list',
   templateUrl: './person-list.component.html',
@@ -28,6 +26,7 @@ export class PersonListComponent {
    persons: Observable<PersonDto[]>;
 
   constructor(
+
     private route: ActivatedRoute,
     private dialogService: DialogService,
     public translate: TranslateService,
@@ -39,6 +38,8 @@ export class PersonListComponent {
   ) {
     this.persons = this.route.data.pipe<PersonDto[]>(map((data) => data.persons));
   }
+
+
   public clear(ref: Table) {
     ref.clear();
   }

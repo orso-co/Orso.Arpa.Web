@@ -2,7 +2,7 @@
          [rows]='10'
          [rowsPerPageOptions]='[10,25,50]'
          [paginator]='true'
-         [globalFilterFields]="['title','venue']">>
+         [globalFilterFields]="['givenname','surname','aboutMe']">>
   <ng-template pTemplate='caption'>
     <div class='p-d-flex'>
       <span class='p-input-icon-left p-mr-auto'>
@@ -38,12 +38,7 @@
     </tr>
   </ng-template>
   <ng-template pTemplate='body' let-person>
-    <tr>
-      <td>
-        <span class="p-column-title">Given Name</span>
-        {{ persons}}
-      </td>
-    </tr>
+        {{ person | json }}
   </ng-template>
 </p-table>
 
