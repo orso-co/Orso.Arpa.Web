@@ -152,5 +152,19 @@
     "today": "Today",
     "upload": "Upload",
     "weekHeader": "Wk"
+  },
+  "auditlogs": {
+    "AUDITLOGS": "Auditlogs",
+    "TIME": "Time",
+    "CHANGED_BY": "Changed by",
+    "TYPE": "Type",
+    "TABLE": "Table",
+    "OLD_VALUES": "Old Values",
+    "NEW_VALUES": "New Values",
+    "DETAILS": "Entity Details"
+  },
+  "persons": {
+    "PERSONS": "Persons",
+    "ABOUTME": "About me"
   }
 }
