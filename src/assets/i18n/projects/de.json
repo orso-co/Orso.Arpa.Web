@@ -23,5 +23,6 @@
   "STATE": "Status",
   "TITLE": "Name",
   "TYPE": "Typ",
-  "VENUE": "Ort"
+  "VENUE": "Ort",
+  "SAVECLOSE": "Speichern & Schliessen"
 }

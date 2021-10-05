@@ -1,11 +1,14 @@
+<h2>{{project.title}}</h2>
+
 <form [formGroup]='form'>
+
   <div class='p-fluid p-formgrid p-grid'>
-    <div class='p-col-12 p-md-4'>
-      <div class='p-field p-col-12'>
+      <div class='p-field p-col-6'>
         <label for='title'>{{ 'projects.TITLE' | translate }} *</label>
-        <input formControlName='title' id='title' maxlength='50' pInputText type='text' />
+        <input formControlName='title' id='title' maxlength='100' pInputText type='text' />
       </div>
-      <div class='p-field p-col-12'>
+
+      <div class='p-field p-col-3'>
         <label for='startDate'>{{ 'projects.START' | translate }}</label>
         <p-calendar
           [showWeek]='true'
@@ -14,7 +17,8 @@
           id='startDate'
         ></p-calendar>
       </div>
-      <div class='p-field p-col-12'>
+
+      <div class='p-field p-col-3'>
         <label for='endDate'>{{ 'projects.END' | translate }}</label>
         <p-calendar
           [showWeek]='true'
@@ -23,7 +27,64 @@
           id='endDate'
         ></p-calendar>
       </div>
-      <div class='p-field p-col-12'>
+
+      <div class='p-field p-col-3'>
+          <label for='shortTitle'>{{ 'projects.ABBREVIATION' | translate }} *</label>
+          <input formControlName='shortTitle' id='shortTitle' maxlength='50' pInputText type='text' />
+      </div>
+
+      <div class= 'p-field p-col-3'>
+            <label for='code'>{{ 'projects.CODE' | translate }} *</label>
+            <input formControlName='code' id='code' maxlength='15' pInputText type='text' />
+      </div>
+      <div class='p-field p-col-6'>
+        <label for='parent'>{{ 'projects.PARENT' | translate }}</label>
+          <p-dropdown
+            [autoDisplayFirst]='false'
+            [options]='(parentProject | async) || []'
+            [showClear]='true'
+            appendTo='body'
+            formControlName='parentId'
+            id='parent'
+          ></p-dropdown>
+      </div>
+      <div class='p-field p-col-3'>
+        <label for='type'>{{ 'projects.TYPE' | translate }}</label>
+        <p-dropdown
+          [autoDisplayFirst]='false'
+          [options]='(type | async) || []'
+          [showClear]='true'
+          appendTo='body'
+          formControlName='typeId'
+          id='type'
+        ></p-dropdown>
+      </div>
+      <div class='p-field p-col-3'>
+        <label for='genre'>{{ 'projects.GENRE' | translate }}</label>
+        <p-dropdown
+          [autoDisplayFirst]='false'
+          [options]='(genre | async) || []'
+          [showClear]='true'
+          appendTo='body'
+          formControlName='genreId'
+          id='genre'
+        ></p-dropdown>
+      </div>
+
+      <div class='p-field p-col-3'>
+        <label for='stateId'>{{ 'projects.STATE' | translate }}</label>
+        <p-dropdown
+          [autoDisplayFirst]='false'
+          [options]='(state | async) || []'
+          [showClear]='true'
+          appendTo='body'
+          formControlName='stateId'
+          id='state'
+        ></p-dropdown>
+      </div>
+
+
+      <div class='p-field p-col-3'>
         <label for='isCompleted'>{{ 'projects.COMPLETED' | translate }} *</label>
         <p-dropdown
           [autoDisplayFirst]='false'
@@ -35,86 +96,38 @@
           id='isCompleted'
         ></p-dropdown>
       </div>
-    </div>
 
-    <div class='p-col-12 p-md-4'>
-      <div class='p-field p-col-12'>
-        <label for='shortTitle'>{{ 'projects.ABBREVIATION' | translate }} *</label>
-        <input formControlName='shortTitle' id='shortTitle' maxlength='50' pInputText type='text' />
-      </div>
-      <div class='p-field p-col-12'>
-        <label for='genre'>{{ 'projects.GENRE' | translate }}</label>
-        <p-dropdown
-          [autoDisplayFirst]='false'
-          [options]='(genre | async) || []'
-          [showClear]='true'
-          appendTo='body'
-          formControlName='genreId'
-          id='genre'
-        ></p-dropdown>
-      </div>
-      <div class='p-field p-col-12'>
-        <label for='type'>{{ 'projects.TYPE' | translate }}</label>
-        <p-dropdown
-          [autoDisplayFirst]='false'
-          [options]='(type | async) || []'
-          [showClear]='true'
-          appendTo='body'
-          formControlName='typeId'
-          id='type'
-        ></p-dropdown>
-      </div>
-      <div class='p-field p-col-12'>
-        <label for='venue'>{{ 'appointments.VENUE' | translate }}</label>
-        <p-dropdown
-          [autoDisplayFirst]='false'
-          [options]='(venues | async) || []'
-          [showClear]='true'
-          appendTo='body'
-          id='venue'
-          name='venue'
-        ></p-dropdown>
-      </div>
-    </div>
 
-    <div class='p-col-12 p-md-4'>
-      <div class='p-field p-col-12'>
-        <label for='code'>{{ 'projects.CODE' | translate }} *</label>
-        <input formControlName='code' id='code' maxlength='15' pInputText type='text' />
+      <div class='p-field p-col-6'>
+          <label for='description'>{{ 'projects.DESCRIPTION' | translate }}</label>
+          <textarea formControlName='description' id='description' rows="10" cols="10" pInputTextarea></textarea>
       </div>
-      <div class='p-field p-col-12'>
-        <label for='parent'>{{ 'projects.PARENT' | translate }}</label>
-        <p-dropdown
-          [autoDisplayFirst]='false'
-          [options]='(parentProject | async) || []'
-          [showClear]='true'
-          appendTo='body'
-          formControlName='parentId'
-          id='parent'
-        ></p-dropdown>
+
+      <div class='p-field p-col-6'>
+          <br>
+          <h3 style="text-align:center">(Hier muss noch Projekt-URLs-Liste hin)
+            <br>*
+            <br>*
+            <br>*
+            <br>*
+          </h3>
       </div>
-      <div class='p-field p-col-12'>
-        <label for='stateId'>{{ 'projects.STATE' | translate }}</label>
-        <p-dropdown
-          [autoDisplayFirst]='false'
-          [options]='(state | async) || []'
-          [showClear]='true'
-          appendTo='body'
-          formControlName='stateId'
-          id='state'
-        ></p-dropdown>
-      </div>
-      <div class='p-field p-col-12'>
-        <label for='description'>{{ 'projects.DESCRIPTION' | translate }}</label>
-        <textarea
-          formControlName='description'
-          id='description'
-        ></textarea>
-      </div>
-    </div>
+
+
   </div>
   <div class='p-formgroup-inline p-jc-between'>
-    <div class='p-field p-col'>
+    <div class='p-field p-col p-text-left'>
+      <button
+        (click)='onSubmit()'
+        [disabled]='form.pristine || form.invalid'
+        [label]="'projects.SAVECLOSE' | translate"
+        icon='pi pi-check'
+        iconPos='left'
+        pButton
+        type='submit'
+      ></button>
+    </div>
+    <div class='p-field p-col p-text-right'>
       <button
         (click)='cancel()'
         [label]="'CANCEL' | translate"
@@ -123,17 +136,6 @@
         iconPos='left'
         pButton
         type='button'
-      ></button>
-    </div>
-    <div class='p-field p-col p-text-right' style='margin-right: 0'>
-      <button
-        (click)='onSubmit()'
-        [disabled]='form.pristine || form.invalid'
-        [label]="'appointments.SAVECLOSE' | translate"
-        icon='pi pi-check'
-        iconPos='left'
-        pButton
-        type='submit'
       ></button>
     </div>
   </div>
