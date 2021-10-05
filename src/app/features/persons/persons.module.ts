@@ -1,4 +1,3 @@
-import { GraphQlFeedModule } from './../../../@arpa/components/graph-ql-feed/graph-ql-feed.module';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { TableModule } from 'primeng/table';
@@ -9,7 +8,7 @@ import { TranslateService } from 'src/@arpa/translate';
 import { PersonsRoutingModule} from './persons-routing.module';
 import { PersonListComponent } from './person-list/person-list.component';
 import { LanguageService } from 'src/@arpa/services/language.service';
-
+import { GraphQlFeedModule } from '../../../@arpa/components/graph-ql-feed/graph-ql-feed.module';
 
 
 @NgModule({
@@ -19,7 +18,7 @@ import { LanguageService } from 'src/@arpa/services/language.service';
   imports: [
     PersonsRoutingModule,
     CommonModule,
-    // ARPA Lib
+    // Arpa Lib
     TranslateModule.forChild(['persons']),
     GraphQlFeedModule,
     // NG Prime Dependencies

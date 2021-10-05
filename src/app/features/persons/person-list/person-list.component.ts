@@ -1,68 +1,47 @@
-import { PersonService } from '../services/person.service';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { first, map } from 'rxjs/operators';
-import { DialogService } from 'primeng/dynamicdialog';
-import { TranslateService } from '@ngx-translate/core';
-import { Observable, Subscription } from 'rxjs';
-import { NotificationsService } from '../../../../@arpa/services/notifications.service';
-import { MeService } from '../../../shared/services/me.service';
-import { SelectValueService } from '../../../shared/services/select-value.service';
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Table } from 'primeng/table';
-import { SectionService } from '../../../shared/services/section.service';
-import { SelectItem } from 'primeng/api';
 import { PersonDto } from '../../../../@arpa/models/personDto';
 import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator';
+
 import { gql } from 'apollo-angular';
 
-const PersonsQuery = gql`
-query Persons{
-  persons(first:50, order: { createdAt: DESC }
-  ) {
-    pageInfo {
-      hasNextPage,
-      startCursor,
-      endCursor,
-      hasPreviousPage
-    }
+export const PersonQuery = gql`
+  query Persons{
+    persons(order: { createdAt: DESC }
+    ) {
 
-    edges {
-  		cursor,
-      node {
-        givenName
-        surname
-        aboutMe
+      pageInfo {
+        hasNextPage,
+        startCursor,
+        endCursor,
+        hasPreviousPage
+      }
+
+      edges {
+        cursor,
+        node {
+          givenName
+          surname
+          aboutMe
+        }
       }
     }
-  }
-}`;
+  }`;
+
 @Component({
   selector: 'arpa-person-list',
   templateUrl: './person-list.component.html',
-  styleUrls: ['./person-list.component.scss']
+  styleUrls: ['./person-list.component.scss'],
 })
 
 @Unsubscribe()
 export class PersonListComponent {
 
-   persons: Observable<PersonDto[]>;
+  persons: Observable<PersonDto[]>;
+  query = PersonQuery;
 
-   public query = PersonsQuery;
-
-  constructor(
-
-    private route: ActivatedRoute,
-    private dialogService: DialogService,
-    public translate: TranslateService,
-    private PersonService: PersonService,
-    private notificationsService: NotificationsService,
-    private meService: MeService,
-    private selectValueService: SelectValueService,
-    private sectionService: SectionService,
-  ) {
-    this.persons = this.route.data.pipe<PersonDto[]>(map((data) => data.persons));
-  }
-
+  constructor() {}
 
   public clear(ref: Table) {
     ref.clear();
