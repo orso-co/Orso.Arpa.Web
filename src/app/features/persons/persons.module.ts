@@ -5,11 +5,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from 'src/@arpa/translate/';
 import { TranslateService } from 'src/@arpa/translate';
-import { PersonsRoutingModule} from './persons-routing.module';
+import { PersonsRoutingModule } from './persons-routing.module';
 import { PersonListComponent } from './person-list/person-list.component';
-import { LanguageService } from 'src/@arpa/services/language.service';
 import { GraphQlFeedModule } from '../../../@arpa/components/graph-ql-feed/graph-ql-feed.module';
-
+import { LanguageService } from '../../../@arpa/services/language.service';
 
 @NgModule({
   declarations: [
