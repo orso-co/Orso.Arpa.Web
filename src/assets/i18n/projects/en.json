@@ -23,5 +23,6 @@
   "STATE": "State",
   "TITLE": "Full Name",
   "TYPE": "Type",
-  "VENUE": "Venue"
+  "VENUE": "Venue",
+  "SAVECLOSE": "Save and Close"
 }
