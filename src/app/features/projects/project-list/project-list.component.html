@@ -15,6 +15,7 @@
               pButton></button>
     </div>
   </ng-template>
+
   <ng-template pTemplate='header'>
     <tr>
       <th pSortableColumn='title'>
@@ -23,18 +24,18 @@
           <p-columnFilter display='menu' field='title' type='text'></p-columnFilter>
         </div>
       </th>
-      <th pSortableColumn='shortTitle'>
+      <!-- <th pSortableColumn='shortTitle'>
         <div class='p-d-flex p-jc-between p-ai-center'>
           {{ 'projects.ABBREVIATION' | translate }}
           <p-columnFilter display='menu' field='shortTitle' type='text'></p-columnFilter>
         </div>
-      </th>
-      <th pSortableColumn='venue'>
+      </th> -->
+      <!-- <th pSortableColumn='venue'>
         <div class='p-d-flex p-jc-between p-ai-center'>
           {{ 'projects.VENUE' | translate }}
           <p-columnFilter display='menu' field='venue' type='text'></p-columnFilter>
         </div>
-      </th>
+      </th> -->
       <th pSortableColumn='startDate'>
         <div class='p-d-flex p-jc-between p-ai-center'>
           {{ 'projects.START' | translate }}
@@ -65,17 +66,17 @@
   <ng-template let-project pTemplate='body'>
     <tr (click)='openProjectDetailDialog(project)' class='clickable'>
       <td>
-        <span class='p-column-title'>{{ 'projects.TITLE' | translate }}</span>
+        <span class='p-column-title'>{{ 'projects.TITLE' | translate }} </span>
         {{ project.title }}
       </td>
-      <td>
+      <!-- <td>
         <span class='p-column-title'>{{ 'projects.ABBREVIATION' | translate }}</span>
         {{ project.shortTitle }}
-      </td>
-      <td>
+      </td> -->
+      <!-- <td>
         <span class='p-column-title'>{{ 'projects.VENUE' | translate }}</span>
         {{ project.venue }}
-      </td>
+      </td> -->
       <td>
         <span class='p-column-title'>{{ 'projects.START' | translate }}</span>
         {{ project.startDate | date }}

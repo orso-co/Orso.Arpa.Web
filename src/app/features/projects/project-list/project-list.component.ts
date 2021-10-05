@@ -67,7 +67,7 @@ export class ProjectListComponent {
         state: this.state,
       },
       header: selection ? this.translate.instant('projects.EDIT_PROJECT') : this.translate.instant('projects.NEW_PROJECT'),
-      styleClass: 'form-modal',
+      styleClass: 'form-modal', width: '66%',
     });
     ref.onClose
       .pipe(first())
