@@ -8,7 +8,9 @@ import { gql } from 'apollo-angular';
 
 export const PersonQuery = gql`
   query Persons{
-    persons(order: { createdAt: DESC }
+    persons(
+      first: 50,
+      order: { createdAt: DESC }
     ) {
 
       pageInfo {
