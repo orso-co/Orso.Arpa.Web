@@ -6,12 +6,13 @@ import {
   Directive,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
   QueryList,
   TemplateRef,
 } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ProjectDto } from '../../models/projectDto';
 import { PrimeTemplate } from 'primeng/api';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -46,7 +47,7 @@ export class ArpaTableColumnDirective {
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent implements OnInit, AfterContentInit {
+export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
 
   @Input()
   showFilter: boolean = true;
@@ -99,11 +100,15 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input()
   actionsTemplateRef: TemplateRef<any>;
 
+  @Input()
+  isLoading: boolean;
+
   @ContentChildren(PrimeTemplate) templates: QueryList<PrimeTemplate>;
   public isMobile: Observable<boolean>;
   public lazy: boolean = false;
   @ContentChildren(ArpaTableColumnDirective, { read: ArpaTableColumnDirective }) private columnTemplateRefs: QueryList<ArpaTableColumnDirective>;
   private columnTemplates: Record<string, TemplateRef<any>> = {};
+  private loadingEventSubscription: Subscription;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -113,6 +118,8 @@ export class TableComponent implements OnInit, AfterContentInit {
 
   ngOnInit(): void {
     if (this.feed) {
+      this.isLoading = true;
+      this.loadingEventSubscription = this.feed.isLoading.subscribe(v => this.isLoading = v);
       this.lazy = true;
       this.data = this.feed.values;
     }
@@ -143,6 +150,12 @@ export class TableComponent implements OnInit, AfterContentInit {
 
   getTemplate(template: string) {
     return this.columnTemplates[template];
+  }
+
+  ngOnDestroy(): void {
+    if (this.loadingEventSubscription) {
+      this.loadingEventSubscription.unsubscribe();
+    }
   }
 
 }

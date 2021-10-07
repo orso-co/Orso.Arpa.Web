@@ -45,7 +45,6 @@ export class GraphQlFeedComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
     this.feedQuery = this.apollo.watchQuery<any>({
       query: this.query,
       variables: {

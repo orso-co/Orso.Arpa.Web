@@ -7,7 +7,7 @@
          [globalFilterFields]='filterFields'
          [lazyLoadOnInit]='false'
          [lazy]='lazy'
-         [loading]='(feed ? (feed.isLoading | async) || false : false)'
+         [loading]='isLoading'
          [paginator]='showPagination'
          [rowsPerPageOptions]='rowsPerPage'
          [rows]='rows'
