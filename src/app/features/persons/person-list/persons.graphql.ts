@@ -4,9 +4,9 @@ export const PersonsQuery = gql`
   query Persons(
     $skip: Int,
     $take: Int,
-    $orderName: SortEnumType = ASC
-    $orderSurname: SortEnumType = ASC
-    $orderAboutMe: SortEnumType = ASC
+    $orderName: SortEnumType = DESC
+    $orderSurname: SortEnumType = DESC
+    $orderAboutMe: SortEnumType = DESC
   ){
     persons(
       skip: $skip,
@@ -28,13 +28,6 @@ export const PersonsQuery = gql`
         givenName
         surname
         aboutMe
-        reliability
-        generalPreference
-        experienceLevel
-        createdAt
-        createdBy
-        modifiedAt
-        modifiedBy
       }
     }
   }`;
