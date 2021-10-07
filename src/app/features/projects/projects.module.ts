@@ -13,12 +13,13 @@ import { ProjectchartParticipantsComponent } from './projectchart-participants/p
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateModule } from '../../../@arpa/translate';
 import { DropdownModule } from 'primeng/dropdown';
-import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
 import { LanguageService } from '../../../@arpa/services/language.service';
+import { GraphQlFeedModule } from '../../../@arpa/components/graph-ql-feed/graph-ql-feed.module';
+import { TableModule } from '../../../@arpa/components/table/table.module';
 
 @NgModule({
   declarations: [
@@ -35,9 +36,10 @@ import { LanguageService } from '../../../@arpa/services/language.service';
     ProjectsRoutingModule,
     // Arpa Lib
     TranslateModule.forChild(['projects']),
+    GraphQlFeedModule,
+    TableModule,
     // NG Prime Dependencies
     DropdownModule,
-    TableModule,
     ButtonModule,
     CalendarModule,
     InputTextareaModule,

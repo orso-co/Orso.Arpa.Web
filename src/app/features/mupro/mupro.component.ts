@@ -22,28 +22,23 @@ const MusicianProfiles = gql`
     ) {
       pageInfo {
         hasNextPage,
-        startCursor,
-        endCursor,
         hasPreviousPage
       }
 
-      edges {
-        cursor
-        node{
-          isMainProfile,
-          person {
-            id,
-            givenName,
-            surname,
-            addresses {
-              country,
-              city
-            }
+      items {
+        isMainProfile,
+        person {
+          id,
+          givenName,
+          surname,
+          addresses {
+            country,
+            city
           }
-          instrument {
-            name,
-            createdAt
-          }
+        }
+        instrument {
+          name,
+          createdAt
         }
       }
     }

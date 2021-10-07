@@ -18,6 +18,9 @@ import { SelectItem } from 'primeng/api';
 import { ProjectDto } from '../../../../@arpa/models/projectDto';
 import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
 import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator';
+import { DocumentNode } from 'graphql';
+import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
+import { ProjectsQuery } from './projects.graphql';
 
 @Component({
   selector: 'arpa-project-list',
@@ -32,6 +35,16 @@ export class ProjectListComponent {
 
   cols: any[];
   langChangeListener: Subscription;
+
+  query: DocumentNode = ProjectsQuery;
+
+  columns: ColumnDefinition<ProjectDto>[] = [
+    { label: 'TITLE', property: 'title', type: 'text' },
+    { label: 'START', property: 'startDate', type: 'date' },
+    { label: 'END', property: 'endDate', type: 'date' },
+    { label: 'STATE', property: 'stateId', type: 'template', template: 'state' },
+    { label: 'COMPLETED', property: 'isCompleted', type: 'text' },
+  ];
 
   constructor(
     private route: ActivatedRoute,
@@ -80,8 +93,7 @@ export class ProjectListComponent {
       });
   }
 
-  public openParticipationDialog(event: MouseEvent, id: string) {
-    event.stopPropagation();
+  public openParticipationDialog(id: string) {
     const ref = this.dialogService.open(ProjectParticipationComponent, {
       data: {
         projectParticipation: this.selectValueService.load('ProjectParticipation', 'ParticipationStatusInner'),
@@ -102,8 +114,7 @@ export class ProjectListComponent {
       });
   }
 
-  public openParticipationListDialog(event: MouseEvent, project: ProjectDto) {
-    event.stopPropagation();
+  public openParticipationListDialog(project: ProjectDto) {
     this.dialogService.open(ProjectParticipantsComponent, {
       data: {
         project,
@@ -115,6 +126,10 @@ export class ProjectListComponent {
 
   public clear(ref: Table) {
     ref.clear();
+  }
+
+  onRowClick(event: ProjectDto) {
+    this.openProjectDetailDialog(event);
   }
 
   private saveNewProject(project: ProjectDto): void {

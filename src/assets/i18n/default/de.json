@@ -46,6 +46,7 @@
   "PASSWORD_WEAK": "zu schwach",
   "PHONENUMBER": "Telefonnummer",
   "PROJECTS": "Projekte",
+  "PERSONS": "Personen",
   "RECENT_ACTIVITY": "Aktivitätsverlauf",
   "REQUIRED": "Pflichtfeld darf nicht leer sein",
   "SAVE": "Speichern",
@@ -153,5 +154,4 @@
     "upload": "Hochladen",
     "weekHeader": "Woche"
   }
-
 }

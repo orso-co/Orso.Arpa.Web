@@ -28,14 +28,14 @@ const defaultConfig = (modules: string[]): TranslateModuleConfig => {
   exports: [NgxTranslateModule],
 })
 export class TranslateModule {
-  static forRoot(modules: string[] = [], config?: TranslateModuleConfig): ModuleWithProviders<NgxTranslateModule> {
+  static forRoot(modules: string[] = [], config?: TranslateModuleConfig): ModuleWithProviders<TranslateModule> {
     return NgxTranslateModule.forRoot({
       ...defaultConfig(modules),
       ...config,
     });
   }
 
-  static forChild(modules: string[] = [], config?: TranslateModuleConfig): ModuleWithProviders<NgxTranslateModule> {
+  static forChild(modules: string[] = [], config?: TranslateModuleConfig): ModuleWithProviders<TranslateModule> {
     return NgxTranslateModule.forChild({
       ...defaultConfig(modules),
       extend: true,

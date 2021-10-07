@@ -44,6 +44,7 @@
   "PASSWORD_NORMAL": "ok",
   "PASSWORD_STRONG": "strong",
   "PASSWORD_WEAK": "to weak",
+  "PERSONS": "Personen",
   "PHONENUMBER": "Phone Number",
   "PROJECTS": "Projects",
   "RECENT_ACTIVITY": "Recent Activiy",
@@ -57,6 +58,16 @@
   "WEEK": "Week",
   "WELCOME": "Welcome to Arpa 2.0",
   "YES": "Yes",
+  "auditlogs": {
+    "AUDITLOGS": "Auditlogs",
+    "CHANGED_BY": "Changed by",
+    "DETAILS": "Entity Details",
+    "NEW_VALUES": "New Values",
+    "OLD_VALUES": "Old Values",
+    "TABLE": "Table",
+    "TIME": "Time",
+    "TYPE": "Type"
+  },
   "error": {
     "BAD_REQUEST": "An error happened",
     "CONNECTION_ERROR": "Connection error, please try again later",
@@ -152,19 +163,5 @@
     "today": "Today",
     "upload": "Upload",
     "weekHeader": "Wk"
-  },
-  "auditlogs": {
-    "AUDITLOGS": "Auditlogs",
-    "TIME": "Time",
-    "CHANGED_BY": "Changed by",
-    "TYPE": "Type",
-    "TABLE": "Table",
-    "OLD_VALUES": "Old Values",
-    "NEW_VALUES": "New Values",
-    "DETAILS": "Entity Details"
-  },
-  "persons": {
-    "PERSONS": "Persons",
-    "ABOUTME": "About me"
   }
 }

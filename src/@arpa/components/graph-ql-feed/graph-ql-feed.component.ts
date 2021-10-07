@@ -1,11 +1,12 @@
-import { Component, Input, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef } from '@angular/core';
 import { Apollo, QueryRef } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
-import { map } from 'rxjs/operators';
-import { Subject, Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 
 export interface FeedScope {
-  values: any,
+  isLoading: EventEmitter<boolean>,
+  totalCount: BehaviorSubject<number>,
+  values: BehaviorSubject<any[]>,
 }
 
 @Component({
@@ -19,75 +20,84 @@ export class GraphQlFeedComponent implements OnInit, OnDestroy {
   query: DocumentNode;
 
   @Input()
-  variables: Record<string, any>;
+  variables: Record<string, any> = {};
 
   @Input()
   contentTemplate: TemplateRef<any>;
-  public values = new Subject();
+
+  @Output()
+  isLoading: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  public values = new BehaviorSubject<any[]>([]);
+  public totalCount = new BehaviorSubject<number>(0);
   public scope: FeedScope = {
-    values: this.transformedValues,
+    isLoading: this.isLoading,
+    totalCount: this.totalCount,
+    values: this.values,
   };
   private feedQuery: QueryRef<any, Record<string, any>>;
   private feedSubscription: Subscription;
-  private cursor: string;
+  private hasNextPage: boolean;
+  private hasPreviousPage: boolean;
 
   constructor(private apollo: Apollo) {
-  }
-
-  get transformedValues(): any {
-    return this.values.pipe(map((result): any => result));
-  }
-
-  flattenGraph(data: any) {
-    if (!data) {
-      return null;
-    }
-    const result: Record<string, any> = {};
-    Object.keys(data).forEach(k => {
-      if (data[k] && data[k].edges) {
-        if (data[k].pageInfo) {
-          result['pageInfo'] = {
-            ...data[k].pageInfo,
-            type: k,
-          };
-        }
-        result[k] = data[k].edges.map((edge: any) => this.flattenGraph(edge.node));
-      } else if (this.isObject(data[k])) {
-        result[k] = this.flattenGraph(data[k]);
-      } else {
-        result[k] = data[k];
-      }
-    });
-    return result;
+    this.variables.take = this.variables.take ? this.variables.take : 10;
   }
 
   ngOnInit(): void {
+
     this.feedQuery = this.apollo.watchQuery<any>({
       query: this.query,
       variables: {
-        cursor: null,
-        searchQuery: 'a',
+        searchQuery: '',
         ...this.variables,
       },
+      notifyOnNetworkStatusChange: true,
+      useInitialLoading: true,
     });
 
     this.feedSubscription = this.feedQuery.valueChanges.subscribe(({ data, loading }) => {
-      const flattened = this.flattenGraph(data) || {};
-      if (Array.isArray(flattened)) {
+      this.isLoading.emit(loading);
+      if (Array.isArray(data)) {
         this.values.next(data);
-      } else if (flattened.pageInfo) {
-        this.cursor = flattened.pageInfo.endCursor;
-        this.values.next(flattened[flattened.pageInfo.type]);
+      } else if (data) {
+        const type = Object.keys(data)[0];
+        this.hasNextPage = data[type].pageInfo.hasNextPage;
+        this.hasPreviousPage = data[type].pageInfo.hasPreviousPage;
+        this.values.next(data[type].items);
+        this.totalCount.next(data[type].totalCount);
       }
     });
+  }
+
+  refresh() {
+    return this.feedQuery.refetch();
+  }
+
+  onFilter(event: any) {
+    // ToDo: filtering on query level.
+  }
+
+  onLazy({ first, rows }: any) {
+    this.moveCursor(rows, first);
   }
 
   ngOnDestroy() {
     this.feedSubscription.unsubscribe();
   }
 
-  private isObject(obj: any) {
-    return obj !== null && typeof obj === 'object' && !Array.isArray(obj);
+  private moveCursor(take: number, skip: number = 0) {
+    return this.feedQuery.fetchMore({
+      variables: {
+        take,
+        skip,
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult) {
+          return prev;
+        }
+        return fetchMoreResult;
+      },
+    });
   }
-
 }

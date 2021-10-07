@@ -5,9 +5,10 @@ import { AuditLogComponent } from './audit-log/audit-log.component';
 import { AuditDialogComponent } from './audit-dialog/audit-dialog.component';
 import { AuditDialogDirective } from './audit-log/audit-dialog.directive';
 import { AuditLogRoutingModule } from './audit-log-routing.module';
-import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { GraphQlFeedModule } from '../../../@arpa/components/graph-ql-feed/graph-ql-feed.module';
+import { TableModule } from '../../../@arpa/components/table/table.module';
 
 @NgModule({
   declarations: [
@@ -20,10 +21,11 @@ import { InputTextModule } from 'primeng/inputtext';
     AuditLogRoutingModule,
     // Arpa Lib
     TranslateModule.forChild(['audit-log']),
-    // NG Prime Dependencies
     TableModule,
+    // NG Prime Dependencies
     ButtonModule,
     InputTextModule,
+    GraphQlFeedModule,
   ],
 })
 export class AuditLogModule {
