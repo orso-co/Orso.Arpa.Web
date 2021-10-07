@@ -1,3 +1,11 @@
 .mat-card-header-text {
   margin-left: 0 !important;
 }
+
+arpa-dashboard {
+  mat-card {
+    .p-datatable .p-datatable-tbody > tr {
+      background: var(--surface-100);
+    }
+  }
+}
