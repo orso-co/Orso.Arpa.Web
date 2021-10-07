@@ -1,6 +1,6 @@
 {
   "PERSONS": "Personen",
-  "GIVENNAME": "Vorname",
+  "GIVEN_NAME": "Vorname",
   "SURNAME": "Nachname",
-  "ABOUTME": "Über mich"
+  "ABOUT_ME": "Über mich"
 }

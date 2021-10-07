@@ -16,8 +16,8 @@ export class PersonListComponent {
   query = PersonsQuery;
 
   columns: ColumnDefinition<ProjectDto>[] = [
-    { label: 'FIRSTNAME', property: 'givenName', type: 'text' },
-    { label: 'LASTNAME', property: 'surname', type: 'text' },
+    { label: 'GIVEN_NAME', property: 'givenName', type: 'text' },
+    { label: 'SURNAME', property: 'surname', type: 'text' },
     { label: 'ABOUT_ME', property: 'aboutMe', type: 'text' },
   ];
 

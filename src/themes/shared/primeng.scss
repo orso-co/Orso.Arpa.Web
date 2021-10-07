@@ -126,6 +126,29 @@ p-badge {
   }
 
   .p-datatable-tbody > tr {
+    background: transparent;
+  }
+
+  .p-datatable-thead, .p-datatable-thead > tr > th {
+    background: var(--surface-100);
+  }
+
+  .p-datatable-thead > tr > th {
+    border-bottom: 2px solid var(--surface-50);
+  }
+
+  .p-paginator {
+    background: none;
+    border-bottom: 0;
+  }
+}
+
+.p-datatable {
+  .p-datatable-header {
+    background: none;
+  }
+
+  .p-datatable-tbody > tr {
     background: var(--surface-100);
   }
 
