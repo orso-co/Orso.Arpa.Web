@@ -1,117 +1,39 @@
-<p-table #dt1 [globalFilterFields]="['title','venue']" [paginator]='true'
-         [rowsPerPageOptions]='[10,25,50]'
-         [rows]='10'
-         [value]='(projects | async) || []'
-         dataKey='id'>>
-  <ng-template pTemplate='caption'>
-    <div class='p-d-flex'>
-      <span class='p-input-icon-left p-mr-auto'>
-          <i class='pi pi-search'></i>
-          <input (input)="dt1.filterGlobal($event.target.value, 'contains')" [placeholder]='"SEARCH" | translate'
-                 pInputText
-                 type='text' />
-      </span>
-      <button (click)='clear(dt1)' [label]='"CLEAR" | translate' class='p-button-outlined' icon='pi pi-filter-slash'
-              pButton></button>
-    </div>
-  </ng-template>
+<!-- Graphql feed controls and holds graphql api results. -->
+<arpa-graph-ql-feed #feedSource [contentTemplate]='feed' [query]='query'></arpa-graph-ql-feed>
 
-  <ng-template pTemplate='header'>
-    <tr>
-      <th pSortableColumn='title'>
-        <div class='p-d-flex p-jc-between p-ai-center'>
-          {{ 'projects.TITLE' | translate }}
-          <p-columnFilter display='menu' field='title' type='text'></p-columnFilter>
-        </div>
-      </th>
-      <!-- <th pSortableColumn='shortTitle'>
-        <div class='p-d-flex p-jc-between p-ai-center'>
-          {{ 'projects.ABBREVIATION' | translate }}
-          <p-columnFilter display='menu' field='shortTitle' type='text'></p-columnFilter>
-        </div>
-      </th> -->
-      <!-- <th pSortableColumn='venue'>
-        <div class='p-d-flex p-jc-between p-ai-center'>
-          {{ 'projects.VENUE' | translate }}
-          <p-columnFilter display='menu' field='venue' type='text'></p-columnFilter>
-        </div>
-      </th> -->
-      <th pSortableColumn='startDate'>
-        <div class='p-d-flex p-jc-between p-ai-center'>
-          {{ 'projects.START' | translate }}
-          <p-columnFilter display='menu' field='startDate' type='date'></p-columnFilter>
-        </div>
-      </th>
-      <th pSortableColumn='endDate'>
-        <div class='p-d-flex p-jc-between p-ai-center'>
-          {{ 'projects.END' | translate }}
-          <p-columnFilter display='menu' field='endDate' type='date'></p-columnFilter>
-        </div>
-      </th>
-      <th pSortableColumn='stateId'>
-        <div class='p-d-flex p-jc-between p-ai-center'>
-          {{ 'projects.STATE' | translate }}
-          <p-columnFilter display='menu' field='stateId' type='text'></p-columnFilter>
-        </div>
-      </th>
-      <th pSortableColumn='isCompleted'>
-        <div class='p-d-flex p-jc-between p-ai-center'>
-          {{ 'projects.COMPLETED' | translate }}
-          <p-columnFilter display='menu' field='isCompleted' type='boolean'></p-columnFilter>
-        </div>
-      </th>
-      <th></th>
-    </tr>
-  </ng-template>
-  <ng-template let-project pTemplate='body'>
-    <tr (click)='openProjectDetailDialog(project)' class='clickable'>
-      <td>
-        <span class='p-column-title'>{{ 'projects.TITLE' | translate }} </span>
-        {{ project.title }}
-      </td>
-      <!-- <td>
-        <span class='p-column-title'>{{ 'projects.ABBREVIATION' | translate }}</span>
-        {{ project.shortTitle }}
-      </td> -->
-      <!-- <td>
-        <span class='p-column-title'>{{ 'projects.VENUE' | translate }}</span>
-        {{ project.venue }}
-      </td> -->
-      <td>
-        <span class='p-column-title'>{{ 'projects.START' | translate }}</span>
-        {{ project.startDate | date }}
-      </td>
-      <td>
-        <span class='p-column-title'>{{ 'projects.END' | translate }}</span>
-        {{ project.endDate | date }}
-      </td>
-      <td>
-        <span class='p-column-title'>{{ 'projects.STATE' | translate }}</span>
-        {{ getState(project.stateId) | async }}
-      </td>
-      <td class='p-text-lg-center'>
-        <span class='p-column-title'>{{ 'projects.COMPLETED' | translate }}</span>
-        <i *ngIf='project.isCompleted' class='pi pi-check-square'></i>
-      </td>
-      <td class='p-text-lg-right'>
-        <button
-          (click)='openParticipationDialog($event, project.id)'
-          *ngIf='!project.isCompleted'
-          [label]='"projects.EDIT_PARTICIPATION" | translate' class='p-button-rounded p-button-text p-button-icon-only'
-          icon='pi pi-sign-in'
-          pButton
-          type='button'></button>
-        <button
-          (click)='openParticipationListDialog($event, project)'
-          [label]='"projects.SHOW_PARTICIPANTS" | translate'
-          class='p-button-rounded p-button-text p-button-icon-only'
-          icon='pi pi-users'
-          pButton
-          type='button'></button>
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
+<!-- The feed template is projected into the graph-ql-feed component. -->
+<ng-template #feed let-feed>
+  <arpa-table
+    (filterEvents)='feedSource.onFilter($event)'
+    (lazyEvents)='feedSource.onLazy($event)'
+    (rowClickEvents)='onRowClick($event)'
+    [actionsTemplateRef]='actionsTemplate'
+    [columns]='columns'
+    [feed]='feed'
+  >
+    <ng-template arpaTableColumn='state' let-value>
+      {{ getState(value) | async }}
+    </ng-template>
+  </arpa-table>
+</ng-template>
+
+<!-- The actions template is used in the arpa-table component and added to each row. -->
+<ng-template #actionsTemplate let-row>
+  <button
+    (click)='openParticipationDialog(row.id)'
+    *ngIf='!row.isCompleted'
+    [label]='"EDIT_PARTICIPATION" | translate' class='p-button-rounded p-button-text p-button-icon-only'
+    icon='pi pi-sign-in'
+    pButton
+    type='button'></button>
+  <button
+    (click)='openParticipationListDialog(row)'
+    [label]='"SHOW_PARTICIPANTS" | translate'
+    class='p-button-rounded p-button-text p-button-icon-only'
+    icon='pi pi-users'
+    pButton
+    type='button'></button>
+</ng-template>
 <div class='p-formgroup-inline p-jc-between'>
   <div class='p-field p-col p-text-right' style='margin-right: 0'>
     <button
@@ -121,4 +43,3 @@
       pButton></button>
   </div>
 </div>
-

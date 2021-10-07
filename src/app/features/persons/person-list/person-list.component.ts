@@ -1,35 +1,8 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Table } from 'primeng/table';
-import { PersonDto } from '../../../../@arpa/models/personDto';
 import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator';
-
-import { gql } from 'apollo-angular';
-
-export const PersonQuery = gql`
-  query Persons{
-    persons(
-      first: 50,
-      order: { createdAt: DESC }
-    ) {
-
-      pageInfo {
-        hasNextPage,
-        startCursor,
-        endCursor,
-        hasPreviousPage
-      }
-
-      edges {
-        cursor,
-        node {
-          givenName
-          surname
-          aboutMe
-        }
-      }
-    }
-  }`;
+import { PersonsQuery } from './persons.graphql';
+import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
+import { ProjectDto } from '../../../../@arpa/models/projectDto';
 
 @Component({
   selector: 'arpa-person-list',
@@ -40,13 +13,15 @@ export const PersonQuery = gql`
 @Unsubscribe()
 export class PersonListComponent {
 
-  persons: Observable<PersonDto[]>;
-  query = PersonQuery;
+  query = PersonsQuery;
 
-  constructor() {}
+  columns: ColumnDefinition<ProjectDto>[] = [
+    { label: 'FIRSTNAME', property: 'givenName', type: 'text' },
+    { label: 'LASTNAME', property: 'surname', type: 'text' },
+    { label: 'ABOUT_ME', property: 'aboutMe', type: 'text' },
+  ];
 
-  public clear(ref: Table) {
-    ref.clear();
+  constructor() {
   }
 
 }

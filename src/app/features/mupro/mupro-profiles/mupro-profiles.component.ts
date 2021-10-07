@@ -7,40 +7,7 @@ import { PersonsService } from '../services/persons.service';
 import { PersonDto } from '../../../../@arpa/models/personDto';
 import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
 import { SectionDto } from '../../../../@arpa/models/sectionDto';
-import { gql } from 'apollo-angular';
-
-
-const ProfileQuery = gql`
-  query Profile($personId: Uuid){
-    musicianProfiles(first:50, order: { isMainProfile: DESC } where: {
-      personId: { equals: $personId },
-    }
-    ) {
-      pageInfo {
-        hasNextPage,
-        startCursor,
-        endCursor,
-        hasPreviousPage
-      }
-
-      edges {
-        cursor
-        node{
-          id,
-          isMainProfile,
-          levelAssessmentInner,
-          levelAssessmentTeam,
-          deactivation {
-            deactivationStart,
-          },
-          instrument {
-            name,
-            createdAt
-          },
-        }
-      }
-    }
-  }`;
+import { ProfileQuery } from './profile.graphql';
 
 
 @Component({

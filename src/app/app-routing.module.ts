@@ -1,4 +1,3 @@
-import { PersonListComponent } from './features/persons/person-list/person-list.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../@arpa/guards/auth.guard';
@@ -66,13 +65,13 @@ const routes: Routes = [
         loadChildren: () => import('./features/persons/persons.module').then(m => m.PersonsModule),
         data: {
           roles: ['staff'],
-          title: 'persons.PERSONS',
+          title: 'PERSONS',
           menu: {
             name: 'feature',
-            label: 'persons.PERSONS',
+            label: 'PERSONS',
             icon: 'pi pi-users',
           },
-        }
+        },
       },
       {
         path: 'mupro',

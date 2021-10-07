@@ -1,0 +1,104 @@
+<p-table #table
+         (onFilter)='filterEvents.emit($event)'
+         (onLazyLoad)='lazyEvents.emit($event)'
+         (onPage)='paginationEvents.emit($event)'
+         (onRowSelect)='rowSelectEvents.emit($event)'
+         [dataKey]='primaryKey'
+         [globalFilterFields]='filterFields'
+         [lazyLoadOnInit]='false'
+         [lazy]='lazy'
+         [loading]='(feed ? (feed.isLoading | async) || false : false)'
+         [paginator]='showPagination'
+         [rowsPerPageOptions]='rowsPerPage'
+         [rows]='rows'
+         [scrollHeight]='scrollHeight'
+         [scrollable]='scrollable'
+         [styleClass]='((isMobile | async)? "mobile":"")'
+         [totalRecords]='(feed ? (feed.totalCount | async) || 0 : 0)'
+         [value]='(data | async) || []'
+         sortMode='multiple'
+>
+  <ng-template pTemplate='caption'>
+    <div *ngIf='showFilter' class='p-d-flex'>
+      <span class='p-input-icon-left p-mr-auto'>
+          <i class='pi pi-search'></i>
+          <input (input)="table.filterGlobal($event.target.value, 'contains')" [placeholder]='"SEARCH" | translate'
+                 pInputText
+                 type='text' />
+      </span>
+      <button (click)='table.clear()' [label]='"CLEAR" | translate' class='p-button-outlined' icon='pi pi-filter-slash'
+              pButton></button>
+    </div>
+  </ng-template>
+  <ng-template pTemplate='header'>
+    <tr>
+      <!-- Render all header columns by type -->
+      <ng-container *ngFor='let column of columns; trackBy: trackByProperty'>
+        <ng-container *ngIf="column.type === 'text'">
+          <th [pSortableColumn]='column.property'>
+            <div class='p-d-flex p-jc-between p-ai-center'>
+              {{ column.label | translate }}
+              <p-columnFilter display='menu' field='{{ column.property }}' type='text'></p-columnFilter>
+            </div>
+          </th>
+        </ng-container>
+        <ng-container *ngIf="column.type === 'date'">
+          <th [pSortableColumn]='column.property'>
+            <div class='p-d-flex p-jc-between p-ai-center'>
+              {{ column.label | translate }}
+              <p-columnFilter
+                [showAddButton]='false'
+                [showOperator]='false'
+                display='menu'
+                field='{{ column.property }}'
+                type='date'
+              ></p-columnFilter>
+            </div>
+          </th>
+        </ng-container>
+        <ng-container *ngIf="column.type === 'template'">
+          <th [pSortableColumn]='column.property'>
+            <div class='p-d-flex p-jc-between p-ai-center'>
+              {{ column.label | translate }}
+            </div>
+          </th>
+        </ng-container>
+      </ng-container>
+      <!-- Render an additional column if an action template was provided -->
+      <ng-container *ngIf='actionsTemplateRef'>
+        <th class='end'></th>
+      </ng-container>
+    </tr>
+  </ng-template>
+  <ng-template let-row pTemplate='body'>
+    <!-- Render all rows by column definition -->
+    <tr (click)='rowClickEvents.emit(row)' [pSelectableRow]='row'>
+      <ng-container *ngFor='let column of columns; trackBy: trackByProperty'>
+        <ng-container *ngIf="column.type === 'template' && column.template">
+          <td>
+            <ng-container [ngTemplateOutletContext]='{ $implicit: row[column.property] }'
+                          [ngTemplateOutlet]='getTemplate(column.template)'></ng-container>
+          </td>
+        </ng-container>
+        <ng-container *ngIf="column.type === 'text'">
+          <td>
+            {{ row[column.property] }}
+          </td>
+        </ng-container>
+        <ng-container *ngIf="column.type === 'date'">
+          <td>
+            {{ row[column.property] | date:'mediumDate'}}
+          </td>
+        </ng-container>
+      </ng-container>
+
+      <!-- Render all action columns -->
+      <ng-container *ngIf='actionsTemplateRef'>
+        <td class='end'>
+          <ng-container [ngTemplateOutletContext]='{ $implicit: row }'
+                        [ngTemplateOutlet]='actionsTemplateRef'></ng-container>
+        </td>
+      </ng-container>
+    </tr>
+  </ng-template>
+</p-table>

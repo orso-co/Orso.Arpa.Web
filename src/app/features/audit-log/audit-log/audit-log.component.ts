@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
-import { AuditLogService } from '../services/audit-log.service';
-import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { Table } from 'primeng/table';
-import { AuditLogDto } from '../../../../@arpa/models/auditLogDto';
+import { AuditLogQuery } from './audit-log.graphql';
+import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
+import { ProjectDto } from '../../../../@arpa/models/projectDto';
 
 @Component({
   selector: 'arpa-audit-log',
@@ -13,16 +10,16 @@ import { AuditLogDto } from '../../../../@arpa/models/auditLogDto';
 })
 export class AuditLogComponent {
 
-  public auditLogs: Observable<AuditLogDto[]>;
+  public query = AuditLogQuery;
 
-  constructor(private auditLogService: AuditLogService,
-              private route: ActivatedRoute,
-  ) {
-    this.auditLogs = this.route.data.pipe<AuditLogDto[]>(map((data) => data.auditLogs));
-  }
+  columns: ColumnDefinition<ProjectDto>[] = [
+    { label: 'TIME', property: 'createdAt', type: 'date' },
+    { label: 'TABLE', property: 'tableName', type: 'text' },
+    { label: 'TYPE', property: 'type', type: 'text' },
+    { label: 'CHANGED_BY', property: 'createdBy', type: 'text' },
+  ];
 
-  public clear(ref: Table) {
-    ref.clear();
+  constructor() {
   }
 
 }

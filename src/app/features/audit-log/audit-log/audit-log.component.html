@@ -1,73 +1,15 @@
-<p-table #dt1 [globalFilterFields]="['tableName','type','createdBy']" [paginator]='true'
-         [rowsPerPageOptions]='[10,25,50]'
-         [rows]='10'
-         [showCurrentPageReport]='true'
-         [value]='(auditLogs | async) || []'
-         currentPageReportTemplate='Showing {first} to {last} of {totalRecords} entries'
-         dataKey='id'>>
-  <ng-template pTemplate='caption'>
-    <div class='p-d-flex'>
-      <span class='p-input-icon-left p-mr-auto'>
-          <i class='pi pi-search'></i>
-          <input (input)="dt1.filterGlobal($event.target.value, 'contains')" [placeholder]='"SEARCH" | translate'
-                 pInputText
-                 type='text' />
-      </span>
-      <button (click)='clear(dt1)' [label]='"CLEAR" | translate' class='p-button-outlined' icon='pi pi-filter-slash'
-              pButton></button>
-    </div>
-  </ng-template>
-  <ng-template pTemplate='header'>
-    <tr>
-      <th pSortableColumn='createdAt'>
-        <div class='p-d-flex p-jc-between p-ai-center'>
-          {{ 'TIME' | translate }}
-        </div>
-      </th>
-      <th pSortableColumn='tableName'>
-        <div class='p-d-flex p-jc-between p-ai-center'>
-          {{ 'TABLE' | translate }}
-          <p-columnFilter display='menu' field='tableName' type='text'></p-columnFilter>
-        </div>
-      </th>
-      <th pSortableColumn='type'>
-        <div class='p-d-flex p-jc-between p-ai-center'>
-          {{ 'TYPE' | translate }}
-          <p-columnFilter display='menu' field='type' type='text'></p-columnFilter>
-        </div>
-      </th>
-      <th pSortableColumn='createdBy'>
-        <div class='p-d-flex p-jc-between p-ai-center'>
-          {{ 'CHANGED_BY' | translate }}
-          <p-columnFilter display='menu' field='createdBy' type='text'></p-columnFilter>
-        </div>
-      </th>
-      <th class='action'></th>
-    </tr>
-  </ng-template>
-  <ng-template let-auditLog pTemplate='body'>
-    <tr>
-      <td>
-        {{ auditLog.createdAt | date: 'short' }}
-      </td>
-      <td>
-        {{ auditLog.tableName }}
-      </td>
-      <td>
-        {{ auditLog.type }}
-      </td>
-      <td>
-        {{ auditLog.createdBy }}
-      </td>
-      <td>
-        <button [auditDetail]='auditLog' arpaAuditDialog class='p-button-rounded p-button-text p-button-icon-only'
-                icon='pi pi-search-plus' pButton type='button'></button>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate='emptymessage'>
-    <tr>
-      <td colspan='7'>{{ "NOTHING_FOUND" | translate}}</td>
-    </tr>
-  </ng-template>
-</p-table>
+<!-- Graphql feed controls and holds graphql api results. -->
+<arpa-graph-ql-feed #feedSource
+                    [contentTemplate]='feed'
+                    [query]='query'
+></arpa-graph-ql-feed>
+
+<!-- The feed template is projected into the graph-ql-feed component. -->
+<ng-template #feed let-feed>
+  <arpa-table
+    (lazyEvents)='feedSource.onLazy($event)'
+    [columns]='columns'
+    [feed]='feed'
+  ></arpa-table>
+</ng-template>
+
