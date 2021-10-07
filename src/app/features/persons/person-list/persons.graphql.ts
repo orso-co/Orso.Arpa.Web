@@ -4,9 +4,9 @@ export const PersonsQuery = gql`
   query Persons(
     $skip: Int,
     $take: Int,
-    $orderName: SortEnumType = DESC
-    $orderSurname: SortEnumType = DESC
-    $orderAboutMe: SortEnumType = DESC
+    $orderName: SortEnumType = ASC
+    $orderSurname: SortEnumType = ASC
+    $orderAboutMe: SortEnumType = ASC
   ){
     persons(
       skip: $skip,
