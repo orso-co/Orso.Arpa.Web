@@ -28,6 +28,13 @@ export const PersonsQuery = gql`
         givenName
         surname
         aboutMe
+        reliability
+        generalPreference
+        experienceLevel
+        createdAt
+        createdBy
+        modifiedAt
+        modifiedBy
       }
     }
   }`;
