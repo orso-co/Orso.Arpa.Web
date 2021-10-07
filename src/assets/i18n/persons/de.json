@@ -2,5 +2,15 @@
   "PERSONS": "Personen",
   "GIVEN_NAME": "Vorname",
   "SURNAME": "Nachname",
-  "ABOUT_ME": "Über mich"
+  "ABOUT_ME": "Über mich",
+  "DATEOFBIRTH": "Geburtsdatum",
+  "BIRTHPLACE": "Geburtsort",
+  "RELIABILITY": "Zuverlässigkeit",
+  "GENERAL_PREFERENCE": "Präferenz",
+  "EXPERIENCE_LEVEL": "Erfahrung",
+  "GENDER": "Geschlecht",
+  "CREATED_AT": "Erstellt am",
+  "CREATED_BY": "Erstellt von",
+  "MODIFIED_AT": "Geändert am",
+  "MODIFIED_BY": "Geändert von"
 }

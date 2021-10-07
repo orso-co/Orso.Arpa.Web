@@ -4,16 +4,16 @@ export const PersonsQuery = gql`
   query Persons(
     $skip: Int,
     $take: Int,
-    $orderName: SortEnumType = DESC
-    $orderSurname: SortEnumType = DESC
-    $orderAboutMe: SortEnumType = DESC
+    $orderName: SortEnumType = ASC
+    $orderSurname: SortEnumType = ASC
+    $orderAboutMe: SortEnumType = ASC
   ){
     persons(
       skip: $skip,
       take: $take,
       order: {
-        givenName: $orderName
         surname: $orderSurname
+        givenName: $orderName
         aboutMe: $orderAboutMe
       }
     ) {
@@ -21,13 +21,18 @@ export const PersonsQuery = gql`
         hasNextPage,
         hasPreviousPage
       }
-
       totalCount
-
       items {
         givenName
         surname
         aboutMe
+        reliability
+        generalPreference
+        experienceLevel
+        createdAt
+        createdBy
+        modifiedAt
+        modifiedBy
       }
     }
   }`;
