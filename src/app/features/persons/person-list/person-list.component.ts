@@ -18,7 +18,15 @@ export class PersonListComponent {
   columns: ColumnDefinition<ProjectDto>[] = [
     { label: 'GIVEN_NAME', property: 'givenName', type: 'text' },
     { label: 'SURNAME', property: 'surname', type: 'text' },
-    { label: 'ABOUT_ME', property: 'aboutMe', type: 'text' },
+    // { label: 'ABOUT_ME', property: 'aboutMe', type: 'text' },
+    { label: 'EXPERIENCE_LEVEL', property: 'experienceLevel', type: 'text' },
+    { label: 'RELIABILITY', property: 'reliability', type: 'text' },
+    { label: 'GENERAL_PREFERENCE', property: 'generalPreference', type: 'text' },
+    { label: 'CREATED_AT', property: 'createdAt', type: 'date' },
+    { label: 'CREATED_BY', property: 'createdBy', type: 'text' },
+    { label: 'MODIFIED_AT', property: 'createdAt', type: 'date' },
+    { label: 'MODIFIED_BY', property: 'modifiedBy', type: 'text' },
+
   ];
 
   constructor() {
