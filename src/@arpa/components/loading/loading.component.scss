@@ -12,7 +12,9 @@
 }
 
 .arpa-spinner {
-  display: block;
+  display: flex;
+  align-content: center;
+  align-items: center;
   width: 10rem;
   height: 10rem;
 }

@@ -10,11 +10,7 @@
   <mat-card-content class='dashboard-card-content'>
     <div [style.opacity]="!loading ? '0' : '1'" [style.visibility]="!loading ? 'hidden' : 'visible'"
          class='card-loader-wrapper'>
-      <div [hidden]='!loading' class='card-loader'>
-        <div class='arpa-spinner'>
-          <div class='spinner'></div>
-        </div>
-      </div>
+      <arpa-loading [custom]='true' [loading]='loading'></arpa-loading>
     </div>
     <div [style.opacity]="loading ? '0' : '1'" class='card-content-wrapper'>
       <ng-content></ng-content>

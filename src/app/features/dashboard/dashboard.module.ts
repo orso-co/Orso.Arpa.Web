@@ -35,6 +35,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { AccordionModule } from 'primeng/accordion';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { InputTextModule } from 'primeng/inputtext';
+import { LoadingModule } from '../../../@arpa/components/loading/loading.module';
 
 
 @NgModule({
@@ -79,6 +80,7 @@ import { InputTextModule } from 'primeng/inputtext';
     AccordionModule,
     TabMenuModule,
     InputTextModule,
+    LoadingModule,
   ],
 })
 export class DashboardModule {
