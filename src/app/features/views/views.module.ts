@@ -23,6 +23,8 @@ import { PasswordModule } from 'primeng/password';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../../../@arpa/services/language.service';
 
 
 @NgModule({
@@ -59,4 +61,14 @@ import { CheckboxModule } from 'primeng/checkbox';
   ],
 })
 export class ViewsModule {
+  constructor(private translateService: TranslateService, private languageService: LanguageService) {
+    languageService.languageEvent.subscribe(lang => {
+      /**
+       * Reset lang for lazy module.
+       * Fixes: https://github.com/ngx-translate/core/issues/1193
+       */
+      translateService.currentLang = '';
+      translateService.use(lang);
+    });
+  }
 }

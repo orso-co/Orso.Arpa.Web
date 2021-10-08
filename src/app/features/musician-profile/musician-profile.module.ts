@@ -27,6 +27,8 @@ import { TabViewModule } from 'primeng/tabview';
 import { TableModule } from 'primeng/table';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../../../@arpa/services/language.service';
 
 @NgModule({
   declarations: [
@@ -66,4 +68,14 @@ import { InputTextModule } from 'primeng/inputtext';
   ],
 })
 export class MusicianProfileModule {
+  constructor(private translateService: TranslateService, private languageService: LanguageService) {
+    languageService.languageEvent.subscribe(lang => {
+      /**
+       * Reset lang for lazy module.
+       * Fixes: https://github.com/ngx-translate/core/issues/1193
+       */
+      translateService.currentLang = '';
+      translateService.use(lang);
+    });
+  }
 }

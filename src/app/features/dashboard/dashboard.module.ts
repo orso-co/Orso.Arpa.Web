@@ -36,6 +36,8 @@ import { AccordionModule } from 'primeng/accordion';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { InputTextModule } from 'primeng/inputtext';
 import { LoadingModule } from '../../../@arpa/components/loading/loading.module';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../../../@arpa/services/language.service';
 
 
 @NgModule({
@@ -84,4 +86,14 @@ import { LoadingModule } from '../../../@arpa/components/loading/loading.module'
   ],
 })
 export class DashboardModule {
+  constructor(private translateService: TranslateService, private languageService: LanguageService) {
+    languageService.languageEvent.subscribe(lang => {
+      /**
+       * Reset lang for lazy module.
+       * Fixes: https://github.com/ngx-translate/core/issues/1193
+       */
+      translateService.currentLang = '';
+      translateService.use(lang);
+    });
+  }
 }
