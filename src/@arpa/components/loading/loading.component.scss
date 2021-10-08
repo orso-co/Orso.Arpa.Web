@@ -10,3 +10,24 @@
   background: rgba(0, 0, 0, 0.5);
   z-index: 20000;
 }
+
+.arpa-spinner {
+  display: block;
+  width: 10rem;
+  height: 10rem;
+}
+
+.arpa-spinner img {
+  width: 100%;
+  height: auto;
+}
+
+.arpa-spinner .spinner {
+  margin: 20px auto 0;
+  border: .5rem solid rgba(52, 152, 219, 0.28);
+  border-top: .5rem solid rgb(52, 152, 219);
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  animation: spin 2s linear infinite;
+}
