@@ -1,8 +1,8 @@
+import { PersonDto } from './../../../../@arpa/models/personDto';
 import { Component } from '@angular/core';
 import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator';
 import { PersonsQuery } from './persons.graphql';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
-import { ProjectDto } from '../../../../@arpa/models/projectDto';
 
 @Component({
   selector: 'arpa-person-list',
@@ -13,9 +13,10 @@ import { ProjectDto } from '../../../../@arpa/models/projectDto';
 @Unsubscribe()
 export class PersonListComponent {
 
+
   query = PersonsQuery;
 
-  columns: ColumnDefinition<ProjectDto>[] = [
+  columns: ColumnDefinition<PersonDto>[] = [
     { label: 'SURNAME', property: 'surname', type: 'text' },
     { label: 'GIVEN_NAME', property: 'givenName', type: 'text' },
     // { label: 'ABOUT_ME', property: 'aboutMe', type: 'text' },
