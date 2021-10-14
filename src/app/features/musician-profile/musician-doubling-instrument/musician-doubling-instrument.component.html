@@ -1,7 +1,7 @@
 <form *ngIf='((instruments | async) || []).length > 0' [formGroup]='form'>
   <div class='p-fluid p-formgrid p-grid'>
     <div class='p-col'>
-      <arpa-form-field label='musician-profile.INSTRUMENT' type='field'>
+      <arpa-form-field label='musician-profile.INSTRUMENT' type='select'>
         <p-dropdown
           [filter]='true'
           [options]='(instruments | async) || []'
@@ -13,7 +13,7 @@
       </arpa-form-field>
     </div>
     <div class='p-col'>
-      <arpa-form-field label='musician-profile.INSTRUMENT_AVAILABILITY' type='field'>
+      <arpa-form-field label='musician-profile.INSTRUMENT_AVAILABILITY' type='select'>
         <p-dropdown
           [options]='(availability | async) || []'
           [placeholder]='"NOTHING_SELECTED" | translate'
@@ -86,7 +86,7 @@
             </arpa-form-field>
           </div>
           <div class='p-col'>
-            <arpa-form-field label='musician-profile.INSTRUMENT_AVAILABILITY' type='field'>
+            <arpa-form-field label='musician-profile.INSTRUMENT_AVAILABILITY' type='select'>
               <p-dropdown
                 [options]='(availability | async) || []'
                 [placeholder]='"NOTHING_SELECTED" | translate'

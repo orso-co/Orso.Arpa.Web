@@ -75,7 +75,7 @@ export class MusicianDoublingInstrumentComponent implements OnInit {
       .subscribe((result) => {
         this.doublingInstruments.push(this.getFormGroup({ ...result }));
         this.filterInstruments();
-        this.notificationsService.success('musician-profile.DOUBLING_INSTRUMENT_ADDED');
+        this.notificationsService.success('DOUBLING_INSTRUMENT_ADDED', 'musician-profile');
       });
   }
 
@@ -90,7 +90,7 @@ export class MusicianDoublingInstrumentComponent implements OnInit {
             this.doublingInstruments[i] = this.getFormGroup({ ...listData, ...formGroup.value });
           }
         });
-        this.notificationsService.success('musician-profile.DOUBLING_INSTRUMENT_UPDATED');
+        this.notificationsService.success('DOUBLING_INSTRUMENT_UPDATED', 'musician-profile');
       });
   }
 
@@ -103,7 +103,7 @@ export class MusicianDoublingInstrumentComponent implements OnInit {
           this.doublingInstruments.splice(index, 1);
         }
         this.filterInstruments();
-        this.notificationsService.success('musician-profile.DOUBLING_INSTRUMENT_REMOVED');
+        this.notificationsService.success('DOUBLING_INSTRUMENT_REMOVED', 'musician-profile');
       });
   }
 

@@ -6,9 +6,10 @@ import { SelectValueService } from '../../../shared/services/select-value.servic
 import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
 import { MusicianService } from '../services/musician.service';
 import { NotificationsService } from '../../../../@arpa/services/notifications.service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { SelectItem } from 'primeng/api';
 import { EducationDto } from '../../../../@arpa/models/educationDto';
+import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
 
 @Component({
   selector: 'arpa-musician-education',
@@ -22,8 +23,12 @@ export class MusicianEducationComponent implements OnInit {
   public profile: MusicianProfileDto;
 
   public educationTypes: Observable<SelectItem[]>;
-
-  public educations: Array<any>;
+  public educations: BehaviorSubject<any> = new BehaviorSubject([]);
+  columns: ColumnDefinition<EducationDto>[] = [
+    { label: 'musician-profile.TIMESPAN', property: 'timeSpan', type: 'text', hideFilter: true },
+    { label: 'musician-profile.EDUCATION_INSTITUTION', property: 'institution', type: 'text', hideFilter: true },
+  ];
+  private _educations: Array<any>;
 
   constructor(public config: DynamicDialogConfig,
               private formBuilder: FormBuilder,
@@ -47,16 +52,17 @@ export class MusicianEducationComponent implements OnInit {
       typeId: [null, [Validators.required]],
       description: [null, [Validators.required]],
     });
-
-    this.educations = (this.profile.educations && this.profile.educations.length) ? this.profile.educations : [];
+    this._educations = (this.profile.educations && this.profile.educations.length) ? this.profile.educations : [];
+    this.educations.next(this._educations);
   }
 
   add(): void {
     this.musicianService.addEducation(this.profile.id, { ...this.form.value })
       .pipe(first())
-      .subscribe(() => {
-        this.educations.push(this.form.value);
-        this.notificationsService.success('EDUCATION_ADDED');
+      .subscribe((result) => {
+        this._educations.push(result);
+        this.educations.next(this._educations);
+        this.notificationsService.success('EDUCATION_ADDED', 'musician-profile');
       });
   }
 
@@ -64,8 +70,9 @@ export class MusicianEducationComponent implements OnInit {
     this.musicianService.removeEducation(education)
       .pipe(first())
       .subscribe(() => {
-        this.educations = this.educations.filter(e => e.id != education.id);
-        this.notificationsService.success('EDUCATION_REMOVED');
+        this._educations = this._educations.filter(e => e.id != education.id);
+        this.educations.next(this._educations);
+        this.notificationsService.success('EDUCATION_REMOVED', 'musician-profile');
       });
   }
 }

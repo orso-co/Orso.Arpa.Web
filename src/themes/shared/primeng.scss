@@ -1,3 +1,43 @@
+/**
+ * Data table list elements.
+ * Usage: <p-table tableStyleClass="arpa-table-list"></p-table>
+ */
+.p-datatable .arpa-table-list {
+  .p-datatable-thead {
+    & > h2 {
+      margin-top: 3rem;
+      opacity: .75;
+    }
+
+    background: transparent;
+  }
+
+  .p-datatable-tbody > tr {
+    background-color: transparent;
+
+    & > td {
+      border-bottom: none;
+      margin-bottom: .5rem;
+      border-radius: 3px;
+      background-color: var(--surface-100);
+      font-size: 1rem;
+      align-items: center;
+
+      .actions {
+        margin-left: auto;
+      }
+    }
+
+    &:first-child {
+      border-top: none;
+    }
+  }
+}
+
+/**
+ * Data table mobile.
+ * Usage: <p-table tableStyleClass="arpa-table-list"></p-table>
+ */
 .p-datatable.mobile {
   .p-datatable-thead {
     display: none;
@@ -27,6 +67,9 @@
   }
 }
 
+/**
+ * General Data table styles.
+ */
 .p-datatable-scrollable .p-datatable-tbody > tr > td, .p-datatable-scrollable .p-datatable-thead > tr > th {
 
   &.start {
@@ -59,6 +102,10 @@
 .p-datatable {
   .p-sortable-column.p-highlight {
     background: inherit;
+  }
+
+  thead {
+    background: transparent;
   }
 
   tr {
@@ -123,9 +170,10 @@ p-badge {
 .p-datatable {
   .p-datatable-header {
     background: none;
+    border-top: none;
   }
 
-  .p-datatable-thead, .p-datatable-thead > tr > th {
+  .p-datatable-thead > tr > th {
     background: var(--surface-100);
   }
 
@@ -138,3 +186,48 @@ p-badge {
     border-bottom: 0;
   }
 }
+
+/**
+ * General Accordion styles.
+ */
+.p-accordion {
+  .p-accordion-header.p-highlight .p-accordion-header-link {
+    background-color: var(--surface-d);
+  }
+
+  .p-accordion-header .p-accordion-header-link {
+    border: 0;
+    padding: .5rem 0;
+    padding-right: 1rem;
+    background: var(--surface-100);
+    font-weight: 400;
+    margin-bottom: .5rem;
+
+    &:hover {
+      background-color: var(--surface-d);
+    }
+
+    .p-d-flex {
+      align-items: center;
+      flex: 1;
+    }
+  }
+
+  .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
+    margin-left: .5rem;
+    margin-right: 1rem;
+  }
+
+  .p-accordion-content {
+    border: 0;
+    margin-bottom: .5rem;
+  }
+}
+
+/**
+ * General Dialog styles.
+ */
+.p-dialog-content {
+  overflow-y: visible !important;
+}
+

@@ -10,5 +10,7 @@
   "PREDICTION_SET": "Vorhersage für Terminteilnahme erfolgreich gespeichert",
   "UPCOMING": "Bevorstehend",
   "USER_PROFILE": "Benutzerprofil",
-  "USER_PROFILE_DATA": "Meine Daten"
+  "USER_PROFILE_DATA": "Meine Daten",
+  "USER_PROFILE_UPDATED": "Profil aktualisiert",
+  "USER_PROFILE_UPDATE_ERROR": "Profile konnte nicht aktualisiert werden"
 }

@@ -31,7 +31,16 @@ export const ProjectsQuery = gql`
         endDate
         stateId
         isCompleted
+        genreId
+        typeId
+        parentId
+        shortTitle
+        description
+        code
+        parent {
+          title
+          id
+        }
       }
     }
-
   }`;

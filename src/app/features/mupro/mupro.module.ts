@@ -18,6 +18,7 @@ import { RatingModule } from 'primeng/rating';
 import { BadgeModule } from 'primeng/badge';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { InputTextModule } from 'primeng/inputtext';
     BadgeModule,
     TabMenuModule,
     InputTextModule,
+    ButtonModule,
   ],
   providers: [
     MuproService,

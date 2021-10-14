@@ -1,8 +1,9 @@
-import { Component, ContentChild, HostListener, Input, NgZone, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+import { Component, ContentChild, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { routeTransitionAnimations } from './animations';
-import { NavigationEnd, Router, RouterEvent } from '@angular/router';
-import { filter, pairwise, startWith, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { ActivatedRoute, NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { filter, map, pairwise, shareReplay, startWith, takeUntil } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 enum ViewType {
   Mobile = 'mobile',
@@ -22,9 +23,6 @@ enum ViewState {
 })
 export class SplitViewComponent implements OnDestroy, OnInit {
 
-  @Input()
-  desktopBreakPoint: number = 768;
-
   @ContentChild('sideViewTemplate', { static: false })
   sideViewTemplateRef: TemplateRef<any>;
 
@@ -37,34 +35,31 @@ export class SplitViewComponent implements OnDestroy, OnInit {
   public destroyed = new Subject<any>();
   public initialCall: boolean;
 
-  constructor(private ngZone: NgZone, private router: Router) {
-    /**
-     * Set initial viewState.
-     */
-    if (window.innerWidth < this.desktopBreakPoint) {
-      this.viewType = ViewType.Mobile;
-    }
+  isTablet: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.TabletPortrait, Breakpoints.HandsetPortrait])
+    .pipe(
+      map(result => {
+        if (result.matches) {
+          this.viewType = ViewType.Mobile;
+          if (!this.activeComponent) {
+            this.setViewState(ViewState.Hide);
+          } else {
+            this.setViewState(ViewState.Show);
+          }
+        } else {
+          this.viewType = ViewType.Desktop;
+          this.setViewState(ViewState.Show);
+        }
+        return result.matches;
+      }),
+      shareReplay(),
+    );
+
+  isLarge: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.Large, Breakpoints.XLarge])
+    .pipe(map(result => result.matches), shareReplay());
+
+  constructor(private router: Router, private activeRoute: ActivatedRoute, private breakpointObserver: BreakpointObserver) {
     this.initialCall = true;
     this.setViewState(ViewState.Hide);
-  }
-
-  get isDesktop(): boolean {
-    return window.innerWidth >= this.desktopBreakPoint;
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize() {
-    if (window.innerWidth > this.desktopBreakPoint) {
-      this.viewType = ViewType.Desktop;
-      this.setViewState(ViewState.Show);
-    } else {
-      this.viewType = ViewType.Mobile;
-      if (!this.activeComponent) {
-        this.setViewState(ViewState.Hide);
-      } else {
-        this.setViewState(ViewState.Show);
-      }
-    }
   }
 
   ngOnInit(): void {
@@ -92,6 +87,7 @@ export class SplitViewComponent implements OnDestroy, OnInit {
 
   hideContentView(): void {
     // ToDo: prevent if dirty!
+    // this.router.navigate(['.'], { relativeTo: this.activeRoute.parent });
     this.setViewState(ViewState.Hide);
   }
 

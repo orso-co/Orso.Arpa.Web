@@ -29,6 +29,7 @@ const routes: Routes = [
         resolve: {
           profile: ProfileResolver,
         },
+        data: { shouldReuse: false },
       },
       {
         path: 'appointments',

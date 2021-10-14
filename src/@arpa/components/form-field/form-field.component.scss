@@ -3,6 +3,7 @@
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
   input:-webkit-autofill:active {
+    -webkit-background-clip: text;
     transition: background-color 5000s;
     -webkit-text-fill-color: var(--text-color) !important;
   }

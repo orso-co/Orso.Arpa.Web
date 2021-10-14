@@ -45,6 +45,23 @@
     }
   }
 
+  &.large {
+    justify-content: center;
+
+    .side-view {
+      margin-left: auto;
+      width: 17.5rem;
+      justify-content: center;
+    }
+
+    .content-view {
+      margin-right: auto;
+      width: 62.5rem;
+      justify-content: left;
+      flex-grow: 0;
+    }
+  }
+
   .content-view {
     display: flex;
     flex: 1 1 auto;

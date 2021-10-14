@@ -20,14 +20,14 @@
 <!-- The actions template is used in the arpa-table component and added to each row. -->
 <ng-template #actionsTemplate let-row>
   <button
-    (click)='openParticipationDialog(row.id)'
+    (click)='openParticipationDialog($event, row.id)'
     *ngIf='!row.isCompleted'
     [label]='"EDIT_PARTICIPATION" | translate' class='p-button-rounded p-button-text p-button-icon-only'
     icon='pi pi-sign-in'
     pButton
     type='button'></button>
   <button
-    (click)='openParticipationListDialog(row)'
+    (click)='openParticipationListDialog($event, row)'
     [label]='"SHOW_PARTICIPANTS" | translate'
     class='p-button-rounded p-button-text p-button-icon-only'
     icon='pi pi-users'

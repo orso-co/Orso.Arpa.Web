@@ -74,7 +74,8 @@
     "FORBIDDEN": "Access denied",
     "NOT_AUTHENTICATED": "Not logged in",
     "ROUTE_NOT_FOUND": "Page not found",
-    "SOMETHING_WENT_WRONG": "Oh, something went wrong!"
+    "SOMETHING_WENT_WRONG": "Oh, something went wrong!",
+    "FATAL_ERROR": "Oh, something went wrong!"
   },
   "norole": {
     "BE_PATIENT": "We ask for a little patience until you have been activated by our team. You will be notified of the activation by email."

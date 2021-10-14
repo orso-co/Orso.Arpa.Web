@@ -6,8 +6,9 @@ import { SelectValueService } from '../../../shared/services/select-value.servic
 import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
 import { MusicianService } from '../services/musician.service';
 import { NotificationsService } from '../../../../@arpa/services/notifications.service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { SelectItem } from 'primeng/api';
+import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
 
 @Component({
   selector: 'arpa-musician-documents',
@@ -21,8 +22,12 @@ export class MusicianDocumentsComponent implements OnInit {
   public profile: MusicianProfileDto;
 
   public documentTypes: Observable<SelectItem[]>;
-
-  public documents: Array<any>;
+  public documents: BehaviorSubject<[]> = new BehaviorSubject([]);
+  columns: ColumnDefinition<any>[] = [
+    { label: 'musician-profile.DOCUMENT_TYPE', property: 'label', type: 'text', hideFilter: true },
+  ];
+  public documentList: Observable<any>;
+  private _documents: any;
 
   constructor(public config: DynamicDialogConfig,
               private formBuilder: FormBuilder,
@@ -37,6 +42,14 @@ export class MusicianDocumentsComponent implements OnInit {
     this.documentTypes = this.selectValueService.load('MusicianProfile', 'Documents')
       .pipe(map(() => this.selectValueService.get('MusicianProfile', 'Documents')));
 
+    this.documentList = combineLatest(this.documentTypes, this.documents)
+      .pipe(map(([types, documents]) => {
+        const list: Array<any> = [];
+        documents.forEach(document => {
+          list.push(types.find(t => t.value === document));
+        });
+        return list;
+      }));
   }
 
   ngOnInit(): void {
@@ -44,15 +57,17 @@ export class MusicianDocumentsComponent implements OnInit {
       documentId: [null, [Validators.required]],
     });
 
-    this.documents = (this.profile.documents && this.profile.documents.length) ? this.profile.documents : [];
+    this._documents = (this.profile.documents && this.profile.documents.length) ? this.profile.documents : [];
+    this.documents.next(this._documents);
   }
 
   add(): void {
     this.musicianService.addDocument(this.profile.id, { ...this.form.value })
       .pipe(first())
       .subscribe(() => {
-        this.documents.push(this.form.value.documentId);
-        this.notificationsService.success('DOCUMENT_ADDED');
+        this._documents.push(this.form.value.documentId);
+        this.documents.next(this._documents);
+        this.notificationsService.success('DOCUMENT_ADDED', 'musician-profile');
       });
   }
 
@@ -60,8 +75,9 @@ export class MusicianDocumentsComponent implements OnInit {
     this.musicianService.removeDocument(this.profile.id, id)
       .pipe(first())
       .subscribe(() => {
-        this.documents = this.documents.filter(document => document != id);
-        this.notificationsService.success('DOCUMENT_REMOVED');
+        this._documents = this._documents.filter((document: any) => document != id);
+        this.documents.next(this._documents);
+        this.notificationsService.success('DOCUMENT_REMOVED', 'musician-profile');
       });
   }
 }

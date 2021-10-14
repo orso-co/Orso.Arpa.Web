@@ -114,7 +114,7 @@ export class MusicianInstrumentsComponent implements OnInit {
       .pipe(first())
       .subscribe((result) => {
         this.config.data.profile.next(this.profile);
-        this.notificationsService.success('musician-profile.INSTRUMENT_UPDATED');
+        this.notificationsService.success('INSTRUMENT_UPDATED', 'musician-profile');
       });
   }
 

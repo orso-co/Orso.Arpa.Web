@@ -12,6 +12,7 @@ import { environment } from '../environments/environment';
 import { ArpaModule } from '../@arpa/arpa.module';
 import { ThemeSwitcherService } from '../@arpa/components/theme-switcher/theme-switcher.service';
 import { ConfigService } from '../@arpa/services/config.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,12 @@ import { ConfigService } from '../@arpa/services/config.service';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
 
     ArpaModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
   providers: [
     ConfigService,

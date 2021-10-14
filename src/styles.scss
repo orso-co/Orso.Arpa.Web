@@ -63,6 +63,12 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+hr {
+  border-top: 1px solid #fff;
+  border-bottom: 0;
+  opacity: .25;
+}
+
 
 @import "~primeicons/primeicons.css";
 @import "~primeng/resources/primeng.min.css";

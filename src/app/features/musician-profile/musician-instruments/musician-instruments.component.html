@@ -40,7 +40,7 @@
       </arpa-form-field>
     </div>
     <div class='p-field p-col' style='margin-right: 0'>
-      <arpa-form-field label='musician-profile.INQUIRY_STATUS' type='field'>
+      <arpa-form-field label='musician-profile.INQUIRY_STATUS' type='select'>
         <p-dropdown
           [options]='(inquiryStatus | async) || []'
           [placeholder]='"NOTHING_SELECTED" | translate'
@@ -67,7 +67,7 @@
   </div>
   <div class='p-fluid p-mt-3 p-formgrid p-grid'>
     <div class='p-col'>
-      <arpa-form-field label='musician-profile.SALARY' type='field'>
+      <arpa-form-field label='musician-profile.SALARY' type='select'>
         <p-dropdown
           [options]='(salary | async) || []'
           [placeholder]='"NOTHING_SELECTED" | translate'

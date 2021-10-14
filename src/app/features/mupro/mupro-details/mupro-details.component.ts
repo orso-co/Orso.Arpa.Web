@@ -12,7 +12,7 @@ export class MuproDetailsComponent {
 
   menuItems: Array<MenuItem>;
 
-  constructor(authService: AuthService, router: Router, private route: ActivatedRoute) {
+  constructor(authService: AuthService, private router: Router, private route: ActivatedRoute) {
     router.routeReuseStrategy.shouldReuseRoute = () => false;
 
     this.menuItems = [

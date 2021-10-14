@@ -1,12 +1,12 @@
 <form [formGroup]='form'>
   <div class='p-fluid p-formgrid p-grid'>
     <div class='p-col'>
-      <div class='dropFile'>DropFile</div>
+      <div class='dropFile'>DropFile (disabled)</div>
     </div>
   </div>
   <div class='p-fluid p-formgrid p-grid'>
     <div class='p-col'>
-      <arpa-form-field label='DOCUMENT_TYPE' type='select'>
+      <arpa-form-field label='musician-profile.DOCUMENT_TYPE' type='select'>
         <p-dropdown
           [options]='(documentTypes | async) || []'
           [placeholder]='"NOTHING_SELECTED" | translate'
@@ -29,7 +29,25 @@
     </div>
   </div>
 </form>
-<H3>{{ 'musician-profile.DOCUMENTS' | translate }}</H3>
+<arpa-table
+  [actionsTemplateRef]='actionsTemplate'
+  [columns]='columns'
+  [data]='documentList'
+  [showFilter]='false'
+  [showPagination]='false'
+>
+</arpa-table>
+
+<ng-template #actionsTemplate let-row>
+  <button
+    (click)='remove(row.value)'
+    [label]='"musician-profile.DELETE" | translate'
+    class='p-button-rounded p-button-text p-button-icon-only'
+    icon='pi pi-trash'
+    pButton
+    type='button'></button>
+</ng-template>
+<!--
 <p-table [value]='documents'>
   <ng-template pTemplate='header'></ng-template>
   <ng-template let-document pTemplate='body'>
@@ -52,3 +70,4 @@
     </tr>
   </ng-template>
 </p-table>
+-->

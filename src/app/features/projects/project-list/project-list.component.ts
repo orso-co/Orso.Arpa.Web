@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { first, map } from 'rxjs/operators';
 import { EditProjectComponent } from '../edit-project/edit-project.component';
@@ -21,6 +21,7 @@ import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator'
 import { DocumentNode } from 'graphql';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
 import { ProjectsQuery } from './projects.graphql';
+import { GraphQlFeedComponent } from '../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
 
 @Component({
   selector: 'arpa-project-list',
@@ -30,7 +31,6 @@ import { ProjectsQuery } from './projects.graphql';
 @Unsubscribe()
 export class ProjectListComponent {
 
-  projects: Observable<ProjectDto[]>;
   state: Observable<SelectItem[]>;
 
   cols: any[];
@@ -46,6 +46,8 @@ export class ProjectListComponent {
     { label: 'COMPLETED', property: 'isCompleted', type: 'text' },
   ];
 
+  @ViewChild('feedSource') private feedSource: GraphQlFeedComponent;
+
   constructor(
     private route: ActivatedRoute,
     private dialogService: DialogService,
@@ -57,7 +59,6 @@ export class ProjectListComponent {
     private venueService: VenueService,
     private sectionService: SectionService,
   ) {
-    this.projects = this.route.data.pipe<ProjectDto[]>(map((data) => data.projects));
     this.state = this.selectValueService.load('Project', 'State')
       .pipe(map(() => this.selectValueService.get('Project', 'State')));
   }
@@ -73,7 +74,6 @@ export class ProjectListComponent {
     const ref = this.dialogService.open(EditProjectComponent, {
       data: {
         project: selection ? selection : null,
-        projects: this.projects,
         venues: this.venueService.load(),
         type: this.selectValueService.load('Project', 'Type').pipe(map(() => this.selectValueService.get('Project', 'Type'))),
         genre: this.selectValueService.load('Project', 'Genre').pipe(map(() => this.selectValueService.get('Project', 'Genre'))),
@@ -93,7 +93,8 @@ export class ProjectListComponent {
       });
   }
 
-  public openParticipationDialog(id: string) {
+  public openParticipationDialog(event: Event, id: string) {
+    event.stopPropagation();
     const ref = this.dialogService.open(ProjectParticipationComponent, {
       data: {
         projectParticipation: this.selectValueService.load('ProjectParticipation', 'ParticipationStatusInner'),
@@ -114,7 +115,8 @@ export class ProjectListComponent {
       });
   }
 
-  public openParticipationListDialog(project: ProjectDto) {
+  public openParticipationListDialog(event: Event, project: ProjectDto) {
+    event.stopPropagation();
     this.dialogService.open(ProjectParticipantsComponent, {
       data: {
         project,
@@ -135,7 +137,7 @@ export class ProjectListComponent {
   private saveNewProject(project: ProjectDto): void {
     this.projectService.create(project)
       .subscribe((result) => {
-        this.projects = this.projectService.load();
+        this.feedSource.refresh();
         this.notificationsService.success('projects.PROJECT_CREATED');
       });
   }
@@ -143,7 +145,7 @@ export class ProjectListComponent {
   private updateProject(project: ProjectDto, oldProject: ProjectDto): void {
     this.projectService.update(project)
       .subscribe(() => {
-        this.projects = this.projectService.load();
+        this.feedSource.refresh();
         this.notificationsService.success('projects.PROJECT_UPDATED');
       });
   }

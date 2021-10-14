@@ -51,7 +51,7 @@ export class MusicianDeactivationComponent implements OnInit {
     this.musicianService.activateProfile(this.profile.id)
       .pipe(first())
       .subscribe(() => {
-        this.notificationsService.success('musician-profile.ACTIVATED');
+        this.notificationsService.success('ACTIVATED', 'musician-profile');
         this.ref.close();
       });
   }
@@ -63,7 +63,7 @@ export class MusicianDeactivationComponent implements OnInit {
     this.musicianService.deactivateProfile(this.profile.id, { ...this.form.value })
       .pipe(first())
       .subscribe((result) => {
-        this.notificationsService.success('musician-profile.DEACTIVATED');
+        this.notificationsService.success('DEACTIVATED', 'musician-profile');
         this.ref.close();
       });
   }

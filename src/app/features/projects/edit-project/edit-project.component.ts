@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { map } from 'rxjs/operators';
 import { ProjectDto } from '../../../../@arpa/models/projectDto';
 import { VenueDto } from '../../../../@arpa/models/venueDto';
+import { ParentProjectsQuery } from './projectParents.graphql';
+import { FeedScope } from '../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
 
 @Component({
   selector: 'arpa-edit-project',
@@ -14,6 +16,8 @@ import { VenueDto } from '../../../../@arpa/models/venueDto';
   styleUrls: ['./edit-project.component.scss'],
 })
 export class EditProjectComponent implements OnInit {
+
+  parentProjectsQuery = ParentProjectsQuery;
 
   project: ProjectDto = this.config.data.project;
   venues: Observable<SelectItem[]> = this.config.data.venues.pipe(map(
@@ -29,13 +33,9 @@ export class EditProjectComponent implements OnInit {
     { label: this.translate.instant('YES'), value: true },
     { label: this.translate.instant('NO'), value: false },
   ];
-  parentProject: Observable<SelectItem[]> = this.config.data.projects.pipe(map(
-    (projects: ProjectDto[]) => projects
-      .filter((project: ProjectDto) => project !== this.project)
-      .map((project) => ({ label: project.title, value: project.id } as SelectItem)),
-  ));
 
   form: FormGroup;
+  parentProjectList = new BehaviorSubject([]);
 
   constructor(public config: DynamicDialogConfig,
               private formBuilder: FormBuilder,
@@ -70,6 +70,15 @@ export class EditProjectComponent implements OnInit {
         endDate: new Date(this.project.endDate),
       });
     }
+  }
+
+  public transformFeedResult(feed: FeedScope): Observable<SelectItem[]> {
+    return feed.values.pipe(
+      map(projects => projects
+        .filter(({ id }) => !this.project ? true : (id !== this.project.id))
+        .map(project => ({ label: project.title, value: project.id } as SelectItem)),
+      ),
+    );
   }
 
   public onSubmit(): void {

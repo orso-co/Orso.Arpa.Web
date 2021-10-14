@@ -73,8 +73,18 @@ export class GraphQlFeedComponent implements OnInit, OnDestroy {
     return this.feedQuery.refetch();
   }
 
-  onFilter(event: any) {
-    // ToDo: filtering on query level.
+  onFilter({ filter }: any) {
+    return this.feedQuery.fetchMore({
+      variables: {
+        searchQuery: filter || '',
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult) {
+          return prev;
+        }
+        return fetchMoreResult;
+      },
+    });
   }
 
   onLazy({ first, rows }: any) {

@@ -26,6 +26,7 @@ export interface ColumnDefinition<T> {
   visible?: boolean,
   cssClasses?: string[];
   template?: string;
+  hideFilter?: boolean;
 }
 
 /**
@@ -106,9 +107,11 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
   @ContentChildren(PrimeTemplate) templates: QueryList<PrimeTemplate>;
   public isMobile: Observable<boolean>;
   public lazy: boolean = false;
+  public hasFilters: boolean = false;
   @ContentChildren(ArpaTableColumnDirective, { read: ArpaTableColumnDirective }) private columnTemplateRefs: QueryList<ArpaTableColumnDirective>;
   private columnTemplates: Record<string, TemplateRef<any>> = {};
   private loadingEventSubscription: Subscription;
+  private filterEventSubscription: Subscription;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -116,7 +119,15 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
     this.isMobile = breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Small]).pipe(map(({ matches }) => matches));
   }
 
+  clear(table: any) {
+    table.clear();
+    this.hasFilters = false;
+  }
+
   ngOnInit(): void {
+    this.filterEventSubscription = this.filterEvents.subscribe(() => {
+      this.hasFilters = true;
+    });
     if (this.feed) {
       this.isLoading = true;
       this.loadingEventSubscription = this.feed.isLoading.subscribe(v => this.isLoading = v);
@@ -153,6 +164,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
   }
 
   ngOnDestroy(): void {
+    this.filterEventSubscription.unsubscribe();
     if (this.loadingEventSubscription) {
       this.loadingEventSubscription.unsubscribe();
     }

@@ -24,11 +24,12 @@ import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
 import { TabViewModule } from 'primeng/tabview';
-import { TableModule } from 'primeng/table';
+import { TableModule as PrimeTableModule } from 'primeng/table';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../@arpa/services/language.service';
+import { TableModule } from '../../../@arpa/components/table/table.module';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { LanguageService } from '../../../@arpa/services/language.service';
     TranslateModule.forChild(['musician-profile']),
     SelectValueModule,
     FormFieldModule,
+    TableModule,
     // NG Prime Dependencies
     AccordionModule,
     CheckboxModule,
@@ -62,7 +64,7 @@ import { LanguageService } from '../../../@arpa/services/language.service';
     ButtonModule,
     TooltipModule,
     TabViewModule,
-    TableModule,
+    PrimeTableModule,
     CalendarModule,
     InputTextModule,
   ],

@@ -47,34 +47,21 @@
     </div>
   </div>
 </form>
-<H3>{{ 'musician-profile.EDUCATION_DETAILS' | translate }}</H3>
-<p-table [value]='educations'>
-  <ng-template pTemplate='header'>
-    <tr>
-      <th>{{ 'musician-profile.TIMESPAN' | translate }}</th>
-      <th>{{ 'musician-profile.EDUCATION_INSTITUTION' | translate }}</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </ng-template>
-  <ng-template let-education pTemplate='body'>
-    <tr>
-      <td>
-        {{ education.timeSpan }}
-      </td>
-      <td>
-        {{ education.institution }}
-      </td>
-      <td></td>
-      <td class='p-text-right'>
-        <button
-          (click)='remove(education)'
-          [label]='"musician-profile.DELETE" | translate'
-          class='p-button-rounded p-button-text p-button-icon-only'
-          icon='pi pi-trash'
-          pButton
-          type='button'></button>
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
+<arpa-table
+  [actionsTemplateRef]='actionsTemplate'
+  [columns]='columns'
+  [data]='educations'
+  [showFilter]='false'
+  [showPagination]='false'
+>
+</arpa-table>
+
+<ng-template #actionsTemplate let-row>
+  <button
+    (click)='remove(row)'
+    [label]='"musician-profile.DELETE" | translate'
+    class='p-button-rounded p-button-text p-button-icon-only'
+    icon='pi pi-trash'
+    pButton
+    type='button'></button>
+</ng-template>

@@ -2,7 +2,7 @@
   <form (submit)='$event.preventDefault()' [formGroup]='form'>
     <div class='p-fluid p-formgrid p-grid'>
       <div class='p-col'>
-        <arpa-form-field label='musician-profile.INSTRUMENT' type='field'>
+        <arpa-form-field label='musician-profile.INSTRUMENT' type='select'>
           <p-dropdown
             [filter]='true'
             [options]='(sections | async) || []'
@@ -37,7 +37,7 @@
     </div>
     <div class='p-fluid p-formgrid p-grid'>
       <div class='p-col'>
-        <arpa-form-field label='musician-profile.INQUIRY_STATUS' type='field'>
+        <arpa-form-field label='musician-profile.INQUIRY_STATUS' type='select'>
           <p-dropdown
             [options]='(inquiryStatus | async) || []'
             [placeholder]='"NOTHING_SELECTED" | translate'
