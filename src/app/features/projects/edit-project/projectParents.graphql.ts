@@ -8,14 +8,15 @@ export const ParentProjectsQuery = gql`
     projects(
       order: {title: $orderTitle, shortTitle: $orderShortTitle}
       where:{
-        or: {
+        or: [{
           title: {
             contains: $searchQuery
           }
+        },{
           shortTitle: {
             contains: $searchQuery
           }
-        }
+        }]
       }
     ) {
       pageInfo {
