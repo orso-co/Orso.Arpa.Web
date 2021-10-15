@@ -19,6 +19,7 @@ import { BadgeModule } from 'primeng/badge';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { TableModule } from '../../../@arpa/components/table/table.module';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { ButtonModule } from 'primeng/button';
     AvatarModule,
     SplitViewModule,
     GraphQlFeedModule,
+    TableModule,
     // NG Prime Dependencies
     ListboxModule,
     StepsModule,

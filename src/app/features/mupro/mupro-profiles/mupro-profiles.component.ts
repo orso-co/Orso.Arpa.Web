@@ -23,27 +23,23 @@ export class MuproProfilesComponent implements OnInit {
   public sections: Observable<SectionDto[]>;
   public activeIndex = 0;
   public query = ProfileQuery;
-  public personId;
+  public personId: string;
 
   constructor(
     private personService: PersonsService,
     private route: ActivatedRoute,
   ) {
-    this.personId = this.route.snapshot.params?.id;
-    this.person = personService.getPerson(this.route.snapshot.params?.id);
   }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      if (params.has('id')) {
+        this.personId = params.get('id') as string;
+        this.person = this.personService.getPerson(this.personId);
+      }
+    });
     this.sections = this.route.data.pipe<SectionDto[]>(map((data) => data.sections));
     this.profiles = this.route.data.pipe<MusicianProfileDto[]>(map((data) => data.profiles || []));
-    this.profileNav = this.profiles.pipe(
-      map((data) =>
-        data.map((profile: MusicianProfileDto) => ({
-          profile,
-          command: (e: any) => this.show(e),
-        } as unknown)) as MenuItem[],
-      ),
-    );
   }
 
   getName(person: PersonDto | null) {

@@ -1,61 +1,25 @@
-:host ::ng-deep {
-  .p-listbox .p-listbox-list .p-listbox-item {
-    border-bottom: 1px;
-    border-color: var(--surface-d);
-    border-style: solid;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
+.details {
+  display: block;
+  width: 100%;
 
-  .p-listbox-list {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
+  & > div {
+    display: block;
+    width: 100%;
+    font-size: .8em;
+    line-height: 128%;
 
+    &.name {
 
-  @media (min-width: 768px) {
-    .p-listbox-list {
-      padding-left: 10px;
-      padding-right: 10px;
     }
-  }
 
-  p-listbox {
-    & > div {
-      border: 0;
-      background-color: inherit;
+    &.profile {
+      font-weight: 200;
+    }
 
-      .p-listbox-header {
-        background-color: inherit;
-      }
-
-      .p-listbox-item {
-        .details {
-          display: block;
-          width: 100%;
-
-          & > div {
-            display: block;
-            width: 100%;
-            font-size: .8em;
-            line-height: 128%;
-
-            &.name {
-
-            }
-
-            &.profile {
-              font-weight: 200;
-            }
-
-            &.country {
-              font-size: .8em;
-              font-weight: 200;
-              opacity: .8;
-            }
-          }
-        }
-      }
+    &.country {
+      font-size: .8em;
+      font-weight: 200;
+      opacity: .8;
     }
   }
 }

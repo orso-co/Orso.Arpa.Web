@@ -20,6 +20,7 @@ export const ProfileQuery = gql`
           deactivationStart,
         },
         instrument {
+          id,
           name,
           createdAt
         },

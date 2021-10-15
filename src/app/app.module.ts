@@ -28,7 +28,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 
     ArpaModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: false,
+      enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',

@@ -2,8 +2,6 @@
 
   router-outlet:not([name]) + * {
     display: flex;
-    height: 100%;
-    min-height: 100%;
     width: 100%;
     flex-flow: column;
   }
@@ -16,8 +14,6 @@
   display: flex !important;
   height: 100%;
   overflow-x: hidden;
-  margin-left: -1rem;
-  margin-right: -1rem;
 
   .side-view {
     display: flex;
@@ -35,7 +31,7 @@
 
   &.desktop {
     .side-view {
-      width: 14rem;
+      width: 15rem;
     }
 
     .content-view {

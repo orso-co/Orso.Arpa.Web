@@ -13,8 +13,6 @@ export class MuproDetailsComponent {
   menuItems: Array<MenuItem>;
 
   constructor(authService: AuthService, private router: Router, private route: ActivatedRoute) {
-    router.routeReuseStrategy.shouldReuseRoute = () => false;
-
     this.menuItems = [
       { label: 'Projects', target: '.' },
       { label: 'Details', target: '.' },

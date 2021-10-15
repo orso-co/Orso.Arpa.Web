@@ -16,7 +16,8 @@ export class ProfilesResolver implements Resolve<MusicianProfileDto | MusicianPr
     if (route.url.length > 1 && route.url[0].path === 'me') {
       return this.meService.getProfileMusician();
     } else {
-      return this.musicianService.getProfile();
+      const { id } = route.params;
+      return this.musicianService.getProfile(id);
     }
   }
 }

@@ -20,8 +20,10 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'user',
-        pathMatch: 'full',
+        component: UserComponent,
+        resolve: {
+          profile: ProfileResolver,
+        },
       },
       {
         path: 'user',
@@ -29,7 +31,6 @@ const routes: Routes = [
         resolve: {
           profile: ProfileResolver,
         },
-        data: { shouldReuse: false },
       },
       {
         path: 'appointments',

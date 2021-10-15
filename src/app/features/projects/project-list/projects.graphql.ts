@@ -4,9 +4,10 @@ export const ProjectsQuery = gql`
   query Projects(
     $skip: Int,
     $take: Int,
-    $orderTitle: SortEnumType = DESC
-    $orderStart: SortEnumType = DESC
-    $orderEnd: SortEnumType = DESC
+    $orderTitle: SortEnumType = ASC
+    $orderStart: SortEnumType = ASC
+    $orderEnd: SortEnumType = ASC
+    $searchQuery: String = ""
   ){
     projects(
       skip: $skip,
@@ -15,6 +16,13 @@ export const ProjectsQuery = gql`
         title: $orderTitle
         startDate: $orderStart
         endDate: $orderEnd
+      }
+      where: {
+        or: [
+          { title: { contains:$searchQuery}}
+          { code: { contains:$searchQuery}}
+          { shortTitle: { contains:$searchQuery}}
+        ]
       }
     ) {
       pageInfo {

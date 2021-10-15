@@ -1,4 +1,4 @@
-<h1>{{ 'mupro.PROFILE' | translate }}</h1>
+<h1>{{ 'PROFILE' | translate }}</h1>
 <div class='p-grid profile'>
   <div class='p-col-12 p-md-6 p-lg-5'>
     <div class='p-grid'>
@@ -17,7 +17,7 @@
   </div>
 </div>
 <div class='profiles'>
-  <arpa-graph-ql-feed [contentTemplate]='feed' [query]='query' [variables]='{personId:personId}'>
+  <arpa-graph-ql-feed [contentTemplate]='feed' [query]='query' [variables]='{personId}'>
     <ng-template #feed let-feed>
       <ul>
         <ng-container *ngFor='let profile of $any((feed.values | async) || []); let i = index'>

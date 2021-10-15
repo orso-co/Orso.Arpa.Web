@@ -1,7 +1,7 @@
-import { Component, ContentChild, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+import { Component, ContentChild, OnDestroy, TemplateRef } from '@angular/core';
 import { routeTransitionAnimations } from './animations';
-import { ActivatedRoute, NavigationEnd, Router, RouterEvent } from '@angular/router';
-import { filter, map, pairwise, shareReplay, startWith, takeUntil } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map, shareReplay } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
@@ -21,7 +21,7 @@ enum ViewState {
   styleUrls: ['./split-view.component.scss'],
   animations: [routeTransitionAnimations],
 })
-export class SplitViewComponent implements OnDestroy, OnInit {
+export class SplitViewComponent implements OnDestroy {
 
   @ContentChild('sideViewTemplate', { static: false })
   sideViewTemplateRef: TemplateRef<any>;
@@ -33,7 +33,6 @@ export class SplitViewComponent implements OnDestroy, OnInit {
   public viewType: string = ViewType.Desktop;
   public viewState: string;
   public destroyed = new Subject<any>();
-  public initialCall: boolean;
 
   isTablet: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.TabletPortrait, Breakpoints.HandsetPortrait])
     .pipe(
@@ -56,24 +55,10 @@ export class SplitViewComponent implements OnDestroy, OnInit {
 
   isLarge: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.Large, Breakpoints.XLarge])
     .pipe(map(result => result.matches), shareReplay());
+  isRedirect: boolean = false;
 
   constructor(private router: Router, private activeRoute: ActivatedRoute, private breakpointObserver: BreakpointObserver) {
-    this.initialCall = true;
     this.setViewState(ViewState.Hide);
-  }
-
-  ngOnInit(): void {
-    this.router.events.pipe(
-      filter((event: any) => event instanceof NavigationEnd),
-      pairwise(),
-      filter((events: RouterEvent[]) => events[0].url === events[1].url),
-      startWith('initial'),
-      takeUntil(this.destroyed),
-    ).subscribe((result) => {
-      if (result !== 'initial') {
-        this.initialCall = false;
-      }
-    });
   }
 
   ngOnDestroy(): void {
@@ -82,13 +67,18 @@ export class SplitViewComponent implements OnDestroy, OnInit {
   }
 
   setViewState(state: ViewState = ViewState.Hide) {
-    this.viewState = `${this.viewType}${state}`;
+    const navigation = this.router.getCurrentNavigation()?.extras;
+    if (!navigation?.state || navigation?.state && !navigation?.state.back) {
+      this.viewState = `${this.viewType}${state}`;
+    } else {
+      this.viewState = `${this.viewType}${ViewState.Hide}`;
+    }
   }
 
   hideContentView(): void {
-    // ToDo: prevent if dirty!
-    // this.router.navigate(['.'], { relativeTo: this.activeRoute.parent });
-    this.setViewState(ViewState.Hide);
+    this.router.navigate(['.'], { state: { back: true }, relativeTo: this.activeRoute.parent }).then(() => {
+      this.setViewState(ViewState.Hide);
+    });
   }
 
   onRouteActivation(event: any) {
@@ -105,9 +95,7 @@ export class SplitViewComponent implements OnDestroy, OnInit {
     if (this.viewType === ViewType.Desktop) {
       return `${this.viewType}${ViewState.Show}`;
     }
-    if (this.initialCall && !this.activeComponent && !this._animating) {
-      this.setViewState(ViewState.Hide);
-    } else if (!this.activeComponent && !this._animating) {
+    if (!this.activeComponent && !this._animating) {
       return `${this.viewType}${ViewState.Hide}`;
     }
     return viewState;

@@ -14,6 +14,24 @@
 
   .p-datatable-tbody > tr {
     background-color: transparent;
+    border: none !important;
+
+    &:hover {
+      background-color: transparent !important;
+    }
+
+    &.hasHover td {
+      cursor: pointer;
+      transition: background-color .5s ease-in-out;
+
+      &:hover {
+        background-color: var(--surface-hover) !important;
+      }
+    }
+
+    &.p-highlight td {
+      background-color: var(--surface-hover) !important;
+    }
 
     & > td {
       border-bottom: none;

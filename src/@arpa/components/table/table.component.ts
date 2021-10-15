@@ -57,16 +57,31 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
   rows: number = 10;
 
   @Input()
-  rowsPerPage: number[] = [10, 25, 50];
+  rowsPerPage: undefined | any | number[] = [10, 25, 50];
 
   @Input()
   showPagination: boolean = true;
+
+  @Input()
+  showJumpToPageDropdown: boolean = false;
+
+  @Input()
+  showFirstLastIcon: boolean = true;
+
+  @Input()
+  showPageLinks: boolean = true;
 
   @Input()
   data: Observable<any[]>;
 
   @Input()
   feed: FeedScope;
+
+  @Input()
+  tableStyleClass: string;
+
+  @Input()
+  selectionMode: string;
 
   @Input()
   filterFields: string[] = [];
@@ -100,6 +115,9 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
 
   @Input()
   actionsTemplateRef: TemplateRef<any>;
+
+  @Input()
+  rowTemplateRef: TemplateRef<any>;
 
   @Input()
   isLoading: boolean;

@@ -13,7 +13,12 @@
          [rows]='rows'
          [scrollHeight]='scrollHeight'
          [scrollable]='scrollable'
+         [selectionMode]='selectionMode'
+         [showFirstLastIcon]='showFirstLastIcon'
+         [showJumpToPageDropdown]='showJumpToPageDropdown'
+         [showPageLinks]='showPageLinks'
          [styleClass]='((isMobile | async)? "mobile":"")'
+         [tableStyleClass]='tableStyleClass'
          [totalRecords]='(feed ? (feed.totalCount | async) || 0 : 0)'
          [value]='(data | async) || []'
          sortMode='multiple'
@@ -82,32 +87,38 @@
   </ng-template>
   <ng-template let-row pTemplate='body'>
     <!-- Render all rows by column definition -->
-    <tr (click)='rowClickEvents.emit(row)' [pSelectableRow]='row'>
-      <ng-container *ngFor='let column of columns; trackBy: trackByProperty'>
-        <ng-container *ngIf="column.type === 'template' && column.template">
-          <td>
-            <ng-container [ngTemplateOutletContext]='{ $implicit: row[column.property] }'
-                          [ngTemplateOutlet]='getTemplate(column.template)'></ng-container>
-          </td>
-        </ng-container>
-        <ng-container *ngIf="column.type === 'text'">
-          <td>
-            {{ row[column.property] }}
-          </td>
-        </ng-container>
-        <ng-container *ngIf="column.type === 'date'">
-          <td>
-            {{ row[column.property] | date:'mediumDate'}}
-          </td>
+    <tr (click)='rowClickEvents.emit(row)' [class.hasHover]='rowClickEvents' [pSelectableRow]='row'>
+      <ng-container *ngIf='!rowTemplateRef'>
+        <ng-container *ngFor='let column of columns; trackBy: trackByProperty'>
+          <ng-container *ngIf="column.type === 'template' && column.template">
+            <td>
+              <ng-container [ngTemplateOutletContext]='{ $implicit: row[column.property] }'
+                            [ngTemplateOutlet]='getTemplate(column.template)'></ng-container>
+            </td>
+          </ng-container>
+          <ng-container *ngIf="column.type === 'text'">
+            <td>
+              {{ row[column.property] }}
+            </td>
+          </ng-container>
+          <ng-container *ngIf="column.type === 'date'">
+            <td>
+              {{ row[column.property] | date:'mediumDate'}}
+            </td>
+          </ng-container>
         </ng-container>
       </ng-container>
 
       <!-- Render all action columns -->
-      <ng-container *ngIf='actionsTemplateRef'>
+      <ng-container *ngIf='actionsTemplateRef && !rowTemplateRef'>
         <td class='end'>
           <ng-container [ngTemplateOutletContext]='{ $implicit: row }'
                         [ngTemplateOutlet]='actionsTemplateRef'></ng-container>
         </td>
+      </ng-container>
+
+      <ng-container *ngIf='rowTemplateRef' [ngTemplateOutletContext]='{ $implicit: row }'
+                    [ngTemplateOutlet]='rowTemplateRef'>
       </ng-container>
     </tr>
   </ng-template>
