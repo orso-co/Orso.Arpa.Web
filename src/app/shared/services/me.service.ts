@@ -43,6 +43,7 @@ export class MeService {
           );
         }
       }),
+      finalize(() => {})
     );
   }
 
