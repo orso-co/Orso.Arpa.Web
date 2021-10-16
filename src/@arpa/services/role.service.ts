@@ -16,7 +16,7 @@ export class RoleService implements Resolve<boolean> {
   constructor(private apiService: ApiService) {
   }
 
-  loadRoles(): Observable<RoleDto[]> {
+  getRoles(): Observable<RoleDto[]> {
     if (this.loaded) {
       return this.roles$$;
     }
@@ -25,6 +25,6 @@ export class RoleService implements Resolve<boolean> {
   }
 
   resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
-    return this.loadRoles().pipe(map(() => this.loaded));
+    return this.getRoles().pipe(map(() => this.loaded));
   }
 }

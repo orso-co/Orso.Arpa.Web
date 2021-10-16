@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable, of, ReplaySubject } from 'rxjs';
 
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
-import { catchError, distinctUntilChanged, filter, map, tap } from 'rxjs/operators';
+import { catchError, distinctUntilChanged, filter, finalize, map, tap } from 'rxjs/operators';
 import { intersection } from 'lodash-es';
 import { RoleNames } from '../models/roleNames';
 import { RoleService } from './role.service';
@@ -25,16 +25,20 @@ export interface IToken {
   displayName: string;
 }
 
+export enum AuthEvents {
+  LOGOUT,
+  LOGIN,
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  public authEvents: EventEmitter<AuthEvents> = new EventEmitter<AuthEvents>();
   private currentUserSubject = new BehaviorSubject<IToken>({} as IToken);
   public currentUser = this.currentUserSubject.asObservable().pipe(distinctUntilChanged());
-
   private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
   public isAuthenticated: Observable<boolean> = this.isAuthenticatedSubject.asObservable();
-
   private readonly clientUriBase: string;
 
   constructor(
@@ -83,6 +87,7 @@ export class AuthService {
       tap((token) => {
         this.currentUserSubject.next(token);
         this.isAuthenticatedSubject.next(true);
+        this.authEvents.emit(AuthEvents.LOGIN);
       }),
     );
   }
@@ -95,12 +100,11 @@ export class AuthService {
         if (error) {
           this.logger.error(error);
         }
-        this.purgeAuth();
         return of({});
       }),
-      map(() => {
+      finalize(() => {
         this.purgeAuth();
-        return of({});
+        this.authEvents.emit(AuthEvents.LOGOUT);
       }),
     );
   }
@@ -135,11 +139,14 @@ export class AuthService {
   }
 
   public isUserInAtLeastOnRole(roles: RoleNames[]): Observable<boolean> {
-    return this.currentUser.pipe(map((token) => (token ? intersection(token.roles, roles).length > 0 : false)));
+    return this.currentUser.pipe(
+      map((token) => (token ? intersection(token.roles, roles).length > 0 : false)),
+      finalize(() => {
+      }));
   }
 
   public getMaxRoleLevelOfCurrentUser(): Observable<number> {
-    return combineLatest([this.currentUser, this.roleService.loadRoles()]).pipe(map(([token, roles]) => {
+    return combineLatest([this.currentUser, this.roleService.getRoles()]).pipe(map(([token, roles]) => {
       const userRoles = roles.filter(r => token?.roles.includes(r.roleName.toLowerCase() as RoleNames));
       return Math.max(...userRoles.map(r => r.roleLevel));
     }));

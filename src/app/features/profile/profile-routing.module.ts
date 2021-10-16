@@ -8,6 +8,7 @@ import { MyAppointmentsComponent } from './my-appointments/my-appointments.compo
 import { RoleNames } from '../../../@arpa/models/roleNames';
 import { ProfileMusicianResolver } from './resolvers/profile-musician.resolver';
 import { SectionsResolver } from './resolvers/sections.resolver';
+import { QRCodeComponent } from './qrcode/qrcode.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
         resolve: {
           profile: ProfileResolver,
         },
+      },
+      {
+        path: 'qrcode',
+        component: QRCodeComponent,
       },
       {
         path: 'appointments',

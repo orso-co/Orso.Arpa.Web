@@ -22,8 +22,8 @@ export class ApiService {
     this.baseUrl = `${protocol}://${baseUrl}/api`;
   }
 
-  get<T>(path: string, params: HttpParams = new HttpParams(), reportProgress: boolean = true): Observable<T> {
-    return this.http.get<T>(`${this.baseUrl}${path}`, { params, reportProgress })
+  get<T>(path: string, params: HttpParams = new HttpParams(), reportProgress: boolean = true, observe?: 'body' | undefined, responseType?: any): Observable<T> {
+    return this.http.get<T>(`${this.baseUrl}${path}`, { params, reportProgress, observe, responseType })
       .pipe(catchError(this.formatErrors));
   }
 

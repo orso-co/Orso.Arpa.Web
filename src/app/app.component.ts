@@ -14,7 +14,8 @@ import { fromEvent, merge, Observable, of, Subscription } from 'rxjs';
 import { RouteTitleService } from '../@arpa/services/route-title.service';
 import { ConfigService } from '../@arpa/services/config.service';
 import { LoadingService } from '../@arpa/services/loading.service';
-import { AuthService } from '../@arpa/services/auth.service';
+import { AuthEvents, AuthService } from '../@arpa/services/auth.service';
+import { MeService } from './shared/services/me.service';
 
 @Component({
   selector: 'arpa-root',
@@ -37,6 +38,7 @@ export class AppComponent implements OnInit, OnDestroy {
     );
 
   networkStatusSubscription: Subscription = Subscription.EMPTY;
+  authEventSubscription: Subscription = Subscription.EMPTY;
   networkStatus: boolean = navigator.onLine;
 
   constructor(
@@ -44,15 +46,18 @@ export class AppComponent implements OnInit, OnDestroy {
     private router: Router,
     private loadingService: LoadingService,
     private authService: AuthService,
+    private meService: MeService,
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
     private routeTitleService: RouteTitleService,
     private breakpointObserver: BreakpointObserver,
   ) {
     this.defaultTitle = this.titleService.getTitle();
+
     this.router.events.subscribe((event) => {
       this.navigationInterceptor(event);
     });
+
     this.router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
@@ -63,11 +68,23 @@ export class AppComponent implements OnInit, OnDestroy {
           this.routeTitleService.setTitle(title.join(' '));
         },
       );
+
     this.routeTitleService.titleEvent.subscribe((title) => {
       if (title.length > 0) {
         this.titleService.setTitle(`${title} | ${this.defaultTitle}`);
       } else {
         this.titleService.setTitle(this.defaultTitle);
+      }
+    });
+
+    this.authEventSubscription = this.authService.authEvents.subscribe(event => {
+      if (event === AuthEvents.LOGOUT) {
+        // Remove sensible data on logout.
+        this.meService.cleanStorage();
+      } else if (event === AuthEvents.LOGIN) {
+        // Make sure an applicable user has a ready to use QRCode.
+        // This observable is completed by default. No need to unsubscribe.
+        this.meService.getMyQrCode().subscribe();
       }
     });
   }
@@ -101,6 +118,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.authEventSubscription.unsubscribe();
     this.networkStatusSubscription.unsubscribe();
   }
 
