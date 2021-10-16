@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MeService } from '../../../shared/services/me.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 
 @Component({
   selector: 'arpa-qrcode',
@@ -11,7 +12,7 @@ export class QRCodeComponent implements OnInit {
 
   public qrCode: SafeResourceUrl;
 
-  constructor(private meService: MeService, private sanitizer: DomSanitizer) {
+  constructor(private meService: MeService, private sanitizer: DomSanitizer, private notifications: NotificationsService) {
   }
 
   ngOnInit(): void {
@@ -20,4 +21,9 @@ export class QRCodeComponent implements OnInit {
     });
   }
 
+  sendEmail() {
+    this.meService.getMyQrCode(true).subscribe(() => {
+      this.notifications.success('SEND_QR_CODE_SUCCESS', 'profile');
+    });
+  }
 }

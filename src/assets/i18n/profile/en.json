@@ -16,5 +16,6 @@
   "USER_PROFILE_UPDATE_ERROR": "Could not update Profile",
   "MY_QR_CODE_INFO": "The QR-Code will be available in offline mode.",
   "MY_QR_CODE_DESCRIPTION": "This is your personal QR-Code and can be used to checkin on events.",
-  "SEND_QR_CODE": "Send QR-CODE by email"
+  "SEND_QR_CODE": "Send QR-CODE by email",
+  "SEND_QR_CODE_SUCCESS": "QR-CODE send"
 }

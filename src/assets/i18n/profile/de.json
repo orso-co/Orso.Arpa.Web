@@ -16,5 +16,6 @@
   "USER_PROFILE_UPDATE_ERROR": "Profile konnte nicht aktualisiert werden",
   "MY_QR_CODE_INFO": "Der QR-Code steht auch im Offline-Modus zur Verfügung.",
   "MY_QR_CODE_DESCRIPTION": "Der persönlicher QR-Code wird benötigt um bei der Teilnahme an Events einzuschecken.",
-  "SEND_QR_CODE": "QR-CODE per Email senden"
+  "SEND_QR_CODE": "QR-CODE per Email senden",
+  "SEND_QR_CODE_SUCCESS": "QR-CODE gesendet"
 }

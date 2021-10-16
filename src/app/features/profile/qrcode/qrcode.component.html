@@ -10,6 +10,6 @@
     {{ 'MY_QR_CODE_INFO' | translate}}
   </div>
   <div class='p-col-12 p-text-center p-mt-4'>
-    <p-button label='{{ "SEND_QR_CODE" | translate }}'></p-button>
+    <p-button label='{{ "SEND_QR_CODE" | translate }}' (onClick)='sendEmail()'></p-button>
   </div>
 </div>
