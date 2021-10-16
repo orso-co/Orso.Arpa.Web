@@ -3,7 +3,7 @@ import { BehaviorSubject, combineLatest, Observable, of, ReplaySubject } from 'r
 
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
-import { catchError, distinctUntilChanged, filter, finalize, map, tap } from 'rxjs/operators';
+import { catchError, distinctUntilChanged, filter, finalize, first, map, tap } from 'rxjs/operators';
 import { intersection } from 'lodash-es';
 import { RoleNames } from '../models/roleNames';
 import { RoleService } from './role.service';
@@ -140,9 +140,9 @@ export class AuthService {
 
   public isUserInAtLeastOnRole(roles: RoleNames[]): Observable<boolean> {
     return this.currentUser.pipe(
+      first(),
       map((token) => (token ? intersection(token.roles, roles).length > 0 : false)),
-      finalize(() => {
-      }));
+    );
   }
 
   public getMaxRoleLevelOfCurrentUser(): Observable<number> {
