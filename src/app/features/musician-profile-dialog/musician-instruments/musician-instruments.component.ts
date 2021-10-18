@@ -29,6 +29,7 @@ export class MusicianInstrumentsComponent implements OnInit {
 
   public sections: Observable<SectionDto[]> = this.config.data.sections;
   public inquiryStatus: Observable<SelectItem[]>;
+  public inquiryStatusTeam: Observable<SelectItem[]>;
   public preferredParts: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
   public preferredPositions: Observable<SelectItem[]>;
   public availability: Observable<SelectItem[]>;
@@ -44,7 +45,8 @@ export class MusicianInstrumentsComponent implements OnInit {
               private selectValueService: SelectValueService,
               private musicianService: MusicianService,
               private notificationsService: NotificationsService) {
-    this.inquiryStatus = this.resolveSelect('InquiryStatusTeam');
+    this.inquiryStatus = this.resolveSelect('InquiryStatusInner');
+    this.inquiryStatusTeam = this.resolveSelect('InquiryStatusTeam');
     this.preferredPositions = this.resolveSelect('PreferredPositions');
     this.availability = this.selectValueService.load('MusicianProfileSection', 'InstrumentAvailability')
       .pipe(map(() => this.selectValueService.get('MusicianProfileSection', 'InstrumentAvailability')));
@@ -97,6 +99,10 @@ export class MusicianInstrumentsComponent implements OnInit {
       levelAssessmentTeam,
       profilePreferenceInner,
       profilePreferenceTeam,
+      inquiryStatusInnerId,
+      inquiryStatusTeamId,
+      preferredPartsInner,
+      preferredPartsTeam,
       personId,
       instrumentId,
       deactivation,
@@ -109,6 +115,10 @@ export class MusicianInstrumentsComponent implements OnInit {
       levelAssessmentTeam,
       profilePreferenceInner,
       profilePreferenceTeam,
+      inquiryStatusInnerId,
+      inquiryStatusTeamId,
+      preferredPartsInner,
+      preferredPartsTeam,
       personId,
       instrumentId,
       deactivation,

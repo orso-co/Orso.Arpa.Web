@@ -61,7 +61,7 @@
     <div class='p-col'>
       <arpa-form-field label='musician-profile-dialog.INQUIRY_STATUS' type='select'>
         <p-dropdown
-          [options]='(inquiryStatus | async) || []'
+          [options]='(inquiryStatusTeam | async) || []'
           [placeholder]='"NOTHING_SELECTED" | translate'
           formControlName='inquiryStatusTeamId'
           optionLabel='label'

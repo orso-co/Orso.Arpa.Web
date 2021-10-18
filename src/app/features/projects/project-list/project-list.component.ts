@@ -4,7 +4,7 @@ import { first, map } from 'rxjs/operators';
 import { EditProjectComponent } from '../edit-project/edit-project.component';
 import { DialogService } from 'primeng/dynamicdialog';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ProjectService } from '../../../shared/services/project.service';
 import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 import { ProjectParticipationComponent } from '../project-participation/project-participation.component';
@@ -32,9 +32,6 @@ import { GraphQlFeedComponent } from '../../../../@arpa/components/graph-ql-feed
 export class ProjectListComponent {
 
   state: Observable<SelectItem[]>;
-
-  cols: any[];
-  langChangeListener: Subscription;
 
   query: DocumentNode = ProjectsQuery;
 

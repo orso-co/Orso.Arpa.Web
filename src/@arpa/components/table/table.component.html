@@ -85,7 +85,7 @@
       </ng-container>
     </tr>
   </ng-template>
-  <ng-template let-row pTemplate='body'>
+  <ng-template let-expanded='expanded' let-row pTemplate='body'>
     <!-- Render all rows by column definition -->
     <tr (click)='rowClickEvents.emit(row)' *ngIf='row' [class.hasHover]='rowClickEvents' [pSelectableRow]='row'>
       <ng-container *ngIf='!rowTemplateRef'>
@@ -120,6 +120,15 @@
       <ng-container *ngIf='rowTemplateRef' [ngTemplateOutletContext]='{ $implicit: row }'
                     [ngTemplateOutlet]='rowTemplateRef'>
       </ng-container>
+    </tr>
+  </ng-template>
+  <ng-template [ngIf]='rowExpansionTemplateRef' let-row pTemplate='rowexpansion'>
+    <tr>
+      <td colspan='6'>
+        <ng-container *ngIf='rowExpansionTemplateRef' [ngTemplateOutletContext]='{ $implicit: row }'
+                      [ngTemplateOutlet]='rowExpansionTemplateRef'>
+        </ng-container>
+      </td>
     </tr>
   </ng-template>
 </p-table>

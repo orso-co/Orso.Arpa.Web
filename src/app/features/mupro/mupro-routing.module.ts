@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MuproComponent } from './mupro.component';
-import { MuproProfilesComponent } from './mupro-profiles/mupro-profiles.component';
-import { ProjectListComponent } from '../projects/project-list/project-list.component';
+import { ProfilesComponent } from './profiles/profiles.component';
 import { PersonsService } from './services/persons.service';
-import { ProjectListResolver } from '../../shared/resolvers/project-list.resolver';
 import { ProfileMusicianResolver } from './resolvers/profile-musician.resolver';
 import { SectionsResolver } from '../profile/resolvers/sections.resolver';
+import { ProjectsComponent } from './projects/projects.component';
 
 const routes: Routes = [
   {
@@ -16,7 +15,7 @@ const routes: Routes = [
     children: [
       {
         path: ':personId',
-        component: MuproProfilesComponent,
+        component: ProfilesComponent,
         runGuardsAndResolvers: 'always',
         resolve: {
           profiles: ProfileMusicianResolver,
@@ -33,8 +32,7 @@ const routes: Routes = [
             loadChildren: () => import('../musician-profile-dialog/musician-profile-dialog.module').then(m => m.MusicianProfileDialogModule),
           },
           {
-            path: 'projects', component: ProjectListComponent,
-            resolve: { projects: ProjectListResolver },
+            path: 'projects', component: ProjectsComponent,
           },
         ],
       },

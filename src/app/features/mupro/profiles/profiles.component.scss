@@ -3,7 +3,6 @@
 
 
 .profiles {
-  background-color: var(--surface-d);
   margin-bottom: 4rem;
 
   ul, li {
@@ -16,6 +15,7 @@
     padding: 1rem;
     margin-bottom: 1rem;
     margin-top: 1rem;
+    background-color: var(--surface-d);
 
 
     .performer-details {
@@ -36,9 +36,41 @@
     .section-detail {
       display: flex;
       flex: 1 auto;
+      flex-direction: column;
+      grid-gap: .5rem;
 
-      h2 {
-        margin-top: 0;
+      header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        h2 {
+          margin-top: 0;
+          margin-bottom: 0;
+          font-size: 1.2rem;
+        }
+
+        button {
+          margin-left: auto;
+        }
+      }
+
+      .rating {
+        margin-right: .5rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+
+        p-rating {
+          & + p-badge {
+            margin-left: .5rem;
+          }
+        }
+
+        p-badge {
+          margin-left: auto;
+        }
       }
     }
 
@@ -84,7 +116,6 @@
 
     &.p-steps .p-steps-item.p-highlight .p-steps-number {
       background: rgba(100, 181, 246, 0.56);
-      cursor: default;
     }
 
     &.p-steps .p-steps-item.p-highlight .p-steps-number {
@@ -97,7 +128,7 @@
     margin-bottom: 2em;
     display: block;
     text-align: center;
-    @media (min-width: 768px) {
+    @media (min-width: 840px) {
       display: none;
     }
   }
@@ -120,7 +151,7 @@
     .details {
       text-align: center;
 
-      @media (min-width: 768px) {
+      @media (min-width: 840px) {
         text-align: left;
         align-items: center;
         display: flex;
@@ -133,7 +164,7 @@
           line-height: 128%;
 
           &.name {
-            font-size: 1.5em;
+            font-size: 1.2em;
           }
 
           &.profile {

@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MuproComponent } from './mupro.component';
 import { MuProRoutingModule } from './mupro-routing.module';
-import { MuproDetailsComponent } from './mupro-details/mupro-details.component';
-import { MuproProfilesComponent } from './mupro-profiles/mupro-profiles.component';
+import { DetailsComponent } from './details/details.component';
+import { ProfilesComponent } from './profiles/profiles.component';
 import { MuproService } from './services/mupro.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AvatarModule } from '../../../@arpa/components/avatar/avatar.module';
@@ -20,10 +20,11 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from '../../../@arpa/components/table/table.module';
+import { ProjectsComponent } from './projects/projects.component';
 
 
 @NgModule({
-  declarations: [MuproComponent, MuproDetailsComponent, MuproProfilesComponent],
+  declarations: [MuproComponent, DetailsComponent, ProfilesComponent, ProjectsComponent],
   imports: [
     CommonModule,
     FormsModule,

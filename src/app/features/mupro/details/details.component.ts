@@ -5,10 +5,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'arpa-mupro-details',
-  templateUrl: './mupro-details.component.html',
-  styleUrls: ['./mupro-details.component.scss'],
+  templateUrl: './details.component.html',
+  styleUrls: ['./details.component.scss'],
 })
-export class MuproDetailsComponent {
+export class DetailsComponent {
 
   menuItems: Array<MenuItem>;
 

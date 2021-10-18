@@ -12,10 +12,10 @@ import { ProfileQuery } from './profile.graphql';
 
 @Component({
   selector: 'arpa-mupro-profiles',
-  templateUrl: './mupro-profiles.component.html',
-  styleUrls: ['./mupro-profiles.component.scss'],
+  templateUrl: './profiles.component.html',
+  styleUrls: ['./profiles.component.scss'],
 })
-export class MuproProfilesComponent implements OnInit {
+export class ProfilesComponent implements OnInit {
 
   public person: Observable<PersonDto>;
   public profileNav: Observable<MenuItem[]>;
@@ -40,6 +40,14 @@ export class MuproProfilesComponent implements OnInit {
     });
     this.sections = this.route.data.pipe<SectionDto[]>(map((data) => data.sections));
     this.profiles = this.route.data.pipe<MusicianProfileDto[]>(map((data) => data.profiles || []));
+    this.profileNav = this.profiles.pipe(
+      map((data) =>
+        data.map((profile: MusicianProfileDto) => ({
+          profile,
+          command: (e: any) => this.show(e),
+        } as unknown)) as MenuItem[],
+      ),
+    );
   }
 
   getName(person: PersonDto | null) {

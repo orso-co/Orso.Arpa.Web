@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MuproDetailsComponent } from './mupro-details.component';
+import { DetailsComponent } from './details.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('DetailsComponent', () => {
-  let component: MuproDetailsComponent;
-  let fixture: ComponentFixture<MuproDetailsComponent>;
+  let component: DetailsComponent;
+  let fixture: ComponentFixture<DetailsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MuproDetailsComponent],
+      declarations: [DetailsComponent],
       imports: [
         HttpClientTestingModule,
         RouterTestingModule,
@@ -20,7 +20,7 @@ describe('DetailsComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MuproDetailsComponent);
+    fixture = TestBed.createComponent(DetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,11 +1,11 @@
 <h1>{{ 'PROFILE' | translate }}</h1>
 <div class='p-grid profile'>
-  <div class='p-col-12 p-md-6 p-lg-5'>
+  <div class='p-col-12 p-lg-6 p-lg-5'>
     <div class='p-grid'>
-      <div class='p-col-12 p-md-4' style='text-align: center'>
+      <div class='p-col-12 p-lg-4' style='text-align: center'>
         <arpa-avatar [image]='false' [user]='(person | async) || {}' size='xlarge'></arpa-avatar>
       </div>
-      <div class='p-col-12 p-md-8 details'>
+      <div class='p-col-12 p-lg-8 details'>
         <div>
           <div class='name'>{{ getName(person | async) }}</div>
           <div class='country'>Deutschland, Berlin</div>
@@ -19,30 +19,16 @@
 <div class='profiles'>
   <arpa-graph-ql-feed [contentTemplate]='feed' [query]='query' [variables]='{personId}'>
     <ng-template #feed let-feed>
+
+
       <ul>
         <ng-container *ngFor='let profile of $any((feed.values | async) || []); let i = index'>
-          <li>
+          <li *ngIf='activeIndex === i'>
             <div class='profile'>
               <div class='p-grid'>
-                <div class='p-col-12 section-detail p-jc-between'>
-                  <h2>{{ profile.instrument.name }}</h2>
-                  <p-badge *ngIf='profile.isMainProfile'
-                           [value]="'MAIN_PROFILE' | translate "></p-badge>
-
-                  <p-badge *ngIf='profile.deactivation'
-                           severity='danger'
-                           value='{{ "musician-profile-dialog.DEACTIVATED" | translate }}'></p-badge>
-                </div>
-                <div class='p-col-12 p-md-6 performer-details'>
-                  <h3>Performer</h3>
-                  <p-rating [(ngModel)]='profile.levelAssessmentInner' [cancel]='false' [disabled]='true'></p-rating>
-                </div>
-                <div class='p-col-12 p-md-6 staff-details p-jc-between'>
-                  <div>
-                    <h3>Staff</h3>
-                    <p-rating [(ngModel)]='profile.levelAssessmentTeam' [cancel]='false' [disabled]='true'></p-rating>
-                  </div>
-                  <div>
+                <div class='p-col-12 section-detail'>
+                  <header>
+                    <h2>{{ profile.instrument.name }}</h2>
                     <button
                       [queryParams]='{comboInstruments: true}'
                       [routerLink]='[{outlets: {modal: [personId, profile.id]}}]'
@@ -51,6 +37,24 @@
                       pButton
                       type='button'
                     ></button>
+                  </header>
+                  <div class='rating'>
+                    <p-rating [(ngModel)]='profile.levelAssessmentInner'
+                              [cancel]='false'
+                              [disabled]='true'
+                              pTooltip="{{ 'musician-profile-dialog.LEVEL_ASSESSMENT' | translate }}"
+                    ></p-rating>
+                    <p-badge [severity]='"default"'
+                             [value]='profile.levelAssessmentTeam || 0'
+                             pTooltip="{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_TEAM' | translate }}"
+                    ></p-badge>
+
+                    <p-badge *ngIf='profile.isMainProfile'
+                             [value]="'MAIN_PROFILE' | translate "></p-badge>
+
+                    <p-badge *ngIf='profile.deactivation'
+                             severity='danger'
+                             value='{{ "musician-profile-dialog.DEACTIVATED" | translate }}'></p-badge>
                   </div>
                 </div>
               </div>

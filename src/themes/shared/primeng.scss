@@ -7,6 +7,7 @@
     & > h2 {
       margin-top: 3rem;
       opacity: .75;
+      font-size: 1.2rem;
     }
 
     background: transparent;
@@ -118,6 +119,9 @@
 
 }
 
+.p-datatable-header:empty {
+  display: none;
+}
 
 .p-datatable {
   .p-sortable-column.p-highlight {
@@ -253,4 +257,20 @@ p-badge {
 
 .p-rating {
   white-space: nowrap;
+}
+
+.p-badge-no-gutter {
+  background-color: var(--text-color-secondary);
+}
+
+.p-steps .p-steps-item .p-menuitem-link {
+  background-color: transparent;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.p-steps .p-steps-item:before {
+  border: none;
 }

@@ -120,6 +120,9 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
   rowTemplateRef: TemplateRef<any>;
 
   @Input()
+  rowExpansionTemplateRef: TemplateRef<any>;
+
+  @Input()
   isLoading: boolean;
 
   @ContentChildren(PrimeTemplate) templates: QueryList<PrimeTemplate>;
