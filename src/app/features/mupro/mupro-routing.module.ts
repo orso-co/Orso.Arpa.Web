@@ -15,7 +15,7 @@ const routes: Routes = [
     resolve: { persons: PersonsService },
     children: [
       {
-        path: ':id',
+        path: ':personId',
         component: MuproProfilesComponent,
         runGuardsAndResolvers: 'always',
         resolve: {
@@ -30,7 +30,7 @@ const routes: Routes = [
           {
             path: '',
             outlet: 'modal',
-            loadChildren: () => import('../musician-profile/musician-profile.module').then(m => m.MusicianProfileModule),
+            loadChildren: () => import('../musician-profile-dialog/musician-profile-dialog.module').then(m => m.MusicianProfileDialogModule),
           },
           {
             path: 'projects', component: ProjectListComponent,

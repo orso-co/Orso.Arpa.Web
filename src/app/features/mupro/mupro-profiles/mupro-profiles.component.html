@@ -27,7 +27,11 @@
                 <div class='p-col-12 section-detail p-jc-between'>
                   <h2>{{ profile.instrument.name }}</h2>
                   <p-badge *ngIf='profile.isMainProfile'
-                           [value]="'musician-profile.MAIN_PROFILE' | translate "></p-badge>
+                           [value]="'MAIN_PROFILE' | translate "></p-badge>
+
+                  <p-badge *ngIf='profile.deactivation'
+                           severity='danger'
+                           value='{{ "musician-profile-dialog.DEACTIVATED" | translate }}'></p-badge>
                 </div>
                 <div class='p-col-12 p-md-6 performer-details'>
                   <h3>Performer</h3>
@@ -41,7 +45,7 @@
                   <div>
                     <button
                       [queryParams]='{comboInstruments: true}'
-                      [routerLink]='[{outlets: {modal: [profile.id]}}]'
+                      [routerLink]='[{outlets: {modal: [personId, profile.id]}}]'
                       class='p-button-rounded p-button-text p-button-icon-only'
                       icon='pi pi-pencil'
                       pButton

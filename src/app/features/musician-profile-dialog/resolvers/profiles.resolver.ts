@@ -3,16 +3,21 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { Observable } from 'rxjs';
 import { MeService } from '../../../shared/services/me.service';
 import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
+import { MusicianService } from '../services/musician.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProfileMusicianResolver implements Resolve<MusicianProfileDto | MusicianProfileDto[]> {
-  constructor(private meService: MeService) {
+export class ProfilesResolver implements Resolve<MusicianProfileDto | MusicianProfileDto[]> {
+  constructor(private meService: MeService, private musicianService: MusicianService) {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<MusicianProfileDto | MusicianProfileDto[]> {
-    const { id } = route.params;
-    return this.meService.getProfilesMusician(id);
+    if (route.url.length > 1 && route.url[0].path === 'me') {
+      return this.meService.getProfilesMusician();
+    } else {
+      const { personId } = route.params;
+      return this.musicianService.getProfilesByPerson(personId);
+    }
   }
 }

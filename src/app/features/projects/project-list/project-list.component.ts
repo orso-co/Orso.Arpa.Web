@@ -98,7 +98,7 @@ export class ProjectListComponent {
     const ref = this.dialogService.open(ProjectParticipationComponent, {
       data: {
         projectParticipation: this.selectValueService.load('ProjectParticipation', 'ParticipationStatusInner'),
-        musicianProfiles: this.meService.getProfileMusician<MusicianProfileDto[]>(),
+        musicianProfiles: this.meService.getProfilesMusician<MusicianProfileDto[]>(),
         sections: this.sectionService.load(),
         id,
       },

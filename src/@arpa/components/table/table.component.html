@@ -87,7 +87,7 @@
   </ng-template>
   <ng-template let-row pTemplate='body'>
     <!-- Render all rows by column definition -->
-    <tr (click)='rowClickEvents.emit(row)' [class.hasHover]='rowClickEvents' [pSelectableRow]='row'>
+    <tr (click)='rowClickEvents.emit(row)' *ngIf='row' [class.hasHover]='rowClickEvents' [pSelectableRow]='row'>
       <ng-container *ngIf='!rowTemplateRef'>
         <ng-container *ngFor='let column of columns; trackBy: trackByProperty'>
           <ng-container *ngIf="column.type === 'template' && column.template">

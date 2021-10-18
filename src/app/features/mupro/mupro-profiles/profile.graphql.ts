@@ -2,7 +2,7 @@ import { gql } from 'apollo-angular';
 
 export const ProfileQuery = gql`
   query Profile($personId: UUID){
-    musicianProfiles(first:50, order: { isMainProfile: DESC } where: {
+    musicianProfiles(take:50, order: { isMainProfile: DESC, instrument: { name: ASC } } where: {
       personId: { equals: $personId },
     }
     ) {

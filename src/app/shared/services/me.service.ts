@@ -63,7 +63,7 @@ export class MeService {
     ).pipe(shareReplay());
   }
 
-  getProfileMusician<T>(id?: string): Observable<MusicianProfileDto | MusicianProfileDto[]> | T {
+  getProfilesMusician<T>(id?: string): Observable<MusicianProfileDto | MusicianProfileDto[]> | T {
     if (id) {
       return this.apiService.get<MusicianProfileDto>(`${this.baseUrl}/profiles/musician/${id}`).pipe(shareReplay());
     } else {

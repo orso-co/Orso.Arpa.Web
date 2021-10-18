@@ -12,7 +12,7 @@ export class ProfileMusicianResolver implements Resolve<MusicianProfileDto> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<MusicianProfileDto> {
-    const { id } = route.params;
-    return this.personService.getMusicianProfile(id);
+    const { personId } = route.params;
+    return this.personService.getMusicianProfile(personId);
   }
 }

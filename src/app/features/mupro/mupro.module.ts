@@ -30,7 +30,7 @@ import { TableModule } from '../../../@arpa/components/table/table.module';
     ReactiveFormsModule,
     MuProRoutingModule,
     // Arpa Lib
-    TranslateModule.forChild(['mupro', 'musician-profile']),
+    TranslateModule.forChild(['mupro', 'mupro']),
     AvatarModule,
     SplitViewModule,
     GraphQlFeedModule,

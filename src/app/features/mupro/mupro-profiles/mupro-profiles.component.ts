@@ -33,8 +33,8 @@ export class MuproProfilesComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      if (params.has('id')) {
-        this.personId = params.get('id') as string;
+      if (params.has('personId')) {
+        this.personId = params.get('personId') as string;
         this.person = this.personService.getPerson(this.personId);
       }
     });
