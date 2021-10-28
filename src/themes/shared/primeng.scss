@@ -274,3 +274,13 @@ p-badge {
 .p-steps .p-steps-item:before {
   border: none;
 }
+
+.p-rating.p-readonly {
+  .p-rating-icon {
+    cursor: auto;
+  }
+
+  .p-rating-icon.pi-star {
+    color: var(--text-color);
+  }
+}

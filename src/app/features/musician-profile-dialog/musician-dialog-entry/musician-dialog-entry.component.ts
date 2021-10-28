@@ -78,6 +78,7 @@ export class MusicianDialogEntryComponent {
           [this.router
             .createUrlTree(['.'], { relativeTo: this.route })
             .root.children[PRIMARY_OUTLET].toString()],
+          { state: { refresh: true } },
         );
       });
   }
