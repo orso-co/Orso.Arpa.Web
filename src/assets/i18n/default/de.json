@@ -64,7 +64,8 @@
     "FORBIDDEN": "Zugriff verweigert",
     "NOT_AUTHENTICATED": "Nicht angemeldet",
     "ROUTE_NOT_FOUND": "Seite nicht gefunden",
-    "SOMETHING_WENT_WRONG": "Da ist etwas schiefgelaufen"
+    "SOMETHING_WENT_WRONG": "Da ist etwas schiefgelaufen",
+    "FATAL_ERROR": "Da ist etwas schiefgelaufen"
   },
   "norole": {
     "BE_PATIENT": "Wir bitten um ein wenig Geduld, bis du von unserem Team freigeschaltet wurdest. Du wirst per E-Mail über die erfolgte Freischaltung benachrichtigt."

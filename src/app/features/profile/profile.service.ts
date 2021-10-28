@@ -18,7 +18,15 @@ export class ProfileService {
         },
       },
       {
-        label: 'profile.MUSICIAN_PROFILE',
+        label: 'profile.MY_QR_CODE',
+        roles: ['performer'],
+        command: (event) => {
+          this.menuEvents.next(event);
+          this.router.navigate(['/arpa/profile/qrcode']);
+        },
+      },
+      {
+        label: 'profile.MUSICIAN_PROFILES',
         roles: ['performer'],
         command: (event) => {
           this.menuEvents.next(event);

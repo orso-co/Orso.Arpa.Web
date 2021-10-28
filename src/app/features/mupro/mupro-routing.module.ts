@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MuproComponent } from './mupro.component';
-import { MuproProfilesComponent } from './mupro-profiles/mupro-profiles.component';
-import { ProjectListComponent } from '../projects/project-list/project-list.component';
+import { ProfilesComponent } from './profiles/profiles.component';
 import { PersonsService } from './services/persons.service';
-import { ProjectListResolver } from '../../shared/resolvers/project-list.resolver';
 import { ProfileMusicianResolver } from './resolvers/profile-musician.resolver';
 import { SectionsResolver } from '../profile/resolvers/sections.resolver';
+import { ProjectsComponent } from './projects/projects.component';
 
 const routes: Routes = [
   {
@@ -15,8 +14,8 @@ const routes: Routes = [
     resolve: { persons: PersonsService },
     children: [
       {
-        path: ':id',
-        component: MuproProfilesComponent,
+        path: ':personId',
+        component: ProfilesComponent,
         runGuardsAndResolvers: 'always',
         resolve: {
           profiles: ProfileMusicianResolver,
@@ -30,11 +29,10 @@ const routes: Routes = [
           {
             path: '',
             outlet: 'modal',
-            loadChildren: () => import('../musician-profile/musician-profile.module').then(m => m.MusicianProfileModule),
+            loadChildren: () => import('../musician-profile-dialog/musician-profile-dialog.module').then(m => m.MusicianProfileDialogModule),
           },
           {
-            path: 'projects', component: ProjectListComponent,
-            resolve: { projects: ProjectListResolver },
+            path: 'projects', component: ProjectsComponent,
           },
         ],
       },

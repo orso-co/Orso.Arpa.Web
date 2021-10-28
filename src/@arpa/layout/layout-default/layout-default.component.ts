@@ -1,4 +1,4 @@
-import { Component, ElementRef, QueryList, Renderer2, ViewChildren } from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map, shareReplay } from 'rxjs/operators';
@@ -21,7 +21,7 @@ export class LayoutDefaultComponent {
       shareReplay(),
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, private renderer: Renderer2) {
+  constructor(private breakpointObserver: BreakpointObserver) {
     const storedSetting = localStorage.getItem('navExpand');
     this.isExpanded = storedSetting === 'true';
   }

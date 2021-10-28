@@ -1,4 +1,4 @@
-<div [ngClass]="{'desktop':isDesktop}" class='wrapper'>
+<div [ngClass]="{'desktop':(isTablet | async) === false, 'large':(isLarge | async) === true}" class='wrapper'>
   <div class='side-view p-mr-2'>
     <ng-container
       [ngTemplateOutletContext]='{ $implicit: this }'
@@ -10,7 +10,7 @@
        [@stateTrigger]='trigger(viewState)'
        class='content-view'
   >
-    <ng-container>
+    <ng-container *ngIf='outlet.isActivated && (isTablet | async) === true'>
       <i (click)='hideContentView()' class='pi pi-arrow-left back-link'></i>
     </ng-container>
     <ng-container
@@ -22,12 +22,9 @@
       #outlet='outlet'
       (activate)='onRouteActivation($event)'
       (deactivate)='onRouteDeactivation()'></router-outlet>
-    <router-outlet name='modal'></router-outlet>
   </div>
 </div>
-
 <ng-template #defaultSideViewTemplate>
 </ng-template>
-
 <ng-template #contentDefaultTemplate>
 </ng-template>

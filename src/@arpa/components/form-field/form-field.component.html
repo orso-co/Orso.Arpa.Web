@@ -1,7 +1,6 @@
 <div #wrapper>
   <div class='form-field-wrapper'>
     <div class='form-field-flex'>
-
       <div class='form-field-outline form-field-outline-state'>
         <div class='form-field-outline-start' style='width: 7px;'></div>
         <div class='form-field-outline-gap'>
@@ -19,6 +18,10 @@
           >{{ label | translate }}</label>
         </span>
         <ng-content></ng-content>
+        <ng-container *ngIf='label && type === "checkbox"'>
+          <label [attr.for]='this.formControl.name'
+          >{{ label | translate }}</label>
+        </ng-container>
       </div>
     </div>
   </div>

@@ -13,6 +13,6 @@ export class ProfileMusicianResolver implements Resolve<MusicianProfileDto | Mus
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<MusicianProfileDto | MusicianProfileDto[]> {
     const { id } = route.params;
-    return this.meService.getProfileMusician(id);
+    return this.meService.getProfilesMusician(id);
   }
 }

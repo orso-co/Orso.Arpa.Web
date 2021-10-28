@@ -24,6 +24,8 @@ mat-sidenav-container {
   }
 
   & > mat-sidenav-content {
+    background-color: #303030;
+
     .main-content {
       color: var(--text-color)
     }
@@ -37,5 +39,11 @@ mat-sidenav-container {
 .main-toolbar {
   background-color: var(--surface-d);
   box-shadow: -10px 5px 20px var(--gray-800);
+}
+
+.wrapper {
+  .content-view {
+    background-color: #303030 !important;
+  }
 }
 

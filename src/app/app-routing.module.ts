@@ -51,7 +51,7 @@ const routes: Routes = [
         path: 'projects',
         loadChildren: () => import('./features/projects/projects.module').then(m => m.ProjectsModule),
         data: {
-          roles: ['performer', 'staff'],
+          roles: ['staff'],
           title: 'projects.PAGE_TITLE',
           menu: {
             name: 'feature',

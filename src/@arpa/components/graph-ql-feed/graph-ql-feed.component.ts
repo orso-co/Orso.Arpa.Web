@@ -1,4 +1,14 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+  TemplateRef,
+} from '@angular/core';
 import { Apollo, QueryRef } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 import { BehaviorSubject, Subscription } from 'rxjs';
@@ -14,7 +24,7 @@ export interface FeedScope {
   templateUrl: './graph-ql-feed.component.html',
   styleUrls: ['./graph-ql-feed.component.scss'],
 })
-export class GraphQlFeedComponent implements OnInit, OnDestroy {
+export class GraphQlFeedComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input()
   query: DocumentNode;
@@ -73,21 +83,41 @@ export class GraphQlFeedComponent implements OnInit, OnDestroy {
     return this.feedQuery.refetch();
   }
 
-  onFilter(event: any) {
-    // ToDo: filtering on query level.
+  onFilter({ filter }: any): any {
+    return this.feedQuery.fetchMore({
+      variables: {
+        ...this.variables,
+        searchQuery: filter || '',
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult) {
+          return prev;
+        }
+        return fetchMoreResult;
+      },
+    });
   }
 
-  onLazy({ first, rows }: any) {
-    this.moveCursor(rows, first);
+  onLazy({ first, rows, globalFilter, filters }: any): any {
+    return this.moveCursor(rows, first, globalFilter || '');
   }
 
   ngOnDestroy() {
     this.feedSubscription.unsubscribe();
   }
 
-  private moveCursor(take: number, skip: number = 0) {
+  ngOnChanges({ variables }: SimpleChanges): void {
+    if (variables && !variables.firstChange) {
+      this.variables = variables.currentValue;
+      this.onFilter({});
+    }
+  }
+
+  private moveCursor(take: number, skip: number = 0, searchQuery: string = '') {
     return this.feedQuery.fetchMore({
       variables: {
+        ...this.variables,
+        searchQuery,
         take,
         skip,
       },

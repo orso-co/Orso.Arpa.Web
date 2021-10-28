@@ -28,7 +28,7 @@ export class UserComponent implements OnInit {
       .pipe(map(() => this.selectValueService.get('Person', 'gender')));
 
     this.form = formBuilder.group({
-      genderId: [null, [Validators.required]],
+      genderId: [null],
       email: [null],
       phoneNumber: [null,
         [
@@ -57,9 +57,9 @@ export class UserComponent implements OnInit {
 
   submit(): void {
     this.meService.putProfile(Object.assign({}, this.form.getRawValue())).pipe(first()).subscribe((response) => {
-      this.notificationsService.success('Profile updated.');
+      this.notificationsService.success('USER_PROFILE_UPDATED', 'profile');
     }, error => {
-      this.notificationsService.error('Could not update Profile.');
+      this.notificationsService.error('USER_PROFILE_UPDATE_ERROR', 'profile');
     });
   }
 }

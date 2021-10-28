@@ -22,6 +22,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { BadgeModule } from 'primeng/badge';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
+import { QRCodeComponent } from './qrcode/qrcode.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { InputTextModule } from 'primeng/inputtext';
     UserComponent,
     MyAppointmentsComponent,
     MusicianComponent,
+    QRCodeComponent,
   ],
   imports: [
     CommonModule,

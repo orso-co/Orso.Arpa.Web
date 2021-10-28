@@ -1,0 +1,47 @@
+<form (submit)='$event.preventDefault()' [formGroup]='form'>
+  <div class='p-fluid p-formgrid p-grid'>
+    <div class='p-col'>
+      <arpa-form-field label='musician-profile-dialog.DEACTIVATION_DATE'>
+        <p-calendar
+          [minDate]='minDate'
+          [showWeek]='true'
+          dateFormat='dd MM yy'
+          formControlName='deactivationStart'
+          id='deactivationStart'
+        ></p-calendar>
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class='p-fluid p-formgrid p-grid'>
+    <div class='p-col'>
+      <arpa-form-field label='musician-profile-dialog.PURPOSE'>
+        <textarea formControlName='purpose' id='purpose' pInputText type='text'></textarea>
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class='p-formgroup-inline p-jc-between'>
+    <div class='p-field p-col'>
+      <button
+        (click)='activate()'
+        *ngIf='profile.deactivation'
+        [label]="'musician-profile-dialog.ACTIVATE' | translate"
+        icon='pi pi-check'
+        iconPos='left'
+        pButton
+        type='button'
+      ></button>
+    </div>
+    <div class='p-field p-col p-text-right' style='margin-right: 0'>
+      <button
+        (click)='deactivate()'
+        [disabled]='form.pristine || form.invalid'
+        [label]="'musician-profile-dialog.DEACTIVATE' | translate"
+        class='p-button-danger'
+        icon='pi pi-times'
+        iconPos='left'
+        pButton
+        type='button'
+      ></button>
+    </div>
+  </div>
+</form>

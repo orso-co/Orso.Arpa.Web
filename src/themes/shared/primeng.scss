@@ -1,3 +1,64 @@
+/**
+ * Data table list elements.
+ * Usage: <p-table tableStyleClass="arpa-table-list"></p-table>
+ */
+.p-datatable .arpa-table-list {
+  .p-datatable-thead {
+    & > h2 {
+      margin-top: 3rem;
+      opacity: .75;
+      font-size: 1.2rem;
+    }
+
+    background: transparent;
+  }
+
+  .p-datatable-tbody > tr {
+    background-color: transparent;
+    border: none !important;
+    margin-bottom: .5rem;
+
+    &:hover {
+      background-color: transparent !important;
+    }
+
+    &.hasHover td {
+      cursor: pointer;
+      transition: background-color .5s ease-in-out;
+      margin-bottom: 0;
+
+      &:hover {
+        background-color: var(--surface-hover) !important;
+      }
+    }
+
+    &.p-highlight td {
+      background-color: var(--surface-hover) !important;
+    }
+
+    & > td {
+      border-bottom: none;
+      margin-bottom: .5rem;
+      border-radius: 3px;
+      background-color: var(--surface-100);
+      font-size: 1rem;
+      align-items: center;
+
+      .actions {
+        margin-left: auto;
+      }
+    }
+
+    &:first-child {
+      border-top: none;
+    }
+  }
+}
+
+/**
+ * Data table mobile.
+ * Usage: <p-table tableStyleClass="arpa-table-list"></p-table>
+ */
 .p-datatable.mobile {
   .p-datatable-thead {
     display: none;
@@ -27,6 +88,9 @@
   }
 }
 
+/**
+ * General Data table styles.
+ */
 .p-datatable-scrollable .p-datatable-tbody > tr > td, .p-datatable-scrollable .p-datatable-thead > tr > th {
 
   &.start {
@@ -55,10 +119,17 @@
 
 }
 
+.p-datatable-header:empty {
+  display: none;
+}
 
 .p-datatable {
   .p-sortable-column.p-highlight {
     background: inherit;
+  }
+
+  thead {
+    background: transparent;
   }
 
   tr {
@@ -123,9 +194,10 @@ p-badge {
 .p-datatable {
   .p-datatable-header {
     background: none;
+    border-top: none;
   }
 
-  .p-datatable-thead, .p-datatable-thead > tr > th {
+  .p-datatable-thead > tr > th {
     background: var(--surface-100);
   }
 
@@ -136,5 +208,79 @@ p-badge {
   .p-paginator {
     background: none;
     border-bottom: 0;
+  }
+}
+
+/**
+ * General Accordion styles.
+ */
+.p-accordion {
+  .p-accordion-header.p-highlight .p-accordion-header-link {
+    background-color: var(--surface-d);
+  }
+
+  .p-accordion-header .p-accordion-header-link {
+    border: 0;
+    padding: .5rem 0;
+    padding-right: 1rem;
+    background: var(--surface-100);
+    font-weight: 400;
+    margin-bottom: .5rem;
+
+    &:hover {
+      background-color: var(--surface-d);
+    }
+
+    .p-d-flex {
+      align-items: center;
+      flex: 1;
+    }
+  }
+
+  .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
+    margin-left: .5rem;
+    margin-right: 1rem;
+  }
+
+  .p-accordion-content {
+    border: 0;
+    margin-bottom: .5rem;
+  }
+}
+
+/**
+ * General Dialog styles.
+ */
+.p-dialog-content {
+  overflow-y: visible !important;
+}
+
+.p-rating {
+  white-space: nowrap;
+}
+
+.p-badge-no-gutter {
+  background-color: var(--text-color-secondary);
+}
+
+.p-steps .p-steps-item .p-menuitem-link {
+  background-color: transparent;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.p-steps .p-steps-item:before {
+  border: none;
+}
+
+.p-rating.p-readonly {
+  .p-rating-icon {
+    cursor: auto;
+  }
+
+  .p-rating-icon.pi-star {
+    color: var(--text-color);
   }
 }

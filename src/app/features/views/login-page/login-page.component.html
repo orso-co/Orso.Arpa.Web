@@ -4,8 +4,8 @@
       <input autocomplete='username' formControlName='usernameOrEmail' id='usernameOrEmail' pInputText type='text'>
     </arpa-form-field>
     <arpa-form-field label='PASSWORD'>
-      <p-password [feedback]='false' [toggleMask]='true' autocomplete='password'
-                  formControlName='password'></p-password>
+      <input [feedback]='false' [showPassword]='false' autocomplete='password' formControlName='password' id='password'
+             pPassword>
     </arpa-form-field>
 
     <div class='p-field'>

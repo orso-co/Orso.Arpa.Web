@@ -8,6 +8,7 @@ import { MyAppointmentsComponent } from './my-appointments/my-appointments.compo
 import { RoleNames } from '../../../@arpa/models/roleNames';
 import { ProfileMusicianResolver } from './resolvers/profile-musician.resolver';
 import { SectionsResolver } from './resolvers/sections.resolver';
+import { QRCodeComponent } from './qrcode/qrcode.component';
 
 const routes: Routes = [
   {
@@ -20,8 +21,10 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'user',
-        pathMatch: 'full',
+        component: UserComponent,
+        resolve: {
+          profile: ProfileResolver,
+        },
       },
       {
         path: 'user',
@@ -29,6 +32,10 @@ const routes: Routes = [
         resolve: {
           profile: ProfileResolver,
         },
+      },
+      {
+        path: 'qrcode',
+        component: QRCodeComponent,
       },
       {
         path: 'appointments',
@@ -47,7 +54,7 @@ const routes: Routes = [
           {
             path: '',
             outlet: 'modal',
-            loadChildren: () => import('../musician-profile/musician-profile.module').then(m => m.MusicianProfileModule),
+            loadChildren: () => import('../musician-profile-dialog/musician-profile-dialog.module').then(m => m.MusicianProfileDialogModule),
           },
         ],
       },

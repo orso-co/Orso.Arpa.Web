@@ -19,6 +19,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { LanguageService } from '../../../@arpa/services/language.service';
 import { GraphQlFeedModule } from '../../../@arpa/components/graph-ql-feed/graph-ql-feed.module';
 import { TableModule } from '../../../@arpa/components/table/table.module';
+import { FormFieldModule } from '../../../@arpa/components/form-field/form-field.module';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { TableModule } from '../../../@arpa/components/table/table.module';
     TranslateModule.forChild(['projects']),
     GraphQlFeedModule,
     TableModule,
+    FormFieldModule,
     // NG Prime Dependencies
     DropdownModule,
     ButtonModule,

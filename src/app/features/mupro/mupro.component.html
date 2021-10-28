@@ -1,26 +1,31 @@
 <arpa-split-view>
   <ng-template #sideViewTemplate>
-    <arpa-graph-ql-feed [contentTemplate]='feed' [query]='query'>
+    <arpa-graph-ql-feed #feedSource [contentTemplate]='feed' [query]='query' [variables]='{take:50}'>
       <ng-template #feed let-feed>
-        <div [class.hasSelection]='person' class='p-flex-column'>
-          <p-listbox
-            (onClick)='select($event)'
-            [(ngModel)]='person'
-            [filter]='true'
-            [options]='(feed.values | async) || []'
-            filterPlaceHolder='Search'
-            optionLabel='filterOption'
-            optionValue='id'
-          >
-            <ng-template let-profile pTemplate='item'>
-              <arpa-avatar [image]='false' [user]='profile.person' size='large'></arpa-avatar>
+        <div [class.hasSelection]='person'>
+          <arpa-table
+            (lazyEvents)='feedSource.onLazy($event)'
+            (rowClickEvents)='select($event)'
+            [feed]='feed'
+            [rowTemplateRef]='rowTemplate'
+            [rowsPerPage]='undefined'
+            [showFilter]='true'
+            [showFirstLastIcon]='false'
+            [showPageLinks]='false'
+            [showPagination]='true'
+            selectionMode='single'
+            tableStyleClass='arpa-table-list'
+          ></arpa-table>
+          <ng-template #rowTemplate let-row>
+            <td>
+              <arpa-avatar [image]='false' [user]='row.person' size='large'></arpa-avatar>
               <div class='details'>
-                <div class='name'>{{profile.person.givenName}} {{profile.person.surname}}</div>
-                <div class='profile'>{{profile.instrument.name}}</div>
+                <div class='name'>{{row.person.givenName}} {{row.person.surname}}</div>
+                <div class='profile'>{{row.instrument.name}}</div>
                 <div class='country'>Deutschland, Berlin</div>
               </div>
-            </ng-template>
-          </p-listbox>
+            </td>
+          </ng-template>
         </div>
       </ng-template>
     </arpa-graph-ql-feed>

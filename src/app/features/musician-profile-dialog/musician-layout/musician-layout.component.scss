@@ -1,0 +1,21 @@
+:host ::ng-deep {
+  @media (max-width: 768px) {
+    .p-tabview-title {
+      display: none;
+    }
+  }
+
+  .p-tabview .p-tabview-left-icon {
+    margin-right: 0;
+  }
+
+  .p-tabview-title {
+    margin-left: 0.5rem;
+  }
+
+  .p-tabview-title:empty {
+    margin-left: 0;
+  }
+}
+
+
