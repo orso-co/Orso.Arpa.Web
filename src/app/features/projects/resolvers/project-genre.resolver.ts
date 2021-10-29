@@ -1,16 +1,12 @@
 import { Injectable } from '@angular/core';
-import {
-  Resolve,
-  RouterStateSnapshot,
-  ActivatedRouteSnapshot
-} from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import {SelectValueService} from '../../../core/services/select-value.service';
-import {SelectItem} from 'primeng/api';
-import {map} from 'rxjs/operators';
+import { SelectValueService } from '../../../shared/services/select-value.service';
+import { SelectItem } from 'primeng/api';
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProjectGenreResolver implements Resolve<SelectItem[]> {
   constructor(private selectValueService: SelectValueService) {

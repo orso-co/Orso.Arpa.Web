@@ -1,0 +1,30 @@
+<div [ngClass]="{'desktop':(isTablet | async) === false, 'large':(isLarge | async) === true}" class='wrapper'>
+  <div class='side-view p-mr-2'>
+    <ng-container
+      [ngTemplateOutletContext]='{ $implicit: this }'
+      [ngTemplateOutlet]='sideViewTemplateRef || defaultSideViewTemplate'
+    ></ng-container>
+  </div>
+  <div (@stateTrigger.done)='animating(false)'
+       (@stateTrigger.start)='animating(true)'
+       [@stateTrigger]='trigger(viewState)'
+       class='content-view'
+  >
+    <ng-container *ngIf='outlet.isActivated && (isTablet | async) === true'>
+      <i (click)='hideContentView()' class='pi pi-arrow-left back-link'></i>
+    </ng-container>
+    <ng-container
+      *ngIf='!outlet.isActivated'
+      [ngTemplateOutletContext]='{ $implicit: this }'
+      [ngTemplateOutlet]='contentDefaultTemplateRef || contentDefaultTemplate'
+    ></ng-container>
+    <router-outlet
+      #outlet='outlet'
+      (activate)='onRouteActivation($event)'
+      (deactivate)='onRouteDeactivation()'></router-outlet>
+  </div>
+</div>
+<ng-template #defaultSideViewTemplate>
+</ng-template>
+<ng-template #contentDefaultTemplate>
+</ng-template>

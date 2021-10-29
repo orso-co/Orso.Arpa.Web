@@ -1,0 +1,35 @@
+:host ::ng-deep {
+  display: flex;
+  justify-content: center;
+
+  .p-field-checkbox {
+    margin-top: 2em;
+  }
+
+  .alert {
+    margin-top: 1rem;
+  }
+
+  arpa-password-strength {
+    .indicator {
+      margin-top: -2.5rem;
+    }
+  }
+
+  .passwordInfo {
+    margin-top: 0;
+    opacity: .85;
+    padding-left: 1.85rem;
+    position: relative;
+
+    i {
+      opacity: .5;
+      padding-right: .5rem;
+      vertical-align: text-bottom;
+      position: absolute;
+      left: 0;
+      line-height: 100%;
+      height: 100%;
+    }
+  }
+}

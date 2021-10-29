@@ -1,0 +1,21 @@
+:host {
+  display: block;
+  width: 180px;
+
+  @media (min-width: 768px) {
+    width: 125px;
+  }
+}
+
+img {
+  opacity: 0.7;
+  filter: alpha(opacity=50);
+  width: 100%;
+  padding: 10px;
+  transition: all .25s;
+}
+
+img:hover {
+  opacity: 1.0;
+  filter: alpha(opacity=100);
+}

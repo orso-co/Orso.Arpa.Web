@@ -29,14 +29,24 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/manifest.webmanifest",
               "src/manifest.webmanifest"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              {
+                "input": "src/themes/dark.scss",
+                "bundleName": "arpa-dark",
+                "inject": false
+              },
+              {
+                "input": "src/themes/light.scss",
+                "bundleName": "arpa-light",
+                "inject": false
+              }
             ],
             "scripts": [
-              "node_modules/@fullcalendar/core/locales-all.min.js",
-              "node_modules/chart.js/dist/Chart.js"
+              "node_modules/@fullcalendar/core/locales-all.min.js"
             ],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json",
@@ -44,8 +54,15 @@
               "@fullcalendar/timegrid",
               "@fullcalendar/daygrid",
               "@fullcalendar/interaction",
-              "@stoplight/json-ref-resolver"
-            ]
+              "@stoplight/json-ref-resolver",
+              "chart.js"
+            ],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -71,18 +88,11 @@
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumError": "6kb"
                 }
               ]
             },
-            "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
-            }
+            "development": {}
           },
           "defaultConfiguration": "production"
         },
@@ -115,6 +125,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/manifest.webmanifest",
               "src/manifest.webmanifest"
             ],
             "styles": [
@@ -138,6 +149,6 @@
   "defaultProject": "Orso-Arpa-Web",
   "cli": {
     "analytics": false,
-    "defaultCollection": "@angular-eslint/schematics"
+    "defaultCollection": "@ngrx/schematics"
   }
 }

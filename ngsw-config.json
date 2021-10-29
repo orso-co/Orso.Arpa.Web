@@ -1,6 +1,7 @@
 {
   "$schema": "./node_modules/@angular/service-worker/config/schema.json",
   "index": "/index.html",
+  "navigationRequestStrategy": "freshness",
   "assetGroups": [
     {
       "name": "app",
@@ -16,6 +17,15 @@
       }
     },
     {
+      "name": "i18n",
+      "installMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/i18n/**"
+        ]
+      }
+    },
+    {
       "name": "assets",
       "installMode": "lazy",
       "updateMode": "prefetch",
@@ -24,6 +34,34 @@
           "/assets/**",
           "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
         ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "api-performance",
+      "urls": [
+        "*/api/sections",
+        "*/api/tables/*/properties/*"
+      ],
+      "version": 1,
+      "cacheConfig": {
+        "maxAge": "2h",
+        "maxSize": 100,
+        "strategy": "performance"
+      }
+    },
+    {
+      "name": "api-freshness",
+      "urls": [
+        "*/graphql",
+        "*/*"
+      ],
+      "version": 1,
+      "cacheConfig": {
+        "maxAge": "2h",
+        "maxSize": 1,
+        "strategy": "freshness"
       }
     }
   ]

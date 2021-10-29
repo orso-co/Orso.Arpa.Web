@@ -1,7 +1,7 @@
 <arpa-split-view>
   <ng-template #sideViewTemplate>
     <div class='p-flex-column'>
-      <arpa-avatar [user]='profile' [image]='true'></arpa-avatar>
+      <arpa-avatar [image]='true' [user]='profile | async'></arpa-avatar>
       <arpa-menu name='profile'></arpa-menu>
     </div>
   </ng-template>

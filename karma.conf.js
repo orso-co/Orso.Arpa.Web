@@ -45,6 +45,9 @@ module.exports = function (config) {
        }
     },
     singleRun: false,
-    restartOnFileChange: true
+    restartOnFileChange: true,
+    proxies: {
+      '/assets/': '/base/src/assets/'
+    }
   });
 };

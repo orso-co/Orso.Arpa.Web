@@ -1,35 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { DocumentNode } from 'graphql';
+import { MuproProfilesQuery } from './mupro-profiles.graphql';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'arpa-mupro',
   templateUrl: './mupro.component.html',
   styleUrls: ['./mupro.component.scss'],
 })
-export class MuproComponent implements OnInit {
-
-  persons: any;
+export class MuproComponent implements OnInit, OnDestroy {
   person: any;
   routeData: any;
+
+  query: DocumentNode = MuproProfilesQuery;
+  private routeParamsSubscription: Subscription | undefined;
 
   constructor(public route: ActivatedRoute,
               private router: Router,
   ) {
-    this.routeData = route.data
-      .pipe(map((routeData) => routeData.persons || []))
-      .subscribe((persons) => (this.persons = persons.map((person: any) => ({
-        ...person,
-        filterOption: person.givenName + ' ' + person.surname,
-      }))));
   }
 
   ngOnInit(): void {
-    this.person = this.route.firstChild?.snapshot.params.id;
+    this.routeParamsSubscription = this.route.firstChild?.paramMap.subscribe((params) => {
+      this.person = params.get('id');
+    });
   }
 
-  public select({ option }: any) {
-    this.person = option.id;
-    this.router.navigate([option.id], { relativeTo: this.route });
+  ngOnDestroy(): void {
+    if (this.routeParamsSubscription) {
+      this.routeParamsSubscription.unsubscribe();
+    }
+  }
+
+  public select({ person }: any) {
+    this.person = person.id;
+    this.router.navigate([person.id], { relativeTo: this.route });
   }
 }

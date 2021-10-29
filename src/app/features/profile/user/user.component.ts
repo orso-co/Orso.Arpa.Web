@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute} from '@angular/router';
-import { NotificationsService } from '../../../core/services/notifications.service';
-import { first } from 'rxjs/operators';
-import { MeService } from '../../../core/services/me.service';
-import { IUserProfileDto } from '../../../models/IUserProfileDto';
+import { ActivatedRoute } from '@angular/router';
+import { NotificationsService } from '../../../../@arpa/services/notifications.service';
+import { first, map, switchMap } from 'rxjs/operators';
+import { MeService } from '../../../shared/services/me.service';
+import { SelectValueService } from '../../../shared/services/select-value.service';
+import { MyUserProfileDto } from '../../../../@arpa/models/myUserProfileDto';
+import { AuthService } from '../../../../@arpa/services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'arpa-user',
@@ -13,15 +16,22 @@ import { IUserProfileDto } from '../../../models/IUserProfileDto';
 })
 export class UserComponent implements OnInit {
   public form: FormGroup;
-  public profile: IUserProfileDto;
+  public profile: Observable<MyUserProfileDto>;
+  genderSelectValue: any;
 
   constructor(
     formBuilder: FormBuilder,
     private route: ActivatedRoute,
+    private authService: AuthService,
     private meService: MeService,
     private notificationsService: NotificationsService,
+    private selectValueService: SelectValueService,
   ) {
+    this.genderSelectValue = this.selectValueService.load('Person', 'gender')
+      .pipe(map(() => this.selectValueService.get('Person', 'gender')));
+
     this.form = formBuilder.group({
+      genderId: [null],
       email: [null],
       phoneNumber: [null,
         [
@@ -35,6 +45,7 @@ export class UserComponent implements OnInit {
       surname: [
         null,
       ],
+
       aboutMe: [
         null,
       ],
@@ -42,16 +53,21 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.profile = this.route.snapshot.data.profile;
+    this.profile = this.authService.currentUser.pipe(switchMap(token => {
+      return this.route.data.pipe(map(({ profile }) => {
+        profile.displayName = token.displayName;
+        return profile as MyUserProfileDto;
+      }));
+    }));
     this.form.patchValue(this.profile);
     this.form.controls.email.disable();
   }
 
   submit(): void {
     this.meService.putProfile(Object.assign({}, this.form.getRawValue())).pipe(first()).subscribe((response) => {
-      this.notificationsService.success('Profile updated.');
+      this.notificationsService.success('USER_PROFILE_UPDATED', 'profile');
     }, error => {
-      this.notificationsService.error('Could not update Profile.');
+      this.notificationsService.error('USER_PROFILE_UPDATE_ERROR', 'profile');
     });
   }
 }

@@ -16,13 +16,22 @@
       },
       "extends": [
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:ngrx/recommended"
       ],
       "rules": {
         "no-console": "warn",
         "no-underscore-dangle": "off",
         "@typescript-eslint/member-ordering": "off",
         "@typescript-eslint/no-non-null-assertion": "off",
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "arpa",
+            "style": "camelCase"
+          }
+        ],
         "@angular-eslint/component-selector": [
           "error",
           {
@@ -31,15 +40,19 @@
             "style": "kebab-case"
           }
         ],
-        "@angular-eslint/directive-selector": [
+        "graphql/template-strings": [
           "error",
           {
-            "type": "attribute",
-            "prefix": "arpa",
-            "style": "camelCase"
+            "env": "apollo",
+            "schemaJsonFilepath": "./schema.json",
+            "tagName": "gql"
           }
         ]
-      }
+      },
+      "plugins": [
+        "ngrx",
+        "graphql"
+      ]
     },
     {
       "files": [

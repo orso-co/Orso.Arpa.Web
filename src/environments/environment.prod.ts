@@ -7,6 +7,10 @@ export const environment = {
     protocol: 'https',
     baseUrl: 'orso-arpa.azurewebsites.net',
   },
+  graphql: {
+    protocol: 'https',
+    baseUrl: 'orso-arpa.azurewebsites.net/graphql',
+  },
   web:
     {
       protocol: 'https',

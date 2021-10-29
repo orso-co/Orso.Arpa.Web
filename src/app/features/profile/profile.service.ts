@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { MenuItemArpa, MenuService } from '../../shared/menu/menu.service';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { MenuItemArpa, MenuService } from '../../../@arpa/components/menu/menu.service';
 
 @Injectable()
 export class ProfileService {
@@ -11,14 +11,22 @@ export class ProfileService {
   constructor(private menuService: MenuService, private router: Router) {
     this.menuService.add('profile', [
       {
-        label: 'USER_PROFILE',
+        label: 'profile.USER_PROFILE',
         command: (event) => {
           this.menuEvents.next(event);
           this.router.navigate(['/arpa/profile/user']);
         },
       },
       {
-        label: 'MUSICIAN_PROFILE',
+        label: 'profile.MY_QR_CODE',
+        roles: ['performer'],
+        command: (event) => {
+          this.menuEvents.next(event);
+          this.router.navigate(['/arpa/profile/qrcode']);
+        },
+      },
+      {
+        label: 'profile.MUSICIAN_PROFILES',
         roles: ['performer'],
         command: (event) => {
           this.menuEvents.next(event);
@@ -26,7 +34,7 @@ export class ProfileService {
         },
       },
       {
-        label: 'MY_APPOINTMENTS',
+        label: 'profile.MY_APPOINTMENTS',
         command: (event) => {
           this.menuEvents.next(event);
           this.router.navigate(['/arpa/profile/appointments']);

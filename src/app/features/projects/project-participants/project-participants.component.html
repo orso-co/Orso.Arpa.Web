@@ -1,11 +1,13 @@
-<p-table [value]='(participants | async) || []' #dt1 dataKey='id'
-         [rows]='10'
+<p-table #dt1 [globalFilterFields]="['participant', 'instrument']" [paginator]='true'
          [rowsPerPageOptions]='[10,25,50]'
-         [paginator]='true'
-         [globalFilterFields]="['participant', 'instrument']">>
+         [rows]='10'
+         [value]='(participants | async) || []'
+         dataKey='id'>>
   <ng-template pTemplate='caption'>
-    <div class=p-grid>
-      <div class="p-col"><arpa-projectchart-participants></arpa-projectchart-participants></div>
+    <div class='p-grid'>
+      <div class='p-col'>
+        <arpa-projectchart-participants></arpa-projectchart-participants>
+      </div>
 
     </div>
 
@@ -13,11 +15,12 @@
 
       <span class='p-input-icon-left p-mr-auto'>
           <i class='pi pi-search'></i>
-          <input pInputText type='text' (input)="dt1.filterGlobal($event.target.value, 'contains')"
-                 [placeholder]='"SEARCH" | translate' />
+          <input (input)="dt1.filterGlobal($event.target.value, 'contains')" [placeholder]='"SEARCH" | translate'
+                 pInputText
+                 type='text' />
       </span>
-      <button pButton [label]='"CLEAR" | translate' class='p-button-outlined' icon='pi pi-filter-slash'
-              (click)='clear(dt1)'></button>
+      <button (click)='clear(dt1)' [label]='"CLEAR" | translate' class='p-button-outlined' icon='pi pi-filter-slash'
+              pButton></button>
     </div>
 
   </ng-template>
@@ -28,13 +31,13 @@
       <th pSortableColumn='participant'>
         <div class='p-d-flex p-jc-between p-ai-center'>
           {{ 'projects.PARTICIPANTS' | translate }}
-          <p-columnFilter type='text' field='participant' display='menu'></p-columnFilter>
+          <p-columnFilter display='menu' field='participant' type='text'></p-columnFilter>
         </div>
       </th>
       <th pSortableColumn='instrument'>
         <div class='p-d-flex p-jc-between p-ai-center'>
           {{ 'projects.INSTRUMENT' | translate }}
-          <p-columnFilter type='text' field='instrument' display='menu'></p-columnFilter>
+          <p-columnFilter display='menu' field='instrument' type='text'></p-columnFilter>
         </div>
 
       </th>
@@ -42,7 +45,7 @@
   </ng-template>
 
 
-  <ng-template pTemplate='body' let-project>
+  <ng-template let-project pTemplate='body'>
     <tr>
       <td>
         {{ project.participant }}

@@ -1,0 +1,19 @@
+<mat-card class='dashboard-card'>
+  <mat-card-header>
+    <mat-card-title>
+      {{title | translate}}
+    </mat-card-title>
+    <button (click)='triggerReload($event)' *ngIf='config.showReload' class='more-button' mat-icon-button>
+      <mat-icon>refresh</mat-icon>
+    </button>
+  </mat-card-header>
+  <mat-card-content class='dashboard-card-content'>
+    <div [style.opacity]="!loading ? '0' : '1'" [style.visibility]="!loading ? 'hidden' : 'visible'"
+         class='card-loader-wrapper'>
+      <arpa-loading [custom]='true' [loading]='loading'></arpa-loading>
+    </div>
+    <div [style.opacity]="loading ? '0' : '1'" class='card-content-wrapper'>
+      <ng-content></ng-content>
+    </div>
+  </mat-card-content>
+</mat-card>

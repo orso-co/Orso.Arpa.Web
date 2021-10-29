@@ -1,0 +1,23 @@
+:host {
+  text-align: center;
+
+  & > i {
+    margin-top: 4rem;
+    font-size: 6rem;
+    opacity: .85;
+    display: block;
+  }
+
+  h3 {
+    margin-top: 8rem;
+    margin-bottom: 16rem;
+  }
+
+  a {
+    display: block;
+
+    i {
+      padding-right: .5rem;
+    }
+  }
+}

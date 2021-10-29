@@ -1,0 +1,15 @@
+<div class='p-grid p-jc-center'>
+  <div class='p-col-12 p-md-6 p-text-center'>
+    <h1>{{ 'MY_QR_CODE' | translate}}</h1>
+  </div>
+  <div class='p-col-12 p-text-center p-mt-4'>
+    {{ 'MY_QR_CODE_DESCRIPTION' | translate}}
+    <img [src]='qrCode'>
+  </div>
+  <div class='p-col-12 p-text-center p-mt-4'>
+    {{ 'MY_QR_CODE_INFO' | translate}}
+  </div>
+  <div class='p-col-12 p-text-center p-mt-4'>
+    <p-button (onClick)='sendEmail()' label='{{ "SEND_QR_CODE" | translate }}'></p-button>
+  </div>
+</div>

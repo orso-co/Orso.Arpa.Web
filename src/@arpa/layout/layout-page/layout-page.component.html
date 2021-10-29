@@ -1,0 +1,12 @@
+<div class='p-d-flex p-flex-column page'>
+  <arpa-logo></arpa-logo>
+  <h1>{{ (pageTitle | async) | translate }}</h1>
+  <div class='content'>
+    <router-outlet></router-outlet>
+  </div>
+  <footer>
+    <arpa-theme-switcher></arpa-theme-switcher>
+    <arpa-lang-switch></arpa-lang-switch>
+  </footer>
+</div>
+<arpa-loading></arpa-loading>

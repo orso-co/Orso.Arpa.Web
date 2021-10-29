@@ -1,0 +1,134 @@
+<p-table #dt1 [globalFilterFields]="['email','']" [paginator]='true'
+         [rowsPerPageOptions]='[10,25,50]'
+         [rows]='10'
+         [scrollable]='true'
+         [styleClass]='((isMobile | async)? "mobile":"")'
+         [value]='(users | async) || []'
+         dataKey='id'
+         scrollHeight='flex'>
+  <ng-template pTemplate='caption'>
+    <div class='p-d-flex'>
+      <span class='p-input-icon-left p-mr-auto'>
+          <i class='pi pi-search'></i>
+          <input (input)="dt1.filterGlobal($event.target.value, 'contains')" [placeholder]='"SEARCH" | translate'
+                 pInputText
+                 type='text' />
+      </span>
+      <button (click)='dt1.clear()' [label]='"CLEAR" | translate' class='p-button-outlined' icon='pi pi-filter-slash'
+              pButton></button>
+    </div>
+  </ng-template>
+  <ng-template pTemplate='header'>
+    <tr>
+      <th class='start'>#</th>
+      <th pSortableColumn='name'>
+        {{ 'NAME' | translate }}
+        <p-columnFilter display='menu' field='displayName' type='text'></p-columnFilter>
+      </th>
+      <th pSortableColumn='email'>
+        {{ 'EMAIL' | translate }}
+        <p-columnFilter display='menu' field='email' type='text'></p-columnFilter>
+      </th>
+      <th pSortableColumn='createdAt'>
+        {{ 'REGISTRATION_DATE' | translate }}
+        <p-columnFilter display='menu' field='createdAt' type='date'></p-columnFilter>
+      </th>
+      <th class='fixed-right'>
+        <p-columnFilter [showMenu]='false' field='state' matchMode='equals'>
+          <ng-template let-filter='filterCallback' let-value pTemplate='filter'>
+            <p-dropdown (onChange)='filter($event.value)' [ngModel]='value' [options]='stateOptions'
+                        [showClear]='false' placeholder="{{('STATE' | translate) || ' '}}">
+              <ng-template let-option pTemplate='item'>
+                <p-badge [severity]='option.label' [value]='option.value.toUpperCase() | translate'></p-badge>
+              </ng-template>
+              <ng-template let-item pTemplate='selectedItem'>
+                {{item.value.toUpperCase() | translate}}
+              </ng-template>
+            </p-dropdown>
+          </ng-template>
+        </p-columnFilter>
+      </th>
+      <th class='end'></th>
+    </tr>
+  </ng-template>
+  <ng-template let-user pTemplate='body'>
+    <tr>
+      <td class='start'>
+        <arpa-avatar [user]='user'></arpa-avatar>
+      </td>
+      <td>
+        {{ user.displayName }}
+      </td>
+      <td>
+        {{ user.email }}
+      </td>
+      <td>
+        {{ user.createdAt | date:'mediumDate' }}
+      </td>
+      <td class='fixed-right'>
+        <container-element [ngSwitch]='user.state'>
+          <p-badge *ngSwitchCase="'active'" [value]='"ACTIVE" | translate' severity='success'></p-badge>
+          <p-badge *ngSwitchCase="'pending'" [value]='"PENDING" | translate' severity='info'></p-badge>
+          <p-badge *ngSwitchCase="'not_confirmed'" [value]='"NOT_CONFIRMED" | translate' severity='warning'></p-badge>
+        </container-element>
+      </td>
+      <td class='p-text-lg-right end'>
+        <button
+          (click)='edit($event, user, editPanel)'
+          [label]='"EDIT" | translate' class='p-button-rounded p-button-text p-button-icon-only'
+          icon='pi pi-pencil'
+          pButton
+          type='button'></button>
+        <button
+          (click)='delete($event, user)'
+          [label]='"DELETE" | translate'
+          class='p-button-rounded p-button-text p-button-icon-only'
+          icon='pi pi-trash'
+          pButton
+          type='button'></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-overlayPanel #editPanel [dismissable]='true' [showCloseIcon]='false'>
+  <ng-template pTemplate>
+    <p-card [style]="{ 'box-shadow': 'none' }" class='user-detail-card'>
+      <ng-template pTemplate='header'>
+        <arpa-avatar [user]='selectedUser'></arpa-avatar>
+        <h3>{{ selectedUser!.displayName }}</h3>
+      </ng-template>
+
+      <div class='p-grid'>
+        <div class='p-col-12 p-sm-6'>
+          <p>
+            <a [href]="'mailto:' + selectedUser!.email" target='_blank'><i
+              class='pi pi-envelope p-mr-2'></i>{{ selectedUser!.email }}</a>
+          </p>
+          <p>
+            <span>{{ 'REGISTERED_SINCE' | translate }}</span> {{ selectedUser!.createdAt | date: 'short' }}
+          </p>
+          <fieldset>
+            <legend>{{ 'ASSIGN_ROLES' | translate }}</legend>
+            <div *ngFor='let role of (roles | async)' class='p-field-checkbox'>
+              <p-checkbox
+                [(ngModel)]='selectedUserRoles'
+                [disabled]='hasUserRight(role.roleLevel, maxRoleLevel | async)'
+                [inputId]='role.roleName'
+                [value]='role.roleName'
+                name='roleGroup'
+                value='role.roleName'
+              ></p-checkbox>
+              <label [for]='role.roleName'>{{ role.roleName }}</label>
+            </div>
+            <button (click)='update(editPanel)' [label]="'SAVE' | translate" class='p-button-outlined' pButton
+                    type='button'></button>
+          </fieldset>
+        </div>
+      </div>
+
+    </p-card>
+  </ng-template>
+</p-overlayPanel>
+
+<p-confirmPopup></p-confirmPopup>

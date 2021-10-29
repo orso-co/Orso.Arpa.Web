@@ -1,0 +1,173 @@
+<div class='instrument'>
+  <header>
+    <h3>{{ instrumentName }}</h3>
+    <p-badge *ngIf='profile.isMainProfile' severity='info'
+             value='{{ "musician-profile-dialog.MAIN_PROFILE" | translate }}'></p-badge>
+    <p-badge *ngIf='profile.deactivation' severity='danger'
+             value='{{ "musician-profile-dialog.DEACTIVATED" | translate }}'></p-badge>
+  </header>
+  <div class='p-d-flex p-flex-column p-flex-md-row'>
+    <div class='p-mb-4 p-mr-6'>
+      <div class='p-d-flex p-flex-row'>
+        <div class='p-mr-3'>{{ 'musician-profile-dialog.LEVEL_ASSESSMENT' | translate}}:</div>
+        <div class='p-mr-2'>
+          <p-rating [(ngModel)]='profile.levelAssessmentInner'
+                    [cancel]='false'
+                    [readonly]='true'
+                    [stars]='5'
+          ></p-rating>
+        </div>
+      </div>
+    </div>
+    <div class='p-mb-4 p-mr-6'>
+      <div class='p-d-flex p-flex-row'>
+        <div class='p-mr-3'>{{ 'musician-profile-dialog.INQUIRY_STATUS' | translate}}:</div>
+        <div class='p-mr-2'>
+          {{ profile.inquiryStatusInnerId | selectValue: inquiryStatus }}
+        </div>
+      </div>
+    </div>
+    <div *ngIf='profile.preferredPartsInner.length > 0' class='p-mb-4 p-mr-6'>
+      <div class='p-d-flex p-flex-row'>
+        <div class='p-mr-3'>{{ 'musician-profile-dialog.PREFERRED_PARTS' | translate}}:</div>
+        <div class='p-mr-2'>
+          {{ profile.preferredPartsInner | instrumentParts }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<form [formGroup]='form'>
+  <div class='p-fluid p-mt-3 p-formgrid p-grid'>
+    <div class='p-col'>
+      <arpa-form-field label='musician-profile-dialog.LEVEL_ASSESSMENT_TEAM' type='rating'>
+        <p-rating [cancel]='false' [stars]='5'
+                  formControlName='levelAssessmentTeam'></p-rating>
+      </arpa-form-field>
+    </div>
+    <div class='p-col' style='margin-right: 0'>
+      <arpa-form-field label='musician-profile-dialog.Qualification' type='select'>
+        <p-dropdown
+          [options]='(qualification | async) || []'
+          [placeholder]='"NOTHING_SELECTED" | translate'
+          formControlName='qualificationId'
+          optionLabel='label'
+          optionValue='value'
+        ></p-dropdown>
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class='p-fluid p-mt-3 p-formgrid p-grid'>
+    <div class='p-col'>
+      <arpa-form-field label='musician-profile-dialog.INQUIRY_STATUS' type='select'>
+        <p-dropdown
+          [options]='(inquiryStatusTeam | async) || []'
+          [placeholder]='"NOTHING_SELECTED" | translate'
+          formControlName='inquiryStatusTeamId'
+          optionLabel='label'
+          optionValue='value'
+        ></p-dropdown>
+      </arpa-form-field>
+    </div>
+    <div *ngIf='(preferredParts | async)' class='p-col'>
+      <arpa-form-field label='musician-profile-dialog.PREFERRED_PARTS' type='select'>
+        <p-multiSelect
+          [options]='(preferredParts | async) || []'
+          [placeholder]='"NOTHING_SELECTED" | translate'
+          display='chip'
+          formControlName='preferredPartsTeam'
+          optionLabel='label'
+          optionValue='value'
+        ></p-multiSelect>
+      </arpa-form-field>
+    </div>
+  </div>
+
+  <div class='p-fluid p-mt-3 p-formgrid p-grid'>
+    <div class='p-col'>
+      <arpa-form-field label='musician-profile-dialog.SALARY' type='select'>
+        <p-dropdown
+          [options]='(salary | async) || []'
+          [placeholder]='"NOTHING_SELECTED" | translate'
+          formControlName='salaryId'
+          optionLabel='label'
+          optionValue='value'
+        ></p-dropdown>
+      </arpa-form-field>
+    </div>
+    <div class='p-col'>
+      <arpa-form-field label='musician-profile-dialog.SALARY_COMMENT'>
+        <input autocomplete='off' formControlName='salaryComment' id='salaryComment' pInputText type='text'>
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class='p-fluid p-formgrid p-grid'>
+    <div class='p-col'>
+    </div>
+    <div class='p-field p-col p-text-right' style='margin-right: 0'>
+      <button
+        (click)='update()'
+        [disabled]='form.pristine || form.invalid'
+        [label]="'musician-profile-dialog.UPDATE' | translate"
+        icon='pi pi-check'
+        iconPos='right'
+        pButton
+        type='button'
+      ></button>
+    </div>
+  </div>
+</form>
+
+<h3 *ngIf='doublingInstruments.length > 0'>{{ 'musician-profile-dialog.DOUBLING_INSTRUMENTS' | translate }}</h3>
+<p-accordion styleClass='accordionTable'>
+  <p-accordionTab *ngFor='let instrument of doublingInstruments'>
+    <ng-template pTemplate='header'>
+      <div class='p-d-flex'>
+        <div class='p-mr-6 name'>
+          {{ instrument.instrumentId | section: sections}}
+        </div>
+        <div class='p-mr-4 rating'>
+          <p-rating [(ngModel)]='instrument.levelAssessmentInner'
+                    [cancel]='false'
+                    [readonly]='true'
+                    [stars]='5'
+          ></p-rating>
+          <span>({{ instrument.levelAssessmentTeam || 0 }})</span>
+        </div>
+        <div class='p-mr-auto p-text-right hidden-xs'>
+          {{ instrument.availabilityId | selectValue: availability }}
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate='content'>
+      <form [formGroup]='instrument.formGroup' class='doublingForm'>
+        <div class='p-fluid p-formgrid p-grid'>
+          <div class='p-col'>
+            {{ instrument.comment }}
+          </div>
+        </div>
+        <hr *ngIf='instrument.comment'>
+        <div class='p-fluid p-formgrid p-grid'>
+          <div class='p-col'>
+            <arpa-form-field label='musician-profile-dialog.LEVEL_ASSESSMENT_TEAM' type='rating'>
+              <p-rating [cancel]='false' [stars]='5'
+                        formControlName='levelAssessmentTeam'></p-rating>
+            </arpa-form-field>
+          </div>
+          <div class='p-field p-col p-text-right' style='margin-right: 0'>
+            <button
+              (click)='updateDoubling(instrument)'
+              *ngIf='!instrument.formGroup.pristine'
+              [disabled]='instrument.formGroup.invalid'
+              [label]="'musician-profile-dialog.UPDATE' | translate"
+              icon='pi pi-check'
+              iconPos='right'
+              pButton
+              type='button'
+            ></button>
+          </div>
+        </div>
+      </form>
+    </ng-template>
+  </p-accordionTab>
+</p-accordion>

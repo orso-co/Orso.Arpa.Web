@@ -1,135 +1,121 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { PageLayoutComponent } from './main/layout/page-layout/page-layout.component';
-import { ErrorComponent } from './main/error/error.component';
-import { DefaultLayoutComponent } from './main/layout/default-layout/default-layout.component';
-import { AuthGuard } from './core/guards/auth.guard';
-import { RoleGuard } from './core/guards/role.guard';
-import { LoginComponent } from './main/login/login.component';
-import { RegisterComponent } from './main/register/register.component';
-import { PrivacyComponent } from './main/privacy/privacy.component';
-import { LogoutComponent } from './main/logout/logout.component';
-import { EmailConfirmationComponent } from './main/emailconfirmation/email-confirmation.component';
-import { ForgotPasswordComponent } from './main/forgot-password/forgot-password.component';
-import { SessionGuard } from './core/guards/session.guard';
-import {AuditLogComponent} from './shared/audit-log/audit-log.component';
-import {AuditLogResolver} from './resolvers/auditlog.resolver';
-import { ActivationComponent } from './main/activation/activation.component';
-import { RegErrorComponent } from './main/reg-error/reg-error.component';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../@arpa/guards/auth.guard';
+import { RoleGuard } from '../@arpa/guards/role.guard';
+import { SessionGuard } from '../@arpa/guards/session.guard';
+import { LayoutDefaultComponent } from '../@arpa/layout/layout-default/layout-default.component';
+import { LayoutPageComponent } from '../@arpa/layout/layout-page/layout-page.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: PageLayoutComponent,
-    canActivateChild: [SessionGuard],
-    children: [
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
-      {
-        path: 'error',
-        component: ErrorComponent,
-        pathMatch: 'full',
-        data: { error: 404, type: 'RouteNotFound', message: 'error.ROUTE_NOT_FOUND' },
-      },
-      { path: 'login', component: LoginComponent, data: { sessionPrevent: true } },
-      { path: 'register', component: RegisterComponent, data: { sessionPrevent: true } },
-      { path: 'activation', component: ActivationComponent, data: { sessionPrevent: true } },
-      { path: 'regError', component: RegErrorComponent, data: { sessionPrevent: true } },
-      { path: 'forgotPassword', component: ForgotPasswordComponent, data: { sessionPrevent: true } },
-      { path: 'eMailConfirmation', component: EmailConfirmationComponent, data: { sessionPrevent: true } },
-      { path: 'logout', component: LogoutComponent },
-      { path: 'privacy', component: PrivacyComponent },
-    ],
-  },
   {
     path: 'arpa',
     canActivate: [AuthGuard],
     canActivateChild: [RoleGuard],
     runGuardsAndResolvers: 'always',
-    component: DefaultLayoutComponent,
+    component: LayoutDefaultComponent,
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
-        loadChildren: () => import('./features/dashboards/dashboards.module').then(m => m.DashboardsModule),
+        loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule),
         data: {
           title: 'DASHBOARD',
           menu: {
             name: 'feature',
             label: 'DASHBOARD',
             icon: 'icon-list',
-          }
-        }
+          },
+        },
       },
       {
         path: 'appointments',
         loadChildren: () => import('./features/appointments/appointments.module').then(m => m.AppointmentsModule),
         data: {
-          roles: ['performer', 'staff'],
-          title: 'APPOINTMENTS',
+          roles: ['staff'],
+          title: 'appointments.PAGE_TITLE',
           menu: {
             name: 'feature',
             label: 'APPOINTMENTS',
             icon: 'icon-calendar',
-          }
-        }
+          },
+        },
       },
       {
         path: 'profile',
         loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule),
         data: {
-          title: 'PROFILE',
-        }
+          title: 'profile.PAGE_TITLE',
+        },
       },
       {
         path: 'projects',
         loadChildren: () => import('./features/projects/projects.module').then(m => m.ProjectsModule),
         data: {
-          roles: ['performer', 'staff'],
-          title: 'PROJECTS',
+          roles: ['staff'],
+          title: 'projects.PAGE_TITLE',
           menu: {
             name: 'feature',
             label: 'PROJECTS',
             icon: 'icon-stack',
-          }
-        }
+          },
+        },
+      },
+      {
+        path: 'persons',
+        loadChildren: () => import('./features/persons/persons.module').then(m => m.PersonsModule),
+        data: {
+          roles: ['staff'],
+          title: 'PERSONS',
+          menu: {
+            name: 'feature',
+            label: 'PERSONS',
+            icon: 'pi pi-users',
+          },
+        },
       },
       {
         path: 'mupro',
         loadChildren: () => import('./features/mupro/mupro.module').then((mod) => mod.MuProModule),
         data: {
           roles: ['staff'],
-          title: 'MUPRO',
+          title: 'mupro.PAGE_TITLE',
           menu: {
             name: 'feature',
             label: 'MUPRO',
             icon: 'pi pi-users',
           },
-        }
+        },
       },
       {
         path: 'auditlogs',
-        component: AuditLogComponent,
-        resolve: { auditLogs: AuditLogResolver},
+        loadChildren: () => import('./features/audit-log/audit-log.module').then((mod) => mod.AuditLogModule),
         data: {
           roles: ['staff', 'admin'],
-          title: 'auditlogs.AUDITLOGS',
+          title: 'AUDITLOG',
           menu: {
             name: 'feature',
-            label: 'auditlogs.AUDITLOGS',
+            label: 'AUDITLOG',
             icon: 'pi pi-search-plus',
           },
-        }
+        },
       },
+
     ],
+  },
+  {
+    path: '',
+    canActivateChild: [SessionGuard],
+    component: LayoutPageComponent,
+    loadChildren: () => import('./features/views/views.module').then(m => m.ViewsModule),
   },
   { path: '**', redirectTo: '/error' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    preloadingStrategy: PreloadAllModules,
-    paramsInheritanceStrategy: 'always',
-    onSameUrlNavigation: "reload",
+    scrollPositionRestoration: 'enabled',
+    relativeLinkResolution: 'corrected',
+    anchorScrolling: 'enabled',
   })],
   exports: [RouterModule],
 })

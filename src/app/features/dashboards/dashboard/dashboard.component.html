@@ -1,5 +1,0 @@
-<ng-container *ngIf="menuItems$ | async as menuItems">
-  <p-tabMenu *ngIf="menuItems.length > 1" [model]="menuItems" [activeItem]="getActiveItem(menuItems)"></p-tabMenu>
-</ng-container>
-
-<router-outlet></router-outlet>

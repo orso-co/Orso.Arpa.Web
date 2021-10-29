@@ -1,0 +1,34 @@
+:host ::ng-deep {
+  .p-rating {
+    display: inline-block;
+    margin-right: .5rem;
+  }
+
+  p-rating + span {
+    opacity: .5;
+  }
+}
+
+form {
+  margin-top: 2rem;
+}
+
+.instrument {
+  background-color: var(--surface-d);
+  padding: 1rem;
+  border-radius: 3px;
+
+  & > header {
+    display: flex;
+    align-items: center;
+
+    & > p-badge {
+      margin-left: auto;
+      padding-left: .5rem;
+    }
+  }
+}
+
+.doublingForm {
+  margin-top: 0;
+}

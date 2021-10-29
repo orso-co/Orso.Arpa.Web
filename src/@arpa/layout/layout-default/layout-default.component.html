@@ -1,0 +1,46 @@
+<mat-sidenav-container autosize>
+  <mat-sidenav #drawer [attr.role]="(isHandset | async) ? 'dialog' : 'navigation'" [fixedInViewport]='false'
+               [mode]="(isHandset | async) ? 'over' : 'side'"
+               [ngClass]="{'collapsed' : !isExpanded && (isHandset | async) !== true, 'expanded' : isExpanded, 'mobile': (isHandset | async) }"
+               [opened]='(isHandset | async) === false'
+               class='sidenav'>
+
+    <mat-toolbar>
+      <div *ngIf='(isHandset | async) !== true' [routerLink]="['/arpa']" class='logo'>
+        <img [alt]='"MAIN_TITLE" | translate' src='assets/common/logos/organisation_icon.png'>
+      </div>
+      {{ 'MAIN_TITLE' | translate }}
+      <ng-container *ngIf='(isHandset | async) !== true'>
+        <a (click)='setState()' aria-label='Toggle sidenav'
+           class='icon-pin'
+        ></a>
+      </ng-container>
+    </mat-toolbar>
+    <arpa-menu name='feature'></arpa-menu>
+    <arpa-theme-switcher></arpa-theme-switcher>
+  </mat-sidenav>
+
+
+  <mat-sidenav-content
+    [ngClass]="{'expanded' : isExpanded && (isHandset | async) !== true, 'mobile' : (isHandset | async)}">
+    <mat-toolbar #navToolBar class='main-toolbar'>
+      <button
+        (click)='drawer.toggle()'
+        *ngIf='isHandset | async'
+        aria-label='Toggle sidenav'
+        mat-icon-button
+        type='button'>
+        <mat-icon aria-label='Side nav toggle icon'>menu</mat-icon>
+      </button>
+      <div *ngIf='isHandset | async' class='logo'>
+        <img [alt]='"MAIN_TITLE" | translate' src='assets/common/logos/organisation_icon.png'>
+      </div>
+      <arpa-topbar></arpa-topbar>
+    </mat-toolbar>
+    <div class='main-content'>
+      <arpa-loading></arpa-loading>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

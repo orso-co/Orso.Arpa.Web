@@ -1,140 +1,153 @@
-<form [formGroup]="form">
-  <div class="p-fluid p-formgrid p-grid">
-    <div class="p-col-12 p-md-4">
-      <div class="p-field p-col-12">
-        <label for="title">{{ 'projects.TITLE' | translate }} *</label>
-        <input type="text" pInputText formControlName="title" maxlength="50" id="title" />
-      </div>
-      <div class="p-field p-col-12">
-        <label for="startDate">{{ 'projects.START' | translate }}</label>
-        <p-calendar
-          formControlName="startDate"
-          id="startDate"
-          dateFormat="dd MM yy"
-          [showWeek]="true"
-        ></p-calendar>
-      </div>
-      <div class="p-field p-col-12">
-        <label for="endDate">{{ 'projects.END' | translate }}</label>
-        <p-calendar
-          formControlName="endDate"
-          id="endDate"
-          dateFormat="dd MM yy"
-          [showWeek]="true"
-        ></p-calendar>
-      </div>
-      <div class="p-field p-col-12">
-        <label for="isCompleted">{{ 'projects.COMPLETED' | translate }} *</label>
-        <p-dropdown
-          appendTo="body"
-          [showClear]="true"
-          [required]="true"
-          formControlName="isCompleted"
-          [autoDisplayFirst]="false"
-          [options]="completedOptions"
-          id="isCompleted"
-        ></p-dropdown>
-      </div>
+<form [formGroup]='form'>
+
+  <div class='p-fluid p-formgrid p-grid'>
+    <div class='p-field p-col-6'>
+      <arpa-form-field label='projects.TITLE'>
+        <input formControlName='title' id='title' maxlength='100' pInputText type='text' />
+      </arpa-form-field>
     </div>
 
-    <div class="p-col-12 p-md-4">
-      <div class="p-field p-col-12">
-        <label for="shortTitle">{{ 'projects.ABBREVIATION' | translate }} *</label>
-        <input type="text" pInputText formControlName="shortTitle" maxlength="50" id="shortTitle" />
-      </div>
-      <div class="p-field p-col-12">
-        <label for="genre">{{ 'projects.GENRE' | translate }}</label>
-        <p-dropdown
-          appendTo="body"
-          [showClear]="true"
-          formControlName="genreId"
-          [autoDisplayFirst]="false"
-          [options]="(genre | async) || []"
-          id="genre"
-        ></p-dropdown>
-      </div>
-      <div class="p-field p-col-12">
-        <label for="type">{{ 'projects.TYPE' | translate }}</label>
-        <p-dropdown
-          appendTo="body"
-          [showClear]="true"
-          formControlName="typeId"
-          [autoDisplayFirst]="false"
-          [options]="(type | async) || []"
-          id="type"
-        ></p-dropdown>
-      </div>
-      <div class="p-field p-col-12">
-          <label for="venue">{{ 'editappointments.VENUE' | translate }}</label>
+    <div class='p-field p-col-3'>
+      <arpa-form-field label='projects.START'>
+        <p-calendar
+          [showWeek]='true'
+          dateFormat='dd MM yy'
+          formControlName='startDate'
+          id='startDate'
+        ></p-calendar>
+      </arpa-form-field>
+    </div>
+
+    <div class='p-field p-col-3'>
+      <arpa-form-field label='projects.END'>
+        <p-calendar
+          [showWeek]='true'
+          dateFormat='dd MM yy'
+          formControlName='endDate'
+          id='endDate'
+        ></p-calendar>
+      </arpa-form-field>
+    </div>
+
+    <div class='p-field p-col-3'>
+      <arpa-form-field label='projects.ABBREVIATION'>
+        <input formControlName='shortTitle' id='shortTitle' maxlength='50' pInputText type='text' />
+      </arpa-form-field>
+    </div>
+
+    <div class='p-field p-col-3'>
+      <arpa-form-field label='projects.CODE'>
+        <input formControlName='code' id='code' maxlength='15' pInputText type='text' />
+      </arpa-form-field>
+    </div>
+    <div class='p-field p-col-6'>
+      <arpa-graph-ql-feed #parentProjects [contentTemplate]='projectParentsFeed'
+                          [query]='parentProjectsQuery'></arpa-graph-ql-feed>
+      <ng-template #projectParentsFeed let-feed>
+        <arpa-form-field label='projects.PARENT' type='select'>
           <p-dropdown
-            appendTo="body"
-            [autoDisplayFirst]="false"
-            [showClear]="true"
-            [options]="(venues | async) || []"
-            id="venue"
-            name="venue"
+            (onFilter)='parentProjects.onFilter($event)'
+            [autoDisplayFirst]='false'
+            [filter]='true'
+            [options]='(transformFeedResult(feed) | async) || []'
+            [showClear]='true' appendTo='body'
+            filterBy='label'
+            formControlName='parentId'
+            id='parent'
           ></p-dropdown>
-        </div>
+        </arpa-form-field>
+      </ng-template>
+    </div>
+    <div class='p-field p-col-3'>
+      <arpa-form-field label='projects.TYPE' type='select'>
+        <p-dropdown
+          [autoDisplayFirst]='false'
+          [options]='(type | async) || []'
+          [showClear]='true'
+          appendTo='body'
+          formControlName='typeId'
+          id='type'
+        ></p-dropdown>
+      </arpa-form-field>
+    </div>
+    <div class='p-field p-col-3'>
+      <arpa-form-field label='projects.GENRE' type='select'>
+        <p-dropdown
+          [autoDisplayFirst]='false'
+          [options]='(genre | async) || []'
+          [showClear]='true'
+          appendTo='body'
+          formControlName='genreId'
+          id='genre'
+        ></p-dropdown>
+      </arpa-form-field>
     </div>
 
-    <div class="p-col-12 p-md-4">
-      <div class="p-field p-col-12">
-        <label for="code">{{ 'projects.CODE' | translate }} *</label>
-        <input type="text" pInputText formControlName="code" maxlength="15" id="code" />
-      </div>
-      <div class="p-field p-col-12">
-        <label for="parent">{{ 'projects.PARENT' | translate }}</label>
+    <div class='p-field p-col-3'>
+      <arpa-form-field label='projects.STATE' type='select'>
         <p-dropdown
-          appendTo="body"
-          [showClear]="true"
-          formControlName="parentId"
-          [autoDisplayFirst]="false"
-          [options]="(parentProject | async) || []"
-          id="parent"
+          [autoDisplayFirst]='false'
+          [options]='(state | async) || []'
+          [showClear]='true'
+          appendTo='body'
+          formControlName='stateId'
+          id='state'
         ></p-dropdown>
-      </div>
-      <div class="p-field p-col-12">
-        <label for="stateId">{{ 'projects.STATE' | translate }}</label>
-        <p-dropdown
-          appendTo="body"
-          [showClear]="true"
-          formControlName="stateId"
-          [autoDisplayFirst]="false"
-          [options]="(state | async) || []"
-          id="state"
-        ></p-dropdown>
-      </div>
-      <div class="p-field p-col-12">
-        <label for="description">{{ 'projects.DESCRIPTION' | translate }}</label>
-        <textarea
-          formControlName="description"
-          id="description"
-        ></textarea>
-      </div>
+      </arpa-form-field>
     </div>
+
+
+    <div class='p-field p-col-3'>
+      <arpa-form-field label='projects.COMPLETED' type='select'>
+        <p-dropdown
+          [autoDisplayFirst]='false'
+          [options]='completedOptions'
+          [required]='true'
+          [showClear]='true'
+          appendTo='body'
+          formControlName='isCompleted'
+          id='isCompleted'
+        ></p-dropdown>
+      </arpa-form-field>
+    </div>
+
+
+    <div class='p-field p-col-6'>
+      <arpa-form-field label='projects.DESCRIPTION'>
+        <textarea cols='10' formControlName='description' id='description' pInputTextarea rows='10'></textarea>
+      </arpa-form-field>
+    </div>
+
+    <div class='p-field p-col-6'>
+      <br>
+      <h3 style='text-align:center'>(Hier muss noch Projekt-URLs-Liste hin)
+        <br>*
+        <br>*
+        <br>*
+        <br>*
+      </h3>
+    </div>
+
+
   </div>
   <div class='p-formgroup-inline p-jc-between'>
-    <div class='p-field p-col'>
-      <button
-        pButton
-        class="p-ml-3 p-button-danger"
-        type="button"
-        [label]="'CANCEL' | translate"
-        icon="pi pi-times"
-        iconPos="left"
-        (click)="cancel()"
-      ></button>
+    <div class='p-field p-col p-text-left'>
+      <p-button
+        (click)='onSubmit()'
+        [disabled]='form.pristine || form.invalid'
+        [label]="'SAVE' | translate"
+        icon='pi pi-check'
+        iconPos='left'
+      ></p-button>
     </div>
-    <div class='p-field p-col p-text-right' style='margin-right: 0'>
-      <button
-        pButton
-        type="submit"
-        [label]="'editappointments.SAVECLOSE' | translate"
-        icon="pi pi-check"
-        iconPos="left"
-        [disabled]="form.pristine || form.invalid"
-        (click)="onSubmit()"
-      ></button>
+    <div class='p-field p-col p-text-right'>
+      <p-button
+        (click)='cancel()'
+        [label]="'CANCEL' | translate"
+        class='p-ml-3 p-button-danger'
+        icon='pi pi-times'
+        iconPos='left'
+      ></p-button>
     </div>
   </div>
 </form>

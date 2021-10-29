@@ -1,30 +1,43 @@
-<form [formGroup] = "form" (ngSubmit)="submit()" class="p-jc-center">
+<form (ngSubmit)='submit()' [formGroup]='form' class='p-jc-center'>
   <div class='p-grid p-jc-center'>
     <div class='p-col-12 p-md-6 p-text-center'>
-      <h1>{{ 'USER_PROFILE_DATA' | translate}}</h1>
+      <h1>{{ 'profile.USER_PROFILE_DATA' | translate}}</h1>
     </div>
   </div>
   <div class='p-grid p-jc-center show-mobile'>
     <div class='p-col-12 p-md-6 p-text-center'>
-      <arpa-avatar [user]='profile' [image]='true'></arpa-avatar>
+      <arpa-avatar [image]='true' [user]='profile | async'></arpa-avatar>
+    </div>
+  </div>
+  <div class='p-grid p-jc-center p-mt-4'>
+    <div class='p-col-12 p-md-6'>
+      <arpa-form-field label='GENDER' type='select'>
+        <p-dropdown
+          [options]='(genderSelectValue | async) || []'
+          [placeholder]='"NOTHING_SELECTED" | translate'
+          formControlName='genderId'
+          optionLabel='label'
+          optionValue='value'
+        ></p-dropdown>
+      </arpa-form-field>
     </div>
   </div>
   <div class='p-grid p-jc-center'>
     <div class='p-col-12 p-md-3'>
       <arpa-form-field label='GIVENNAME'>
-        <input id="givenName" type="text" pInputText formControlName="givenName" autocomplete="givenName">
+        <input autocomplete='givenName' formControlName='givenName' id='givenName' pInputText type='text'>
       </arpa-form-field>
     </div>
     <div class='p-col-12 p-md-3'>
       <arpa-form-field label='SURNAME'>
-        <input id="surname" type="text" pInputText formControlName="surname" autocomplete="surname">
+        <input autocomplete='surname' formControlName='surname' id='surname' pInputText type='text'>
       </arpa-form-field>
     </div>
   </div>
   <div class='p-grid p-jc-center'>
     <div class='p-col-12 p-md-3'>
       <arpa-form-field label='EMAIL'>
-        <input id="email" type="text" pInputText formControlName="email" autocomplete="email">
+        <input autocomplete='email' formControlName='email' id='email' pInputText type='text'>
       </arpa-form-field>
     </div>
     <div class='p-col-12 p-md-3'>
@@ -33,7 +46,7 @@
   <div class='p-grid p-jc-center'>
     <div class='p-col-12 p-md-3'>
       <arpa-form-field label='PHONENUMBER'>
-        <input id="phoneNumber" type="text" pInputText formControlName="phoneNumber" autocomplete="phonenumber">
+        <input autocomplete='phonenumber' formControlName='phoneNumber' id='phoneNumber' pInputText type='text'>
       </arpa-form-field>
     </div>
     <div class='p-col-12 p-md-3'>
@@ -42,18 +55,15 @@
   <div class='p-grid p-jc-center'>
     <div class='p-col-12 p-md-6'>
       <arpa-form-field label='ABOUT_ME'>
-        <textarea id="aboutMe" type="text" pInputText formControlName="aboutMe" autocomplete="aboutMe"></textarea>
+        <textarea autocomplete='aboutMe' formControlName='aboutMe' id='aboutMe' pInputText type='text'></textarea>
       </arpa-form-field>
     </div>
   </div>
   <div class='p-grid p-jc-center'>
     <div class='p-col-12 p-md-6 p-text-right'>
-      <div class="p-field">
-        <button
-          pButton
-          label="{{ 'SAVE' | translate }}"
-          [disabled]="form.invalid || form.pristine ">
-        </button>
+      <div class='p-field'>
+        <p-button [disabled]='form.invalid || form.pristine ' [type]='"submit"'
+                  label="{{ 'SAVE' | translate }}"></p-button>
       </div>
     </div>
   </div>

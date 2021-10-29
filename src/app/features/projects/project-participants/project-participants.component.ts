@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { ProjectService } from '../../../core/services/project.service';
+import { ProjectService } from '../../../shared/services/project.service';
 import { Observable } from 'rxjs';
-import { IProjectParticipation } from '../../../models/projects';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
 import { map } from 'rxjs/operators';
+import { ProjectParticipationDto } from '../../../../@arpa/models/projectParticipationDto';
 
-interface IParticipant {
+interface Participant {
   participant: string;
   instrument: string;
 }
@@ -18,14 +18,14 @@ interface IParticipant {
 })
 export class ProjectParticipantsComponent {
 
-  participants: Observable<IParticipant[]>;
+  participants: Observable<Participant[]>;
 
   constructor(private projectService: ProjectService, private config: DynamicDialogConfig) {
     this.participants = this.projectService.getParticipations(this.config.data.project.id).pipe(
-      map((participation: IProjectParticipation[]) => participation.map((participant: IProjectParticipation) => ({
+      map((participation: ProjectParticipationDto[]) => participation.map((participant: ProjectParticipationDto) => ({
         participant: [participant.person.givenName, participant.person.surname].join(' '),
         instrument: participant.musicianProfile.instrumentName,
-      } as IParticipant))),
+      } as Participant))),
     );
   }
 

@@ -1,0 +1,22 @@
+{
+  "ADDITIONAL_PROFILES": "Additional Profiles",
+  "DEACTIVATED_PROFILES": "Deactivated Profiles",
+  "MAIN_PROFILE": "Main Profile",
+  "MUSICIAN_PROFILES": "Musician Profiles",
+  "MY_APPOINTMENTS": "My Appointments",
+  "MY_PROFILES": "My Profiles",
+  "MY_PROJECTS": "My Projects",
+  "MY_QR_CODE": "My QR-Code",
+  "MY_QR_CODE_DESCRIPTION": "This is your personal QR-Code and can be used to checkin on events.",
+  "MY_QR_CODE_INFO": "The QR-Code will be available in offline mode.",
+  "PAGE_TITLE": "Profile",
+  "PREDICTION": "Appointment Prediction",
+  "PREDICTION_SET": "Appointment participation prediction successfully set",
+  "SEND_QR_CODE": "Send QR-CODE by email",
+  "SEND_QR_CODE_SUCCESS": "QR-CODE send",
+  "UPCOMING": "Upcoming",
+  "USER_PROFILE": "User Profile",
+  "USER_PROFILE_DATA": "My Profile",
+  "USER_PROFILE_UPDATED": "Profile updated",
+  "USER_PROFILE_UPDATE_ERROR": "Could not update Profile"
+}

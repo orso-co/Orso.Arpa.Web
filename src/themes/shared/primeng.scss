@@ -1,0 +1,286 @@
+/**
+ * Data table list elements.
+ * Usage: <p-table tableStyleClass="arpa-table-list"></p-table>
+ */
+.p-datatable .arpa-table-list {
+  .p-datatable-thead {
+    & > h2 {
+      margin-top: 3rem;
+      opacity: .75;
+      font-size: 1.2rem;
+    }
+
+    background: transparent;
+  }
+
+  .p-datatable-tbody > tr {
+    background-color: transparent;
+    border: none !important;
+    margin-bottom: .5rem;
+
+    &:hover {
+      background-color: transparent !important;
+    }
+
+    &.hasHover td {
+      cursor: pointer;
+      transition: background-color .5s ease-in-out;
+      margin-bottom: 0;
+
+      &:hover {
+        background-color: var(--surface-hover) !important;
+      }
+    }
+
+    &.p-highlight td {
+      background-color: var(--surface-hover) !important;
+    }
+
+    & > td {
+      border-bottom: none;
+      margin-bottom: .5rem;
+      border-radius: 3px;
+      background-color: var(--surface-100);
+      font-size: 1rem;
+      align-items: center;
+
+      .actions {
+        margin-left: auto;
+      }
+    }
+
+    &:first-child {
+      border-top: none;
+    }
+  }
+}
+
+/**
+ * Data table mobile.
+ * Usage: <p-table tableStyleClass="arpa-table-list"></p-table>
+ */
+.p-datatable.mobile {
+  .p-datatable-thead {
+    display: none;
+  }
+
+  .p-datatable-tbody {
+    & > tr {
+      flex-direction: column;
+      border-bottom: 1px solid var(--surface-c);
+      position: relative;
+
+      td {
+        border: none;
+
+        &.start {
+          justify-content: left;
+        }
+
+        &.end {
+          position: absolute;
+          top: 0;
+          right: 0;
+          flex-grow: 0;
+        }
+      }
+    }
+  }
+}
+
+/**
+ * General Data table styles.
+ */
+.p-datatable-scrollable .p-datatable-tbody > tr > td, .p-datatable-scrollable .p-datatable-thead > tr > th {
+
+  &.start {
+    flex-grow: 0;
+    min-width: 4rem;
+    align-items: center;
+    justify-content: center;
+
+    p-avatar .p-mr-3 {
+      margin-right: 0 !important;
+    }
+  }
+
+  &.end {
+    margin-left: auto;
+    flex-grow: 0;
+    min-width: 8rem;
+    justify-content: right;
+  }
+
+  &.fixed-right {
+    margin-left: auto;
+    flex-grow: 0;
+    min-width: 6rem;
+  }
+
+}
+
+.p-datatable-header:empty {
+  display: none;
+}
+
+.p-datatable {
+  .p-sortable-column.p-highlight {
+    background: inherit;
+  }
+
+  thead {
+    background: transparent;
+  }
+
+  tr {
+    display: flex;
+  }
+
+  th, td {
+    text-align: left;
+    font-size: 0.875em;
+    display: flex;
+    flex-basis: 0;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: left;
+    max-width: 100%;
+  }
+
+  th {
+    .p-column-filter-menu {
+      margin-left: .5rem;
+
+      .p-column-filter-menu-button {
+        opacity: .5;
+        transition: all .5s ease-in-out;
+
+        &:hover {
+          opacity: .85;
+        }
+
+        &.p-column-filter-menu-button-active {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .p-datatable-thead > tr > th, .p-datatable-tbody > tr > td {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+  }
+}
+
+.user-detail-card {
+  .p-card-header {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.p-dropdown .p-dropdown-label {
+  text-align: left;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+  text-align: left;
+}
+
+p-badge {
+  white-space: nowrap;
+}
+
+.p-datatable {
+  .p-datatable-header {
+    background: none;
+    border-top: none;
+  }
+
+  .p-datatable-thead > tr > th {
+    background: var(--surface-100);
+  }
+
+  .p-datatable-thead > tr > th {
+    border-bottom: 2px solid var(--surface-50);
+  }
+
+  .p-paginator {
+    background: none;
+    border-bottom: 0;
+  }
+}
+
+/**
+ * General Accordion styles.
+ */
+.p-accordion {
+  .p-accordion-header.p-highlight .p-accordion-header-link {
+    background-color: var(--surface-d);
+  }
+
+  .p-accordion-header .p-accordion-header-link {
+    border: 0;
+    padding: .5rem 0;
+    padding-right: 1rem;
+    background: var(--surface-100);
+    font-weight: 400;
+    margin-bottom: .5rem;
+
+    &:hover {
+      background-color: var(--surface-d);
+    }
+
+    .p-d-flex {
+      align-items: center;
+      flex: 1;
+    }
+  }
+
+  .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
+    margin-left: .5rem;
+    margin-right: 1rem;
+  }
+
+  .p-accordion-content {
+    border: 0;
+    margin-bottom: .5rem;
+  }
+}
+
+/**
+ * General Dialog styles.
+ */
+.p-dialog-content {
+  overflow-y: visible !important;
+}
+
+.p-rating {
+  white-space: nowrap;
+}
+
+.p-badge-no-gutter {
+  background-color: var(--text-color-secondary);
+}
+
+.p-steps .p-steps-item .p-menuitem-link {
+  background-color: transparent;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.p-steps .p-steps-item:before {
+  border: none;
+}
+
+.p-rating.p-readonly {
+  .p-rating-icon {
+    cursor: auto;
+  }
+
+  .p-rating-icon.pi-star {
+    color: var(--text-color);
+  }
+}

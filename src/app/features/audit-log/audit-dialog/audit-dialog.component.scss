@@ -1,0 +1,19 @@
+pre {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+.title {
+  font-weight: 400;
+}
+
+.title, .value {
+  line-height: 1.5em;
+}
+
+.old {
+  color: var(--text-color-secondary);
+}

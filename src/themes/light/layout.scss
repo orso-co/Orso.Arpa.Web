@@ -1,0 +1,47 @@
+body, html {
+  color: var(--text-color);
+  background-color: #fff;
+}
+
+arpa-root {
+  section {
+    display: block;
+    min-height: 100vh;
+  }
+}
+
+mat-sidenav-container {
+  & > mat-sidenav {
+    background-color: var(--surface-a);
+
+    .mat-drawer-inner-container {
+      background-color: var(--surface-300);
+      color: var(--text-color)
+    }
+
+    .mat-toolbar {
+      background-color: var(--blue-600);
+    }
+
+    .logo {
+      box-shadow: 1px 1px 5px var(--blue-800);
+    }
+  }
+
+  & > mat-sidenav-content {
+    background-color: #fff;
+
+    .main-content {
+      color: var(--text-color)
+    }
+  }
+
+  .mat-drawer-side {
+    border: none;
+  }
+}
+
+.main-toolbar {
+  background-color: var(--primary-color);
+  box-shadow: -10px 5px 20px var(--gray-400);
+}

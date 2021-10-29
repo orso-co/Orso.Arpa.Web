@@ -1,23 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { first, map } from 'rxjs/operators';
-import { Unsubscribe } from '../../../core/decorators/unsubscribe.decorator';
 import { EditProjectComponent } from '../edit-project/edit-project.component';
 import { DialogService } from 'primeng/dynamicdialog';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, Subscription } from 'rxjs';
-import { ProjectService } from '../../../core/services/project.service';
-import { NotificationsService } from '../../../core/services/notifications.service';
-import { IProjectDto } from '../../../models/IProjectDto';
-import { IMusicianProfileDto } from '../../../models/appointment';
+import { Observable } from 'rxjs';
+import { ProjectService } from '../../../shared/services/project.service';
+import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 import { ProjectParticipationComponent } from '../project-participation/project-participation.component';
-import { MeService } from '../../../core/services/me.service';
-import { SelectValueService } from '../../../core/services/select-value.service';
+import { MeService } from '../../../shared/services/me.service';
+import { SelectValueService } from '../../../shared/services/select-value.service';
 import { Table } from 'primeng/table';
-import { VenueService } from '../../../core/services/venue.service';
-import { SectionService } from '../../../core/services/section.service';
+import { VenueService } from '../../../shared/services/venue.service';
+import { SectionService } from '../../../shared/services/section.service';
 import { ProjectParticipantsComponent } from '../project-participants/project-participants.component';
 import { SelectItem } from 'primeng/api';
+import { ProjectDto } from '../../../../@arpa/models/projectDto';
+import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
+import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator';
+import { DocumentNode } from 'graphql';
+import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
+import { ProjectsQuery } from './projects.graphql';
+import { GraphQlFeedComponent } from '../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
 
 @Component({
   selector: 'arpa-project-list',
@@ -27,11 +31,19 @@ import { SelectItem } from 'primeng/api';
 @Unsubscribe()
 export class ProjectListComponent {
 
-  projects: Observable<IProjectDto[]>;
   state: Observable<SelectItem[]>;
 
-  cols: any[];
-  langChangeListener: Subscription;
+  query: DocumentNode = ProjectsQuery;
+
+  columns: ColumnDefinition<ProjectDto>[] = [
+    { label: 'TITLE', property: 'title', type: 'text' },
+    { label: 'START', property: 'startDate', type: 'date' },
+    { label: 'END', property: 'endDate', type: 'date' },
+    { label: 'STATE', property: 'stateId', type: 'template', template: 'state' },
+    { label: 'COMPLETED', property: 'isCompleted', type: 'text' },
+  ];
+
+  @ViewChild('feedSource') private feedSource: GraphQlFeedComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -44,7 +56,6 @@ export class ProjectListComponent {
     private venueService: VenueService,
     private sectionService: SectionService,
   ) {
-    this.projects = this.route.data.pipe<IProjectDto[]>(map((data) => data.projects));
     this.state = this.selectValueService.load('Project', 'State')
       .pipe(map(() => this.selectValueService.get('Project', 'State')));
   }
@@ -52,25 +63,25 @@ export class ProjectListComponent {
   public getState(id: string) {
     return this.state.pipe<string>(map((items: SelectItem[]) => {
       const item: any = items.find((i) => i.value === id);
-      return item? item.label : '';
+      return item ? item.label : '';
     }));
   }
 
-  public openProjectDetailDialog(selection: IProjectDto | null): void {
+  public openProjectDetailDialog(selection: ProjectDto | null): void {
     const ref = this.dialogService.open(EditProjectComponent, {
       data: {
         project: selection ? selection : null,
-        projects: this.projects,
         venues: this.venueService.load(),
         type: this.selectValueService.load('Project', 'Type').pipe(map(() => this.selectValueService.get('Project', 'Type'))),
         genre: this.selectValueService.load('Project', 'Genre').pipe(map(() => this.selectValueService.get('Project', 'Genre'))),
         state: this.state,
       },
-      header: selection ? this.translate.instant('projects.EDIT_PROJECT') : this.translate.instant('projects.NEW_PROJECT')
+      header: selection ? this.translate.instant('projects.EDIT_PROJECT') : this.translate.instant('projects.NEW_PROJECT'),
+      styleClass: 'form-modal', width: '66%',
     });
     ref.onClose
       .pipe(first())
-      .subscribe((project: IProjectDto) => {
+      .subscribe((project: ProjectDto) => {
         if (!selection && project) {
           this.saveNewProject(project);
         } else if (selection && project) {
@@ -79,37 +90,36 @@ export class ProjectListComponent {
       });
   }
 
-  public openParticipationDialog(event: MouseEvent, id: string) {
+  public openParticipationDialog(event: Event, id: string) {
     event.stopPropagation();
     const ref = this.dialogService.open(ProjectParticipationComponent, {
       data: {
         projectParticipation: this.selectValueService.load('ProjectParticipation', 'ParticipationStatusInner'),
-        musicianProfiles: this.meService.getProfileMusician<IMusicianProfileDto[]>(),
+        musicianProfiles: this.meService.getProfilesMusician<MusicianProfileDto[]>(),
         sections: this.sectionService.load(),
         id,
       },
       header: this.translate.instant('projects.EDIT_PARTICIPATION'),
+      styleClass: 'form-modal',
     });
 
     ref.onClose
       .pipe(first())
       .subscribe((result) => {
         if (result) {
-          this.meService.putProjectParticipation(result.musicianId, id, {
-            statusId: result.statusId,
-            comment: result.comment,
-          }).subscribe(() => this.notificationsService.success('projects.SET_PARTICIPATION_STATUS'));
+          this.meService.putProjectParticipation(result.musicianId, id, result).subscribe(() => this.notificationsService.success('projects.SET_PARTICIPATION_STATUS'));
         }
       });
   }
 
-  public openParticipationListDialog(event: MouseEvent, project: IProjectDto) {
+  public openParticipationListDialog(event: Event, project: ProjectDto) {
     event.stopPropagation();
     this.dialogService.open(ProjectParticipantsComponent, {
       data: {
         project,
       },
-      header: `${this.translate.instant('projects.PARTICIPANTS')}: ${project.title}` ,
+      header: `${this.translate.instant('projects.PARTICIPANTS')}: ${project.title}`,
+      styleClass: 'form-modal',
     });
   }
 
@@ -117,18 +127,22 @@ export class ProjectListComponent {
     ref.clear();
   }
 
-  private saveNewProject(project: IProjectDto): void {
+  onRowClick(event: ProjectDto) {
+    this.openProjectDetailDialog(event);
+  }
+
+  private saveNewProject(project: ProjectDto): void {
     this.projectService.create(project)
       .subscribe((result) => {
-        this.projects = this.projectService.load();
+        this.feedSource.refresh();
         this.notificationsService.success('projects.PROJECT_CREATED');
       });
   }
 
-  private updateProject(project: IProjectDto, oldProject: IProjectDto): void {
+  private updateProject(project: ProjectDto, oldProject: ProjectDto): void {
     this.projectService.update(project)
       .subscribe(() => {
-        this.projects = this.projectService.load();
+        this.feedSource.refresh();
         this.notificationsService.success('projects.PROJECT_UPDATED');
       });
   }
