@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { MatIconRegistry } from '@angular/material/icon';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
@@ -13,10 +13,13 @@ import { ArpaModule } from '../@arpa/arpa.module';
 import { ThemeSwitcherService } from '../@arpa/components/theme-switcher/theme-switcher.service';
 import { ConfigService } from '../@arpa/services/config.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { OfflineComponent } from './components/offline/offline.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
     AppComponent,
+    OfflineComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +36,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
+    TranslateModule,
+    MatIconModule,
   ],
   providers: [
     ConfigService,

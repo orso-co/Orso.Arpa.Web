@@ -17,6 +17,15 @@
       }
     },
     {
+      "name": "i18n",
+      "installMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/i18n/**"
+        ]
+      }
+    },
+    {
       "name": "assets",
       "installMode": "lazy",
       "updateMode": "prefetch",

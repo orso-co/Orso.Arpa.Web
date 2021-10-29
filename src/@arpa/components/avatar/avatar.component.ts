@@ -26,7 +26,7 @@ export class AvatarComponent {
   }
 
   getImage() {
-    return this.image ? 'assets/common/images/einstein_placeholder.jpg' : '';
+    return this.image ? 'assets/common/images/avatar.png' : '';
   }
 
   getInitials(): string {

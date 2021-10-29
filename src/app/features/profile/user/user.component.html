@@ -6,7 +6,7 @@
   </div>
   <div class='p-grid p-jc-center show-mobile'>
     <div class='p-col-12 p-md-6 p-text-center'>
-      <arpa-avatar [image]='true' [user]='profile'></arpa-avatar>
+      <arpa-avatar [image]='true' [user]='profile | async'></arpa-avatar>
     </div>
   </div>
   <div class='p-grid p-jc-center p-mt-4'>

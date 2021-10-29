@@ -11,11 +11,11 @@ import { SelectValueService } from '../../../shared/services/select-value.servic
 import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 
 @Component({
-  selector: 'arpa-my-appointments',
-  templateUrl: './my-appointments.component.html',
-  styleUrls: ['./my-appointments.component.scss'],
+  selector: 'arpa-profile-appointments',
+  templateUrl: './appointments.component.html',
+  styleUrls: ['./appointments.component.scss'],
 })
-export class MyAppointmentsComponent implements AfterViewInit {
+export class AppointmentsComponent implements AfterViewInit {
   userAppointments$: Observable<MyAppointmentDto[]> = of([]);
   totalRecordsCount$: Observable<number> = of(0);
   predictions: Observable<SelectItem[]>;

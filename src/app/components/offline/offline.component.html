@@ -1,0 +1,15 @@
+<div class='p-text-center '>
+  <div class='p-d-flex p-flex-column page'>
+    <div class='p-col-12'>
+      <arpa-logo></arpa-logo>
+      <h1>{{ 'OFFLINE_TITLE' | translate }}</h1>
+    </div>
+    <div class='p-col-12'>
+      <mat-icon class='mat-icon'>wifi_off</mat-icon>
+    </div>
+    <div *ngIf='qrCode' class='p-col-12'>
+      <img [src]='qrCode'>
+      {{ 'OFFLINE_QR_CODE' | translate }}
+    </div>
+  </div>
+</div>

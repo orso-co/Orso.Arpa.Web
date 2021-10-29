@@ -15,21 +15,21 @@ import { Unsubscribe } from '../../decorators/unsubscribe.decorator';
 @Unsubscribe()
 export class TopbarComponent {
 
-  token$: Observable<IToken | null>;
+  userToken: Observable<IToken | null>;
   langChangeListener: Subscription;
   titleSubscription: Subscription;
   routerSubscription: Subscription;
   pageTitle: string;
   sideBarDisplay: boolean;
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  isHandset: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
       shareReplay(),
     );
 
   constructor(private breakpointObserver: BreakpointObserver, private router: Router, private topBarService: TopbarService, private authService: AuthService) {
-    this.token$ = this.authService.currentUser;
+    this.userToken = this.authService.currentUser;
     this.pageTitle = 'WELCOME';
     this.titleSubscription = topBarService.title.subscribe((title) => {
       this.pageTitle = title;

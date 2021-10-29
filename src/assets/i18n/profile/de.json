@@ -5,17 +5,18 @@
   "MUSICIAN_PROFILES": "Musikerprofile",
   "MY_APPOINTMENTS": "Meine Termine",
   "MY_PROFILES": "Meine Profile",
+  "MY_PROJECTS": "Meine Projekte",
   "MY_QR_CODE": "Mein QR-Code",
+  "MY_QR_CODE_DESCRIPTION": "Der persönlicher QR-Code wird benötigt um bei der Teilnahme an Events einzuschecken.",
+  "MY_QR_CODE_INFO": "Der QR-Code steht auch im Offline-Modus zur Verfügung.",
   "PAGE_TITLE": "Profil",
   "PREDICTION": "Teilname Vorhersage",
   "PREDICTION_SET": "Vorhersage für Terminteilnahme erfolgreich gespeichert",
+  "SEND_QR_CODE": "QR-CODE per Email senden",
+  "SEND_QR_CODE_SUCCESS": "QR-CODE gesendet",
   "UPCOMING": "Bevorstehend",
   "USER_PROFILE": "Benutzerprofil",
   "USER_PROFILE_DATA": "Meine Daten",
   "USER_PROFILE_UPDATED": "Profil aktualisiert",
-  "USER_PROFILE_UPDATE_ERROR": "Profile konnte nicht aktualisiert werden",
-  "MY_QR_CODE_INFO": "Der QR-Code steht auch im Offline-Modus zur Verfügung.",
-  "MY_QR_CODE_DESCRIPTION": "Der persönlicher QR-Code wird benötigt um bei der Teilnahme an Events einzuschecken.",
-  "SEND_QR_CODE": "QR-CODE per Email senden",
-  "SEND_QR_CODE_SUCCESS": "QR-CODE gesendet"
+  "USER_PROFILE_UPDATE_ERROR": "Profile konnte nicht aktualisiert werden"
 }
