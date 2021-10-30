@@ -8,6 +8,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
 import { FormsModule } from '@angular/forms';
 import { FilterService } from 'primeng/api';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { StateBadgeModule } from '../status-badge/state-badge.module';
 
 
 @NgModule({
@@ -17,12 +20,15 @@ import { FilterService } from 'primeng/api';
   ],
   imports: [
     CommonModule,
+    StateBadgeModule,
     NgTableModule,
     ButtonModule,
     TranslateModule.forChild(),
     InputTextModule,
     CalendarModule,
     FormsModule,
+    MatMenuModule,
+    MatCheckboxModule,
   ],
   exports: [
     NgTableModule,

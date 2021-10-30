@@ -20,6 +20,9 @@ import { LanguageService } from '../../../@arpa/services/language.service';
 import { GraphQlFeedModule } from '../../../@arpa/components/graph-ql-feed/graph-ql-feed.module';
 import { TableModule } from '../../../@arpa/components/table/table.module';
 import { FormFieldModule } from '../../../@arpa/components/form-field/form-field.module';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -45,6 +48,9 @@ import { FormFieldModule } from '../../../@arpa/components/form-field/form-field
     CalendarModule,
     InputTextareaModule,
     InputTextModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   exports: [
     ProjectListComponent,

@@ -45,3 +45,33 @@ mat-sidenav-container {
   background-color: var(--primary-color);
   box-shadow: -10px 5px 20px var(--gray-400);
 }
+
+.cdk-overlay-container {
+  .mat-menu-panel {
+    background: #ffffff;
+    border: 0 none;
+    box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%);
+
+    label {
+      color: #495057;
+
+      path {
+        stroke: #495057;
+      }
+    }
+
+    .p-button:focus {
+      box-shadow: none;
+    }
+
+    .p-button {
+      color: #495057;
+    }
+
+    .p-button.p-button-text:enabled:hover {
+      background: #e9ecef;
+      color: #495057;
+      border: none;
+    }
+  }
+}

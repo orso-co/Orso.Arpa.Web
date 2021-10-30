@@ -23,8 +23,8 @@ export class ProjectParticipantsComponent {
   constructor(private projectService: ProjectService, private config: DynamicDialogConfig) {
     this.participants = this.projectService.getParticipations(this.config.data.project.id).pipe(
       map((participation: ProjectParticipationDto[]) => participation.map((participant: ProjectParticipationDto) => ({
-        participant: [participant.person.givenName, participant.person.surname].join(' '),
-        instrument: participant.musicianProfile.instrumentName,
+        participant: [participant.person?.givenName, participant.person?.surname].join(' '),
+        instrument: participant.musicianProfile?.instrumentName,
       } as Participant))),
     );
   }

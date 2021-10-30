@@ -5,6 +5,7 @@ export interface UserRegisterDto {
   givenName: string;
   surname: string;
   genderId: string;
+  dateOfBirth?: Date;
   clientUri: string;
-  stakeholderGroupIds?: Array<string>;
+  stakeholderGroupIds: Array<string>;
 }

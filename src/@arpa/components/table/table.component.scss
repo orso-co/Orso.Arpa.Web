@@ -1,1 +1,59 @@
+:host ::ng-deep {
+  .p-datatable {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
 
+  .p-datatable-header {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  td.start {
+    i.pi {
+      font-weight: 800;
+      color: var(--green-500);
+    }
+  }
+}
+
+.filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .search {
+    width: 100%;
+    position: relative;
+
+    & > span {
+      display: flex;
+
+      input {
+        width: 100%;
+
+        &:not(.p-filled) {
+          background-color: transparent;
+        }
+      }
+    }
+
+    & > i {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      right: .5rem;
+      margin-top: -0.5rem;
+    }
+  }
+
+  & > .search + .column-filter {
+    margin-left: 1rem;
+  }
+
+  .column-filter {
+    margin-left: auto;
+
+
+  }
+}

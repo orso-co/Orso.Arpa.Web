@@ -4,7 +4,7 @@ export interface MyMusicianProfileCreateDto {
   levelAssessmentInner?: number;
   instrumentId: string;
   inquiryStatusInnerId?: string;
-  doublingInstruments?: Array<MyDoublingInstrumentCreateBodyDto>;
+  doublingInstruments: Array<MyDoublingInstrumentCreateBodyDto>;
   preferredPositionsInnerIds: Array<string>;
-  preferredPartsInner?: Array<number>;
+  preferredPartsInner: Array<number>;
 }

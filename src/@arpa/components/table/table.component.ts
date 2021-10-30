@@ -14,19 +14,24 @@ import {
 } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { ProjectDto } from '../../models/projectDto';
-import { PrimeTemplate } from 'primeng/api';
+import { PrimeTemplate, SelectItem } from 'primeng/api';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { map } from 'rxjs/operators';
+import { map, share } from 'rxjs/operators';
 import { FeedScope } from '../graph-ql-feed/graph-ql-feed.component';
+import { StateItem } from '../status-badge/state-badge.component';
+import { SelectValueService } from '../../../app/shared/services/select-value.service';
 
 export interface ColumnDefinition<T> {
   label: string,
   property: keyof T | string;
-  type: 'text' | 'date' | 'image' | 'badge' | 'progress' | 'checkbox' | 'button' | 'template';
-  visible?: boolean,
+  type: 'text' | 'date' | 'image' | 'badge' | 'state' | 'progress' | 'checkbox' | 'button' | 'template';
+  show?: boolean,
   cssClasses?: string[];
   template?: string;
   hideFilter?: boolean;
+  badgeStateMap?: StateItem[];
+  // Required for type "state" because it's dynamically resolved.
+  stateTable?: string;
 }
 
 /**
@@ -52,6 +57,9 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
 
   @Input()
   showFilter: boolean = true;
+
+  @Input()
+  columnFilter: boolean = true;
 
   @Input()
   rows: number = 10;
@@ -129,6 +137,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
   public isMobile: Observable<boolean>;
   public lazy: boolean = false;
   public hasFilters: boolean = false;
+  private stateStreams: Record<string, Observable<any>> = {};
   @ContentChildren(ArpaTableColumnDirective, { read: ArpaTableColumnDirective }) private columnTemplateRefs: QueryList<ArpaTableColumnDirective>;
   private columnTemplates: Record<string, TemplateRef<any>> = {};
   private loadingEventSubscription: Subscription;
@@ -136,12 +145,41 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private cdRef: ChangeDetectorRef) {
+    private cdRef: ChangeDetectorRef,
+    private selectValueService: SelectValueService) {
     this.isMobile = breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Small]).pipe(map(({ matches }) => matches));
   }
 
+  get activeColumns() {
+    return this.columns.filter(column => column.show === undefined ? true : column.show);
+  }
+
+  get hasFilterColumns() {
+    return this.columns.filter(column => column.show !== undefined).length > 0;
+  }
+
+  resolveState(table: string, id: string) {
+    if (!this.stateStreams[table]) {
+      this.stateStreams[table] = this.selectValueService.load(table, 'State')
+        .pipe(
+          map(() => this.selectValueService.get(table, 'State')),
+          share(),
+        );
+    }
+    return this.stateStreams[table].pipe(
+      map((items: SelectItem[]) => {
+        const item: any = items.find((i) => i.value === id);
+        return item ? item.label.toLowerCase() : undefined;
+      }));
+  }
+
+  resolveValue(path: string, source: any) {
+    const props = path.split('.');
+    return props.reduce((prev, current) => prev && prev[current], source);
+  }
+
   clear(table: any) {
-    table.clear();
+    table.filterGlobal(null, 'contains');
     this.hasFilters = false;
   }
 

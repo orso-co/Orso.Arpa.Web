@@ -38,6 +38,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { LoadingModule } from '../../../@arpa/components/loading/loading.module';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../@arpa/services/language.service';
+import { StateBadgeModule } from '../../../@arpa/components/status-badge/state-badge.module';
 
 
 @NgModule({
@@ -63,6 +64,8 @@ import { LanguageService } from '../../../@arpa/services/language.service';
     TranslateModule.forChild(['dashboard']),
     AvatarModule,
     ChartModule,
+    StateBadgeModule,
+    LoadingModule,
     // NG Material Dependencies
     MatGridListModule,
     MatCardModule,
@@ -82,7 +85,6 @@ import { LanguageService } from '../../../@arpa/services/language.service';
     AccordionModule,
     TabMenuModule,
     InputTextModule,
-    LoadingModule,
   ],
 })
 export class DashboardModule {

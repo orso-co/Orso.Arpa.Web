@@ -5,5 +5,5 @@ export interface MyMusicianProfileModifyBodyDto {
   backgroundInner?: string;
   inquiryStatusInnerId?: string;
   preferredPositionsInnerIds: Array<string>;
-  preferredPartsInner?: Array<number>;
+  preferredPartsInner: Array<number>;
 }

@@ -17,6 +17,9 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 
   columns: ColumnDefinition<ProjectDto>[] = [
     { label: 'PROJECT', property: 'title', type: 'text' },
+    { label: 'STATE', property: 'stateId', type: 'state', stateTable: 'Project', show: true },
+    { label: 'DATE', property: 'startDate', type: 'date', show: true },
+    { label: 'GENRE', property: 'genre.selectValue.name', type: 'text', show: true },
   ];
 
   personId: string | undefined;

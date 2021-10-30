@@ -6,6 +6,7 @@ export const ProjectsQuery = gql`
     $take: Int,
     $orderTitle: SortEnumType = ASC
     $personId: UUID
+    $searchQuery: String = ""
   ){
     projects(
       skip: $skip,
@@ -14,15 +15,10 @@ export const ProjectsQuery = gql`
         title: $orderTitle
       }
       where: {
-        projectParticipations: {
-          some:{
-            musicianProfile: {
-              personId: {
-                equals: $personId
-              }
-            }
-          }
-        }
+        projectParticipations: {some: {musicianProfile: {personId: {equals: $personId}}}}
+        or:[
+          { title: { contains:$searchQuery}}
+        ]
       }
     ) {
       pageInfo {
@@ -35,6 +31,33 @@ export const ProjectsQuery = gql`
       items {
         id
         title
+        id
+        startDate
+        stateId
+        genre {
+          selectValue {name}
+        }
+        projectParticipations {
+          participationStatusInner {
+            selectValue {
+              name
+            }
+          }
+          participationStatusInternal {
+            selectValue {
+              name
+            }
+          }
+          commentByPerformerInner
+          commentByStaffInner
+          commentTeam
+          musicianProfile {
+            isMainProfile
+            instrument {
+              name
+            }
+          }
+        }
       }
     }
   }`;

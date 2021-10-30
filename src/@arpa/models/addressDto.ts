@@ -1,3 +1,5 @@
+import { SelectValueDto } from './selectValueDto';
+
 export interface AddressDto {
   id?: string;
   createdBy?: string;
@@ -11,5 +13,6 @@ export interface AddressDto {
   urbanDistrict?: string;
   country?: string;
   state?: string;
-  regionId?: string;
+  commentInner?: string;
+  type?: SelectValueDto;
 }
