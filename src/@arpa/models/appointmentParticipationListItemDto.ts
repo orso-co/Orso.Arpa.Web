@@ -1,9 +1,9 @@
 import { AppointmentParticipationDto } from './appointmentParticipationDto';
-import { PersonDto } from './personDto';
 import { ReducedMusicianProfileDto } from './reducedMusicianProfileDto';
+import { ReducedPersonDto } from './reducedPersonDto';
 
 export interface AppointmentParticipationListItemDto {
-  person?: PersonDto;
+  person?: ReducedPersonDto;
   participation?: AppointmentParticipationDto;
   musicianProfiles?: Array<ReducedMusicianProfileDto>;
 }

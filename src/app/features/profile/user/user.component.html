@@ -6,7 +6,7 @@
   </div>
   <div class='p-grid p-jc-center show-mobile'>
     <div class='p-col-12 p-md-6 p-text-center'>
-      <arpa-avatar [image]='true' [user]='profile | async'></arpa-avatar>
+      <arpa-avatar [image]='true' [user]='{displayName}'></arpa-avatar>
     </div>
   </div>
   <div class='p-grid p-jc-center p-mt-4'>
@@ -35,21 +35,10 @@
     </div>
   </div>
   <div class='p-grid p-jc-center'>
-    <div class='p-col-12 p-md-3'>
+    <div class='p-col-12 p-md-6'>
       <arpa-form-field label='EMAIL'>
         <input autocomplete='email' formControlName='email' id='email' pInputText type='text'>
       </arpa-form-field>
-    </div>
-    <div class='p-col-12 p-md-3'>
-    </div>
-  </div>
-  <div class='p-grid p-jc-center'>
-    <div class='p-col-12 p-md-3'>
-      <arpa-form-field label='PHONENUMBER'>
-        <input autocomplete='phonenumber' formControlName='phoneNumber' id='phoneNumber' pInputText type='text'>
-      </arpa-form-field>
-    </div>
-    <div class='p-col-12 p-md-3'>
     </div>
   </div>
   <div class='p-grid p-jc-center'>

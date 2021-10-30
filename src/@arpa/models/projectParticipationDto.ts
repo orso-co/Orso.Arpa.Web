@@ -17,7 +17,7 @@ export interface ProjectParticipationDto {
   commentByPerformerInner?: string;
   commentByStaffInner?: string;
   commentTeam?: string;
-  musicianProfile?: ReducedMusicianProfileDto | any;
-  project?: ReducedProjectDto | any;
-  person?: ReducedPersonDto | any;
+  musicianProfile?: ReducedMusicianProfileDto;
+  project?: ReducedProjectDto;
+  person?: ReducedPersonDto;
 }

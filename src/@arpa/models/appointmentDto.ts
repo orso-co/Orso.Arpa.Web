@@ -5,8 +5,8 @@ import { SectionDto } from './sectionDto';
 
 export interface AppointmentDto {
   id: string;
-  createdBy: string;
-  createdAt: Date;
+  createdBy?: string;
+  createdAt?: Date;
   modifiedBy?: string;
   modifiedAt?: Date;
   categoryId?: string;
@@ -19,7 +19,7 @@ export interface AppointmentDto {
   salaryId?: string;
   salaryPatternId?: string;
   expectationId?: string;
-  venueId: string;
+  venueId?: string;
   rooms: Array<RoomDto>;
   projects: Array<ProjectDto>;
   sections: Array<SectionDto>;

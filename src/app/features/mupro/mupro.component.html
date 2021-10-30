@@ -6,6 +6,7 @@
           <arpa-table
             (lazyEvents)='feedSource.onLazy($event)'
             (rowClickEvents)='select($event)'
+            [columnFilter]='false'
             [feed]='feed'
             [rowTemplateRef]='rowTemplate'
             [rowsPerPage]='undefined'

@@ -78,7 +78,7 @@ export class MusicianInstrumentsComponent implements OnInit {
         map(sections => sections.find(section => section.id === this.profile.instrumentId) as SectionDto),
         first(),
       ).subscribe((section: SectionDto) => {
-        this.instrumentName = section.name;
+        this.instrumentName = section.name || '';
         if (section.instrumentPartCount && section.instrumentPartCount > 0) {
           const options = [];
           for (let i = 0; i < section.instrumentPartCount; i++) {

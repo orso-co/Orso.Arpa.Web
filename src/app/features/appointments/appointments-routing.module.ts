@@ -9,7 +9,7 @@ import { AppointmentStatusListResolver } from './resolvers/appointment-status-li
 import { AppointmentParticipationResultListResolver } from './resolvers/appointment-participation-result-list.resolver';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { VenueService } from '../../shared/services/venue.service';
-import { ProjectListResolver } from '../../shared/resolvers/project-list.resolver';
+import { ProjectListResolver } from './resolvers/project-list.resolver';
 import { RoleNames } from '../../../@arpa/models/roleNames';
 import { AppointmentParticipationPredictionListResolver } from './resolvers/appointment-participation-prediction-list.resolver';
 

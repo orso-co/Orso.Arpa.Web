@@ -5,6 +5,7 @@ import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
 import { map } from 'rxjs/operators';
 import { ProjectParticipationDto } from '../../../../@arpa/models/projectParticipationDto';
+import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
 
 interface Participant {
   participant: string;
@@ -20,17 +21,53 @@ export class ProjectParticipantsComponent {
 
   participants: Observable<Participant[]>;
 
+  columns: ColumnDefinition<any>[] = [
+    { label: 'projects.PARTICIPANTS', property: 'participant', type: 'text' },
+    { label: 'projects.INSTRUMENT', property: 'instrument', type: 'text' },
+    {
+      label: 'projects.INSTRUMENT_STATE',
+      property: 'state',
+      type: 'badge',
+      badgeStateMap: [
+        {
+          label: 'DEACTIVATED',
+          value: 'deactivated',
+          severity: '',
+        },
+        {
+          label: 'ACTIVE',
+          value: 'active',
+          severity: 'success',
+        },
+      ],
+    },
+  ];
+
   constructor(private projectService: ProjectService, private config: DynamicDialogConfig) {
     this.participants = this.projectService.getParticipations(this.config.data.project.id).pipe(
       map((participation: ProjectParticipationDto[]) => participation.map((participant: ProjectParticipationDto) => ({
-        participant: [participant.person.givenName, participant.person.surname].join(' '),
-        instrument: participant.musicianProfile.instrumentName,
+        participant: [participant.person?.givenName, participant.person?.surname].join(' '),
+        instrument: participant.musicianProfile?.instrumentName,
+        state: this.isDeactivated(participant),
       } as Participant))),
     );
   }
 
   public clear(ref: Table) {
     ref.clear();
+  }
+
+  private isDeactivated(participant: ProjectParticipationDto): string {
+    let state = 'active';
+    if (participant.musicianProfile?.deactivation) {
+      const { deactivationStart } = participant.musicianProfile.deactivation;
+      const start = new Date(deactivationStart as unknown as string || '');
+      const projectDate = new Date(this.config.data.project.startDate);
+      if (start.getTime() < projectDate.getTime()) {
+        state = 'deactivated';
+      }
+    }
+    return state;
   }
 
 }

@@ -27,7 +27,7 @@
         </div>
       </div>
     </div>
-    <div *ngIf='profile.preferredPartsInner.length > 0' class='p-mb-4 p-mr-6'>
+    <div *ngIf='profile && profile.preferredPartsInner!.length > 0' class='p-mb-4 p-mr-6'>
       <div class='p-d-flex p-flex-row'>
         <div class='p-mr-3'>{{ 'musician-profile-dialog.PREFERRED_PARTS' | translate}}:</div>
         <div class='p-mr-2'>

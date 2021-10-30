@@ -1,3 +1,9 @@
+/**body {
+  font-size: 14px;
+}
+.p-component {
+  font-size: 14px;
+}*/
 /**
  * Data table list elements.
  * Usage: <p-table tableStyleClass="arpa-table-list"></p-table>
@@ -134,6 +140,15 @@
 
   tr {
     display: flex;
+
+    &.p-selectable-row {
+      cursor: pointer;
+      transition: background-color .25s ease-in-out;
+    }
+
+    &:hover {
+      background-color: var(--surface-c);
+    }
   }
 
   th, td {

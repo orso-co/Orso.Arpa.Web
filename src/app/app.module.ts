@@ -13,7 +13,7 @@ import { ArpaModule } from '../@arpa/arpa.module';
 import { ThemeSwitcherService } from '../@arpa/components/theme-switcher/theme-switcher.service';
 import { ConfigService } from '../@arpa/services/config.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { OfflineComponent } from './components/offline/offline.component';
+import { OfflineComponent } from './shared/components/offline/offline.component';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({

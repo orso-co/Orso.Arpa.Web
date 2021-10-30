@@ -45,6 +45,11 @@ export const ProjectsQuery = gql`
         shortTitle
         description
         code
+        state {
+          selectValue {
+            name
+          }
+        }
         parent {
           title
           id

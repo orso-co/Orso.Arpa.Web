@@ -66,11 +66,7 @@
         {{ user.createdAt | date:'mediumDate' }}
       </td>
       <td class='fixed-right'>
-        <container-element [ngSwitch]='user.state'>
-          <p-badge *ngSwitchCase="'active'" [value]='"ACTIVE" | translate' severity='success'></p-badge>
-          <p-badge *ngSwitchCase="'pending'" [value]='"PENDING" | translate' severity='info'></p-badge>
-          <p-badge *ngSwitchCase="'not_confirmed'" [value]='"NOT_CONFIRMED" | translate' severity='warning'></p-badge>
-        </container-element>
+        <arpa-state-badge [value]='user.state'></arpa-state-badge>
       </td>
       <td class='p-text-lg-right end'>
         <button

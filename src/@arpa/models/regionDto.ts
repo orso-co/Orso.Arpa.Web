@@ -5,4 +5,6 @@ export interface RegionDto {
   modifiedBy?: string;
   modifiedAt?: Date;
   name?: string;
+  isForRehearsal?: boolean;
+  isForPerformance?: boolean;
 }

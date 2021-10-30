@@ -66,8 +66,8 @@ export class EditProjectComponent implements OnInit {
     if (!this.isNew) {
       this.form.patchValue({
         ...this.project,
-        startDate: new Date(this.project.startDate),
-        endDate: new Date(this.project.endDate),
+        startDate: new Date(this.project?.startDate || 0),
+        endDate: new Date(this.project?.endDate || 0),
       });
     }
   }
@@ -98,7 +98,7 @@ export class EditProjectComponent implements OnInit {
       const comb = `${(city ? city : '')}${(city && urbanDistrict ? ' ' : '')}${urbanDistrict ? urbanDistrict : ''}`;
       return `${comb}${comb ? ' | ' : ''}${venue.name}`;
     } else {
-      return venue.name;
+      return venue?.name || '';
     }
   }
 }
