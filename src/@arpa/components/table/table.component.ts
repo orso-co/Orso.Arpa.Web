@@ -13,7 +13,6 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { ProjectDto } from '../../models/projectDto';
 import { PrimeTemplate, SelectItem } from 'primeng/api';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map, share } from 'rxjs/operators';
@@ -21,9 +20,9 @@ import { FeedScope } from '../graph-ql-feed/graph-ql-feed.component';
 import { StateItem } from '../status-badge/state-badge.component';
 import { SelectValueService } from '../../../app/shared/services/select-value.service';
 
-export interface ColumnDefinition<T> {
+export interface ColumnDefinition<T extends Record<string, any>> {
   label: string,
-  property: keyof T | string;
+  property: string | Extract<keyof T, string>;
   type: 'text' | 'date' | 'image' | 'badge' | 'state' | 'progress' | 'checkbox' | 'button' | 'template';
   show?: boolean,
   cssClasses?: string[];
@@ -86,6 +85,9 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
   feed: FeedScope;
 
   @Input()
+  values: Observable<any[]>;
+
+  @Input()
   tableStyleClass: string;
 
   @Input()
@@ -104,7 +106,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
   scrollable: boolean = true;
 
   @Input()
-  columns: ColumnDefinition<ProjectDto>[] = [];
+  columns: ColumnDefinition<any>[] = [];
 
   @Output()
   filterEvents: EventEmitter<any> = new EventEmitter<any>();
@@ -173,9 +175,9 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
       }));
   }
 
-  resolveValue(path: string, source: any) {
+  resolveValue(path: any, source: any) {
     const props = path.split('.');
-    return props.reduce((prev, current) => prev && prev[current], source);
+    return props.reduce((prev: Record<string, any>, current: string) => prev && prev[current], source);
   }
 
   clear(table: any) {
@@ -192,15 +194,17 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
       this.loadingEventSubscription = this.feed.isLoading.subscribe(v => this.isLoading = v);
       this.lazy = true;
       this.data = this.feed.values;
+    } else if (this.values) {
+      this.data = this.values;
     }
     if (this.filterFields.length === 0) {
       this.columns.forEach(def => {
-        this.filterFields.push(def.property);
+        this.filterFields.push(def.property as string);
       });
     }
   }
 
-  trackByProperty<T>(index: number, column: ColumnDefinition<T>) {
+  trackByProperty<T>(index: number, column: ColumnDefinition<any>) {
     return column.property;
   }
 

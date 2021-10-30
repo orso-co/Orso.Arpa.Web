@@ -8,6 +8,7 @@
   "END": "Ende",
   "GENRE": "Genre",
   "INSTRUMENT": "Instrument",
+  "INSTRUMENT_STATE": "Status",
   "NEW_PROJECT": "Neues Projekt anlegen",
   "NOT_COMPLETED": "Laufend",
   "PAGE_TITLE": "Projekte",
@@ -18,11 +19,11 @@
   "PARTICIPATION_STATUS": "Status",
   "PROJECT_CREATED": "Projekt erfolgreich angelegt",
   "PROJECT_UPDATED": "Projekt erfolgreich bearbeitet",
+  "SAVECLOSE": "Speichern & Schliessen",
   "SHOW_PARTICIPANTS": "Projekt Teilnehmer",
   "START": "Beginn",
   "STATE": "Status",
   "TITLE": "Name",
   "TYPE": "Typ",
-  "VENUE": "Ort",
-  "SAVECLOSE": "Speichern & Schliessen"
+  "VENUE": "Ort"
 }

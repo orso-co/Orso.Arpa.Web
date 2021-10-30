@@ -98,6 +98,13 @@
             </div>
           </th>
         </ng-container>
+        <ng-container *ngIf="column.type === 'badge'">
+          <th [classList]='column.cssClasses' [pSortableColumn]='column.property'>
+            <div class='p-d-flex p-jc-between p-ai-center'>
+              {{ column.label | translate }}
+            </div>
+          </th>
+        </ng-container>
         <ng-container *ngIf="column.type === 'state'">
           <th [classList]='column.cssClasses' [pSortableColumn]='column.property'>
             <div class='p-d-flex p-jc-between p-ai-center'>
