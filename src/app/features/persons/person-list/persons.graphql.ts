@@ -4,9 +4,8 @@ export const PersonsQuery = gql`
   query Persons(
     $skip: Int,
     $take: Int,
-    $orderName: SortEnumType = ASC
-    $orderSurname: SortEnumType = ASC
-    $orderAboutMe: SortEnumType = ASC
+    $orderName: SortEnumType = ASC,
+    $orderSurname: SortEnumType = ASC,
     $searchQuery: String = ""
   ){
     persons(
@@ -15,12 +14,10 @@ export const PersonsQuery = gql`
       order: {
         surname: $orderSurname
         givenName: $orderName
-        aboutMe: $orderAboutMe
-      }
+      },
       where: {
         or: [
           { surname: { contains:$searchQuery}}
-          { givenName: { contains:$searchQuery}}
         ]
       }
     ) {
