@@ -74,19 +74,6 @@ const routes: Routes = [
         },
       },
       {
-        path: 'contactdetails',
-        loadChildren: () => import('./features/contact-details/contactDetails.module').then(m => m.ContactDetailsModule),
-        data: {
-          roles: ['staff'],
-          title: 'CONTACTDATA',
-          menu: {
-            name: 'feature',
-            label: 'CONTACTDATA',
-            icon: 'pi pi-phone',
-          },
-        },
-      },
-      {
         path: 'mupro',
         loadChildren: () => import('./features/mupro/mupro.module').then((mod) => mod.MuProModule),
         data: {
