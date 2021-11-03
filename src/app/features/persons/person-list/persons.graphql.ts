@@ -7,6 +7,7 @@ export const PersonsQuery = gql`
     $orderName: SortEnumType = ASC
     $orderSurname: SortEnumType = ASC
     $orderAboutMe: SortEnumType = ASC
+    $searchQuery: String = ""
   ){
     persons(
       skip: $skip,
@@ -15,6 +16,12 @@ export const PersonsQuery = gql`
         surname: $orderSurname
         givenName: $orderName
         aboutMe: $orderAboutMe
+      }
+      where: {
+        or: [
+          { surname: { contains:$searchQuery}}
+          { givenName: { contains:$searchQuery}}
+        ]
       }
     ) {
       pageInfo {
