@@ -5,20 +5,20 @@
 export const environment = {
   production: false,
   captcha: {
-    key: '6LfSQsAaAAAAAPuuiXUmR18toqzVMeEUpzHx5wMM',
+    key: '6LfS2X0aAAAAADWnno_N6FJzl2OhGI3ibz2EqPQQ',
   },
   api: {
-    protocol: 'http',
-    baseUrl: 'localhost:5000',
+    protocol: 'https',
+    baseUrl: 'orso-arpa.azurewebsites.net',
   },
   graphql: {
-    protocol: 'http',
-    baseUrl: 'localhost:5000/graphql',
+    protocol: 'https',
+    baseUrl: 'orso-arpa.azurewebsites.net/graphql',
   },
   web:
     {
-      protocol: 'http',
-      baseUrl: 'localhost:4200',
+      protocol: 'https',
+      baseUrl: 'orsoarpadevstorage.z1.web.core.windows.net',
     },
   arpa: {
     url: 'http://arpa.orso.berlin/',
@@ -28,8 +28,8 @@ export const environment = {
     email: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,4}$',
   },
   config: {
-    protocol: 'http',
-    baseUrl: 'localhost:5000/swagger/v1/swagger.json',
+    protocol: 'https',
+    baseUrl: 'orso-arpa.azurewebsites.net/swagger/v1/swagger.json',
   },
   locale: {
     default: 'de',
