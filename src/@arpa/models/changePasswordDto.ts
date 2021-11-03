@@ -1,4 +1,6 @@
+import { ModelObject } from './modelObject';
+
 export interface ChangePasswordDto {
   currentPassword: string;
-  newPassword: string;
+  newPassword: ModelObject;
 }

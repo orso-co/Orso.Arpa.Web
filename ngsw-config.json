@@ -17,13 +17,22 @@
       }
     },
     {
+      "name": "i18n",
+      "installMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/i18n/**/*.json"
+        ]
+      }
+    },
+    {
       "name": "assets",
       "installMode": "lazy",
       "updateMode": "prefetch",
       "resources": {
         "files": [
           "/assets/**",
-          "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
+          "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani|json)"
         ]
       }
     }

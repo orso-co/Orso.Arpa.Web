@@ -19,15 +19,13 @@ export class PersonListComponent {
   columns: ColumnDefinition<PersonDto>[] = [
     { label: 'SURNAME', property: 'surname', type: 'text' },
     { label: 'GIVEN_NAME', property: 'givenName', type: 'text' },
-    // { label: 'ABOUT_ME', property: 'aboutMe', type: 'text' },
-    { label: 'EXPERIENCE_LEVEL', property: 'experienceLevel', type: 'text' },
-    { label: 'RELIABILITY', property: 'reliability', type: 'text' },
-    { label: 'GENERAL_PREFERENCE', property: 'generalPreference', type: 'text' },
-    { label: 'CREATED_AT', property: 'createdAt', type: 'date' },
-    { label: 'CREATED_BY', property: 'createdBy', type: 'text' },
-    { label: 'MODIFIED_AT', property: 'createdAt', type: 'date' },
-    { label: 'MODIFIED_BY', property: 'modifiedBy', type: 'text' },
-
+    { label: 'EXPERIENCE_LEVEL', property: 'experienceLevel', type: 'text', show: true },
+    { label: 'RELIABILITY', property: 'reliability', type: 'text', show: true },
+    { label: 'GENERAL_PREFERENCE', property: 'generalPreference', type: 'text', show: true },
+    { label: 'CREATED_AT', property: 'createdAt', type: 'date', show: false },
+    { label: 'CREATED_BY', property: 'createdBy', type: 'text', show: false },
+    { label: 'MODIFIED_AT', property: 'createdAt', type: 'date', show: false },
+    { label: 'MODIFIED_BY', property: 'modifiedBy', type: 'text', show: false },
   ];
 
   constructor() {

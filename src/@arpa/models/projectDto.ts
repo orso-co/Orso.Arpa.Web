@@ -1,7 +1,7 @@
 import { UrlDto } from './urlDto';
 
 export interface ProjectDto {
-  id?: string;
+  id: string;
   createdBy?: string;
   createdAt?: Date;
   modifiedBy?: string;
@@ -12,8 +12,8 @@ export interface ProjectDto {
   code?: string;
   typeId?: string;
   genreId?: string;
-  startDate: Date;
-  endDate: Date;
+  startDate?: Date;
+  endDate?: Date;
   urls?: Array<UrlDto>;
   stateId?: string;
   parentId?: string;

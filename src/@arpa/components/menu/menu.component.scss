@@ -1,0 +1,19 @@
+:host ::ng-deep {
+  .p-menu {
+    padding: 0;
+  }
+
+  .p-menu .p-menuitem-link:not(.p-disabled) {
+    transition: background-color .25s ease-in-out;
+
+    &.p-menuitem-link-active {
+      &:hover {
+        background-color: var(--surface-400);
+      }
+    }
+  }
+
+  .p-menuitem-link-active, .p-menuitem-link-active:hover {
+    background-color: var(--surface-400);
+  }
+}

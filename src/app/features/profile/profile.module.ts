@@ -7,7 +7,7 @@ import { UserComponent } from './user/user.component';
 import { MusicianComponent } from './musician/musician.component';
 import { ProfileService } from './profile.service';
 import { ProfileResolver } from './resolvers/profile.resolver';
-import { MyAppointmentsComponent } from './my-appointments/my-appointments.component';
+import { AppointmentsComponent } from './appointments/appointments.component';
 import { LanguageService } from '../../../@arpa/services/language.service';
 import { MenuModule } from '../../../@arpa/components/menu/menu.module';
 import { AvatarModule } from '../../../@arpa/components/avatar/avatar.module';
@@ -23,12 +23,13 @@ import { BadgeModule } from 'primeng/badge';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { QRCodeComponent } from './qrcode/qrcode.component';
+import { GraphQlFeedModule } from '../../../@arpa/components/graph-ql-feed/graph-ql-feed.module';
 
 @NgModule({
   declarations: [
     ProfileComponent,
     UserComponent,
-    MyAppointmentsComponent,
+    AppointmentsComponent,
     MusicianComponent,
     QRCodeComponent,
   ],
@@ -51,6 +52,7 @@ import { QRCodeComponent } from './qrcode/qrcode.component';
     BadgeModule,
     TableModule,
     InputTextModule,
+    GraphQlFeedModule,
   ],
   providers: [
     ProfileService,

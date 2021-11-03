@@ -7,9 +7,9 @@ export interface MusicianProfileCreateBodyDto {
   qualificationId: string;
   inquiryStatusInnerId?: string;
   inquiryStatusTeamId?: string;
-  doublingInstruments?: Array<DoublingInstrumentCreateBodyDto>;
+  doublingInstruments: Array<DoublingInstrumentCreateBodyDto>;
   preferredPositionsInnerIds: Array<string>;
   preferredPositionsTeamIds: Array<string>;
-  preferredPartsInner?: Array<number>;
-  preferredPartsTeam?: Array<number>;
+  preferredPartsInner: Array<number>;
+  preferredPartsTeam: Array<number>;
 }

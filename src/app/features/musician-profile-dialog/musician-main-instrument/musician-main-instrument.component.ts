@@ -6,10 +6,10 @@ import { SectionDto } from '../../../../@arpa/models/sectionDto';
 import { SelectItem } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { SelectValueService } from '../../../shared/services/select-value.service';
-import { first, map } from 'rxjs/operators';
+import { first, map, tap } from 'rxjs/operators';
 import { NotificationsService } from '../../../../@arpa/services/notifications.service';
-import { ViewState } from '../musician-layout/musician-layout.component';
 import { MusicianService } from '../services/musician.service';
+import { SectionService } from '../../../shared/services/section.service';
 
 @Component({
   selector: 'arpa-musician-main-instrument',
@@ -17,8 +17,6 @@ import { MusicianService } from '../services/musician.service';
   styleUrls: ['./musician-main-instrument.component.scss'],
 })
 export class MusicianMainInstrumentComponent implements OnInit {
-
-  public ViewState = ViewState;
 
   @Output()
   viewState = new EventEmitter<number>();
@@ -29,9 +27,9 @@ export class MusicianMainInstrumentComponent implements OnInit {
   public sections: Observable<SectionDto[]> = this.config.data.sections;
   public inquiryStatus: Observable<SelectItem[]>;
   public preferredParts: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
+  public preferredPositions: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
 
   selectedInstrument: any;
-  preferredPositions: any;
   state: string = 'createOrUpdate';
 
   constructor(public config: DynamicDialogConfig,
@@ -39,9 +37,9 @@ export class MusicianMainInstrumentComponent implements OnInit {
               public ref: DynamicDialogRef,
               private selectValueService: SelectValueService,
               private musicianService: MusicianService,
-              private notificationsService: NotificationsService) {
+              private notificationsService: NotificationsService,
+              private sectionsService: SectionService) {
     this.inquiryStatus = this.resolveSelect('InquiryStatusInner');
-    this.preferredPositions = this.resolveSelect('PreferredPositions');
     this.config.data.profile.pipe(first()).subscribe((profile: MusicianProfileDto) => {
       this.profile = profile;
     });
@@ -67,13 +65,29 @@ export class MusicianMainInstrumentComponent implements OnInit {
       this.sections.pipe(
         map(sections => sections.find(section => section.id === id) as SectionDto),
         first(),
-      ).subscribe((section: SectionDto) => {
-        if (section.instrumentPartCount && section.instrumentPartCount > 0) {
-          const options = [];
-          for (let i = 0; i < section.instrumentPartCount; i++) {
-            options.push({ label: ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'][i], value: i + 1 });
+        tap((section: SectionDto) => {
+          if (section.instrumentPartCount && section.instrumentPartCount > 0) {
+            const options = [];
+            for (let i = 0; i < section.instrumentPartCount; i++) {
+              options.push({ label: ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'][i], value: i + 1 });
+            }
+            this.preferredParts.next(options);
           }
-          this.preferredParts.next(options);
+        }),
+      );
+
+      this.sectionsService.getPositionsByInstrument(id).subscribe((positions) => {
+        if (positions.length) {
+          const options: any[] = [];
+          positions.forEach(position => {
+            options.push({
+              label: position.name,
+              value: position.id,
+            });
+          });
+          this.preferredPositions.next(options);
+        } else {
+          this.preferredPositions.next(undefined);
         }
       });
     });
@@ -122,7 +136,7 @@ export class MusicianMainInstrumentComponent implements OnInit {
     } else {
       this.musicianService.updateProfile(profile)
         .pipe(first())
-        .subscribe((result) => {
+        .subscribe(() => {
           this.config.data.profile.next(profile);
           this.notificationsService.success('INSTRUMENT_UPDATED', 'musician-profile-dialog');
           this.close();

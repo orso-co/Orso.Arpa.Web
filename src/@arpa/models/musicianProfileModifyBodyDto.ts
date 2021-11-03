@@ -13,6 +13,6 @@ export interface MusicianProfileModifyBodyDto {
   inquiryStatusTeamId?: string;
   preferredPositionsInnerIds: Array<string>;
   preferredPositionsTeamIds: Array<string>;
-  preferredPartsInner?: Array<number>;
-  preferredPartsTeam?: Array<number>;
+  preferredPartsInner: Array<number>;
+  preferredPartsTeam: Array<number>;
 }

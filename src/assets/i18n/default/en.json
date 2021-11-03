@@ -26,6 +26,7 @@
   "LOGIN": "Login",
   "LOGOUT": "Logout",
   "LOG_OUT": "Log out",
+  "MAIN_TITLE": "ARPA 2.0",
   "MEMBERDATA": "Member Data",
   "MESSAGES": "Messages",
   "MIN_LENGTH": "Expect {{requiredLength}} but got {{actualLength}}",
@@ -34,11 +35,14 @@
   "MUSICIANDATA": "Musician Data",
   "MY_APPOINTMENTS": "My Appointments",
   "MY_PROFILE": "My Profile",
+  "MY_PROJECTS": "My Projects",
   "NAME": "Name",
   "NEW": "New",
   "NO": "No",
   "NOTHING_SELECTED": "No Selection",
   "NOT_EQUAL": "Not equal",
+  "OFFLINE_QR_CODE": "Use your QR-Code to check-in.",
+  "OFFLINE_TITLE": "You are Offline!",
   "PASSWORD": "Password",
   "PASSWORD_CONFIRM": "Confirm Password",
   "PASSWORD_NORMAL": "ok",
@@ -56,7 +60,7 @@
   "TODAY": "Today",
   "USERNAME": "Username",
   "WEEK": "Week",
-  "WELCOME": "Welcome to Arpa 2.0",
+  "WELCOME": "Welcome to ARPA 2.0",
   "YES": "Yes",
   "auditlogs": {
     "AUDITLOGS": "Auditlogs",
@@ -71,11 +75,11 @@
   "error": {
     "BAD_REQUEST": "An error happened",
     "CONNECTION_ERROR": "Connection error, please try again later",
+    "FATAL_ERROR": "Oh, something went wrong!",
     "FORBIDDEN": "Access denied",
     "NOT_AUTHENTICATED": "Not logged in",
     "ROUTE_NOT_FOUND": "Page not found",
-    "SOMETHING_WENT_WRONG": "Oh, something went wrong!",
-    "FATAL_ERROR": "Oh, something went wrong!"
+    "SOMETHING_WENT_WRONG": "Oh, something went wrong!"
   },
   "norole": {
     "BE_PATIENT": "We ask for a little patience until you have been activated by our team. You will be notified of the activation by email."

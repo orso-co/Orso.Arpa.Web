@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import {
   ActivatedRoute,
   NavigationCancel,
@@ -26,7 +26,8 @@ import { MeService } from './shared/services/me.service';
       [showTransformOptions]="'translateY(-100%)'"
     ></p-toast>
     <section [ngClass]="{'mobile' : (isHandset | async)}">
-      <router-outlet></router-outlet>
+      <router-outlet *ngIf='networkStatus'></router-outlet>
+      <arpa-offline *ngIf='!networkStatus'></arpa-offline>
     </section>`,
 })
 export class AppComponent implements OnInit, OnDestroy {
@@ -51,6 +52,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private titleService: Title,
     private routeTitleService: RouteTitleService,
     private breakpointObserver: BreakpointObserver,
+    private cdr: ChangeDetectorRef,
   ) {
     this.defaultTitle = this.titleService.getTitle();
 
@@ -63,7 +65,7 @@ export class AppComponent implements OnInit, OnDestroy {
         filter((event) => event instanceof NavigationEnd),
         map(() => this.router),
       )
-      .subscribe((event) => {
+      .subscribe(() => {
           const title = this.getTitle(this.router.routerState, this.router.routerState.root);
           this.routeTitleService.setTitle(title.join(' '));
         },
@@ -102,6 +104,7 @@ export class AppComponent implements OnInit, OnDestroy {
       map(() => navigator.onLine),
     ).subscribe(status => {
       this.networkStatus = status;
+      this.cdr.detectChanges();
     });
     /**
      * Redirect to fatal error page if config is not ready.

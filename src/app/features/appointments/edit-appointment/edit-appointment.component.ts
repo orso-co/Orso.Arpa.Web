@@ -191,7 +191,7 @@ export class EditAppointmentComponent implements OnInit {
       });
   }
 
-  setRooms(venueId: string): void {
+  setRooms(venueId: string | undefined): void {
     if (venueId && this.venues) {
       const venue = this.venues.find((v) => v.id === venueId);
       if (venue) {

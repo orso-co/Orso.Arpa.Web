@@ -2,6 +2,7 @@ import { CurriculumVitaeReferenceDto } from './curriculumVitaeReferenceDto';
 import { EducationDto } from './educationDto';
 import { MusicianProfileDeactivationDto } from './musicianProfileDeactivationDto';
 import { MyDoublingInstrumentDto } from './myDoublingInstrumentDto';
+import { RegionPreferenceDto } from './regionPreferenceDto';
 
 export interface MyMusicianProfileDto {
   id?: string;
@@ -23,4 +24,6 @@ export interface MyMusicianProfileDto {
   preferredPartsInner?: Array<number>;
   documents?: Array<string>;
   deactivation?: MusicianProfileDeactivationDto;
+  regionPreferencesRehearsal?: Array<RegionPreferenceDto>;
+  regionPreferencesPerformance?: Array<RegionPreferenceDto>;
 }

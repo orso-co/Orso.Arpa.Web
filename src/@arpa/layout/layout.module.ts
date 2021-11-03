@@ -42,6 +42,10 @@ import { TranslateModule } from '../translate';
     ThemeSwitcherModule,
     LoadingModule,
   ],
+  exports: [
+    LayoutPageComponent,
+    LogoComponent,
+  ],
 })
 export class LayoutModule {
 }

@@ -48,4 +48,8 @@ export class SectionService {
   getTree(treeMaxLevel?: number): SectionTreeDto | undefined {
     return this.sectionTrees.get(treeMaxLevel);
   }
+
+  getPositionsByInstrument(id: string): Observable<SectionDto[]> {
+    return this.apiService.get<SectionDto[]>(`${this.baseUrl}/${id}/positions`);
+  }
 }

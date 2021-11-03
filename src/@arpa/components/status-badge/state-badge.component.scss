@@ -1,0 +1,7 @@
+:host ::ng-deep {
+  span.p-badge {
+    &.state-default, &.state-cancelled, &.state-archived {
+      background-color: var(--surface-d);
+    }
+  }
+}

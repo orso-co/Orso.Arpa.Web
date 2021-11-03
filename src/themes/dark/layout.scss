@@ -47,3 +47,24 @@ mat-sidenav-container {
   }
 }
 
+.cdk-overlay-container {
+  .mat-menu-panel {
+    border: 0 none;
+    box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%);
+
+    .p-button:focus {
+      box-shadow: none;
+    }
+
+    .p-button {
+      color: rgba(255, 255, 255, 0.87);
+    }
+
+    .p-button.p-button-text:enabled:hover {
+      background: rgba(255, 255, 255, 0.03);
+      color: rgba(255, 255, 255, 0.87);
+      border: none;
+    }
+  }
+}
+
