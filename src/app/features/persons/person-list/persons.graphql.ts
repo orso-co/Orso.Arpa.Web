@@ -27,6 +27,7 @@ export const PersonsQuery = gql`
       }
       totalCount
       items {
+        id
         givenName
         surname
         aboutMe
