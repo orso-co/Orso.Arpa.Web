@@ -9,7 +9,7 @@ export const environment = {
   },
   api: {
     protocol: 'http',
-    baseUrl: 'localhost:5000/arpa-api',
+    baseUrl: 'localhost:5000',
   },
   graphql: {
     protocol: 'http',
