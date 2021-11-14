@@ -8,16 +8,16 @@ export const environment = {
     key: '6LfS2X0aAAAAADWnno_N6FJzl2OhGI3ibz2EqPQQ',
   },
   api: {
-    protocol: 'http',
-    baseUrl: 'localhost:5000/arpa-api',
+    protocol: 'https',
+    baseUrl: 'https://orso-arpa-dev.azurewebsites.net/arpa-api',
   },
   graphql: {
-    protocol: 'http',
-    baseUrl: 'localhost:5000/arpa-api/graphql',
+    protocol: 'https',
+    baseUrl: 'https://orso-arpa-dev.azurewebsites.net/arpa-api/graphql',
   },
   web: {
-    protocol: 'http',
-    baseUrl: 'localhost:5000',
+    protocol: 'https',
+    baseUrl: 'https://orso-arpa-dev.azurewebsites.net',
   },
   arpa: {
     url: 'http://arpa.orso.berlin/',
@@ -27,8 +27,8 @@ export const environment = {
     email: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,4}$',
   },
   config: {
-    protocol: 'http',
-    baseUrl: 'localhost:5000/arpa-api/swagger/v1/swagger.json',
+    protocol: 'https',
+    baseUrl: 'https://orso-arpa-dev.azurewebsites.net/arpa-api/swagger/v1/swagger.json',
   },
   locale: {
     default: 'de',
