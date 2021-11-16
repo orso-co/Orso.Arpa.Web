@@ -27,10 +27,13 @@ export class ApiInterceptor implements HttpInterceptor {
     private configService: ConfigService,
     private translate: TranslateService,
   ) {
-    const { protocol, baseUrl } = this.configService.getEnv('api');
-    const { graphQlProtocol, graphQlBaseUrl } = this.configService.getEnv('graphql');
-    this.apiUrlBase = `${protocol}://${baseUrl}`;
-    this.graphQlUrlBase = `${graphQlProtocol}://${graphQlBaseUrl}`;
+    this.apiUrlBase = this.getFullUri('api');
+    this.graphQlUrlBase = this.getFullUri('graphql');
+  }
+
+  private getFullUri(key: string): string {
+    let { protocol, baseUrl } = this.configService.getEnv(key);
+    return `${protocol}://${baseUrl}`;
   }
 
   logout() {

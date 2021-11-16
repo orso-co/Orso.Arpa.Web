@@ -17,7 +17,7 @@ export const environment = {
   },
   web: {
     protocol: 'http',
-    baseUrl: 'localhost:5000',
+    baseUrl: 'localhost:4200',
   },
   arpa: {
     url: 'http://arpa.orso.berlin/',
