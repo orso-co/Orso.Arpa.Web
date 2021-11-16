@@ -9,11 +9,11 @@ export const environment = {
   },
   api: {
     protocol: 'https',
-    baseUrl: 'orso-arpa-staging.azurewebsites.net/arpa-api',
+    baseUrl: 'orso-arpa-staging.azurewebsites.net/api',
   },
   graphql: {
     protocol: 'https',
-    baseUrl: 'orso-arpa-staging.azurewebsites.net/arpa-api/graphql',
+    baseUrl: 'orso-arpa-staging.azurewebsites.net/graphql',
   },
   web: {
     protocol: 'https',
@@ -28,7 +28,7 @@ export const environment = {
   },
   config: {
     protocol: 'https',
-    baseUrl: 'orso-arpa-staging.azurewebsites.net/arpa-api/swagger/v1/swagger.json',
+    baseUrl: 'orso-arpa-staging.azurewebsites.net/swagger/v1/swagger.json',
   },
   locale: {
     default: 'de',
