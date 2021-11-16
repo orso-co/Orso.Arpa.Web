@@ -19,7 +19,7 @@ export class ApiService {
     private configService: ConfigService,
   ) {
     const { protocol, baseUrl } = configService.getEnv('api');
-    this.baseUrl = `${protocol}://${baseUrl}/api`;
+    this.baseUrl = `${protocol}://${baseUrl}`;
   }
 
   get<T>(path: string, params: HttpParams = new HttpParams(), reportProgress: boolean = true, observe?: 'body' | undefined, responseType?: any): Observable<T> {
