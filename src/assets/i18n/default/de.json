@@ -6,7 +6,7 @@
   "BASEDATA": "Stammdaten",
   "CANCEL": "Abbrechen",
   "CLEAR": "Zurücksetzen",
-  "CLOSE": "schliessen",
+  "CLOSE": "Schliessen",
   "CONTACTDATA": "Kontaktdaten",
   "CREATE": "Erstellen",
   "DASHBOARD": "Dashboard",
@@ -65,14 +65,14 @@
   "error": {
     "BAD_REQUEST": "Es ist ein Fehler aufgetreten",
     "CONNECTION_ERROR": "Verbindungsfehler, bitte später nochmal probieren",
-    "FATAL_ERROR": "Da ist etwas schiefgelaufen",
+    "FATAL_ERROR": "Schwerwiegender Fehler!",
     "FORBIDDEN": "Zugriff verweigert",
     "NOT_AUTHENTICATED": "Nicht angemeldet",
     "ROUTE_NOT_FOUND": "Seite nicht gefunden",
-    "SOMETHING_WENT_WRONG": "Da ist etwas schiefgelaufen"
+    "SOMETHING_WENT_WRONG": "Oups! Da ist etwas schiefgelaufen!"
   },
   "norole": {
-    "BE_PATIENT": "Wir bitten um ein wenig Geduld, bis du von unserem Team freigeschaltet wurdest. Du wirst per E-Mail über die erfolgte Freischaltung benachrichtigt."
+    "BE_PATIENT": "Wir bitten um ein wenig Geduld, bis du von unserem Team freigeschaltet wurdest. Du wirst per E-Mail benachrichtigt."
   },
   "primeng": {
     "accept": "Ja",
