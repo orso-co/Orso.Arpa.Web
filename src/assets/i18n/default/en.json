@@ -6,7 +6,7 @@
   "BASEDATA": "Base Data",
   "CANCEL": "Cancel",
   "CLEAR": "Clear",
-  "CLOSE": "schliessen",
+  "CLOSE": "Close",
   "CONTACTDATA": "Contact Data",
   "CREATE": "Create",
   "DASHBOARD": "Dashboard",
@@ -45,13 +45,13 @@
   "OFFLINE_TITLE": "You are Offline!",
   "PASSWORD": "Password",
   "PASSWORD_CONFIRM": "Confirm Password",
-  "PASSWORD_NORMAL": "ok",
+  "PASSWORD_NORMAL": "OK",
   "PASSWORD_STRONG": "strong",
-  "PASSWORD_WEAK": "to weak",
+  "PASSWORD_WEAK": "too weak",
   "PERSONS": "Personen",
   "PHONENUMBER": "Phone Number",
   "PROJECTS": "Projects",
-  "RECENT_ACTIVITY": "Recent Activiy",
+  "RECENT_ACTIVITY": "Recent Activtiy",
   "REQUIRED": "This field is required",
   "SAVE": "Save",
   "SEARCH": "Search",
@@ -73,16 +73,16 @@
     "TYPE": "Type"
   },
   "error": {
-    "BAD_REQUEST": "An error happened",
+    "BAD_REQUEST": "An error occured",
     "CONNECTION_ERROR": "Connection error, please try again later",
-    "FATAL_ERROR": "Oh, something went wrong!",
+    "FATAL_ERROR": "Fatal Error!",
     "FORBIDDEN": "Access denied",
     "NOT_AUTHENTICATED": "Not logged in",
     "ROUTE_NOT_FOUND": "Page not found",
-    "SOMETHING_WENT_WRONG": "Oh, something went wrong!"
+    "SOMETHING_WENT_WRONG": "Oups! Something went wrong!"
   },
   "norole": {
-    "BE_PATIENT": "We ask for a little patience until you have been activated by our team. You will be notified of the activation by email."
+    "BE_PATIENT": "We ask for a little patience until your account has been activated by our team. You will be notified by email."
   },
   "primeng": {
     "accept": "Yes",
@@ -160,13 +160,13 @@
       "Dec"
     ],
     "noFilter": "No Filter",
-    "notContains": "Not contains",
-    "notEquals": "Not equals",
+    "notContains": "Does not contain",
+    "notEquals": "Is not equal to",
     "reject": "No",
     "removeRule": "Remove Rule",
     "startsWith": "Starts with",
     "today": "Today",
     "upload": "Upload",
-    "weekHeader": "Wk"
+    "weekHeader": "Week"
   }
 }
