@@ -1,0 +1,24 @@
+{
+    "ADDITIONAL_PROFILES": "prefis adicionais" ,
+    "DEACTIVATED_PROFILES": "prefis desativados",
+    "MAIN_PROFILE": "prefil principal",
+    "MUSICIAN_PROFILES": "perfis musicanos" ,
+    "MY_APPOINTMENTS": "os meus eventos",
+    "MY_PROFILES": "os meus perfis",
+    "MY_PROJECTS": "os meus projetos",
+    "MY_QR_CODE": "o meu código QR",
+    "MY_QR_CODE_DESCRIPTION": "este é o seu código QR pessoal e pode ser usado para verificar eventos" ,
+    "MY_QR_CODE_INFO": "o código QR estará disponível em modo offline",
+    "PAGE_TITLE": "perfil" ,
+    "PREDICTION": "previsão de momeação" ,
+    "PREDICTION_SET": "conjunto de sucesso de previsão de participaçã0 de nomeação",
+    "SEND_QR_CODE": "enviar código QR por e-mail",
+    "SEND_QR_CODE_SUCCESS": "QR-código enviar" ,
+    "UPCOMING": "a seguir",
+    "USER_PROFILE": "prefil do utilizador",
+    "USER_PROFILE_DATA": "o meu perfil",
+    "USER_PROFILE_UPDATED": "atualização de perfil",
+    "USER_PROFILE_UPDATE_ERROR": "não foi possível atualizar p perfil"
+  }
+  
+
