@@ -1,6 +1,6 @@
 {
     "AUDITLOGS": "Auditlogs",
-    "CHANGED_BY": "Alterado po",
+    "CHANGED_BY": "Alterado por",
     "DETAILS": "Detalhes da entidade",
     "NEW_VALUES": "Novos valores",
     "OLD_VALUES": "Velho valores" ,
@@ -8,4 +8,3 @@
     "TIME": "Hora",
     "TYPE": "Tipo"
 }
-    
