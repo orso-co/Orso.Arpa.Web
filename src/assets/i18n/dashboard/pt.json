@@ -1,0 +1,19 @@
+{
+"ACTIVE": "ativo",
+"ASSIGN_ROLES": "Atribuir funções",
+"CANCELLED": "cancelado" ,
+"DELETE_USER": "Apagar utilitário",
+"DONE": "feito",
+"NOT_CONFIRMED": "não confirmado",
+"PAGE_TITLE": "painel de instrumentos",
+"PENDING": "pendente",
+"PROCEED": "Tem a certeza que pretende eliminar permanentemente este usuário?",
+"REGISTERED_SINCE": "Inscrito desde",
+"REGISTERED": "registado",
+"REGISTRATION_DATE": "inscrição",
+"STATE": "estado",
+"USER_DELETED": "O usuário foi eliminado",
+"USER_MANAGEMENT": "gestão de utilizadores",
+"USER_ROLES_SET": "A atribuição de funções foi salva",
+"USERS": "utilizadores"
+}

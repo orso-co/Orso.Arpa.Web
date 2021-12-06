@@ -62,16 +62,7 @@
   "WEEK": "Week",
   "WELCOME": "Welcome to ARPA 2.0",
   "YES": "Yes",
-  "auditlogs": {
-    "AUDITLOGS": "Auditlogs",
-    "CHANGED_BY": "Changed by",
-    "DETAILS": "Entity Details",
-    "NEW_VALUES": "New Values",
-    "OLD_VALUES": "Old Values",
-    "TABLE": "Table",
-    "TIME": "Time",
-    "TYPE": "Type"
-  },
+
   "error": {
     "BAD_REQUEST": "An error occured",
     "CONNECTION_ERROR": "Connection error, please try again later",
