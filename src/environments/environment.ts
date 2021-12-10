@@ -31,7 +31,13 @@ export const environment = {
     baseUrl: 'localhost:5000/swagger/v1/swagger.json',
   },
   locale: {
-    default: 'de',
+    default: 'en',
+    locales: {
+      'de': 'Deutsch',
+      'en': 'Englisch',
+      'pt': 'Portugiesisch',
+      'fr': 'Französisch',
+    },
   },
 };
 
