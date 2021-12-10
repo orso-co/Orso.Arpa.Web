@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'arpa-person-basedata',
   templateUrl: './person-basedata.component.html',
   styleUrls: ['./person-basedata.component.scss']
 })
-export class PersonBasedataComponent implements OnInit {
+export class PersonBasedataComponent  {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+
 
 }
