@@ -6,11 +6,15 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '../../../@arpa/translate';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../@arpa/services/language.service';
+import { PersonBasedataComponent } from './person-basedata/person-basedata.component';
+import { PersonContactdataComponent } from './person-contactdata/person-contactdata.component';
 
 @NgModule({
   declarations: [
     PersonDialogEntryComponent,
     PersonLayoutComponent,
+    PersonBasedataComponent,
+    PersonContactdataComponent,
   ],
   imports: [
     CommonModule,

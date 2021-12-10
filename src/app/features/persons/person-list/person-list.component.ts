@@ -25,6 +25,8 @@ export class PersonListComponent {
   columns: ColumnDefinition<PersonDto>[] = [
     { label: 'SURNAME', property: 'surname', type: 'text' },
     { label: 'GIVEN_NAME', property: 'givenName', type: 'text' },
+    { label: 'ID', property: 'id', type: 'text', show: false },
+    { label: 'ABOUTME', property: 'aboutMe', type: 'text', show: false },
     { label: 'EXPERIENCE_LEVEL', property: 'experienceLevel', type: 'text', show: true },
     { label: 'RELIABILITY', property: 'reliability', type: 'text', show: true },
     { label: 'GENERAL_PREFERENCE', property: 'generalPreference', type: 'text', show: true },
