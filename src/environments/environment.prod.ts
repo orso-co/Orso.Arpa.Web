@@ -27,6 +27,12 @@ export const environment = {
     baseUrl: 'orso-arpa.azurewebsites.net/swagger/v1/swagger.json',
   },
   locale: {
-    default: 'de',
+    default: 'en',
+    locales: {
+      'de': 'Deutsch',
+      'en': 'Englisch',
+      'pt': 'Portugiesisch',
+      'fr': 'Französisch',
+    },
   },
 };
