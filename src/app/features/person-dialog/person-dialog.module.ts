@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../@arpa/services/language.service';
 import { PersonBasedataComponent } from './person-basedata/person-basedata.component';
 import { PersonContactdataComponent } from './person-contactdata/person-contactdata.component';
+import { TabViewModule } from 'primeng/tabview';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,9 @@ import { PersonContactdataComponent } from './person-contactdata/person-contactd
 
     // Arpa Lib
     TranslateModule.forChild(['person-dialog']),
+
+    // NG Prime Dependencies
+    TabViewModule,
   ],
 })
 export class PersonDialogModule {

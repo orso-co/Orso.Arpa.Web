@@ -46,7 +46,7 @@ export class PersonListComponent {
   }
 
   onRowClick(person: PersonDto) {
-    this.router.navigate([person.id, { outlets: { 'modal': person.id } }], {
+    this.router.navigate([{ outlets: { 'modal': ['detail', person.id] } }], {
       relativeTo: this.route,
     });
   }

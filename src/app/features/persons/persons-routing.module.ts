@@ -8,7 +8,7 @@ const routes: Routes = [
     component: PersonListComponent,
     children: [
       {
-        path: ':id',
+        path: 'detail',
         outlet: 'modal',
         loadChildren: () => import('../person-dialog/person-dialog.module').then(m => m.PersonDialogModule),
       },

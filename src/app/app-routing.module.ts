@@ -116,7 +116,6 @@ const routes: Routes = [
     scrollPositionRestoration: 'enabled',
     relativeLinkResolution: 'corrected',
     anchorScrolling: 'enabled',
-    enableTracing: true
   })],
   exports: [RouterModule],
 })

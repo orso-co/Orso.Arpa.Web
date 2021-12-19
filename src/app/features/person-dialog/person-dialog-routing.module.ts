@@ -5,14 +5,17 @@ import { PersonResolver } from './resolvers/person.resolver';
 
 const routes: Routes = [
   {
-    path: 'create',
-    component: PersonDialogEntryComponent,
-  },
-  {
     path: ':personId',
     component: PersonDialogEntryComponent,
     resolve: {
-      person: PersonResolver
+      person: PersonResolver,
+    },
+  },
+  {
+    path: '',
+    component: PersonDialogEntryComponent,
+    resolve: {
+      person: PersonResolver,
     },
   },
 ];
