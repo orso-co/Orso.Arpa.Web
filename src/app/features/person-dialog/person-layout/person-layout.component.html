@@ -1,2 +1,12 @@
-<p>Hier soll Formular erscheinen um Personen Details zu sehen und zu editieren</p>
+<p-tabView [(activeIndex)]='index'>
+  <p-tabPanel header="{{ 'person-dialog.BASE_DATA' | translate }}"
+              leftIcon='pi pi-user'>
+    <arpa-person-basedata>Hier sollen die Stammdaten erscheinen...</arpa-person-basedata>
+  </p-tabPanel>
+  <p-tabPanel header="{{ 'person-dialog.CONTACT_DATA' | translate }}"
+              leftIcon='pi pi-phone'>
+    <arpa-person-contactdata>Hier sollen die Kontaktdaten erscheinen...</arpa-person-contactdata>
+  </p-tabPanel>
+</p-tabView>
 
+{{ person | async | json }}

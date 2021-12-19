@@ -1,19 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { PersonDto } from './../../../../@arpa/models/personDto';
+import { PersonDto } from '../../../../@arpa/models/personDto';
 import { Observable } from 'rxjs';
-
 
 
 @Component({
   selector: 'arpa-person-layout',
   templateUrl: './person-layout.component.html',
-  styleUrls: ['./person-layout.component.scss']
+  styleUrls: ['./person-layout.component.scss'],
 })
 export class PersonLayoutComponent {
 
   public index = 0;
-  public profile: Observable<PersonDto> = this.config.data.profile;
+  public person: Observable<PersonDto> = this.config.data.person;
 
   constructor(public config: DynamicDialogConfig) {
 
