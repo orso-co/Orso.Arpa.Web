@@ -1,0 +1,59 @@
+{
+    "ADDITIONALDATA": "Détails",
+    "ALLDAY": "toute la journée",
+    "APPOINTMENT_CREATED": "Événement créé",
+    "APPOINTMENT_DELETED": "Événement supprimé",
+    "APPOINTMENT_UPDATED": "Événement mis à jour",
+    "ARE_YOU_SURE": "Etes-vous sûr de vouloir supprimer définitivement le rendez-vous ainsi que les informations rattachées à celui-ci?",
+    "BASICDATA": "Informations générales",
+    "CATEGORY": "Catégorie",
+    "CREATE": "Créer un nouvel événement",
+    "DETAILSINTERNAL": "Détails privés",
+    "DETAILSPUBLIC": "Détails publics",
+    "EDIT": "Modifier l'événement",
+    "END": "Fin",
+    "EXPECTATION": " Mes attentes",
+    "LEVEL": "qualification",
+    "NEW_APPOINTMENT_CONFIRMATION": "Aimerais -tu fixer un nouveau rendez-vous pour {{value}}?",
+    "NORECORDS": "Aucun enregistrement n'a été trouvée",
+    "PAGE_TITLE": "Calendrier",
+    "PARTICIPATIONSTATUS": "Statut de participation",
+    "PARTICIPATIONS": "Participations",
+    "PREDICTION": "Prévision",
+    "PROJECTS": "Projets",
+    "PROJECT_ADDED": "Projet ajouté",
+    "PROJECT_REMOVED": "Projet supprimé",
+    "RESULT": "Résultat",
+    "RESULTS": "Resultats",
+    "RESULT_SET": "Résultat obtenu",
+    "ROOMS": "Salles",
+    "ROOM_ADDED": "Salle ajoutée",
+    "ROOM_REMOVED": "Salle supprimée",
+    "SALARY": "Rémunération",
+    "SALARYPATTERN": "Modèle de rémunération",
+    "SAVECLOSE": "Sauvegarder et fermer",
+    "SAVECONTINUE": "Sauvegarder et poursuivre",
+    "SECTIONS": "Registres",
+    "SECTION_ADDED": "Registre ajouté",
+    "SECTION_REMOVED": "Registre supprimé",
+    "START": "Début",
+    "STATUS": "Statut",
+    "TITLE": "Nom de l'événement",
+    "VENUE": "Lieu",
+    "VENUE_SET": "Lieu de l'événement choisi "
+}
+    
+    
+   
+    
+    
+   
+    
+   
+    
+  
+    
+    
+   
+   
+   
