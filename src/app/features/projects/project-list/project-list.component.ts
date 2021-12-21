@@ -39,10 +39,10 @@ export class ProjectListComponent {
   columns: ColumnDefinition<ProjectDto>[] = [
     { label: '#', property: 'isCompleted', type: 'template', template: 'completed', cssClasses: ['start'] },
     { label: 'TITLE', property: 'title', type: 'text' },
-    { label: 'GENRE', property: 'genreId', type: 'state', stateTable: 'Project', show: true},
+    { label: 'GENRE', property: 'genreId', type: 'state', stateTable: 'Project', stateProperty: 'genre', show: true},
     { label: 'START', property: 'startDate', type: 'date' },
     { label: 'END', property: 'endDate', type: 'date' },
-    { label: 'STATE', property: 'stateId', type: 'state', stateTable: 'Project', show: true },
+    { label: 'STATE', property: 'stateId', type: 'state', stateTable: 'Project', stateProperty: 'state', show: true },
   ];
 
   @ViewChild('feedSource') private feedSource: GraphQlFeedComponent;
