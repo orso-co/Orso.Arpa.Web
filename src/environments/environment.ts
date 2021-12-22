@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   captcha: {
-    key: '6LfS2X0aAAAAADWnno_N6FJzl2OhGI3ibz2EqPQQ',
+    key: '6Le-g3QaAAAAAJmIN-s37441yuZPBp1M7nqUwtED',
   },
   api: {
     protocol: 'http',
