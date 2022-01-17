@@ -31,6 +31,7 @@ export interface ColumnDefinition<T extends Record<string, any>> {
   badgeStateMap?: StateItem[];
   // Required for type "state" because it's dynamically resolved.
   stateTable?: string;
+  stateProperty?: string;
 }
 
 /**
@@ -160,11 +161,11 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
     return this.columns.filter(column => column.show !== undefined).length > 0;
   }
 
-  resolveState(table: string, id: string) {
+  resolveState(table: string, property: string = 'State', id: string) {
     if (!this.stateStreams[table]) {
-      this.stateStreams[table] = this.selectValueService.load(table, 'State')
+      this.stateStreams[table] = this.selectValueService.load(table, property)
         .pipe(
-          map(() => this.selectValueService.get(table, 'State')),
+          map(() => this.selectValueService.get(table, property)),
           share(),
         );
     }

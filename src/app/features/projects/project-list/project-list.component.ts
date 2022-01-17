@@ -32,15 +32,17 @@ import { GraphQlFeedComponent } from '../../../../@arpa/components/graph-ql-feed
 export class ProjectListComponent {
 
   state: Observable<SelectItem[]>;
+  genre: Observable<SelectItem[]>;
 
   query: DocumentNode = ProjectsQuery;
 
   columns: ColumnDefinition<ProjectDto>[] = [
     { label: '#', property: 'isCompleted', type: 'template', template: 'completed', cssClasses: ['start'] },
     { label: 'TITLE', property: 'title', type: 'text' },
+    { label: 'GENRE', property: 'genreId', type: 'state', stateTable: 'Project', stateProperty: 'genre', show: true},
     { label: 'START', property: 'startDate', type: 'date' },
     { label: 'END', property: 'endDate', type: 'date' },
-    { label: 'STATE', property: 'stateId', type: 'state', stateTable: 'Project', show: true },
+    { label: 'STATE', property: 'stateId', type: 'state', stateTable: 'Project', stateProperty: 'state', show: true },
   ];
 
   @ViewChild('feedSource') private feedSource: GraphQlFeedComponent;
@@ -58,10 +60,20 @@ export class ProjectListComponent {
   ) {
     this.state = this.selectValueService.load('Project', 'State')
       .pipe(map(() => this.selectValueService.get('Project', 'State')));
+
+    this.genre = this.selectValueService.load('Project', 'Genre')
+      .pipe(map(() => this.selectValueService.get('Project', 'Genre')));
   }
 
   public getState(id: string) {
     return this.state.pipe<string>(map((items: SelectItem[]) => {
+      const item: any = items.find((i) => i.value === id);
+      return item ? item.label : '';
+    }));
+  }
+
+  public getGenre(id: string) {
+    return this.genre.pipe<string>(map((items: SelectItem[]) => {
       const item: any = items.find((i) => i.value === id);
       return item ? item.label : '';
     }));

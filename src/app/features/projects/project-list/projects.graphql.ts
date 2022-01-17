@@ -40,6 +40,11 @@ export const ProjectsQuery = gql`
         stateId
         isCompleted
         genreId
+        genre {
+          selectValue {
+            name
+          }
+        }
         typeId
         parentId
         shortTitle

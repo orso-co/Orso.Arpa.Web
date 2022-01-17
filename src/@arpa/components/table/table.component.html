@@ -142,7 +142,7 @@
             <td [classList]='column.cssClasses'>
               <arpa-state-badge
                 [stateMap]='column.badgeStateMap'
-                [value]='resolveState(column.stateTable || "",  resolveValue(column.property, row)) | async'
+                [value]='resolveState(column.stateTable || "", column.stateProperty, resolveValue(column.property, row)) | async'
               ></arpa-state-badge>
             </td>
           </ng-container>
