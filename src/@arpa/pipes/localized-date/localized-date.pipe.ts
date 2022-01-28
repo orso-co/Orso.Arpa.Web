@@ -16,7 +16,11 @@ export class LocalizedDatePipe implements PipeTransform {
   constructor(private translateService: TranslateService, private datePipe: DatePipe) {}
 
   transform(value: any, pattern: string = 'mediumDate', timezone: string = 'de'): any {
-    return this.datePipe.transform(value, pattern, timezone, this.translateService.currentLang);
+    try {
+      return this.datePipe.transform(value, pattern, timezone, this.translateService.currentLang);
+    } catch (e) {
+      return this.datePipe.transform(value, pattern, timezone, 'en-GB');
+    }
   }
 
 }
