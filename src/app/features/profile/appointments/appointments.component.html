@@ -35,7 +35,7 @@
     <td class='p-d-flex p-jc-between'>
       <div class='p-flex-column p-mr-4 date'>
         <span class='day'>{{ appointment.startTime | date: 'dd':'locale(de)' }}</span>
-        <span class='day-name'>{{ appointment.startTime | date: 'EE':'locale(de)' }}</span>
+        <span class='day-name'>{{ appointment.startTime | localizedDate: 'EE' }}</span>
       </div>
       <div class='p-flex-column p-mr-2 details'>
         <span class='name'>{{ appointment.name }}
