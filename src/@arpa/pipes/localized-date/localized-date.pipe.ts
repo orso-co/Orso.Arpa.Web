@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
  * Displays the date and time according to the current language's conventions
  * If additional languages are added, their locale data needs to imported in the localized date pipe module
  * Default timezone is German time
+ * If locale data can't be found, date is displayed in English
  */
 @Pipe({
   name: 'localizedDate',
@@ -16,7 +17,11 @@ export class LocalizedDatePipe implements PipeTransform {
   constructor(private translateService: TranslateService, private datePipe: DatePipe) {}
 
   transform(value: any, pattern: string = 'mediumDate', timezone: string = 'de'): any {
-    return this.datePipe.transform(value, pattern, timezone, this.translateService.currentLang);
+    try {
+      return this.datePipe.transform(value, pattern, timezone, this.translateService.currentLang);
+    } catch (e) {
+      return this.datePipe.transform(value, pattern, 'de', 'en-GB')
+    }
   }
 
 }
