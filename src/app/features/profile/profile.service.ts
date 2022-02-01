@@ -11,10 +11,33 @@ export class ProfileService {
   constructor(private menuService: MenuService, private router: Router) {
     this.menuService.add('profile', [
       {
-        label: 'profile.USER_PROFILE',
+        label: 'profile.MY_DATA',
         command: (event) => {
           this.menuEvents.next(event);
           this.router.navigate(['/arpa/profile/user']);
+        },
+      },
+      {
+        label: 'profile.MY_MUSICIANPROFILE',
+        roles: ['performer'],
+        command: (event) => {
+          this.menuEvents.next(event);
+          this.router.navigate(['/arpa/profile/musician']);
+        },
+      },
+
+      {
+        label: 'profile.MY_PROJECTS',
+        command: (event) => {
+          this.menuEvents.next(event);
+          this.router.navigate(['/arpa/profile/my-projects']);
+        },
+      },
+      {
+        label: 'profile.MY_APPOINTMENTS',
+        command: (event) => {
+          this.menuEvents.next(event);
+          this.router.navigate(['/arpa/profile/appointments']);
         },
       },
       {
@@ -23,21 +46,6 @@ export class ProfileService {
         command: (event) => {
           this.menuEvents.next(event);
           this.router.navigate(['/arpa/profile/qrcode']);
-        },
-      },
-      {
-        label: 'profile.MUSICIAN_PROFILES',
-        roles: ['performer'],
-        command: (event) => {
-          this.menuEvents.next(event);
-          this.router.navigate(['/arpa/profile/musician']);
-        },
-      },
-      {
-        label: 'profile.MY_APPOINTMENTS',
-        command: (event) => {
-          this.menuEvents.next(event);
-          this.router.navigate(['/arpa/profile/appointments']);
         },
       },
     ] as Array<MenuItemArpa>);

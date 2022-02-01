@@ -9,6 +9,8 @@ import { RoleNames } from '../../../@arpa/models/roleNames';
 import { ProfileMusicianResolver } from './resolvers/profile-musician.resolver';
 import { SectionsResolver } from './resolvers/sections.resolver';
 import { QRCodeComponent } from './qrcode/qrcode.component';
+import { MyProjectsComponent } from './my-projects/my-projects.component';
+
 
 const routes: Routes = [
   {
@@ -40,6 +42,11 @@ const routes: Routes = [
       {
         path: 'appointments',
         component: AppointmentsComponent,
+        data: { roles: [RoleNames.performer, RoleNames.staff, RoleNames.admin] },
+      },
+      {
+        path: 'my-projects',
+        component: MyProjectsComponent,
         data: { roles: [RoleNames.performer, RoleNames.staff, RoleNames.admin] },
       },
       {
