@@ -1,3 +1,4 @@
+import { IframeWidgetComponent } from './iframe-widget/iframe-widget.component';
 import { UserWidgetComponent } from './user-widget/user-widget.component';
 import { MessagesWidgetComponent } from './messages-widget/messages-widget.component';
 import { ProjectsWidgetComponent } from './projects-widget/projects-widget.component';
@@ -14,6 +15,7 @@ export const widgets: Record<string, any> = {
   'ChartWidget': ChartWidgetComponent,
   'AppointmentsWidget': AppointmentsWidgetComponent,
   'ChoirGridWidgetComponent': ChoirGridWidgetComponent,
+  'IframeWidget': IframeWidgetComponent,
 };
 
 export const dashboards: Record<string, Record<string, any>> = {
@@ -26,6 +28,8 @@ export const dashboards: Record<string, Record<string, any>> = {
       title: 'TASKS',
     }], ['ProjectsWidget', {
       title: 'PROJECTS',
+    }], ['IframeWidget', {
+      title: 'ORSO-Website',
     }]],
   },
   staff: {
