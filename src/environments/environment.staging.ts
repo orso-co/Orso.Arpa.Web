@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   captcha: {
-    key: '6Le-g3QaAAAAAJmIN-s37441yuZPBp1M7nqUwtED',
+    key: '6Lf-AkIdAAAAAEIr-TKvo3KayGf4qTqwmsOuxMLH',
   },
   api: {
     protocol: 'https',
@@ -24,7 +24,7 @@ export const environment = {
   },
   validation: {
     password: '(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}\\[\\]:;<>,.?/~_+-=|]).{5,256}',
-    email: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,4}$',
+    email: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,6}$',
   },
   config: {
     protocol: 'https',

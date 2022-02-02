@@ -19,7 +19,7 @@
                     <label for='starttime'>{{ 'appointments.START' | translate }} *</label>
                     <p-calendar
                       [required]='true'
-                      [showTime]='true'
+                      [showTime]='!isAllDayEvent'
                       [showWeek]='true'
                       dateFormat='dd. MM yy'
                       formControlName='startTime'
@@ -43,7 +43,7 @@
                     <label for='endtime'>{{ 'appointments.END' | translate }} *</label>
                     <p-calendar
                       [required]='true'
-                      [showTime]='true'
+                      [showTime]='!isAllDayEvent'
                       [showWeek]='true'
                       dateFormat='dd. MM yy'
                       formControlName='endTime'
