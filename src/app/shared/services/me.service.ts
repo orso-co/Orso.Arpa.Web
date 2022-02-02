@@ -4,6 +4,7 @@ import { finalize, first, map, shareReplay, switchMap, tap } from 'rxjs/operator
 import { ApiService } from '../../../@arpa/services/api.service';
 import { MyUserProfileDto } from '../../../@arpa/models/myUserProfileDto';
 import { MyAppointmentListDto } from '../../../@arpa/models/myAppointmentListDto';
+import { MyProjectListDto } from 'src/@arpa/models/myProjectListDto';
 import { MusicianProfileDto } from '../../../@arpa/models/musicianProfileDto';
 import { SetMyProjectParticipationBodyDto } from '../../../@arpa/models/setMyProjectParticipationBodyDto';
 import { AuthService } from '../../../@arpa/services/auth.service';
@@ -56,9 +57,21 @@ export class MeService {
     ).pipe(shareReplay());
   }
 
+  getMyProjects(take: number | null, skip: number | null): Observable<MyProjectListDto> {
+    return this.apiService.get<MyProjectListDto>(
+      `${this.baseUrl}/my-projects?limit=${take}&offset=${skip}`,
+    ).pipe(shareReplay());
+  }
+
   setAppointmentPrediction(appointmentId: string, predictionId: string): Observable<any> {
     return this.apiService.put(
       `${this.baseUrl}/appointments/${appointmentId}/participation/prediction/${predictionId}`
+      , {},
+    ).pipe(shareReplay());
+  }
+  setProjectParticipationStatus(projectId: string, participationStatusInnerId: string): Observable<any> {
+    return this.apiService.put(
+      `${this.baseUrl}/projects/${projectId}/participations/`
       , {},
     ).pipe(shareReplay());
   }

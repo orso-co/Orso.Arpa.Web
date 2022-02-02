@@ -23,28 +23,8 @@ const routes: Routes = [
           menu: {
             name: 'feature',
             label: 'DASHBOARD',
-            icon: 'icon-list',
+            icon: 'pi pi-home',
           },
-        },
-      },
-      {
-        path: 'appointments',
-        loadChildren: () => import('./features/appointments/appointments.module').then(m => m.AppointmentsModule),
-        data: {
-          roles: ['staff'],
-          title: 'appointments.PAGE_TITLE',
-          menu: {
-            name: 'feature',
-            label: 'APPOINTMENTS',
-            icon: 'icon-calendar',
-          },
-        },
-      },
-      {
-        path: 'profile',
-        loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule),
-        data: {
-          title: 'profile.PAGE_TITLE',
         },
       },
       {
@@ -56,19 +36,40 @@ const routes: Routes = [
           menu: {
             name: 'feature',
             label: 'PROJECTS',
-            icon: 'icon-stack',
+            icon: 'pi pi-th-large',
           },
         },
       },
       {
-        path: 'persons',
+        path: 'calendar',
+        loadChildren: () => import('./features/appointments/appointments.module').then(m => m.AppointmentsModule),
+        data: {
+          roles: ['staff'],
+          title: 'appointments.PAGE_TITLE',
+          menu: {
+            name: 'feature',
+            label: 'CALENDAR',
+            icon: 'pi pi-calendar',
+          },
+        },
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule),
+        data: {
+          title: 'profile.PAGE_TITLE',
+        },
+      },
+
+      {
+        path: 'contacts',
         loadChildren: () => import('./features/persons/persons.module').then(m => m.PersonsModule),
         data: {
           roles: ['staff'],
-          title: 'PERSONS',
+          title: 'CONTACTS',
           menu: {
             name: 'feature',
-            label: 'PERSONS',
+            label: 'CONTACTS',
             icon: 'pi pi-users',
           },
         },
@@ -82,7 +83,7 @@ const routes: Routes = [
           menu: {
             name: 'feature',
             label: 'MUPRO',
-            icon: 'pi pi-users',
+            icon: 'pi pi-clone',
           },
         },
       },
@@ -95,7 +96,46 @@ const routes: Routes = [
           menu: {
             name: 'feature',
             label: 'AUDITLOG',
-            icon: 'pi pi-search-plus',
+            icon: 'pi pi-info-circle',
+          },
+        },
+      },
+      {
+        path: '*',
+        loadChildren: () => import('./features/profile/profile.module').then((mod) => mod.ProfileModule),
+        data: {
+          roles: ['performer', 'staff', 'admin'],
+          title: 'MY_PROFILE',
+          menu: {
+            name: 'feature',
+            label: '- - - - - - - - - - - - - - -',
+          },
+        },
+      },
+      {
+        path: 'my-data',
+        loadChildren: () => import('./features/profile/profile.module').then((mod) => mod.ProfileModule),
+        data: {
+          roles: ['performer', 'staff', 'admin'],
+          title: 'MY_DATA',
+          menu: {
+            name: 'feature',
+            label: 'MY_DATA',
+            icon: 'pi pi-user',
+          },
+        },
+      },
+
+      {
+        path: 'profile/my-projects',
+        loadChildren: () => import('./features/profile/profile.module').then((mod) => mod.ProfileModule),
+        data: {
+          roles: ['performer', 'admin'],
+          title: 'MY_PROJECTS',
+          menu: {
+            name: 'feature',
+            label: 'MY_PROJECTS',
+            icon: 'pi pi-th-large',
           },
         },
       },
