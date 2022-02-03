@@ -41,8 +41,8 @@
     {
       "name": "api-performance",
       "urls": [
-        "*/api/sections",
-        "*/api/tables/*/properties/*"
+        "*/sections",
+        "*/tables/*/properties/*"
       ],
       "version": 1,
       "cacheConfig": {

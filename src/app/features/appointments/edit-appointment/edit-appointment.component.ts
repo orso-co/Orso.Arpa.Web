@@ -339,6 +339,8 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   onAllDayChanged(isAllDay: boolean) {
+    this.isAllDayEvent = isAllDay;
+
     if (isAllDay) {
       const endDate = new Date(this.formGroup.get('endTime')?.value);
       const startDate = new Date(this.formGroup.get('startTime')?.value);

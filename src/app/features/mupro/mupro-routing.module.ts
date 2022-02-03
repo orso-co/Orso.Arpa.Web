@@ -11,7 +11,6 @@ const routes: Routes = [
   {
     path: '',
     component: MuproComponent,
-    resolve: { persons: PersonsService },
     children: [
       {
         path: ':personId',

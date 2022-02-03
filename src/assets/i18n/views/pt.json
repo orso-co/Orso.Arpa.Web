@@ -1,0 +1,22 @@
+{
+  "ACCOUNT_ACTIVATION": "ativação de conta" ,
+  "CHANGE_PASSWORD": "alterar senha" ,
+  "EMAIL_CONFIRM_SUCCESS": "obrigado por confirmar o seu endereço de e-mail" ,
+  "ERROR": "alguma coisa correu mal",
+  "FORGOT_PASSWORD": "enviar nova senha" ,
+  "FORGOT_PASSWORD_SEND_MAIL_SUCCESS": "um link para atrubuir uma navo senha foi enviado para o seu endereço de e-mail",
+  "LOGGED_OUT": "vemo-nos em breve em ARPA",
+  "LOGIN": "login",
+  "MAIL_ACTIVATION": "enviámos-ihe um e-mail. Por favour, confirme a sua conta",
+  "NEW_PASSWORD": "nova senha",
+  "PASSWORD_CHANGE_SUCCESS": "a sua senha foi alterada",
+  "PASSWORD_INFO": "a palavra-passe deve ter pelo menos 6 carateres de comprimento e conter letras maiùsculas e superiores, um número e caráter especial",
+  "PRIVACY_POLICY": " eu tenho vermelho e concordo com a política de privacidade de dados deste site" ,
+  "REGISTER": "registo",
+  "REGISTER_SUCCESS": "obrigado pela sua inscrição na ARPA. por favour, verfique a sua caixa de entrada e confirme o seu endereço de e-mail",
+  "RESEND_CONFIRMATION": "reencaende o linke de confirmação",
+  "RESEND_DONE": "link de confirmação enviado, por favour verfique a sua caixa de entrada",
+  "SHOW_PRIVACY": "política de privacidade" ,
+  "USERNAME_OR_EMAIL": "nome de utilizador ou e-mail" ,
+  "USER_CREDENTIALS": "nome de utilizador ou senha inválida"
+}

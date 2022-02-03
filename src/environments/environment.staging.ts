@@ -5,34 +5,39 @@
 export const environment = {
   production: false,
   captcha: {
-    key: '6LfSQsAaAAAAAPuuiXUmR18toqzVMeEUpzHx5wMM',
+    key: '6Lf-AkIdAAAAAEIr-TKvo3KayGf4qTqwmsOuxMLH',
   },
   api: {
-    protocol: 'http',
-    baseUrl: 'localhost:5000',
+    protocol: 'https',
+    baseUrl: 'orso-arpa-staging.azurewebsites.net/api',
   },
   graphql: {
-    protocol: 'http',
-    baseUrl: 'localhost:5000/graphql',
+    protocol: 'https',
+    baseUrl: 'orso-arpa-staging.azurewebsites.net/graphql',
   },
-  web:
-    {
-      protocol: 'http',
-      baseUrl: 'localhost:4200',
-    },
+  web: {
+    protocol: 'https',
+    baseUrl: 'orso-arpa-staging.azurewebsites.net',
+  },
   arpa: {
     url: 'http://arpa.orso.berlin/',
   },
   validation: {
     password: '(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}\\[\\]:;<>,.?/~_+-=|]).{5,256}',
-    email: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,4}$',
+    email: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,6}$',
   },
   config: {
-    protocol: 'http',
-    baseUrl: 'localhost:5000/swagger/v1/swagger.json',
+    protocol: 'https',
+    baseUrl: 'orso-arpa-staging.azurewebsites.net/swagger/v1/swagger.json',
   },
   locale: {
-    default: 'de',
+    default: 'en',
+    locales: {
+      'de': 'Deutsch',
+      'en': 'Englisch',
+      'pt': 'Portugiesisch',
+      'fr': 'Französisch',
+    },
   },
 };
 

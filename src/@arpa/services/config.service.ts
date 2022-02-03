@@ -46,7 +46,7 @@ export class ConfigService {
       const refResult: any = await resolver.resolve(config);
       this.config.schemas = refResult.result.components.schemas;
       this.ready = true;
-    } catch (e) {
+    } catch (e: any) {
       this.logger.error('Could not load config:', e.message);
       throw new Error('Backend not available.');
     }

@@ -14,8 +14,11 @@ export class PersonService {
   }
 
   public getPersons(): Observable<PersonDto[]> {
-
     return this.apiService.get<PersonDto[]>(this.baseUrl);
+  }
+
+  public getPerson(id: string): Observable<PersonDto> {
+    return this.apiService.get<PersonDto>(`${this.baseUrl}/${id}`);
   }
 
   public create(person: PersonDto): Observable<PersonDto> {

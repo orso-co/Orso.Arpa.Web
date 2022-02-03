@@ -62,6 +62,8 @@ export class MusicianDialogEntryComponent {
       },
       header: selection ? this.translate.instant('EDIT') : this.translate.instant('CREATE'),
       styleClass: 'form-modal',
+      dismissableMask: true,
+
     });
 
     ref.onClose

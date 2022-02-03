@@ -39,6 +39,7 @@ import { LoadingModule } from '../../../@arpa/components/loading/loading.module'
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../@arpa/services/language.service';
 import { StateBadgeModule } from '../../../@arpa/components/status-badge/state-badge.module';
+import { IframeWidgetComponent } from './iframe-widget/iframe-widget.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { StateBadgeModule } from '../../../@arpa/components/status-badge/state-b
     ProjectsWidgetComponent,
     ChartWidgetComponent,
     ArpaWidgetConfigDirective,
-    ChoirGridWidgetComponent],
+    ChoirGridWidgetComponent,
+    IframeWidgetComponent],
   imports: [
     CommonModule,
     FormsModule,

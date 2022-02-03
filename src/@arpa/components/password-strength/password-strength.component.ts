@@ -49,10 +49,10 @@ export class PasswordStrengthComponent implements OnInit, OnDestroy {
       if (/.*[A-Z].*/.test(value)) {
         idx++;
       }
-      if (/.*[*.!@#$%^&(){}[]:";'<>,.?~`_+-=|].*/.test(value)) {
+      if (/.*[*.!@#$%^&(){}\[\]:";'<>,?~`_+-=|].*/.test(value)) {
         idx++;
       }
-      if (idx > 2 && value.length > 10) {
+      if (idx > 3 && value.length > 10) {
         idx++;
       }
     }

@@ -1,0 +1,23 @@
+{
+    "ADDITIONAL_PROFILES": "Profils supplémentaires",
+    "DEACTIVATED_PROFILES": "Profils désactivés",
+    "MAIN_PROFILE": "Profil principal",
+    "MUSICIAN_PROFILES": "Profils de musicien",
+    "MY_APPOINTMENTS":  "Mes dates",
+    "MY_PROFILES": "Mes profils",
+    "MY_PROJECTS": "Mes projets",
+    "MY_QR_CODE": "Mon code QR",
+    "MY_QR_CODE_DESCRIPTION": "Le code QR personnel est nécessaire pour vous enregistrer lors de votre participation à des événements.",
+    "MY_QR_CODE_INFO": "Le code QR est également disponible en mode hors ligne.",
+    "PAGE_TITLE": "Profil",
+    "PREDICTION": "Prediction pour la participation",
+    "PREDICTION_SET": "Prediction pour la participation aux événements sauvegardés avec succès",
+    "SEND_QR_CODE": "Code QR par email envoyer",
+    "SEND_QR_CODE_SUCCESS": "Code QR envoyé",
+    "UPCOMING": "À venir",
+    "USER_PROFILE": "Profil de l’utilisateur",
+    "USER_PROFILE_DATA": "Mes dates",
+    "USER_PROFILE_UPDATED": "Profil mis à jour",
+    "USER_PROFILE_UPDATE_ERROR": "Impossible de mettre à jour le profil"
+  }
+  

@@ -6,9 +6,14 @@ const routes: Routes = [
   {
     path: '',
     component: PersonListComponent,
-
+    children: [
+      {
+        path: 'detail',
+        outlet: 'modal',
+        loadChildren: () => import('../person-dialog/person-dialog.module').then(m => m.PersonDialogModule),
+      },
+    ],
   },
-
 ];
 
 @NgModule({

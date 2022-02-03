@@ -1,4 +1,12 @@
-import { APP_INITIALIZER, ErrorHandler, ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
+import {
+  APP_INITIALIZER,
+  ErrorHandler,
+  isDevMode,
+  ModuleWithProviders,
+  NgModule,
+  Optional,
+  SkipSelf,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { LayoutModule } from './layout/layout.module';
@@ -39,6 +47,7 @@ export const createApollo = (httpLink: HttpLink, configService: ConfigService): 
   return {
     link,
     cache,
+    connectToDevTools: isDevMode(),
   };
 };
 

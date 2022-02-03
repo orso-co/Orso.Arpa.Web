@@ -3,7 +3,9 @@
   "DEACTIVATED_PROFILES": "Deactivated Profiles",
   "MAIN_PROFILE": "Main Profile",
   "MUSICIAN_PROFILES": "Musician Profiles",
+  "MY_DATA": "My Data",
   "MY_APPOINTMENTS": "My Appointments",
+  "MY_MUSICIANPROFILE": "My Musicianprofile",
   "MY_PROFILES": "My Profiles",
   "MY_PROJECTS": "My Projects",
   "MY_QR_CODE": "My QR-Code",
@@ -18,5 +20,5 @@
   "USER_PROFILE": "User Profile",
   "USER_PROFILE_DATA": "My Profile",
   "USER_PROFILE_UPDATED": "Profile updated",
-  "USER_PROFILE_UPDATE_ERROR": "Could not update Profile"
+  "USER_PROFILE_UPDATE_ERROR": "Could not update profile"
 }

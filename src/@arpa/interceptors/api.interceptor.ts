@@ -13,6 +13,7 @@ import { ConfigService } from '../services/config.service';
 export class ApiInterceptor implements HttpInterceptor {
 
   readonly apiUrlBase: string;
+  readonly graphQlUrlBase: string;
   refreshTokenInProgress = false;
 
   tokenRefreshedSource = new Subject();
@@ -26,8 +27,13 @@ export class ApiInterceptor implements HttpInterceptor {
     private configService: ConfigService,
     private translate: TranslateService,
   ) {
-    const { protocol, baseUrl } = this.configService.getEnv('api');
-    this.apiUrlBase = `${protocol}://${baseUrl}`;
+    this.apiUrlBase = this.getFullUri('api');
+    this.graphQlUrlBase = this.getFullUri('graphql');
+  }
+
+  private getFullUri(key: string): string {
+    let { protocol, baseUrl } = this.configService.getEnv(key);
+    return `${protocol}://${baseUrl}`;
   }
 
   logout() {
@@ -119,7 +125,7 @@ export class ApiInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if (request.url.startsWith(this.apiUrlBase)) {
+    if (request.url.startsWith(this.apiUrlBase) || request.url.startsWith(this.graphQlUrlBase)) {
       request = request.clone({ setHeaders: this.setAuthHeader(), withCredentials: true });
       return next.handle(request).pipe(catchError((error: any) => this.handleResponseError(error, request, next)));
     } else {

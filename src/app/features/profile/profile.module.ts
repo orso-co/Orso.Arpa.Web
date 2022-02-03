@@ -24,6 +24,9 @@ import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { QRCodeComponent } from './qrcode/qrcode.component';
 import { GraphQlFeedModule } from '../../../@arpa/components/graph-ql-feed/graph-ql-feed.module';
+import { LocalizedDateModule } from '../../../@arpa/pipes/localized-date/localized-date.module';
+import { LocalizedDatePipe } from '../../../@arpa/pipes/localized-date/localized-date.pipe';
+import { MyProjectsComponent } from './my-projects/my-projects.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,7 @@ import { GraphQlFeedModule } from '../../../@arpa/components/graph-ql-feed/graph
     AppointmentsComponent,
     MusicianComponent,
     QRCodeComponent,
+    MyProjectsComponent,
   ],
   imports: [
     CommonModule,
@@ -53,10 +57,12 @@ import { GraphQlFeedModule } from '../../../@arpa/components/graph-ql-feed/graph
     TableModule,
     InputTextModule,
     GraphQlFeedModule,
+    LocalizedDateModule
   ],
   providers: [
     ProfileService,
     ProfileResolver,
+    LocalizedDatePipe,
   ],
 })
 export class ProfileModule {
