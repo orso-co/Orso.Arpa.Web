@@ -90,6 +90,8 @@ export class ProjectListComponent {
       },
       header: selection ? this.translate.instant('projects.EDIT_PROJECT') : this.translate.instant('projects.NEW_PROJECT'),
       styleClass: 'form-modal', width: '66%',
+      dismissableMask: true,
+
     });
     ref.onClose
       .pipe(first())
@@ -113,6 +115,8 @@ export class ProjectListComponent {
       },
       header: this.translate.instant('projects.EDIT_PARTICIPATION'),
       styleClass: 'form-modal',
+      dismissableMask: true,
+
     });
 
     ref.onClose
@@ -132,6 +136,7 @@ export class ProjectListComponent {
       },
       header: `${this.translate.instant('projects.PARTICIPANTS')}: ${project.title}`,
       styleClass: 'form-modal',
+      dismissableMask: true,
     });
   }
 
