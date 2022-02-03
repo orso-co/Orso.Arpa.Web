@@ -37,6 +37,8 @@ export class PersonDialogEntryComponent {
       },
       header: `${this.translate.instant('PERSON')}: ${selection?.givenName}, ${selection?.surname}`,
       styleClass: 'form-modal',
+      dismissableMask: true,
+
     });
 
     ref.onClose
