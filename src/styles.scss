@@ -19,24 +19,28 @@ $Orso-Arpa-Web-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$Orso-Arpa-Web-theme: mat.define-dark-theme((
-  color: (
-    primary: $Orso-Arpa-Web-primary,
-    accent: $Orso-Arpa-Web-accent,
-    warn: $Orso-Arpa-Web-warn,
-  )
-));
-
-.arpa-light {
-  // Create the theme object. A theme consists of configurations for individual
-  // theming systems such as "color" or "typography".
-  $Orso-Arpa-Web-theme: mat.define-light-theme((
+$Orso-Arpa-Web-theme: mat.define-dark-theme(
+  (
     color: (
       primary: $Orso-Arpa-Web-primary,
       accent: $Orso-Arpa-Web-accent,
       warn: $Orso-Arpa-Web-warn,
+    ),
+  )
+);
+
+.arpa-light {
+  // Create the theme object. A theme consists of configurations for individual
+  // theming systems such as "color" or "typography".
+  $Orso-Arpa-Web-theme: mat.define-light-theme(
+    (
+      color: (
+        primary: $Orso-Arpa-Web-primary,
+        accent: $Orso-Arpa-Web-accent,
+        warn: $Orso-Arpa-Web-warn,
+      ),
     )
-  ));
+  );
 }
 
 // Include theme styles for core and each component used in your app.
@@ -50,7 +54,8 @@ $Orso-Arpa-Web-theme: mat.define-dark-theme((
 @include mat.menu-theme($Orso-Arpa-Web-theme);
 
 /* You can add global styles to this file, and also import other style files */
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -61,22 +66,28 @@ body {
 body {
   margin: 0;
   overflow: hidden;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
 hr {
   border-top: 1px solid var(--surface-800);
   border-bottom: 0;
-  opacity: .25;
+  opacity: 0.25;
 }
 
+.p-menu .p-submenu-header {
+  text-transform: uppercase;
+  font-weight: bold !important;
+  opacity: 0.8;
+  background: initial !important;
+}
 
-@import "~primeicons/primeicons.css";
-@import "~primeng/resources/primeng.min.css";
-@import "assets/common/fonts/icomoon/style.css";
-@import "~primeflex/primeflex.css";
-@import "~flag-icon-css/sass/flag-icon";
+@import '~primeicons/primeicons.css';
+@import '~primeng/resources/primeng.min.css';
+@import 'assets/common/fonts/icomoon/style.css';
+@import '~primeflex/primeflex.css';
+@import '~flag-icon-css/sass/flag-icon';
 
-@import "~@fullcalendar/core/main.css";
-@import "~@fullcalendar/daygrid/main.css";
-@import "~@fullcalendar/timegrid/main.css";
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+@import '~@fullcalendar/timegrid/main.css';
