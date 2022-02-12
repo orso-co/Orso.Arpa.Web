@@ -83,3 +83,14 @@ hr {
 @import '~@fullcalendar/core/main.css';
 @import '~@fullcalendar/daygrid/main.css';
 @import '~@fullcalendar/timegrid/main.css';
+
+.p-dialog {
+  overflow-y: scroll !important;
+}
+
+@media screen and (min-width: 960px) {
+  .p-dialog .p-dialog-content {
+    width: 800px;
+    width: 70vw;
+  }
+}
