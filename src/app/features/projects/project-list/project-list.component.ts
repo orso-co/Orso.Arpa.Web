@@ -30,7 +30,6 @@ import { GraphQlFeedComponent } from '../../../../@arpa/components/graph-ql-feed
 })
 @Unsubscribe()
 export class ProjectListComponent {
-
   state: Observable<SelectItem[]>;
   genre: Observable<SelectItem[]>;
 
@@ -39,7 +38,7 @@ export class ProjectListComponent {
   columns: ColumnDefinition<ProjectDto>[] = [
     { label: '#', property: 'isCompleted', type: 'template', template: 'completed', cssClasses: ['start'] },
     { label: 'TITLE', property: 'title', type: 'text' },
-    { label: 'GENRE', property: 'genreId', type: 'state', stateTable: 'Project', stateProperty: 'genre', show: true},
+    { label: 'GENRE', property: 'genreId', type: 'state', stateTable: 'Project', stateProperty: 'genre', show: true },
     { label: 'START', property: 'startDate', type: 'date' },
     { label: 'END', property: 'endDate', type: 'date' },
     { label: 'STATE', property: 'stateId', type: 'state', stateTable: 'Project', stateProperty: 'state', show: true },
@@ -56,27 +55,29 @@ export class ProjectListComponent {
     private meService: MeService,
     private selectValueService: SelectValueService,
     private venueService: VenueService,
-    private sectionService: SectionService,
+    private sectionService: SectionService
   ) {
-    this.state = this.selectValueService.load('Project', 'State')
-      .pipe(map(() => this.selectValueService.get('Project', 'State')));
+    this.state = this.selectValueService.load('Project', 'State').pipe(map(() => this.selectValueService.get('Project', 'State')));
 
-    this.genre = this.selectValueService.load('Project', 'Genre')
-      .pipe(map(() => this.selectValueService.get('Project', 'Genre')));
+    this.genre = this.selectValueService.load('Project', 'Genre').pipe(map(() => this.selectValueService.get('Project', 'Genre')));
   }
 
   public getState(id: string) {
-    return this.state.pipe<string>(map((items: SelectItem[]) => {
-      const item: any = items.find((i) => i.value === id);
-      return item ? item.label : '';
-    }));
+    return this.state.pipe<string>(
+      map((items: SelectItem[]) => {
+        const item: any = items.find((i) => i.value === id);
+        return item ? item.label : '';
+      })
+    );
   }
 
   public getGenre(id: string) {
-    return this.genre.pipe<string>(map((items: SelectItem[]) => {
-      const item: any = items.find((i) => i.value === id);
-      return item ? item.label : '';
-    }));
+    return this.genre.pipe<string>(
+      map((items: SelectItem[]) => {
+        const item: any = items.find((i) => i.value === id);
+        return item ? item.label : '';
+      })
+    );
   }
 
   public openProjectDetailDialog(selection: ProjectDto | null): void {
@@ -89,19 +90,16 @@ export class ProjectListComponent {
         state: this.state,
       },
       header: selection ? this.translate.instant('projects.EDIT_PROJECT') : this.translate.instant('projects.NEW_PROJECT'),
-      styleClass: 'form-modal', width: '66%',
+      width: window.innerWidth > 1000 ? '66%' : '100%',
       dismissableMask: true,
-
     });
-    ref.onClose
-      .pipe(first())
-      .subscribe((project: ProjectDto) => {
-        if (!selection && project) {
-          this.saveNewProject(project);
-        } else if (selection && project) {
-          this.updateProject(project, selection);
-        }
-      });
+    ref.onClose.pipe(first()).subscribe((project: ProjectDto) => {
+      if (!selection && project) {
+        this.saveNewProject(project);
+      } else if (selection && project) {
+        this.updateProject(project, selection);
+      }
+    });
   }
 
   public openParticipationDialog(event: Event, id: string) {
@@ -116,16 +114,15 @@ export class ProjectListComponent {
       header: this.translate.instant('projects.EDIT_PARTICIPATION'),
       styleClass: 'form-modal',
       dismissableMask: true,
-
     });
 
-    ref.onClose
-      .pipe(first())
-      .subscribe((result) => {
-        if (result) {
-          this.meService.putProjectParticipation(result.musicianId, id, result).subscribe(() => this.notificationsService.success('projects.SET_PARTICIPATION_STATUS'));
-        }
-      });
+    ref.onClose.pipe(first()).subscribe((result) => {
+      if (result) {
+        this.meService
+          .putProjectParticipation(result.musicianId, id, result)
+          .subscribe(() => this.notificationsService.success('projects.SET_PARTICIPATION_STATUS'));
+      }
+    });
   }
 
   public openParticipationListDialog(event: Event, project: ProjectDto) {
@@ -149,18 +146,16 @@ export class ProjectListComponent {
   }
 
   private saveNewProject(project: ProjectDto): void {
-    this.projectService.create(project)
-      .subscribe((result) => {
-        this.feedSource.refresh();
-        this.notificationsService.success('projects.PROJECT_CREATED');
-      });
+    this.projectService.create(project).subscribe((result) => {
+      this.feedSource.refresh();
+      this.notificationsService.success('projects.PROJECT_CREATED');
+    });
   }
 
   private updateProject(project: ProjectDto, oldProject: ProjectDto): void {
-    this.projectService.update(project)
-      .subscribe(() => {
-        this.feedSource.refresh();
-        this.notificationsService.success('projects.PROJECT_UPDATED');
-      });
+    this.projectService.update(project).subscribe(() => {
+      this.feedSource.refresh();
+      this.notificationsService.success('projects.PROJECT_UPDATED');
+    });
   }
 }
