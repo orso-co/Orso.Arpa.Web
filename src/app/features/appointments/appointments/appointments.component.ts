@@ -56,7 +56,7 @@ export class AppointmentsComponent {
     private route: ActivatedRoute,
     private translate: TranslateService,
     private dialogService: DialogService,
-    private sectionService: SectionService,
+    private sectionService: SectionService
   ) {
     this.route.data.pipe(first()).subscribe((data) => {
       this.projects = data.projects || [];
@@ -254,7 +254,7 @@ export class AppointmentsComponent {
         datesRender: (info: any) => {
           this.setAppointments(info.view.type, info.view.calendar.component.props.currentDate);
         },
-      })),
+      }))
     );
   }
 
@@ -277,6 +277,7 @@ export class AppointmentsComponent {
       },
       header: this.translate.instant('appointments.EDIT'),
       styleClass: 'form-modal',
+      width: window.innerWidth > 1000 ? '66%' : '100%',
       dismissableMask: true,
     });
 
@@ -285,7 +286,7 @@ export class AppointmentsComponent {
         if (typeof result === 'string') {
           this.appointments.splice(
             this.appointments.findIndex((a) => a.id === appointmentId),
-            1,
+            1
           );
           this.appointments = [...this.appointments];
         } else {
