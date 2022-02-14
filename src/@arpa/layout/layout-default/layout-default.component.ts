@@ -53,7 +53,7 @@ export class LayoutDefaultComponent implements OnDestroy {
         ],
       },
       {
-        label: 'Foo',
+        label: 'General',
         children: [
           {
             label: 'Projekte',
@@ -94,7 +94,7 @@ export class LayoutDefaultComponent implements OnDestroy {
       },
 
       {
-        label: 'Bar',
+        label: 'Personal',
         children: [
           {
             label: 'Meine Daten',
@@ -115,6 +115,13 @@ export class LayoutDefaultComponent implements OnDestroy {
             roles: ['performer', 'staff'],
             routerLink: '/arpa/profile/appointments',
             translationToken: 'MY_APPOINTMENTS',
+          },
+          {
+            label: 'Meine Profile',
+            icon: 'pi pi-user-edit',
+            roles: ['performer', 'staff'],
+            routerLink: '/arpa/profile/musician',
+            translationToken: 'MY_PROFILES',
           },
         ],
       },
