@@ -53,7 +53,8 @@ export class LayoutDefaultComponent implements OnDestroy {
         ],
       },
       {
-        label: 'General',
+        label: 'Allgemeines',
+        translationToken: 'GENERAL',
         children: [
           {
             label: 'Projekte',
@@ -94,7 +95,8 @@ export class LayoutDefaultComponent implements OnDestroy {
       },
 
       {
-        label: 'Personal',
+        label: 'Persönliches',
+        translationToken: 'PERSONAL',
         children: [
           {
             label: 'Meine Daten',
