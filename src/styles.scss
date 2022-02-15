@@ -65,6 +65,8 @@ body {
 
 body {
   margin: 0;
+  overflow: hidden;
+
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
@@ -72,6 +74,13 @@ hr {
   border-top: 1px solid var(--surface-800);
   border-bottom: 0;
   opacity: 0.25;
+}
+
+.p-menu .p-submenu-header {
+  text-transform: uppercase;
+  font-weight: bold !important;
+  opacity: 0.8;
+  background: initial !important;
 }
 
 @import '~primeicons/primeicons.css';
@@ -83,7 +92,3 @@ hr {
 @import '~@fullcalendar/core/main.css';
 @import '~@fullcalendar/daygrid/main.css';
 @import '~@fullcalendar/timegrid/main.css';
-
-.p-dialog {
-  overflow-y: auto !important;
-}

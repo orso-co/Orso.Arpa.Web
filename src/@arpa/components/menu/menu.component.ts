@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MenuItemArpa, MenuService } from './menu.service';
 import { MenuItem } from 'primeng/api';
 import { Menu } from 'primeng/menu';
@@ -19,7 +19,6 @@ export interface MenuItemTplContext {
 })
 @Unsubscribe()
 export class MenuComponent implements OnInit {
-
   @Input()
   name: string;
 
@@ -38,16 +37,27 @@ export class MenuComponent implements OnInit {
   menuSubscription: Subscription;
   menuItems: MenuItem[] = [];
 
-  constructor(private menuService: MenuService, private el: ElementRef, private authService: AuthService) {
-  }
+  constructor(private menuService: MenuService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.authService.currentUser.subscribe((token) => {
-      this.menuSubscription = this.menuService.getMenuEvent(this.name)
-        .pipe(map((items: MenuItemArpa[]) => items
-          .filter((item: MenuItemArpa) => item.roles ? intersection(token.roles, item.roles).length > 0 : true)))
-        .subscribe((v: any) => {
-          this.menuItems = v;
+      this.menuSubscription = this.menuService
+        .getMenuEvent(this.name)
+        .pipe(
+          map((items: MenuItemArpa[]) =>
+            items.filter((item: MenuItemArpa) => (item.roles ? intersection(token.roles, item.roles).length > 0 : true))
+          ),
+          map((filteredItems: MenuItemArpa[]) =>
+            filteredItems.map((fi) => ({
+              ...fi,
+              children: fi.children
+                ? fi.children.filter((item: MenuItemArpa) => (item.roles ? intersection(token.roles, item.roles).length > 0 : true))
+                : undefined,
+            }))
+          )
+        )
+        .subscribe((v: MenuItemArpa[]) => {
+          this.menuItems = v.map((p) => ({ ...p, items: p.children || undefined }));
         });
     });
   }

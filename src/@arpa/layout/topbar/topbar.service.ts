@@ -8,23 +8,10 @@ import { MenuItemArpa, MenuService } from '../../components/menu/menu.service';
   providedIn: 'root',
 })
 export class TopbarService {
-
   public title: Subject<string>;
 
-  constructor(
-    private menuService: MenuService,
-    private languageService: LanguageService,
-    private titleService: RouteTitleService) {
+  constructor(private menuService: MenuService, private languageService: LanguageService, private titleService: RouteTitleService) {
     this.menuService.add('user', this.initialiseUserMenu());
-
-    this.menuService.add('feature', [
-      {
-        label: 'MY_APPOINTMENTS',
-        routerLink: '/arpa/profile/appointments',
-        icon: 'pi pi-check-square',
-        roles: ['performer', 'staff'],
-      },
-    ]);
 
     this.title = this.titleService.titleEvent;
   }
@@ -48,13 +35,11 @@ export class TopbarService {
       { label: 'LOGOUT', icon: 'pi pi-sign-out', routerLink: ['/logout'] },
       { label: 'MY_PROFILE', icon: 'pi pi-user-edit', routerLink: ['/arpa/profile'] },
       { separator: true },
-    ];
-    this.languageService.getLangs().forEach(lang =>
-      userProfileItems.push({
+      ...this.languageService.getLangs().map((lang) => ({
         label: this.languageService.getLanguageName(lang),
         command: () => this.updateLanguage(lang),
-      }));
-
+      })),
+    ];
     return userProfileItems;
   }
 }
