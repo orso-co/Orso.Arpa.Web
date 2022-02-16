@@ -1,0 +1,14 @@
+<p-tabView [(activeIndex)]="index">
+  <p-tabPanel leftIcon="pi pi-file-o" header="Basisdaten" tooltip="Basisdaten">
+    <arpa-edit-project
+      [project]="project"
+      [venues]="(venues | async)!"
+      [type]="(type | async)!"
+      [state]="(state | async)!"
+      [genre]="(genre | async)!"
+    ></arpa-edit-project>
+  </p-tabPanel>
+  <p-tabPanel *ngIf="project" leftIcon="pi pi-external-link" header="Urls" tooltip="Urls">
+    <arpa-edit-project-urls [urls]="project.urls || []" [projectId]="project.id"></arpa-edit-project-urls>
+  </p-tabPanel>
+</p-tabView>

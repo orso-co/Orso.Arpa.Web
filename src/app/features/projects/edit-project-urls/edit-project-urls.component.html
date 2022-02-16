@@ -1,0 +1,45 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-my-5">
+  <div class="p-grid p-formgrid">
+    <div class="p-fluid p-col-12 p-xl-6">
+      <arpa-form-field label="Link" type="text">
+        <input autocomplete="off" formControlName="href" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+    <div class="p-fluid p-col-12 p-xl-6">
+      <arpa-form-field label="Bezeichnung" type="text">
+        <input autocomplete="off" formControlName="anchorText" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-text-right">
+      <button
+        [disabled]="form.pristine || form.invalid"
+        [label]="'SAVE' | translate"
+        icon="pi pi-check"
+        iconPos="right"
+        pButton
+        type="submit"
+      ></button>
+    </div>
+  </div>
+</form>
+<arpa-table [actionsTemplateRef]="actionsTemplate" [columns]="columns" [data]="tableData" [showFilter]="false" [showPagination]="false">
+</arpa-table>
+
+<ng-template #actionsTemplate let-row>
+  <button
+    (click)="update(row)"
+    [label]="'project-dialog.EDIT' | translate"
+    class="p-button-rounded p-button-text p-button-icon-only"
+    icon="pi pi-pencil"
+    pButton
+    type="button"
+  ></button>
+  <button
+    (click)="remove(row)"
+    [label]="'project-dialog.DELETE' | translate"
+    class="p-button-rounded p-button-text p-button-icon-only"
+    icon="pi pi-trash"
+    pButton
+    type="button"
+  ></button>
+</ng-template>

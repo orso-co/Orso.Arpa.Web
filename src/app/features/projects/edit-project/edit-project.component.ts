@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
@@ -16,19 +16,13 @@ import { FeedScope } from '../../../../@arpa/components/graph-ql-feed/graph-ql-f
   styleUrls: ['./edit-project.component.scss'],
 })
 export class EditProjectComponent implements OnInit {
-
   parentProjectsQuery = ParentProjectsQuery;
+  @Input() project: ProjectDto;
+  @Input() venues: SelectItem[];
+  @Input() type: SelectItem[];
+  @Input() genre: SelectItem[];
+  @Input() state: SelectItem[];
 
-  project: ProjectDto = this.config.data.project;
-  venues: Observable<SelectItem[]> = this.config.data.venues.pipe(map(
-    (venues: VenueDto[]) => venues.map((v) => ({
-      label: this.getAddress(v),
-      value: v.id,
-    } as SelectItem)),
-  ));
-  type: Observable<SelectItem[]> = this.config.data.type;
-  genre: Observable<SelectItem[]> = this.config.data.genre;
-  state: Observable<SelectItem[]> = this.config.data.state;
   completedOptions: SelectItem[] = [
     { label: this.translate.instant('YES'), value: true },
     { label: this.translate.instant('NO'), value: false },
@@ -37,12 +31,7 @@ export class EditProjectComponent implements OnInit {
   form: FormGroup;
   parentProjectList = new BehaviorSubject([]);
 
-  constructor(public config: DynamicDialogConfig,
-              private formBuilder: FormBuilder,
-              public ref: DynamicDialogRef,
-              private translate: TranslateService,
-  ) {
-  }
+  constructor(private formBuilder: FormBuilder, public ref: DynamicDialogRef, private translate: TranslateService) {}
 
   get isNew(): boolean {
     return !this.project;
@@ -74,10 +63,11 @@ export class EditProjectComponent implements OnInit {
 
   public transformFeedResult(feed: FeedScope): Observable<SelectItem[]> {
     return feed.values.pipe(
-      map(projects => projects
-        .filter(({ id }) => !this.project ? true : (id !== this.project.id))
-        .map(project => ({ label: project.title, value: project.id } as SelectItem)),
-      ),
+      map((projects) =>
+        projects
+          .filter(({ id }) => (!this.project ? true : id !== this.project.id))
+          .map((project) => ({ label: project.title, value: project.id } as SelectItem))
+      )
     );
   }
 
@@ -90,15 +80,5 @@ export class EditProjectComponent implements OnInit {
 
   public cancel(): void {
     this.ref.close(null);
-  }
-
-  private getAddress(venue: VenueDto): string {
-    if (venue.address) {
-      const { city, urbanDistrict } = venue.address;
-      const comb = `${(city ? city : '')}${(city && urbanDistrict ? ' ' : '')}${urbanDistrict ? urbanDistrict : ''}`;
-      return `${comb}${comb ? ' | ' : ''}${venue.name}`;
-    } else {
-      return venue?.name || '';
-    }
   }
 }

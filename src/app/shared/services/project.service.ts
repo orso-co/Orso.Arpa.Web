@@ -1,3 +1,6 @@
+import { UrlModifyBodyDto } from './../../../@arpa/models/urlModifyBodyDto';
+import { UrlDto } from 'src/@arpa/models/urlDto';
+import { UrlCreateBodyDto } from './../../../@arpa/models/urlCreateBodyDto';
 import { shareReplay } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -36,5 +39,17 @@ export class ProjectService {
 
   public getParticipations(id: string): Observable<ProjectParticipationDto[]> {
     return this.apiService.get<ProjectParticipationDto[]>(`${this.baseUrl}/${id}/participations`).pipe(shareReplay());
+  }
+
+  public addUrl(projectId: string, data: UrlCreateBodyDto): Observable<any> {
+    return this.apiService.post(`${this.baseUrl}/${projectId}/urls`, data).pipe(shareReplay());
+  }
+
+  public modifyUrl(id: string, data: UrlModifyBodyDto): Observable<any> {
+    return this.apiService.put(`/urls/${id}`, data).pipe(shareReplay());
+  }
+
+  removeUrl(data: UrlDto): Observable<any> {
+    return this.apiService.delete(`/urls/${data.id}`);
   }
 }
