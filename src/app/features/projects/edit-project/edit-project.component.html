@@ -99,7 +99,7 @@
     </div>
   </div>
   <div class="p-formgroup-inline p-jc-between">
-    <div class="p-field p-col p-text-left">
+    <div class="p-text-left">
       <p-button
         (click)="onSubmit()"
         [disabled]="form.pristine || form.invalid"
@@ -108,14 +108,15 @@
         iconPos="left"
       ></p-button>
     </div>
-    <div class="p-field p-col p-text-right">
-      <p-button
+    <div class="p-text-right">
+      <button
         (click)="cancel()"
         [label]="'CANCEL' | translate"
-        class="p-ml-3 p-button-danger"
+        class="p-ml-3 p-button-outlined"
         icon="pi pi-times"
         iconPos="left"
-      ></p-button>
+        pButton
+      ></button>
     </div>
   </div>
 </form>

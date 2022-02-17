@@ -26,6 +26,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ProjectLayoutComponent } from './project-layout/project-layout.component';
 import { TabViewModule } from 'primeng/tabview';
+import { TagModule } from 'primeng/tag';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 @NgModule({
   declarations: [
     ProjectListComponent,
@@ -56,6 +59,9 @@ import { TabViewModule } from 'primeng/tabview';
     MatButtonModule,
     MatIconModule,
     TabViewModule,
+    TagModule,
+    MultiSelectModule,
+    OverlayPanelModule,
   ],
   exports: [ProjectListComponent],
   providers: [ProjectGenreResolver, ProjectTypeResolver],

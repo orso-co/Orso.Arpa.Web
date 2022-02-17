@@ -56,9 +56,11 @@ export const ProjectsQuery = gql`
           href
           anchorText
           urlRoles {
+            id
             role {
               id
-              name
+              roleName: name
+              roleLevel: level
             }
           }
         }

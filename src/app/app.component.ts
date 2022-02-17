@@ -1,12 +1,5 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  ActivatedRoute,
-  NavigationCancel,
-  NavigationEnd,
-  NavigationError,
-  NavigationStart,
-  Router,
-} from '@angular/router';
+import { ActivatedRoute, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { filter, map, shareReplay } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -19,24 +12,23 @@ import { MeService } from './shared/services/me.service';
 
 @Component({
   selector: 'arpa-root',
-  template: `
-    <p-toast
-      class='arpa-toast'
-      [preventOpenDuplicates]='true'
+  template: ` <p-toast
+      [baseZIndex]="999999999"
+      class="arpa-toast"
+      [preventOpenDuplicates]="true"
       [showTransformOptions]="'translateY(-100%)'"
     ></p-toast>
-    <section [ngClass]="{'mobile' : (isHandset | async)}">
-      <router-outlet *ngIf='networkStatus'></router-outlet>
-      <arpa-offline *ngIf='!networkStatus'></arpa-offline>
+    <section [ngClass]="{ mobile: (isHandset | async) }">
+      <router-outlet *ngIf="networkStatus"></router-outlet>
+      <arpa-offline *ngIf="!networkStatus"></arpa-offline>
     </section>`,
 })
 export class AppComponent implements OnInit, OnDestroy {
   readonly defaultTitle: string;
-  isHandset: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay(),
-    );
+  isHandset: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+    map((result) => result.matches),
+    shareReplay()
+  );
 
   networkStatusSubscription: Subscription = Subscription.EMPTY;
   authEventSubscription: Subscription = Subscription.EMPTY;
@@ -48,11 +40,10 @@ export class AppComponent implements OnInit, OnDestroy {
     private loadingService: LoadingService,
     private authService: AuthService,
     private meService: MeService,
-    private activatedRoute: ActivatedRoute,
     private titleService: Title,
     private routeTitleService: RouteTitleService,
     private breakpointObserver: BreakpointObserver,
-    private cdr: ChangeDetectorRef,
+    private cdr: ChangeDetectorRef
   ) {
     this.defaultTitle = this.titleService.getTitle();
 
@@ -63,13 +54,12 @@ export class AppComponent implements OnInit, OnDestroy {
     this.router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
-        map(() => this.router),
+        map(() => this.router)
       )
       .subscribe(() => {
-          const title = this.getTitle(this.router.routerState, this.router.routerState.root);
-          this.routeTitleService.setTitle(title.join(' '));
-        },
-      );
+        const title = this.getTitle(this.router.routerState, this.router.routerState.root);
+        this.routeTitleService.setTitle(title.join(' '));
+      });
 
     this.routeTitleService.titleEvent.subscribe((title) => {
       if (title.length > 0) {
@@ -79,7 +69,7 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.authEventSubscription = this.authService.authEvents.subscribe(event => {
+    this.authEventSubscription = this.authService.authEvents.subscribe((event) => {
       if (event === AuthEvents.LOGOUT) {
         // Remove sensible data on logout.
         this.meService.cleanStorage();
@@ -96,16 +86,12 @@ export class AppComponent implements OnInit, OnDestroy {
     /**
      * Update Network Status.
      */
-    this.networkStatusSubscription = merge(
-      of(null),
-      fromEvent(window, 'offline'),
-      fromEvent(window, 'online'),
-    ).pipe(
-      map(() => navigator.onLine),
-    ).subscribe(status => {
-      this.networkStatus = status;
-      this.cdr.detectChanges();
-    });
+    this.networkStatusSubscription = merge(of(null), fromEvent(window, 'offline'), fromEvent(window, 'online'))
+      .pipe(map(() => navigator.onLine))
+      .subscribe((status) => {
+        this.networkStatus = status;
+        this.cdr.detectChanges();
+      });
     /**
      * Redirect to fatal error page if config is not ready.
      */
@@ -134,9 +120,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private navigationInterceptor(event: any): void {
     if (event instanceof NavigationStart) {
       this.loadingService.loadingOn();
-    } else if (event instanceof NavigationEnd ||
-      event instanceof NavigationCancel ||
-      event instanceof NavigationError) {
+    } else if (event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError) {
       this.loadingService.loadingOff();
     }
   }

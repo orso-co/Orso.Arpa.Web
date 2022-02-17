@@ -1,10 +1,14 @@
-import { BehaviorSubject } from 'rxjs';
+import { OverlayPanel } from 'primeng/overlaypanel';
+import { UrlRoleDto } from './../../../../@arpa/models/urlDto';
+import { RoleDto } from './../../../../@arpa/models/roleDto';
+import { RoleService } from './../../../../@arpa/services/role.service';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ColumnDefinition } from './../../../../@arpa/components/table/table.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UrlDto } from 'src/@arpa/models/urlDto';
 import { ProjectService } from 'src/app/shared/services/project.service';
-import { first } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 import { NotificationsService } from 'src/@arpa/services/notifications.service';
 import { cloneDeep } from 'lodash-es';
 
@@ -20,19 +24,24 @@ export class EditProjectUrlsComponent implements OnInit {
   form: FormGroup;
   tableData: BehaviorSubject<any> = new BehaviorSubject([]);
   private _tableData: Array<any>;
+  roles$: Observable<RoleDto[]>;
+  selectedUrlRoles: string[] = [];
 
   columns: ColumnDefinition<UrlDto>[] = [
-    { label: 'Link', property: 'href', type: 'text' },
+    { label: 'Link', property: 'href', type: 'template', template: 'linkTemplate' },
     { label: 'Bezeichnung', property: 'anchorText', type: 'text' },
+    { label: 'Rollen', property: 'urlRoles', type: 'template', template: 'roleTemplate' },
   ];
 
   constructor(
     private formBuilder: FormBuilder,
     private projectService: ProjectService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private roleService: RoleService
   ) {}
 
   ngOnInit(): void {
+    this.roles$ = this.roleService.getRoles().pipe(map((r) => r.filter((role) => role.roleName !== 'Admin')));
     this.form = this.formBuilder.group({
       href: [null, [Validators.required, Validators.maxLength(1000)]],
       anchorText: [null, [Validators.maxLength(1000)]],
@@ -86,5 +95,44 @@ export class EditProjectUrlsComponent implements OnInit {
       href: url.href,
       id: url.id,
     });
+  }
+
+  onRoleSelectionChange(event: { itemValue: string; value: string[] }, url: UrlDto, overlayPanel: OverlayPanel) {
+    overlayPanel.hide();
+    if (event.value.includes(event.itemValue)) {
+      this.projectService
+        .addRoleToUrl(url.id!, event.itemValue)
+        .pipe(first())
+        .subscribe((updatedUrl) => {
+          const index = this._tableData.findIndex((el) => el.id === url.id);
+          this._tableData[index] = { ...updatedUrl, urlRoles: updatedUrl.roles.map((r: any) => ({ role: r })) };
+          this.tableData.next(this._tableData);
+          this.notificationsService.success('ROLE_ADDED', 'project-dialog');
+        });
+    } else {
+      this.projectService
+        .removeRoleFromUrl(url.id!, event.itemValue)
+        .pipe(first())
+        .subscribe(() => {
+          const index = this._tableData.findIndex((el) => el.id === url.id);
+          this._tableData[index].urlRoles = this._tableData[index].urlRoles.filter((r: UrlRoleDto) => r.role.id !== event.itemValue);
+          this.tableData.next(this._tableData);
+          this.notificationsService.success('ROLE_REMOVED', 'project-dialog');
+        });
+    }
+    this.selectedUrlRoles = [];
+  }
+
+  getRoles(urlRoles: UrlRoleDto[]): RoleDto[] {
+    return urlRoles.map((r) => r.role);
+  }
+
+  toggleOverlay(event: any, overlay: OverlayPanel, url: UrlDto) {
+    this.selectedUrlRoles = url.urlRoles ? url.urlRoles.map((ur) => ur.role.id) : [];
+    overlay.toggle(event);
+  }
+
+  onCancel() {
+    this.form.reset({});
   }
 }

@@ -1,57 +1,58 @@
-<p-table #table
-         (onFilter)='filterEvents.emit($event)'
-         (onLazyLoad)='lazyEvents.emit($event)'
-         (onPage)='paginationEvents.emit($event)'
-         (onRowSelect)='rowSelectEvents.emit($event)'
-         [dataKey]='primaryKey'
-         [globalFilterFields]='filterFields'
-         [lazyLoadOnInit]='false'
-         [lazy]='lazy'
-         [loading]='isLoading'
-         [paginator]='showPagination'
-         [rowsPerPageOptions]='rowsPerPage'
-         [rows]='rows'
-         [scrollHeight]='scrollHeight'
-         [scrollable]='scrollable'
-         [selectionMode]='selectionMode'
-         [showFirstLastIcon]='showFirstLastIcon'
-         [showJumpToPageDropdown]='showJumpToPageDropdown'
-         [showPageLinks]='showPageLinks'
-         [styleClass]='((isMobile | async)? "mobile":"")'
-         [tableStyleClass]='tableStyleClass'
-         [totalRecords]='(feed ? (feed.totalCount | async) || 0 : 0)'
-         [value]='(data | async) || []'
-         sortMode='multiple'
+<p-table
+  #table
+  (onFilter)="filterEvents.emit($event)"
+  (onLazyLoad)="lazyEvents.emit($event)"
+  (onPage)="paginationEvents.emit($event)"
+  (onRowSelect)="rowSelectEvents.emit($event)"
+  [dataKey]="primaryKey"
+  [globalFilterFields]="filterFields"
+  [lazyLoadOnInit]="false"
+  [lazy]="lazy"
+  [loading]="isLoading"
+  [paginator]="showPagination"
+  [rowsPerPageOptions]="rowsPerPage"
+  [rows]="rows"
+  [scrollHeight]="scrollHeight"
+  [scrollable]="scrollable"
+  [selectionMode]="selectionMode"
+  [showFirstLastIcon]="showFirstLastIcon"
+  [showJumpToPageDropdown]="showJumpToPageDropdown"
+  [showPageLinks]="showPageLinks"
+  [styleClass]="(isMobile | async) ? 'mobile' : ''"
+  [tableStyleClass]="tableStyleClass"
+  [totalRecords]="feed ? (feed.totalCount | async) || 0 : 0"
+  [value]="(data | async) || []"
+  sortMode="multiple"
 >
-  <ng-template pTemplate='caption'>
-    <div *ngIf='showFilter' class='filter'>
-      <div class='search'>
-          <span class='p-input-icon-left'>
-          <i class='pi pi-search'></i>
-          <input #searchInput
-                 (input)="table.filterGlobal($event.target.value, 'contains')"
-                 [placeholder]='"SEARCH" | translate'
-                 pInputText
-                 type='text' />
-          </span>
-        <i (click)='searchInput.value = ""; clear(table)' *ngIf='hasFilters' class='pi pi-times'></i>
+  <ng-template pTemplate="caption">
+    <div *ngIf="showFilter" class="filter">
+      <div class="search">
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input
+            #searchInput
+            (input)="table.filterGlobal($event.target.value, 'contains')"
+            [placeholder]="'SEARCH' | translate"
+            pInputText
+            type="text"
+          />
+        </span>
+        <i (click)="searchInput.value = ''; clear(table)" *ngIf="hasFilters" class="pi pi-times"></i>
       </div>
       <!-- Show column filter -->
-      <div *ngIf='columnFilter && hasFilterColumns' class='column-filter'>
+      <div *ngIf="columnFilter && hasFilterColumns" class="column-filter">
         <button
-          [label]='"FILTER_COLUMNS" | translate'
-          [matMenuTriggerFor]='columnFilters'
-          class='p-button-rounded p-button-text p-button-icon-only'
-          icon='pi pi-sliders-h'
-          pButton></button>
+          [label]="'FILTER_COLUMNS' | translate"
+          [matMenuTriggerFor]="columnFilters"
+          class="p-button-rounded p-button-text p-button-icon-only"
+          icon="pi pi-sliders-h"
+          pButton
+        ></button>
 
-        <mat-menu #columnFilters='matMenu' xPosition='before' yPosition='below'>
-          <ng-container *ngFor='let column of columns'>
-            <button *ngIf='column.show !== undefined'
-                    class='checkbox-item mat-menu-item'>
-              <mat-checkbox
-                (click)='$event.stopPropagation()'
-                [(ngModel)]='column.show' color='primary'>
+        <mat-menu #columnFilters="matMenu" xPosition="before" yPosition="below">
+          <ng-container *ngFor="let column of columns">
+            <button *ngIf="column.show !== undefined" class="checkbox-item mat-menu-item">
+              <mat-checkbox (click)="$event.stopPropagation()" [(ngModel)]="column.show" color="primary">
                 {{ column.label | translate }}
               </mat-checkbox>
             </button>
@@ -60,123 +61,119 @@
       </div>
     </div>
   </ng-template>
-  <ng-template pTemplate='header'>
+  <ng-template pTemplate="header">
     <tr>
       <!-- Render all header columns by type -->
-      <ng-container *ngFor='let column of activeColumns; trackBy: trackByProperty'>
+      <ng-container *ngFor="let column of activeColumns; trackBy: trackByProperty">
         <ng-container *ngIf="column.type === 'text'">
-          <th [classList]='column.cssClasses' [pSortableColumn]='column.property'>
-            <div class='p-d-flex p-jc-between p-ai-center'>
+          <th [classList]="column.cssClasses" [pSortableColumn]="column.property">
+            <div class="p-d-flex p-jc-between p-ai-center">
               {{ column.label | translate }}
-              <p-columnFilter
-                *ngIf='!column.hideFilter'
-                display='menu'
-                field='{{ column.property }}'
-                type='text'></p-columnFilter>
+              <p-columnFilter *ngIf="!column.hideFilter" display="menu" field="{{ column.property }}" type="text"></p-columnFilter>
             </div>
           </th>
         </ng-container>
         <ng-container *ngIf="column.type === 'date'">
-          <th [classList]='column.cssClasses' [pSortableColumn]='column.property'>
-            <div class='p-d-flex p-jc-between p-ai-center'>
+          <th [classList]="column.cssClasses" [pSortableColumn]="column.property">
+            <div class="p-d-flex p-jc-between p-ai-center">
               {{ column.label | translate }}
               <p-columnFilter
-                *ngIf='!column.hideFilter'
-                [showAddButton]='false'
-                [showOperator]='false'
-                display='menu'
-                field='{{ column.property }}'
-                type='date'
+                *ngIf="!column.hideFilter"
+                [showAddButton]="false"
+                [showOperator]="false"
+                display="menu"
+                field="{{ column.property }}"
+                type="date"
               ></p-columnFilter>
             </div>
           </th>
         </ng-container>
         <ng-container *ngIf="column.type === 'template'">
-          <th [classList]='column.cssClasses' [pSortableColumn]='column.property'>
-            <div class='p-d-flex p-jc-between p-ai-center'>
+          <th [classList]="column.cssClasses" [pSortableColumn]="column.property">
+            <div class="p-d-flex p-jc-between p-ai-center">
               {{ column.label | translate }}
             </div>
           </th>
         </ng-container>
         <ng-container *ngIf="column.type === 'badge'">
-          <th [classList]='column.cssClasses' [pSortableColumn]='column.property'>
-            <div class='p-d-flex p-jc-between p-ai-center'>
+          <th [classList]="column.cssClasses" [pSortableColumn]="column.property">
+            <div class="p-d-flex p-jc-between p-ai-center">
               {{ column.label | translate }}
             </div>
           </th>
         </ng-container>
         <ng-container *ngIf="column.type === 'state'">
-          <th [classList]='column.cssClasses' [pSortableColumn]='column.property'>
-            <div class='p-d-flex p-jc-between p-ai-center'>
+          <th [classList]="column.cssClasses" [pSortableColumn]="column.property">
+            <div class="p-d-flex p-jc-between p-ai-center">
               {{ column.label | translate }}
             </div>
           </th>
         </ng-container>
       </ng-container>
       <!-- Render an additional column if an action template was provided -->
-      <ng-container *ngIf='actionsTemplateRef'>
-        <th class='end'></th>
+      <ng-container *ngIf="actionsTemplateRef">
+        <th class="end"></th>
       </ng-container>
     </tr>
   </ng-template>
-  <ng-template let-expanded='expanded' let-row pTemplate='body'>
+  <ng-template let-expanded="expanded" let-row pTemplate="body">
     <!-- Render all rows by column definition -->
-    <tr (click)='rowClickEvents.emit(row)' *ngIf='row' [class.hasHover]='rowClickEvents' [pSelectableRow]='row'>
-      <ng-container *ngIf='!rowTemplateRef'>
-        <ng-container *ngFor='let column of activeColumns; trackBy: trackByProperty'>
+    <tr (click)="rowClickEvents.emit(row)" *ngIf="row" [class.hasHover]="rowClickEvents" [pSelectableRow]="row">
+      <ng-container *ngIf="!rowTemplateRef">
+        <ng-container *ngFor="let column of activeColumns; trackBy: trackByProperty">
           <ng-container *ngIf="column.type === 'template' && column.template">
-            <td [classList]='column.cssClasses'>
-              <ng-container [ngTemplateOutletContext]='{ $implicit: resolveValue(column.property, row) }'
-                            [ngTemplateOutlet]='getTemplate(column.template)'></ng-container>
+            <td [classList]="column.cssClasses">
+              <ng-container
+                [ngTemplateOutletContext]="{ $implicit: resolveValue(column.property, row), parentRow: row }"
+                [ngTemplateOutlet]="getTemplate(column.template)"
+              ></ng-container>
             </td>
           </ng-container>
           <ng-container *ngIf="column.type === 'badge'">
-            <td [classList]='column.cssClasses'>
-              <arpa-state-badge
-                [stateMap]='column.badgeStateMap'
-                [value]=' resolveValue(column.property, row)'
-              ></arpa-state-badge>
+            <td [classList]="column.cssClasses">
+              <arpa-state-badge [stateMap]="column.badgeStateMap" [value]="resolveValue(column.property, row)"></arpa-state-badge>
             </td>
           </ng-container>
           <ng-container *ngIf="column.type === 'state'">
-            <td [classList]='column.cssClasses'>
+            <td [classList]="column.cssClasses">
               <arpa-state-badge
-                [stateMap]='column.badgeStateMap'
-                [value]='resolveState(column.stateTable || "", column.stateProperty, resolveValue(column.property, row)) | async'
+                [stateMap]="column.badgeStateMap"
+                [value]="resolveState(column.stateTable || '', column.stateProperty, resolveValue(column.property, row)) | async"
               ></arpa-state-badge>
             </td>
           </ng-container>
           <ng-container *ngIf="column.type === 'text'">
-            <td [classList]='column.cssClasses'>
+            <td [classList]="column.cssClasses">
               {{ resolveValue(column.property, row) }}
             </td>
           </ng-container>
           <ng-container *ngIf="column.type === 'date'">
-            <td [classList]='column.cssClasses'>
-              {{ resolveValue(column.property, row) | date:'mediumDate'}}
+            <td [classList]="column.cssClasses">
+              {{ resolveValue(column.property, row) | date: 'mediumDate' }}
             </td>
           </ng-container>
         </ng-container>
       </ng-container>
 
       <!-- Render all action columns -->
-      <ng-container *ngIf='actionsTemplateRef && !rowTemplateRef'>
-        <td class='end'>
-          <ng-container [ngTemplateOutletContext]='{ $implicit: row }'
-                        [ngTemplateOutlet]='actionsTemplateRef'></ng-container>
+      <ng-container *ngIf="actionsTemplateRef && !rowTemplateRef">
+        <td class="end">
+          <ng-container [ngTemplateOutletContext]="{ $implicit: row }" [ngTemplateOutlet]="actionsTemplateRef"></ng-container>
         </td>
       </ng-container>
 
-      <ng-container *ngIf='rowTemplateRef' [ngTemplateOutletContext]='{ $implicit: row }'
-                    [ngTemplateOutlet]='rowTemplateRef'>
+      <ng-container *ngIf="rowTemplateRef" [ngTemplateOutletContext]="{ $implicit: row }" [ngTemplateOutlet]="rowTemplateRef">
       </ng-container>
     </tr>
   </ng-template>
-  <ng-template [ngIf]='rowExpansionTemplateRef' let-row pTemplate='rowexpansion'>
+  <ng-template [ngIf]="rowExpansionTemplateRef" let-row pTemplate="rowexpansion">
     <tr>
-      <td colspan='6'>
-        <ng-container *ngIf='rowExpansionTemplateRef' [ngTemplateOutletContext]='{ $implicit: row }'
-                      [ngTemplateOutlet]='rowExpansionTemplateRef'>
+      <td colspan="6">
+        <ng-container
+          *ngIf="rowExpansionTemplateRef"
+          [ngTemplateOutletContext]="{ $implicit: row }"
+          [ngTemplateOutlet]="rowExpansionTemplateRef"
+        >
         </ng-container>
       </td>
     </tr>

@@ -8,5 +8,10 @@ export interface UrlDto {
   modifiedAt?: Date;
   href?: string;
   anchorText?: string;
-  roles?: Array<RoleDto>;
+  urlRoles?: Array<UrlRoleDto>;
+}
+
+export interface UrlRoleDto {
+  id?: string;
+  role: RoleDto;
 }

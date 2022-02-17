@@ -49,7 +49,15 @@ export class ProjectService {
     return this.apiService.put(`/urls/${id}`, data).pipe(shareReplay());
   }
 
-  removeUrl(data: UrlDto): Observable<any> {
+  public removeUrl(data: UrlDto): Observable<any> {
     return this.apiService.delete(`/urls/${data.id}`);
+  }
+
+  public addRoleToUrl(urlId: string, roleId: string): Observable<any> {
+    return this.apiService.post(`/urls/${urlId}/roles/${roleId}`, {}).pipe(shareReplay());
+  }
+
+  public removeRoleFromUrl(urlId: string, roleId: string): Observable<any> {
+    return this.apiService.delete(`/urls/${urlId}/roles/${roleId}`).pipe(shareReplay());
   }
 }
