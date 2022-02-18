@@ -1,12 +1,12 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-my-5">
   <div class="p-grid p-formgrid">
     <div class="p-field p-fluid p-col-12 p-xl-6" tooltip="start with http://">
-      <arpa-form-field label="Link http://..." type="text">
+      <arpa-form-field label="{{ 'projects.URL_ADDRESS' | translate }}" type="text">
         <input autocomplete="off" formControlName="href" pInputText type="text" />
       </arpa-form-field>
     </div>
     <div class="p-field p-fluid p-col-12 p-xl-6">
-      <arpa-form-field label="Bezeichnung" type="text">
+      <arpa-form-field label="{{ 'projects.URL_DESCRIPTION' | translate }}" type="text">
         <input autocomplete="off" formControlName="anchorText" pInputText type="text" />
       </arpa-form-field>
     </div>

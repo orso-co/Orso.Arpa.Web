@@ -28,9 +28,9 @@ export class EditProjectUrlsComponent implements OnInit {
   selectedUrlRoles: string[] = [];
 
   columns: ColumnDefinition<UrlDto>[] = [
-    { label: 'Link', property: 'href', type: 'template', template: 'linkTemplate' },
-    { label: 'Bezeichnung', property: 'anchorText', type: 'text' },
-    { label: 'Rollen', property: 'urlRoles', type: 'template', template: 'roleTemplate' },
+    { label: 'projects.URL', property: 'href', type: 'template', template: 'linkTemplate' },
+    { label: 'projects.DESCRIPTION', property: 'anchorText', type: 'text' },
+    { label: 'projects.ROLES', property: 'urlRoles', type: 'template', template: 'roleTemplate' },
   ];
 
   constructor(
