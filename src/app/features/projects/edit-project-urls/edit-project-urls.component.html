@@ -1,0 +1,93 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-my-5">
+  <div class="p-grid p-formgrid">
+    <div class="p-field p-fluid p-col-12 p-xl-6" tooltip="start with http://">
+      <arpa-form-field label="{{ 'projects.URL_ADDRESS' | translate }}" type="text">
+        <input autocomplete="off" formControlName="href" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+    <div class="p-field p-fluid p-col-12 p-xl-6">
+      <arpa-form-field label="{{ 'projects.URL_DESCRIPTION' | translate }}" type="text">
+        <input autocomplete="off" formControlName="anchorText" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class="p-formgroup-inline p-jc-between">
+    <div class="p-text-left">
+      <button
+        [disabled]="form.pristine || form.invalid"
+        [label]="'SAVE' | translate"
+        icon="pi pi-check"
+        iconPos="right"
+        pButton
+        type="submit"
+      ></button>
+    </div>
+    <div class="p-text-right">
+      <button
+        [label]="'CANCEL' | translate"
+        icon="pi pi-times"
+        iconPos="right"
+        pButton
+        type="button"
+        (click)="onCancel()"
+        class="p-button-outlined"
+      ></button>
+    </div>
+  </div>
+</form>
+<arpa-table [actionsTemplateRef]="actionsTemplate" [columns]="columns" [data]="tableData" [showFilter]="false" [showPagination]="false">
+  <ng-template arpaTableColumn="linkTemplate" let-href>
+    <a [href]="href" target="_blank">{{ href }}</a>
+  </ng-template>
+
+  <ng-template arpaTableColumn="roleTemplate" let-urlRoles let-parentRow="parentRow">
+    <div class="p-d-flex p-flex-column">
+      <ul class="p-m-0 p-p-0">
+        <li *ngFor="let role of getRoles(urlRoles || [])">{{ role.roleName }}</li>
+      </ul>
+      <button
+        (click)="toggleOverlay($event, op, parentRow)"
+        class="p-button-outlined p-button-rounded p-mt-2"
+        icon="pi pi-users"
+        pButton
+        type="button"
+      ></button>
+    </div>
+    <p-overlayPanel #op [showCloseIcon]="true" [style]="{ width: '450px' }">
+      <ng-template pTemplate>
+        <div class="p-fluid">
+          <label for="roles">Rollen</label>
+          <p-multiSelect
+            (onChange)="onRoleSelectionChange($event, parentRow, op)"
+            [options]="(roles$ | async)!"
+            optionLabel="roleName"
+            optionValue="id"
+            [filter]="false"
+            [(ngModel)]="selectedUrlRoles"
+            id="roles"
+            [showToggleAll]="false"
+          ></p-multiSelect>
+        </div>
+      </ng-template>
+    </p-overlayPanel>
+  </ng-template>
+</arpa-table>
+
+<ng-template #actionsTemplate let-row>
+  <button
+    (click)="update(row)"
+    [label]="'project-dialog.UPDATE' | translate"
+    class="p-button-rounded p-button-text p-button-icon-only"
+    icon="pi pi-pencil"
+    pButton
+    type="button"
+  ></button>
+  <button
+    (click)="remove(row)"
+    [label]="'project-dialog.DELETE' | translate"
+    class="p-button-rounded p-button-text p-button-icon-only"
+    icon="pi pi-trash"
+    pButton
+    type="button"
+  ></button>
+</ng-template>

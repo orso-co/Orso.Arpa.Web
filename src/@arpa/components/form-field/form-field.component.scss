@@ -12,7 +12,6 @@
     animation-name: cdk-text-field-autofill-start;
   }
 
-
   input:focus {
     animation-name: cdk-text-field-focus-start;
   }
@@ -27,7 +26,7 @@
     .form-field-wrapper {
       .form-field-outline {
         & > div {
-          border-color: rgba(#ced4da, .85);
+          border-color: rgba(#ced4da, 0.85);
           border-width: 1px;
           //transition: all 200ms ease;
         }
@@ -36,16 +35,18 @@
   }
 
   label {
-    opacity: .5;
+    opacity: 0.5;
   }
 
   .form-field-label-wrapper {
     transition: all 250ms ease;
     padding-left: 0;
-    padding-right: .25rem;
+    padding-right: 0.25rem;
   }
 
-  &[type="select"], &:not([type="checkbox"]).focus, &:not([type="checkbox"]).state {
+  &[type='select'],
+  &:not([type='checkbox']).focus,
+  &:not([type='checkbox']).state {
     .p-field {
       .form-field-wrapper {
         .form-field-outline {
@@ -62,12 +63,12 @@
             .form-field-label-wrapper {
               position: relative;
               white-space: nowrap;
-              font-size: .75rem;
-              padding-left: .5rem;
-              padding-right: .5rem;
+              font-size: 0.75rem;
+              padding-left: 0.5rem;
+              padding-right: 0.5rem;
 
               label {
-                top: -.75rem;
+                top: -0.75rem;
                 position: relative;
               }
             }
@@ -77,12 +78,13 @@
     }
   }
 
-  &.focus, &:not([type="checkbox"]).focus {
+  &.focus,
+  &:not([type='checkbox']).focus {
     .p-field {
       .form-field-wrapper {
         .form-field-outline {
           & > div {
-            border-color: rgba(#a6d5fa, .85);
+            border-color: rgba(#a6d5fa, 0.85);
             border-width: 2px;
           }
         }
@@ -90,7 +92,7 @@
     }
   }
 
-  &[type="rating"] {
+  &[type='rating'] {
     .p-field {
       .form-field-wrapper {
         .form-field-flex {
@@ -103,9 +105,9 @@
               align-self: center;
 
               label {
-                font-size: .85rem;
+                font-size: 0.85rem;
                 position: relative;
-                padding-right: .5rem;
+                padding-right: 0.5rem;
               }
             }
           }
@@ -120,7 +122,7 @@
     }
   }
 
-  &[type="checkbox"] {
+  &[type='checkbox'] {
     .p-field {
       .form-field-wrapper {
         .form-field-flex {
@@ -151,7 +153,7 @@
       .form-field-wrapper {
         .form-field-outline {
           & > div {
-            border-color: rgba(red, .25);
+            border-color: rgba(red, 0.25);
           }
         }
       }
@@ -159,15 +161,21 @@
   }
 }
 
-:host([class=error]) {
-  .form-field-outline, .form-field-appearance-outline.form-field-invalid .form-field-outline {
+:host([class='error']) {
+  .form-field-outline,
+  .form-field-appearance-outline.form-field-invalid .form-field-outline {
     opacity: 0;
     transition: opacity 100ms cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 }
 
 :host ::ng-deep {
-  .p-inputtext, .p-inputtext:focus, .p-dropdown, .p-dropdown.p-focus, .p-multiselect, .p-multiselect.p-focus {
+  .p-inputtext,
+  .p-inputtext:focus,
+  .p-dropdown,
+  .p-dropdown.p-focus,
+  .p-multiselect,
+  .p-multiselect.p-focus {
     border: none;
     outline: none;
     -webkit-appearance: none;
@@ -176,19 +184,22 @@
     padding-left: 0;
   }
 
-  .p-dropdown, p-multiSelect {
+  .p-dropdown,
+  p-multiSelect {
     width: 100%;
   }
 
   p-checkbox + label {
-    padding-left: .5rem;
+    padding-left: 0.5rem;
   }
 }
 
 .p-field {
   .form-field-wrapper {
     position: relative;
-    margin: .2rem 0 2.5rem;
+    @media screen and (min-width: 767px) {
+      margin: 0.2rem 0 2.5rem;
+    }
 
     .form-field-flex {
       position: relative;
@@ -196,12 +207,12 @@
       align-items: baseline;
       box-sizing: border-box;
       width: 100%;
-      padding: 0 .5rem 0 .5rem;
+      padding: 0 0.5rem 0 0.5rem;
       margin-top: -0.25em;
     }
 
     .form-field-infix {
-      padding: .25rem 0 0;
+      padding: 0.25rem 0 0;
       display: block;
       position: relative;
       flex: auto;
@@ -209,11 +220,10 @@
       width: 100%;
     }
 
-
     .form-field-outline {
       display: flex;
       position: absolute;
-      top: .25em;
+      top: 0.25em;
       left: 0;
       right: 0;
       bottom: 0;
@@ -225,12 +235,11 @@
         border-radius: 3px 0 0 3px;
         border-right-style: none;
         outline-offset: 0;
-
       }
 
       .form-field-outline-gap {
         border-top-color: transparent;
-        border-radius: .000001px;
+        border-radius: 0.000001px;
         border: 1px solid currentColor;
         border-left-style: none;
         border-right-style: none;
@@ -253,17 +262,17 @@
 }
 
 .error {
-  margin-left: .25rem;
+  margin-left: 0.25rem;
   margin-bottom: 1rem;
-  font-size: .8rem;
+  font-size: 0.8rem;
   text-align: left;
   position: relative;
   margin-top: -2rem;
 
   i {
     vertical-align: text-bottom;
-    margin-right: .25rem;
-    opacity: .25;
+    margin-right: 0.25rem;
+    opacity: 0.25;
   }
 }
 

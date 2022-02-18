@@ -201,6 +201,7 @@ export class AppointmentsComponent {
       },
       header: this.translate.instant('appointments.CREATE'),
       styleClass: 'form-modal',
+      width: window.innerWidth > 1000 ? '66%' : '100%',
       dismissableMask: true,
     });
 

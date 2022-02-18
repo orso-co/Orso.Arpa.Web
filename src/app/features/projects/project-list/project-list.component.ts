@@ -1,3 +1,4 @@
+import { ProjectLayoutComponent } from './../project-layout/project-layout.component';
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { first, map } from 'rxjs/operators';
@@ -81,7 +82,7 @@ export class ProjectListComponent {
   }
 
   public openProjectDetailDialog(selection: ProjectDto | null): void {
-    const ref = this.dialogService.open(EditProjectComponent, {
+    const ref = this.dialogService.open(ProjectLayoutComponent, {
       data: {
         project: selection ? selection : null,
         venues: this.venueService.load(),
@@ -114,6 +115,7 @@ export class ProjectListComponent {
       header: this.translate.instant('projects.EDIT_PARTICIPATION'),
       styleClass: 'form-modal',
       dismissableMask: true,
+      width: window.innerWidth > 1000 ? '66%' : '100%',
     });
 
     ref.onClose.pipe(first()).subscribe((result) => {
@@ -134,6 +136,7 @@ export class ProjectListComponent {
       header: `${this.translate.instant('projects.PARTICIPANTS')}: ${project.title}`,
       styleClass: 'form-modal',
       dismissableMask: true,
+      width: window.innerWidth > 1000 ? '66%' : '100%',
     });
   }
 

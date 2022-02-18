@@ -1,3 +1,4 @@
+import { EditProjectUrlsComponent } from './edit-project-urls/edit-project-urls.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -23,7 +24,11 @@ import { FormFieldModule } from '../../../@arpa/components/form-field/form-field
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
+import { ProjectLayoutComponent } from './project-layout/project-layout.component';
+import { TabViewModule } from 'primeng/tabview';
+import { TagModule } from 'primeng/tag';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 @NgModule({
   declarations: [
     ProjectListComponent,
@@ -31,6 +36,8 @@ import { MatIconModule } from '@angular/material/icon';
     ProjectParticipationComponent,
     ProjectParticipantsComponent,
     ProjectchartParticipantsComponent,
+    ProjectLayoutComponent,
+    EditProjectUrlsComponent,
   ],
   imports: [
     CommonModule,
@@ -51,18 +58,17 @@ import { MatIconModule } from '@angular/material/icon';
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
+    TabViewModule,
+    TagModule,
+    MultiSelectModule,
+    OverlayPanelModule,
   ],
-  exports: [
-    ProjectListComponent,
-  ],
-  providers: [
-    ProjectGenreResolver,
-    ProjectTypeResolver,
-  ],
+  exports: [ProjectListComponent],
+  providers: [ProjectGenreResolver, ProjectTypeResolver],
 })
 export class ProjectsModule {
   constructor(private translateService: TranslateService, private languageService: LanguageService) {
-    languageService.languageEvent.subscribe(lang => {
+    languageService.languageEvent.subscribe((lang) => {
       /**
        * Reset lang for lazy module.
        * Fixes: https://github.com/ngx-translate/core/issues/1193

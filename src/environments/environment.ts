@@ -33,10 +33,10 @@ export const environment = {
   locale: {
     default: 'en',
     locales: {
-      'de': 'Deutsch',
-      'en': 'Englisch',
-      'pt': 'Portugiesisch',
-      'fr': 'Französisch',
+      de: 'Deutsch',
+      en: 'Englisch',
+      pt: 'Portugiesisch',
+      fr: 'Französisch',
     },
   },
 };
