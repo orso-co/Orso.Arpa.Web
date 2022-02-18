@@ -1,4 +1,5 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { MyProjectParticipationDto } from './../../../../@arpa/models/myProjectDto';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'primeng/api';
 import { Observable, of } from 'rxjs';
@@ -12,38 +13,32 @@ import { MyProjectDto } from 'src/@arpa/models/myProjectDto';
 @Component({
   selector: 'arpa-profile-my-projects',
   templateUrl: './my-projects.component.html',
-  styleUrls: ['./my-projects.component.scss']
+  styleUrls: ['./my-projects.component.scss'],
 })
-export class MyProjectsComponent implements AfterViewInit {
-  userProjects$: Observable<MyProjectDto[]> = of([]);
-  totalRecordsCount$: Observable<number> = of(0);
-  participationStatusInner: Observable<SelectItem[]>;
-  itemsPerPage = 10;
+export class MyProjectsComponent implements AfterViewInit, OnInit {
+  myProjects$: Observable<MyProjectDto[]> = of([]);
+  participationStatusInner$: Observable<SelectItem[]>;
 
   constructor(
     private meService: MeService,
     private route: ActivatedRoute,
     private selectValueService: SelectValueService,
-    private notificationsService: NotificationsService,
-  ) {
-  }
+    private notificationsService: NotificationsService
+  ) {}
 
   ngAfterViewInit(): void {
-    this.participationStatusInner = this.selectValueService.load('ProjectParticipation', 'ParticipationStatusInner').pipe(
-      map(() => this.selectValueService.get('ProjectParticipation', 'ParticipationStatusInner')),
-    );
+    this.participationStatusInner$ = this.selectValueService
+      .load('ProjectParticipation', 'ParticipationStatusInner')
+      .pipe(map(() => this.selectValueService.get('ProjectParticipation', 'ParticipationStatusInner')));
   }
 
-  loadData(take: number, skip: number): void {
-    const loadResult$ = this.meService.getMyProjects(take, skip);
-    this.userProjects$ = loadResult$.pipe(map((result) => result.userProjects || []));
-    this.totalRecordsCount$ = loadResult$.pipe(map((result) => result.totalRecordsCount || 0));
+  ngOnInit(): void {
+    this.myProjects$ = this.meService.getMyProjects();
   }
 
   getProjectNames(projects: ProjectDto[]): string {
     return projects.map((p) => p.title).join(', ');
   }
-
 
   onParticipationStatusChanged(event: any): void {
     this.meService
@@ -54,4 +49,6 @@ export class MyProjectsComponent implements AfterViewInit {
         this.notificationsService.success('profile.PROJECTPARTICIPATION_SET');
       });
   }
+
+  openDialog(participation: MyProjectParticipationDto) {}
 }

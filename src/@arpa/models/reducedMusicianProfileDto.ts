@@ -4,6 +4,6 @@ export interface ReducedMusicianProfileDto {
   id?: string;
   instrumentName?: string;
   qualification?: string;
-  doublingInstrumentNames?: string;
+  doublingInstrumentNames?: string[];
   deactivation?: MusicianProfileDeactivationDto;
 }

@@ -1,0 +1,28 @@
+.project-title {
+  font-size: x-large;
+}
+
+.project-date {
+  text-transform: uppercase;
+  font-weight: bold;
+  opacity: 60%;
+  font-size: small;
+}
+
+.content-item {
+  display: flex;
+  flex-direction: column;
+
+  > label {
+    font-size: x-small;
+    opacity: 60%;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}

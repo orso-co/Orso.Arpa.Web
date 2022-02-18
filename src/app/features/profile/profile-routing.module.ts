@@ -11,7 +11,6 @@ import { SectionsResolver } from './resolvers/sections.resolver';
 import { QRCodeComponent } from './qrcode/qrcode.component';
 import { MyProjectsComponent } from './my-projects/my-projects.component';
 
-
 const routes: Routes = [
   {
     path: 'user',
@@ -32,7 +31,7 @@ const routes: Routes = [
       {
         path: 'my-projects',
         component: MyProjectsComponent,
-        data: { roles: [RoleNames.performer, RoleNames.staff, RoleNames.admin] },
+        data: { roles: [RoleNames.performer, RoleNames.staff, RoleNames.admin], title: 'MY_PROJECTS' },
       },
       {
         path: 'musician',
@@ -46,7 +45,8 @@ const routes: Routes = [
           {
             path: '',
             outlet: 'modal',
-            loadChildren: () => import('../musician-profile-dialog/musician-profile-dialog.module').then(m => m.MusicianProfileDialogModule),
+            loadChildren: () =>
+              import('../musician-profile-dialog/musician-profile-dialog.module').then((m) => m.MusicianProfileDialogModule),
           },
         ],
       },
@@ -56,5 +56,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ProfileRoutingModule {
-}
+export class ProfileRoutingModule {}

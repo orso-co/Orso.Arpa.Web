@@ -1,3 +1,5 @@
+import { TabViewModule } from 'primeng/tabview';
+import { TagModule } from 'primeng/tag';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfileRoutingModule } from './profile-routing.module';
@@ -27,16 +29,10 @@ import { GraphQlFeedModule } from '../../../@arpa/components/graph-ql-feed/graph
 import { LocalizedDateModule } from '../../../@arpa/pipes/localized-date/localized-date.module';
 import { LocalizedDatePipe } from '../../../@arpa/pipes/localized-date/localized-date.pipe';
 import { MyProjectsComponent } from './my-projects/my-projects.component';
+import { AccordionModule } from 'primeng/accordion';
 
 @NgModule({
-  declarations: [
-    ProfileComponent,
-    UserComponent,
-    AppointmentsComponent,
-    MusicianComponent,
-    QRCodeComponent,
-    MyProjectsComponent,
-  ],
+  declarations: [ProfileComponent, UserComponent, AppointmentsComponent, MusicianComponent, QRCodeComponent, MyProjectsComponent],
   imports: [
     CommonModule,
     ProfileRoutingModule,
@@ -57,17 +53,16 @@ import { MyProjectsComponent } from './my-projects/my-projects.component';
     TableModule,
     InputTextModule,
     GraphQlFeedModule,
-    LocalizedDateModule
+    LocalizedDateModule,
+    AccordionModule,
+    TagModule,
+    TabViewModule,
   ],
-  providers: [
-    ProfileService,
-    ProfileResolver,
-    LocalizedDatePipe,
-  ],
+  providers: [ProfileService, ProfileResolver, LocalizedDatePipe],
 })
 export class ProfileModule {
   constructor(private translateService: TranslateService, private languageService: LanguageService) {
-    languageService.languageEvent.subscribe(lang => {
+    languageService.languageEvent.subscribe((lang) => {
       /**
        * Reset lang for lazy module.
        * Fixes: https://github.com/ngx-translate/core/issues/1193

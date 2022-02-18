@@ -1,5 +1,91 @@
-<h1>Meine Projekte werden hier erscheinen... </h1>
- <!-- Work in progress nach Vorlage von "Meine Termine"
+<h1>Meine Projekte</h1>
+<p-accordion>
+  <p-accordionTab *ngFor="let myProject of myProjects$ | async">
+    <ng-template pTemplate="header">
+      <div class="p-d-flex p-flex-column">
+        <div class="p-as-start p-d-flex p-ai-center">
+          <span class="project-title">{{ myProject.project.title }}</span>
+          <p-tag
+            *ngIf="myProject.project.genre"
+            styleClass="p-ml-2"
+            severity="info"
+            [value]="myProject.project.genre.name!"
+            [rounded]="true"
+          ></p-tag>
+        </div>
+        <div class="p-as-start project-date">
+          <span *ngIf="myProject.project.startDate">{{ myProject.project.startDate | date: 'dd.MM.yy':'locale(de)' }}</span>
+          <span *ngIf="myProject.project.endDate"> - {{ myProject.project.endDate | date: 'dd.MM.yy':'locale(de)' }}</span>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <p-tabView [scrollable]="true">
+        <p-tabPanel header="Projektdaten">
+          <div class="p-grid">
+            <div class="p-col-12 content-item">
+              <label>Beschreibung</label>
+              <span>{{ myProject.project.description }}</span>
+            </div>
+            <div class="p-col-6 content-item" *ngIf="myProject.project.type?.name">
+              <label>Typ</label>
+              <span>{{ myProject.project.type?.name || '' }}</span>
+            </div>
+            <div class="p-col-6 content-item" *ngIf="myProject.project.state?.name">
+              <label>Status</label>
+              <span>{{ myProject.project.state?.name }}</span>
+            </div>
+            <div class="p-col-12 content-item" *ngIf="(myProject.project.urls?.length || 0) > 0">
+              <label>Links</label>
+              <ul>
+                <li *ngFor="let url of myProject.project.urls">
+                  <a [href]="url.href" target="_blank">{{ url.anchorText }}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Meine Anmeldung" *ngIf="myProject.participations.length > 0">
+          <div class="p-grid" *ngFor="let participation of myProject.participations">
+            <div class="p-col-6 content-item">
+              <label>Anmeldung für Musikerprofil</label>
+              <span> {{ participation.musicianProfile?.instrumentName }} ({{ participation.musicianProfile?.qualification }})</span>
+            </div>
+            <div class="p-col-6 p-text-right">
+              <button pButton type="button" label="Anmeldung ändern" (click)="openDialog(participation)"></button>
+            </div>
+            <div class="p-col-12 content-item" *ngIf="participation.participationStatusInner?.name">
+              <label>Anmeldestatus</label>
+              <span>{{ participation.participationStatusInner?.name }}</span>
+            </div>
+
+            <div class="p-col-12 content-item" *ngIf="participation.commentByPerformerInner">
+              <label>Meine Bemerkung</label>
+              <span>{{ participation.commentByPerformerInner }}</span>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Rückmeldung KBE" *ngIf="myProject.participations.length > 0"
+          ><div class="p-grid" *ngFor="let participation of myProject.participations">
+            <div class="p-col-12 content-item">
+              <label>Rückmeldung für Musikerprofil</label>
+              <span> {{ participation.musicianProfile?.instrumentName }} ({{ participation.musicianProfile?.qualification }})</span>
+            </div>
+            <div class="p-col-12 content-item" *ngIf="participation.participationStatusInternal?.name">
+              <label>Rückmeldestatus</label>
+              <span>{{ participation.participationStatusInternal?.name }}</span>
+            </div>
+            <div class="p-col-12 content-item" *ngIf="participation.commentByStaffInner">
+              <label>Bemerkung KBE</label>
+              <span>{{ participation.commentByStaffInner }}</span>
+            </div>
+          </div></p-tabPanel
+        >
+      </p-tabView>
+    </ng-template>
+  </p-accordionTab>
+</p-accordion>
+<!-- Work in progress nach Vorlage von "Meine Termine"
 <arpa-select-dialog
   #selectDialog
   (closeEvent)='onParticipationStatusChanged($event)'
