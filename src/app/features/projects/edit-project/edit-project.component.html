@@ -22,7 +22,7 @@
     </div>
     <div class="p-field p-col-12 p-md-3">
       <arpa-form-field label="projects.CODE">
-        <input formControlName="code" id="code" maxlength="15" pInputText type="text" />
+        <input formControlName="code" id="code" maxlength="15" pInputText type="text"  />
       </arpa-form-field>
     </div>
     <div class="p-field p-col-12 p-md-6">
@@ -43,7 +43,7 @@
         </arpa-form-field>
       </ng-template>
     </div>
-    <div class="p-field p-col-12 p-md-3">
+    <div class="p-field p-col-12 p-md-6">
       <arpa-form-field label="projects.TYPE" type="select">
         <p-dropdown
           [autoDisplayFirst]="false"
@@ -55,7 +55,7 @@
         ></p-dropdown>
       </arpa-form-field>
     </div>
-    <div class="p-field p-col-12 p-md-3">
+    <div class="p-field p-col-12 p-md-6">
       <arpa-form-field label="projects.GENRE" type="select">
         <p-dropdown
           [autoDisplayFirst]="false"
@@ -65,6 +65,12 @@
           formControlName="genreId"
           id="genre"
         ></p-dropdown>
+      </arpa-form-field>
+    </div>
+
+    <div class="p-field p-col-12">
+      <arpa-form-field label="projects.DESCRIPTION">
+        <textarea cols="10" formControlName="description" id="description" pInputTextarea rows="6"></textarea>
       </arpa-form-field>
     </div>
     <div class="p-field p-col-12 p-md-3">
@@ -79,7 +85,7 @@
         ></p-dropdown>
       </arpa-form-field>
     </div>
-    <div class="p-field p-col-12 p-md-3">
+    <div class="p-field p-col-12 p-md-2" >
       <arpa-form-field label="projects.COMPLETED" type="select">
         <p-dropdown
           [autoDisplayFirst]="false"
@@ -90,11 +96,6 @@
           formControlName="isCompleted"
           id="isCompleted"
         ></p-dropdown>
-      </arpa-form-field>
-    </div>
-    <div class="p-field p-col-12">
-      <arpa-form-field label="projects.DESCRIPTION">
-        <textarea cols="10" formControlName="description" id="description" pInputTextarea rows="10"></textarea>
       </arpa-form-field>
     </div>
   </div>

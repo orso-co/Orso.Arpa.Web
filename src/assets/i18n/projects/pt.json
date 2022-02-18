@@ -25,5 +25,15 @@
   "STATE": "estado",
   "TITLE": "nome completo",
   "TYPE": "tipo",
-  "VENUE": "local"
+  "VENUE": "local",
+
+  "ROLE_ADDED": "função adicionada",
+  "ROLE_REMOVED": "função removida",
+  "URLS": "URLs",
+  "URLS_TOOLTIP": "Coleção de URLs para conteúdo externo",
+  "URL_ADDED": "URL adicionado",
+  "URL_MODIFIED": "URL modificado",
+  "URL_REMOVED": "URL removido",
+  "BASICDATA": "informação básica",
+  "BASICDATA_TOOLTIP": "Informações básicas e detalhes sobre o projeto"
 }

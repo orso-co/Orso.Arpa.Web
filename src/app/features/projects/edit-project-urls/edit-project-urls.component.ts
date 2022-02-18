@@ -62,7 +62,7 @@ export class EditProjectUrlsComponent implements OnInit {
           this._tableData[index].href = href;
           this._tableData[index].anchorText = anchorText;
           this.tableData.next(this._tableData);
-          this.notificationsService.success('URL_MODIFIED', 'project-dialog');
+          this.notificationsService.success('URL_MODIFIED', 'projects');
           this.form.reset({});
         });
     } else {
@@ -72,7 +72,7 @@ export class EditProjectUrlsComponent implements OnInit {
         .subscribe((result) => {
           this._tableData.push(result);
           this.tableData.next(this._tableData);
-          this.notificationsService.success('URL_ADDED', 'project-dialog');
+          this.notificationsService.success('URL_ADDED', 'projects');
           this.form.reset({});
         });
     }
@@ -85,7 +85,7 @@ export class EditProjectUrlsComponent implements OnInit {
       .subscribe(() => {
         this._tableData = this._tableData.filter((e) => e.id != url.id);
         this.tableData.next(this._tableData);
-        this.notificationsService.success('URL_REMOVED', 'project-dialog');
+        this.notificationsService.success('URL_REMOVED', 'projects');
       });
   }
 
@@ -107,7 +107,7 @@ export class EditProjectUrlsComponent implements OnInit {
           const index = this._tableData.findIndex((el) => el.id === url.id);
           this._tableData[index] = { ...updatedUrl, urlRoles: updatedUrl.roles.map((r: any) => ({ role: r })) };
           this.tableData.next(this._tableData);
-          this.notificationsService.success('ROLE_ADDED', 'project-dialog');
+          this.notificationsService.success('ROLE_ADDED', 'projects');
         });
     } else {
       this.projectService
@@ -117,7 +117,7 @@ export class EditProjectUrlsComponent implements OnInit {
           const index = this._tableData.findIndex((el) => el.id === url.id);
           this._tableData[index].urlRoles = this._tableData[index].urlRoles.filter((r: UrlRoleDto) => r.role.id !== event.itemValue);
           this.tableData.next(this._tableData);
-          this.notificationsService.success('ROLE_REMOVED', 'project-dialog');
+          this.notificationsService.success('ROLE_REMOVED', 'projects');
         });
     }
     this.selectedUrlRoles = [];
