@@ -36,98 +36,100 @@ export class LayoutDefaultComponent implements OnDestroy {
     const storedSetting = localStorage.getItem('navExpand');
     this.isExpanded = storedSetting === 'true';
 
-    this.menuService.add('feature', [
-      {
-        label: 'Dashboard',
-        icon: 'pi pi home',
-        children: [
-          {
-            label: 'Performer',
-            icon: 'pi pi-home',
-            routerLink: '/arpa/dashboard/performer',
-            roles: ['performer'],
-            translationToken: 'DASHBOARD',
-          },
-          { label: 'Staff', icon: 'pi pi-home', routerLink: '/arpa/dashboard/staff', roles: ['staff'], translationToken: 'DASHBOARD' },
-          { label: 'Admin', icon: 'pi pi-home', routerLink: '/arpa/dashboard/admin', roles: ['admin'], translationToken: 'DASHBOARD' },
-        ],
-      },
-      {
-        label: 'Allgemeines',
-        translationToken: 'GENERAL',
-        children: [
-          {
-            label: 'Projekte',
-            icon: 'pi pi-th-large',
-            routerLink: '/arpa/projects',
-            roles: ['staff'],
-            translationToken: 'PROJECTS',
-          },
-          {
-            label: 'Kalender',
-            icon: 'pi pi-calendar',
-            roles: ['staff'],
-            routerLink: '/arpa/calendar',
-            translationToken: 'CALENDAR',
-          },
-          {
-            label: 'Kontakte',
-            icon: 'pi pi-users',
-            roles: ['staff'],
-            routerLink: '/arpa/contacts',
-            translationToken: 'CONTACTS',
-          },
-          {
-            icon: 'pi pi-clone',
-            label: 'Musikerprofile',
-            roles: ['staff'],
-            routerLink: '/arpa/mupro',
-            translationToken: 'MUPRO',
-          },
-          {
-            icon: 'pi pi-info-circle',
-            label: 'Auditlogs',
-            roles: ['staff'],
-            routerLink: '/arpa/auditlogs',
-            translationToken: 'AUDITLOGS',
-          },
-        ],
-      },
+    if (this.menuService.getMenu('feature').length === 0) {
+      this.menuService.add('feature', [
+        {
+          label: 'Dashboard',
+          icon: 'pi pi home',
+          children: [
+            {
+              label: 'Performer',
+              icon: 'pi pi-home',
+              routerLink: '/arpa/dashboard/performer',
+              roles: ['performer'],
+              translationToken: 'DASHBOARD',
+            },
+            { label: 'Staff', icon: 'pi pi-home', routerLink: '/arpa/dashboard/staff', roles: ['staff'], translationToken: 'DASHBOARD' },
+            { label: 'Admin', icon: 'pi pi-home', routerLink: '/arpa/dashboard/admin', roles: ['admin'], translationToken: 'DASHBOARD' },
+          ],
+        },
+        {
+          label: 'Allgemeines',
+          translationToken: 'GENERAL',
+          children: [
+            {
+              label: 'Projekte',
+              icon: 'pi pi-th-large',
+              routerLink: '/arpa/projects',
+              roles: ['staff'],
+              translationToken: 'PROJECTS',
+            },
+            {
+              label: 'Kalender',
+              icon: 'pi pi-calendar',
+              roles: ['staff'],
+              routerLink: '/arpa/calendar',
+              translationToken: 'CALENDAR',
+            },
+            {
+              label: 'Kontakte',
+              icon: 'pi pi-users',
+              roles: ['staff'],
+              routerLink: '/arpa/contacts',
+              translationToken: 'CONTACTS',
+            },
+            {
+              icon: 'pi pi-clone',
+              label: 'Musikerprofile',
+              roles: ['staff'],
+              routerLink: '/arpa/mupro',
+              translationToken: 'MUPRO',
+            },
+            {
+              icon: 'pi pi-info-circle',
+              label: 'Auditlogs',
+              roles: ['staff'],
+              routerLink: '/arpa/auditlogs',
+              translationToken: 'AUDITLOGS',
+            },
+          ],
+        },
 
-      {
-        label: 'Persönliches',
-        translationToken: 'PERSONAL',
-        children: [
-          {
-            label: 'Meine Daten',
-            icon: 'pi pi-user',
-            routerLink: '/arpa/my-data',
-            roles: ['performer', 'staff', 'admin'],
-            translationToken: 'MY_DATA',
-          },
-          {
-            label: 'Meine Projekte',
-            icon: 'pi pi-th-large',
-            routerLink: '/arpa/profile/my-projects',
-            translationToken: 'MY_PROJECTS',
-          },
-          {
-            label: 'Meine Termine',
-            icon: 'pi pi-check-square',
-            roles: ['performer', 'staff'],
-            routerLink: '/arpa/profile/appointments',
-            translationToken: 'MY_APPOINTMENTS',
-          },
-          {
-            label: 'Meine Profile',
-            icon: 'pi pi-user-edit',
-            roles: ['performer', 'staff'],
-            routerLink: '/arpa/profile/musician',
-            translationToken: 'MY_PROFILES',
-          },
-        ],
-      },
-    ]);
+        {
+          label: 'Persönliches',
+          translationToken: 'PERSONAL',
+          children: [
+            {
+              label: 'Meine Daten',
+              icon: 'pi pi-user',
+              routerLink: '/arpa/my-data',
+              roles: ['performer', 'staff', 'admin'],
+              translationToken: 'MY_DATA',
+            },
+            {
+              label: 'Meine Projekte',
+              icon: 'pi pi-th-large',
+              routerLink: '/arpa/profile/my-projects',
+              translationToken: 'MY_PROJECTS',
+            },
+            {
+              label: 'Meine Termine',
+              icon: 'pi pi-check-square',
+              roles: ['performer', 'staff'],
+              routerLink: '/arpa/profile/appointments',
+              translationToken: 'MY_APPOINTMENTS',
+            },
+            {
+              label: 'Meine Profile',
+              icon: 'pi pi-user-edit',
+              roles: ['performer', 'staff'],
+              routerLink: '/arpa/profile/musician',
+              translationToken: 'MY_PROFILES',
+            },
+          ],
+        },
+      ]);
+    }
   }
 
   public setState() {
