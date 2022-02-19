@@ -9,20 +9,18 @@ import { NotificationsService } from '../../../../@arpa/services/notifications.s
   styleUrls: ['./qrcode.component.scss'],
 })
 export class QRCodeComponent implements OnInit {
-
   public qrCode: SafeResourceUrl;
 
-  constructor(private meService: MeService, private sanitizer: DomSanitizer, private notifications: NotificationsService) {
-  }
+  constructor(private meService: MeService, private sanitizer: DomSanitizer, private notifications: NotificationsService) {}
 
   ngOnInit(): void {
-    this.meService.getMyQrCode().subscribe(img => {
+    this.meService.getMyQrCode().subscribe((img) => {
       this.qrCode = this.sanitizer.bypassSecurityTrustResourceUrl(`data:img/png;base64,${img}`);
     });
   }
 
   sendEmail() {
-    this.meService.getMyQrCode(true).subscribe(() => {
+    this.meService.getMyQrCode(true, true).subscribe(() => {
       this.notifications.success('SEND_QR_CODE_SUCCESS', 'profile');
     });
   }
