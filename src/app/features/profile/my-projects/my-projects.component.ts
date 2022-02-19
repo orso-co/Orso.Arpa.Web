@@ -64,7 +64,7 @@ export class MyProjectsComponent implements AfterViewInit, OnInit {
       header: this.translate.instant('projects.EDIT_PARTICIPATION'),
       styleClass: 'form-modal',
       dismissableMask: true,
-      width: window.innerWidth > 1000 ? '66%' : '100%',
+      width: window.innerWidth > 350 ? '350px' : '100%',
     });
 
     ref.onClose.pipe(first()).subscribe((result) => {
