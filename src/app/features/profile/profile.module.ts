@@ -1,3 +1,4 @@
+import { MyProjectParticipationDialogComponent } from './my-project-participation-dialog/my-project-participation-dialog.component';
 import { TabViewModule } from 'primeng/tabview';
 import { TagModule } from 'primeng/tag';
 import { NgModule } from '@angular/core';
@@ -32,7 +33,15 @@ import { MyProjectsComponent } from './my-projects/my-projects.component';
 import { AccordionModule } from 'primeng/accordion';
 
 @NgModule({
-  declarations: [ProfileComponent, UserComponent, AppointmentsComponent, MusicianComponent, QRCodeComponent, MyProjectsComponent],
+  declarations: [
+    ProfileComponent,
+    UserComponent,
+    AppointmentsComponent,
+    MusicianComponent,
+    QRCodeComponent,
+    MyProjectsComponent,
+    MyProjectParticipationDialogComponent,
+  ],
   imports: [
     CommonModule,
     ProfileRoutingModule,

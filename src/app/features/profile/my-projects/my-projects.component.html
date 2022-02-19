@@ -52,7 +52,7 @@
               <span> {{ participation.musicianProfile?.instrumentName }} ({{ participation.musicianProfile?.qualification }})</span>
             </div>
             <div class="p-col-6 p-text-right">
-              <button pButton type="button" label="Anmeldung ändern" (click)="openDialog(participation)"></button>
+              <button pButton type="button" label="Anmeldung ändern" (click)="openDialog(myProject.project.id, participation)"></button>
             </div>
             <div class="p-col-12 content-item" *ngIf="participation.participationStatusInner?.name">
               <label>Anmeldestatus</label>
@@ -85,64 +85,3 @@
     </ng-template>
   </p-accordionTab>
 </p-accordion>
-<!-- Work in progress nach Vorlage von "Meine Termine"
-<arpa-select-dialog
-  #selectDialog
-  (closeEvent)='onParticipationStatusChanged($event)'
-  [options]='(participationStatusInner | async) || []'
-  [target]='participationAction'
-  title='profile.PROJECTPARTICIPATION'
-></arpa-select-dialog>
-<div class='p-grid p-jc-center'>
-  <div class='p-col-12 p-md-6 p-text-center'>
-    <h1 #participationAction>{{ 'profile.MY_PROJECTS' | translate}}</h1>
-  </div>
-</div>
-<div class='p-grid p-jc-center p-mt-4'>
-  <div class='p-col-12 p-md-10 p-lg-6'>
-    <p-table
-      (onLazyLoad)='loadData($event.rows, $event.first)'
-      [lazy]='true'
-      [rows]='itemsPerPage'
-      [totalRecords]='(totalRecordsCount$ | async) || 0'
-      [value]='(userProjects$ | async) || []'
-      tableStyleClass='arpa-table-list'
-    >
-      <ng-template pTemplate='header'>
-        <h2>{{ 'profile.UPCOMINGPROJECTS' | translate }}</h2>
-      </ng-template>
-      <ng-template let-project pTemplate='body'>
-        <ng-container *ngTemplateOutlet='listElement; context: {$implicit: project}'></ng-container>
-      </ng-template>
-    </p-table>
-  </div>
-</div>
-
-<ng-template #listElement let-project>
-  <tr>
-    <td class='p-d-flex p-jc-between'>
-      <div class='p-flex-column p-mr-4 date'>
-        <span class='day'>{{ project.startTime | date: 'dd':'locale(de)' }}</span>
-        <span class='day-name'>{{ project.startTime | date: 'EE':'locale(de)' }}</span>
-      </div>
-      <div class='p-flex-column p-mr-2 details'>
-        <span class='name'>{{ project.name }}
-          <p-badge *ngIf='project.participationStatusInnerId'
-                   [value]=' project.particiaptionStatusInnerId | selectValue: participationStatusInner '></p-badge></span>
-        <span class='time'>{{ project.startTime | date: 'H:mm':'locale(de)' }}
-          - {{ project.endTime | date: 'H:mm':'locale(de)' }}</span>
-        <span *ngIf='project.projects.length > 0' class='projects'>
-          {{ 'PROJECTS' | translate }}:
-          {{ getProjectNames(project.projects) }}
-        </span>
-      </div>
-      <div class='p-flex-column actions'>
-        <button (click)='selectDialog.openDialog(project.participationStatusInnerId, project)'
-                class='p-button-rounded p-button-text p-button-icon-only'
-                icon='pi pi-calendar-plus'
-                pButton
-                type='button'></button>
-      </div>
-    </td>
-  </tr>
-</ng-template> -->

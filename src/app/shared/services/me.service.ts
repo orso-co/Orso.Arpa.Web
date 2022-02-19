@@ -4,9 +4,9 @@ import { finalize, first, map, shareReplay, switchMap, tap } from 'rxjs/operator
 import { ApiService } from '../../../@arpa/services/api.service';
 import { MyUserProfileDto } from '../../../@arpa/models/myUserProfileDto';
 import { MyAppointmentListDto } from '../../../@arpa/models/myAppointmentListDto';
-import { MyProjectDto } from 'src/@arpa/models/myProjectDto';
+import { MyProjectDto, MyProjectParticipationDto } from 'src/@arpa/models/myProjectDto';
 import { MusicianProfileDto } from '../../../@arpa/models/musicianProfileDto';
-import { SetMyProjectParticipationBodyDto } from '../../../@arpa/models/setMyProjectParticipationBodyDto';
+import { MyProjectParticipationModifyBodyDto } from '../../../@arpa/models/myProjectParticipationModifyBodyDto';
 import { AuthService } from '../../../@arpa/services/auth.service';
 import { RoleNames } from '../../../@arpa/models/roleNames';
 
@@ -69,8 +69,8 @@ export class MeService {
       .put(`${this.baseUrl}/appointments/${appointmentId}/participation/prediction/${predictionId}`, {})
       .pipe(shareReplay());
   }
-  setProjectParticipationStatus(projectId: string, participationStatusInnerId: string): Observable<any> {
-    return this.apiService.put(`${this.baseUrl}/projects/${projectId}/participations/`, {}).pipe(shareReplay());
+  setProjectParticipationStatus(projectId: string, dto: MyProjectParticipationModifyBodyDto): Observable<MyProjectParticipationDto> {
+    return this.apiService.put<MyProjectParticipationDto>(`${this.baseUrl}/projects/${projectId}/participation/`, dto).pipe(shareReplay());
   }
 
   getProfilesMusician<T>(id?: string): Observable<MusicianProfileDto | MusicianProfileDto[]> | T {
@@ -81,7 +81,7 @@ export class MeService {
     }
   }
 
-  putProjectParticipation<T>(id: string, projectId: string, data: SetMyProjectParticipationBodyDto) {
+  putProjectParticipation<T>(id: string, projectId: string, data: MyProjectParticipationModifyBodyDto) {
     return this.apiService.put<T>(`${this.baseUrl}/profiles/musician/${id}/projects/${projectId}/participation`, data).pipe(shareReplay());
   }
 

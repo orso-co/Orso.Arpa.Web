@@ -1,3 +1,5 @@
+import { TranslateService } from '@ngx-translate/core';
+import { MyProjectParticipationDialogComponent } from './../my-project-participation-dialog/my-project-participation-dialog.component';
 import { MyProjectParticipationDto } from './../../../../@arpa/models/myProjectDto';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -9,6 +11,7 @@ import { ProjectDto } from '../../../../@arpa/models/projectDto';
 import { SelectValueService } from '../../../shared/services/select-value.service';
 import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 import { MyProjectDto } from 'src/@arpa/models/myProjectDto';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'arpa-profile-my-projects',
@@ -23,7 +26,9 @@ export class MyProjectsComponent implements AfterViewInit, OnInit {
     private meService: MeService,
     private route: ActivatedRoute,
     private selectValueService: SelectValueService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private dialogService: DialogService,
+    private translate: TranslateService
   ) {}
 
   ngAfterViewInit(): void {
@@ -50,5 +55,24 @@ export class MyProjectsComponent implements AfterViewInit, OnInit {
       });
   }
 
-  openDialog(participation: MyProjectParticipationDto) {}
+  openDialog(projectId: string, participation: MyProjectParticipationDto) {
+    const ref = this.dialogService.open(MyProjectParticipationDialogComponent, {
+      data: {
+        participation,
+        musicianProfiles: this.participationStatusInner$,
+      },
+      header: this.translate.instant('projects.EDIT_PARTICIPATION'),
+      styleClass: 'form-modal',
+      dismissableMask: true,
+      width: window.innerWidth > 1000 ? '66%' : '100%',
+    });
+
+    ref.onClose.pipe(first()).subscribe((result) => {
+      if (result) {
+        this.meService
+          .setProjectParticipationStatus(projectId, result)
+          .subscribe(() => this.notificationsService.success('projects.SET_PARTICIPATION_STATUS'));
+      }
+    });
+  }
 }
