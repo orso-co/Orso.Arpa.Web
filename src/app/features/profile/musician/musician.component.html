@@ -56,8 +56,8 @@
 </div>
 <router-outlet name='modal'></router-outlet>
 
-<ng-template #listElement let-profile>
-  <tr>
+<ng-template #listElement let-profile >
+  <tr [routerLink]='[{outlets: {modal: ["me", profile.id]}}]'>
     <td class='p-d-flex p-jc-between'>
       <div class='p-mr-2'>
         {{ (getSection(profile) | async) }}

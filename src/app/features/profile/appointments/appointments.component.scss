@@ -11,6 +11,18 @@
 
   .day-name {
     display: block;
+    font-size: 0.7em;
+    font-weight: 200;
+  }
+  .month-name {
+    display: block;
+    font-size: 1em;
+    font-weight: 300;
+  }
+  .year {
+    display: block;
+    font-size: 0.7em;
+    font-weight: 100;
   }
 }
 
