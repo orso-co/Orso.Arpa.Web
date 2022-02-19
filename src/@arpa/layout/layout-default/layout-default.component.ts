@@ -102,7 +102,7 @@ export class LayoutDefaultComponent implements OnDestroy {
             {
               label: 'Meine Daten',
               icon: 'pi pi-user',
-              routerLink: '/arpa/my-data',
+              routerLink: '/arpa/profile/user',
               roles: ['performer', 'staff', 'admin'],
               translationToken: 'MY_DATA',
             },
@@ -125,6 +125,13 @@ export class LayoutDefaultComponent implements OnDestroy {
               roles: ['performer', 'staff'],
               routerLink: '/arpa/profile/musician',
               translationToken: 'MY_PROFILES',
+            },
+            {
+              label: 'Mein QR-Code',
+              icon: 'pi pi-sign-in',
+              roles: ['performer', 'staff'],
+              routerLink: '/arpa/profile/qrcode',
+              translationToken: 'MY_QRCODE',
             },
           ],
         },

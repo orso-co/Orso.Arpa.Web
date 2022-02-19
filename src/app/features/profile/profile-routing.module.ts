@@ -14,27 +14,12 @@ import { MyProjectsComponent } from './my-projects/my-projects.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: ProfileComponent,
-    runGuardsAndResolvers: 'always',
+    path: 'user',
+    component: UserComponent,
     resolve: {
       profile: ProfileResolver,
-    },
-    children: [
-      {
-        path: '',
-        component: UserComponent,
-        resolve: {
-          profile: ProfileResolver,
-        },
       },
-      {
-        path: 'user',
-        component: UserComponent,
-        resolve: {
-          profile: ProfileResolver,
-        },
-      },
+  },
       {
         path: 'qrcode',
         component: QRCodeComponent,
@@ -65,9 +50,7 @@ const routes: Routes = [
           },
         ],
       },
-    ],
-  },
-];
+    ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
