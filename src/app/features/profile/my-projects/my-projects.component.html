@@ -1,4 +1,10 @@
 <h1>Meine Projekte</h1>
+<p-message
+  *ngIf="!myProjects || myProjects.length === 0"
+  severity="info"
+  text="Zur Zeit liegen für dich leider keine relevanten Projekte vor. Schau gerne später nochmal vorbei."
+  styleClass="mr-2"
+></p-message>
 <p-accordion>
   <p-accordionTab *ngFor="let myProject of myProjects">
     <ng-template pTemplate="header">

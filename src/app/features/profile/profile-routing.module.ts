@@ -17,40 +17,40 @@ const routes: Routes = [
     component: UserComponent,
     resolve: {
       profile: ProfileResolver,
-      },
+    },
   },
+  {
+    path: 'qrcode',
+    component: QRCodeComponent,
+    data: { roles: [RoleNames.performer] },
+  },
+  {
+    path: 'appointments',
+    component: AppointmentsComponent,
+    data: { roles: [RoleNames.performer, RoleNames.staff, RoleNames.admin] },
+  },
+  {
+    path: 'my-projects',
+    component: MyProjectsComponent,
+    data: { roles: [RoleNames.performer], title: 'MY_PROJECTS' },
+  },
+  {
+    path: 'musician',
+    component: MusicianComponent,
+    resolve: {
+      profiles: ProfileMusicianResolver,
+      sections: SectionsResolver,
+    },
+    runGuardsAndResolvers: 'always',
+    children: [
       {
-        path: 'qrcode',
-        component: QRCodeComponent,
+        path: '',
+        outlet: 'modal',
+        loadChildren: () => import('../musician-profile-dialog/musician-profile-dialog.module').then((m) => m.MusicianProfileDialogModule),
       },
-      {
-        path: 'appointments',
-        component: AppointmentsComponent,
-        data: { roles: [RoleNames.performer, RoleNames.staff, RoleNames.admin] },
-      },
-      {
-        path: 'my-projects',
-        component: MyProjectsComponent,
-        data: { roles: [RoleNames.performer, RoleNames.staff, RoleNames.admin], title: 'MY_PROJECTS' },
-      },
-      {
-        path: 'musician',
-        component: MusicianComponent,
-        resolve: {
-          profiles: ProfileMusicianResolver,
-          sections: SectionsResolver,
-        },
-        runGuardsAndResolvers: 'always',
-        children: [
-          {
-            path: '',
-            outlet: 'modal',
-            loadChildren: () =>
-              import('../musician-profile-dialog/musician-profile-dialog.module').then((m) => m.MusicianProfileDialogModule),
-          },
-        ],
-      },
-    ];
+    ],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
