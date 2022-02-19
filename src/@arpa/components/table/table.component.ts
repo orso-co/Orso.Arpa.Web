@@ -21,10 +21,10 @@ import { StateItem } from '../status-badge/state-badge.component';
 import { SelectValueService } from '../../../app/shared/services/select-value.service';
 
 export interface ColumnDefinition<T extends Record<string, any>> {
-  label: string,
+  label: string;
   property: string | Extract<keyof T, string>;
   type: 'text' | 'date' | 'image' | 'badge' | 'state' | 'progress' | 'checkbox' | 'button' | 'template';
-  show?: boolean,
+  show?: boolean;
   cssClasses?: string[];
   template?: string;
   hideFilter?: boolean;
@@ -44,8 +44,7 @@ export class ArpaTableColumnDirective {
   @Input('arpaTableColumn')
   name: string;
 
-  constructor(public template: TemplateRef<any>) {
-  }
+  constructor(public template: TemplateRef<any>) {}
 }
 
 @Component({
@@ -54,7 +53,6 @@ export class ArpaTableColumnDirective {
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
-
   @Input()
   showFilter: boolean = true;
 
@@ -141,7 +139,8 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
   public lazy: boolean = false;
   public hasFilters: boolean = false;
   private stateStreams: Record<string, Observable<any>> = {};
-  @ContentChildren(ArpaTableColumnDirective, { read: ArpaTableColumnDirective }) private columnTemplateRefs: QueryList<ArpaTableColumnDirective>;
+  @ContentChildren(ArpaTableColumnDirective, { read: ArpaTableColumnDirective })
+  private columnTemplateRefs: QueryList<ArpaTableColumnDirective>;
   private columnTemplates: Record<string, TemplateRef<any>> = {};
   private loadingEventSubscription: Subscription;
   private filterEventSubscription: Subscription;
@@ -149,31 +148,33 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private cdRef: ChangeDetectorRef,
-    private selectValueService: SelectValueService) {
+    private selectValueService: SelectValueService
+  ) {
     this.isMobile = breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Small]).pipe(map(({ matches }) => matches));
   }
 
   get activeColumns() {
-    return this.columns.filter(column => column.show === undefined ? true : column.show);
+    return this.columns.filter((column) => (column.show === undefined ? true : column.show));
   }
 
   get hasFilterColumns() {
-    return this.columns.filter(column => column.show !== undefined).length > 0;
+    return this.columns.filter((column) => column.show !== undefined).length > 0;
   }
 
   resolveState(table: string, property: string = 'State', id: string) {
-    if (!this.stateStreams[table]) {
-      this.stateStreams[table] = this.selectValueService.load(table, property)
-        .pipe(
-          map(() => this.selectValueService.get(table, property)),
-          share(),
-        );
+    const key = `${table}|${property}`;
+    if (!this.stateStreams[key]) {
+      this.stateStreams[key] = this.selectValueService.load(table, property).pipe(
+        map(() => this.selectValueService.get(table, property)),
+        share()
+      );
     }
-    return this.stateStreams[table].pipe(
+    return this.stateStreams[key].pipe(
       map((items: SelectItem[]) => {
         const item: any = items.find((i) => i.value === id);
         return item ? item.label.toLowerCase() : undefined;
-      }));
+      })
+    );
   }
 
   resolveValue(path: any, source: any) {
@@ -192,14 +193,14 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
     });
     if (this.feed) {
       this.isLoading = true;
-      this.loadingEventSubscription = this.feed.isLoading.subscribe(v => this.isLoading = v);
+      this.loadingEventSubscription = this.feed.isLoading.subscribe((v) => (this.isLoading = v));
       this.lazy = true;
       this.data = this.feed.values;
     } else if (this.values) {
       this.data = this.values;
     }
     if (this.filterFields.length === 0) {
-      this.columns.forEach(def => {
+      this.columns.forEach((def) => {
         this.filterFields.push(def.property as string);
       });
     }
@@ -233,5 +234,4 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
       this.loadingEventSubscription.unsubscribe();
     }
   }
-
 }

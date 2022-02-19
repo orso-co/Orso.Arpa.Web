@@ -31,24 +31,20 @@ import { GraphQlFeedComponent } from '../../../../@arpa/components/graph-ql-feed
 })
 @Unsubscribe()
 export class ProjectListComponent {
-  state: Observable<SelectItem[]>;
-  genre: Observable<SelectItem[]>;
-
   query: DocumentNode = ProjectsQuery;
 
   columns: ColumnDefinition<ProjectDto>[] = [
     { label: '#', property: 'isCompleted', type: 'template', template: 'completed', cssClasses: ['start'] },
     { label: 'TITLE', property: 'title', type: 'text' },
-    { label: 'GENRE', property: 'genreId', type: 'state', stateTable: 'Project', stateProperty: 'genre', show: true },
+    { label: 'GENRE', property: 'genreId', type: 'state', stateTable: 'Project', stateProperty: 'Genre', show: true },
     { label: 'START', property: 'startDate', type: 'date' },
     { label: 'END', property: 'endDate', type: 'date' },
-    { label: 'STATE', property: 'stateId', type: 'state', stateTable: 'Project', stateProperty: 'state', show: true },
+    { label: 'STATE', property: 'stateId', type: 'state', stateTable: 'Project', stateProperty: 'State', show: true },
   ];
 
   @ViewChild('feedSource') private feedSource: GraphQlFeedComponent;
 
   constructor(
-    private route: ActivatedRoute,
     private dialogService: DialogService,
     public translate: TranslateService,
     private projectService: ProjectService,
@@ -57,29 +53,7 @@ export class ProjectListComponent {
     private selectValueService: SelectValueService,
     private venueService: VenueService,
     private sectionService: SectionService
-  ) {
-    this.state = this.selectValueService.load('Project', 'State').pipe(map(() => this.selectValueService.get('Project', 'State')));
-
-    this.genre = this.selectValueService.load('Project', 'Genre').pipe(map(() => this.selectValueService.get('Project', 'Genre')));
-  }
-
-  public getState(id: string) {
-    return this.state.pipe<string>(
-      map((items: SelectItem[]) => {
-        const item: any = items.find((i) => i.value === id);
-        return item ? item.label : '';
-      })
-    );
-  }
-
-  public getGenre(id: string) {
-    return this.genre.pipe<string>(
-      map((items: SelectItem[]) => {
-        const item: any = items.find((i) => i.value === id);
-        return item ? item.label : '';
-      })
-    );
-  }
+  ) {}
 
   public openProjectDetailDialog(selection: ProjectDto | null): void {
     const ref = this.dialogService.open(ProjectLayoutComponent, {
@@ -88,7 +62,7 @@ export class ProjectListComponent {
         venues: this.venueService.load(),
         type: this.selectValueService.load('Project', 'Type').pipe(map(() => this.selectValueService.get('Project', 'Type'))),
         genre: this.selectValueService.load('Project', 'Genre').pipe(map(() => this.selectValueService.get('Project', 'Genre'))),
-        state: this.state,
+        state: this.selectValueService.load('Project', 'State').pipe(map(() => this.selectValueService.get('Project', 'State'))),
       },
       header: selection ? this.translate.instant('projects.EDIT_PROJECT') : this.translate.instant('projects.NEW_PROJECT'),
       width: window.innerWidth > 1000 ? '66%' : '100%',
