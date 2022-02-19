@@ -12,5 +12,5 @@ export interface MyProjectParticipationDto {
   participationStatusInternal?: SelectValueDto;
   commentByPerformerInner?: string;
   commentByStaffInner?: string;
-  musicianProfile?: ReducedMusicianProfileDto;
+  musicianProfile: ReducedMusicianProfileDto;
 }

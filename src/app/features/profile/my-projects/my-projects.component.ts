@@ -19,7 +19,7 @@ import { DialogService } from 'primeng/dynamicdialog';
   styleUrls: ['./my-projects.component.scss'],
 })
 export class MyProjectsComponent implements AfterViewInit, OnInit {
-  myProjects$: Observable<MyProjectDto[]> = of([]);
+  myProjects: MyProjectDto[] = [];
   participationStatusInner$: Observable<SelectItem[]>;
 
   constructor(
@@ -38,7 +38,7 @@ export class MyProjectsComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
-    this.myProjects$ = this.meService.getMyProjects();
+    this.meService.getMyProjects().subscribe((projects) => (this.myProjects = projects));
   }
 
   getProjectNames(projects: ProjectDto[]): string {
@@ -59,7 +59,7 @@ export class MyProjectsComponent implements AfterViewInit, OnInit {
     const ref = this.dialogService.open(MyProjectParticipationDialogComponent, {
       data: {
         participation,
-        musicianProfiles: this.participationStatusInner$,
+        statusOptions$: this.participationStatusInner$,
       },
       header: this.translate.instant('projects.EDIT_PARTICIPATION'),
       styleClass: 'form-modal',
@@ -70,8 +70,24 @@ export class MyProjectsComponent implements AfterViewInit, OnInit {
     ref.onClose.pipe(first()).subscribe((result) => {
       if (result) {
         this.meService
-          .setProjectParticipationStatus(projectId, result)
-          .subscribe(() => this.notificationsService.success('projects.SET_PARTICIPATION_STATUS'));
+          .setProjectParticipationStatus(projectId, { ...result, musicianProfileId: participation.musicianProfile?.id })
+          .subscribe((updatedParticipation) => {
+            this.notificationsService.success('projects.SET_PARTICIPATION_STATUS');
+            this.myProjects = this.myProjects.map((myProject) => {
+              if (myProject.project.id !== projectId) {
+                return myProject;
+              }
+              return {
+                ...myProject,
+                participations: myProject.participations.map((p) => {
+                  if (p.musicianProfile.id !== participation.musicianProfile.id) {
+                    return p;
+                  }
+                  return updatedParticipation;
+                }),
+              };
+            });
+          });
       }
     });
   }

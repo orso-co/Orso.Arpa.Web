@@ -1,3 +1,42 @@
-<p>
-  my-project-participation-dialog works!
-</p>
+<form [formGroup]="form" class="p-mt-5">
+  <div class="p-fluid p-grid p-formgrid">
+    <div class="p-field p-col-12">
+      <arpa-form-field label="Anmeldestatus">
+        <p-dropdown
+          [autoDisplayFirst]="false"
+          [options]="(statusOptions$ | async)!"
+          [showClear]="true"
+          appendTo="body"
+          formControlName="participationStatusId"
+          id="participationStatusId"
+        ></p-dropdown>
+      </arpa-form-field>
+    </div>
+    <div class="p-field p-col-12">
+      <arpa-form-field label="Bemerkung">
+        <textarea formControlName="comment" id="comment" pInputText rows="3"></textarea>
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class="p-formgroup-inline p-jc-between">
+    <div class="p-text-left">
+      <p-button
+        (click)="onSubmit()"
+        [disabled]="form.pristine || form.invalid"
+        [label]="'SAVE' | translate"
+        icon="pi pi-check"
+        iconPos="left"
+      ></p-button>
+    </div>
+    <div class="p-text-right">
+      <button
+        (click)="cancel()"
+        [label]="'CANCEL' | translate"
+        class="p-ml-3 p-button-outlined"
+        icon="pi pi-times"
+        iconPos="left"
+        pButton
+      ></button>
+    </div>
+  </div>
+</form>
