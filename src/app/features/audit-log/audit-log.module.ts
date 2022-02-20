@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '../../../@arpa/translate';
 import { AuditLogComponent } from './audit-log/audit-log.component';
 import { AuditDialogComponent } from './audit-dialog/audit-dialog.component';
-// import { AuditDialogDirective } from './audit-log/audit-dialog.directive';
 import { AuditLogRoutingModule } from './audit-log-routing.module';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';

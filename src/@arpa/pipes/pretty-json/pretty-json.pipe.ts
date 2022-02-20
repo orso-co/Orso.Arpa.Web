@@ -1,5 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+/*
+  see: https://stackoverflow.com/a/68233195/9888512
+*/
 @Pipe({
   name: 'prettyjson',
   pure: true,
