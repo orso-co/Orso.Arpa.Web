@@ -12,7 +12,7 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { FormControlName } from '@angular/forms';
+import { AbstractControl, FormControlName } from '@angular/forms';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import { errorTransitionAnimations } from './animations';
 import { TranslateService } from '@ngx-translate/core';
@@ -25,7 +25,6 @@ import { Subscription } from 'rxjs';
   animations: [errorTransitionAnimations],
 })
 export class FormFieldComponent implements OnInit, AfterViewInit, OnDestroy {
-
   @HostBinding('class') hostClass = 'form-field-appearance-outline';
   @HostBinding('class.focus') hasFocus: boolean = false;
   @HostBinding('class.error') hasError: boolean = false;
@@ -44,16 +43,21 @@ export class FormFieldComponent implements OnInit, AfterViewInit, OnDestroy {
   private focusOutListener: () => void;
   private valueChangeSubscription: Subscription | undefined;
 
-
-  constructor(private renderer: Renderer2,
-              private cdref: ChangeDetectorRef,
-              private translate: TranslateService,
-              private autofillMonitor: AutofillMonitor,
-  ) {
-  }
+  constructor(
+    private renderer: Renderer2,
+    private cdref: ChangeDetectorRef,
+    private translate: TranslateService,
+    private autofillMonitor: AutofillMonitor
+  ) {}
 
   get hasErrors(): boolean {
     return !!(this.formControl.touched && !this.formControl.valid && this.formControl.errors);
+  }
+
+  get isRequired(): boolean {
+    const validator = !this.formControl.control.validator ? null : this.formControl.control.validator!({} as AbstractControl);
+    console.log(this.formControl.name, validator);
+    return validator && validator.required;
   }
 
   get errorMessage(): string | void {
@@ -104,11 +108,9 @@ export class FormFieldComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     if (this.input) {
       // Detect autofill animations.
-      this.autofillMonitor.monitor(this.input)
-        .subscribe(e => {
-            this.hasState = e.isAutofilled;
-          },
-        );
+      this.autofillMonitor.monitor(this.input).subscribe((e) => {
+        this.hasState = e.isAutofilled;
+      });
 
       this.focusListener = this.renderer.listen(this.input.nativeElement, 'focusin', (e) => {
         this.hasError = this.hasErrors;
