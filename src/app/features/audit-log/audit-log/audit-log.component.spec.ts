@@ -6,6 +6,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { httpLoaderFactory } from '../../../../@arpa/translate/translate.module';
+import { DialogService } from 'primeng/dynamicdialog';
 
 describe('AuditLogComponent', () => {
   let component: AuditLogComponent;
@@ -25,8 +26,13 @@ describe('AuditLogComponent', () => {
           },
         }),
       ],
-    })
-      .compileComponents();
+      providers: [
+        {
+          provide: DialogService,
+          useValue: {},
+        },
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

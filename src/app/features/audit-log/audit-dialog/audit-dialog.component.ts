@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { first } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 import { AuditLogService } from '../services/audit-log.service';
 import { AuditLogDto } from '../../../../@arpa/models/auditLogDto';
 
