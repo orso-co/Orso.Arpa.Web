@@ -1,7 +1,7 @@
 {
   "ADD": "Add",
   "APPOINTMENTS": "Appointments",
-  "AUDITLOG": "Auditlogs",
+  "AUDITLOGS": "Auditlogs",
   "BACK": "back",
   "BASEDATA": "Base Data",
   "CALENDAR": "Calendar",
@@ -39,7 +39,9 @@
   "MY_APPOINTMENTS": "My Appointments",
   "MY_DATA": "My Data",
   "MY_PROFILE": "My Profile",
+  "MY_PROFILES": "My Profiles",
   "MY_PROJECTS": "My Projects",
+  "MY_QRCODE": "My QR-Code",
   "NAME": "Name",
   "NEW": "New",
   "NO": "No",
@@ -67,6 +69,9 @@
   "WEEK": "Week",
   "WELCOME": "Welcome to ARPA 2.0",
   "YES": "Yes",
+  "PERFORMER": "Performer",
+  "STAFF": "Staff",
+  "ADMIN": "Admin",
 
   "error": {
     "BAD_REQUEST": "An error occured",

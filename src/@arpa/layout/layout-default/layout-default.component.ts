@@ -47,10 +47,10 @@ export class LayoutDefaultComponent implements OnDestroy {
               icon: 'pi pi-home',
               routerLink: '/arpa/dashboard/performer',
               roles: ['performer'],
-              translationToken: 'DASHBOARD',
+              translationToken: 'PERFORMER',
             },
-            { label: 'Staff', icon: 'pi pi-home', routerLink: '/arpa/dashboard/staff', roles: ['staff'], translationToken: 'DASHBOARD' },
-            { label: 'Admin', icon: 'pi pi-home', routerLink: '/arpa/dashboard/admin', roles: ['admin'], translationToken: 'DASHBOARD' },
+            { label: 'Staff', icon: 'pi pi-home', routerLink: '/arpa/dashboard/staff', roles: ['staff'], translationToken: 'STAFF' },
+            { label: 'Admin', icon: 'pi pi-home', routerLink: '/arpa/dashboard/admin', roles: ['admin'], translationToken: 'ADMIN' },
           ],
         },
         {
@@ -118,6 +118,7 @@ export class LayoutDefaultComponent implements OnDestroy {
               icon: 'pi pi-check-square',
               roles: ['performer', 'staff'],
               routerLink: '/arpa/profile/appointments',
+              translationToken:'MY_APPOINTMENTS'
             },
             {
               label: 'Meine Profile',
