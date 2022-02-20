@@ -2,24 +2,19 @@ import { gql } from 'apollo-angular';
 
 export const AuditLogQuery = gql`
   query AuditLog(
-    $skip: Int,
-    $take: Int,
+    $skip: Int
+    $take: Int
     $orderName: SortEnumType = DESC
     $orderSurname: SortEnumType = DESC
     $orderAboutMe: SortEnumType = DESC
-  ){
+  ) {
     auditLogs(
-      skip: $skip,
-      take: $take,
-      order: {
-        createdAt: $orderName
-        tableName: $orderSurname
-        type: $orderAboutMe
-        createdBy: $orderAboutMe
-      }
+      skip: $skip
+      take: $take
+      order: { createdAt: $orderName, tableName: $orderSurname, type: $orderAboutMe, createdBy: $orderAboutMe }
     ) {
       pageInfo {
-        hasNextPage,
+        hasNextPage
         hasPreviousPage
       }
 
@@ -30,6 +25,11 @@ export const AuditLogQuery = gql`
         type
         tableName
         createdBy
+        oldValuesJson
+        newValuesJson
+        changedColumns
+        keyValues
       }
     }
-  }`;
+  }
+`;
