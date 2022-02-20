@@ -118,7 +118,6 @@ export class LayoutDefaultComponent implements OnDestroy {
               icon: 'pi pi-check-square',
               roles: ['performer', 'staff'],
               routerLink: '/arpa/profile/appointments',
-              translationToken: 'MY_APPOINTMENTS',
             },
             {
               label: 'Meine Profile',
