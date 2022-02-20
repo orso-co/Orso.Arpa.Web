@@ -1,3 +1,4 @@
+import { SelectValueDto } from './selectValueDto';
 import { UrlDto } from './urlDto';
 
 export interface ProjectDto {
@@ -10,12 +11,12 @@ export interface ProjectDto {
   shortTitle?: string;
   description?: string;
   code?: string;
-  typeId?: string;
-  genreId?: string;
+  type?: SelectValueDto;
+  genre?: SelectValueDto;
   startDate?: Date;
   endDate?: Date;
   urls?: Array<UrlDto>;
-  stateId?: string;
+  state?: SelectValueDto;
   parentId?: string;
   isCompleted?: boolean;
 }

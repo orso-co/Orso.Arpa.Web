@@ -9,16 +9,12 @@ import { AuditLogDto } from '../../../../@arpa/models/auditLogDto';
   selector: '[arpaAuditDialog]',
 })
 export class AuditDialogDirective {
-
   @Input('arpaAuditDialog')
   resourceId?: string;
   @Input()
   auditDetail: AuditLogDto;
 
-  constructor(private dialogService: DialogService,
-              private auditLogService: AuditLogService,
-              private translate: TranslateService) {
-  }
+  constructor(private dialogService: DialogService, private auditLogService: AuditLogService, private translate: TranslateService) {}
 
   @HostListener('click', ['$event'])
   public onClick($event: MouseEvent) {
@@ -30,6 +26,7 @@ export class AuditDialogDirective {
       },
       header: this.translate.instant('audit-log.DETAILS'),
       styleClass: 'form-modal',
+      width: window.innerWidth > 1000 ? '66%' : '100%',
     });
   }
 }
