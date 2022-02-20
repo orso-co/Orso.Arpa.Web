@@ -80,8 +80,10 @@ export class MenuService {
       if (key === 'label') {
         item.translationToken = item.translationToken || item[key];
         item[key] = this.translate.instant(item.translationToken);
-      } else if (key === 'items') {
-        item[key] = this.translateLabels(item[key]);
+      } else if (key === 'children') {
+        item[key].forEach((child: MenuItemArpa) => {
+          this.translateLabels(child);
+        });
       }
     });
     return item as MenuItem;

@@ -112,6 +112,7 @@ export class LayoutDefaultComponent implements OnDestroy {
               routerLink: '/arpa/profile/my-projects',
               roles: ['performer'],
               translationToken: 'MY_PROJECTS',
+              roles: ['performer'],
             },
             {
               label: 'Meine Termine',

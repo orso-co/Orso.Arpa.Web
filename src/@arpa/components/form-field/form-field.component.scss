@@ -36,6 +36,11 @@
 
   label {
     opacity: 0.5;
+
+    span.asterisk {
+      color: red;
+      font-size: large;
+    }
   }
 
   .form-field-label-wrapper {

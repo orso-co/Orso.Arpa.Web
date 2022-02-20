@@ -114,7 +114,7 @@ export * from './sectionDto';
 export * from './sectionTreeDto';
 export * from './selectValueDto';
 export * from './setMyProjectAppointmentPredictionDto';
-export * from './setMyProjectParticipationBodyDto';
+export * from './myProjectParticipationModifyBodyDto';
 export * from './setMyProjectParticipationDto';
 export * from './setProjectParticipationBodyDto';
 export * from './setProjectParticipationDto';

@@ -83,6 +83,20 @@ hr {
   background: initial !important;
 }
 
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: var(--text-color);
+  }
+
+  &:visited {
+    color: var(--text-color-secondary);
+  }
+}
+
 @import '~primeicons/primeicons.css';
 @import '~primeng/resources/primeng.min.css';
 @import 'assets/common/fonts/icomoon/style.css';
