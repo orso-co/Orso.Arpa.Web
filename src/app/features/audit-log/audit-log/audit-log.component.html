@@ -1,15 +1,7 @@
 <!-- Graphql feed controls and holds graphql api results. -->
-<arpa-graph-ql-feed #feedSource
-                    [contentTemplate]='feed'
-                    [query]='query'
-></arpa-graph-ql-feed>
+<arpa-graph-ql-feed #feedSource [contentTemplate]="feed" [query]="query"></arpa-graph-ql-feed>
 
 <!-- The feed template is projected into the graph-ql-feed component. -->
 <ng-template #feed let-feed>
-  <arpa-table
-    (lazyEvents)='feedSource.onLazy($event)'
-    [columns]='columns'
-    [feed]='feed'
-  ></arpa-table>
+  <arpa-table (lazyEvents)="feedSource.onLazy($event)" [columns]="columns" [feed]="feed" (rowClickEvents)="onRowClick($event)"></arpa-table>
 </ng-template>
-

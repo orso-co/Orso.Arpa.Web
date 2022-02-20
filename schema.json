@@ -3245,21 +3245,21 @@
             "defaultValue": null
           },
           {
-            "name": "oldValues",
+            "name": "oldValuesJson",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "DictionaryOfStringAndObjectFilterInput",
+              "name": "StringOperationFilterInput",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "newValues",
+            "name": "newValuesJson",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "DictionaryOfStringAndObjectFilterInput",
+              "name": "StringOperationFilterInput",
               "ofType": null
             },
             "defaultValue": null
@@ -8595,7 +8595,7 @@
             "deprecationReason": null
           },
           {
-            "name": "oldValues",
+            "name": "oldValuesJson",
             "description": null,
             "args": [],
             "type": {
@@ -8605,8 +8605,8 @@
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "OBJECT",
-                  "name": "KeyValuePairOfStringAndObject",
+                  "kind": "SCALAR",
+                  "name": "String",
                   "ofType": null
                 }
               }
@@ -8615,7 +8615,7 @@
             "deprecationReason": null
           },
           {
-            "name": "newValues",
+            "name": "newValuesJson",
             "description": null,
             "args": [],
             "type": {
@@ -8625,8 +8625,8 @@
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "OBJECT",
-                  "name": "KeyValuePairOfStringAndObject",
+                  "kind": "SCALAR",
+                  "name": "String",
                   "ofType": null
                 }
               }
@@ -21648,11 +21648,7 @@
       {
         "name": "skip",
         "description": "Directs the executor to skip this field or fragment when the `if` argument is true.",
-        "locations": [
-          "FIELD",
-          "FRAGMENT_SPREAD",
-          "INLINE_FRAGMENT"
-        ],
+        "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
         "args": [
           {
             "name": "if",
@@ -21673,11 +21669,7 @@
       {
         "name": "include",
         "description": "Directs the executor to include this field or fragment only when the `if` argument is true.",
-        "locations": [
-          "FIELD",
-          "FRAGMENT_SPREAD",
-          "INLINE_FRAGMENT"
-        ],
+        "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
         "args": [
           {
             "name": "if",
@@ -21698,10 +21690,7 @@
       {
         "name": "defer",
         "description": "The `@defer` directive may be provided for fragment spreads and inline fragments to inform the executor to delay the execution of the current fragment to indicate deprioritization of the current fragment. A query with `@defer` directive will cause the request to potentially return multiple responses, where non-deferred data is delivered in the initial response and data deferred is delivered in a subsequent response. `@include` and `@skip` take precedence over `@defer`.",
-        "locations": [
-          "FRAGMENT_SPREAD",
-          "INLINE_FRAGMENT"
-        ],
+        "locations": ["FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
         "args": [
           {
             "name": "label",
@@ -21728,9 +21717,7 @@
       {
         "name": "stream",
         "description": "The `@stream` directive may be provided for a field of `List` type so that the backend can leverage technology such as asynchronous iterators to provide a partial list in the initial response, and additional list items in subsequent responses. `@include` and `@skip` take precedence over `@stream`.",
-        "locations": [
-          "FIELD"
-        ],
+        "locations": ["FIELD"],
         "args": [
           {
             "name": "label",
@@ -21771,10 +21758,7 @@
       {
         "name": "deprecated",
         "description": "The @deprecated directive is used within the type system definition language to indicate deprecated portions of a GraphQL service’s schema,such as deprecated fields on a type or deprecated enum values.",
-        "locations": [
-          "FIELD_DEFINITION",
-          "ENUM_VALUE"
-        ],
+        "locations": ["FIELD_DEFINITION", "ENUM_VALUE"],
         "args": [
           {
             "name": "reason",
@@ -21791,11 +21775,7 @@
       {
         "name": "authorize",
         "description": null,
-        "locations": [
-          "SCHEMA",
-          "OBJECT",
-          "FIELD_DEFINITION"
-        ],
+        "locations": ["SCHEMA", "OBJECT", "FIELD_DEFINITION"],
         "args": [
           {
             "name": "policy",
@@ -21844,9 +21824,7 @@
       {
         "name": "specifiedBy",
         "description": "The `@specifiedBy` directive is used within the type system definition language to provide a URL for specifying the behavior of custom scalar definitions.",
-        "locations": [
-          "SCALAR"
-        ],
+        "locations": ["SCALAR"],
         "args": [
           {
             "name": "url",

@@ -6,7 +6,8 @@ export interface AuditLogDto {
   createdAt?: Date;
   type?: AuditLogType;
   tableName?: string;
-  oldValues?: { [key: string]: unknown; };
-  newValues?: { [key: string]: unknown; };
+  oldValuesJson?: string;
+  newValuesJson?: string;
   changedColumns?: Array<string>;
+  keyValues?: string;
 }

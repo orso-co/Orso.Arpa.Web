@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuditDialogComponent } from './audit-dialog.component';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DialogService } from 'primeng/dynamicdialog';
 import { AuditLogService } from '../services/audit-log.service';
 import { TranslateMockModule } from '../../../../testing/translate.mock.module';
 
@@ -11,12 +11,8 @@ describe('AuditDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AuditDialogComponent,
-      ],
-      imports: [
-        TranslateMockModule,
-      ],
+      declarations: [AuditDialogComponent],
+      imports: [TranslateMockModule],
       providers: [
         {
           provide: DynamicDialogConfig,
@@ -27,13 +23,15 @@ describe('AuditDialogComponent', () => {
         {
           provide: AuditLogService,
           useValue: {
-            getTypeName: () => {
-            },
+            getTypeName: () => {},
           },
         },
+        {
+          provide: DialogService,
+          useValue: {},
+        },
       ],
-    })
-      .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {
