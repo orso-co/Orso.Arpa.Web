@@ -1,14 +1,16 @@
 {
     "ADD": "Ajouter",
     "APPOINTMENTS":  "Dates",
-    "AUDITLOG": "Auditlogs",
+    "AUDITLOGS": "Journaux d'audit",
     "BACK":  "Arrière",
     "BASEDATA": "Informations de base",
     "CANCEL": "Annuler",
+    "CALENDAR": "Calendrier",
     "CLEAR": "Supprimer",
     "CLOSE": "Fermer",
     "CONTACTDATA": "Information de contact",
     "CREATE": "Créer",
+    "CONTACTS": "Contacts",
     "DASHBOARD":  "Tableau de bord",
     "DAY": "Jour",
     "DEACTIVATE": "Désactiver",
@@ -34,8 +36,11 @@
     "MUPRO": "Profils des musiciens",
     "MUSICIANDATA": "Informations du musicien",
     "MY_APPOINTMENTS": "Mes dates",
+    "MY_DATA": "Mon données",
     "MY_PROFILE": "Mon profil",
+    "MY_PROFILES": "Mes profils",
     "MY_PROJECTS": "Mes projets",
+    "MY_QRCODE": "Mon QR Code",
     "NAME": "Nom",
     "NEW": "Nouveau",
     "NO": "Non",
@@ -62,6 +67,10 @@
     "WEEK": "Semaine",
     "WELCOME": "Bienvenue sur ARPA 2.0",
     "YES": "Oui",
+    "PERFORMER": "Interprète",
+    "STAFF": "Personel",
+    "ADMIN": "Administrateur",
+
     "error": {
       "BAD_REQUEST": "Une erreur s’est produite",
       "CONNECTION_ERROR": "Erreur de connexion, merci de réessayer plus tard",
@@ -160,4 +169,3 @@
       "weekHeader": "Semaine"
     }
   }
-  

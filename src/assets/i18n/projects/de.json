@@ -1,9 +1,9 @@
 {
-  "ABBREVIATION": "Kurzform*",
+  "ABBREVIATION": "Kurzform",
   "BASICDATA_TOOLTIP": "Grundinformationen zum Projekt",
   "BASICDATA": "Basisdaten",
-  "CODE": "Code*",
-  "COMPLETED": "Abgeschlossen*",
+  "CODE": "Code",
+  "COMPLETED": "Abgeschlossen",
   "DESCRIPTION": "Beschreibung",
   "EDIT_PARTICIPATION": "Projekt Teilnahme",
   "EDIT_PROJECT": "Projekt bearbeiten",
