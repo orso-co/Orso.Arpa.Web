@@ -1,3 +1,6 @@
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { UserContactDataComponent } from './user-contact-data/user-contact-data.component';
+import { UserDataComponent } from './user-data/user-data.component';
 import { MyProjectParticipationDialogComponent } from './my-project-participation-dialog/my-project-participation-dialog.component';
 import { TabViewModule } from 'primeng/tabview';
 import { TagModule } from 'primeng/tag';
@@ -23,7 +26,6 @@ import { ButtonModule } from 'primeng/button';
 import { FormFieldModule } from '../../../@arpa/components/form-field/form-field.module';
 import { DropdownModule } from 'primeng/dropdown';
 import { BadgeModule } from 'primeng/badge';
-import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { QRCodeComponent } from './qrcode/qrcode.component';
 import { GraphQlFeedModule } from '../../../@arpa/components/graph-ql-feed/graph-ql-feed.module';
@@ -33,6 +35,8 @@ import { MyProjectsComponent } from './my-projects/my-projects.component';
 import { AccordionModule } from 'primeng/accordion';
 import { MessageModule } from 'primeng/message';
 import { CalendarModule } from 'primeng/calendar';
+import { TableModule } from 'src/@arpa/components/table/table.module';
+import { RatingModule } from 'primeng/rating';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,8 @@ import { CalendarModule } from 'primeng/calendar';
     QRCodeComponent,
     MyProjectsComponent,
     MyProjectParticipationDialogComponent,
+    UserDataComponent,
+    UserContactDataComponent,
   ],
   imports: [
     CommonModule,
@@ -57,11 +63,11 @@ import { CalendarModule } from 'primeng/calendar';
     SplitViewModule,
     SelectValueModule,
     FormFieldModule,
+    TableModule,
     // NG Prime Dependencies
     ButtonModule,
     DropdownModule,
     BadgeModule,
-    TableModule,
     InputTextModule,
     GraphQlFeedModule,
     LocalizedDateModule,
@@ -70,6 +76,8 @@ import { CalendarModule } from 'primeng/calendar';
     TabViewModule,
     MessageModule,
     CalendarModule,
+    SelectButtonModule,
+    RatingModule,
   ],
   providers: [ProfileService, ProfileResolver, LocalizedDatePipe],
 })

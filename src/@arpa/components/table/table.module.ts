@@ -11,13 +11,10 @@ import { FilterService } from 'primeng/api';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { StateBadgeModule } from '../status-badge/state-badge.module';
-
+import { RatingModule } from 'primeng/rating';
 
 @NgModule({
-  declarations: [
-    TableComponent,
-    ArpaTableColumnDirective,
-  ],
+  declarations: [TableComponent, ArpaTableColumnDirective],
   imports: [
     CommonModule,
     StateBadgeModule,
@@ -29,12 +26,9 @@ import { StateBadgeModule } from '../status-badge/state-badge.module';
     FormsModule,
     MatMenuModule,
     MatCheckboxModule,
+    RatingModule,
   ],
-  exports: [
-    NgTableModule,
-    TableComponent,
-    ArpaTableColumnDirective,
-  ],
+  exports: [NgTableModule, TableComponent, ArpaTableColumnDirective],
 })
 export class TableModule {
   constructor(private filterService: FilterService) {
