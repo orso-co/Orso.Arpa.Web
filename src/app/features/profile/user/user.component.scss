@@ -1,16 +1,12 @@
-input {
-  width: 100%;
-}
-
-textarea {
-  width: 100%;
+.user-container {
+  max-width: 1000px;
+  margin: auto;
 }
 
 arpa-avatar {
   margin-bottom: 4rem;
   display: inline-block;
 }
-
 
 @media (min-width: 768px) {
   .show-mobile {

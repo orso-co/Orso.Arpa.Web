@@ -32,6 +32,7 @@ import { LocalizedDatePipe } from '../../../@arpa/pipes/localized-date/localized
 import { MyProjectsComponent } from './my-projects/my-projects.component';
 import { AccordionModule } from 'primeng/accordion';
 import { MessageModule } from 'primeng/message';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { MessageModule } from 'primeng/message';
     TagModule,
     TabViewModule,
     MessageModule,
+    CalendarModule,
   ],
   providers: [ProfileService, ProfileResolver, LocalizedDatePipe],
 })

@@ -55,7 +55,7 @@ export class FormFieldComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   get isRequired(): boolean {
-    const validator = !this.formControl.control.validator ? null : this.formControl.control.validator!({} as AbstractControl);
+    const validator = !this.formControl?.control?.validator ? null : this.formControl.control.validator!({} as AbstractControl);
     return validator && validator.required;
   }
 
