@@ -25,48 +25,45 @@ export class UserComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private meService: MeService,
     private notificationsService: NotificationsService,
-    private selectValueService: SelectValueService,
+    private selectValueService: SelectValueService
   ) {
-    this.genderSelectValue = this.selectValueService.load('Person', 'gender')
+    this.genderSelectValue = this.selectValueService
+      .load('Person', 'gender')
       .pipe(map(() => this.selectValueService.get('Person', 'gender')));
 
     this.form = formBuilder.group({
-      genderId: [null],
-      email: [null],
-      phoneNumber: [null,
-        [
-          Validators.minLength(1),
-          Validators.pattern(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/),
-        ],
-      ],
-      givenName: [
-        null,
-      ],
-      surname: [
-        null,
-      ],
-
-      aboutMe: [
-        null,
-      ],
+      genderId: [null, [Validators.required]],
+      email: [null, [Validators.required, Validators.email]],
+      givenName: [null, [Validators.required, Validators.maxLength(50)]],
+      surname: [null, [Validators.required, Validators.maxLength(50)]],
+      birthName: [null, [Validators.maxLength(50)]],
+      aboutMe: [null, [Validators.maxLength(1000)]],
+      birthplace: [null, [Validators.maxLength(50)]],
+      dateOfBirth: [null],
     });
   }
 
   ngOnInit(): void {
-    this.personSubscription = this.authService.currentUser.pipe(switchMap(token => {
-      return this.route.data.pipe(map(({ profile }) => {
-        const { person, email } = profile;
-        return { person, displayName: token.displayName, email };
-      }));
-    })).subscribe(({ person, displayName, email }) => {
-      this.displayName = displayName;
-      this.form.patchValue({
-        ...person,
-        genderId: person.gender.id,
-        email,
+    this.personSubscription = this.authService.currentUser
+      .pipe(
+        switchMap((token) => {
+          return this.route.data.pipe(
+            map(({ profile }) => {
+              const { person, email } = profile;
+              return { person, displayName: token.displayName, email };
+            })
+          );
+        })
+      )
+      .subscribe(({ person, displayName, email }) => {
+        this.displayName = displayName;
+        this.form.patchValue({
+          ...person,
+          dateOfBirth: person.dateOfBirth ? new Date(person.dateOfBirth) : null,
+          genderId: person.gender.id,
+          email,
+        });
       });
-    });
-    this.form.controls.email.disable();
   }
 
   ngOnDestroy() {
@@ -74,10 +71,16 @@ export class UserComponent implements OnInit, OnDestroy {
   }
 
   submit(): void {
-    this.meService.putProfile(Object.assign({}, this.form.getRawValue())).pipe(first()).subscribe((response) => {
-      this.notificationsService.success('USER_PROFILE_UPDATED', 'profile');
-    }, error => {
-      this.notificationsService.error('USER_PROFILE_UPDATE_ERROR', 'profile');
-    });
+    this.meService
+      .putProfile(Object.assign({}, this.form.getRawValue()))
+      .pipe(first())
+      .subscribe(
+        (response) => {
+          this.notificationsService.success('USER_PROFILE_UPDATED', 'profile');
+        },
+        (error) => {
+          this.notificationsService.error('USER_PROFILE_UPDATE_ERROR', 'profile');
+        }
+      );
   }
 }
