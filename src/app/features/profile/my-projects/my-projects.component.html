@@ -1,8 +1,8 @@
-<h1>Meine Projekte</h1>
+<h1>{{ 'MY_PROJECTS' | translate }}</h1>
 <p-message
   *ngIf="!myProjects || myProjects.length === 0"
   severity="info"
-  text="Zur Zeit liegen für dich leider keine relevanten Projekte vor. Schau gerne später nochmal vorbei."
+  text="{{ 'profile.NO_PROJECTS' | translate }}"
   styleClass="mr-2"
 ></p-message>
 <p-accordion>
