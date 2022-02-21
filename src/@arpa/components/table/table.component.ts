@@ -23,7 +23,7 @@ import { SelectValueService } from '../../../app/shared/services/select-value.se
 export interface ColumnDefinition<T extends Record<string, any>> {
   label: string;
   property: string | Extract<keyof T, string>;
-  type: 'text' | 'date' | 'image' | 'badge' | 'state' | 'progress' | 'checkbox' | 'button' | 'template';
+  type: 'text' | 'date' | 'image' | 'badge' | 'state' | 'progress' | 'checkbox' | 'button' | 'template' | 'rating';
   show?: boolean;
   cssClasses?: string[];
   template?: string;

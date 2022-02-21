@@ -1,0 +1,12 @@
+::ng-deep {
+  #key-select-button {
+    .p-selectbutton > div {
+      display: flex;
+      justify-content: center;
+
+      i {
+        font-size: x-large;
+      }
+    }
+  }
+}

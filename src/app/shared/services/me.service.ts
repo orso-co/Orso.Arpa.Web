@@ -1,3 +1,6 @@
+import { MyContactDetailModifyBodyDto } from './../../../@arpa/models/myContactDetailModifyBodyDto';
+import { ContactDetailDto } from './../../../@arpa/models/contactDetailDto';
+import { MyContactDetailCreateDto } from './../../../@arpa/models/myContactDetailCreateDto';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { finalize, first, map, shareReplay, switchMap, tap } from 'rxjs/operators';
@@ -69,6 +72,7 @@ export class MeService {
       .put(`${this.baseUrl}/appointments/${appointmentId}/participation/prediction/${predictionId}`, {})
       .pipe(shareReplay());
   }
+
   setProjectParticipationStatus(projectId: string, dto: MyProjectParticipationModifyBodyDto): Observable<MyProjectParticipationDto> {
     return this.apiService.put<MyProjectParticipationDto>(`${this.baseUrl}/projects/${projectId}/participation/`, dto).pipe(shareReplay());
   }
@@ -87,5 +91,17 @@ export class MeService {
 
   cleanStorage() {
     localStorage.removeItem('qrCode');
+  }
+
+  addContactDetail(dto: MyContactDetailCreateDto): Observable<ContactDetailDto> {
+    return this.apiService.post<ContactDetailDto>(`${this.baseUrl}/contactdetails`, dto).pipe(shareReplay());
+  }
+
+  updateContactDetail(id: string, dto: MyContactDetailModifyBodyDto): Observable<any> {
+    return this.apiService.put(`${this.baseUrl}/contactdetails/${id}`, dto).pipe(shareReplay());
+  }
+
+  deleteContactDetail(id: string): Observable<any> {
+    return this.apiService.delete(`${this.baseUrl}/contactdetails/${id}`).pipe(shareReplay());
   }
 }

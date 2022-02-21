@@ -109,6 +109,13 @@
             </div>
           </th>
         </ng-container>
+        <ng-container *ngIf="column.type === 'rating'">
+          <th [classList]="column.cssClasses" [pSortableColumn]="column.property">
+            <div class="p-d-flex p-jc-between p-ai-center">
+              {{ column.label | translate }}
+            </div>
+          </th>
+        </ng-container>
       </ng-container>
       <!-- Render an additional column if an action template was provided -->
       <ng-container *ngIf="actionsTemplateRef">
@@ -150,6 +157,11 @@
           <ng-container *ngIf="column.type === 'date'">
             <td [classList]="column.cssClasses">
               {{ resolveValue(column.property, row) | date: 'mediumDate' }}
+            </td>
+          </ng-container>
+          <ng-container *ngIf="column.type === 'rating'">
+            <td [classList]="column.cssClasses">
+              <p-rating [cancel]="false" [stars]="5" [readonly]="true" [ngModel]="resolveValue(column.property, row)"></p-rating>
             </td>
           </ng-container>
         </ng-container>

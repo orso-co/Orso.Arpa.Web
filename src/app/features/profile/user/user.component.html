@@ -1,65 +1,14 @@
 <div class="user-container">
-  <form (ngSubmit)="submit()" [formGroup]="form">
-    <div class="p-grid p-jc-center">
-      <div class="p-col-12 p-md-6 p-text-center">
-        <h1>{{ 'profile.MY_DATA' | translate }}</h1>
-      </div>
-    </div>
-    <div class="p-grid p-jc-center show-mobile">
-      <div class="p-col-12 p-md-6 p-text-center">
-        <arpa-avatar [image]="true" [user]="{displayName}"></arpa-avatar>
-      </div>
-    </div>
-    <div class="p-grid p-fluid p-formgrid p-mt-4">
-      <div class="p-field p-col-12 p-md-6">
-        <arpa-form-field label="EMAIL">
-          <input autocomplete="email" formControlName="email" id="email" pInputText type="text" />
-        </arpa-form-field>
-      </div>
-      <div class="p-field p-col-12 p-md-6">
-        <arpa-form-field label="GENDER" type="select">
-          <p-dropdown
-            [options]="(genderSelectValue | async) || []"
-            [placeholder]="'NOTHING_SELECTED' | translate"
-            formControlName="genderId"
-            optionLabel="label"
-            optionValue="value"
-          ></p-dropdown>
-        </arpa-form-field>
-      </div>
-      <div class="p-field p-col-12 p-md-4">
-        <arpa-form-field label="GIVENNAME">
-          <input autocomplete="givenName" formControlName="givenName" id="givenName" pInputText type="text" />
-        </arpa-form-field>
-      </div>
-      <div class="p-field p-col-12 p-md-4">
-        <arpa-form-field label="SURNAME">
-          <input autocomplete="surname" formControlName="surname" id="surname" pInputText type="text" />
-        </arpa-form-field>
-      </div>
-      <div class="p-field p-col-12 p-md-4">
-        <arpa-form-field label="BIRTHNAME">
-          <input autocomplete="birthName" formControlName="birthName" id="birthName" pInputText type="text" />
-        </arpa-form-field>
-      </div>
-      <div class="p-field p-col-12 p-md-6">
-        <arpa-form-field label="BIRTHPLACE">
-          <input autocomplete="birthplace" formControlName="birthplace" id="birthplace" pInputText type="text" />
-        </arpa-form-field>
-      </div>
-      <div class="p-field p-col-12 p-md-6">
-        <arpa-form-field label="DATEOFBIRTH">
-          <p-calendar [showWeek]="true" dateFormat="dd. MM yy" formControlName="dateOfBirth" id="dateOfBirth"></p-calendar>
-        </arpa-form-field>
-      </div>
-      <div class="p-field p-col-12">
-        <arpa-form-field label="ABOUT_ME">
-          <textarea autocomplete="aboutMe" formControlName="aboutMe" id="aboutMe" pInputText type="text"></textarea>
-        </arpa-form-field>
-      </div>
-    </div>
-    <div class="p-formgroup-inline p-jc-end">
-      <p-button [disabled]="form.invalid || form.pristine" type="submit" [label]="'SAVE' | translate"></p-button>
-    </div>
-  </form>
+  <p-tabView [(activeIndex)]="index">
+    <p-tabPanel leftIcon="pi pi-user" [header]="'profile.MY_DATA' | translate" [tooltip]="'profile.MY_DATA_TOOLTIP' | translate">
+      <arpa-user-data [email]="email" [person]="person" [displayName]="displayName"></arpa-user-data>
+    </p-tabPanel>
+    <p-tabPanel
+      leftIcon="pi pi-phone"
+      [header]="'profile.MY_CONTACT_DATA' | translate"
+      [tooltip]="'profile.MY_CONTACT_DATA_TOOLTIP' | translate"
+    >
+      <arpa-user-contact-data [contactDetails]="person.contactDetails || []"></arpa-user-contact-data>
+    </p-tabPanel>
+  </p-tabView>
 </div>
