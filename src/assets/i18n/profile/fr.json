@@ -5,7 +5,9 @@
     "MUSICIAN_PROFILES": "Profils de musicien",
     "MY_APPOINTMENTS":  "Mes dates",
     "MY_PROFILES": "Mes profils",
+    "MY_MUSICIANPROFILE": "Mon profil de musicien",
     "MY_PROJECTS": "Mes projets",
+    "NO_PROJECTS": "Malheureusement, il n'y a actuellement aucun projet pertinent pour vous. Merci de revenir plus tard.",
     "MY_QR_CODE": "Mon code QR",
     "MY_QR_CODE_DESCRIPTION": "Le code QR personnel est nécessaire pour vous enregistrer lors de votre participation à des événements.",
     "MY_QR_CODE_INFO": "Le code QR est également disponible en mode hors ligne.",
@@ -20,4 +22,3 @@
     "USER_PROFILE_UPDATED": "Profil mis à jour",
     "USER_PROFILE_UPDATE_ERROR": "Impossible de mettre à jour le profil"
   }
-  

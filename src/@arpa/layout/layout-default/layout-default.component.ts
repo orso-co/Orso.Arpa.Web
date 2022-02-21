@@ -41,6 +41,7 @@ export class LayoutDefaultComponent implements OnDestroy {
         {
           label: 'Dashboard',
           icon: 'pi pi home',
+          translationToken: 'DASHBOARD',
           children: [
             {
               label: 'Performer',
