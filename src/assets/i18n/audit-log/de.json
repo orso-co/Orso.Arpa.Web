@@ -2,9 +2,10 @@
   "AUDITLOGS": "Auditlogs",
   "CHANGED_BY": "Geändert von",
   "DETAILS": "Entity Details",
+  "KEY_VALUES": "Schlüsselwerte",
   "NEW_VALUES": "Neue Werte",
   "OLD_VALUES": "Alte Werte",
   "TABLE": "Tabelle",
-  "TIME": "Uhrzeit",
+  "TIME": "Datum & Uhrzeit",
   "TYPE": "Typ"
 }

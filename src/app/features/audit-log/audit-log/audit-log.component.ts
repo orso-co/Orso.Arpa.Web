@@ -32,6 +32,7 @@ export class AuditLogComponent {
       header: this.translate.instant('audit-log.DETAILS'),
       styleClass: 'form-modal',
       width: window.innerWidth > 1000 ? '90%' : '100%',
+      dismissableMask: true,
     });
   }
 }
