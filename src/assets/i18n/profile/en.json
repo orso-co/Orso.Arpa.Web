@@ -3,7 +3,7 @@
   "DEACTIVATED_PROFILES": "Deactivated Profiles",
   "MAIN_PROFILE": "Main Profile",
   "MUSICIAN_PROFILES": "Musician Profiles",
-  "MY_DATA": "My Data",
+  "MY_DATA": "My Basic Data",
   "MY_APPOINTMENTS": "My Appointments",
   "MY_MUSICIANPROFILE": "My Musicianprofile",
   "MY_PROFILES": "My Profiles",
@@ -21,5 +21,21 @@
   "USER_PROFILE": "User Profile",
   "USER_PROFILE_DATA": "My Profile",
   "USER_PROFILE_UPDATED": "Profile updated",
-  "USER_PROFILE_UPDATE_ERROR": "Could not update profile"
+  "USER_PROFILE_UPDATE_ERROR": "Could not update profile",
+  "MY_CONTACT_DATA": "My Contact Data",
+  "MY_CONTACT_DATA_TOOLTIP": "Provide your phonenumbers, Email-adresses and URLs",
+  "BIRTHPLACE": "Birthplace",
+  "BIRTHNAME": "Birthname",
+  "DATEOFBIRTH": "Date of birth",
+  "MY_DATA_TOOLTIP": "Edit your name, about me, etc.",
+  "contact": {
+    "NOTHING_SELECTED": "Nothing selected",
+    "TYPE": "Type",
+    "VALUE": "Value",
+    "PREFERENCE": "Preference",
+    "COMMENT_INNER": "Comment",
+    "COMMENT": "Comment",
+    "COMMENT_TEAM": "Comment by staff"
+  }
+
 }
