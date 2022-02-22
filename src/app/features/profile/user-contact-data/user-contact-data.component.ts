@@ -24,9 +24,9 @@ export class UserContactDataComponent implements OnInit {
 
   columns: ColumnDefinition<ContactDetailDto>[] = [
     { label: '#', property: 'key', type: 'template', template: 'keyTemplate' },
-    { label: 'contact.TYPE', property: 'typeId', type: 'state', stateTable: 'ContactDetail', stateProperty: 'Type' },
     { label: 'contact.VALUE', property: 'value', type: 'text' },
     { label: 'contact.PREFERENCE', property: 'preference', type: 'rating', show: true },
+    { label: 'contact.TYPE', property: 'typeId', type: 'state', stateTable: 'ContactDetail', stateProperty: 'Type' },
     { label: 'contact.COMMENT_INNER', property: 'commentInner', type: 'text', show: false },
     { label: 'contact.COMMENT_TEAM', property: 'commentTeam', type: 'text', show: false },
   ];
