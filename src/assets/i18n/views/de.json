@@ -2,20 +2,24 @@
   "ACCOUNT_ACTIVATION": "Account Aktivierung",
   "CHANGE_PASSWORD": "Passwort ändern",
   "EMAIL_CONFIRM_SUCCESS": "Danke für die Bestätigung der E-Mail Adresse",
+  "EMAIL_CONFIRMATION": "Bestätigung der E-Mailadresse",
   "ERROR": "Da ist etwas schiefgelaufen",
   "FORGOT_PASSWORD": "Passwort vergessen",
   "FORGOT_PASSWORD_SEND_MAIL_SUCCESS": "Ein Link zum Vergeben eines neuen Passworts wurde an deine E-Mail-Adresse gesendet.",
   "LOGGED_OUT": "Bis zum nächsten Mal bei ARPA",
   "LOGIN": "Einloggen",
+  "LOGOUT": "Ausloggen",
   "MAIL_ACTIVATION": "Wir haben dir eine E-Mail geschickt. Bitte bestätige deinen Account.",
   "NEW_PASSWORD": "Neues Passwort",
   "PASSWORD_CHANGE_SUCCESS": "Dein Passwort wurde geändert.",
   "PASSWORD_INFO": "Das Passwort muss mindestens 6 Zeichen lang sein, Klein- sowie Großbuchstaben, eine Zahl, und ein Sonderzeichen enthalten.",
-  "PRIVACY_POLICY": "Ich habe die Hinweise zum Datenschutz gelesen und akzeptiere diese.",
+  "PRIVACY_POLICY": "Datenschutzerklärung",
+  "PRIVACY_POLICY_CONSENT": "Ich habe die Hinweise zum Datenschutz gelesen und akzeptiere diese.",
   "REGISTER": "Registrierung",
   "REGISTER_SUCCESS": "Vielen Dank für die Registrierung bei ARPA. Bitte prüfe deine Mailbox und bestätige deine Mailaddresse.",
   "RESEND_CONFIRMATION": "Bestätigungslink nochmal zusenden",
   "RESEND_DONE": "Bestätigungslink wurde erneut versendet, bitte Mailbox prüfen",
-  "SHOW_PRIVACY": "Datenschutzbestimmungen",
-  "USERNAME_OR_EMAIL": "Benutzername oder E-Mail"
+  "USERNAME_OR_EMAIL": "Benutzername oder E-Mail",
+  "USER_CREDENTIALS": "Benutzername oder Passwort falsch"
+
 }
