@@ -2,6 +2,7 @@
     "ACCOUNT_ACTIVATION": "Activation des comptes",
     "CHANGE_PASSWORD": "Changer le mot de passe.",
     "EMAIL_CONFIRM_SUCCESS": "Merci de confirmer votre adresse e-mail",
+    "EMAIL_CONFIRMATION": "Confirmation de l'émail",
     "ERROR": "Quelque chose a mal tourné",
     "FORGOT_PASSWORD": "Mot de passe oublié",
     "FORGOT_PASSWORD_SEND_MAIL_SUCCESS": "Un lien pour réinitialiser ton mot de passe a été envoyé à ton adresse e-mail.",
@@ -11,12 +12,12 @@
     "NEW_PASSWORD": "Nouveau mot de passe",
     "PASSWORD_CHANGE_SUCCESS": "Ton mot de passe a été modifié.",
     "PASSWORD_INFO": "Le mot de passe doit avoir au moins 6 caractères, lettres minuscules et majuscules, un nombre et un caractère spécial.",
-    "PRIVACY_POLICY": "J’ai lu les règles concernant la protection des données et je les accepte",
+    "PRIVACY_POLICY_CONSENT": "J’ai lu les règles concernant la protection des données et je les accepte",
     "REGISTER": "Enregistrement",
     "REGISTER_SUCCESS": "Merci beaucoup pour ton enregistrement sur ARPA.Consulte s’il te plaît ta boîte mail et confirme ton adresse e-mail.",
     "RESEND_CONFIRMATION": "Envoyer une nouvelle fois le lien de validation",
     "RESEND_DONE": "Le lien de validation a été à nouveau envoyé, consultez la boîte mail s’il vous plaît",
-    "SHOW_PRIVACY": "Règles de protection des données",
-    "USERNAME_OR_EMAIL": "Nom d’utilisateur ou e-mail"
+    "PRIVACY_POLICY": "Règles de protection des données",
+    "USERNAME_OR_EMAIL": "Nom d’utilisateur ou e-mail",
+    "USER_CREDENTIALS": "Nom d'utilisateur ou mot de passe incorrect"
   }
-  
