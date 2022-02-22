@@ -17,7 +17,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
-        loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule),
+        loadChildren: () => import('./features/dashboard/dashboard.module').then((m) => m.DashboardModule),
         data: {
           title: 'DASHBOARD',
           menu: {
@@ -29,7 +29,7 @@ const routes: Routes = [
       },
       {
         path: 'projects',
-        loadChildren: () => import('./features/projects/projects.module').then(m => m.ProjectsModule),
+        loadChildren: () => import('./features/projects/projects.module').then((m) => m.ProjectsModule),
         data: {
           roles: ['staff'],
           title: 'projects.PAGE_TITLE',
@@ -42,7 +42,7 @@ const routes: Routes = [
       },
       {
         path: 'calendar',
-        loadChildren: () => import('./features/appointments/appointments.module').then(m => m.AppointmentsModule),
+        loadChildren: () => import('./features/appointments/appointments.module').then((m) => m.AppointmentsModule),
         data: {
           roles: ['staff'],
           title: 'appointments.PAGE_TITLE',
@@ -55,7 +55,7 @@ const routes: Routes = [
       },
       {
         path: 'profile',
-        loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule),
+        loadChildren: () => import('./features/profile/profile.module').then((m) => m.ProfileModule),
         data: {
           title: 'profile.PAGE_TITLE',
         },
@@ -63,7 +63,7 @@ const routes: Routes = [
 
       {
         path: 'contacts',
-        loadChildren: () => import('./features/persons/persons.module').then(m => m.PersonsModule),
+        loadChildren: () => import('./features/persons/persons.module').then((m) => m.PersonsModule),
         data: {
           roles: ['staff'],
           title: 'CONTACTS',
@@ -139,25 +139,26 @@ const routes: Routes = [
           },
         },
       },
-
     ],
   },
   {
     path: '',
     canActivateChild: [SessionGuard],
     component: LayoutPageComponent,
-    loadChildren: () => import('./features/views/views.module').then(m => m.ViewsModule),
+    loadChildren: () => import('./features/views/views.module').then((m) => m.ViewsModule),
   },
   { path: '**', redirectTo: '/error' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    scrollPositionRestoration: 'enabled',
-    relativeLinkResolution: 'corrected',
-    anchorScrolling: 'enabled',
-  })],
+  imports: [
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'enabled',
+      relativeLinkResolution: 'corrected',
+      anchorScrolling: 'enabled',
+      onSameUrlNavigation: 'reload',
+    }),
+  ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

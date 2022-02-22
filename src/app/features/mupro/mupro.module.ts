@@ -1,3 +1,6 @@
+import { MultiSelectModule } from 'primeng/multiselect';
+import { FormFieldModule } from './../../../@arpa/components/form-field/form-field.module';
+import { InvitationDialogComponent } from './invitation-dialog/invitation-dialog.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MuproComponent } from './mupro.component';
@@ -22,9 +25,8 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from '../../../@arpa/components/table/table.module';
 import { ProjectsComponent } from './projects/projects.component';
 
-
 @NgModule({
-  declarations: [MuproComponent, DetailsComponent, ProfilesComponent, ProjectsComponent],
+  declarations: [MuproComponent, DetailsComponent, ProfilesComponent, ProjectsComponent, InvitationDialogComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -36,6 +38,7 @@ import { ProjectsComponent } from './projects/projects.component';
     SplitViewModule,
     GraphQlFeedModule,
     TableModule,
+    FormFieldModule,
     // NG Prime Dependencies
     ListboxModule,
     StepsModule,
@@ -44,14 +47,13 @@ import { ProjectsComponent } from './projects/projects.component';
     TabMenuModule,
     InputTextModule,
     ButtonModule,
+    MultiSelectModule,
   ],
-  providers: [
-    MuproService,
-  ],
+  providers: [MuproService],
 })
 export class MuProModule {
   constructor(private translateService: TranslateService, private languageService: LanguageService) {
-    languageService.languageEvent.subscribe(lang => {
+    languageService.languageEvent.subscribe((lang) => {
       /**
        * Reset lang for lazy module.
        * Fixes: https://github.com/ngx-translate/core/issues/1193
