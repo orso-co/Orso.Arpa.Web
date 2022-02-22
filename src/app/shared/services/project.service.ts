@@ -1,3 +1,4 @@
+import { SetProjectParticipationBodyDto } from './../../../@arpa/models/setProjectParticipationBodyDto';
 import { UrlModifyBodyDto } from './../../../@arpa/models/urlModifyBodyDto';
 import { UrlDto } from 'src/@arpa/models/urlDto';
 import { UrlCreateBodyDto } from './../../../@arpa/models/urlCreateBodyDto';
@@ -39,6 +40,10 @@ export class ProjectService {
 
   public getParticipations(id: string): Observable<ProjectParticipationDto[]> {
     return this.apiService.get<ProjectParticipationDto[]>(`${this.baseUrl}/${id}/participations`).pipe(shareReplay());
+  }
+
+  public setParticipation(projectId: string, dto: SetProjectParticipationBodyDto): Observable<ProjectParticipationDto> {
+    return this.apiService.put<ProjectParticipationDto>(`${this.baseUrl}/${projectId}/participations`, dto).pipe(shareReplay());
   }
 
   public addUrl(projectId: string, data: UrlCreateBodyDto): Observable<any> {

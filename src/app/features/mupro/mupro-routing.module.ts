@@ -28,21 +28,22 @@ const routes: Routes = [
           {
             path: '',
             outlet: 'modal',
-            loadChildren: () => import('../musician-profile-dialog/musician-profile-dialog.module').then(m => m.MusicianProfileDialogModule),
+            loadChildren: () =>
+              import('../musician-profile-dialog/musician-profile-dialog.module').then((m) => m.MusicianProfileDialogModule),
           },
           {
-            path: 'projects', component: ProjectsComponent,
+            path: 'projects',
+            component: ProjectsComponent,
+            runGuardsAndResolvers: 'always',
           },
         ],
       },
     ],
   },
-
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class MuProRoutingModule {
-}
+export class MuProRoutingModule {}
