@@ -5,6 +5,7 @@
     "COMMENT": "Commentaire",
     "CREATE": "Créer",
     "CREATED": "Profil de musicien créé",
+    "DEACTIVATION": "Désactivation",
     "DEACTIVATE": "Désactiver",
     "DEACTIVATED": "Désactivée",
     "DEACTIVATION_DATE": "Date de désactivation",
@@ -46,4 +47,3 @@
     "UPDATED": "Profils de musicien mis à jour",
     "Qualification": "Qualification"
   }
-  

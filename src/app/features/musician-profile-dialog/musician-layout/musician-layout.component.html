@@ -9,21 +9,21 @@
     <arpa-musician-main-instrument (viewState)='viewStateEvents($event)'></arpa-musician-main-instrument>
   </p-tabPanel>
   <p-tabPanel *ngIf='((doublingInstruments | async) || []).length > 0 && !comboInstrumentView'
-              header="{{'musician-profile-dialog.DOUBLING_INSTRUMENT' | translate}}"
+              header="{{'musician-profile-dialog.DOUBLING_INSTRUMENT' | translate }}"
               leftIcon='pi pi-th-large'
-              tooltip="{{'musician-profile-dialog.DOUBLING_INSTRUMENT' | translate}}">
+              tooltip="{{'musician-profile-dialog.DOUBLING_INSTRUMENT' | translate }}">
     <arpa-musician-doubling-instrument></arpa-musician-doubling-instrument>
   </p-tabPanel>
-  <p-tabPanel *ngIf='profile | async' header="{{'musician-profile-dialog.EDUCATION' | translate}}"
+  <p-tabPanel *ngIf='profile | async' header="{{ 'musician-profile-dialog.EDUCATION' | translate }}"
               leftIcon='pi pi-id-card'
-              tooltip="{{'musician-profile-dialog.EDUCATION' | translate}}">
+              tooltip="{{ 'musician-profile-dialog.EDUCATION' | translate }}">
     <arpa-musician-education></arpa-musician-education>
   </p-tabPanel>
-  <p-tabPanel *ngIf='profile | async' header="{{'musician-profile-dialog.DOCUMENTS' | translate}}" leftIcon='pi pi-copy'
+  <p-tabPanel *ngIf='profile | async' header="{{ 'musician-profile-dialog.DOCUMENTS' | translate }}" leftIcon='pi pi-copy'
               tooltip="{{'musician-profile-dialog.DOCUMENTS' | translate}}">
     <arpa-musician-documents></arpa-musician-documents>
   </p-tabPanel>
-  <p-tabPanel *ngIf='profile | async' leftIcon='pi pi-eye-slash'
+  <p-tabPanel *ngIf='profile | async' header="{{ 'musician-profile-dialog.DEACTIVATION' | translate }}" leftIcon='pi pi-eye-slash'
               tooltip="{{'musician-profile-dialog.DEACTIVATE' | translate}}">
     <arpa-musician-deactivation></arpa-musician-deactivation>
   </p-tabPanel>
