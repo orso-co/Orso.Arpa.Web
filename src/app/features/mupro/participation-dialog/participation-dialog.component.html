@@ -1,0 +1,67 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    <h3>Seitens KBB</h3>
+  </div>
+  <div class="p-grid p-formgrid p-fluid">
+    <div class="p-col">
+      <arpa-form-field label="PARTICIPATION" type="select">
+        <p-multiSelect
+          [options]="participation || []"
+          [placeholder]="'NOTHING_SELECTED' | translate"
+          display="chip"
+          formControlName="participation"
+          optionLabel="participationStatusInternal"
+          optionValue="participationStatusInternalId"
+        >
+          <ng-template let-participation pTemplate="item">
+            <span>{{ participation.participationStatusInternal }}</span>
+          </ng-template>
+        </p-multiSelect>
+      </arpa-form-field>
+    </div>
+  </div>
+
+  <div>
+    <h3>Seitens Performer</h3>
+  </div>
+  <div class="p-grid p-formgrid p-fluid">
+    <div class="p-col">
+      <arpa-form-field label="PARTICIPATION" type="select">
+        <p-multiSelect
+          [options]="participation || []"
+          [placeholder]="'NOTHING_SELECTED' | translate"
+          display="chip"
+          formControlName="participation"
+          optionLabel="title"
+          optionValue="id"
+        >
+          <ng-template let-project pTemplate="item">
+            <span>{{ project.title }} ({{ project.code }})</span>
+          </ng-template>
+        </p-multiSelect>
+      </arpa-form-field>
+    </div>
+  </div>
+
+  <div class="p-formgroup-inline p-jc-between">
+    <div class="p-text-left">
+      <p-button
+        [disabled]="form.pristine || form.invalid"
+        [label]="'SAVE' | translate"
+        icon="pi pi-check"
+        iconPos="left"
+        type="submit"
+      ></p-button>
+    </div>
+    <div class="p-text-right">
+      <button
+        (click)="cancel()"
+        [label]="'CANCEL' | translate"
+        class="p-ml-3 p-button-outlined"
+        icon="pi pi-times"
+        iconPos="left"
+        pButton
+      ></button>
+    </div>
+  </div>
+</form>

@@ -3,5 +3,9 @@
 
 <!-- The feed template is projected into the graph-ql-feed component. -->
 <ng-template #feed let-feed>
-  <arpa-table (lazyEvents)="feedSource.onLazy($event)" [columns]="columns" [feed]="feed"> </arpa-table>
+  <arpa-table
+    (lazyEvents)="feedSource.onLazy($event)"
+    (rowClickEvents)='openParticipationDialog($event)'
+    [columns]="columns"
+    [feed]="feed"> </arpa-table>
 </ng-template>

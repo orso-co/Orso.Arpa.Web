@@ -2,5 +2,8 @@
   "PAGE_TITLE": "Musician Profiles",
   "PROFILE": "Musician Profile",
   "MAIN_PROFILE": "Main Profile",
-  "INVITE": "Invite to project"
+  "INVITE": "Invite to project",
+  "EDIT_PARTICIPATION": "Edit participation status",
+  "PROJECTS": "Projects for this profile"
+
 }

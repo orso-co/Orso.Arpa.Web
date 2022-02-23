@@ -24,9 +24,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from '../../../@arpa/components/table/table.module';
 import { ProjectsComponent } from './projects/projects.component';
+import { ParticipationDialogComponent } from './participation-dialog/participation-dialog.component';
 
 @NgModule({
-  declarations: [MuproComponent, DetailsComponent, ProfilesComponent, ProjectsComponent, InvitationDialogComponent],
+  declarations: [MuproComponent, DetailsComponent, ProfilesComponent, ProjectsComponent, InvitationDialogComponent, ParticipationDialogComponent],
   imports: [
     CommonModule,
     FormsModule,
