@@ -36,5 +36,21 @@
     "COMMENT_INNER": "Comentário",
     "COMMENT": "Comentário",
     "COMMENT_TEAM": "Comentário da equipe"
+  },
+  "my-projects": {
+    "APPLICATIONSTATUS": "estado do meu pedido",
+    "CHANGE_APPLICATION": "alterar aplicativo",
+    "COMMENT_STAFF": "comentário da equipe",
+    "DESCRIPTION": "descrição",
+    "MY_APPLICATION": "minha aplicação",
+    "MY_COMMENT": "meu comentário",
+    "MY_PROFILE": "meu perfil para este registro",
+    "PROJECTDETAILS": "detalhes do projeto",
+    "RESPONSE_STAFF": "resposta da equipe",
+    "RESPONSE_STAFF_PROFILE": "Perfil, a equipe está respondendo a",
+    "RESPONSE_STATUS": "status de resposta",
+    "STATUS": "status",
+    "TYPE": "tipo",
+    "URLS": "URLs"
   }
 }

@@ -36,6 +36,23 @@
     "COMMENT_INNER": "Comment",
     "COMMENT": "Comment",
     "COMMENT_TEAM": "Comment by staff"
+  },
+  "my-projects": {
+    "APPLICATIONSTATUS": "My application status",
+    "CHANGE_APPLICATION": "Change application",
+    "COMMENT_STAFF": "Comment by staff",
+    "DESCRIPTION": "Description",
+    "EDIT_PARTICIPATION": "Edit participation",
+    "MY_APPLICATION": "My application",
+    "MY_COMMENT": "My Comment",
+    "MY_PROFILE": "My profile for this application",
+    "PROJECTDETAILS": "Projectdetails",
+    "RESPONSE_STAFF": "Response by staff",
+    "RESPONSE_STAFF_PROFILE": "Profile, staff is responding to",
+    "RESPONSE_STATUS": "Response status",
+    "STATUS": "Status",
+    "TYPE": "Type",
+    "URLS": "Links"
   }
 
 }
