@@ -8,7 +8,8 @@
 
 <div class='p-grid p-jc-center'>
   <div class='p-col-12 p-md-6 p-text-center'>
-    <h1 #predictionAction>{{ 'profile.MY_APPOINTMENTS' | translate}}</h1>
+    <h1 #predictionAction>{{ 'profile.MY_APPOINTMENTS' | translate}} </h1>
+    <h3>({{ (totalRecordsCount$ | async) || 0 }})</h3>
   </div>
 </div>
 <div class='p-grid p-jc-center p-mt-4'>
