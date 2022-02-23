@@ -13,19 +13,20 @@
       <div class="p-d-flex p-flex-column">
         <div class="p-as-start p-d-flex p-ai-center">
           <span class="project-title">{{ myProject.project.title }}</span>
-          <p-tag
-            *ngIf="myProject.project.genre"
-            styleClass="p-ml-2"
-            severity="info"
-            [value]="myProject.project.genre.name!"
-            [rounded]="true"
-          ></p-tag>
         </div>
         <div class="p-as-start project-date">
           <span *ngIf="myProject.project.startDate">{{ myProject.project.startDate | date: 'dd.MM.yy':'locale(de)' }}</span>
           <span *ngIf="myProject.project.endDate"> - {{ myProject.project.endDate | date: 'dd.MM.yy':'locale(de)' }}</span>
         </div>
+
       </div>
+      <p-tag
+      *ngIf="myProject.project.genre"
+      styleClass="p-ml-2"
+      severity="info"
+      [value]="myProject.project.genre.name!"
+      [rounded]="true"
+    ></p-tag>
     </ng-template>
     <ng-template pTemplate="content">
       <p-tabView [scrollable]="true">
