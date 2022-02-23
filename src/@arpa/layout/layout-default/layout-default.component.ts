@@ -122,7 +122,7 @@ export class LayoutDefaultComponent implements OnDestroy {
               translationToken:'MY_APPOINTMENTS'
             },
             {
-              label: 'Meine Profile',
+              label: 'Mein Musikprofil',
               icon: 'pi pi-user-edit',
               roles: ['performer'],
               routerLink: '/arpa/profile/musician',

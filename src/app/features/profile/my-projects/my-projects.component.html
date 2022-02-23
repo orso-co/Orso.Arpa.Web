@@ -1,4 +1,6 @@
-<h1>{{ 'MY_PROJECTS' | translate }}</h1>
+<div class='p-grid p-jc-center'>
+  <h1>{{ 'MY_PROJECTS' | translate }}</h1>
+</div>
 <p-message
   *ngIf="!myProjects || myProjects.length === 0"
   severity="info"
