@@ -19,7 +19,7 @@ export class AppointmentsComponent implements AfterViewInit {
   userAppointments$: Observable<MyAppointmentDto[]> = of([]);
   totalRecordsCount$: Observable<number> = of(0);
   predictions: Observable<SelectItem[]>;
-  itemsPerPage = 10;
+  itemsPerPage = 25;
 
   constructor(
     private meService: MeService,
