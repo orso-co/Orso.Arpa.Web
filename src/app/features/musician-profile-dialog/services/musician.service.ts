@@ -1,3 +1,4 @@
+import { MusicianProfileModifyBodyDto } from './../../../../@arpa/models/musicianProfileModifyBodyDto';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '../../../../@arpa/services/api.service';
@@ -17,8 +18,7 @@ export class MusicianService {
   private baseUrlPersons = '/persons';
   private baseUrlMe = '/me/profiles/musician';
 
-  constructor(private apiService: ApiService) {
-  }
+  constructor(private apiService: ApiService) {}
 
   getProfile<T>(id?: string): Observable<MusicianProfileDto | MusicianProfileDto[]> | T {
     return this.apiService.get<MusicianProfileDto>(`${this.baseUrl}/${id}`);
@@ -45,9 +45,8 @@ export class MusicianService {
     return this.apiService.put(`${this.baseUrlMe}/${id}`, profile);
   }
 
-  updatePersonProfile(profile: MusicianProfileDto): Observable<any> {
-    const { id } = profile;
-    return this.apiService.put(`${this.baseUrl}/${id}`, profile);
+  updatePersonProfile(id: string, profile: MusicianProfileModifyBodyDto): Observable<MusicianProfileDto> {
+    return this.apiService.put<MusicianProfileDto>(`${this.baseUrl}/${id}`, profile);
   }
 
   addDocument(id: any, document: MyMusicianProfileAddDocumentDto): Observable<any> {
@@ -67,7 +66,12 @@ export class MusicianService {
     return this.apiService.post(`${this.baseUrlMe}/${id}/doublinginstruments`, data);
   }
 
-  updateDoublingInstrument(profileId: any, instrumentId: string, data: MyDoublingInstrumentModifyDto, isMeEndpoint: boolean): Observable<any> {
+  updateDoublingInstrument(
+    profileId: any,
+    instrumentId: string,
+    data: MyDoublingInstrumentModifyDto,
+    isMeEndpoint: boolean
+  ): Observable<any> {
     return this.apiService.put(`${isMeEndpoint ? this.baseUrlMe : this.baseUrl}/${profileId}/doublinginstruments/${instrumentId}`, data);
   }
 

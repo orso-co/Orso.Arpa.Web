@@ -1,169 +1,252 @@
-<div class='instrument'>
+<div class="instrument">
   <header>
     <h3>{{ instrumentName }}</h3>
-    <p-badge *ngIf='profile.isMainProfile' severity='info'
-             value='{{ "musician-profile-dialog.MAIN_PROFILE" | translate }}'></p-badge>
-    <p-badge *ngIf='profile.deactivation' severity='danger'
-             value='{{ "musician-profile-dialog.DEACTIVATED" | translate }}'></p-badge>
+    <p-badge *ngIf="profile.isMainProfile" severity="info" value="{{ 'musician-profile-dialog.MAIN_PROFILE' | translate }}"></p-badge>
+    <p-badge *ngIf="profile.deactivation" severity="danger" value="{{ 'musician-profile-dialog.DEACTIVATED' | translate }}"></p-badge>
   </header>
-  <div class='p-d-flex p-flex-column p-flex-md-row'>
-    <div class='p-mb-4 p-mr-6'>
-      <div class='p-d-flex p-flex-row'>
-        <div class='p-mr-3'>{{ 'musician-profile-dialog.LEVEL_ASSESSMENT' | translate}}:</div>
-        <div class='p-mr-2'>
-          <p-rating [(ngModel)]='profile.levelAssessmentInner'
-                    [cancel]='false'
-                    [readonly]='true'
-                    [stars]='5'
-          ></p-rating>
+  <!-- <div class="p-d-flex p-flex-column p-flex-md-row">
+    <div class="p-mb-4 p-mr-6">
+      <div class="p-d-flex p-flex-row">
+        <div class="p-mr-3">{{ 'musician-profile-dialog.LEVEL_ASSESSMENT' | translate }}:</div>
+        <div class="p-mr-2">
+          <p-rating [(ngModel)]="profile.levelAssessmentInner" [cancel]="false" [readonly]="true" [stars]="5"></p-rating>
         </div>
       </div>
     </div>
-    <div class='p-mb-4 p-mr-6'>
-      <div class='p-d-flex p-flex-row'>
-        <div class='p-mr-3'>{{ 'musician-profile-dialog.INQUIRY_STATUS' | translate}}:</div>
-        <div class='p-mr-2'>
+    <div class="p-mb-4 p-mr-6">
+      <div class="p-d-flex p-flex-row">
+        <div class="p-mr-3">{{ 'musician-profile-dialog.INQUIRY_STATUS' | translate }}:</div>
+        <div class="p-mr-2">
           {{ profile.inquiryStatusInnerId | selectValue: inquiryStatus }}
         </div>
       </div>
     </div>
-    <div *ngIf='profile && profile.preferredPartsInner!.length > 0' class='p-mb-4 p-mr-6'>
-      <div class='p-d-flex p-flex-row'>
-        <div class='p-mr-3'>{{ 'musician-profile-dialog.PREFERRED_PARTS' | translate}}:</div>
-        <div class='p-mr-2'>
+    <div *ngIf="profile && profile.preferredPartsInner!.length > 0" class="p-mb-4 p-mr-6">
+      <div class="p-d-flex p-flex-row">
+        <div class="p-mr-3">{{ 'musician-profile-dialog.PREFERRED_PARTS' | translate }}:</div>
+        <div class="p-mr-2">
           {{ profile.preferredPartsInner | instrumentParts }}
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
-<form [formGroup]='form'>
-  <div class='p-fluid p-mt-3 p-formgrid p-grid'>
-    <div class='p-col'>
-      <arpa-form-field label='musician-profile-dialog.LEVEL_ASSESSMENT_TEAM' type='rating'>
-        <p-rating [cancel]='false' [stars]='5'
-                  formControlName='levelAssessmentTeam'></p-rating>
+<form [formGroup]="form">
+  <div class="p-fluid p-mt-3 p-formgrid p-grid comparison-container">
+    <div class="p-col-6"><h3>Einstufung KBB</h3></div>
+    <div class="p-col-6 inner"><h3>Selbsteinstufung</h3></div>
+    <!-- Level Assessment -->
+    <div class="p-col-6">
+      <arpa-form-field label="musician-profile-dialog.LEVEL_ASSESSMENT_TEAM" type="rating">
+        <p-rating [cancel]="false" [stars]="5" formControlName="levelAssessmentTeam"></p-rating>
       </arpa-form-field>
     </div>
-    <div class='p-col' style='margin-right: 0'>
-      <arpa-form-field label='musician-profile-dialog.Qualification' type='select'>
+    <div class="p-col-6 inner">
+      <arpa-form-field label="musician-profile-dialog.LEVEL_ASSESSMENT_INNER" type="rating">
+        <p-rating [cancel]="false" [stars]="5" formControlName="levelAssessmentInner"></p-rating>
+      </arpa-form-field>
+    </div>
+    <!-- Profile Preference -->
+    <div class="p-col-6">
+      <arpa-form-field label="musician-profile-dialog.PROFILE_PREFERENCE_TEAM" type="rating">
+        <p-rating [cancel]="false" [stars]="5" formControlName="profilePreferenceTeam"></p-rating>
+      </arpa-form-field>
+    </div>
+    <div class="p-col-6 inner">
+      <arpa-form-field label="musician-profile-dialog.PROFILE_PREFERENCE_INNER" type="rating">
+        <p-rating [cancel]="false" [stars]="5" formControlName="profilePreferenceInner"></p-rating>
+      </arpa-form-field>
+    </div>
+    <!-- Inquiry Status -->
+    <div class="p-col-6">
+      <arpa-form-field label="musician-profile-dialog.INQUIRY_STATUS_TEAM" type="select">
         <p-dropdown
-          [options]='(qualification | async) || []'
-          [placeholder]='"NOTHING_SELECTED" | translate'
-          formControlName='qualificationId'
-          optionLabel='label'
-          optionValue='value'
+          [options]="(inquiryStatusTeamOptions$ | async) || []"
+          [placeholder]="'NOTHING_SELECTED' | translate"
+          formControlName="inquiryStatusTeamId"
+          optionLabel="label"
+          optionValue="value"
         ></p-dropdown>
       </arpa-form-field>
     </div>
-  </div>
-  <div class='p-fluid p-mt-3 p-formgrid p-grid'>
-    <div class='p-col'>
-      <arpa-form-field label='musician-profile-dialog.INQUIRY_STATUS' type='select'>
+    <div class="p-col-6 inner">
+      <arpa-form-field label="musician-profile-dialog.INQUIRY_STATUS_INNER" type="select">
         <p-dropdown
-          [options]='(inquiryStatusTeam | async) || []'
-          [placeholder]='"NOTHING_SELECTED" | translate'
-          formControlName='inquiryStatusTeamId'
-          optionLabel='label'
-          optionValue='value'
+          [options]="(inquiryStatusInnerOptions$ | async) || []"
+          [placeholder]="'NOTHING_SELECTED' | translate"
+          formControlName="inquiryStatusInnerId"
+          optionLabel="label"
+          optionValue="value"
         ></p-dropdown>
       </arpa-form-field>
     </div>
-    <div *ngIf='(preferredParts | async)' class='p-col'>
-      <arpa-form-field label='musician-profile-dialog.PREFERRED_PARTS' type='select'>
-        <p-multiSelect
-          [options]='(preferredParts | async) || []'
-          [placeholder]='"NOTHING_SELECTED" | translate'
-          display='chip'
-          formControlName='preferredPartsTeam'
-          optionLabel='label'
-          optionValue='value'
-        ></p-multiSelect>
+    <!-- Preferred Parts -->
+    <ng-container *ngIf="preferredParts | async as partOptions">
+      <div class="p-col-6">
+        <arpa-form-field label="musician-profile-dialog.PREFERRED_PARTS_TEAM" type="select">
+          <p-multiSelect
+            [options]="partOptions"
+            [placeholder]="'NOTHING_SELECTED' | translate"
+            display="chip"
+            formControlName="preferredPartsTeam"
+            optionLabel="label"
+            optionValue="value"
+          ></p-multiSelect>
+        </arpa-form-field>
+      </div>
+      <div class="p-col-6 inner">
+        <arpa-form-field label="musician-profile-dialog.PREFERRED_PARTS_INNER" type="select">
+          <p-multiSelect
+            [options]="partOptions"
+            [placeholder]="'NOTHING_SELECTED' | translate"
+            display="chip"
+            formControlName="preferredPartsInner"
+            optionLabel="label"
+            optionValue="value"
+          ></p-multiSelect>
+        </arpa-form-field></div
+    ></ng-container>
+    <!-- Preferred Positions -->
+    <ng-container *ngIf="preferredPositionOptions$ | async as positionOptions">
+      <div class="p-col-6">
+        <arpa-form-field label="musician-profile-dialog.PREFERRED_POSITIONS_TEAM" type="select">
+          <p-multiSelect
+            [options]="positionOptions"
+            [placeholder]="'NOTHING_SELECTED' | translate"
+            display="chip"
+            formControlName="preferredPositionsTeamIds"
+            optionLabel="label"
+            optionValue="value"
+            [disabled]="positionOptions.length === 0"
+          ></p-multiSelect>
+        </arpa-form-field>
+      </div>
+      <div class="p-col-6 inner">
+        <arpa-form-field label="musician-profile-dialog.PREFERRED_POSITIONS_INNER" type="select">
+          <p-multiSelect
+            [options]="positionOptions"
+            [placeholder]="'NOTHING_SELECTED' | translate"
+            display="chip"
+            formControlName="preferredPositionsInnerIds"
+            optionLabel="label"
+            optionValue="value"
+            [disabled]="positionOptions.length === 0"
+          ></p-multiSelect>
+        </arpa-form-field>
+      </div>
+    </ng-container>
+    <!-- Background -->
+    <div class="p-col-6">
+      <arpa-form-field label="musician-profile-dialog.BACKGROUND_TEAM">
+        <textarea formControlName="backgroundTeam" pInputText></textarea>
+      </arpa-form-field>
+    </div>
+    <div class="p-col-6 inner">
+      <arpa-form-field label="musician-profile-dialog.BACKGROUND_INNER">
+        <textarea formControlName="backgroundInner" pInputText></textarea>
       </arpa-form-field>
     </div>
   </div>
-
-  <div class='p-fluid p-mt-3 p-formgrid p-grid'>
-    <div class='p-col'>
-      <arpa-form-field label='musician-profile-dialog.SALARY' type='select'>
+  <div class="p-grid p-formgrid general-container">
+    <!-- Is Main Profile -->
+    <div class="p-col-6">
+      <arpa-form-field label="musician-profile-dialog.MAIN_PROFILE" type="checkbox">
+        <p-checkbox [binary]="true" formControlName="isMainProfile" name="isMainProfile" [disabled]="profile.isMainProfile!"></p-checkbox>
+      </arpa-form-field>
+    </div>
+    <!-- Qualification -->
+    <div class="p-col-6">
+      <arpa-form-field label="musician-profile-dialog.Qualification" type="select">
         <p-dropdown
-          [options]='(salary | async) || []'
-          [placeholder]='"NOTHING_SELECTED" | translate'
-          formControlName='salaryId'
-          optionLabel='label'
-          optionValue='value'
+          [options]="(qualificationOptions$ | async) || []"
+          [placeholder]="'NOTHING_SELECTED' | translate"
+          formControlName="qualificationId"
+          optionLabel="label"
+          optionValue="value"
         ></p-dropdown>
       </arpa-form-field>
     </div>
-    <div class='p-col'>
-      <arpa-form-field label='musician-profile-dialog.SALARY_COMMENT'>
-        <input autocomplete='off' formControlName='salaryComment' id='salaryComment' pInputText type='text'>
+    <!-- Salary -->
+    <div class="p-col-6">
+      <arpa-form-field label="musician-profile-dialog.SALARY" type="select">
+        <p-dropdown
+          [options]="(salaryOptions$ | async) || []"
+          [placeholder]="'NOTHING_SELECTED' | translate"
+          formControlName="salaryId"
+          optionLabel="label"
+          optionValue="value"
+        ></p-dropdown>
+      </arpa-form-field>
+    </div>
+    <div class="p-col-6">
+      <arpa-form-field label="musician-profile-dialog.SALARY_COMMENT">
+        <input autocomplete="off" formControlName="salaryComment" id="salaryComment" pInputText type="text" />
       </arpa-form-field>
     </div>
   </div>
-  <div class='p-fluid p-formgrid p-grid'>
-    <div class='p-col'>
-    </div>
-    <div class='p-field p-col p-text-right' style='margin-right: 0'>
-      <button
-        (click)='update()'
-        [disabled]='form.pristine || form.invalid'
-        [label]="'musician-profile-dialog.UPDATE' | translate"
-        icon='pi pi-check'
-        iconPos='right'
-        pButton
-        type='button'
-      ></button>
-    </div>
+  <div class="p-formgroup-inline p-jc-between">
+    <button
+      type="button"
+      (click)="cancel()"
+      [label]="'CANCEL' | translate"
+      class="p-button-outlined"
+      icon="pi pi-times"
+      iconPos="left"
+      pButton
+    ></button>
+    <button
+      (click)="update()"
+      [disabled]="form.pristine || form.invalid"
+      [label]="'musician-profile-dialog.UPDATE' | translate"
+      icon="pi pi-check"
+      iconPos="right"
+      pButton
+      type="button"
+    ></button>
   </div>
 </form>
 
-<h3 *ngIf='doublingInstruments.length > 0'>{{ 'musician-profile-dialog.DOUBLING_INSTRUMENTS' | translate }}</h3>
-<p-accordion styleClass='accordionTable'>
-  <p-accordionTab *ngFor='let instrument of doublingInstruments'>
-    <ng-template pTemplate='header'>
-      <div class='p-d-flex'>
-        <div class='p-mr-6 name'>
-          {{ instrument.instrumentId | section: sections}}
+<h3 *ngIf="doublingInstruments.length > 0">{{ 'musician-profile-dialog.DOUBLING_INSTRUMENTS' | translate }}</h3>
+<p-accordion styleClass="accordionTable">
+  <p-accordionTab *ngFor="let instrument of doublingInstruments">
+    <ng-template pTemplate="header">
+      <div class="p-d-flex">
+        <div class="p-mr-6 name">
+          {{ instrument.instrumentId | section: sections }}
         </div>
-        <div class='p-mr-4 rating'>
-          <p-rating [(ngModel)]='instrument.levelAssessmentInner'
-                    [cancel]='false'
-                    [readonly]='true'
-                    [stars]='5'
-          ></p-rating>
+        <div class="p-mr-4 rating">
+          <p-rating [(ngModel)]="instrument.levelAssessmentInner" [cancel]="false" [readonly]="true" [stars]="5"></p-rating>
           <span>({{ instrument.levelAssessmentTeam || 0 }})</span>
         </div>
-        <div class='p-mr-auto p-text-right hidden-xs'>
-          {{ instrument.availabilityId | selectValue: availability }}
+        <div class="p-mr-auto p-text-right hidden-xs">
+          {{ instrument.availabilityId | selectValue: availabilityOptions$ }}
         </div>
       </div>
     </ng-template>
-    <ng-template pTemplate='content'>
-      <form [formGroup]='instrument.formGroup' class='doublingForm'>
-        <div class='p-fluid p-formgrid p-grid'>
-          <div class='p-col'>
+    <ng-template pTemplate="content">
+      <form [formGroup]="instrument.formGroup" class="doublingForm">
+        <div class="p-fluid p-formgrid p-grid">
+          <div class="p-col">
             {{ instrument.comment }}
           </div>
         </div>
-        <hr *ngIf='instrument.comment'>
-        <div class='p-fluid p-formgrid p-grid'>
-          <div class='p-col'>
-            <arpa-form-field label='musician-profile-dialog.LEVEL_ASSESSMENT_TEAM' type='rating'>
-              <p-rating [cancel]='false' [stars]='5'
-                        formControlName='levelAssessmentTeam'></p-rating>
+        <hr *ngIf="instrument.comment" />
+        <div class="p-fluid p-formgrid p-grid">
+          <div class="p-col">
+            <arpa-form-field label="musician-profile-dialog.LEVEL_ASSESSMENT_TEAM" type="rating">
+              <p-rating [cancel]="false" [stars]="5" formControlName="levelAssessmentTeam"></p-rating>
             </arpa-form-field>
           </div>
-          <div class='p-field p-col p-text-right' style='margin-right: 0'>
+          <div class="p-field p-col p-text-right" style="margin-right: 0">
             <button
-              (click)='updateDoubling(instrument)'
-              *ngIf='!instrument.formGroup.pristine'
-              [disabled]='instrument.formGroup.invalid'
+              (click)="updateDoubling(instrument)"
+              *ngIf="!instrument.formGroup.pristine"
+              [disabled]="instrument.formGroup.invalid"
               [label]="'musician-profile-dialog.UPDATE' | translate"
-              icon='pi pi-check'
-              iconPos='right'
+              icon="pi pi-check"
+              iconPos="right"
               pButton
-              type='button'
+              type="button"
             ></button>
           </div>
         </div>
