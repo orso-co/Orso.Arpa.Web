@@ -115,7 +115,7 @@ export class ApiInterceptor implements HttpInterceptor {
       /* eslint-disable @typescript-eslint/naming-convention */
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      'Accept-Language': this.translate.currentLang + ';q=0.9,de,de-DE;q=0.8,en,en-GB;q=0.7',
+      'Accept-Language': this.translate.currentLang,
     };
     /* eslint-enable @typescript-eslint/naming-convention */
     if (token) {
