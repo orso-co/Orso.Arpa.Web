@@ -1,10 +1,12 @@
+import { SelectValueDto } from './../../../@arpa/models/selectValueDto';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { shareReplay, tap } from 'rxjs/operators';
+import { map, shareReplay, tap } from 'rxjs/operators';
 import { ApiService } from '../../../@arpa/services/api.service';
 import { SectionTreeDto } from '../../../@arpa/models/sectionTreeDto';
 import { SectionDto } from '../../../@arpa/models/sectionDto';
+import { SelectItem } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root',
@@ -23,8 +25,8 @@ export class SectionService {
   load(): Observable<SectionDto[]> {
     return this.apiService.get<SectionDto[]>(this.baseUrl).pipe(
       shareReplay(),
-      tap((sections) => (this.sections$$.next(sections))),
-      tap(sections => this.sectionsLoaded = true),
+      tap((sections) => this.sections$$.next(sections)),
+      tap((sections) => (this.sectionsLoaded = true))
     );
   }
 
@@ -33,12 +35,10 @@ export class SectionService {
     if (treeMaxLevel) {
       params = params.set('maxLevel', treeMaxLevel!.toString());
     }
-    return this.apiService
-      .get<SectionTreeDto>(`${this.baseUrl}/tree`, params)
-      .pipe(
-        shareReplay(),
-        tap((tree) => this.sectionTrees.set(treeMaxLevel, tree)),
-      );
+    return this.apiService.get<SectionTreeDto>(`${this.baseUrl}/tree`, params).pipe(
+      shareReplay(),
+      tap((tree) => this.sectionTrees.set(treeMaxLevel, tree))
+    );
   }
 
   treeLoaded(treeMaxLevel?: number): boolean {
@@ -49,7 +49,14 @@ export class SectionService {
     return this.sectionTrees.get(treeMaxLevel);
   }
 
-  getPositionsByInstrument(id: string): Observable<SectionDto[]> {
-    return this.apiService.get<SectionDto[]>(`${this.baseUrl}/${id}/positions`);
+  getPositionsByInstrument(id: string): Observable<SelectItem[]> {
+    return this.apiService.get<SelectValueDto[]>(`${this.baseUrl}/${id}/positions`).pipe(
+      shareReplay(),
+      map((dtos) => dtos.map((v) => this.mapSelectValueToSelectItem(v)))
+    );
+  }
+
+  private mapSelectValueToSelectItem(selectValue: SelectValueDto): SelectItem {
+    return { label: selectValue.name, value: selectValue.id };
   }
 }
