@@ -46,17 +46,7 @@
         <p-rating [cancel]="false" [stars]="5" formControlName="levelAssessmentInner"></p-rating>
       </arpa-form-field>
     </div>
-    <!-- Profile Preference -->
-    <div class="p-col-6">
-      <arpa-form-field label="musician-profile-dialog.PROFILE_PREFERENCE_TEAM" type="rating">
-        <p-rating [cancel]="false" [stars]="5" formControlName="profilePreferenceTeam"></p-rating>
-      </arpa-form-field>
-    </div>
-    <div class="p-col-6 inner">
-      <arpa-form-field label="musician-profile-dialog.PROFILE_PREFERENCE_INNER" type="rating">
-        <p-rating [cancel]="false" [stars]="5" formControlName="profilePreferenceInner"></p-rating>
-      </arpa-form-field>
-    </div>
+
     <!-- Inquiry Status -->
     <div class="p-col-6">
       <arpa-form-field label="musician-profile-dialog.INQUIRY_STATUS_TEAM" type="select">
@@ -144,6 +134,17 @@
     <div class="p-col-6 inner">
       <arpa-form-field label="musician-profile-dialog.BACKGROUND_INNER">
         <textarea formControlName="backgroundInner" pInputText></textarea>
+      </arpa-form-field>
+    </div>
+    <!-- Profile Preference -->
+    <div class="p-col-6">
+      <arpa-form-field label="musician-profile-dialog.PROFILE_PREFERENCE_TEAM" type="rating">
+        <p-rating [cancel]="false" [stars]="5" formControlName="profilePreferenceTeam"></p-rating>
+      </arpa-form-field>
+    </div>
+    <div class="p-col-6 inner">
+      <arpa-form-field label="musician-profile-dialog.PROFILE_PREFERENCE_INNER" type="rating">
+        <p-rating [cancel]="false" [stars]="5" formControlName="profilePreferenceInner"></p-rating>
       </arpa-form-field>
     </div>
   </div>
