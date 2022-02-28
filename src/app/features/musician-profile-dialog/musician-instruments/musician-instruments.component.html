@@ -33,8 +33,8 @@
 </div>
 <form [formGroup]="form">
   <div class="p-fluid p-mt-3 p-formgrid p-grid comparison-container">
-    <div class="p-col-6"><h3>Einstufung KBB</h3></div>
-    <div class="p-col-6 inner"><h3>Selbsteinstufung</h3></div>
+    <div class="p-col-6"><h3>{{ 'musician-profile-dialog.STAFF_ASSESSMENT' | translate }}</h3></div>
+    <div class="p-col-6 inner"><h3>{{ 'musician-profile-dialog.SELF_ASSESSMENT' | translate }}</h3></div>
     <!-- Level Assessment -->
     <div class="p-col-6">
       <arpa-form-field label="musician-profile-dialog.LEVEL_ASSESSMENT_TEAM" type="rating">
@@ -46,17 +46,7 @@
         <p-rating [cancel]="false" [stars]="5" formControlName="levelAssessmentInner"></p-rating>
       </arpa-form-field>
     </div>
-    <!-- Profile Preference -->
-    <div class="p-col-6">
-      <arpa-form-field label="musician-profile-dialog.PROFILE_PREFERENCE_TEAM" type="rating">
-        <p-rating [cancel]="false" [stars]="5" formControlName="profilePreferenceTeam"></p-rating>
-      </arpa-form-field>
-    </div>
-    <div class="p-col-6 inner">
-      <arpa-form-field label="musician-profile-dialog.PROFILE_PREFERENCE_INNER" type="rating">
-        <p-rating [cancel]="false" [stars]="5" formControlName="profilePreferenceInner"></p-rating>
-      </arpa-form-field>
-    </div>
+
     <!-- Inquiry Status -->
     <div class="p-col-6">
       <arpa-form-field label="musician-profile-dialog.INQUIRY_STATUS_TEAM" type="select">
@@ -146,17 +136,23 @@
         <textarea formControlName="backgroundInner" pInputText></textarea>
       </arpa-form-field>
     </div>
-  </div>
-  <div class="p-grid p-formgrid general-container">
-    <!-- Is Main Profile -->
+    <!-- Profile Preference -->
     <div class="p-col-6">
-      <arpa-form-field label="musician-profile-dialog.MAIN_PROFILE" type="checkbox">
-        <p-checkbox [binary]="true" formControlName="isMainProfile" name="isMainProfile" [disabled]="profile.isMainProfile!"></p-checkbox>
+      <arpa-form-field label="musician-profile-dialog.PROFILE_PREFERENCE_TEAM" type="rating">
+        <p-rating [cancel]="false" [stars]="5" formControlName="profilePreferenceTeam"></p-rating>
       </arpa-form-field>
     </div>
+    <div class="p-col-6 inner">
+      <arpa-form-field label="musician-profile-dialog.PROFILE_PREFERENCE_INNER" type="rating">
+        <p-rating [cancel]="false" [stars]="5" formControlName="profilePreferenceInner"></p-rating>
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class="p-grid p-formgrid general-container">
+
     <!-- Qualification -->
     <div class="p-col-6">
-      <arpa-form-field label="musician-profile-dialog.Qualification" type="select">
+      <arpa-form-field label="musician-profile-dialog.QUALIFICATION" type="select">
         <p-dropdown
           [options]="(qualificationOptions$ | async) || []"
           [placeholder]="'NOTHING_SELECTED' | translate"
@@ -178,9 +174,15 @@
         ></p-dropdown>
       </arpa-form-field>
     </div>
-    <div class="p-col-6">
+    <div class="p-col-8">
       <arpa-form-field label="musician-profile-dialog.SALARY_COMMENT">
         <input autocomplete="off" formControlName="salaryComment" id="salaryComment" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+     <!-- Is Main Profile -->
+     <div class="p-col-4">
+      <arpa-form-field label="musician-profile-dialog.MAIN_PROFILE" type="checkbox" style="text-align: right">
+        <p-checkbox [binary]="true" formControlName="isMainProfile" name="isMainProfile" [disabled]="profile.isMainProfile!"></p-checkbox>
       </arpa-form-field>
     </div>
   </div>
