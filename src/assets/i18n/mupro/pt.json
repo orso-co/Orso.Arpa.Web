@@ -1,7 +1,11 @@
 {
   "PAGE_TITLE": "perfis musicanos",
-  "PROFILE": "perfil musicano" ,
+  "PROFILE": "perfil musicano",
   "MAIN_PROFILE": "perfil principal",
   "INVITE": "Convidar para o projeto",
-  "EDIT_PARTICIPATION": "Editar status de participação"
+  "EDIT_PARTICIPATION": "Editar status de participação",
+  "STATUS_STAFF": "perspectiva do funcionário",
+  "STATUS_PERFORMER": "perspectiva do intérprete",
+  "PARTICIPATION_STATUS_INTERNAL": "status de participação",
+  "PARTICIPATION_STATUS_INNER": "status de participação"
 }

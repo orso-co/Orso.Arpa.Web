@@ -4,6 +4,10 @@
   "MAIN_PROFILE": "Main Profile",
   "INVITE": "Invite to project",
   "EDIT_PARTICIPATION": "Edit participation status",
-  "PROJECTS": "Projects for this profile"
+  "PROJECTS": "Projects for this profile",
+  "STATUS_STAFF": "Status by Staff",
+  "STATUS_PERFORMER": "Status by Performer",
+  "PARTICIPATION_STATUS_INTERNAL": "Participation Status",
+  "PARTICIPATION_STATUS_INNER": "Participation Status"
 
 }

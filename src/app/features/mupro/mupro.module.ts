@@ -1,3 +1,4 @@
+import { DropdownModule } from 'primeng/dropdown';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { FormFieldModule } from './../../../@arpa/components/form-field/form-field.module';
 import { InvitationDialogComponent } from './invitation-dialog/invitation-dialog.component';
@@ -49,6 +50,7 @@ import { ParticipationDialogComponent } from './participation-dialog/participati
     InputTextModule,
     ButtonModule,
     MultiSelectModule,
+    DropdownModule,
   ],
   providers: [MuproService],
 })

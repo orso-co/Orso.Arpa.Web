@@ -1,44 +1,43 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" class="p-mt-5">
   <div>
-    <h3>Seitens KBB</h3>
+    <h3>{{ 'mupro.STATUS_STAFF' | translate }}</h3>
   </div>
   <div class="p-grid p-formgrid p-fluid">
     <div class="p-col">
-      <arpa-form-field label="PARTICIPATION" type="select">
-        <p-multiSelect
-          [options]="participation || []"
+      <arpa-form-field label="{{ 'mupro.PARTICIPATION_STATUS_INTERNAL' | translate }}" type="select">
+        <p-dropdown
+          [autoDisplayFirst]="false"
+          [options]="(statusOptions$ | async)!"
+          [showClear]="true"
+          appendTo="body"
+          formControlName="participationStaff"
+          id="participationStatusIdStaff"
           [placeholder]="'NOTHING_SELECTED' | translate"
-          display="chip"
-          formControlName="participation"
-          optionLabel="participationStatusInternal"
-          optionValue="participationStatusInternalId"
-        >
+
+        ></p-dropdown>
           <ng-template let-participation pTemplate="item">
             <span>{{ participation.participationStatusInternal }}</span>
           </ng-template>
-        </p-multiSelect>
       </arpa-form-field>
     </div>
   </div>
 
   <div>
-    <h3>Seitens Performer</h3>
+    <h3>{{ 'mupro.STATUS_PERFORMER' | translate }}</h3>
   </div>
   <div class="p-grid p-formgrid p-fluid">
     <div class="p-col">
-      <arpa-form-field label="PARTICIPATION" type="select">
-        <p-multiSelect
-          [options]="participation || []"
+      <arpa-form-field label="{{ 'mupro.PARTICIPATION_STATUS_INNER' | translate }}" type="select">
+        <p-dropdown
+          [autoDisplayFirst]="false"
+          [options]="(statusOptions$ | async)!"
+          [showClear]="true"
+          appendTo="body"
+          formControlName="participationPerformer"
+          id="participationStatusIdPerformer"
           [placeholder]="'NOTHING_SELECTED' | translate"
-          display="chip"
-          formControlName="participation"
-          optionLabel="title"
-          optionValue="id"
-        >
-          <ng-template let-project pTemplate="item">
-            <span>{{ project.title }} ({{ project.code }})</span>
-          </ng-template>
-        </p-multiSelect>
+
+        ></p-dropdown>
       </arpa-form-field>
     </div>
   </div>
