@@ -17,7 +17,6 @@ import { SectionService } from '../../../shared/services/section.service';
   styleUrls: ['./musician-main-instrument.component.scss'],
 })
 export class MusicianMainInstrumentComponent implements OnInit {
-
   @Output()
   viewState = new EventEmitter<number>();
 
@@ -32,13 +31,15 @@ export class MusicianMainInstrumentComponent implements OnInit {
   selectedInstrument: any;
   state: string = 'createOrUpdate';
 
-  constructor(public config: DynamicDialogConfig,
-              private formBuilder: FormBuilder,
-              public ref: DynamicDialogRef,
-              private selectValueService: SelectValueService,
-              private musicianService: MusicianService,
-              private notificationsService: NotificationsService,
-              private sectionsService: SectionService) {
+  constructor(
+    public config: DynamicDialogConfig,
+    private formBuilder: FormBuilder,
+    public ref: DynamicDialogRef,
+    private selectValueService: SelectValueService,
+    private musicianService: MusicianService,
+    private notificationsService: NotificationsService,
+    private sectionsService: SectionService
+  ) {
     this.inquiryStatus = this.resolveSelect('InquiryStatusInner');
     this.config.data.profile.pipe(first()).subscribe((profile: MusicianProfileDto) => {
       this.profile = profile;
@@ -63,7 +64,7 @@ export class MusicianMainInstrumentComponent implements OnInit {
     this.form.controls.instrumentId.valueChanges.subscribe((id) => {
       // instrumentPartCount
       this.sections.pipe(
-        map(sections => sections.find(section => section.id === id) as SectionDto),
+        map((sections) => sections.find((section) => section.id === id) as SectionDto),
         first(),
         tap((section: SectionDto) => {
           if (section.instrumentPartCount && section.instrumentPartCount > 0) {
@@ -73,19 +74,12 @@ export class MusicianMainInstrumentComponent implements OnInit {
             }
             this.preferredParts.next(options);
           }
-        }),
+        })
       );
 
       this.sectionsService.getPositionsByInstrument(id).subscribe((positions) => {
         if (positions.length) {
-          const options: any[] = [];
-          positions.forEach(position => {
-            options.push({
-              label: position.name,
-              value: position.id,
-            });
-          });
-          this.preferredPositions.next(options);
+          this.preferredPositions.next(positions);
         } else {
           this.preferredPositions.next(undefined);
         }
@@ -120,13 +114,15 @@ export class MusicianMainInstrumentComponent implements OnInit {
   }
 
   private resolveSelect(property: string): Observable<SelectItem[]> {
-    return this.selectValueService.load('MusicianProfile', property)
+    return this.selectValueService
+      .load('MusicianProfile', property)
       .pipe(map(() => this.selectValueService.get('MusicianProfile', property)));
   }
 
   private createOrUpdate(profile: MusicianProfileDto): void {
     if (this.isNew) {
-      this.musicianService.createProfile(profile)
+      this.musicianService
+        .createProfile(profile)
         .pipe(first())
         .subscribe((result) => {
           this.config.data.profile.next(result);
@@ -134,7 +130,8 @@ export class MusicianMainInstrumentComponent implements OnInit {
           this.state = 'created';
         });
     } else {
-      this.musicianService.updateProfile(profile)
+      this.musicianService
+        .updateProfile(profile)
         .pipe(first())
         .subscribe(() => {
           this.config.data.profile.next(profile);

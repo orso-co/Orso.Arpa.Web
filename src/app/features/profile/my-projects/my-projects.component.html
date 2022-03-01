@@ -30,10 +30,49 @@
     </ng-template>
     <ng-template pTemplate="content">
       <p-tabView [scrollable]="true">
-        <p-tabPanel header="Projektdaten">
+
+        <p-tabPanel header="{{ 'my-projects.MY_APPLICATION' | translate }}" *ngIf="myProject.participations.length > 0">
+          <div class="p-grid" *ngFor="let participation of myProject.participations">
+            <div class="p-col-6 content-item">
+              <label>{{ 'my-projects.MY_PROFILE' | translate }}</label>
+              <span> {{ participation.musicianProfile?.instrumentName }} ({{ participation.musicianProfile?.qualification }})</span>
+            </div>
+            <div class="p-col-6 p-text-right">
+              <p-button type="button" label="{{ 'my-projects.CHANGE_APPLICATION' | translate }}" (click)="openDialog(myProject.project.id, participation)"></p-button>
+            </div>
+            <div class="p-col-12 content-item" *ngIf="participation.participationStatusInner?.name">
+              <label>{{ 'my-projects.APPLICATIONSTATUS' | translate }}</label>
+              <span>{{ participation.participationStatusInner?.name }}</span>
+            </div>
+
+            <div class="p-col-12 content-item" *ngIf="participation.commentByPerformerInner">
+              <label>{{ 'my-projects.MY_COMMENT' | translate }}</label>
+              <span>{{ participation.commentByPerformerInner }}</span>
+            </div>
+          </div>
+        </p-tabPanel>
+
+        <p-tabPanel header="{{ 'my-projects.RESPONSE_STAFF' | translate }}" *ngIf="myProject.participations.length > 0">
+          <div class="p-grid" *ngFor="let participation of myProject.participations">
+            <div class="p-col-12 content-item">
+              <label>{{ 'my-projects.RESPONSE_STAFF_PROFILE' | translate }}</label>
+              <span> {{ participation.musicianProfile?.instrumentName }} ({{ participation.musicianProfile?.qualification }})</span>
+            </div>
+            <div class="p-col-12 content-item" *ngIf="participation.participationStatusInternal?.name">
+              <label>{{ 'my-projects.RESPONSE_STATUS' | translate }}</label>
+              <span>{{ participation.participationStatusInternal?.name }}</span>
+            </div>
+            <div class="p-col-12 content-item" *ngIf="participation.commentByStaffInner">
+              <label>{{ 'my-projects.COMMENT_STAFF' | translate }}</label>
+              <span>{{ participation.commentByStaffInner }}</span>
+            </div>
+          </div>
+        </p-tabPanel>
+
+        <p-tabPanel header="{{ 'my-projects.PROJECTDETAILS' | translate }}">
           <div class="p-grid">
             <div class="p-col-12 content-item">
-              <label>Beschreibung</label>
+              <label>{{ 'my-projects.DESCRIPTION' | translate }}</label>
               <span>{{ myProject.project.description }}</span>
             </div>
             <div class="p-col-6 content-item" *ngIf="myProject.project.type?.name">
@@ -41,11 +80,11 @@
               <span>{{ myProject.project.type?.name || '' }}</span>
             </div>
             <div class="p-col-6 content-item" *ngIf="myProject.project.state?.name">
-              <label>Status</label>
+              <label>{{ 'my-projects.STATUS' | translate }}</label>
               <span>{{ myProject.project.state?.name }}</span>
             </div>
             <div class="p-col-12 content-item" *ngIf="(myProject.project.urls?.length || 0) > 0">
-              <label>Links</label>
+              <label>{{ 'my-projects.URLS' | translate }}</label>
               <ul>
                 <li *ngFor="let url of myProject.project.urls">
                   <a [href]="url.href" target="_blank">{{ url.anchorText }}</a>
@@ -54,42 +93,7 @@
             </div>
           </div>
         </p-tabPanel>
-        <p-tabPanel header="Meine Anmeldung" *ngIf="myProject.participations.length > 0">
-          <div class="p-grid" *ngFor="let participation of myProject.participations">
-            <div class="p-col-6 content-item">
-              <label>Anmeldung für Musikerprofil</label>
-              <span> {{ participation.musicianProfile?.instrumentName }} ({{ participation.musicianProfile?.qualification }})</span>
-            </div>
-            <div class="p-col-6 p-text-right">
-              <button pButton type="button" label="Anmeldung ändern" (click)="openDialog(myProject.project.id, participation)"></button>
-            </div>
-            <div class="p-col-12 content-item" *ngIf="participation.participationStatusInner?.name">
-              <label>Anmeldestatus</label>
-              <span>{{ participation.participationStatusInner?.name }}</span>
-            </div>
 
-            <div class="p-col-12 content-item" *ngIf="participation.commentByPerformerInner">
-              <label>Meine Bemerkung</label>
-              <span>{{ participation.commentByPerformerInner }}</span>
-            </div>
-          </div>
-        </p-tabPanel>
-        <p-tabPanel header="Rückmeldung KBE" *ngIf="myProject.participations.length > 0"
-          ><div class="p-grid" *ngFor="let participation of myProject.participations">
-            <div class="p-col-12 content-item">
-              <label>Rückmeldung für Musikerprofil</label>
-              <span> {{ participation.musicianProfile?.instrumentName }} ({{ participation.musicianProfile?.qualification }})</span>
-            </div>
-            <div class="p-col-12 content-item" *ngIf="participation.participationStatusInternal?.name">
-              <label>Rückmeldestatus</label>
-              <span>{{ participation.participationStatusInternal?.name }}</span>
-            </div>
-            <div class="p-col-12 content-item" *ngIf="participation.commentByStaffInner">
-              <label>Bemerkung KBE</label>
-              <span>{{ participation.commentByStaffInner }}</span>
-            </div>
-          </div></p-tabPanel
-        >
       </p-tabView>
     </ng-template>
   </p-accordionTab>
