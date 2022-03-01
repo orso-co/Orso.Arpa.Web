@@ -7,5 +7,7 @@
   "STATUS_STAFF": "Point de vue des employés",
   "STATUS_PERFORMER": "Point de vue de l'interprète",
   "PARTICIPATION_STATUS_INTERNAL": "Statut de participation",
-  "PARTICIPATION_STATUS_INNER": "Statut de participation"
+  "PARTICIPATION_STATUS_INNER": "Statut de participation",
+  "PARTICIPATION_COMMENT_PERFORMER": "Commentaire du l'interprète",
+  "PARTICIPATION_COMMENT_STAFF": "Commentaire du personnel"
 }

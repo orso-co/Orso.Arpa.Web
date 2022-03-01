@@ -8,6 +8,9 @@
   "STATUS_STAFF": "Status by Staff",
   "STATUS_PERFORMER": "Status by Performer",
   "PARTICIPATION_STATUS_INTERNAL": "Participation Status",
-  "PARTICIPATION_STATUS_INNER": "Participation Status"
+  "PARTICIPATION_STATUS_INNER": "Participation Status",
+  "PARTICIPATION_COMMENT_PERFORMER": "Comment by Performer",
+  "PARTICIPATION_COMMENT_STAFF": "Comment by Staff"
+
 
 }

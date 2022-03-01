@@ -7,5 +7,7 @@
   "STATUS_STAFF": "perspectiva do funcionário",
   "STATUS_PERFORMER": "perspectiva do intérprete",
   "PARTICIPATION_STATUS_INTERNAL": "status de participação",
-  "PARTICIPATION_STATUS_INNER": "status de participação"
+  "PARTICIPATION_STATUS_INNER": "status de participação",
+  "PARTICIPATION_COMMENT_PERFORMER": "comentário do artista",
+  "PARTICIPATION_COMMENT_STAFF": "comentário da equipe"
 }

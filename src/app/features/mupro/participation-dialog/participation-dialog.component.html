@@ -1,3 +1,4 @@
+<h1>{{projecttitle}}</h1>
 <form [formGroup]="form" class="p-mt-5">
   <div>
     <h3>{{ 'mupro.STATUS_STAFF' | translate }}</h3>
@@ -10,18 +11,18 @@
           [options]="(statusOptions$ | async)!"
           [showClear]="true"
           appendTo="body"
-          formControlName="participationStaff"
+          formControlName="participationStatusIdStaff"
           id="participationStatusIdStaff"
           [placeholder]="'NOTHING_SELECTED' | translate"
-
         ></p-dropdown>
-          <ng-template let-participation pTemplate="item">
-            <span>{{ participation.participationStatusInternal }}</span>
-          </ng-template>
       </arpa-form-field>
     </div>
   </div>
-
+  <div class="p-field p-col12">
+    <arpa-form-field label="{{ 'mupro.PARTICIPATION_COMMENT_STAFF' | translate }}">
+      <textarea formControlName="commentStaff" id="commentStaff" pInputText rows="5"></textarea>
+    </arpa-form-field>
+  </div>
   <div>
     <h3>{{ 'mupro.STATUS_PERFORMER' | translate }}</h3>
   </div>
@@ -33,23 +34,27 @@
           [options]="(statusOptions$ | async)!"
           [showClear]="true"
           appendTo="body"
-          formControlName="participationPerformer"
+          formControlName="participationStatusIdPerformer"
           id="participationStatusIdPerformer"
           [placeholder]="'NOTHING_SELECTED' | translate"
-
         ></p-dropdown>
       </arpa-form-field>
     </div>
+  </div>
+  <div class="p-field p-col12">
+    <arpa-form-field label="{{ 'mupro.PARTICIPATION_COMMENT_PERFORMER' | translate }}">
+      <textarea formControlName="commentPerformer" id="commentPerformer" pInputText rows="5"></textarea>
+    </arpa-form-field>
   </div>
 
   <div class="p-formgroup-inline p-jc-between">
     <div class="p-text-left">
       <p-button
+        (click)="onSubmit()"
         [disabled]="form.pristine || form.invalid"
         [label]="'SAVE' | translate"
         icon="pi pi-check"
         iconPos="left"
-        type="submit"
       ></p-button>
     </div>
     <div class="p-text-right">

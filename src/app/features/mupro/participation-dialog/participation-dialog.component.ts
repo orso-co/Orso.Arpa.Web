@@ -1,10 +1,8 @@
-import { MyProjectParticipationDto } from 'src/@arpa/models/myProjectDto';
+import { MyProjectDto, MyProjectParticipationDto } from 'src/@arpa/models/myProjectDto';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { ProjectParticipationDto } from './../../../../@arpa/models/projectParticipationDto';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ProjectDto } from 'src/@arpa/models/projectDto';
 import { SelectItem } from 'primeng/api';
 import { Observable } from 'rxjs';
 @Component({
@@ -17,8 +15,7 @@ export class ParticipationDialogComponent implements OnInit {
   participationPerformer: MyProjectParticipationDto = this.config.data.participationPerformer;
   participationStaff: MyProjectParticipationDto = this.config.data.participationStaff;
   statusOptions$: Observable<SelectItem[]> = this.config.data.statusOptions$;
-  musicianProfileId: string = this.config.data.musicianProfileId;
-  projects: ProjectDto = this.config.data.projects;
+  projecttitle: MyProjectDto = this.config.data.title;
 
   constructor(
     private formBuilder: FormBuilder,

@@ -28,7 +28,14 @@ import { ProjectsComponent } from './projects/projects.component';
 import { ParticipationDialogComponent } from './participation-dialog/participation-dialog.component';
 
 @NgModule({
-  declarations: [MuproComponent, DetailsComponent, ProfilesComponent, ProjectsComponent, InvitationDialogComponent, ParticipationDialogComponent],
+  declarations: [
+    MuproComponent,
+    DetailsComponent,
+    ProfilesComponent,
+    ProjectsComponent,
+    InvitationDialogComponent,
+    ParticipationDialogComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,

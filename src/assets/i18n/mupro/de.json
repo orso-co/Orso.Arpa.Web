@@ -6,7 +6,9 @@
   "EDIT_PARTICIPATION": "Teilnahmestatus bearbeiten",
   "PROJECTS": "Projekte für dieses Profil",
   "STATUS_STAFF": "Stand seitens KBB",
-  "STATUS_PERFORMER": "Stand seitens Künstler",
+  "STATUS_PERFORMER": "Stand seitens Performer",
   "PARTICIPATION_STATUS_INTERNAL": "Teilnahmestatus",
-  "PARTICIPATION_STATUS_INNER": "Teilnahmestatus"
+  "PARTICIPATION_STATUS_INNER": "Teilnahmestatus",
+  "PARTICIPATION_COMMENT_PERFORMER": "Kommentar Performer",
+  "PARTICIPATION_COMMENT_STAFF": "Kommentar Mitarbeiter"
 }
