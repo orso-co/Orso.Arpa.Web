@@ -29,8 +29,9 @@
     "INSTRUMENTS": "Instruments",
     "INSTRUMENT_AVAILABILITY": "Disponibilité d'instrument",
     "INSTRUMENT_UPDATED": "Instrument mis à jour",
-    "LEVEL_ASSESSMENT": "Level",
-    "LEVEL_ASSESSMENT_TEAM": "Level Team",
+    "LEVEL_ASSESSMENT": "Évaluation de niveau",
+    "LEVEL_ASSESSMENT_TEAM": "Évaluation par les employés",
+    "LEVEL_ASSESSMENT_PERFORMER":"Auto-évaluation",
     "MAIN_INSTRUMENT": "Instrument principal",
     "MAIN_PROFILE": "Profil principal",
     "MY_PROFILES": "Mes profils",
@@ -46,4 +47,3 @@
     "UPDATED": "Profils de musicien mis à jour",
     "Qualification": "Qualification"
   }
-  

@@ -6,8 +6,6 @@ export const MuproProfilesQuery = gql`
       skip: $skip
       take: $take
       where: {
-        isMainProfile: {equals: true}
-        and: {
           or: [
             {
               person : {
@@ -31,7 +29,6 @@ export const MuproProfilesQuery = gql`
               }
             }
           ]
-        }
       }
       order: {person: {givenName: $order, surname: $order}}
     ) {

@@ -1,3 +1,4 @@
+import { ProjectParticipationDto } from './../../../../@arpa/models/projectParticipationDto';
 import { NotificationsService } from 'src/@arpa/services/notifications.service';
 import { TranslateService } from '@ngx-translate/core';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -20,12 +21,15 @@ import { ProjectService } from './../../../shared/services/project.service';
 })
 export class ProjectsComponent implements OnInit, OnDestroy {
   query: DocumentNode = ProjectsQuery;
-
   columns: ColumnDefinition<ProjectDto>[] = [
     { label: 'PROJECT', property: 'title', type: 'text' },
-    { label: 'STATE', property: 'stateId', type: 'state', stateTable: 'Project', show: true },
-    { label: 'DATE', property: 'startDate', type: 'date', show: true },
-    { label: 'GENRE', property: 'genre.selectValue.name', type: 'text', show: true },
+    // { label: 'GENRE', property: 'genre.selectValue.name', type: 'text', show: true },
+    { label: 'P-STATUS_P', property: 'projectParticipations.participationStatusInner.selectValue.name', type: 'text', show: true },
+    { label: 'P-STATUS_S', property: 'projectParticipations.participationStatusInternal.selectValue.name', type: 'text', show: true },
+    { label: 'COMMENT', property: 'projectParticipations.commentByPerformerInner', type:'text', show: true},
+
+    // { label: 'STATE', property: 'stateId', type: 'state', stateTable: 'Project', show: true },
+    // { label: 'DATE', property: 'startDate', type: 'date', show: true },
   ];
 
   personId: string | undefined;
@@ -33,6 +37,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   private routeSubscription: Subscription = Subscription.EMPTY;
 
   projects: ProjectDto[] = [];
+  participations: ProjectParticipationDto [] = [];
 
   @ViewChild('feedSource') private feedSource: GraphQlFeedComponent;
 
@@ -66,8 +71,9 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     const ref = this.dialogService.open(ParticipationDialogComponent, {
       data: {
         musicianProfileId,
-        projects: this.projects,
-      },
+        participations: this.participations,
+        projectTitle$: this.projects,
+          },
       header: this.translate.instant('mupro.EDIT_PARTICIPATION'),
       styleClass: 'form-modal',
       dismissableMask: true,

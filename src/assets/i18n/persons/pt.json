@@ -1,12 +1,12 @@
 {
-  "PERSONS": "pessoas",
-  "GIVEN_NAME": "nome dado",
-  "SURNAME": "sobrenome",
-  "ABOUT_ME": "sobre mim",
-  "CREATED_AT": "cratera em",
-  "CREATED_BY": "criado por",
-  "RELIABILITY": "fiabilidade",
-  "GENERAL_PREFERENCE": "preferência geral",
+  "PERSONS": "Contactos",
+  "GIVEN_NAME": "Nome próprio",
+  "SURNAME": "Apelido",
+  "ABOUT_ME": "Sobre mim",
+  "CREATED_AT": "Criado em",
+  "CREATED_BY": "Criado por",
+  "RELIABILITY": "Fiabilidade",
+  "GENERAL_PREFERENCE": "Preferência",
   "EXPERIENCE_LEVEL": "nível de experiência",
   "DATEOFBIRTH": "data de nascimento",
   "BIRTHPLACE": "local de nascimento",
@@ -14,6 +14,5 @@
   "MODIFIED_AT": "modificado em",
   "MODIFIED_BY": "modificado por"
 }
-      
-    
-    
+
+

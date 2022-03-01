@@ -1,3 +1,4 @@
+import { ProjectDto } from './../../../../@arpa/models/projectDto';
 import { MyProjectDto, MyProjectParticipationDto } from 'src/@arpa/models/myProjectDto';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -15,7 +16,7 @@ export class ParticipationDialogComponent implements OnInit {
   participationPerformer: MyProjectParticipationDto = this.config.data.participationPerformer;
   participationStaff: MyProjectParticipationDto = this.config.data.participationStaff;
   statusOptions$: Observable<SelectItem[]> = this.config.data.statusOptions$;
-  projecttitle: MyProjectDto = this.config.data.title;
+  projecttitle$: string = this.config.data.projectTitle$;
 
   constructor(
     private formBuilder: FormBuilder,
