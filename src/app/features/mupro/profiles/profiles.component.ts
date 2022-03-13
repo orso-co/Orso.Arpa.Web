@@ -1,8 +1,8 @@
-import { NotificationsService } from './../../../../@arpa/services/notifications.service';
+import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 import { TranslateService } from '@ngx-translate/core';
-import { ProjectService } from './../../../shared/services/project.service';
+import { ProjectService } from '../../../shared/services/project.service';
 import { DialogService } from 'primeng/dynamicdialog';
-import { InvitationDialogComponent } from './../invitation-dialog/invitation-dialog.component';
+import { InvitationDialogComponent } from '../invitation-dialog/invitation-dialog.component';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { concat, Observable, Subscription, of } from 'rxjs';
 import { MenuItem } from 'primeng/api';
@@ -68,7 +68,7 @@ export class ProfilesComponent implements OnInit, OnDestroy {
     this.sections = this.route.data.pipe<SectionDto[]>(map((data) => data.sections));
     this.profiles = this.route.data.pipe<MusicianProfileDto[]>(map((data) => data.profiles || []));
     this.projectService.load(false).subscribe((projects) => (this.projects = projects));
-    
+
     this.profileNav = this.profiles.pipe(
       map(
         (data) =>
