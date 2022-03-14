@@ -80,6 +80,13 @@ export class LayoutDefaultComponent implements OnDestroy {
               translationToken: 'CONTACTS',
             },
             {
+              label: 'Performer',
+              icon: 'pi pi-users',
+              roles: ['staff'],
+              routerLink: '/arpa/performer',
+              translationToken: 'PERFORMER',
+            },
+            {
               icon: 'pi pi-clone',
               label: 'Musikerprofile',
               roles: ['staff'],

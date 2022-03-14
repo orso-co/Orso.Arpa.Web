@@ -23,7 +23,7 @@ import { SelectValueService } from '../../../app/shared/services/select-value.se
 export interface ColumnDefinition<T extends Record<string, any>> {
   label: string;
   property: string | Extract<keyof T, string>;
-  type: 'text' | 'date' | 'image' | 'badge' | 'state' | 'progress' | 'checkbox' | 'button' | 'template' | 'rating';
+  type: 'text' | 'date' | 'image' | 'badge' | 'state' | 'progress' | 'checkbox' | 'button' | 'template' | 'rating' | 'number';
   show?: boolean;
   cssClasses?: string[];
   template?: string;
@@ -63,7 +63,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
   rows: number = 10;
 
   @Input()
-  rowsPerPage: undefined | any | number[] = [10, 25, 50];
+  rowsPerPage: undefined | any | number[] = [10, 25, 50, 100];
 
   @Input()
   showPagination: boolean = true;

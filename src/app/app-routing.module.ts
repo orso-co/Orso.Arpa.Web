@@ -75,6 +75,19 @@ const routes: Routes = [
         },
       },
       {
+        path: 'performer',
+        loadChildren: () => import('./features/performer/performers.module').then((m) => m.PerformersModule),
+        data: {
+          roles: ['staff'],
+          title: 'PERFORMER',
+          menu: {
+            name: 'feature',
+            label: 'PERFORMER',
+            icon: 'pi pi-users',
+          },
+        },
+      },
+      {
         path: 'mupro',
         loadChildren: () => import('./features/mupro/mupro.module').then((mod) => mod.MuProModule),
         data: {

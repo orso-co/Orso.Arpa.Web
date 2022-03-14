@@ -1,0 +1,14 @@
+<!-- Graphql feed controls and holds graphql api results. -->
+<arpa-graph-ql-feed #feedSource [contentTemplate]='feed' [query]='query'></arpa-graph-ql-feed>
+
+<router-outlet name='modal'></router-outlet>
+
+<!-- The feed template is projected into the graph-ql-feed component. -->
+<ng-template #feed let-feed>
+  <arpa-table
+    (lazyEvents)='feedSource.onLazy($event)'
+    (rowClickEvents)='onRowClick($event)'
+    [columns]='columns'
+    [feed]='feed'
+  ></arpa-table>
+</ng-template>
