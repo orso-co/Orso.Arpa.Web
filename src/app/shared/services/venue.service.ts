@@ -1,3 +1,5 @@
+import { VenueModifyBodyDto } from './../../../@arpa/models/venueModifyBodyDto';
+import { VenueCreateDto } from './../../../@arpa/models/venueCreateDto';
 import { shareReplay } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -17,9 +19,7 @@ export class VenueService implements Resolve<VenueDto[]> {
   }
 
   load(): Observable<VenueDto[]> {
-    return this.apiService.get<VenueDto[]>(this.baseUrl).pipe(
-      shareReplay(),
-    );
+    return this.apiService.get<VenueDto[]>(this.baseUrl).pipe(shareReplay());
   }
 
   loadRooms(venueId: string): Observable<RoomDto[]> {
@@ -28,5 +28,17 @@ export class VenueService implements Resolve<VenueDto[]> {
 
   resolve(route: ActivatedRouteSnapshot): Observable<VenueDto[]> {
     return this.load();
+  }
+
+  create(dto: VenueCreateDto): Observable<VenueDto> {
+    return this.apiService.post<VenueDto>(this.baseUrl, dto).pipe(shareReplay());
+  }
+
+  update(id: string, dto: VenueModifyBodyDto): Observable<any> {
+    return this.apiService.put(`${this.baseUrl}/${id}`, dto).pipe(shareReplay());
+  }
+
+  delete(id: string): Observable<any> {
+    return this.apiService.delete(`${this.baseUrl}/${id}`).pipe(shareReplay());
   }
 }
