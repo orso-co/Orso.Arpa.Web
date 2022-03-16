@@ -63,10 +63,10 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
   columnFilter: boolean = true;
 
   @Input()
-  rows: number = 10;
+  rows: number = 20;
 
   @Input()
-  rowsPerPage: undefined | any | number[] = [10, 25, 50, 100];
+  rowsPerPage: undefined | any | number[] = [20, 50, 100, 200];
 
   @Input()
   showPagination: boolean = true;
@@ -136,7 +136,6 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
 
   @Input()
   isLoading: boolean;
-
   @ContentChildren(PrimeTemplate) templates: QueryList<PrimeTemplate>;
   public isMobile: Observable<boolean>;
   public lazy: boolean = false;
