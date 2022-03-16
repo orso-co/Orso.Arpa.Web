@@ -59,19 +59,15 @@
           </ng-container>
         </mat-menu>
       </div>
-
-
-
     </div>
-
-  </ng-template>
-
-  <ng-template pTemplate="header">
     <div>
       <h4>
         {{ feed.totalCount | async }} {{ 'RESULTS' | translate }}
       </h4>
     </div>
+  </ng-template>
+
+  <ng-template pTemplate="header">
     <tr>
       <!-- Render all header columns by type -->
       <ng-container *ngFor="let column of activeColumns; trackBy: trackByProperty">
