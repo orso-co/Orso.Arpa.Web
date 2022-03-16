@@ -75,6 +75,8 @@
   "YES": "Yes",
   "RECORDS": "Records",
   "RESULTS": "Results",
+  "VENUES": "Venues",
+
 
   "error": {
     "BAD_REQUEST": "An error occured",
