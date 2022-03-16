@@ -60,7 +60,7 @@
         </mat-menu>
       </div>
     </div>
-    <div>
+    <div *ngIf="feed">
       <h4>
         {{ feed.totalCount | async }} {{ 'RESULTS' | translate }}
       </h4>
