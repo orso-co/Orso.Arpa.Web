@@ -1,1 +1,24 @@
-{}
+{
+  "CREATE_VENUE": "Criar locais",
+  "NAME": "Nome do local",
+  "DESCRIPTION": "Descrição",
+  "ADDRESS1": "Endereço 1",
+  "ADDRESS2": "Endereço 2",
+  "ZIP": "Código postal",
+  "CITY": "Cidade",
+  "URBANDISTRICT": "Distrito",
+  "STATE": "Estado federal",
+  "COUNTRY": "País",
+  "ADDRESS_COMMENT_INNER": "Comente",
+  "FILTER_PLACEHOLDER": "Localizar local",
+  "EMPTY_FILTER_MESSAGE": "Nenhum resultado encontrado",
+  "EMPTY_MESSAGE": "Nenhum resultado encontrado",
+  "EDIT_VENUE": "Editar local",
+  "VENUES": "Locais",
+  "VENUE_UPDATED": "Local atualizado",
+  "ARE_YOU_SURE": "Tem certeza?",
+  "VENUE_DELETED": "Local excluído",
+  "VENUE_CREATED": "Local criado"
+
+
+}

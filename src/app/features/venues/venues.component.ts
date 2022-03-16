@@ -62,7 +62,7 @@ export class VenuesComponent implements OnInit {
         .update(id, value)
         .pipe(first())
         .subscribe(() => {
-          this.notificationService.success('VENUE_UPDATED', 'venue');
+          this.notificationService.success('VENUE_UPDATED', 'venues');
           const index = this.venues.findIndex((venue) => venue.id === id);
           this.venues[index] = { ...this.selectedVenue, ...this.addLabelToVenue(value) };
           this.resetForm();
@@ -72,7 +72,7 @@ export class VenuesComponent implements OnInit {
         .create(value)
         .pipe(first())
         .subscribe((result) => {
-          this.notificationService.success('VENUE_CREATED', 'venue');
+          this.notificationService.success('VENUE_CREATED', 'venues');
           this.resetForm();
           this.venues = [...this.venues, { ...this.addLabelToVenue(result) }];
         });
@@ -97,7 +97,7 @@ export class VenuesComponent implements OnInit {
       .delete(this.selectedVenue.id)
       .pipe(first())
       .subscribe(() => {
-        this.notificationService.success('VENUE_DELETED', 'venue');
+        this.notificationService.success('VENUE_DELETED', 'venues');
         const index = this.venues.findIndex((venue) => venue.id === this.selectedVenue.id);
         this.venues.splice(index, 1);
         this.resetForm();

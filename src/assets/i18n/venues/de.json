@@ -1,1 +1,25 @@
-{}
+{
+  "CREATE_VENUE": "Veranstaltungsort erstellen",
+  "NAME": "Bezeichung Veranstaltungsort",
+  "DESCRIPTION": "Beschreibung",
+  "ADDRESS1": "Adresszeile 1",
+  "ADDRESS2": "Adresszeile 2",
+  "ZIP": "Postleitzahl",
+  "CITY": "Ort",
+  "URBANDISTRICT": "Bezirk",
+  "STATE": "Bundesland",
+  "COUNTRY": "Land",
+  "ADDRESS_COMMENT_INNER": "Kommentar",
+  "FILTER_PLACEHOLDER": "Nach Veranstaltungsort suchen",
+  "EMPTY_FILTER_MESSAGE": "Kein Ergebnis",
+  "EMPTY_MESSAGE": "Die Suche ergab kein Ergebnis",
+  "EDIT_VENUE": "Veranstaltungsort bearbeiten",
+  "VENUES": "Veranstaltungsorte",
+  "VENUE_UPDATED":"Veranstaltungsort aktualisiert",
+  "ARE_YOU_SURE": "Bist du sicher?",
+  "VENUE_DELETED": "Veranstaltungsort gelöscht",
+  "VENUE_CREATED": "Veranstaltungsort erstellt"
+
+
+
+}

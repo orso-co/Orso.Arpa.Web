@@ -5,9 +5,9 @@
       [(ngModel)]="selectedVenue"
       optionLabel="label"
       [filter]="true"
-      [filterPlaceHolder]="'FILTERPLACEHOLDER' | translate"
-      [emptyFilterMessage]="'EMPTYFILTERMESSAGE' | translate"
-      [emptyMessage]="'EMPTYMESSAGE' | translate"
+      [filterPlaceHolder]="'FILTER_PLACEHOLDER' | translate"
+      [emptyFilterMessage]="'EMPTY_FILTER_MESSAGE' | translate"
+      [emptyMessage]="'EMPTY_MESSAGE' | translate"
       (onChange)="onSelectionChange($event)"
     >
       <ng-template let-venue pTemplate="item">
@@ -21,7 +21,7 @@
   </div>
   <div class="p-col-12 p-md-8">
     <div class="p-formgroup-inline p-jc-between">
-      <h2>{{ selectedVenue ? ('EDITVENUE' | translate) : ('CREATEVENUE' | translate) }}</h2>
+      <h2>{{ selectedVenue ? ('EDIT_VENUE' | translate) : ('CREATE_VENUE' | translate) }}</h2>
       <button
         *ngIf="selectedVenue"
         pButton
@@ -56,7 +56,7 @@
         </div>
         <div class="p-col-12 p-xl-4">
           <arpa-form-field label="ZIP">
-            <input formControlName="zip" id="zip" pInputText type="text" />
+            <input formControlName="zip" id="zip" pInputText type="text" required="true" />
           </arpa-form-field>
         </div>
         <div class="p-col-12 p-xl-8">
@@ -80,7 +80,7 @@
           </arpa-form-field>
         </div>
         <div class="p-col-12">
-          <arpa-form-field label="ADDRESSCOMMENTINNER">
+          <arpa-form-field label="ADDRESS_COMMENT_INNER">
             <textarea formControlName="addressCommentInner" id="addressCommentInner" pInputText type="text"></textarea>
           </arpa-form-field>
         </div>

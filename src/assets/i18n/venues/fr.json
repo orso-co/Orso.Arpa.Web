@@ -1,1 +1,27 @@
-{}
+{
+  "CREATE_VENUE": "Créer des lieux",
+  "NAME": "Nom du lieu",
+  "DESCRIPTION": "La description",
+  "ADDRESS1": "Adresse 1",
+  "ADDRESS2": "Adresse 2",
+  "ZIP": "Code postal",
+  "CITY": "Ville",
+  "URBANDISTRICT": "Quartier urbain",
+  "STATE": "État fédéral",
+  "COUNTRY": "État",
+  "ADDRESS_COMMENT_INNER": "Commenter",
+  "FILTER_PLACEHOLDER": "Rechercher par lieu",
+  "EMPTY_FILTER_MESSAGE": "Aucun résultat trouvé",
+  "EMPTY_MESSAGE": "Aucun résultat trouvé",
+  "EDIT_VENUE": "Modifier le lieu",
+  "VENUES": "Lieux",
+  "VENUE_UPDATED":"Lieu mis à jour",
+  "ARE_YOU_SURE": "Êtes-vous sûr?",
+  "VENUE_DELETED": "Lieu supprimé",
+  "VENUE_CREATED": "Lieu créé"
+
+
+
+
+
+}
