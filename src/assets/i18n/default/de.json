@@ -76,6 +76,7 @@
   "YES": "Ja",
   "RECORDS": "Datensätze",
   "RESULTS": "Ergebnisse",
+  "VENUES": "Veranstaltungsorte",
 
   "error": {
     "BAD_REQUEST": "Es ist ein Fehler aufgetreten",

@@ -94,6 +94,13 @@ export class LayoutDefaultComponent implements OnDestroy {
               translationToken: 'MUPRO',
             },
             {
+              icon: 'pi pi-map-marker',
+              label: 'Locations',
+              roles: ['staff'],
+              routerLink: '/arpa/venues',
+              translationToken: 'VENUES',
+            },
+            {
               icon: 'pi pi-info-circle',
               label: 'Auditlogs',
               roles: ['staff'],
@@ -126,7 +133,7 @@ export class LayoutDefaultComponent implements OnDestroy {
               icon: 'pi pi-check-square',
               roles: ['performer', 'staff'],
               routerLink: '/arpa/profile/appointments',
-              translationToken:'MY_APPOINTMENTS'
+              translationToken: 'MY_APPOINTMENTS',
             },
             {
               label: 'Mein Musikprofil',
