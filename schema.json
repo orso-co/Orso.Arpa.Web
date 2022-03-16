@@ -2149,16 +2149,6 @@
             "defaultValue": null
           },
           {
-            "name": "displayName",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringOperationFilterInput",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "birthName",
             "description": null,
             "type": {
