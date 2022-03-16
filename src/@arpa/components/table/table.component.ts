@@ -32,6 +32,7 @@ export interface ColumnDefinition<T extends Record<string, any>> {
   // Required for type "state" because it's dynamically resolved.
   stateTable?: string;
   stateProperty?: string;
+
 }
 
 /**
@@ -44,7 +45,9 @@ export class ArpaTableColumnDirective {
   @Input('arpaTableColumn')
   name: string;
 
-  constructor(public template: TemplateRef<any>) {}
+  constructor(
+    public template: TemplateRef<any>,
+    ) {}
 }
 
 @Component({
