@@ -73,6 +73,8 @@
   "WEEK": "Week",
   "WELCOME": "Welcome to ARPA 2.0",
   "YES": "Yes",
+  "VENUES": "Venues",
+
 
   "error": {
     "BAD_REQUEST": "An error occured",

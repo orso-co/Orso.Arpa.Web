@@ -101,6 +101,19 @@ const routes: Routes = [
         },
       },
       {
+        path: 'venues',
+        loadChildren: () => import('./features/venues/venues.module').then((mod) => mod.VenuesModule),
+        data: {
+          roles: ['staff'],
+          title: 'VENUES',
+          menu: {
+            name: 'feature',
+            label: 'VENUES',
+            icon: 'pi pi-map-marker',
+          },
+        },
+      },
+      {
         path: '*',
         loadChildren: () => import('./features/profile/profile.module').then((mod) => mod.ProfileModule),
         data: {
