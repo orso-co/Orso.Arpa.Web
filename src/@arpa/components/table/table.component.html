@@ -49,7 +49,6 @@
           icon="pi pi-sliders-h"
           pButton
         ></button>
-
         <mat-menu #columnFilters="matMenu" xPosition="before" yPosition="below">
           <ng-container *ngFor="let column of columns">
             <button *ngIf="column.show !== undefined" class="checkbox-item mat-menu-item">
@@ -61,10 +60,15 @@
         </mat-menu>
       </div>
     </div>
+    <h4>
+      {{ feed.totalCount | async }} {{ 'RESULTS' | translate }}
+    </h4>
   </ng-template>
-  <ng-template pTemplate="header">
-    <tr>
 
+  <ng-template pTemplate="header">
+
+
+    <tr>
       <!-- Render all header columns by type -->
       <ng-container *ngFor="let column of activeColumns; trackBy: trackByProperty">
         <ng-container *ngIf="column.type === 'text'">

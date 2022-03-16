@@ -62,14 +62,14 @@ const routes: Routes = [
       },
 
       {
-        path: 'contacts',
+        path: 'persons',
         loadChildren: () => import('./features/persons/persons.module').then((m) => m.PersonsModule),
         data: {
           roles: ['staff'],
-          title: 'CONTACTS',
+          title: 'persons.PERSONS',
           menu: {
             name: 'feature',
-            label: 'CONTACTS',
+            label: 'persons',
             icon: 'pi pi-users',
           },
         },

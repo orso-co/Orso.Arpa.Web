@@ -74,6 +74,8 @@
   "WEEK": "Woche",
   "WELCOME": "Willkommen auf ARPA 2.0",
   "YES": "Ja",
+  "RECORDS": "Datensätze",
+  "RESULTS": "Ergebnisse",
 
   "error": {
     "BAD_REQUEST": "Es ist ein Fehler aufgetreten",

@@ -1,6 +1,11 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TranslateMockModule } from './../../../../testing/translate.mock.module';
+import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PerformerListComponent } from './performer-list.component';
+import { ActivatedRoute } from '@angular/router';
+import { DialogService } from 'primeng/dynamicdialog';
 
 describe('PerformerListComponent', () => {
   let component: PerformerListComponent;
@@ -8,7 +13,15 @@ describe('PerformerListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PerformerListComponent ]
+      imports: [
+        RouterTestingModule,
+        TranslateMockModule,
+        HttpClientTestingModule,
+      ],
+      declarations: [ PerformerListComponent ],
+      providers: [
+        { provide: DialogService, useValue: {} },
+      ],
     })
     .compileComponents();
   });

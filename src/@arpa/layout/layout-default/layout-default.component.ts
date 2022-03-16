@@ -73,11 +73,11 @@ export class LayoutDefaultComponent implements OnDestroy {
               translationToken: 'CALENDAR',
             },
             {
-              label: 'Kontakte',
+              label: 'Personen',
               icon: 'pi pi-users',
               roles: ['staff'],
-              routerLink: '/arpa/contacts',
-              translationToken: 'CONTACTS',
+              routerLink: '/arpa/persons',
+              translationToken: 'PERSONS',
             },
             {
               label: 'Performer',

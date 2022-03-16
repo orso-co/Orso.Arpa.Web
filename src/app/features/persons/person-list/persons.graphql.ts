@@ -17,8 +17,10 @@ export const PersonsQuery = gql`
       },
       where: {
         or: [
+          { givenName: { contains:$searchQuery}}
           { surname: { contains:$searchQuery}}
         ]
+
       }
     ) {
       pageInfo {

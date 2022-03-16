@@ -13,7 +13,7 @@ export const PerformersQuery = gql`
       order: {
         levelAssessmentTeam: $orderLevelAssessmentTeam
       },
-      where: { instrument: { name: { contains:$searchQuery}}
+      where: {
         or: [
           { instrument: { name: { contains:$searchQuery} }}
         ]
@@ -30,9 +30,7 @@ export const PerformersQuery = gql`
         instrumentId
         instrument {
           name
-
         }
-
         levelAssessmentTeam
         levelAssessmentInner
         qualificationId
