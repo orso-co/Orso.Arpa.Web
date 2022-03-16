@@ -1,3 +1,15 @@
+import { MusicianMainInstrumentComponent } from './../../musician-profile-dialog/musician-main-instrument/musician-main-instrument.component';
+import { MuproComponent } from './../../mupro/mupro.component';
+import { ProfilesComponent } from './../../mupro/profiles/profiles.component';
+import { DetailsComponent } from './../../mupro/details/details.component';
+import { MusicianDocumentsComponent } from './../../musician-profile-dialog/musician-documents/musician-documents.component';
+import { MusicianLayoutComponent } from './../../musician-profile-dialog/musician-layout/musician-layout.component';
+import { MusicianInstrumentsComponent } from './../../musician-profile-dialog/musician-instruments/musician-instruments.component';
+import { MusicianProfileDialogModule } from './../../musician-profile-dialog/musician-profile-dialog.module';
+import { SectionDto } from './../../../../@arpa/models/sectionDto';
+import { MusicianDialogEntryComponent } from './../../musician-profile-dialog/musician-dialog-entry/musician-dialog-entry.component';
+import { DialogService } from 'primeng/dynamicdialog';
+import { MusicianProfileDto } from './../../../../@arpa/models/musicianProfileDto';
 import { PerformerDto } from './../../../../@arpa/models/performerDto';
 import { SelectItem } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
@@ -22,13 +34,14 @@ export class PerformerListComponent {
   query: DocumentNode = PerformersQuery;
 
   columns: ColumnDefinition<PerformerDto>[] = [
-    { label: 'SURNAME', property: 'surname', type: 'text' },
-    { label: 'GIVEN_NAME', property: 'givenName', type: 'text' },
-    { label: 'INSTRUMENT', property: 'instrumentId', type: 'state', stateTable: 'MusicianProfiles', stateProperty: 'Instrument', show: true},
-    { label: 'QUALIFICATION', property: 'qualification', type: 'text'},
+    { label: 'SURNAME', property: 'person.surname', type: 'text' },
+    { label: 'GIVEN_NAME', property: 'person.givenName', type: 'text' },
+    { label: 'SECTION', property: 'instrumentId.section', type: 'text'},
+    { label: 'INSTRUMENT', property: 'instrument.name', type: 'text', show: true},
+    { label: 'QUALIFICATION', property: 'qualificationId', type: 'state', stateTable: 'MusicianProfile', stateProperty: 'Qualification', show: true},
     { label: 'LEVEL_ASSESSMENT_TEAM', property: 'levelAssessmentTeam', type: 'rating', show: true},
-    { label: 'EXPERIENCE_LEVEL', property: 'experienceLevel', type: 'rating', show: true },
-    { label: 'RELIABILITY', property: 'reliability', type: 'rating', show: true },
+    { label: 'EXPERIENCE_LEVEL', property: 'experienceLevel', type: 'rating', show: false },
+    { label: 'RELIABILITY', property: 'reliability', type: 'rating', show: false },
     { label: 'GENERAL_PREFERENCE', property: 'generalPreference', type: 'rating', show: true },
     { label: 'CREATED_AT', property: 'createdAt', type: 'date', show: false },
     { label: 'CREATED_BY', property: 'createdBy', type: 'text', show: false },
@@ -37,11 +50,29 @@ export class PerformerListComponent {
   ];
   @ViewChild('feedSource') private feedSource: GraphQlFeedComponent;
 
-  constructor(public translate: TranslateService, private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    public translate: TranslateService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private dialogService: DialogService,
+    ) {}
 
-  onRowClick(person: PersonDto) {
-    this.router.navigate([{ outlets: { modal: ['detail', person.id] } }], {
-      relativeTo: this.route,
+  onRowClick(MusicianProfileDto: MusicianProfileDto) {
+    this.dialogService.open(MusicianDialogEntryComponent, {
+      data: {
+        MusicianProfileDto,
+        comboInstrumentView: this.route.snapshot.queryParamMap.get('comboInstruments') || false,
+      },
     });
   }
+
+  sendInvite(personId: PersonDto, id: MusicianProfileDto) {
+    const ref = this.dialogService.open(MusicianDialogEntryComponent, {
+      data: {
+        personId,
+        id,
+      },
+    });
+  }
+
 }

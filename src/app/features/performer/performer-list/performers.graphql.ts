@@ -1,23 +1,21 @@
 import { gql } from 'apollo-angular';
 
 export const PerformersQuery = gql`
-  query Persons(
+  query MusicianProfiles(
     $skip: Int,
     $take: Int,
-    $orderName: SortEnumType = ASC,
-    $orderSurname: SortEnumType = ASC,
+    $orderLevelAssessmentTeam: SortEnumType = ASC,
     $searchQuery: String = ""
   ){
-    persons(
+    musicianProfiles(
       skip: $skip,
       take: $take,
       order: {
-        surname: $orderSurname
-        givenName: $orderName
+        levelAssessmentTeam: $orderLevelAssessmentTeam
       },
-      where: {
+      where: { instrument: { name: { contains:$searchQuery}}
         or: [
-          { surname: { contains:$searchQuery}}
+          { instrument: { name: { contains:$searchQuery} }}
         ]
       }
     ) {
@@ -29,26 +27,30 @@ export const PerformersQuery = gql`
 
       items {
         id
-        givenName
-        surname
-        aboutMe
-        reliability
-        generalPreference
-        experienceLevel
-        createdAt
-        createdBy
-        modifiedAt
-        modifiedBy
+        instrumentId
+        instrument {
+          name
 
-        musicianProfiles {
+        }
+
+        levelAssessmentTeam
+        levelAssessmentInner
+        qualificationId
+        qualification { selectValue { name }}
+        personId
+
+        person {
           id
-          instrumentId
-          instrument { name }
-          qualification {
-            selectValue {
-              name
-            }
-          }
+          givenName
+          surname
+          reliability
+          generalPreference
+          experienceLevel
+          createdAt
+          createdBy
+          modifiedAt
+          modifiedBy
+
         }
       }
     }

@@ -28,6 +28,7 @@ export interface PerformerDto {
   addresses?: Array<AddressDto>;
   stakeholderGroups?: Array<SectionDto>;
   musicianProfiles?: Array<MusicianProfileDto>;
+  instrumentId?: string;
   instrument?: SelectValueDto;
   qualification?: SelectValueDto;
 }

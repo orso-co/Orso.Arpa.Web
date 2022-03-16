@@ -39,6 +39,7 @@
         </span>
         <i (click)="searchInput.value = ''; clear(table)" *ngIf="hasFilters" class="pi pi-times"></i>
       </div>
+
       <!-- Show column filter -->
       <div *ngIf="columnFilter && hasFilterColumns" class="column-filter">
         <button
@@ -63,6 +64,7 @@
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
+
       <!-- Render all header columns by type -->
       <ng-container *ngFor="let column of activeColumns; trackBy: trackByProperty">
         <ng-container *ngIf="column.type === 'text'">
@@ -117,6 +119,7 @@
           </th>
         </ng-container>
       </ng-container>
+
       <!-- Render an additional column if an action template was provided -->
       <ng-container *ngIf="actionsTemplateRef">
         <th class="end"></th>
@@ -124,6 +127,7 @@
     </tr>
   </ng-template>
   <ng-template let-expanded="expanded" let-row pTemplate="body">
+
     <!-- Render all rows by column definition -->
     <tr (click)="rowClickEvents.emit(row)" *ngIf="row" [class.hasHover]="rowClickEvents" [pSelectableRow]="row">
       <ng-container *ngIf="!rowTemplateRef">

@@ -10,5 +10,15 @@
     (rowClickEvents)='onRowClick($event)'
     [columns]='columns'
     [feed]='feed'
+    [actionsTemplateRef]="actionsTemplate"
   ></arpa-table>
 </ng-template>
+
+<ng-template #actionsTemplate let-row>
+  <button
+    (click)="sendInvite"
+    class="p-button-rounded p-button-text p-button-icon-only"
+    icon="pi pi-envelope"
+    pButton
+    type="button"
+  ></button>
