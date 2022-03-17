@@ -1,3 +1,10 @@
+import { SelectDialogModule } from './../profile/select-dialog/select-dialog.module';
+import { FormFieldModule } from './../../../@arpa/components/form-field/form-field.module';
+import { TabViewModule } from 'primeng/tabview';
+import { TagModule } from 'primeng/tag';
+import { ProjectsRoutingModule } from './../projects/projects-routing.module';
+import { GraphQlFeedModule } from './../../../@arpa/components/graph-ql-feed/graph-ql-feed.module';
+import { GraphQlFeedComponent } from 'src/@arpa/components/graph-ql-feed/graph-ql-feed.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -26,7 +33,7 @@ import { TranslateModule } from '../../../@arpa/translate';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { CheckboxModule } from 'primeng/checkbox';
 import { SkeletonModule } from 'primeng/skeleton';
-import { TableModule } from 'primeng/table';
+import { TableModule } from '../../../@arpa/components/table/table.module';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
@@ -62,12 +69,17 @@ import { IframeWidgetComponent } from './iframe-widget/iframe-widget.component';
     LayoutModule,
     DashboardRoutingModule,
     StoreModule.forFeature('dashboard', reducers),
+    ProjectsRoutingModule,
+
     // Arpa Lib
     TranslateModule.forChild(['dashboard']),
     AvatarModule,
     ChartModule,
     StateBadgeModule,
     LoadingModule,
+    TableModule,
+    GraphQlFeedModule,
+
     // NG Material Dependencies
     MatGridListModule,
     MatCardModule,
@@ -87,6 +99,8 @@ import { IframeWidgetComponent } from './iframe-widget/iframe-widget.component';
     AccordionModule,
     TabMenuModule,
     InputTextModule,
+    TagModule,
+    TabViewModule,
   ],
 })
 export class DashboardModule {
