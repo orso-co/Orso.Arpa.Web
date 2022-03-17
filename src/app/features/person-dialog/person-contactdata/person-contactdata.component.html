@@ -1,1 +1,94 @@
-<p>Diese Komponente solle E-Mailadressen, Telefonnummern und URLs der Person anzeigen</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-my-5">
+  <div class="p-grid p-fluid p-formgrid">
+    <div class="p-field p-col-12 p-xl-6">
+      <p-selectButton [options]="keyOptions" formControlName="key" optionLabel="icon" optionValue="value" id="key-select-button">
+        <ng-template let-item>
+          <i [class]="item.icon"></i>
+        </ng-template>
+      </p-selectButton>
+    </div>
+    <div class="p-col-12 p-xl-6">
+      <arpa-form-field label="contact.TYPE" type="select">
+        <p-dropdown
+          [options]="(typeOptions$ | async) || []"
+          [placeholder]="'NOTHING_SELECTED' | translate"
+          formControlName="typeId"
+          optionLabel="label"
+          optionValue="value"
+        ></p-dropdown>
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-9">
+      <arpa-form-field label="contact.VALUE">
+        <input autocomplete="off" formControlName="value" id="value" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-3 p-pt-2">
+      <p-rating formControlName="preference" [cancel]="false" [stars]="5"></p-rating>
+    </div>
+    <div class="p-col-12">
+      <arpa-form-field label="contact.COMMENT">
+        <textarea autocomplete="off" formControlName="commentInner" id="commentInner" pInputText type="text"></textarea>
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class="p-formgroup-inline p-jc-between">
+    <div class="p-text-left">
+      <button
+        [disabled]="form.pristine || form.invalid"
+        [label]="'SAVE' | translate"
+        icon="pi pi-check"
+        iconPos="right"
+        pButton
+        type="submit"
+      ></button>
+    </div>
+    <div class="p-text-right">
+      <button
+        [label]="'CANCEL' | translate"
+        icon="pi pi-times"
+        iconPos="right"
+        pButton
+        type="button"
+        (click)="onCancel()"
+        class="p-button-outlined"
+      ></button>
+    </div>
+  </div>
+</form>
+<hr />
+<arpa-table
+  [actionsTemplateRef]="actionsTemplate"
+  [columns]="columns"
+  [data]="tableData"
+  [showFilter]="false"
+  [showPagination]="false"
+  [showFilter]="true"
+  ><ng-template arpaTableColumn="keyTemplate" let-key>
+    <ng-container [ngSwitch]="key">
+      <i *ngSwitchCase="1" class="pi pi-envelope"></i>
+      <i *ngSwitchCase="2" class="pi pi-phone"></i>
+      <i *ngSwitchCase="3" class="pi pi-link"></i>
+      <i *ngSwitchDefault class="pi pi-circle"></i>
+    </ng-container>
+  </ng-template>
+</arpa-table>
+
+<ng-template #actionsTemplate let-row>
+  <button
+    (click)="update(row)"
+    [label]="'project-dialog.UPDATE' | translate"
+    class="p-button-rounded p-button-text p-button-icon-only"
+    icon="pi pi-pencil"
+    pButton
+    type="button"
+  ></button>
+  <button
+    (click)="remove(row)"
+    [label]="'project-dialog.DELETE' | translate"
+    class="p-button-rounded p-button-text p-button-icon-only"
+    icon="pi pi-trash"
+    pButton
+    type="button"
+  ></button>
+</ng-template>

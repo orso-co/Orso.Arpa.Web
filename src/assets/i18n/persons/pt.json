@@ -1,19 +1,26 @@
 {
-  "PERSONS": "pessoas",
-  "GIVEN_NAME": "nome dado",
-  "SURNAME": "sobrenome",
   "ABOUT_ME": "sobre mim",
+  "BASE_DATA": "dados básicos",
+  "BIRTHNAME": "nome de nascença",
+  "BIRTHPLACE": "local de nascimento",
+  "CONTACT_DATA": "detalhes do contato",
+  "CONTACT_VIA_PLACEHOLDER": "Insira o contato de mediação aqui",
+  "CONTACT_VIA": "contato via",
   "CREATED_AT": "cratera em",
   "CREATED_BY": "criado por",
-  "RELIABILITY": "fiabilidade",
-  "GENERAL_PREFERENCE": "preferência geral",
-  "EXPERIENCE_LEVEL": "nível de experiência",
   "DATEOFBIRTH": "data de nascimento",
-  "BIRTHPLACE": "local de nascimento",
+  "EMPTYMESSAGE": "nada selecionado",
+  "EXPERIENCE_LEVEL": "nível de experiência",
   "GENDER": "género",
+  "GENERAL_PREFERENCE": "preferência geral",
+  "GIVEN_NAME": "nome dado",
+  "INSTRUMENT": "instrumento",
+  "LEVEL_ASSESSMENT_TEAM": "nível (equipe)",
   "MODIFIED_AT": "modificado em",
-  "MODIFIED_BY": "modificado por"
+  "MODIFIED_BY": "modificado por",
+  "PERSONS": "pessoas",
+  "QUALIFICATION": "qualificação",
+  "RELIABILITY": "fiabilidade",
+  "SECTION": "Seção",
+  "SURNAME": "sobrenome"
 }
-      
-    
-    
