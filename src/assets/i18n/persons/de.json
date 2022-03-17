@@ -12,5 +12,11 @@
   "CREATED_AT": "Erstellt am",
   "CREATED_BY": "Erstellt von",
   "MODIFIED_AT": "Geändert am",
-  "MODIFIED_BY": "Geändert von"
+  "MODIFIED_BY": "Geändert von",
+
+  "LEVEL_ASSESSMENT_TEAM": "Level (KBB)",
+  "QUALIFICATION": "Qualifikation",
+  "SECTION": "Register",
+  "INSTRUMENT": "Instrument"
+
 }

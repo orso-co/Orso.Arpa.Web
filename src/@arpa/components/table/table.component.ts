@@ -23,7 +23,7 @@ import { SelectValueService } from '../../../app/shared/services/select-value.se
 export interface ColumnDefinition<T extends Record<string, any>> {
   label: string;
   property: string | Extract<keyof T, string>;
-  type: 'text' | 'date' | 'image' | 'badge' | 'state' | 'progress' | 'checkbox' | 'button' | 'template' | 'rating';
+  type: 'text' | 'date' | 'image' | 'badge' | 'state' | 'progress' | 'checkbox' | 'button' | 'template' | 'rating' | 'number';
   show?: boolean;
   cssClasses?: string[];
   template?: string;
@@ -32,6 +32,7 @@ export interface ColumnDefinition<T extends Record<string, any>> {
   // Required for type "state" because it's dynamically resolved.
   stateTable?: string;
   stateProperty?: string;
+
 }
 
 /**
@@ -44,7 +45,9 @@ export class ArpaTableColumnDirective {
   @Input('arpaTableColumn')
   name: string;
 
-  constructor(public template: TemplateRef<any>) {}
+  constructor(
+    public template: TemplateRef<any>,
+    ) {}
 }
 
 @Component({
@@ -60,10 +63,10 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
   columnFilter: boolean = true;
 
   @Input()
-  rows: number = 10;
+  rows: number = 20;
 
   @Input()
-  rowsPerPage: undefined | any | number[] = [10, 25, 50];
+  rowsPerPage: undefined | any | number[] = [20, 50, 100, 200];
 
   @Input()
   showPagination: boolean = true;
@@ -133,7 +136,6 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
 
   @Input()
   isLoading: boolean;
-
   @ContentChildren(PrimeTemplate) templates: QueryList<PrimeTemplate>;
   public isMobile: Observable<boolean>;
   public lazy: boolean = false;
