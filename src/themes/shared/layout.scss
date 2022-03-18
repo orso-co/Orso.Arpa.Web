@@ -13,3 +13,23 @@ mat-toolbar {
   }
 
 }
+
+.p-dialog-mask {
+  align-items: flex-start!important;
+}
+
+.form-modal {
+  &.p-dialog {
+    margin-top: 4em;
+  }
+  width: 100%;
+  @media (max-width: 480px) {
+    &.p-dialog {
+      margin-top: 0;
+    }
+  }
+  @media (min-width: 960px) {
+    width: 80%;
+    max-width: 1200px;
+  }
+}
