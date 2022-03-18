@@ -19,10 +19,7 @@ export class PersonDialogEntryComponent {
     private router: Router,
     private route: ActivatedRoute,
     private dialogService: DialogService,
-    private translate: TranslateService,
-    private PersonService: PersonService,
-    private notificationsService: NotificationsService,
-    private logger: LoggerService
+    private translate: TranslateService
   ) {
     this.route.data.pipe(first()).subscribe((data) => {
       this.openDialog(data && data.person);
@@ -41,16 +38,9 @@ export class PersonDialogEntryComponent {
       dismissableMask: true,
     });
 
-    ref.onClose.pipe(first()).subscribe((person: PersonDto) => {
-      if (person && selection) {
-        this.notificationsService.success('UPDATED');
-        this.logger.info('update:', selection);
-      } else if (person) {
-        this.logger.info('created:', person);
-        this.notificationsService.success('CREATED');
-      }
+    ref.onClose.pipe(first()).subscribe((updateState: boolean) => {
       this.router.navigate([this.router.createUrlTree(['.'], { relativeTo: this.route }).root.children[PRIMARY_OUTLET].toString()], {
-        state: { refresh: true },
+        state: { refresh: updateState },
       });
     });
   }
