@@ -2,6 +2,7 @@
   <div class='p-col-12 p-md-10 p-lg-12'>
     <p-table
       (onLazyLoad)='loadData($event.rows, $event.first)'
+      routerLink="../../profile/appointments"
       [lazy]='true'
       [rows]='5'
       [totalRecords]='(totalRecordsCount$ | async) || 0'
@@ -16,37 +17,25 @@
 </div>
 <ng-template #listElement let-appointment>
     <div class='p-d-flex p-jc-between'>
-      <div class='p-flex-column p-mr-4 date'>
-        <h4>{{ appointment.startTime | date: 'dd.MM.yy':'locale(de)' }} | {{ appointment.startTime | date: 'H:mm':'locale(de)' }}
-        -{{ appointment.endTime | date: 'H:mm':'locale(de)' }} -{{ appointment.category?.name }} {{ appointment.venue?.name }}</h4>
-        <div>
-          <p> {{ appointment.name }}</p>
-          <p-tag *ngIf='appointment.projects.length > 0'
-          styleClass="p-ml-2-right"
-          severity="info"
-          [rounded]="false"
-          [value]='getProjectNames(appointment.projects)'
-        ></p-tag>
-      </div>
 
-      </div>
-      <tr>
-      <div>
-        <div>
-          <p-tag *ngIf='appointment.predictionId'
+    </div>
+    <div>
+      <div class='p-flex-column p-mr-4 date'>
+        <h4>{{ appointment.startTime | date: 'dd.MM.yy':'locale(de)' }} ({{appointment.startTime | date: 'EE'}}), {{ appointment.startTime | date: 'H:mm':'locale(de)' }}
+        -{{ appointment.endTime | date: 'H:mm':'locale(de)' }} {{ appointment.category?.name }} {{ appointment.venue?.name }}</h4>
+        <!-- <p-chip *ngIf='appointment.projects.length > 0'
+          styleClass="p-ml-2"
+          severity="info"
+          [label]='getProjectNames(appointment.projects)'
+        ></p-chip> -->
+          <p> {{ appointment.name }}
+            <p-tag *ngIf='appointment.predictionId'
           styleClass="p-ml-2"
           severity="warning"
           [rounded]="true"
           [value]=' appointment.predictionId | selectValue: predictions '></p-tag>
+          </p>
 
         </div>
-      </div>
-      </tr>
-    </div>
-<div>
-    <tr>
-
-
-    </tr>
-  </div>
+        </div>
 </ng-template>

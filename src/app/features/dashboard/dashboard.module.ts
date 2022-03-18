@@ -48,6 +48,7 @@ import { TranslateModule } from '../../../@arpa/translate';
 import { TranslateService } from '@ngx-translate/core';
 import { UserWidgetComponent } from './user-widget/user-widget.component';
 import { WidgetComponent } from './widget/widget.component';
+import { ChipModule } from 'primeng/chip';
 
 
 @NgModule({
@@ -105,7 +106,9 @@ import { WidgetComponent } from './widget/widget.component';
     InputTextModule,
     TagModule,
     TabViewModule,
-    LocalizedDateModule
+    LocalizedDateModule,
+    ChipModule,
+
   ],
 })
 export class DashboardModule {

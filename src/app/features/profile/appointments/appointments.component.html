@@ -50,6 +50,9 @@
         <span *ngIf='appointment.venue?.name' class='venue'>
           {{ appointment.venue?.name }}
         </span>
+        <span *ngIf='appointment.category?.name' class='category'>
+          {{ appointment.category?.name }}
+        </span>
         <span *ngIf='appointment.projects.length > 0' class='projects'>
           {{ getProjectNames(appointment.projects) }}
         </span>
