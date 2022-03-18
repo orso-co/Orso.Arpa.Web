@@ -4,7 +4,9 @@ export const ProjectsQuery = gql`
   query Projects(
     $skip: Int,
     $take: Int,
-    $orderTitle: SortEnumType = ASC
+    $orderTitle: SortEnumType = ASC,
+    $orderStartDate: SortEnumType = ASC,
+    $orderGenre__selectValue__name: SortEnumType = ASC,
     $personId: UUID
     $searchQuery: String = ""
   ){
@@ -12,7 +14,13 @@ export const ProjectsQuery = gql`
       skip: $skip,
       take: $take,
       order: {
-        title: $orderTitle
+        title: $orderTitle,
+        startDate: $orderStartDate,
+        genre: {
+          selectValue: {
+            name: $orderGenre__selectValue__name,
+          },
+        },
       }
       where: {
         projectParticipations: {some: {musicianProfile: {personId: {equals: $personId}}}}
