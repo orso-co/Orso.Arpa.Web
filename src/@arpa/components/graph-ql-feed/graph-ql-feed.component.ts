@@ -102,7 +102,7 @@ export class GraphQlFeedComponent implements OnInit, OnDestroy, OnChanges {
     const sortOrder: Record<string, string> = {};
     if (multiSortMeta) {
       multiSortMeta.forEach(({ field, order }: any) => {
-        sortOrder[`order${field[0].toUpperCase() + field.substring(1)}`] = order === -1 ? 'ASC' : 'DESC';
+        sortOrder[`order${field[0].toUpperCase() + field.substring(1).replaceAll('.', '__')}`] = order === -1 ? 'ASC' : 'DESC';
       });
     }
     return this.moveCursor(rows, first, globalFilter || '', sortOrder);
