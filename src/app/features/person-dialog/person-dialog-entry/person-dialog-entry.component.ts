@@ -36,7 +36,6 @@ export class PersonDialogEntryComponent {
       header: `${this.translate.instant('PERSON')}: ${selection?.givenName}, ${selection?.surname}`,
       styleClass: 'form-modal',
       dismissableMask: true,
-      width: window.innerWidth > 1000 ? '66%' : '100%',
     });
 
     ref.onClose.pipe(first()).subscribe((updateState: boolean) => {

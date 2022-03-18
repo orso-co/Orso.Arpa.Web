@@ -70,7 +70,6 @@ export class MusicianDialogEntryComponent {
       header: selection ? this.translate.instant('EDIT') : this.translate.instant('CREATE'),
       styleClass: 'form-modal',
       dismissableMask: true,
-      width: window.innerWidth > 1000 ? '66%' : '100%',
     });
 
     ref.onClose.pipe(first()).subscribe((profile: MusicianProfileDto) => {

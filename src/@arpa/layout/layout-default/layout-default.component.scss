@@ -28,8 +28,17 @@
         transition: all .5s ease-in-out;
       }
 
+      .p-submenu-header {
+        opacity: 0;
+        transition: all .5s ease-in-out;
+      }
+
       &.expanded {
         width: 200px;
+
+        .p-submenu-header {
+          opacity: .5;
+        }
 
         &.mobile {
           width: inherit;
@@ -66,6 +75,10 @@
           .p-menuitem-text {
             opacity: 1;
             display: inline-block;
+          }
+
+          .p-submenu-header {
+            opacity: .5;
           }
         }
 
