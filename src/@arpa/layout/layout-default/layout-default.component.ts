@@ -73,11 +73,18 @@ export class LayoutDefaultComponent implements OnDestroy {
               translationToken: 'CALENDAR',
             },
             {
-              label: 'Kontakte',
+              label: 'Personen',
               icon: 'pi pi-users',
               roles: ['staff'],
-              routerLink: '/arpa/contacts',
-              translationToken: 'CONTACTS',
+              routerLink: '/arpa/persons',
+              translationToken: 'PERSONS',
+            },
+            {
+              label: 'Performer',
+              icon: 'pi pi-users',
+              roles: ['staff'],
+              routerLink: '/arpa/performer',
+              translationToken: 'PERFORMER',
             },
             {
               icon: 'pi pi-clone',
@@ -85,6 +92,13 @@ export class LayoutDefaultComponent implements OnDestroy {
               roles: ['staff'],
               routerLink: '/arpa/mupro',
               translationToken: 'MUPRO',
+            },
+            {
+              icon: 'pi pi-map-marker',
+              label: 'Locations',
+              roles: ['staff'],
+              routerLink: '/arpa/venues',
+              translationToken: 'VENUES',
             },
             {
               icon: 'pi pi-info-circle',
@@ -119,7 +133,7 @@ export class LayoutDefaultComponent implements OnDestroy {
               icon: 'pi pi-check-square',
               roles: ['performer', 'staff'],
               routerLink: '/arpa/profile/appointments',
-              translationToken:'MY_APPOINTMENTS'
+              translationToken: 'MY_APPOINTMENTS',
             },
             {
               label: 'Mein Musikprofil',

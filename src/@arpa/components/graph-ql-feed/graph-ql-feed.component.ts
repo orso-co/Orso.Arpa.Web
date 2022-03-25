@@ -98,8 +98,14 @@ export class GraphQlFeedComponent implements OnInit, OnDestroy, OnChanges {
     });
   }
 
-  onLazy({ first, rows, globalFilter, filters }: any): any {
-    return this.moveCursor(rows, first, globalFilter || '');
+  onLazy({ first, rows, globalFilter, multiSortMeta }: any): any {
+    const sortOrder: Record<string, string> = {};
+    if (multiSortMeta) {
+      multiSortMeta.forEach(({ field, order }: any) => {
+        sortOrder[`order${field[0].toUpperCase() + field.substring(1).replaceAll('.', '__')}`] = order === -1 ? 'ASC' : 'DESC';
+      });
+    }
+    return this.moveCursor(rows, first, globalFilter || '', sortOrder);
   }
 
   ngOnDestroy() {
@@ -113,10 +119,11 @@ export class GraphQlFeedComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  private moveCursor(take: number, skip: number = 0, searchQuery: string = '') {
+  private moveCursor(take: number, skip: number = 0, searchQuery: string = '', order = {}) {
     return this.feedQuery.fetchMore({
       variables: {
         ...this.variables,
+        ...order,
         searchQuery,
         take,
         skip,
