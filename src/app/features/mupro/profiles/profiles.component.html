@@ -8,7 +8,6 @@
       <div class="p-col-12 p-lg-8 details">
         <div>
           <div class="name">{{ getName(person | async) }}</div>
-          <!-- <div class="country">Deutschland, Berlin</div> -->
         </div>
       </div>
     </div>
@@ -23,7 +22,7 @@
           <li *ngIf="activeIndex === i">
             <div class="profile">
               <div class="p-grid">
-                <div class="p-col-12 section-detail" >
+                <div class="p-col-12 section-detail">
                   <header>
                     <h2>{{ profile.instrument.name }}</h2>
                     <p-button

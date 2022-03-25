@@ -8,11 +8,11 @@
       <arpa-form-field label="{{ 'mupro.PARTICIPATION_STATUS_INTERNAL' | translate }}" type="select">
         <p-dropdown
           [autoDisplayFirst]="false"
-          [options]="(statusOptions$ | async)!"
+          [options]="(statusOptionsStaff$ | async)!"
           [showClear]="true"
           appendTo="body"
-          formControlName="participationStatusIdStaff"
-          id="participationStatusIdStaff"
+          formControlName="participationStatusInternal"
+          id="participationStatusInternalId"
           [placeholder]="'NOTHING_SELECTED' | translate"
         ></p-dropdown>
       </arpa-form-field>
@@ -20,7 +20,7 @@
   </div>
   <div class="p-field p-col12">
     <arpa-form-field label="{{ 'mupro.PARTICIPATION_COMMENT_STAFF' | translate }}">
-      <textarea formControlName="commentStaff" id="commentStaff" pInputText rows="5"></textarea>
+      <textarea formControlName="commentByStaff" id="commentByStaffId" pInputText rows="5"></textarea>
     </arpa-form-field>
   </div>
   <div>
@@ -31,11 +31,11 @@
       <arpa-form-field label="{{ 'mupro.PARTICIPATION_STATUS_INNER' | translate }}" type="select">
         <p-dropdown
           [autoDisplayFirst]="false"
-          [options]="(statusOptions$ | async)!"
+          [options]="(statusOptionsPerformer$ | async)!"
           [showClear]="true"
           appendTo="body"
-          formControlName="participationStatusIdPerformer"
-          id="participationStatusIdPerformer"
+          formControlName="participationStatusInternal"
+          id="participationStatusInternalId"
           [placeholder]="'NOTHING_SELECTED' | translate"
         ></p-dropdown>
       </arpa-form-field>
@@ -43,7 +43,7 @@
   </div>
   <div class="p-field p-col12">
     <arpa-form-field label="{{ 'mupro.PARTICIPATION_COMMENT_PERFORMER' | translate }}">
-      <textarea formControlName="commentPerformer" id="commentPerformer" pInputText rows="5"></textarea>
+      <textarea formControlName="commentByPerformer" id="commentByPerformerId" pInputText rows="5"></textarea>
     </arpa-form-field>
   </div>
 

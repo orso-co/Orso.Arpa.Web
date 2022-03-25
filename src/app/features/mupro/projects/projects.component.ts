@@ -23,13 +23,9 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   query: DocumentNode = ProjectsQuery;
   columns: ColumnDefinition<ProjectDto>[] = [
     { label: 'PROJECT', property: 'title', type: 'text' },
-    // { label: 'GENRE', property: 'genre.selectValue.name', type: 'text', show: true },
-    { label: 'P-STATUS_P', property: 'projectParticipations.participationStatusInner.selectValue.name', type: 'text', show: true },
-    { label: 'P-STATUS_S', property: 'projectParticipations.participationStatusInternal.selectValue.name', type: 'text', show: true },
-    { label: 'COMMENT', property: 'projectParticipations.commentByPerformerInner', type:'text', show: true},
-
-    // { label: 'STATE', property: 'stateId', type: 'state', stateTable: 'Project', show: true },
-    // { label: 'DATE', property: 'startDate', type: 'date', show: true },
+    { label: 'PARTICIPATIONSTATUS_PERFORMER', property: 'projectParticipations.participationStatusInner.selectValue.name', type: 'text', show: true },
+    { label: 'PARTICIPATIONSTATUS_STAFF', property: 'projectParticipations.participationStatusInternal.selectValue.name', type: 'text', show: true },
+    { label: 'COMMENT_PERFORMER', property: 'projectParticipations.commentByPerformerInner', type:'text', show: true},
   ];
 
   personId: string | undefined;
@@ -37,7 +33,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   private routeSubscription: Subscription = Subscription.EMPTY;
 
   projects: ProjectDto[] = [];
-  participations: ProjectParticipationDto [] = [];
+  participations: ProjectParticipationDto[] = [];
 
   @ViewChild('feedSource') private feedSource: GraphQlFeedComponent;
 

@@ -29,7 +29,6 @@
     </ng-template>
     <ng-template pTemplate="content">
       <p-tabView [scrollable]="true">
-
         <p-tabPanel header="{{ 'my-projects.MY_APPLICATION' | translate }}" *ngIf="myProject.participations.length > 0">
           <div class="p-grid" *ngFor="let participation of myProject.participations">
             <div class="p-col-6 content-item">
@@ -43,14 +42,12 @@
               <label>{{ 'my-projects.APPLICATIONSTATUS' | translate }}</label>
               <span>{{ participation.participationStatusInner?.name }}</span>
             </div>
-
             <div class="p-col-12 content-item" *ngIf="participation.commentByPerformerInner">
               <label>{{ 'my-projects.MY_COMMENT' | translate }}</label>
               <span>{{ participation.commentByPerformerInner }}</span>
             </div>
           </div>
         </p-tabPanel>
-
         <p-tabPanel header="{{ 'my-projects.RESPONSE_STAFF' | translate }}" *ngIf="myProject.participations.length > 0">
           <div class="p-grid" *ngFor="let participation of myProject.participations">
             <div class="p-col-12 content-item">
@@ -67,7 +64,6 @@
             </div>
           </div>
         </p-tabPanel>
-
         <p-tabPanel header="{{ 'my-projects.PROJECTDETAILS' | translate }}">
           <div class="p-grid">
             <div class="p-col-12 content-item">
@@ -92,7 +88,6 @@
             </div>
           </div>
         </p-tabPanel>
-
       </p-tabView>
     </ng-template>
   </p-accordionTab>

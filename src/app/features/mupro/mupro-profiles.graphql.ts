@@ -49,11 +49,18 @@ export const MuproProfilesQuery = gql`
             country
             zip
           }
+
         }
         instrument {
           id
           name
-
+        }
+        regionPreferences {
+          id
+          region {
+            id
+            name
+          }
         }
       }
     }

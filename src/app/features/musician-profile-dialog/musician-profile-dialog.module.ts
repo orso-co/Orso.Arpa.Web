@@ -46,7 +46,7 @@ import { BadgeModule } from 'primeng/badge';
     MusicianInstrumentsComponent,
     InstrumentPartsPipe,
     SectionPipe,
-    ],
+  ],
   imports: [
     CommonModule,
     FormsModule,

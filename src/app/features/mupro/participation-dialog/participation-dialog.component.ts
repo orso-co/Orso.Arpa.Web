@@ -15,7 +15,9 @@ export class ParticipationDialogComponent implements OnInit {
   form: FormGroup;
   participationPerformer: MyProjectParticipationDto = this.config.data.participationPerformer;
   participationStaff: MyProjectParticipationDto = this.config.data.participationStaff;
-  statusOptions$: Observable<SelectItem[]> = this.config.data.statusOptions$;
+  statusOptionsPerformer$: Observable<SelectItem[]> = this.config.data.statusOptionsPerformer$;
+  statusOptionsStaff$: Observable<SelectItem[]> = this.config.data.statusOptionsStaff$;
+
   projecttitle$: string = this.config.data.projectTitle$;
 
   constructor(
@@ -27,19 +29,19 @@ export class ParticipationDialogComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      participationStatusIdPerformer: [null, [Validators.required]],
+      participationStatusInnerId: [null, [Validators.required]],
       commentPerformer: [null, [Validators.maxLength(500)]],
 
-      participationStatusIdStaff: [null, [Validators.required]],
+      participationStatusInternalId: [null, [Validators.required]],
       commentStaff: [null, [Validators.maxLength(500)]],
     });
 
     this.form.patchValue({
-      participationStatusIdPerformer: this.participationPerformer.participationStatusInner?.id,
-      commentPerformer: this.participationPerformer.commentByPerformerInner,
+      participationStatusInnerId: this.participationPerformer.participationStatusInner?.id,
+      commentByPerformerInner: this.participationStaff.commentByPerformerInner,
 
-      participationStatusIdStaff: this.participationStaff.participationStatusInternal?.id,
-      commentStaff: this.participationStaff.commentByStaffInner,
+      participationStatusInternalId: this.participationStaff.participationStatusInternal?.id,
+      commentByStaffInner: this.participationStaff.commentByStaffInner,
     });
   }
 
