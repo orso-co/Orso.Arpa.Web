@@ -18,4 +18,6 @@ export interface MyAppointmentDto {
   expectation?: string;
   result?: string;
   predictionId?: string;
+  categoryId?: string;
+  statusId?: string;
 }

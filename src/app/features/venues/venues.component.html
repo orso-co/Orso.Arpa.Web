@@ -1,0 +1,95 @@
+<div class="p-grid">
+  <div class="p-col-12 p-md-4">
+    <p-listbox
+      [options]="venues || []"
+      [(ngModel)]="selectedVenue"
+      optionLabel="label"
+      [filter]="true"
+      [filterPlaceHolder]="'FILTER_PLACEHOLDER' | translate"
+      [emptyFilterMessage]="'EMPTY_FILTER_MESSAGE' | translate"
+      [emptyMessage]="'EMPTY_MESSAGE' | translate"
+      (onChange)="onSelectionChange($event)"
+    >
+      <ng-template let-venue pTemplate="item">
+        <div class="p-flex-column">
+          <span class="p-text-bold">{{ venue.name | uppercase }}</span
+          ><span>, {{ venue.address.zip }} {{ venue.address.city }}</span
+          ><br /><span>({{ venue.address.country }})</span>
+        </div>
+      </ng-template></p-listbox
+    >
+  </div>
+  <div class="p-col-12 p-md-8">
+    <div class="p-formgroup-inline p-jc-between">
+      <h2>{{ selectedVenue ? ('EDIT_VENUE' | translate) : ('CREATE_VENUE' | translate) }}</h2>
+      <button
+        *ngIf="selectedVenue"
+        pButton
+        pRipple
+        type="button"
+        icon="pi pi-trash"
+        class="p-button-rounded p-button-danger p-button-outlined"
+        (click)="delete($event)"
+      ></button>
+    </div>
+    <form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
+      <div class="p-grid p-fluid p-formgrid">
+        <div class="p-col-12">
+          <arpa-form-field label="NAME">
+            <input formControlName="name" id="name" pInputText type="text" />
+          </arpa-form-field>
+        </div>
+        <div class="p-col-12">
+          <arpa-form-field label="DESCRIPTION">
+            <textarea formControlName="description" id="description" pInputText type="text"></textarea>
+          </arpa-form-field>
+        </div>
+        <div class="p-col-12 p-xl-6">
+          <arpa-form-field label="ADDRESS1">
+            <input formControlName="address1" id="address1" pInputText type="text" />
+          </arpa-form-field>
+        </div>
+        <div class="p-col-12 p-xl-6">
+          <arpa-form-field label="ADDRESS2">
+            <input formControlName="address2" id="address2" pInputText type="text" />
+          </arpa-form-field>
+        </div>
+        <div class="p-col-12 p-xl-4">
+          <arpa-form-field label="ZIP">
+            <input formControlName="zip" id="zip" pInputText type="text" required="true" />
+          </arpa-form-field>
+        </div>
+        <div class="p-col-12 p-xl-8">
+          <arpa-form-field label="CITY">
+            <input formControlName="city" id="city" pInputText type="text" />
+          </arpa-form-field>
+        </div>
+        <div class="p-col-12">
+          <arpa-form-field label="URBANDISTRICT">
+            <input formControlName="urbanDistrict" id="urbanDistrict" pInputText type="text" />
+          </arpa-form-field>
+        </div>
+        <div class="p-col-12 p-xl-6">
+          <arpa-form-field label="STATE">
+            <input formControlName="state" id="state" pInputText type="text" />
+          </arpa-form-field>
+        </div>
+        <div class="p-col-12 p-xl-6">
+          <arpa-form-field label="COUNTRY">
+            <input formControlName="country" id="country" pInputText type="text" />
+          </arpa-form-field>
+        </div>
+        <div class="p-col-12">
+          <arpa-form-field label="ADDRESS_COMMENT_INNER">
+            <textarea formControlName="addressCommentInner" id="addressCommentInner" pInputText type="text"></textarea>
+          </arpa-form-field>
+        </div>
+      </div>
+      <div class="p-formgroup-inline p-jc-between">
+        <p-button type="button" [label]="'CANCEL' | translate" (click)="resetForm()"></p-button>
+        <p-button [disabled]="formGroup.invalid || formGroup.pristine" type="submit" [label]="'SAVE' | translate"></p-button>
+      </div>
+    </form>
+  </div>
+</div>
+<p-confirmPopup></p-confirmPopup>

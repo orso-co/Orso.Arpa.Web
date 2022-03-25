@@ -72,7 +72,10 @@
     "WEEK": "Semaine",
     "WELCOME": "Bienvenue sur ARPA 2.0",
     "YES": "Oui",
-
+    "RECORDS": "enregistrements",
+    "RESULTS": "Résultats",
+    "VENUES": "Lieux",
+  
     "error": {
       "BAD_REQUEST": "Une erreur s’est produite",
       "CONNECTION_ERROR": "Erreur de connexion, merci de réessayer plus tard",
