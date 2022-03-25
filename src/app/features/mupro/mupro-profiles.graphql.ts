@@ -39,6 +39,7 @@ export const MuproProfilesQuery = gql`
       totalCount
       items {
         id
+        createdAt
         isMainProfile
         person {
           id
@@ -52,6 +53,7 @@ export const MuproProfilesQuery = gql`
         instrument {
           id
           name
+
         }
       }
     }

@@ -10,5 +10,6 @@
   "PARTICIPATION_STATUS_INTERNAL": "Teilnahmestatus",
   "PARTICIPATION_STATUS_INNER": "Teilnahmestatus",
   "PARTICIPATION_COMMENT_PERFORMER": "Kommentar Performer",
-  "PARTICIPATION_COMMENT_STAFF": "Kommentar Mitarbeiter"
+  "PARTICIPATION_COMMENT_STAFF": "Kommentar Mitarbeiter",
+  "MUPRO_CREATION_DATE": "Profil-Erstellungsdatum"
 }

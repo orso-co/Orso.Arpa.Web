@@ -9,5 +9,7 @@
   "PARTICIPATION_STATUS_INTERNAL": "Statut de participation",
   "PARTICIPATION_STATUS_INNER": "Statut de participation",
   "PARTICIPATION_COMMENT_PERFORMER": "Commentaire du l'interprète",
-  "PARTICIPATION_COMMENT_STAFF": "Commentaire du personnel"
+  "PARTICIPATION_COMMENT_STAFF": "Commentaire du personnel",
+  "MUPRO_CREATION_DATE": "Date de création de ce profil"
+
 }

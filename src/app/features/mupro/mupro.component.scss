@@ -9,17 +9,18 @@
     line-height: 128%;
 
     &.name {
-
+      font-weight: 300;
+      font-size: 0.8em ;
     }
 
     &.profile {
-      font-weight: 200;
+      font-weight: 400;
     }
 
-    &.country {
+    &.created {
       font-size: .8em;
-      font-weight: 200;
-      opacity: .8;
+      font-weight: 100;
+      opacity: 100;
     }
   }
 }

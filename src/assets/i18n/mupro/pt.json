@@ -9,5 +9,6 @@
   "PARTICIPATION_STATUS_INTERNAL": "estado da participação",
   "PARTICIPATION_STATUS_INNER": "estado da participação",
   "PARTICIPATION_COMMENT_PERFORMER": "comentário do artista",
-  "PARTICIPATION_COMMENT_STAFF": "comentário da equipa"
+  "PARTICIPATION_COMMENT_STAFF": "comentário da equipa",
+  "MUPRO_CREATION_DATE": "data de criação deste perfil"
 }
