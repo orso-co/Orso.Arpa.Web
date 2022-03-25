@@ -32,10 +32,10 @@ export class MusicianDialogEntryComponent {
 
   public openDialog(selection?: MusicianProfileDto) {
     // Filter sections against existing profiles but keep selected.
-    const sections = combineLatest(
+    const sections = combineLatest([
       this.route.data.pipe<SectionDto[]>(map((data) => data.sections)),
-      this.route.data.pipe<MusicianProfileDto[]>(map((data) => data.profiles))
-    ).pipe(
+      this.route.data.pipe<MusicianProfileDto[]>(map((data) => data.profiles)),
+    ]).pipe(
       map(([sections, profiles]) =>
         sections.filter(({ id }) => {
           return !profiles.some(({ instrumentId }) =>
@@ -70,7 +70,6 @@ export class MusicianDialogEntryComponent {
       header: selection ? this.translate.instant('EDIT') : this.translate.instant('CREATE'),
       styleClass: 'form-modal',
       dismissableMask: true,
-      width: window.innerWidth > 1000 ? '66%' : '100%',
     });
 
     ref.onClose.pipe(first()).subscribe((profile: MusicianProfileDto) => {

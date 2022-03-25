@@ -36,5 +36,21 @@
     "COMMENT_INNER": "Commentaire",
     "COMMENT": "Commentaire",
     "COMMENT_TEAM": "Commentaire du personnel"
+  },
+  "my-projects": {
+    "APPLICATIONSTATUS": "Statut de ma candidature",
+    "CHANGE_APPLICATION": "Changer de candidature",
+    "COMMENT_STAFF": "commentaire du personnel",
+    "DESCRIPTION": "Description",
+    "MY_APPLICATION": "Mon inscription",
+    "MY_COMMENT": "Mon commentaire",
+    "MY_PROFILE": "Mon profil pour cette inscription",
+    "PROJECTDETAILS": "Détails du projet",
+    "RESPONSE_STAFF": "Eéponse du personnel",
+    "RESPONSE_STAFF_PROFILE": "Profil auquel le personnel répond",
+    "RESPONSE_STATUS": "État de la réponse",
+    "STATUS": "Statut",
+    "TYPE": "Taper",
+    "URLS": "URLs"
   }
 }

@@ -36,5 +36,21 @@
     "COMMENT_INNER": "Kommentar",
     "COMMENT": "Kommentar",
     "COMMENT_TEAM": "Kommentar Mitarbeiter"
+  },
+  "my-projects": {
+    "APPLICATIONSTATUS": "Mein Anmeldestatus",
+    "CHANGE_APPLICATION": "Anmeldung ändern",
+    "COMMENT_STAFF": "Kommentar KBB",
+    "DESCRIPTION": "Beschreibung",
+    "EDIT_PARTICIPATION": "Teilnahmestatus bearbeiten",
+    "MY_APPLICATION": "Meine Anmeldung",
+    "MY_COMMENT": "Mein Kommentar",
+    "MY_PROFILE": "Mein Profil für diese Anmeldung",
+    "PROJECTDETAILS": "Projektdetails",
+    "RESPONSE_STAFF": "Rückmeldung KBB",
+    "RESPONSE_STATUS": "Rückmeldestatus",
+    "STATUS": "Status",
+    "TYPE": "Typ",
+    "URLS": "Links"
   }
 }

@@ -15,5 +15,8 @@
   "USERS": "Benutzer",
   "USER_DELETED": "Der User wurde gelöscht",
   "USER_MANAGEMENT": "Benutzerverwaltung",
-  "USER_ROLES_SET": "Benutzerrollen aktualisiert"
+  "USER_ROLES_SET": "Benutzerrollen aktualisiert",
+  "PROJECTDETAILS": "Projektdetails",
+  "DESCRIPTION": "Beschreibung",
+  "GOTO_PROJECT": "Gehe zu Projekt"
 }

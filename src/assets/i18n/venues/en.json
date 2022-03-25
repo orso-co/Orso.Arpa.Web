@@ -1,0 +1,26 @@
+{
+  "CREATE_VENUE": "Create Venue",
+  "NAME": "Name of Venue",
+  "DESCRIPTION": "Description",
+  "ADDRESS1": "Adress 1",
+  "ADDRESS2": "Adress 2",
+  "ZIP": "ZIP-Code",
+  "CITY": "City",
+  "URBANDISTRICT": "Urban District",
+  "STATE": "State",
+  "COUNTRY": "Country",
+  "ADDRESS_COMMENT_INNER": "Comment",
+  "FILTER_PLACEHOLDER": "Search for Venue",
+  "EMPTY_FILTER_MESSAGE": "No Result",
+  "EMPTY_MESSAGE": "No Result found",
+  "EDIT_VENUE": "Edit Venue",
+  "VENUES": "Venues",
+  "VENUE_UPDATED":"Venue updated",
+  "ARE_YOU_SURE": "Are you sure?",
+  "VENUE_DELETED": "Venue deleted",
+  "VENUE_CREATED": "Venue created"
+
+
+
+
+}

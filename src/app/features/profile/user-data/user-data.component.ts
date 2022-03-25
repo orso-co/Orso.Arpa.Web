@@ -37,7 +37,6 @@ export class UserDataComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
     this.form.patchValue({
       ...changes.person.currentValue,
       genderId: changes.person?.currentValue.gender?.id,

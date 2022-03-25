@@ -8,7 +8,8 @@
 
 <div class='p-grid p-jc-center'>
   <div class='p-col-12 p-md-6 p-text-center'>
-    <h1 #predictionAction>{{ 'profile.MY_APPOINTMENTS' | translate}}</h1>
+    <h1 #predictionAction>{{ 'profile.MY_APPOINTMENTS' | translate}} </h1>
+    <h3>({{ (totalRecordsCount$ | async) || 0 }})</h3>
   </div>
 </div>
 <div class='p-grid p-jc-center p-mt-4'>
@@ -46,6 +47,12 @@
                    [value]=' appointment.predictionId | selectValue: predictions '></p-badge></span>
         <span class='time'>{{ appointment.startTime | date: 'H:mm':'locale(de)' }}
           - {{ appointment.endTime | date: 'H:mm':'locale(de)' }}</span>
+        <span *ngIf='appointment.venue?.name' class='venue'>
+          {{ appointment.venue?.name }}
+        </span>
+        <span *ngIf='appointment.category?.name' class='category'>
+          {{ appointment.category?.name }}
+        </span>
         <span *ngIf='appointment.projects.length > 0' class='projects'>
           {{ getProjectNames(appointment.projects) }}
         </span>
