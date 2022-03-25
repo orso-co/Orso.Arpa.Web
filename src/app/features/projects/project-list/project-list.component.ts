@@ -65,7 +65,7 @@ export class ProjectListComponent {
         state: this.selectValueService.load('Project', 'State').pipe(map(() => this.selectValueService.get('Project', 'State'))),
       },
       header: selection ? this.translate.instant('projects.EDIT_PROJECT') : this.translate.instant('projects.NEW_PROJECT'),
-      width: window.innerWidth > 1000 ? '66%' : '100%',
+      styleClass: 'form-modal',
       dismissableMask: true,
     });
     ref.onClose.pipe(first()).subscribe((project: ProjectDto) => {
@@ -89,7 +89,6 @@ export class ProjectListComponent {
       header: this.translate.instant('projects.EDIT_PARTICIPATION'),
       styleClass: 'form-modal',
       dismissableMask: true,
-      width: window.innerWidth > 1000 ? '66%' : '100%',
     });
 
     ref.onClose.pipe(first()).subscribe((result) => {
@@ -110,7 +109,6 @@ export class ProjectListComponent {
       header: `${this.translate.instant('projects.PARTICIPANTS')}: ${project.title}`,
       styleClass: 'form-modal',
       dismissableMask: true,
-      width: window.innerWidth > 1000 ? '66%' : '100%',
     });
   }
 

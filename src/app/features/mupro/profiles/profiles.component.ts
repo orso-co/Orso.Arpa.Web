@@ -109,7 +109,6 @@ export class ProfilesComponent implements OnInit, OnDestroy {
       header: this.translate.instant('INVITE_MUSICIAN_PROFILE'),
       styleClass: 'form-modal',
       dismissableMask: true,
-      width: window.innerWidth > 1000 ? '66%' : '100%',
     });
 
     ref.onClose.pipe(first()).subscribe((result) => {
