@@ -62,6 +62,19 @@ export const MuproProfilesQuery = gql`
             name
           }
         }
+        projectParticipations {
+          id
+          project {
+            id
+            title
+          }
+          participationStatusInnerId
+          participationStatusInner {selectValue { name}}
+          participationStatusInternalId
+          participationStatusInternal {selectValue {name}}
+          invitationStatusId
+          invitationStatus {selectValue {name}}
+        }
       }
     }
   }`;

@@ -18,7 +18,6 @@ export class ParticipationDialogComponent implements OnInit {
   statusOptionsPerformer$: Observable<SelectItem[]> = this.config.data.statusOptionsPerformer$;
   statusOptionsStaff$: Observable<SelectItem[]> = this.config.data.statusOptionsStaff$;
 
-  projecttitle$: string = this.config.data.projectTitle$;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,10 +29,10 @@ export class ParticipationDialogComponent implements OnInit {
   ngOnInit() {
     this.form = this.formBuilder.group({
       participationStatusInnerId: [null, [Validators.required]],
-      commentPerformer: [null, [Validators.maxLength(500)]],
+      commentByPerformerInner: [null, [Validators.maxLength(500)]],
 
       participationStatusInternalId: [null, [Validators.required]],
-      commentStaff: [null, [Validators.maxLength(500)]],
+      commentByStaffInner: [null, [Validators.maxLength(500)]],
     });
 
     this.form.patchValue({

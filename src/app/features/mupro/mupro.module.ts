@@ -50,6 +50,7 @@ import { ProjectsByMuproComponent } from './projects-by-mupro/projects-by-mupro.
     GraphQlFeedModule,
     TableModule,
     FormFieldModule,
+
     // NG Prime Dependencies
     ListboxModule,
     StepsModule,
