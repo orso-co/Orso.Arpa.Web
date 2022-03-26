@@ -13,10 +13,8 @@
   "CREATED_BY": "Erstellt von",
   "MODIFIED_AT": "Geändert am",
   "MODIFIED_BY": "Geändert von",
-
-  "LEVEL_ASSESSMENT_TEAM": "Level (KBB)",
-  "QUALIFICATION": "Qualifikation",
-  "SECTION": "Register",
-  "INSTRUMENT": "Instrument"
-
+  "BASE_DATA": "Stammdaten",
+  "CONTACT_DATA": "Kontakt",
+  "PERSON_MODIFIED": "Personendaten geändert",
+  "ADD_NEW_PERSON": "Neue Person anlegen"
 }

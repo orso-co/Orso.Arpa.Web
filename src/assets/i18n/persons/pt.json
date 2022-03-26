@@ -12,8 +12,7 @@
   "BIRTHPLACE": "local de nascimento",
   "GENDER": "género",
   "MODIFIED_AT": "modificado em",
-  "MODIFIED_BY": "modificado por"
+  "MODIFIED_BY": "modificado por",
+  "ADD_NEW_PERSON": "Criar nova pessoa",
+  "PERSON_MODIFIED": "dados pessoais modificados"
 }
-      
-    
-    

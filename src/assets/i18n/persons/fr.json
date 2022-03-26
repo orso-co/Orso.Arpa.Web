@@ -12,6 +12,7 @@
     "CREATED_AT": "Créé le",
     "CREATED_BY": "Créé par",
     "MODIFIED_AT": "Modifié le",
-    "MODIFIED_BY": "Modifié par"
+    "MODIFIED_BY": "Modifié par",
+    "ADD_NEW_PERSON": "Créer une nouvelle personne",
+    "PERSON_MODIFIED": "Données personnelles modifiées"
   }
-  

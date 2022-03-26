@@ -12,5 +12,7 @@
   "BIRTHPLACE": "Birtplace",
   "GENDER": "Gender",
   "MODIFIED_AT": "Modified at",
-  "MODIFIED_BY": "Modified by"
+  "MODIFIED_BY": "Modified by",
+  "ADD_NEW_PERSON": "Add new person",
+  "PERSON_MODIFIED": "Person data modified"
 }

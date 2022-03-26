@@ -12,3 +12,11 @@
     [feed]='feed'
   ></arpa-table>
 </ng-template>
+<div class='p-formgroup-inline p-jc-between'>
+  <div class='p-field p-col p-text-right' style='margin-right: 0'>
+    <button label="{{ 'persons.ADD_NEW_PERSON' | translate }}"
+          icon='pi pi-plus' pButton
+          (click)='openPersonDetailDialog(null)'
+          type='button'></button>
+  </div>
+</div>
