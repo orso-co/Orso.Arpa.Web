@@ -34,9 +34,9 @@ export class MuproComponent implements OnInit, OnDestroy {
     }
   }
 
-  public select({ person, mupro }: any) {
+  public select({ person, id }: any) {
     this.person = person.id;
-    this.mupro = mupro.id;
-    this.router.navigate([person.id, mupro.id], { relativeTo: this.route });
+    this.mupro = id;
+    this.router.navigate([person.id], { relativeTo: this.route });
   }
 }
