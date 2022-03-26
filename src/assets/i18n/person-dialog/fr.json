@@ -1,0 +1,18 @@
+{
+    "PERSONS": "Personnes",
+    "GIVEN_NAME": "Prénom",
+    "SURNAME": "Nom",
+    "ABOUT_ME": "À propos de moi",
+    "DATEOFBIRTH": "Date de naissance",
+    "BIRTHPLACE": "Lieu de naissance",
+    "RELIABILITY": "Fiabilité",
+    "GENERAL_PREFERENCE": "Préférence",
+    "EXPERIENCE_LEVEL": "Expérience",
+    "GENDER": "Sexe",
+    "CREATED_AT": "Créé le",
+    "CREATED_BY": "Créé par",
+    "MODIFIED_AT": "Modifié le",
+    "MODIFIED_BY": "Modifié par",
+    "ADD_NEW_PERSON": "Créer une nouvelle personne",
+    "PERSON_MODIFIED": "Données personnelles modifiées"
+  }

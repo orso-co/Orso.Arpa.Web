@@ -11,17 +11,17 @@
       </arpa-form-field>
     </div>
     <div class="p-col-12 p-md-4">
-      <arpa-form-field label="BIRTHNAME">
+      <arpa-form-field label="persons.BIRTHNAME">
         <input autocomplete="birthName" formControlName="birthName" id="birthName" pInputText type="text" />
       </arpa-form-field>
     </div>
     <div class="p-col-12 p-md-6">
-      <arpa-form-field label="BIRTHPLACE">
+      <arpa-form-field label="persons.BIRTHPLACE">
         <input autocomplete="birthplace" formControlName="birthplace" id="birthplace" pInputText type="text" />
       </arpa-form-field>
     </div>
     <div class="p-col-12 p-md-6">
-      <arpa-form-field label="DATEOFBIRTH" type="date">
+      <arpa-form-field label="persons.DATEOFBIRTH" type="date">
         <p-calendar
           [showIcon]="true"
           [showOnFocus]="false"
@@ -44,7 +44,7 @@
       </arpa-form-field>
     </div>
     <div class="p-col-12 p-md-6">
-      <arpa-form-field label="CONTACTVIA" type="select">
+      <arpa-form-field label="persons.CONTACTVIA" type="select">
         <p-autoComplete
           formControlName="contactVia"
           [suggestions]="filteredPersons"
@@ -60,20 +60,20 @@
       ></arpa-form-field>
     </div>
     <div class="p-col-12">
-      <arpa-form-field label="ABOUT_ME">
+      <arpa-form-field label="persons.ABOUT_ME">
         <textarea autocomplete="aboutMe" formControlName="aboutMe" id="aboutMe" pInputText type="text"></textarea>
       </arpa-form-field>
     </div>
     <div class="p-col-12 p-md-4">
-      <label class="p-d-block p-mb-3">{{ 'EXPERIENCELEVEL' | translate }}</label>
+      <label class="p-d-block p-mb-3">{{ 'persons.EXPERIENCE_LEVEL' | translate }}</label>
       <p-rating formControlName="experienceLevel" [cancel]="false" [stars]="5"></p-rating>
     </div>
     <div class="p-col-12 p-md-4">
-      <label class="p-d-block p-mb-3">{{ 'RELIABILITY' | translate }}</label
+      <label class="p-d-block p-mb-3">{{ 'persons.RELIABILITY' | translate }}</label
       ><p-rating formControlName="reliability" [cancel]="false" [stars]="5"></p-rating>
     </div>
     <div class="p-col-12 p-md-4">
-      <label class="p-d-block p-mb-3">{{ 'GENERALPREFERENCE' | translate }}</label
+      <label class="p-d-block p-mb-3">{{ 'persons.GENERAL_PREFERENCE' | translate }}</label
       ><p-rating formControlName="generalPreference" [cancel]="false" [stars]="5"></p-rating>
     </div>
   </div>

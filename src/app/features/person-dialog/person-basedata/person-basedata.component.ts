@@ -65,7 +65,7 @@ export class PersonBasedataComponent implements OnInit, OnChanges {
       .update(this.person!.id!, value)
       .pipe(first())
       .subscribe(() => {
-        this.notificationService.success('PERSON_MODIFIED', 'person-dialog');
+        this.notificationService.success('PERSON_MODIFIED', 'persons');
         this.personSaved.emit();
       });
   }
