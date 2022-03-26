@@ -15,6 +15,7 @@
 
 <ng-template #actionsTemplate let-row>
   <button
+    (click)="sendInvite(row.person.id)"
     class="p-button-rounded p-button-text p-button-icon-only"
     icon="pi pi-envelope"
     pButton

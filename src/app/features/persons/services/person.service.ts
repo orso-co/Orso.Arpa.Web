@@ -23,6 +23,10 @@ export class PersonService {
 
   public getPerson(id: string): Observable<PersonDto> {
     return this.apiService.get<PersonDto>(`${this.baseUrl}/${id}`);
+
+  }
+  public invitePersons(ids: string[]): Observable<PersonDto> {
+    return this.apiService.post(`${this.baseUrl}/invite`, {personIds: ids});
   }
 
   public create(person: PersonDto): Observable<PersonDto> {
