@@ -22,5 +22,12 @@
   "QUALIFICATION": "Qualifikation",
   "RELIABILITY": "Zuverlässigkeit",
   "SECTION": "Register",
-  "SURNAME": "Nachname"
+  "SURNAME": "Nachname",
+  "contact": {
+    "VALUE": "Wert",
+    "TYPE": "Typ",
+    "COMMENT_INNER" :"Kommentar Person",
+    "COMMENT_TEAM" :"Kommentar Team",
+    "PREFERENCE": "Präferenz"
+  }
 }

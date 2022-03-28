@@ -25,11 +25,11 @@ export class PersonContactdataComponent implements OnInit {
 
   columns: ColumnDefinition<ContactDetailDto>[] = [
     { label: '#', property: 'key', type: 'template', template: 'keyTemplate' },
-    { label: 'contact.VALUE', property: 'value', type: 'text' },
-    { label: 'contact.PREFERENCE', property: 'preference', type: 'rating', show: true },
-    { label: 'contact.TYPE', property: 'typeId', type: 'state', stateTable: 'ContactDetail', stateProperty: 'Type' },
-    { label: 'contact.COMMENT_INNER', property: 'commentInner', type: 'text', show: false },
-    { label: 'contact.COMMENT_TEAM', property: 'commentTeam', type: 'text', show: false },
+    { label: 'persons.contact.VALUE', property: 'value', type: 'text' },
+    { label: 'persons.contact.PREFERENCE', property: 'preference', type: 'rating', show: true },
+    { label: 'persons.contact.TYPE', property: 'typeId', type: 'state', stateTable: 'ContactDetail', stateProperty: 'Type' },
+    { label: 'persons.contact.COMMENT_INNER', property: 'commentInner', type: 'text', show: false },
+    { label: 'persons.contact.COMMENT_TEAM', property: 'commentTeam', type: 'text', show: false },
   ];
 
   keyOptions = [
@@ -48,6 +48,7 @@ export class PersonContactdataComponent implements OnInit {
       value: [null, [Validators.required, Validators.maxLength(1000)]],
       typeId: [null],
       commentInner: [null, [Validators.maxLength(500)]],
+      commentTeam: [null, [Validators.maxLength(500)]],
       preference: [null],
       id: [null],
     });
@@ -76,7 +77,7 @@ export class PersonContactdataComponent implements OnInit {
         });
     } else {
       this.personService
-        .addContactDetail({ key, value, typeId, commentInner, preference: preference || 0 })
+        .addContactDetail({ id, key, value, typeId, commentInner, preference: preference || 0 })
         .pipe(first())
         .subscribe((result) => {
           this._tableData.push(result);

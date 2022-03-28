@@ -6,6 +6,9 @@ import { PersonDto } from '../../../../@arpa/models/personDto';
 import { ReducedPersonDto } from 'src/@arpa/models/reducedPersonDto';
 import { map, tap, shareReplay } from 'rxjs/operators';
 import { PersonModifyBodyDto } from 'src/@arpa/models/personModifyBodyDto';
+import { ContactDetailCreateDto } from 'src/@arpa/models/contactDetailCreateDto';
+import { ContactDetailModifyBodyDto } from 'src/@arpa/models/contactDetailModifyBodyDto';
+import { ContactDetailDto } from 'src/@arpa/models/contactDetailDto';
 
 @Injectable({
   providedIn: 'root',
@@ -69,5 +72,16 @@ export class PersonService {
         }`,
       })
       .valueChanges.pipe(map((result) => result.data.persons.items));
+  }
+  addContactDetail(dto: ContactDetailCreateDto): Observable<ContactDetailDto> {
+    return this.apiService.post<ContactDetailDto>(`${this.baseUrl}/contactdetails`, dto).pipe(shareReplay());
+  }
+
+  updateContactDetail(id: string, dto: ContactDetailModifyBodyDto): Observable<any> {
+    return this.apiService.put(`${this.baseUrl}/contactdetails/${id}`, dto).pipe(shareReplay());
+  }
+
+  deleteContactDetail(id: string): Observable<any> {
+    return this.apiService.delete(`${this.baseUrl}/contactdetails/${id}`).pipe(shareReplay());
   }
 }
