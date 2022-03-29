@@ -20,7 +20,7 @@ export class ContactService {
     return this.apiService.post<ContactDetailDto>(`${this.baseUrl}/${personId}/contactdetails`, dto).pipe(shareReplay());
   }
 
-  updateContactDetail(id: string, dto: ContactDetailModifyBodyDto): Observable<any> {
+  updateContactDetail(id: string,  dto: ContactDetailModifyBodyDto): Observable<any> {
     return this.apiService.put(`${this.baseUrl}/contactdetails/${id}`, dto).pipe(shareReplay());
   }
 
