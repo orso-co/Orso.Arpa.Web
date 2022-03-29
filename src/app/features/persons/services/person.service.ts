@@ -73,8 +73,8 @@ export class PersonService {
       })
       .valueChanges.pipe(map((result) => result.data.persons.items));
   }
-  addContactDetail(dto: ContactDetailCreateDto): Observable<ContactDetailDto> {
-    return this.apiService.post<ContactDetailDto>(`${this.baseUrl}/contactdetails`, dto).pipe(shareReplay());
+  addContactDetail(personId: string, dto: ContactDetailCreateDto): Observable<ContactDetailDto> {
+    return this.apiService.post<ContactDetailDto>(`${this.baseUrl}/${personId}/contactdetails`, dto).pipe(shareReplay());
   }
 
   updateContactDetail(id: string, dto: ContactDetailModifyBodyDto): Observable<any> {

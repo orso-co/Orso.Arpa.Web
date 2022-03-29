@@ -10,6 +10,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { cloneDeep } from 'lodash-es';
 import { first, map } from 'rxjs/operators';
 import { SelectItem } from 'primeng/api';
+import { PersonDto } from 'src/@arpa/models/personDto';
 
 @Component({
   selector: 'arpa-person-contactdata',
@@ -21,6 +22,8 @@ export class PersonContactdataComponent implements OnInit {
   tableData: BehaviorSubject<any> = new BehaviorSubject([]);
   private _tableData: Array<any>;
   @Input() contactDetails: ContactDetailDto[] = [];
+  @Input() person: PersonDto | null;
+
   public typeOptions$: Observable<SelectItem[]>;
 
   columns: ColumnDefinition<ContactDetailDto>[] = [
@@ -63,6 +66,7 @@ export class PersonContactdataComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.person){
     const { id, key, value, typeId, commentInner, preference } = this.form.getRawValue();
     if (id) {
       this.personService
@@ -77,7 +81,7 @@ export class PersonContactdataComponent implements OnInit {
         });
     } else {
       this.personService
-        .addContactDetail({ id, key, value, typeId, commentInner, preference: preference || 0 })
+        .addContactDetail(this.person.id, { id, key, value, typeId, commentInner, preference: preference || 0 })
         .pipe(first())
         .subscribe((result) => {
           this._tableData.push(result);
@@ -87,6 +91,7 @@ export class PersonContactdataComponent implements OnInit {
         });
     }
   }
+}
 
   remove(contactDetail: ContactDetailDto): void {
     this.personService
