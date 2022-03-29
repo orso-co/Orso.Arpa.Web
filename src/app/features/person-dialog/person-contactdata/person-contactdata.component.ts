@@ -1,7 +1,5 @@
-import { PersonService } from './../../persons/services/person.service';
 import { SelectValueService } from './../../../shared/services/select-value.service';
 import { ContactDetailDto } from './../../../../@arpa/models/contactDetailDto';
-import { MeService } from './../../../shared/services/me.service';
 import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationsService } from 'src/@arpa/services/notifications.service';
@@ -11,6 +9,7 @@ import { cloneDeep } from 'lodash-es';
 import { first, map } from 'rxjs/operators';
 import { SelectItem } from 'primeng/api';
 import { PersonDto } from 'src/@arpa/models/personDto';
+import { ContactService } from '../services/contact.service';
 
 @Component({
   selector: 'arpa-person-contactdata',
@@ -42,7 +41,7 @@ export class PersonContactdataComponent implements OnInit {
   ];
   constructor(
     private formBuilder: FormBuilder,
-    private personService: PersonService,
+    private contactService: ContactService,
     private notificationsService: NotificationsService,
     private selectValueService: SelectValueService
   ) {
@@ -69,7 +68,7 @@ export class PersonContactdataComponent implements OnInit {
     if (this.person){
     const { id, key, value, typeId, commentInner, preference } = this.form.getRawValue();
     if (id) {
-      this.personService
+      this.contactService
         .updateContactDetail(id, { key, value, typeId, commentInner, preference: preference || 0 })
         .pipe(first())
         .subscribe((_) => {
@@ -80,7 +79,7 @@ export class PersonContactdataComponent implements OnInit {
           this.form.reset({});
         });
     } else {
-      this.personService
+      this.contactService
         .addContactDetail(this.person.id, { id, key, value, typeId, commentInner, preference: preference || 0 })
         .pipe(first())
         .subscribe((result) => {
@@ -94,7 +93,7 @@ export class PersonContactdataComponent implements OnInit {
 }
 
   remove(contactDetail: ContactDetailDto): void {
-    this.personService
+    this.contactService
       .deleteContactDetail(contactDetail.id)
       .pipe(first())
       .subscribe(() => {
