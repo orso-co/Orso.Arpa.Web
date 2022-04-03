@@ -1,7 +1,11 @@
+import { Apollo, gql } from 'apollo-angular';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '../../../../@arpa/services/api.service';
 import { PersonDto } from '../../../../@arpa/models/personDto';
+import { ReducedPersonDto } from 'src/@arpa/models/reducedPersonDto';
+import { map, tap, shareReplay } from 'rxjs/operators';
+import { PersonModifyBodyDto } from 'src/@arpa/models/personModifyBodyDto';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +13,7 @@ import { PersonDto } from '../../../../@arpa/models/personDto';
 export class PersonService {
   readonly baseUrl: string;
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private apollo: Apollo) {
     this.baseUrl = '/persons';
   }
 
@@ -19,15 +23,51 @@ export class PersonService {
 
   public getPerson(id: string): Observable<PersonDto> {
     return this.apiService.get<PersonDto>(`${this.baseUrl}/${id}`);
+
+  }
+  public invitePersons(ids: string[]): Observable<PersonDto> {
+    return this.apiService.post(`${this.baseUrl}/invite`, {personIds: ids});
   }
 
   public create(person: PersonDto): Observable<PersonDto> {
     return this.apiService.post<PersonDto>(this.baseUrl, person);
   }
 
-  public update(person: PersonDto): Observable<any> {
-    return this.apiService.put(`${this.baseUrl}/${person.id}`, person);
+  public update(id: string, dto: PersonModifyBodyDto): Observable<any> {
+    return this.apiService.put(`${this.baseUrl}/${id}`, dto).pipe(shareReplay());
   }
 
-
+  public searchPerson(query: string): Observable<ReducedPersonDto[]> {
+    return this.apollo
+      .watchQuery<any>({
+        query: gql`query Persons(
+          $skip: Int = 0,
+          $take: Int = 11,
+          $orderName: SortEnumType = ASC,
+          $orderSurname: SortEnumType = ASC,
+          $searchQuery: String = "${query}"){
+          persons(
+            skip: $skip,
+            take: $take,
+            order: {
+              surname: $orderSurname
+              givenName: $orderName
+            },
+            where: {
+              or: [
+                { surname: { contains:$searchQuery}}, { givenName: { contains: $searchQuery } }
+              ]
+            }
+          ) {
+            items {
+              id
+              givenName
+              surname,
+              displayName
+            }
+          }
+        }`,
+      })
+      .valueChanges.pipe(map((result) => result.data.persons.items));
+  }
 }

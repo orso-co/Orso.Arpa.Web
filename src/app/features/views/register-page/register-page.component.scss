@@ -12,7 +12,9 @@
 
   arpa-password-strength {
     .indicator {
-      margin-top: -2.5rem;
+      @media screen and (min-width: 767px) {
+        margin-top: -2.5rem;
+      }
     }
   }
 

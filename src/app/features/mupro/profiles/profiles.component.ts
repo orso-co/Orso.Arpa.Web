@@ -68,7 +68,7 @@ export class ProfilesComponent implements OnInit, OnDestroy {
     this.sections = this.route.data.pipe<SectionDto[]>(map((data) => data.sections));
     this.profiles = this.route.data.pipe<MusicianProfileDto[]>(map((data) => data.profiles || []));
     this.projectService.load(false).subscribe((projects) => (this.projects = projects));
-    
+
     this.profileNav = this.profiles.pipe(
       map(
         (data) =>
@@ -109,7 +109,6 @@ export class ProfilesComponent implements OnInit, OnDestroy {
       header: this.translate.instant('INVITE_MUSICIAN_PROFILE'),
       styleClass: 'form-modal',
       dismissableMask: true,
-      width: window.innerWidth > 1000 ? '66%' : '100%',
     });
 
     ref.onClose.pipe(first()).subscribe((result) => {

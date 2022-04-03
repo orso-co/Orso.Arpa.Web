@@ -5,14 +5,30 @@ export const ProjectsQuery = gql`
     $skip: Int
     $take: Int
     $orderTitle: SortEnumType = ASC
-    $orderStart: SortEnumType = ASC
-    $orderEnd: SortEnumType = ASC
+    $orderStartDate: SortEnumType = ASC
+    $orderEndDate: SortEnumType = ASC
+    $orderGenreId: SortEnumType = ASC
+    $orderStateId: SortEnumType = ASC
     $searchQuery: String = ""
   ) {
     projects(
       skip: $skip
       take: $take
-      order: { title: $orderTitle, startDate: $orderStart, endDate: $orderEnd }
+      order: {
+        title: $orderTitle,
+        startDate: $orderStartDate,
+        endDate: $orderEndDate,
+        genre: {
+          selectValue: {
+            name: $orderGenreId
+          },
+        },
+        state: {
+          selectValue: {
+            name: $orderStateId
+          },
+        },
+      }
       where: {
         or: [{ title: { contains: $searchQuery } }, { code: { contains: $searchQuery } }, { shortTitle: { contains: $searchQuery } }]
       }

@@ -47,6 +47,12 @@
                    [value]=' appointment.predictionId | selectValue: predictions '></p-badge></span>
         <span class='time'>{{ appointment.startTime | date: 'H:mm':'locale(de)' }}
           - {{ appointment.endTime | date: 'H:mm':'locale(de)' }}</span>
+        <span *ngIf='appointment.venue?.name' class='venue'>
+          {{ appointment.venue?.name }}
+        </span>
+        <span *ngIf='appointment.category?.name' class='category'>
+          {{ appointment.category?.name }}
+        </span>
         <span *ngIf='appointment.projects.length > 0' class='projects'>
           {{ getProjectNames(appointment.projects) }}
         </span>

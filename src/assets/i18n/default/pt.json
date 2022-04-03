@@ -72,6 +72,9 @@
   "PERFORMER": "Artista",
   "STAFF": "Pessoal",
   "ADMIN": "Administrador",
+  "RESULTS": "Resultados",
+  "RECORDS": "Registros",
+  "VENUES": "Locais",
 
   "error": {
     "BAD_REQUEST": "Alguma coisa correu mal",
