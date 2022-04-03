@@ -1,4 +1,4 @@
-<form (ngSubmit)='onSubmit()' [formGroup]='registerFormGroup' autocomplete='off' class='p-jc-center'>
+<form (ngSubmit)='submit()' [formGroup]='registerFormGroup' autocomplete='off' class='p-jc-center'>
   <div class='p-fluid'>
     <arpa-form-field label='GENDER' type='select'>
       <p-dropdown
@@ -73,13 +73,13 @@
     </div>
   </div>
 
-  <re-captcha
+  <!-- <re-captcha
     #captchaRef='reCaptcha'
     (error)='onError()'
     (resolved)='submit()'
     errorMode='handled'
     siteKey='{{ siteKey }}'
     size='invisible'
-  ></re-captcha>
+  ></re-captcha> -->
 </form>
 
