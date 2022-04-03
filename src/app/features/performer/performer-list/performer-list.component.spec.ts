@@ -1,0 +1,38 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TranslateMockModule } from './../../../../testing/translate.mock.module';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { PerformerListComponent } from './performer-list.component';
+import { ActivatedRoute } from '@angular/router';
+import { DialogService } from 'primeng/dynamicdialog';
+
+describe('PerformerListComponent', () => {
+  let component: PerformerListComponent;
+  let fixture: ComponentFixture<PerformerListComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule,
+        TranslateMockModule,
+        HttpClientTestingModule,
+      ],
+      declarations: [ PerformerListComponent ],
+      providers: [
+        { provide: DialogService, useValue: {} },
+      ],
+    })
+    .compileComponents();
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(PerformerListComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

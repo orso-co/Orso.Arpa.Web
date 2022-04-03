@@ -62,14 +62,27 @@ const routes: Routes = [
       },
 
       {
-        path: 'contacts',
+        path: 'persons',
         loadChildren: () => import('./features/persons/persons.module').then((m) => m.PersonsModule),
         data: {
           roles: ['staff'],
-          title: 'CONTACTS',
+          title: 'persons.PERSONS',
           menu: {
             name: 'feature',
-            label: 'CONTACTS',
+            label: 'persons',
+            icon: 'pi pi-users',
+          },
+        },
+      },
+      {
+        path: 'performer',
+        loadChildren: () => import('./features/performer/performers.module').then((m) => m.PerformersModule),
+        data: {
+          roles: ['staff'],
+          title: 'PERFORMER',
+          menu: {
+            name: 'feature',
+            label: 'PERFORMER',
             icon: 'pi pi-users',
           },
         },
@@ -97,6 +110,19 @@ const routes: Routes = [
             name: 'feature',
             label: 'AUDITLOG',
             icon: 'pi pi-info-circle',
+          },
+        },
+      },
+      {
+        path: 'venues',
+        loadChildren: () => import('./features/venues/venues.module').then((mod) => mod.VenuesModule),
+        data: {
+          roles: ['staff'],
+          title: 'VENUES',
+          menu: {
+            name: 'feature',
+            label: 'VENUES',
+            icon: 'pi pi-map-marker',
           },
         },
       },
