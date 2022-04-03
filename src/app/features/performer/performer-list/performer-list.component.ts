@@ -1,3 +1,6 @@
+import { NotificationsService } from 'src/@arpa/services/notifications.service';
+import { NotificationsMockService } from './../../../../testing/notifications.mock.service';
+import { PersonService } from './../../persons/services/person.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
 import { Component, ViewChild } from '@angular/core';
@@ -46,6 +49,8 @@ export class PerformerListComponent {
     private router: Router,
     private route: ActivatedRoute,
     private dialogService: DialogService,
+    private personService: PersonService,
+    private notificationService: NotificationsService
     ) {}
 
   onRowClick(MusicianProfileDto: MusicianProfileDto) {
@@ -56,13 +61,12 @@ export class PerformerListComponent {
     });
   }
 
-  sendInvite(personId: PersonDto, id: MusicianProfileDto) {
-    const ref = this.dialogService.open(MusicianDialogEntryComponent, {
-      data: {
-        personId,
-        id,
-      },
-    });
+  sendInvite(id: string){
+    this.personService
+        .invitePersons([id])
+        .subscribe(() => {
+          this.notificationService.success('PERSON_INVITED');
+        });
   }
 
 }

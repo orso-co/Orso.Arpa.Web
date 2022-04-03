@@ -16,12 +16,12 @@ import { ConfigService } from '../../../../@arpa/services/config.service';
 })
 export class RegisterPageComponent {
 
-  @ViewChild('captchaRef') reCaptcha: RecaptchaComponent;
+  // @ViewChild('captchaRef') reCaptcha: RecaptchaComponent;
   validPassword: boolean = false;
   registerRequest: boolean = false;
   registerFormGroup: FormGroup;
   hide: boolean = true;
-  siteKey: string;
+  // siteKey: string;
   genderSelectValue: any;
 
   constructor(formBuilder: FormBuilder,
@@ -33,7 +33,7 @@ export class RegisterPageComponent {
               private selectValueService: SelectValueService,
   ) {
 
-    this.siteKey = configService.getEnv('captcha').key;
+    // this.siteKey = configService.getEnv('captcha').key;
 
     this.genderSelectValue = this.selectValueService.load('Person', 'gender')
       .pipe(map(() => this.selectValueService.get('Person', 'gender')));
@@ -106,10 +106,10 @@ export class RegisterPageComponent {
     }
   }
 
-  onSubmit(): void {
-    this.loadingService.loadingOn();
-    this.reCaptcha.execute();
-  }
+  // onSubmit(): void {
+  //   this.loadingService.loadingOn();
+  //   this.reCaptcha.execute();
+  // }
 
   onError(): void {
     this.notificationsService.error('SOMETHING_WENT_WRONG');
