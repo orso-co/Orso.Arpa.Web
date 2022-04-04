@@ -126,8 +126,8 @@ export class EditAppointmentComponent implements OnInit {
     this.columns = [
       { field: 'surname', header: this.translate.instant('SURNAME') },
       { field: 'givenName', header: this.translate.instant('GIVENNAME') },
-      { field: 'sections', header: this.translate.instant('appointments.SECTIONS') },
-      { field: 'qualification', header: this.translate.instant('appointments.LEVEL') },
+      // { field: 'sections', header: this.translate.instant('appointments.SECTIONS') },
+      // { field: 'qualification', header: this.translate.instant('appointments.LEVEL') },
       { field: 'predictionId', header: this.translate.instant('appointments.PREDICTION') },
       { field: 'resultId', header: this.translate.instant('appointments.RESULTS') },
     ];
