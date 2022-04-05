@@ -18,7 +18,7 @@ export class AppointmentsWidgetComponent implements AfterViewInit {
   userAppointments$: Observable<MyAppointmentDto[]> = of([]);
   totalRecordsCount$: Observable<number> = of(0);
   predictions: Observable<SelectItem[]>;
-  itemsPerPage = 5;
+  itemsPerPage = 8;
 
   constructor(
     private meService: MeService,
