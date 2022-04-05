@@ -272,7 +272,10 @@
   font-size: 0.8rem;
   text-align: left;
   position: relative;
-  margin-top: -2rem;
+  margin-top: .5rem;
+  @media screen and (min-width: 767px) {
+    margin-top: -2rem;
+  }
 
   i {
     vertical-align: text-bottom;

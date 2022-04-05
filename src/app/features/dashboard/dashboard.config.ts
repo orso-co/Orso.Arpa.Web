@@ -20,16 +20,10 @@ export const widgets: Record<string, any> = {
 
 export const dashboards: Record<string, Record<string, any>> = {
   performer: {
-    widgets: [['MessagesWidget', {
-      title: 'MESSAGES',
-    }], ['AppointmentsWidget', {
+    widgets: [['AppointmentsWidget', {
       title: 'APPOINTMENTS',
-    }], ['TasksWidget', {
-      title: 'TASKS',
-    }], ['ProjectsWidget', {
+    }],['ProjectsWidget', {
       title: 'PROJECTS',
-    }], ['IframeWidget', {
-      title: 'ORSO-Website',
     }]],
   },
   staff: {
