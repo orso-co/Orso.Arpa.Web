@@ -10,6 +10,7 @@ import { first, map } from 'rxjs/operators';
 import { SelectItem } from 'primeng/api';
 import { PersonDto } from 'src/@arpa/models/personDto';
 import { ContactService } from '../services/contact.service';
+import { resolve } from '@apidevtools/json-schema-ref-parser';
 
 @Component({
   selector: 'arpa-person-contactdata',
@@ -20,8 +21,7 @@ export class PersonContactdataComponent implements OnInit {
   public form: FormGroup;
   tableData: BehaviorSubject<any> = new BehaviorSubject([]);
   private _tableData: Array<any>;
-  @Input() contactDetails: ContactDetailDto[] = [];
-  @Input() person: PersonDto | null;
+  @Input() person: PersonDto | null;
 
   public typeOptions$: Observable<SelectItem[]>;
 
@@ -57,8 +57,9 @@ export class PersonContactdataComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._tableData = this.contactDetails && this.contactDetails.length ? cloneDeep(this.contactDetails) : [];
-    this.tableData.next(this._tableData);
+    if(this.person ) {
+      this.tableData.next(this.person.contactDetails);
+    }
     this.typeOptions$ = this.selectValueService
       .load('ContactDetail', 'Type')
       .pipe(map(() => this.selectValueService.get('ContactDetail', 'Type')));
@@ -83,8 +84,7 @@ export class PersonContactdataComponent implements OnInit {
         .addContactDetail(this.person.id, { id, key, value, typeId, commentInner, preference: preference || 0 })
         .pipe(first())
         .subscribe((result) => {
-          this._tableData.push(result);
-          this.tableData.next(this._tableData);
+          // this.tableData.next(this.person?.contactDetails?.push(result));
           this.notificationsService.success('CONTACT_DETAIL_ADDED', 'contact');
           this.form.reset({});
         });
@@ -97,8 +97,7 @@ export class PersonContactdataComponent implements OnInit {
       .deleteContactDetail(contactDetail.id)
       .pipe(first())
       .subscribe(() => {
-        this._tableData = this._tableData.filter((e) => e.id != contactDetail.id);
-        this.tableData.next(this._tableData);
+        // this.tableData.next(this.person?.contactDetails?.filter((e) => e.id != contactDetail.id));
         this.notificationsService.success('CONTACT_DETAIL_REMOVED', 'contact');
       });
   }
