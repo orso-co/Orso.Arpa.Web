@@ -1,6 +1,6 @@
 <p-table #dt1 [globalFilterFields]="['email','']" [paginator]='true'
          [rowsPerPageOptions]='[10,25,50]'
-         [rows]='10'
+         [rows]='25'
          [scrollable]='true'
          [styleClass]='((isMobile | async)? "mobile":"")'
          [value]='(users | async) || []'
