@@ -305,6 +305,15 @@
                 pInputText
                 type="text"
               />
+              <!-- <p-dropdown
+                (onChange)="participationTable.filter($event.value, col.field, 'contains')"
+                *ngSwitchCase="'sections'"
+                [autoDisplayFirst]="false"
+                [options]="sectionSelectItems"
+                [showClear]="true"
+                [style]="{ width: '100%' }"
+                appendTo="body"
+              ></p-dropdown> -->
               <p-dropdown
                 (onChange)="participationTable.filter($event.value, col.field, 'equals')"
                 *ngSwitchCase="'predictionId'"
@@ -323,7 +332,7 @@
                 [style]="{ width: '100%' }"
                 appendTo="body"
               ></p-dropdown>
-              <p-dropdown
+              <!-- <p-dropdown
                 (onChange)="participationTable.filter($event.value, col.field, 'contains')"
                 *ngSwitchCase="'qualification'"
                 [autoDisplayFirst]="false"
@@ -331,16 +340,8 @@
                 [showClear]="true"
                 [style]="{ width: '100%' }"
                 appendTo="body"
-              ></p-dropdown>
-              <p-dropdown
-                (onChange)="participationTable.filter($event.value, col.field, 'contains')"
-                *ngSwitchCase="'sections'"
-                [autoDisplayFirst]="false"
-                [options]="sectionSelectItems"
-                [showClear]="true"
-                [style]="{ width: '100%' }"
-                appendTo="body"
-              ></p-dropdown>
+              ></p-dropdown> -->
+
             </th>
           </tr>
         </ng-template>
@@ -354,14 +355,14 @@
               <span class="p-column-title">{{ 'GIVENNAME' | translate }}</span>
               {{ item.givenName }}
             </td>
-            <td>
+            <!-- <td>
               <span class="p-column-title">{{ 'SECTIONS' | translate }}</span>
               {{ item.sections }}
-            </td>
-            <td>
+            </td> -->
+            <!-- <td>
               <span class="p-column-title">{{ 'appointments.LEVEL' | translate }}</span>
               {{ item.qualification }}
-            </td>
+            </td> -->
             <td class="p-fluid">
               <span class="p-column-title">{{ 'appointments.PREDICTION' | translate }}</span>
               <p-dropdown

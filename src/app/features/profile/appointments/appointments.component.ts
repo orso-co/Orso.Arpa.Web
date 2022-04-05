@@ -58,5 +58,6 @@ export class AppointmentsComponent implements AfterViewInit {
         event.ctx.predictionId = event.value;
         this.notificationsService.success('profile.PREDICTION_SET');
       });
+
   }
 }
