@@ -49,6 +49,18 @@
 
   .projects {
     display: block;
-    opacity: .65;
+    opacity: .30;
+    font-size: 0.8em;
   }
+  .publicDetails {
+    font-size: 0.9em;
+    font-weight: 50;
+    font-style: italic;
+    opacity: 0.40;
+  }
+
+}
+.headlineinfo {
+  font-size: 1.0em;
+  opacity: 0.50;
 }
