@@ -279,11 +279,11 @@
         [columns]="columns"
         [paginator]="true"
         [responsive]="true"
-        [rows]="5"
+        [rows]="15"
         [value]="participationTableItems"
         id="participationTable"
       >
-        <ng-template pTemplate="caption">{{ 'appointments.PARTICIPATIONS' | translate }}</ng-template>
+        <ng-template pTemplate="caption">{{ filteredDataCount }} {{ 'appointments.RESULTS' | translate }}</ng-template>
         <ng-template let-columns pTemplate="header">
           <tr>
             <th *ngFor="let col of columns" [pSortableColumn]="col.field">
@@ -395,7 +395,7 @@
             <td [attr.colspan]="columns.length">{{ 'appointments.NORECORDS' | translate }}</td>
           </tr>
         </ng-template>
-        <ng-template pTemplate="summary"> {{ filteredDataCount }} {{ 'appointments.PARTICIPATIONS' | translate }} </ng-template>
+        <ng-template pTemplate="summary"> {{ filteredDataCount }} {{ 'appointments.RESULTS' | translate }} </ng-template>
       </p-table>
     </div>
   </ng-container>
