@@ -1,3 +1,8 @@
+import { BadgeModule } from 'primeng/badge';
+import { SelectValueModule } from './../../../@arpa/pipes/select-value/select-value.module';
+import { SelectDialogModule } from './../profile/select-dialog/select-dialog.module';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { TableModule } from './../../../@arpa/components/table/table.module';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { AvatarModule } from './../../../@arpa/components/avatar/avatar.module';
 import { CalendarModule } from 'primeng/calendar';
@@ -18,27 +23,41 @@ import { TabViewModule } from 'primeng/tabview';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { RatingModule } from 'primeng/rating';
+import { MenuModule } from 'src/@arpa/components/menu/menu.module';
 
 @NgModule({
-  declarations: [PersonDialogEntryComponent, PersonLayoutComponent, PersonBasedataComponent, PersonContactdataComponent],
+  declarations: [
+    PersonDialogEntryComponent,
+    PersonLayoutComponent,
+    PersonBasedataComponent,
+    PersonContactdataComponent
+  ],
   imports: [
     CommonModule,
     PersonDialogRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    SelectDialogModule,
 
     // Arpa Lib
     TranslateModule.forChild(['person-dialog']),
+    MenuModule,
     FormFieldModule,
+    TableModule,
+    SelectValueModule,
 
     // NG Prime Dependencies
+    ButtonModule,
+    DropdownModule,
+    BadgeModule,
+    InputTextModule,
     TabViewModule,
     ButtonModule,
     InputTextModule,
     CalendarModule,
-    DropdownModule,
     AutoCompleteModule,
     RatingModule,
+    SelectButtonModule,
   ],
 })
 export class PersonDialogModule {

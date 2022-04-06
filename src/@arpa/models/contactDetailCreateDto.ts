@@ -2,5 +2,10 @@ import { ContactDetailCreateBodyDto } from './contactDetailCreateBodyDto';
 
 export interface ContactDetailCreateDto {
   id: string;
-  body: ContactDetailCreateBodyDto;
+  key: string;
+  value: string;
+  typeId: string;
+  commentInner: string;
+  preference: number;
+  // body: ContactDetailCreateBodyDto;
 }

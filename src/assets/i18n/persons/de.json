@@ -1,22 +1,33 @@
 {
-  "PERSONS": "Personen",
-  "GIVEN_NAME": "Vorname",
-  "SURNAME": "Nachname",
   "ABOUT_ME": "Über mich",
-  "DATEOFBIRTH": "Geburtsdatum",
+  "BASE_DATA": "Stammdaten",
+  "BIRTHNAME": "Geburtsname",
   "BIRTHPLACE": "Geburtsort",
-  "RELIABILITY": "Zuverlässigkeit",
-  "GENERAL_PREFERENCE": "Präferenz",
-  "EXPERIENCE_LEVEL": "Erfahrung",
-  "GENDER": "Geschlecht",
+  "CONTACT_DATA": "Kontakt",
+  "CONTACT_VIA_PLACEHOLDER": "Hier Vermittlungskontakt eintragen",
+  "CONTACT_VIA": "Kontakt über",
   "CREATED_AT": "Erstellt am",
   "CREATED_BY": "Erstellt von",
+  "DATEOFBIRTH": "Geburtsdatum",
+  "EMPTYMESSAGE": "Keine Auswahl",
+  "EXPERIENCE_LEVEL": "Erfahrung",
+  "GENDER": "Geschlecht",
+  "GENERAL_PREFERENCE": "Präferenz",
+  "GIVEN_NAME": "Vorname",
+  "INSTRUMENT": "Instrument",
+  "LEVEL_ASSESSMENT_TEAM": "Level (KBB)",
   "MODIFIED_AT": "Geändert am",
   "MODIFIED_BY": "Geändert von",
-
-  "LEVEL_ASSESSMENT_TEAM": "Level (KBB)",
+  "PERSONS": "Personen",
   "QUALIFICATION": "Qualifikation",
+  "RELIABILITY": "Zuverlässigkeit",
   "SECTION": "Register",
-  "INSTRUMENT": "Instrument"
-
+  "SURNAME": "Nachname",
+  "contact": {
+    "VALUE": "Wert",
+    "TYPE": "Typ",
+    "COMMENT_INNER" :"Kommentar Person",
+    "COMMENT_TEAM" :"Kommentar Team",
+    "PREFERENCE": "Präferenz"
+  }
 }
