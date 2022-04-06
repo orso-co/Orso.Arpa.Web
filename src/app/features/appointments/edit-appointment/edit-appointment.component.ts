@@ -433,7 +433,7 @@ export class EditAppointmentComponent implements OnInit {
         },
       },
       {
-        label: this.translate.instant('appointments.PARTICIPATIONS'),
+        label: this.translate.instant('appointments.RESULTS') ,
         disabled: this.isNew,
         command: (event: any) => {
           this.activeIndex = 2;
