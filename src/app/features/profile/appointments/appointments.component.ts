@@ -20,7 +20,12 @@ export class AppointmentsComponent implements AfterViewInit {
   userAppointments$: Observable<MyAppointmentDto[]> = of([]);
   totalRecordsCount$: Observable<number> = of(0);
   predictions: Observable<SelectItem[]>;
-  itemsPerPage = 50;
+  itemsPerPage = 25;
+  selectOptions = [
+    { id: false, name: 'FUTURE_APPOINTMENTS'},
+    { id: true, name: 'PAST_APPOINTMENTS'}
+  ]
+  selectedOption: boolean = false;
 
   constructor(
     private meService: MeService,
@@ -37,7 +42,7 @@ export class AppointmentsComponent implements AfterViewInit {
   }
 
   loadData(take: number, skip: number): void {
-    const loadResult$ = this.meService.getMyAppointments(take, skip);
+    const loadResult$ = this.meService.getMyAppointments(take, skip, this.selectedOption);
     this.userAppointments$ = loadResult$.pipe(map((result) => result.userAppointments || []));
     this.totalRecordsCount$ = loadResult$.pipe(map((result) => result.totalRecordsCount || 0));
   }
@@ -58,6 +63,9 @@ export class AppointmentsComponent implements AfterViewInit {
         event.ctx.predictionId = event.value;
         this.notificationsService.success('profile.PREDICTION_SET');
       });
+  }
 
+  onSelectedOptionChange(event: {value: number}) {
+    this.loadData(this.itemsPerPage, 0);
   }
 }

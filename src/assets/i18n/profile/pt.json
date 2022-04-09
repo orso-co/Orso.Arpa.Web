@@ -28,6 +28,8 @@
   "BIRTHNAME": "Nome de nascença",
   "DATEOFBIRTH": "Data de nascimento",
   "MY_DATA_TOOLTIP": "Edite seu nome, sobre mim, etc.",
+  "FUTURE_APPOINTMENTS": "Eventos futuros",
+  "PAST_APPOINTMENTS": "Eventos passados",
   "contact": {
     "NOTHING_SELECTED": "Nada selecionado",
     "TYPE": "Tipo",
