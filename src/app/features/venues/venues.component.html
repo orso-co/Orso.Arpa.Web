@@ -13,8 +13,8 @@
       <ng-template let-venue pTemplate="item">
         <div class="p-flex-column">
           <span class="p-text-bold">{{ venue.name | uppercase }}</span
-          ><span>, {{ venue.address.zip }} {{ venue.address.city }}</span
-          ><br /><span>({{ venue.address.country }})</span>
+          ><ng-container *ngIf="venue.address"><span>, {{ venue.address.zip }} {{ venue.address.city }}</span
+            ><br /><span>({{ venue.address.country }})</span></ng-container>
         </div>
       </ng-template></p-listbox
     >
