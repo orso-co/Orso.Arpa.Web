@@ -22,8 +22,8 @@ export class AppointmentsComponent implements AfterViewInit {
   predictions: Observable<SelectItem[]>;
   itemsPerPage = 25;
   selectOptions = [
-    { id: false, name: 'FUTURE'},
-    { id: true, name: 'PASSED'}
+    { id: false, name: 'FUTURE_APPOINTMENTS'},
+    { id: true, name: 'PAST_APPOINTMENTS'}
   ]
   selectedOption: boolean = false;
 

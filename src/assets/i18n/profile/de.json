@@ -28,6 +28,8 @@
   "BIRTHNAME": "Geburtsname",
   "DATEOFBIRTH": "Geburtsdatum",
   "MY_DATA_TOOLTIP": "Hier kannst du deine Stammdaten ändern",
+  "FUTURE_APPOINTMENTS": "Zukünftige Termine",
+  "PAST_APPOINTMENTS": "Vergangene Termine",
   "contact": {
     "NOTHING_SELECTED": "Nichts ausgewählt",
     "TYPE": "Typ",
