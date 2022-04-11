@@ -3,6 +3,6 @@
     <arpa-person-basedata [person]="person | async" (personSaved)="close(true)"></arpa-person-basedata>
   </p-tabPanel>
   <p-tabPanel header="{{ 'person-dialog.CONTACT_DATA' | translate }}" leftIcon="pi pi-phone">
-    <arpa-person-contactdata>Hier sollen die Kontaktdaten erscheinen...</arpa-person-contactdata>
+    <arpa-person-contactdata [person]="person | async"></arpa-person-contactdata>
   </p-tabPanel>
 </p-tabView>

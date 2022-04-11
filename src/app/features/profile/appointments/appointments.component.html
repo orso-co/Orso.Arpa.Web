@@ -1,82 +1,91 @@
 <arpa-select-dialog
   #selectDialog
-  (closeEvent)='onPredictionChanged($event)'
-  [options]='(predictions | async) || []'
-  [target]='predictionAction'
-  title='profile.PREDICTION'
-  modal='true'
-  dismissableMask='true'
+  (closeEvent)="onPredictionChanged($event)"
+  [options]="(predictions | async) || []"
+  [target]="predictionAction"
+  title="profile.PREDICTION"
+  modal="true"
+  dismissableMask="true"
 ></arpa-select-dialog>
-<div class='p-text-center'>
-  <span class='headlineinfo'>Diese Seite wird noch weiter überarbeitet um euch noch detailiertere Infos anzuzeigen wie bspw. ob ein Termin bestätigt ist, oder noch in Umfrage oder verworfen. Habt noch etwas Geduld, hier ist noch Baustelle.</span>
-</div>
 
-<div class='p-grid p-jc-center'>
-  <div class='p-col-12 p-md-6 p-text-center'>
-    <h1 #predictionAction>{{ 'profile.MY_APPOINTMENTS' | translate}} </h1>
-    <p>{{ (totalRecordsCount$ | async) || 0 }} {{ 'RESULTS' | translate}}</p>
+<div class="p-grid p-jc-center">
+  <div class="p-col-12 p-text-center">
+    <h1 #predictionAction>{{ 'profile.MY_APPOINTMENTS' | translate }}</h1>
+    <p>{{ (totalRecordsCount$ | async) || 0 }} {{ 'RESULTS' | translate }}</p>
+  </div>
+  <div class="p-col-12 p-text-center">
+    <p-selectButton
+      [options]="selectOptions"
+      [(ngModel)]="selectedOption"
+      optionLabel="name"
+      optionValue="id"
+      (onChange)="onSelectedOptionChange($event)"
+    >
+      <ng-template let-item>
+        {{ item.name | translate }}
+      </ng-template>
+    </p-selectButton>
   </div>
 </div>
-<div class='p-grid p-jc-center p-mt-4'>
-  <div class='p-col-12 p-md-10 p-lg-12'>
+<div class="p-grid p-jc-center p-mt-4">
+  <div class="p-col-12 p-md-10 p-lg-12">
     <p-table
-      (onLazyLoad)='loadData($event.rows, $event.first)'
-      [lazy]='true'
-      [rows]='itemsPerPage'
-      [totalRecords]='(totalRecordsCount$ | async) || 0'
-      [value]='(userAppointments$ | async) || []'
-      tableStyleClass='arpa-table-list'
+      (onLazyLoad)="loadData($event.rows, $event.first)"
+      [lazy]="true"
+      [rows]="itemsPerPage"
+      [totalRecords]="(totalRecordsCount$ | async) || 0"
+      [value]="(userAppointments$ | async) || []"
+      tableStyleClass="arpa-table-list"
+      [paginator]="true"
+      [rowsPerPageOptions]="[10,25,50]"
     >
-      <ng-template let-appointment pTemplate='body'>
-        <ng-container *ngTemplateOutlet='listElement; context: {$implicit: appointment}'></ng-container>
+      <ng-template let-appointment pTemplate="body">
+        <ng-container *ngTemplateOutlet="listElement; context: { $implicit: appointment }"></ng-container>
       </ng-template>
     </p-table>
   </div>
 </div>
 
 <ng-template #listElement let-appointment>
-  <tr (click)='selectDialog.openDialog(appointment.predictionId, appointment)'>
-    <td class='p-d-flex p-jc-between'>
-      <div class='p-flex-column p-mr-4 date'>
-        <span class='month-name'>{{ appointment.startTime | localizedDate: 'MMMM' }}</span>
-        <span class='year'>{{ appointment.startTime | localizedDate: 'YYYY' }}</span>
-        <span class='day'>{{ appointment.startTime | date: 'dd':'locale(de)' }}</span>
-        <span class='day-name'>{{ appointment.startTime | localizedDate: 'EEEE' }}</span>
-        <span class='month-name'>{{ appointment.status?.name }}</span>
-
-
-
-
-
+  <tr (click)="selectDialog.openDialog(appointment.predictionId, appointment)">
+    <td class="p-d-flex p-jc-between">
+      <div class="p-flex-column p-mr-4 date">
+        <span class="month-name">{{ appointment.startTime | localizedDate: 'MMMM' }}</span>
+        <span class="year">{{ appointment.startTime | localizedDate: 'YYYY' }}</span>
+        <span class="day">{{ appointment.startTime | date: 'dd':'locale(de)' }}</span>
+        <span class="day-name">{{ appointment.startTime | localizedDate: 'EEEE' }}</span>
+        <span class="status">{{ appointment.status?.name | uppercase }}</span>
       </div>
-      <div class='p-flex-column p-mr-2 details'>
-        <span class='name'>{{ appointment.name }}
-          <p-badge *ngIf='appointment.predictionId'
-                   [value]='appointment.predictionId | selectValue: predictions'
-                   severity='warning'></p-badge>
-          <p-badge *ngIf='appointment.result'
-                   [value]='appointment.result'
-                   severity='info'></p-badge>
-
+      <div class="p-flex-column p-mr-2 details">
+        <span class="name"
+          >{{ appointment.name }}
+          <p-badge
+            *ngIf="appointment.predictionId"
+            [value]="appointment.predictionId | selectValue: predictions"
+            severity="warning"
+          ></p-badge>
+          <p-badge *ngIf="appointment.result" [value]="appointment.result" severity="info"></p-badge>
         </span>
-        <span class='time'>{{ appointment.startTime | date: 'H:mm':'locale(de)' }}-{{ appointment.endTime | date: 'H:mm':'locale(de)' }}
-          <span *ngIf='appointment.venue?.name' class='venue'>
-             -  {{ appointment.venue?.name }}</span> </span>
-        <span *ngIf='appointment.category?.name' class='category'>
-          {{ appointment.category?.name }}
+        <span class="time"
+          >{{ appointment.startTime | date: 'H:mm':'locale(de)' }}-{{ appointment.endTime | date: 'H:mm':'locale(de)' }}
+          <span *ngIf="appointment.venue?.name" class="venue"> - {{ appointment.venue?.name }}</span>
         </span>
-        <span class='publicDetails'>{{ appointment.publicDetails }}</span>
+        <p-badge *ngIf="appointment.category?.name" class="category" [value]="appointment.category?.name">
+        </p-badge>
+        <span class="publicDetails">{{ appointment.publicDetails }}</span>
 
-        <span *ngIf='appointment.projects.length > 0' class='projects'>
-          {{ 'PROJECT' | translate}}: {{ getProjectNames(appointment.projects) }}
+        <span *ngIf="appointment.projects.length > 0" class="projects">
+          {{ 'PROJECT' | translate }}: {{ getProjectNames(appointment.projects) }}
         </span>
       </div>
-      <div class='p-flex-column actions'>
-        <button (click)='selectDialog.openDialog(appointment.predictionId, appointment)'
-                class='p-button-rounded p-button-text p-button-icon-only'
-                icon='pi pi-pencil'
-                pButton
-                type='button'></button>
+      <div class="p-flex-column actions">
+        <button
+          (click)="selectDialog.openDialog(appointment.predictionId, appointment)"
+          class="p-button-rounded p-button-text p-button-icon-only"
+          icon="pi pi-pencil"
+          pButton
+          type="button"
+        ></button>
       </div>
     </td>
   </tr>

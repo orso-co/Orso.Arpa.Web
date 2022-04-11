@@ -6,7 +6,7 @@ import { SectionDto } from './sectionDto';
 import { SelectValueDto } from './selectValueDto';
 
 export interface PersonDto {
-  id?: string;
+  id: string;
   createdBy?: string;
   createdAt?: Date;
   modifiedBy?: string;
