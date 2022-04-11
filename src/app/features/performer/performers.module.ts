@@ -9,7 +9,7 @@ import { GraphQlFeedModule } from '../../../@arpa/components/graph-ql-feed/graph
 import { LanguageService } from '../../../@arpa/services/language.service';
 import { TableModule } from '../../../@arpa/components/table/table.module';
 import { PerformerListComponent } from './performer-list/performer-list.component';
-
+import {OverlayPanelModule} from 'primeng/overlaypanel';
 @NgModule({
   declarations: [
     PerformerListComponent,
@@ -24,6 +24,7 @@ import { PerformerListComponent } from './performer-list/performer-list.componen
     // NG Prime Dependencies
     DropdownModule,
     ButtonModule,
+    OverlayPanelModule
   ],
   exports: [
     PerformerListComponent,

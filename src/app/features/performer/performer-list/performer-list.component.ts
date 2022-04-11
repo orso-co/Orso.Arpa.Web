@@ -1,3 +1,5 @@
+import { PersonInviteResultDto } from './../../../../@arpa/models/personInviteResultDto';
+import { OverlayPanel } from 'primeng/overlaypanel';
 import { NotificationsService } from 'src/@arpa/services/notifications.service';
 import { NotificationsMockService } from './../../../../testing/notifications.mock.service';
 import { PersonService } from './../../persons/services/person.service';
@@ -18,7 +20,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator';
 
 @Component({
-  selector: 'arpa-person-list',
+  selector: 'arpa-performer-list',
   templateUrl: './performer-list.component.html',
   styleUrls: ['./performer-list.component.scss'],
 })
@@ -26,6 +28,7 @@ import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator'
 export class PerformerListComponent {
   state: Observable<SelectItem>;
   query: DocumentNode = PerformersQuery;
+  lastInvitation: PersonInviteResultDto;
 
   columns: ColumnDefinition<PerformerDto>[] = [
     { label: 'SURNAME', property: 'person.surname', type: 'text' },
@@ -61,7 +64,7 @@ export class PerformerListComponent {
     });
   }
 
-  sendInvite(id: string){
+  sendSingleInvite(id: string){
     this.personService
         .invitePersons([id])
         .subscribe(() => {
@@ -69,4 +72,13 @@ export class PerformerListComponent {
         });
   }
 
+
+  sendInvitationToMultiplePersons(event: any, overlayPanel: OverlayPanel) {
+    this.personService
+      .invitePersons(this.feedSource.values.getValue().map(mupro => mupro.personId))
+      .subscribe((result) => {
+        this.lastInvitation = result;
+        overlayPanel.show(event)
+      });
+  }
 }
