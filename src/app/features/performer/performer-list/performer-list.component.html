@@ -1,6 +1,6 @@
 <p-overlayPanel #op [showCloseIcon]="true">
   <ng-template pTemplate>
-    <div *ngIf="lastInvitation">
+    <ng-container *ngIf="lastInvitation; else EMPTY">
       <p>{{ 'The following persons have been invited successfully' | translate }}:</p>
       <ul>
         <li *ngFor="let item of lastInvitation.successfulInvites | keyvalue">{{ item.key }} ({{ item.value }})</li>
@@ -30,11 +30,14 @@
       <ul>
         <li *ngFor="let item of lastInvitation.failedInvites | keyvalue">{{ item.key }} ({{ item.value }})</li>
       </ul>
-    </div>
+    </ng-container>
   </ng-template>
 </p-overlayPanel>
-
+<ng-template #EMPTY>
+  <p>{{'No invitation has been executed yet' | translate }}</p>
+</ng-template>
 <button
+  class="p-mb-3"
   pButton
   type="button"
   [label]="'Invite persons of current page' | translate"
