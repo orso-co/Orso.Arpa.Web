@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 import { VenueDto } from 'src/@arpa/models/venueDto';
+import { valueFromAST } from 'graphql';
 
 @Component({
   selector: 'arpa-venues',
@@ -105,7 +106,17 @@ export class VenuesComponent implements OnInit {
   }
 
   onSelectionChange(event: { value: any }) {
-    this.formGroup.patchValue({ ...event.value, ...event.value.address });
+    this.formGroup.patchValue({
+      ...event.value,
+      address1: event.value.address?.address1,
+      address2: event.value.address?.address2,
+      zip: event.value.address?.zip,
+      city: event.value.address?.city,
+      country: event.value.address?.country,
+      urbanDistrict: event.value.address?.urbanDistrict,
+      state: event.value.address?.state,
+      addressCommentInner: event.value.address?.commentInner,
+    });
   }
 
   resetForm() {

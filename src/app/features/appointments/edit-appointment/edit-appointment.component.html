@@ -279,11 +279,11 @@
         [columns]="columns"
         [paginator]="true"
         [responsive]="true"
-        [rows]="5"
+        [rows]="15"
         [value]="participationTableItems"
         id="participationTable"
       >
-        <ng-template pTemplate="caption">{{ 'appointments.PARTICIPATIONS' | translate }}</ng-template>
+        <ng-template pTemplate="caption">{{ filteredDataCount }} {{ 'appointments.RESULTS' | translate }}</ng-template>
         <ng-template let-columns pTemplate="header">
           <tr>
             <th *ngFor="let col of columns" [pSortableColumn]="col.field">
@@ -305,6 +305,15 @@
                 pInputText
                 type="text"
               />
+              <!-- <p-dropdown
+                (onChange)="participationTable.filter($event.value, col.field, 'contains')"
+                *ngSwitchCase="'sections'"
+                [autoDisplayFirst]="false"
+                [options]="sectionSelectItems"
+                [showClear]="true"
+                [style]="{ width: '100%' }"
+                appendTo="body"
+              ></p-dropdown> -->
               <p-dropdown
                 (onChange)="participationTable.filter($event.value, col.field, 'equals')"
                 *ngSwitchCase="'predictionId'"
@@ -323,7 +332,7 @@
                 [style]="{ width: '100%' }"
                 appendTo="body"
               ></p-dropdown>
-              <p-dropdown
+              <!-- <p-dropdown
                 (onChange)="participationTable.filter($event.value, col.field, 'contains')"
                 *ngSwitchCase="'qualification'"
                 [autoDisplayFirst]="false"
@@ -331,16 +340,8 @@
                 [showClear]="true"
                 [style]="{ width: '100%' }"
                 appendTo="body"
-              ></p-dropdown>
-              <p-dropdown
-                (onChange)="participationTable.filter($event.value, col.field, 'contains')"
-                *ngSwitchCase="'sections'"
-                [autoDisplayFirst]="false"
-                [options]="sectionSelectItems"
-                [showClear]="true"
-                [style]="{ width: '100%' }"
-                appendTo="body"
-              ></p-dropdown>
+              ></p-dropdown> -->
+
             </th>
           </tr>
         </ng-template>
@@ -354,14 +355,14 @@
               <span class="p-column-title">{{ 'GIVENNAME' | translate }}</span>
               {{ item.givenName }}
             </td>
-            <td>
+            <!-- <td>
               <span class="p-column-title">{{ 'SECTIONS' | translate }}</span>
               {{ item.sections }}
-            </td>
-            <td>
+            </td> -->
+            <!-- <td>
               <span class="p-column-title">{{ 'appointments.LEVEL' | translate }}</span>
               {{ item.qualification }}
-            </td>
+            </td> -->
             <td class="p-fluid">
               <span class="p-column-title">{{ 'appointments.PREDICTION' | translate }}</span>
               <p-dropdown
@@ -394,7 +395,7 @@
             <td [attr.colspan]="columns.length">{{ 'appointments.NORECORDS' | translate }}</td>
           </tr>
         </ng-template>
-        <ng-template pTemplate="summary"> {{ filteredDataCount }} {{ 'appointments.PARTICIPATIONS' | translate }} </ng-template>
+        <ng-template pTemplate="summary"> {{ filteredDataCount }} {{ 'appointments.RESULTS' | translate }} </ng-template>
       </p-table>
     </div>
   </ng-container>

@@ -4,7 +4,7 @@
       (onLazyLoad)='loadData($event.rows, $event.first)'
       routerLink="../../profile/appointments"
       [lazy]='true'
-      [rows]='5'
+      [rows]='8'
       [totalRecords]='(totalRecordsCount$ | async) || 0'
       [value]='(userAppointments$ | async) || []'
       tableStyleClass='arpa-table-list'
@@ -21,19 +21,13 @@
     </div>
     <div>
       <div class='p-flex-column p-mr-4 date'>
-        <h4>{{ appointment.startTime | date: 'dd.MM.yy':'locale(de)' }} ({{appointment.startTime | date: 'EE'}}), {{ appointment.startTime | date: 'H:mm':'locale(de)' }}
-        -{{ appointment.endTime | date: 'H:mm':'locale(de)' }} {{ appointment.category?.name }} {{ appointment.venue?.name }}</h4>
-        <!-- <p-chip *ngIf='appointment.projects.length > 0'
-          styleClass="p-ml-2"
-          severity="info"
-          [label]='getProjectNames(appointment.projects)'
-        ></p-chip> -->
-          <p> {{ appointment.name }}
-            <p-tag *ngIf='appointment.predictionId'
-          styleClass="p-ml-2"
-          severity="warning"
-          [rounded]="true"
-          [value]=' appointment.predictionId | selectValue: predictions '></p-tag>
+        <span>{{ appointment.startTime | date: 'dd.MM.yy':'locale(de)' }} ({{appointment.startTime | date: 'EE'}}), {{ appointment.startTime | date: 'H:mm':'locale(de)' }}-{{ appointment.endTime | date: 'H:mm':'locale(de)' }} {{ appointment.category?.name }} - {{ appointment.venue?.name }} {{ appointment.name }}
+          <p-tag *ngIf='appointment.predictionId'
+        styleClass="p-ml-2"
+        severity="warning"
+        [rounded]="true"
+        [value]=' appointment.predictionId | selectValue: predictions '></p-tag></span>
+          <p> 
           </p>
 
         </div>

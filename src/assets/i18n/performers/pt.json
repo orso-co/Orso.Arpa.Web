@@ -1,4 +1,12 @@
 {
+  "INVITE_BUTTON": "Convidar pessoas da página atual",
+  "NO_INVITATION_YET": "Nenhum convite foi executado ainda",
+  "INVITATION_FAILURE": "uma falha de convite",
+  "INVITATION_SUCCESS": "As seguintes pessoas foram convidadas com sucesso",
+  "INVITATION_HINT": "Dica: Algumas das pessoas convidadas têm vários endereços de e-mail. (O primeiro foi usado para o convite)", 
+  "NO_INVITATION_DUE_TO": "As seguintes pessoas não foram convidadas devido a",
+  "MISSING_MAIL": "um endereço de e-mail ausente",
+  "EXISTING_REGISTRATION": "um registro existente",
   "ABOUT_ME": "sobre mim",
   "BASE_DATA": "dados básicos",
   "BIRTHNAME": "nome de nascença",
