@@ -6,6 +6,7 @@ import { PersonDto } from '../../../../@arpa/models/personDto';
 import { ReducedPersonDto } from 'src/@arpa/models/reducedPersonDto';
 import { map, tap, shareReplay } from 'rxjs/operators';
 import { PersonModifyBodyDto } from 'src/@arpa/models/personModifyBodyDto';
+import { PersonInviteResultDto } from 'src/@arpa/models/personInviteResultDto';
 
 @Injectable({
   providedIn: 'root',
@@ -25,8 +26,8 @@ export class PersonService {
     return this.apiService.get<PersonDto>(`${this.baseUrl}/${id}`);
 
   }
-  public invitePersons(ids: string[]): Observable<PersonDto> {
-    return this.apiService.post(`${this.baseUrl}/invite`, {personIds: ids});
+  public invitePersons(ids: string[]): Observable<PersonInviteResultDto> {
+    return this.apiService.post<PersonInviteResultDto>(`${this.baseUrl}/invite`, {personIds: ids}).pipe(shareReplay());
   }
 
   public create(person: PersonDto): Observable<PersonDto> {
