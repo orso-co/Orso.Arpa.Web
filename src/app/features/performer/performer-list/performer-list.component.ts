@@ -1,7 +1,6 @@
 import { PersonInviteResultDto } from './../../../../@arpa/models/personInviteResultDto';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { NotificationsService } from 'src/@arpa/services/notifications.service';
-import { NotificationsMockService } from './../../../../testing/notifications.mock.service';
 import { PersonService } from './../../persons/services/person.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
@@ -31,10 +30,10 @@ export class PerformerListComponent {
   lastInvitation: PersonInviteResultDto;
 
   columns: ColumnDefinition<PerformerDto>[] = [
+    { label: 'INSTRUMENT', property: 'instrument.name', type: 'text', show: true},
     { label: 'SURNAME', property: 'person.surname', type: 'text' },
     { label: 'GIVEN_NAME', property: 'person.givenName', type: 'text' },
     { label: 'SECTION', property: 'instrumentId.section', type: 'text', show: false},
-    { label: 'INSTRUMENT', property: 'instrument.name', type: 'text', show: true},
     { label: 'QUALIFICATION', property: 'qualificationId', type: 'state', stateTable: 'MusicianProfile', stateProperty: 'Qualification', show: true},
     { label: 'LEVEL_ASSESSMENT_TEAM', property: 'levelAssessmentTeam', type: 'text', show: true},
     { label: 'EXPERIENCE_LEVEL', property: 'experienceLevel', type: 'text', show: false },

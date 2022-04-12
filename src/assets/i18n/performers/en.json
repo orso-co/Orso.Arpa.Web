@@ -1,0 +1,10 @@
+{
+  "INVITE_BUTTON": "Invite persons of current page",
+  "NO_INVITATION_YET": "No invitation has been executed yet",
+  "INVITATION_FAILURE": "an invitation failure",
+  "INVITATION_SUCCESS": "The following persons have been successfully invited",
+  "INVITATION_HINT": "Hint: Some of the invited persons have multiple e-mail addresses. (The first one was used for the invitation)", 
+  "NO_INVITATION_DUE_TO": "The following persons have not been invited due to",
+  "MISSING_MAIL": "a missing e-mail address",
+  "EXISTING_REGISTRATION": "an existing registration"
+}

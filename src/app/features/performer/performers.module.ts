@@ -18,7 +18,7 @@ import {OverlayPanelModule} from 'primeng/overlaypanel';
     PerformersRoutingModule,
     CommonModule,
     // Arpa Lib
-    TranslateModule.forChild(['persons']),
+    TranslateModule.forChild(['performers']),
     GraphQlFeedModule,
     TableModule,
     // NG Prime Dependencies

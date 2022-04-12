@@ -1,0 +1,10 @@
+{
+  "INVITE_BUTTON": "Inviter des personnes de la page actuelle",
+  "NO_INVITATION_YET": "Aucune invitation n'a encore été exécutée",
+  "INVITATION_FAILURE": "un échec d'invitation",
+  "INVITATION_SUCCESS": "Les personnes suivantes ont été invitées avec succès",
+  "INVITATION_HINT": "Indice : Certaines des personnes invitées ont plusieurs adresses e-mail. (Le premier a été utilisé pour l'invitation)", 
+  "NO_INVITATION_DUE_TO": "Les personnes suivantes n'ont pas été invitées en raison de",
+  "MISSING_MAIL": "um endereço de e-mail ausente",
+  "EXISTING_REGISTRATION": "une inscription existante"
+}

@@ -1,32 +1,32 @@
 <p-overlayPanel #op [showCloseIcon]="true">
   <ng-template pTemplate>
     <ng-container *ngIf="lastInvitation; else EMPTY">
-      <p>{{ 'The following persons have been invited successfully' | translate }}:</p>
+      <p>{{ 'INVITATION_SUCCESS' | translate }}:</p>
       <ul>
         <li *ngFor="let item of lastInvitation.successfulInvites | keyvalue">{{ item.key }} ({{ item.value }})</li>
       </ul>
       <p>
-        {{ 'Hint: Some of the invited persons have multiple e-mail addresses. (The first one was used for the invitation)' | translate }}:
+        {{ 'INVITATION_HINT' | translate }}:
       </p>
       <ul>
         <li *ngFor="let item of lastInvitation.personsWithMultipleEmailAddresses | keyvalue">
           {{ item.key }} ({{ item.value.join(', ') }})
         </li>
       </ul>
-      <p>{{ 'The following persons have not been invited due to' | translate }}...</p>
-      <p>...{{ 'a missing e-mail address' | translate }}:</p>
+      <p>{{ 'NO_INVITATION_DUE_TO' | translate }}...</p>
+      <p>...{{ 'MISSING_MAIL' | translate }}:</p>
       <ul>
         <li *ngFor="let item of lastInvitation.personsWithoutEmailAddress">
           {{ item }}
         </li>
       </ul>
-      <p>...{{ 'an existing registration' | translate }}:</p>
+      <p>...{{ 'EXISTING_REGISTRATION' | translate }}:</p>
       <ul>
         <li *ngFor="let item of lastInvitation.personsAlreadyRegistered">
           {{ item }}
         </li>
       </ul>
-      <p>...{{ 'an invitation failure' | translate }}:</p>
+      <p>...{{ 'INVITATION_FAILURE' | translate }}:</p>
       <ul>
         <li *ngFor="let item of lastInvitation.failedInvites | keyvalue">{{ item.key }} ({{ item.value }})</li>
       </ul>
@@ -34,13 +34,13 @@
   </ng-template>
 </p-overlayPanel>
 <ng-template #EMPTY>
-  <p>{{'No invitation has been executed yet' | translate }}</p>
+  <p>{{'NO_INVITATION_YET' | translate }}</p>
 </ng-template>
 <button
   class="p-mb-3"
   pButton
   type="button"
-  [label]="'Invite persons of current page' | translate"
+  [label]="'INVITE_BUTTON' | translate"
   (click)="sendInvitationToMultiplePersons($event, op)"
 ></button>
 
