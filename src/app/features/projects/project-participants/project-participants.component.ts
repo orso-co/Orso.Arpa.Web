@@ -20,9 +20,11 @@ interface Participant {
 export class ProjectParticipantsComponent {
 
   participants: Observable<Participant[]>;
+  participationStatusInner: Observable<ProjectParticipationDto>
 
   columns: ColumnDefinition<any>[] = [
     { label: 'projects.PARTICIPANTS', property: 'participant', type: 'text' },
+    { label: 'projects.PARTICIPATIONSTATUS_INNER', property: 'participationStatusInner', type: 'text'},
     { label: 'projects.INSTRUMENT', property: 'instrument', type: 'text' },
     {
       label: 'projects.INSTRUMENT_STATE',
@@ -38,6 +40,7 @@ export class ProjectParticipantsComponent {
           label: 'ACTIVE',
           value: 'active',
           severity: 'success',
+
         },
       ],
     },
@@ -46,7 +49,7 @@ export class ProjectParticipantsComponent {
   constructor(private projectService: ProjectService, private config: DynamicDialogConfig) {
     this.participants = this.projectService.getParticipations(this.config.data.project.id).pipe(
       map((participation: ProjectParticipationDto[]) => participation.map((participant: ProjectParticipationDto) => ({
-        participant: [participant.person?.givenName, participant.person?.surname].join(' '),
+        participant: [participant.person?.givenName, participant.person?.surname, participant.participationStatusInner].join(' '),
         instrument: participant.musicianProfile?.instrumentName,
         state: this.isDeactivated(participant),
       } as Participant))),
