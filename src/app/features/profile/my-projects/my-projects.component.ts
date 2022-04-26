@@ -61,7 +61,7 @@ export class MyProjectsComponent implements AfterViewInit, OnInit {
         participation,
         statusOptions$: this.participationStatusInner$,
       },
-      header: this.translate.instant('projects.EDIT_PARTICIPATION'),
+      header: this.translate.instant('profile.my-projects.EDIT_PARTICIPATION'),
       styleClass: 'form-modal',
       dismissableMask: true,
       width: window.innerWidth > 350 ? '350px' : '100%',

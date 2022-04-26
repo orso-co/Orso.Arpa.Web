@@ -17,6 +17,7 @@ export const PerformersQuery = gql`
     $orderPerson__createdBy: SortEnumType = ASC,
     $orderPerson__modifiedAt: SortEnumType = ASC,
     $orderPerson__modifiedBy: SortEnumType = ASC,
+    $orderPerson__userCreatedAt: SortEnumType = ASC
     $searchQuery: String = ""
   ){
     musicianProfiles(
@@ -43,6 +44,9 @@ export const PerformersQuery = gql`
           createdBy: $orderPerson__createdBy,
           modifiedAt: $orderPerson__modifiedAt,
           modifiedBy: $orderPerson__modifiedBy,
+          user: {
+            createdAt: $orderPerson__userCreatedAt
+          }
         }
       },
       where: {
@@ -80,7 +84,9 @@ export const PerformersQuery = gql`
           createdBy
           modifiedAt
           modifiedBy
-
+          user {
+            createdAt
+          }
         }
       }
     }

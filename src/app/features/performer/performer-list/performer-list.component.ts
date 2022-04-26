@@ -1,5 +1,6 @@
+import { PersonInviteResultDto } from './../../../../@arpa/models/personInviteResultDto';
+import { OverlayPanel } from 'primeng/overlaypanel';
 import { NotificationsService } from 'src/@arpa/services/notifications.service';
-import { NotificationsMockService } from './../../../../testing/notifications.mock.service';
 import { PersonService } from './../../persons/services/person.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
@@ -18,7 +19,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator';
 
 @Component({
-  selector: 'arpa-person-list',
+  selector: 'arpa-performer-list',
   templateUrl: './performer-list.component.html',
   styleUrls: ['./performer-list.component.scss'],
 })
@@ -26,12 +27,13 @@ import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator'
 export class PerformerListComponent {
   state: Observable<SelectItem>;
   query: DocumentNode = PerformersQuery;
+  lastInvitation: PersonInviteResultDto;
 
   columns: ColumnDefinition<PerformerDto>[] = [
+    { label: 'INSTRUMENT', property: 'instrument.name', type: 'text', show: true},
     { label: 'SURNAME', property: 'person.surname', type: 'text' },
     { label: 'GIVEN_NAME', property: 'person.givenName', type: 'text' },
     { label: 'SECTION', property: 'instrumentId.section', type: 'text', show: false},
-    { label: 'INSTRUMENT', property: 'instrument.name', type: 'text', show: true},
     { label: 'QUALIFICATION', property: 'qualificationId', type: 'state', stateTable: 'MusicianProfile', stateProperty: 'Qualification', show: true},
     { label: 'LEVEL_ASSESSMENT_TEAM', property: 'levelAssessmentTeam', type: 'rating', show: true},
     { label: 'EXPERIENCE_LEVEL', property: 'experienceLevel', type: 'rating', show: false },
@@ -41,6 +43,7 @@ export class PerformerListComponent {
     { label: 'CREATED_BY', property: 'createdBy', type: 'text', show: false },
     { label: 'MODIFIED_AT', property: 'createdAt', type: 'date', show: false },
     { label: 'MODIFIED_BY', property: 'modifiedBy', type: 'text', show: false },
+    { label: 'USER_CREATED_AT', property: 'person.user.createdAt', type: 'date', show: false }
   ];
   @ViewChild('feedSource') private feedSource: GraphQlFeedComponent;
 
@@ -61,7 +64,7 @@ export class PerformerListComponent {
     });
   }
 
-  sendInvite(id: string){
+  sendSingleInvite(id: string){
     this.personService
         .invitePersons([id])
         .subscribe(() => {
@@ -69,4 +72,13 @@ export class PerformerListComponent {
         });
   }
 
+
+  sendInvitationToMultiplePersons(event: any, overlayPanel: OverlayPanel) {
+    this.personService
+      .invitePersons(this.feedSource.values.getValue().map(mupro => mupro.personId))
+      .subscribe((result) => {
+        this.lastInvitation = result;
+        overlayPanel.show(event)
+      });
+  }
 }
