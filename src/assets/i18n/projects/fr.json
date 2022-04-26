@@ -19,6 +19,8 @@
   "PARTICIPATION_COMMENT": "Commentaire",
   "PARTICIPATION_MUPRO": "Profil de musicien",
   "PARTICIPATION_STATUS": "Statut",
+  "PARTICIPATION_STATUS_PERFORMER": "statut d'interprète",
+  "PARTICIPATION_STATUS_STAFF": "statut du personnel",
   "PROJECT_CREATED": "Projet creé avec succes",
   "PROJECT_UPDATED": "Projet modifié avec succes",
   "ROLE_ADDED": "Rôle ajouté",

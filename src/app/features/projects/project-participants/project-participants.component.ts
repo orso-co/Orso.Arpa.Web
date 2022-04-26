@@ -25,25 +25,25 @@ export class ProjectParticipantsComponent {
 
   columns: ColumnDefinition<any>[] = [
     { label: 'projects.PARTICIPANTS', property: 'participant', type: 'text' },
-    { label: 'projects.PARTICIPATIONSTATUS_INNER', property: 'participationStatusInner', type: 'text' },
     { label: 'projects.INSTRUMENT', property: 'instrument', type: 'text' },
-    {
-      label: 'projects.INSTRUMENT_STATE',
-      property: 'state',
-      type: 'badge',
-      badgeStateMap: [
-        {
-          label: 'DEACTIVATED',
-          value: 'deactivated',
-          severity: '',
-        },
-        {
-          label: 'ACTIVE',
-          value: 'active',
-          severity: 'success',
-        },
-      ],
-    },
+    { label: 'projects.PARTICIPATION_STATUS_PERFORMER', property: 'participationStatusInner', type: 'text' },
+    // {
+    //   label: 'projects.INSTRUMENT_STATE',
+    //   property: 'state',
+    //   type: 'badge',
+    //   badgeStateMap: [
+    //     {
+    //       label: 'DEACTIVATED',
+    //       value: 'deactivated',
+    //       severity: '',
+    //     },
+    //     {
+    //       label: 'ACTIVE',
+    //       value: 'active',
+    //       severity: 'success',
+    //     },
+    //   ],
+    // },
   ];
 
   constructor(private projectService: ProjectService, private config: DynamicDialogConfig) {
