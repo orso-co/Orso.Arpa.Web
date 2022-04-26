@@ -1,39 +1,39 @@
 <form [formGroup]="form" class="p-mt-5">
   <div>
-    <h4>{{ 'mupro.STATUS_PERFORMER' | translate }}</h4>
+    <h4>{{ 'mupro.STATUS_PERFORMER' | translate }}</h4>
   </div>
   <div class="p-grid p-formgrid p-fluid">
     <div class="p-col">
-      <arpa-form-field label="{{ 'mupro.PARTICIPATION_STATUS_INNER' | translate }}" type="select">
+      <arpa-form-field label="{{ 'mupro.PARTICIPATION_STATUS_INNER' | translate }}" type="select">
         <p-dropdown
           [autoDisplayFirst]="false"
           [options]="(statusOptionsPerformer$ | async)!"
           [showClear]="true"
           appendTo="body"
-          formControlName="participationStatusInternal"
-          id="participationStatusInternalId"
+          formControlName="participationStatusInnerId"
+          id="participationStatusInnerId"
           [placeholder]="'NOTHING_SELECTED' | translate"
         ></p-dropdown>
       </arpa-form-field>
     </div>
   </div>
   <div class="p-field p-col12">
-    <arpa-form-field label="{{ 'mupro.PARTICIPATION_COMMENT_PERFORMER' | translate }}">
+    <arpa-form-field label="{{ 'mupro.PARTICIPATION_COMMENT_PERFORMER' | translate }}">
       <textarea formControlName="commentByPerformerInner" id="commentByPerformerId" pInputText rows="5"></textarea>
     </arpa-form-field>
   </div>
   <div>
-    <h4>{{ 'mupro.STATUS_STAFF' | translate }}</h4>
+    <h4>{{ 'mupro.STATUS_STAFF' | translate }}</h4>
   </div>
   <div class="p-grid p-formgrid p-fluid">
     <div class="p-col">
-      <arpa-form-field label="{{ 'mupro.PARTICIPATION_STATUS_INTERNAL' | translate }}" type="select">
+      <arpa-form-field label="{{ 'mupro.PARTICIPATION_STATUS_INTERNAL' | translate }}" type="select">
         <p-dropdown
           [autoDisplayFirst]="false"
-          [options]="(statusOptionsStaff$ | async)!"
+          [options]="(statusOptionsStaff$ | async)!"
           [showClear]="true"
           appendTo="body"
-          formControlName="participationStatusInternal"
+          formControlName="participationStatusInternalId"
           id="participationStatusInternalId"
           [placeholder]="'NOTHING_SELECTED' | translate"
         ></p-dropdown>
@@ -41,7 +41,7 @@
     </div>
   </div>
   <div class="p-field p-col12">
-    <arpa-form-field label="{{ 'mupro.PARTICIPATION_COMMENT_STAFF' | translate }}">
+    <arpa-form-field label="{{ 'mupro.PARTICIPATION_COMMENT_STAFF' | translate }}">
       <textarea formControlName="commentByStaffInner" id="commentByStaffId" pInputText rows="5"></textarea>
     </arpa-form-field>
   </div>

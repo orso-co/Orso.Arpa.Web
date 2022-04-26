@@ -1,5 +1,4 @@
-import { ProjectDto } from './../../../../@arpa/models/projectDto';
-import { MyProjectDto, MyProjectParticipationDto } from 'src/@arpa/models/myProjectDto';
+import { ProjectParticipationDto } from './../../../../@arpa/models/projectParticipationDto';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -13,8 +12,8 @@ import { Observable } from 'rxjs';
 })
 export class ParticipationDialogComponent implements OnInit {
   form: FormGroup;
-  participationPerformer: MyProjectParticipationDto = this.config.data.participationPerformer;
-  participationStaff: MyProjectParticipationDto = this.config.data.participationStaff;
+  participationPerformer: ProjectParticipationDto = this.config.data.participationPerformer;
+  participationStaff: ProjectParticipationDto = this.config.data.participationStaff;
   statusOptionsPerformer$: Observable<SelectItem[]> = this.config.data.statusOptionsPerformer$;
   statusOptionsStaff$: Observable<SelectItem[]> = this.config.data.statusOptionsStaff$;
 
@@ -36,10 +35,10 @@ export class ParticipationDialogComponent implements OnInit {
     });
 
     this.form.patchValue({
-      participationStatusInnerId: this.participationPerformer.participationStatusInner?.id,
+      participationStatusInnerId: this.participationPerformer.participationStatusInnerId,
       commentByPerformerInner: this.participationStaff.commentByPerformerInner,
 
-      participationStatusInternalId: this.participationStaff.participationStatusInternal?.id,
+      participationStatusInternalId: this.participationStaff.participationStatusInternalId,
       commentByStaffInner: this.participationStaff.commentByStaffInner,
     });
   }
