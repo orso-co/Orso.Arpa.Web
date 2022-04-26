@@ -10,6 +10,8 @@ import { ColumnDefinition } from '../../../../@arpa/components/table/table.compo
 interface Participant {
   participant: string;
   instrument: string;
+  state: string;
+  participationStatusInner: string;
 }
 
 @Component({
@@ -18,38 +20,42 @@ interface Participant {
   styleUrls: ['./project-participants.component.scss'],
 })
 export class ProjectParticipantsComponent {
-
   participants: Observable<Participant[]>;
+  participationStatusInner: Observable<ProjectParticipationDto>;
 
   columns: ColumnDefinition<any>[] = [
     { label: 'projects.PARTICIPANTS', property: 'participant', type: 'text' },
     { label: 'projects.INSTRUMENT', property: 'instrument', type: 'text' },
-    {
-      label: 'projects.INSTRUMENT_STATE',
-      property: 'state',
-      type: 'badge',
-      badgeStateMap: [
-        {
-          label: 'DEACTIVATED',
-          value: 'deactivated',
-          severity: '',
-        },
-        {
-          label: 'ACTIVE',
-          value: 'active',
-          severity: 'success',
-        },
-      ],
-    },
+    { label: 'projects.PARTICIPATION_STATUS_PERFORMER', property: 'participationStatusInner', type: 'text' },
+    // {
+    //   label: 'projects.INSTRUMENT_STATE',
+    //   property: 'state',
+    //   type: 'badge',
+    //   badgeStateMap: [
+    //     {
+    //       label: 'DEACTIVATED',
+    //       value: 'deactivated',
+    //       severity: '',
+    //     },
+    //     {
+    //       label: 'ACTIVE',
+    //       value: 'active',
+    //       severity: 'success',
+    //     },
+    //   ],
+    // },
   ];
 
   constructor(private projectService: ProjectService, private config: DynamicDialogConfig) {
     this.participants = this.projectService.getParticipations(this.config.data.project.id).pipe(
-      map((participation: ProjectParticipationDto[]) => participation.map((participant: ProjectParticipationDto) => ({
-        participant: [participant.person?.givenName, participant.person?.surname].join(' '),
-        instrument: participant.musicianProfile?.instrumentName,
-        state: this.isDeactivated(participant),
-      } as Participant))),
+      map((participation: ProjectParticipationDto[]) =>
+        participation.map((participant: ProjectParticipationDto) => ({
+          participant: participant.person?.displayName || '',
+          instrument: participant.musicianProfile?.instrumentName || '',
+          state: this.isDeactivated(participant),
+          participationStatusInner: participant.participationStatusInner || '',
+        }))
+      )
     );
   }
 
@@ -61,7 +67,7 @@ export class ProjectParticipantsComponent {
     let state = 'active';
     if (participant.musicianProfile?.deactivation) {
       const { deactivationStart } = participant.musicianProfile.deactivation;
-      const start = new Date(deactivationStart as unknown as string || '');
+      const start = new Date((deactivationStart as unknown as string) || '');
       const projectDate = new Date(this.config.data.project.startDate);
       if (start.getTime() < projectDate.getTime()) {
         state = 'deactivated';
@@ -69,5 +75,4 @@ export class ProjectParticipantsComponent {
     }
     return state;
   }
-
 }
