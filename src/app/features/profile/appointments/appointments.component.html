@@ -48,12 +48,12 @@
 
 <ng-template #listElement let-appointment>
   <tr (click)="selectDialog.openDialog(appointment.predictionId, appointment)">
-    <td class="p-d-flex p-jc-between">
+    <td class="p-d-flex p-jc-between">      
       <div class="p-flex-column p-mr-4 date">
-        <span class="month-name">{{ appointment.startTime | localizedDate: 'MMMM' }}</span>
         <span class="year">{{ appointment.startTime | localizedDate: 'YYYY' }}</span>
-        <span class="day">{{ appointment.startTime | date: 'dd':'locale(de)' }}</span>
+        <span class="month-name">{{ appointment.startTime | localizedDate: 'MMMM' }}</span>
         <span class="day-name">{{ appointment.startTime | localizedDate: 'EEEE' }}</span>
+        <span class="day">{{ appointment.startTime | date: 'dd':'locale(de)' }}</span>
         <span class="status">{{ appointment.status?.name | uppercase }}</span>
       </div>
       <div class="p-flex-column p-mr-2 details">
@@ -73,10 +73,11 @@
         <p-badge *ngIf="appointment.category?.name" class="category" [value]="appointment.category?.name">
         </p-badge>
         <span class="publicDetails">{{ appointment.publicDetails }}</span>
-
         <span *ngIf="appointment.projects.length > 0" class="projects">
           {{ 'PROJECT' | translate }}: {{ getProjectNames(appointment.projects) }}
         </span>
+
+        
       </div>
       <div class="p-flex-column actions">
         <button
