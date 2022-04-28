@@ -31,3 +31,6 @@
     </mat-grid-list>
   </ng-container>
 </div>
+<ng-container *ngIf="dashboardRole === 'without'">
+  <p-message severity="info" [text]="'Willkommen bei ARPA 2.0! Du wurdest vom ORSO Team noch nicht freigeschaltet. Bitte hab noch etwas Geduld. Du wirst per E-Mail informiert, sobald deine Inhalte für dich zur Verfügung stehen.' | translate"></p-message>
+</ng-container>
