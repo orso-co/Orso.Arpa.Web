@@ -15,5 +15,8 @@
   "USERS": "Users",
   "USER_DELETED": "The user has been deleted",
   "USER_MANAGEMENT": "User Management",
-  "USER_ROLES_SET": "User roles updated"
+  "USER_ROLES_SET": "User roles updated",
+  "NEWS": "News",
+  "PROJECTSTATS": "Project Statistics"
+
 }

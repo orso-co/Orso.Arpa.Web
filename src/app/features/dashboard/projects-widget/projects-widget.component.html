@@ -1,3 +1,6 @@
+<div class="p-d-flex p-flex-column">
+  <span>Du siehst hier Projekttitel + Projektstatus. Bitte nicht verwechseln mit Teilnahmestatus! Deinen Teilnahmestatus änderst du unter "Meine Projekte"</span>
+</div>
 <p-accordion>
   <p-accordionTab *ngFor="let myProject of myProjects">
     <ng-template pTemplate="header">
@@ -5,8 +8,6 @@
         <div class="p-as-start p-d-flex p-ai-center">
           <span class="project-title">{{ myProject.project.title }}</span>
         </div>
-
-
       </div>
 
     <p-tag
@@ -37,7 +38,7 @@
      <div>
       <button
         routerLink="../../profile/my-projects"
-        [label]="'MY_PROJECTS'| translate"
+        [label]="'MY_PROJECTS'| translate"
         class="p-button-rounded p-button-text"
         icon="pi pi-angle-right"
         pButton

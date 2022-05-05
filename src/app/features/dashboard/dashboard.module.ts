@@ -50,6 +50,7 @@ import { UserWidgetComponent } from './user-widget/user-widget.component';
 import { WidgetComponent } from './widget/widget.component';
 import { ChipModule } from 'primeng/chip';
 import { MessageModule } from 'primeng/message';
+import { IframeWidgetProjectstatsComponent } from './iframe-widget-projectstats/iframe-widget-projectstats.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { MessageModule } from 'primeng/message';
     ArpaWidgetConfigDirective,
     ChoirGridWidgetComponent,
     IframeWidgetComponent,
+    IframeWidgetProjectstatsComponent,
   ],
   imports: [
     CommonModule,

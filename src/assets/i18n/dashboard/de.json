@@ -18,5 +18,7 @@
   "USER_ROLES_SET": "Benutzerrollen aktualisiert",
   "PROJECTDETAILS": "Projektdetails",
   "DESCRIPTION": "Beschreibung",
-  "GOTO_PROJECT": "Gehe zu Projekt"
+  "GOTO_PROJECT": "Gehe zu Projekt",
+  "NEWS": "Nachrichten",
+  "PROJECTSTATS": "Projektstatistik"
 }
