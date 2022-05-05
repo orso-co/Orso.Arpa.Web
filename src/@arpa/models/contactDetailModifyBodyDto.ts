@@ -5,5 +5,6 @@ export interface ContactDetailModifyBodyDto {
   value: string;
   typeId?: string;
   commentTeam?: string;
+  commentInner?: string;
   preference?: number;
 }

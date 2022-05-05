@@ -30,11 +30,12 @@ export class AvatarComponent {
   }
 
   getInitials(): string {
-    if (this.user?.displayName) {
+    if (this.user?.displayName && this.user?.displayName.includes(' ')) {
       return `${this.user?.displayName
         .split(' ')
-        .map((name: string) => name[0].toUpperCase())
-        .join('').toUpperCase()}`;
+        .splice(0, 2)
+        .map((name: string) => name[0] ? name[0].toUpperCase() : '')
+        .join('')}`;
     } else {
       const [first] = this.user?.givenName || ' ';
       const [last] = this.user?.surname || ' ';

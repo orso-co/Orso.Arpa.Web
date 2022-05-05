@@ -19,6 +19,8 @@
   "PARTICIPATION_COMMENT": "Kommentar",
   "PARTICIPATION_MUPRO": "Musikerprofil",
   "PARTICIPATION_STATUS": "Status",
+  "PARTICIPATION_STATUS_PERFORMER": "Performer Status",
+  "PARTICIPATION_STATUS_STAFF": "KBB Status",
   "PROJECT_CREATED": "Projekt erfolgreich angelegt",
   "PROJECT_UPDATED": "Projekt erfolgreich bearbeitet",
   "ROLE_ADDED": "Rolle hinzufügft",

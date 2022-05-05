@@ -3,7 +3,7 @@
   "DEACTIVATED_PROFILES": "Profils désactivés",
   "MAIN_PROFILE": "Profil principal",
   "MUSICIAN_PROFILES": "Profils de musicien",
-  "MY_APPOINTMENTS": "Données de base",
+  "MY_APPOINTMENTS": "Mes dates",
   "MY_DATA": "Mes détails",
   "MY_PROFILES": "Mes profils",
   "MY_MUSICIANPROFILE": "Mon profil de musicien",
@@ -28,6 +28,8 @@
   "BIRTHNAME": "Nom de naissance",
   "DATEOFBIRTH": "Date de naissance",
   "MY_DATA_TOOLTIP": "Modifiez votre nom, à propos de moi, etc.",
+  "FUTURE_APPOINTMENTS": "Événements à venir",
+  "PAST_APPOINTMENTS": "Événements passés",
   "contact": {
     "NOTHING_SELECTED": "Rien de sélectionné",
     "TYPE": "Taper",

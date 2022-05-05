@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ApiService } from '../../../../@arpa/services/api.service';
 import { AppointmentDto } from '../../../../@arpa/models/appointmentDto';
 import { DateRange } from '../../../../@arpa/models/dateRange';
+import { AppointmentListDto } from 'src/@arpa/models/appointmentListDto';
 
 @Injectable({
   providedIn: 'root',
@@ -16,14 +17,14 @@ export class AppointmentService {
     this.baseUrl = '/appointments';
   }
 
-  get(range: DateRange, date: Date): Observable<AppointmentDto[]> {
+  get(range: DateRange, date: Date): Observable<AppointmentListDto[]> {
     const params = new HttpParams().set('date', date.toISOString()).set('range', DateRange[range]);
 
-    return this.apiService.get<AppointmentDto[]>(this.baseUrl, params);
+    return this.apiService.get<AppointmentListDto[]>(this.baseUrl, params).pipe(shareReplay());
   }
 
   getById(id: string): Observable<AppointmentDto> {
-    return this.apiService.get<AppointmentDto>(`${this.baseUrl}/${id}`);
+    return this.apiService.get<AppointmentDto>(`${this.baseUrl}/${id}`).pipe(shareReplay());
   }
 
   create(appointment: AppointmentDto): Observable<AppointmentDto> {

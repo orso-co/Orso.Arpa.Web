@@ -59,8 +59,8 @@ export class MeService {
     return this.apiService.put(`${this.baseUrl}/profiles/user`, profileDto).pipe(shareReplay());
   }
 
-  getMyAppointments(take: number | null, skip: number | null): Observable<MyAppointmentListDto> {
-    return this.apiService.get<MyAppointmentListDto>(`${this.baseUrl}/appointments?limit=${take}&offset=${skip}`).pipe(shareReplay());
+  getMyAppointments(take: number | null, skip: number | null, passed: boolean = false): Observable<MyAppointmentListDto> {
+    return this.apiService.get<MyAppointmentListDto>(`${this.baseUrl}/appointments?limit=${take}&offset=${skip}&passed=${passed}`).pipe(shareReplay());
   }
 
   getMyProjects(): Observable<MyProjectDto[]> {

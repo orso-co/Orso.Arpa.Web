@@ -1,4 +1,12 @@
 {
+  "INVITE_BUTTON": "Alle Personen auf dieser Seite zu ARPA einladen",
+  "NO_INVITATION_YET": "Es wurde keine Einladung verschickt",
+  "INVITATION_FAILURE": "Fehlgeschlagene Einladung",
+  "INVITATION_SUCCESS": "Folgende Personen wurden erfolgreich eingeladen:",
+  "INVITATION_HINT": "Hinweis: Manche Personen haben mehrere E-Mailadressen! (Die erste Mailadresse wurde verwendet)", 
+  "NO_INVITATION_DUE_TO": "Die folgenden Personen wurden nicht eingeladen, weil...",
+  "MISSING_MAIL": "die E-Mailadresse fehlt",
+  "EXISTING_REGISTRATION": "eine Registrierung bereits existiert",
   "ABOUT_ME": "Über mich",
   "BASE_DATA": "Stammdaten",
   "BIRTHNAME": "Geburtsname",

@@ -72,6 +72,9 @@ export class FormFieldComponent implements OnInit, AfterViewInit, OnDestroy {
             ...this.formControl.errors[errorType],
           });
           break;
+        case 'resultError':
+          errorMessage = this.formControl.errors[errorType];
+          break;
         default:
           if (this.customError) {
             errorMessage = this.translate.instant(this.customError);

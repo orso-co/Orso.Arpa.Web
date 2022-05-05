@@ -26,7 +26,7 @@
       <input (ngModelChange)='onChange()' autocomplete='off' formControlName='userName' pInputText type='text'>
     </arpa-form-field>
 
-    <arpa-form-field [showErrors]='false' label='PASSWORD'>
+    <arpa-form-field label='PASSWORD'>
       <p-password (blur)='reValidate(registerFormGroup.controls["password"])'
                   [feedback]='false'
                   [toggleMask]='true'

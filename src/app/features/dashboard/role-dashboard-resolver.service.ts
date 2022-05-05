@@ -18,10 +18,7 @@ export class RoleDashboardResolver implements Resolve<string> {
     let { role: roleName } = route.params;
 
     return of(this.authService.getCurrentUser()).pipe(map((token) => {
-      if (!roleName) {
-        roleName = token.roles[0];
-      }
-      return roleName;
+      return roleName || token.roles[0] || 'WITHOUT';
     }));
   }
 }
