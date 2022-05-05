@@ -279,7 +279,7 @@
         [columns]="columns"
         [paginator]="true"
         [responsive]="true"
-        [rows]="10"
+        [rows]="25"
         [value]="participationTableItems"
         id="participationTable"
         sortMode="multiple"
@@ -307,6 +307,24 @@
                 type="text"
               />
               <p-dropdown
+              (onChange)="participationTable.filter($event.value, col.field, 'equals')"
+              *ngSwitchCase="'predictionId'"
+              [autoDisplayFirst]="false"
+              [options]="predictionOptions"
+              [showClear]="true"
+              [style]="{ width: '100%' }"
+              appendTo="body"
+            ></p-dropdown>
+            <p-dropdown
+              (onChange)="participationTable.filter($event.value, col.field, 'equals')"
+              *ngSwitchCase="'resultId'"
+              [autoDisplayFirst]="false"
+              [options]="resultOptions"
+              [showClear]="true"
+              [style]="{ width: '100%' }"
+              appendTo="body"
+            ></p-dropdown>
+              <p-dropdown
                 (onChange)="participationTable.filter($event.value, col.field, 'contains')"
                 *ngSwitchCase="'sections'"
                 [autoDisplayFirst]="false"
@@ -315,24 +333,7 @@
                 [style]="{ width: '100%' }"
                 appendTo="body"
               ></p-dropdown>
-              <p-dropdown
-                (onChange)="participationTable.filter($event.value, col.field, 'equals')"
-                *ngSwitchCase="'predictionId'"
-                [autoDisplayFirst]="false"
-                [options]="predictionOptions"
-                [showClear]="true"
-                [style]="{ width: '100%' }"
-                appendTo="body"
-              ></p-dropdown>
-              <p-dropdown
-                (onChange)="participationTable.filter($event.value, col.field, 'equals')"
-                *ngSwitchCase="'resultId'"
-                [autoDisplayFirst]="false"
-                [options]="resultOptions"
-                [showClear]="true"
-                [style]="{ width: '100%' }"
-                appendTo="body"
-              ></p-dropdown>
+           
               <p-dropdown
                 (onChange)="participationTable.filter($event.value, col.field, 'contains')"
                 *ngSwitchCase="'qualification'"
@@ -354,14 +355,6 @@
             <td width="15%">
               <span class="p-column-title">{{ 'GIVENNAME' | translate }}</span>
               {{ item.givenName }}
-            </td>
-            <td width="15%">
-              <span class="p-column-title">{{ 'SECTIONS' | translate }}</span>
-              {{ item.sections }}
-            </td>
-            <td width="15%">
-              <span class="p-column-title">{{ 'appointments.LEVEL' | translate }}</span>
-              {{ item.qualification }}
             </td>
             <td width="25%">
               <span class="p-column-title">{{ 'appointments.PREDICTION' | translate }}</span>
@@ -388,6 +381,15 @@
                 placeholder="Select result"
               ></p-dropdown>
             </td>
+            <td width="15%">
+              <span class="p-column-title">{{ 'SECTIONS' | translate }}</span>
+              {{ item.sections }}
+            </td>
+            <td width="15%">
+              <span class="p-column-title">{{ 'appointments.LEVEL' | translate }}</span>
+              {{ item.qualification }}
+            </td>
+            
           </tr>
         </ng-template>
         <ng-template let-columns pTemplate="emptymessage">
