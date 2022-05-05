@@ -1,0 +1,76 @@
+.date {
+    text-align: center;
+    width: 8.5rem;
+    border-right: 1px solid rgba(#fff, 0.25);
+  
+    .day {
+      font-size: 2em;
+      font-weight: 600;
+      display: block;
+    }
+  
+    .day-name {
+      display: block;
+      font-size: 0.7em;
+      font-weight: 200;
+    }
+    .month-name {
+      display: block;
+      font-size: 1.2em;
+      font-weight: 300;
+    }
+    .year {
+      display: block;
+      font-size: 0.7em;
+      font-weight: 100;
+    }
+    .status {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      font-style: italic;
+      opacity: 0.7;
+      letter-spacing: 0.1rem;
+    }
+  }
+  
+  .details {
+    flex-grow: 1;
+    line-height: 1.5em;
+  
+    .name {
+      display: block;
+      font-weight: 600;
+      line-height: 2em;
+  
+      p-badge {
+        display: inline;
+        margin-left: 1rem;
+      }
+    }
+  
+    .time {
+      display: block;
+      opacity: .85;
+      font-size: .85em;
+    }
+  
+    .projects {
+      display: block;
+      opacity: .60;
+      font-size: 0.8em;
+    }
+    .publicDetails {
+      font-size: 0.9em;
+      font-weight: 50;
+      font-style: italic;
+      opacity: 0.70;
+      margin-left: 0.5rem;
+    }
+  
+  }
+  .headlineinfo {
+    font-size: 1.0em;
+    opacity: 0.50;
+  }
+  

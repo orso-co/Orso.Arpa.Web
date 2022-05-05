@@ -16,7 +16,7 @@
   }
   .month-name {
     display: block;
-    font-size: 1em;
+    font-size: 1.2em;
     font-weight: 300;
   }
   .year {
@@ -26,10 +26,11 @@
   }
   .status {
     display: block;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: 700;
+    font-style: italic;
     opacity: 0.7;
-    letter-spacing: 0.05rem;
+    letter-spacing: 0.1rem;
   }
 }
 
@@ -56,14 +57,14 @@
 
   .projects {
     display: block;
-    opacity: .30;
+    opacity: .60;
     font-size: 0.8em;
   }
   .publicDetails {
     font-size: 0.9em;
     font-weight: 50;
     font-style: italic;
-    opacity: 0.40;
+    opacity: 0.70;
     margin-left: 0.5rem;
   }
 

@@ -14,6 +14,9 @@
 "STATE": "estado",
 "USER_DELETED": "O utilizador foi eliminado",
 "USER_MANAGEMENT": "gestão de utilizadores",
-"USER_ROLES_SET": "A atribuição de funções foi guardada",
-"USERS": "utilizadores"
+"USER_ROLES_SET": "A atribuição de funções foi salva",
+"USERS": "utilizadores",
+"NEWS": "Notícia",
+"PROJECTSTATS": "Estatísticas do projeto"
+
 }

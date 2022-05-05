@@ -18,6 +18,7 @@ import { AppointmentDto } from '../../../../@arpa/models/appointmentDto';
 import { SectionDto } from '../../../../@arpa/models/sectionDto';
 import { DateRange } from '../../../../@arpa/models/dateRange';
 import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator';
+import { AppointmentListDto } from 'src/@arpa/models/appointmentListDto';
 
 export interface CalendarEvent {
   id: string;
@@ -74,18 +75,18 @@ export class AppointmentsComponent {
     this.setOptions();
   }
 
-  private _appointments: AppointmentDto[] = [];
+  private _appointments: AppointmentListDto[] = [];
 
-  get appointments(): AppointmentDto[] {
+  get appointments(): AppointmentListDto[] {
     return this._appointments;
   }
 
-  set appointments(values: AppointmentDto[]) {
+  set appointments(values: AppointmentListDto[]) {
     this._appointments = values;
     this.events = values.map((a) => this.mapAppointmentToCalendarEvent(a));
   }
 
-  mapAppointmentToCalendarEvent(appointment: AppointmentDto): CalendarEvent {
+  mapAppointmentToCalendarEvent(appointment: AppointmentListDto): CalendarEvent {
     const isAllDay = this.isAllDayEvent(appointment);
 
     /* fullCalendar multiple day all day events display one day short. This is an issue if an event
@@ -108,7 +109,7 @@ export class AppointmentsComponent {
     };
   }
 
-  isAllDayEvent(appointment: AppointmentDto | undefined): boolean {
+  isAllDayEvent(appointment: AppointmentListDto | undefined): boolean {
     if (appointment === undefined) {
       return false;
     }
@@ -259,41 +260,42 @@ export class AppointmentsComponent {
   }
 
   private openEditDialog(appointmentId: string): void {
-    const appointment = this.appointments.find((a) => a.id === appointmentId);
-    const ref = this.dialogService.open(EditAppointmentComponent, {
-      data: {
-        appointment,
-        sections: this.sections,
-        projects: this.projects,
-        venues: this.venues,
-        predictionOptions: this.predictionOptions,
-        resultOptions: this.resultOptions,
-        categoryOptions: this.categoryOptions,
-        statusOptions: this.statusOptions,
-        salaryPatternOptions: this.salaryPatternOptions,
-        salaryOptions: this.salaryOptions,
-        expectationOptions: this.expectationOptions,
-        isAllDayEvent: this.isAllDayEvent(appointment),
-      },
-      header: this.translate.instant('appointments.EDIT'),
-      styleClass: 'form-modal',
-      dismissableMask: true,
-    });
+    this.appointmentService.getById(appointmentId).subscribe((appointment) => {
+      const ref = this.dialogService.open(EditAppointmentComponent, {
+        data: {
+          appointment,
+          sections: this.sections,
+          projects: this.projects,
+          venues: this.venues,
+          predictionOptions: this.predictionOptions,
+          resultOptions: this.resultOptions,
+          categoryOptions: this.categoryOptions,
+          statusOptions: this.statusOptions,
+          salaryPatternOptions: this.salaryPatternOptions,
+          salaryOptions: this.salaryOptions,
+          expectationOptions: this.expectationOptions,
+          isAllDayEvent: this.isAllDayEvent(appointment),
+        },
+        header: this.translate.instant('appointments.EDIT'),
+        styleClass: 'form-modal',
+        dismissableMask: true,
+      });
 
-    ref.onClose.pipe(first()).subscribe((result: AppointmentDto | string) => {
-      if (result) {
-        if (typeof result === 'string') {
-          this.appointments.splice(
-            this.appointments.findIndex((a) => a.id === appointmentId),
-            1
-          );
-          this.appointments = [...this.appointments];
-        } else {
-          const index = this.appointments.findIndex((a) => a.id === result.id);
-          this.appointments[index] = result;
-          this.appointments = [...this.appointments];
+      ref.onClose.pipe(first()).subscribe((result: AppointmentDto | string) => {
+        if (result) {
+          if (typeof result === 'string') {
+            this.appointments.splice(
+              this.appointments.findIndex((a) => a.id === appointmentId),
+              1
+            );
+            this.appointments = [...this.appointments];
+          } else {
+            const index = this.appointments.findIndex((a) => a.id === result.id);
+            this.appointments[index] = result;
+            this.appointments = [...this.appointments];
+          }
         }
-      }
+      });
     });
   }
 }
