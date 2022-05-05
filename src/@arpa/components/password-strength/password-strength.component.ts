@@ -40,29 +40,29 @@ export class PasswordStrengthComponent implements OnInit, OnDestroy {
     let idx = 0;
 
     if (6 <= value.length && value.length <= 32) {
-      if (/.*\d.*/.test(value)) {
+      if (value.match(/(?=.*\d)/)) {
         idx++;
       }
-      if (/.*[a-z].*/.test(value)) {
+      if (value.match(/(?=.*[a-z])/)) {
         idx++;
       }
-      if (/.*[A-Z].*/.test(value)) {
+      if (value.match(/(?=.*[A-Z])/)) {
         idx++;
       }
-      if (/.*[*.!@#$%^&(){}\[\]:";'<>,?~`_+-=|].*/.test(value)) {
+      if (value.match(/(?=.*[^a-zA-Z0-9])/)) {
         idx++;
       }
-      if (idx > 3 && value.length > 10) {
+      if (idx > 3 && value.length > 11) {
         idx++;
       }
     }
 
     let barIndex = 0;
-    if (idx <= 3) {
+    if (idx < 4) {
       barIndex = 1;
       this.strength = 'weak';
       this.valid.emit(false);
-    } else if (idx <= 4) {
+    } else if (idx === 4) {
       barIndex = 2;
       this.strength = 'normal';
       this.valid.emit(true);

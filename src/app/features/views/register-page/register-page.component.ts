@@ -135,6 +135,7 @@ export class RegisterPageComponent {
               formControl.setErrors({
                 resultError: error.errors[prop],
               });
+              formControl.markAsTouched();
             }
           });
         } else {

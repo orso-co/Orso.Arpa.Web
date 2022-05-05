@@ -4,32 +4,49 @@
       (onLazyLoad)='loadData($event.rows, $event.first)'
       routerLink="../../profile/appointments"
       [lazy]='true'
-      [rows]='8'
+      [rows]='5'
       [totalRecords]='(totalRecordsCount$ | async) || 0'
       [value]='(userAppointments$ | async) || []'
       tableStyleClass='arpa-table-list'
     >
-      <ng-template let-appointment pTemplate='body'>
-        <ng-container *ngTemplateOutlet='listElement; context: {$implicit: appointment}'></ng-container>
-      </ng-template>
-    </p-table>
-  </div>
+    <ng-template let-appointment pTemplate="body">
+      <ng-container *ngTemplateOutlet="listElement; context: { $implicit: appointment }"></ng-container>
+    </ng-template>
+  </p-table>
 </div>
+</div>
+
 <ng-template #listElement let-appointment>
-    <div class='p-d-flex p-jc-between'>
+  <td class="p-d-flex p-jc-between">
+    <div class="p-flex-column p-mr-4 date">
+      <span class="year">{{ appointment.startTime | localizedDate: 'YYYY' }}</span>
+      <span class="month-name">{{ appointment.startTime | localizedDate: 'MMMM' }}</span>
+      <span class="day-name">{{ appointment.startTime | localizedDate: 'EEEE' }}</span>
 
+      <span class="day">{{ appointment.startTime | date: 'dd':'locale(de)' }}</span>
+      <span class="status">{{ appointment.status?.name | uppercase }}</span>
     </div>
-    <div>
-      <div class='p-flex-column p-mr-4 date'>
-        <span>{{ appointment.startTime | date: 'dd.MM.yy':'locale(de)' }} ({{appointment.startTime | date: 'EE'}}), {{ appointment.startTime | date: 'H:mm':'locale(de)' }}-{{ appointment.endTime | date: 'H:mm':'locale(de)' }} {{ appointment.category?.name }} - {{ appointment.venue?.name }} {{ appointment.name }}
-          <p-tag *ngIf='appointment.predictionId'
-        styleClass="p-ml-2"
-        severity="warning"
-        [rounded]="true"
-        [value]=' appointment.predictionId | selectValue: predictions '></p-tag></span>
-          <p> 
-          </p>
+    <div class="p-flex-column p-mr-2 details">
+      <span class="name"
+        >{{ appointment.name }}
+        <p-badge
+          *ngIf="appointment.predictionId"
+          [value]="appointment.predictionId | selectValue: predictions"
+          severity="warning"
+        ></p-badge>
+        <p-badge *ngIf="appointment.result" [value]="appointment.result" severity="info"></p-badge>
+      </span>
+      <span class="time"
+        >{{ appointment.startTime | date: 'H:mm':'locale(de)' }}-{{ appointment.endTime | date: 'H:mm':'locale(de)' }}
+        <span *ngIf="appointment.venue?.name" class="venue"> - {{ appointment.venue?.name }}</span>
+      </span>
+      <p-badge *ngIf="appointment.category?.name" class="category" [value]="appointment.category?.name">
+      </p-badge>
+      <span class="publicDetails">{{ appointment.publicDetails }}</span>
 
-        </div>
-        </div>
+      <span *ngIf="appointment.projects.length > 0" class="projects">
+        {{ 'PROJECT' | translate }}: {{ getProjectNames(appointment.projects) }}
+      </span>
+    </div>
+  </td>
 </ng-template>

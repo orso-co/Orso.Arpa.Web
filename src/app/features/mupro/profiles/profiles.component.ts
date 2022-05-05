@@ -106,7 +106,7 @@ export class ProfilesComponent implements OnInit, OnDestroy {
         musicianProfileId,
         projects: this.projects,
       },
-      header: this.translate.instant('INVITE_MUSICIAN_PROFILE'),
+      header: this.translate.instant('projects.INVITE_MUSICIAN_PROFILE'),
       styleClass: 'form-modal',
       dismissableMask: true,
     });
