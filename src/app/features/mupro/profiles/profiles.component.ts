@@ -4,7 +4,7 @@ import { ProjectService } from '../../../shared/services/project.service';
 import { DialogService } from 'primeng/dynamicdialog';
 import { InvitationDialogComponent } from '../invitation-dialog/invitation-dialog.component';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { concat, Observable, Subscription, of } from 'rxjs';
+import { concat, Observable, of, Subscription } from 'rxjs';
 import { MenuItem } from 'primeng/api';
 import { catchError, filter, first, map } from 'rxjs/operators';
 import { ActivatedRoute, NavigationExtras, NavigationStart, Router } from '@angular/router';

@@ -1,14 +1,13 @@
-import { ProjectParticipationDto } from './../../../../@arpa/models/projectParticipationDto';
+import { ProjectParticipationDto } from '../../../../@arpa/models/projectParticipationDto';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { SelectItem } from 'primeng/api';
 import { Observable } from 'rxjs';
-import { SelectValueDto } from '../../../../@arpa/models/selectValueDto';
 import { map } from 'rxjs/operators';
-import { VenueService } from '../../../shared/services/venue.service';
 import { SelectValueService } from '../../../shared/services/select-value.service';
+
 @Component({
   selector: 'arpa-participation-dialog',
   templateUrl: './participation-dialog.component.html',
@@ -26,7 +25,7 @@ export class ParticipationDialogComponent implements OnInit {
     private ref: DynamicDialogRef,
     private translate: TranslateService,
     private selectValueService: SelectValueService,
-    ) {
+  ) {
     this.participationStatusInner = this.selectValueService.load('ProjectParticipation', 'ParticipationStatusInner').pipe(map(() => this.selectValueService.get('ProjectParticipation', 'ParticipationStatusInner')));
     this.participationStatusInternal = this.selectValueService.load('ProjectParticipation', 'ParticipationStatusInternal').pipe(map(() => this.selectValueService.get('ProjectParticipation', 'ParticipationStatusInternal')));
   }
@@ -50,14 +49,14 @@ export class ParticipationDialogComponent implements OnInit {
     });
   }
 
-   onSubmit() {
+  onSubmit() {
     if (this.form.invalid || this.form.pristine) {
       return;
     }
     this.ref.close({ ...this.form.value });
   }
 
-   cancel() {
+  cancel() {
     this.ref.close(null);
   }
 }

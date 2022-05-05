@@ -1,9 +1,9 @@
 import { ActivatedRoute } from '@angular/router';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
-import { first, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { NotificationsService } from '../../../../@arpa/services/notifications.service';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ProjectDto } from '../../../../@arpa/models/projectDto';
 import { SelectItem } from 'primeng/api';
 import { SelectValueService } from '../../../shared/services/select-value.service';

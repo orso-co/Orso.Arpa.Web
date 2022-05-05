@@ -7,10 +7,10 @@ import { ColumnDefinition } from '../../../../@arpa/components/table/table.compo
 import { ProjectDto } from '../../../../@arpa/models/projectDto';
 import { DocumentNode } from 'graphql';
 import { ProjectsQuery } from './projects.graphql';
-import { ActivatedRoute, NavigationExtras, NavigationStart, Router, NavigationEnd } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { GraphQlFeedComponent } from 'src/@arpa/components/graph-ql-feed/graph-ql-feed.component';
-import { filter, first, map } from 'rxjs/operators';
+import { filter, first } from 'rxjs/operators';
 import { ParticipationDialogComponent } from '../participation-dialog/participation-dialog.component';
 import { ProjectService } from './../../../shared/services/project.service';
 import { LoggerService } from '../../../../@arpa/services/logger.service';
