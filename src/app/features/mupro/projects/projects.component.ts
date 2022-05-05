@@ -10,9 +10,10 @@ import { ProjectsQuery } from './projects.graphql';
 import { ActivatedRoute, NavigationExtras, NavigationStart, Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { GraphQlFeedComponent } from 'src/@arpa/components/graph-ql-feed/graph-ql-feed.component';
-import { filter, map } from 'rxjs/operators';
+import { filter, first, map } from 'rxjs/operators';
 import { ParticipationDialogComponent } from '../participation-dialog/participation-dialog.component';
 import { ProjectService } from './../../../shared/services/project.service';
+import { LoggerService } from '../../../../@arpa/services/logger.service';
 
 @Component({
   selector: 'arpa-mupro-projects',
@@ -43,8 +44,8 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     private dialogService: DialogService,
     private projectService: ProjectService,
     private translate: TranslateService,
-    private notificationsServcie: NotificationsService
-
+    private notificationsService: NotificationsService,
+    private logger: LoggerService
     ) {}
 
   ngOnInit(): void {
@@ -63,17 +64,20 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     this.routeEventsSubscription.unsubscribe();
   }
 
-  openParticipationDialog(musicianProfileId: string) {
+  openParticipationDialog(project: string) {
     const ref = this.dialogService.open(ParticipationDialogComponent, {
-      data: {
-        musicianProfileId,
-        participations: this.participations,
-        projectTitle$: this.projects,
-          },
+      data: project,
       header: this.translate.instant('mupro.EDIT_PARTICIPATION'),
       styleClass: 'form-modal',
       dismissableMask: true,
       width: window.innerWidth > 1000 ? '66%' : '100%',
     });
+
+    ref.onClose.pipe(first()).subscribe((project) => {
+      if(project) {
+        this.logger.info('updated:', project);
+        this.notificationsService.success('UPDATED_PROJECT_PARTICIPATION');
+      }
+    })
   }
 }

@@ -5,6 +5,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { SelectItem } from 'primeng/api';
 import { Observable } from 'rxjs';
+import { SelectValueDto } from '../../../../@arpa/models/selectValueDto';
+import { map } from 'rxjs/operators';
+import { VenueService } from '../../../shared/services/venue.service';
+import { SelectValueService } from '../../../shared/services/select-value.service';
 @Component({
   selector: 'arpa-participation-dialog',
   templateUrl: './participation-dialog.component.html',
@@ -12,34 +16,37 @@ import { Observable } from 'rxjs';
 })
 export class ParticipationDialogComponent implements OnInit {
   form: FormGroup;
-  participationPerformer: ProjectParticipationDto = this.config.data.participationPerformer;
-  participationStaff: ProjectParticipationDto = this.config.data.participationStaff;
-  statusOptionsPerformer$: Observable<SelectItem[]> = this.config.data.statusOptionsPerformer$;
-  statusOptionsStaff$: Observable<SelectItem[]> = this.config.data.statusOptionsStaff$;
-
+  private participation: ProjectParticipationDto;
+  public participationStatusInner: Observable<SelectItem[]>;
+  public participationStatusInternal: Observable<SelectItem[]>;
 
   constructor(
     private formBuilder: FormBuilder,
     public config: DynamicDialogConfig,
     private ref: DynamicDialogRef,
-    private translate: TranslateService
-    ) {}
+    private translate: TranslateService,
+    private selectValueService: SelectValueService,
+    ) {
+    this.participationStatusInner = this.selectValueService.load('ProjectParticipation', 'ParticipationStatusInner').pipe(map(() => this.selectValueService.get('ProjectParticipation', 'ParticipationStatusInner')));
+    this.participationStatusInternal = this.selectValueService.load('ProjectParticipation', 'ParticipationStatusInternal').pipe(map(() => this.selectValueService.get('ProjectParticipation', 'ParticipationStatusInternal')));
+  }
 
   ngOnInit() {
+
+    this.participation = this.config.data.projectParticipations[0];
     this.form = this.formBuilder.group({
-      participationStatusInnerId: [null, [Validators.required]],
-      commentByPerformerInner: [null, [Validators.maxLength(500)]],
-
+      participationStatusInnerId: [null],
       participationStatusInternalId: [null, [Validators.required]],
+      commentByPerformerInner: [null, [Validators.maxLength(500)]],
       commentByStaffInner: [null, [Validators.maxLength(500)]],
+      commentTeam: [null, [Validators.maxLength(500)]],
     });
-
     this.form.patchValue({
-      participationStatusInnerId: this.participationPerformer.participationStatusInnerId,
-      commentByPerformerInner: this.participationStaff.commentByPerformerInner,
-
-      participationStatusInternalId: this.participationStaff.participationStatusInternalId,
-      commentByStaffInner: this.participationStaff.commentByStaffInner,
+      commentByPerformerInner: this.participation.commentByPerformerInner,
+      commentByStaffInner: this.participation.commentByStaffInner,
+      commentTeam: this.participation.commentTeam,
+      participationStatusInnerId: this.participation.participationStatusInnerId,
+      participationStatusInternalId: this.participation.participationStatusInternalId,
     });
   }
 

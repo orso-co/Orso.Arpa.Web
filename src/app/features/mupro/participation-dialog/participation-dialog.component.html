@@ -7,7 +7,7 @@
       <arpa-form-field label="{{ 'mupro.PARTICIPATION_STATUS_INNER' | translate }}" type="select">
         <p-dropdown
           [autoDisplayFirst]="false"
-          [options]="(statusOptionsPerformer$ | async)!"
+          [options]="(participationStatusInner | async)!"
           [showClear]="true"
           appendTo="body"
           formControlName="participationStatusInnerId"
@@ -30,7 +30,7 @@
       <arpa-form-field label="{{ 'mupro.PARTICIPATION_STATUS_INTERNAL' | translate }}" type="select">
         <p-dropdown
           [autoDisplayFirst]="false"
-          [options]="(statusOptionsStaff$ | async)!"
+          [options]="(participationStatusInternal | async)!"
           [showClear]="true"
           appendTo="body"
           formControlName="participationStatusInternalId"
