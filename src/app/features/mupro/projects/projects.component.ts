@@ -24,18 +24,26 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   query: DocumentNode = ProjectsQuery;
   columns: ColumnDefinition<ProjectDto>[] = [
     { label: 'PROJECT', property: 'title', type: 'text' },
-    { label: 'PARTICIPATIONSTATUS_PERFORMER', property: 'projectParticipations.participationStatusInner.selectValue.name', type: 'text', show: true },
-    { label: 'PARTICIPATIONSTATUS_STAFF', property: 'projectParticipations.participationStatusInternal.selectValue.name', type: 'text', show: true },
-    { label: 'COMMENT_PERFORMER', property: 'projectParticipations.commentByPerformerInner', type:'text', show: true},
+    {
+      label: 'PARTICIPATIONSTATUS_PERFORMER',
+      property: 'projectParticipations.participationStatusInner.selectValue.name',
+      type: 'text',
+      show: true,
+    },
+    {
+      label: 'PARTICIPATIONSTATUS_STAFF',
+      property: 'projectParticipations.participationStatusInternal.selectValue.name',
+      type: 'text',
+      show: true,
+    },
+    { label: 'COMMENT_PERFORMER', property: 'projectParticipations.commentByPerformerInner', type: 'text', show: true },
   ];
 
   personId: string | undefined;
-  private routeEventsSubscription: Subscription = Subscription.EMPTY;
-  private routeSubscription: Subscription = Subscription.EMPTY;
-
   projects: ProjectDto[] = [];
   participations: ProjectParticipationDto[] = [];
-
+  private routeEventsSubscription: Subscription = Subscription.EMPTY;
+  private routeSubscription: Subscription = Subscription.EMPTY;
   @ViewChild('feedSource') private feedSource: GraphQlFeedComponent;
 
   constructor(
@@ -45,8 +53,9 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     private projectService: ProjectService,
     private translate: TranslateService,
     private notificationsService: NotificationsService,
-    private logger: LoggerService
-    ) {}
+    private logger: LoggerService,
+  ) {
+  }
 
   ngOnInit(): void {
     this.route.parent?.paramMap.subscribe((params) => {
@@ -74,10 +83,10 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     });
 
     ref.onClose.pipe(first()).subscribe((project) => {
-      if(project) {
+      if (project) {
         this.logger.info('updated:', project);
         this.notificationsService.success('UPDATED_PROJECT_PARTICIPATION');
       }
-    })
+    });
   }
 }

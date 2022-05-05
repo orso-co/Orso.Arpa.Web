@@ -12,7 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'arpa-projects-by-mupro',
   templateUrl: './projects-by-mupro.component.html',
-  styleUrls: ['./projects-by-mupro.component.scss']
+  styleUrls: ['./projects-by-mupro.component.scss'],
 })
 export class ProjectsByMuproComponent implements AfterViewInit {
   projects: ProjectDto [] = [];
@@ -24,8 +24,9 @@ export class ProjectsByMuproComponent implements AfterViewInit {
     private selectValueService: SelectValueService,
     private notificationsService: NotificationsService,
     private dialogService: DialogService,
-    private translate: TranslateService
-  ) { }
+    private translate: TranslateService,
+  ) {
+  }
 
   ngAfterViewInit(): void {
     this.participationStatusInner$ = this.selectValueService
@@ -63,27 +64,27 @@ export class ProjectsByMuproComponent implements AfterViewInit {
   //     width: window.innerWidth > 350 ? '350px' : '100%',
   //   });
 
-    // ref.onClose.pipe(first()).subscribe((result) => {
-    //   if (result) {
-    //     this.meService
-    //       .setProjectParticipationStatus(projectId, { ...result, musicianProfileId: participation.musicianProfile?.id })
-    //       .subscribe((updatedParticipation) => {
-    //         this.notificationsService.success('projects.SET_PARTICIPATION_STATUS');
-    //         this.myProjects = this.myProjects.map((myProject) => {
-    //           if (myProject.project.id !== projectId) {
-    //             return myProject;
-    //           }
-    //           return {
-    //             ...myProject,
-    //             participations: myProject.participations.map((p) => {
-    //               if (p.musicianProfile.id !== participation.musicianProfile.id) {
-    //                 return p;
-    //               }
-    //               return updatedParticipation;
-    //             }),
-    //           };
-    //         });
-    //       });
-    //   }
-    // });
+  // ref.onClose.pipe(first()).subscribe((result) => {
+  //   if (result) {
+  //     this.meService
+  //       .setProjectParticipationStatus(projectId, { ...result, musicianProfileId: participation.musicianProfile?.id })
+  //       .subscribe((updatedParticipation) => {
+  //         this.notificationsService.success('projects.SET_PARTICIPATION_STATUS');
+  //         this.myProjects = this.myProjects.map((myProject) => {
+  //           if (myProject.project.id !== projectId) {
+  //             return myProject;
+  //           }
+  //           return {
+  //             ...myProject,
+  //             participations: myProject.participations.map((p) => {
+  //               if (p.musicianProfile.id !== participation.musicianProfile.id) {
+  //                 return p;
+  //               }
+  //               return updatedParticipation;
+  //             }),
+  //           };
+  //         });
+  //       });
+  //   }
+  // });
 }

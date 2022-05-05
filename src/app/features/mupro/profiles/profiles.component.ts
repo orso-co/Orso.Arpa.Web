@@ -43,8 +43,9 @@ export class ProfilesComponent implements OnInit, OnDestroy {
     private dialogService: DialogService,
     private projectService: ProjectService,
     private translate: TranslateService,
-    private notificationsService: NotificationsService
-  ) {}
+    private notificationsService: NotificationsService,
+  ) {
+  }
 
   ngOnInit(): void {
     this.paramSubscription = this.route.paramMap.subscribe((params) => {
@@ -57,7 +58,7 @@ export class ProfilesComponent implements OnInit, OnDestroy {
     this.routeEventsSubscription = this.router.events
       .pipe(
         filter((e) => e instanceof NavigationStart),
-        map(() => this.router.getCurrentNavigation()?.extras as NavigationExtras)
+        map(() => this.router.getCurrentNavigation()?.extras as NavigationExtras),
       )
       .subscribe(({ state }) => {
         if (state && state.refresh) {
@@ -77,9 +78,9 @@ export class ProfilesComponent implements OnInit, OnDestroy {
               ({
                 profile,
                 command: (e: any) => this.show(e),
-              } as unknown)
-          ) as MenuItem[]
-      )
+              } as unknown),
+          ) as MenuItem[],
+      ),
     );
   }
 
@@ -128,12 +129,12 @@ export class ProfilesComponent implements OnInit, OnDestroy {
                   of(err).pipe(
                     map((err) => {
                       return { projectId: projectId, error: err };
-                    })
-                  )
+                    }),
+                  ),
                 ),
-                map(() => ({ projectId }))
-              )
-          )
+                map(() => ({ projectId })),
+              ),
+          ),
         );
 
         let successfulCount = 0;
@@ -153,7 +154,7 @@ export class ProfilesComponent implements OnInit, OnDestroy {
             console.log(successfulCount); // ToDo: Anzahl in Notification aufnehmen
             this.notificationsService.success('projects.SET_PARTICIPATION_STATUS');
             this.router.navigate([this.router.url]);
-          }
+          },
         );
       }
     });

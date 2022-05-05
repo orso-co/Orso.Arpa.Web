@@ -6,29 +6,29 @@ export const MuproProfilesQuery = gql`
       skip: $skip
       take: $take
       where: {
-          or: [
-            {
-              person : {
-                givenName: {
-                  contains: $searchQuery
-                }
+        or: [
+          {
+            person : {
+              givenName: {
+                contains: $searchQuery
               }
             }
-            {
-              person : {
-                surname: {
-                  contains: $searchQuery
-                }
+          }
+          {
+            person : {
+              surname: {
+                contains: $searchQuery
               }
             }
-            {
-              instrument : {
-                name: {
-                  contains: $searchQuery
-                }
+          }
+          {
+            instrument : {
+              name: {
+                contains: $searchQuery
               }
             }
-          ]
+          }
+        ]
       }
       order: {person: {givenName: $order, surname: $order}}
     ) {

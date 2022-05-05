@@ -15,9 +15,9 @@ import { SelectValueService } from '../../../shared/services/select-value.servic
 })
 export class ParticipationDialogComponent implements OnInit {
   form: FormGroup;
-  private participation: ProjectParticipationDto;
   public participationStatusInner: Observable<SelectItem[]>;
   public participationStatusInternal: Observable<SelectItem[]>;
+  private participation: ProjectParticipationDto;
 
   constructor(
     private formBuilder: FormBuilder,
