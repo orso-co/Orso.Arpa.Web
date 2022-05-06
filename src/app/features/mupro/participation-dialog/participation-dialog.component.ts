@@ -18,8 +18,8 @@ export class ParticipationDialogComponent implements OnInit {
   public participationStatusInner: Observable<SelectItem[]>;
   public participationStatusInternal: Observable<SelectItem[]>;
   public participation: ProjectParticipationDto;
-  public commentByPerformer: ProjectParticipationDto;
-  public projecttitle: ProjectParticipationDto;
+  public commentByPerformerInner: any;
+  public projectTitle: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,8 +33,9 @@ export class ParticipationDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.projecttitle = this.config.data.projectParticipation;
+    this.projectTitle = this.config.data.title;
     this.participation = this.config.data.projectParticipations[0];
+    this.commentByPerformerInner = this.participation.commentByPerformerInner;
     this.form = this.formBuilder.group({
       participationStatusInnerId: [null],
       participationStatusInternalId: [null, [Validators.required]],

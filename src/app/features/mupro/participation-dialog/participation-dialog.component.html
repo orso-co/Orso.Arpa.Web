@@ -1,7 +1,7 @@
+<h2 class='title'>{{ projectTitle }}</h2>
 <form [formGroup]='form' class='p-mt-5'>
   <div>
     <h4>{{ 'mupro.STATUS_PERFORMER' | translate }}</h4>
-    <h3>{{ projecttitle }}</h3>
   </div>
   <div class='p-grid p-formgrid p-fluid'>
     <div class='p-col'>
@@ -19,10 +19,10 @@
     </div>
   </div>
   <div class='p-field p-col12'>
-    <span>
-      {{commentByPerformer}}
+    <span class='comment'>{{ commentByPerformerInner }}
     </span>
   </div>
+  <hr>
   <div>
     <h4>{{ 'mupro.STATUS_STAFF' | translate }}</h4>
   </div>
