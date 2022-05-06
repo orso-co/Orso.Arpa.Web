@@ -11,5 +11,7 @@
   "PARTICIPATION_STATUS_INNER": "Teilnahmestatus",
   "PARTICIPATION_COMMENT_PERFORMER": "Kommentar Performer",
   "PARTICIPATION_COMMENT_STAFF": "Kommentar Mitarbeiter",
-  "MUPRO_CREATION_DATE": "Profil-Erstellungsdatum"
+  "MUPRO_CREATION_DATE": "Profil-Erstellungsdatum",
+  "PARTICIPATION_COMMENT_TEAM": "Kommentar nur KBB-intern"
+
 }

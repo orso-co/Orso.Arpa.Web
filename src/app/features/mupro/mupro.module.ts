@@ -1,6 +1,6 @@
 import { DropdownModule } from 'primeng/dropdown';
 import { MultiSelectModule } from 'primeng/multiselect';
-import { FormFieldModule } from './../../../@arpa/components/form-field/form-field.module';
+import { FormFieldModule } from '../../../@arpa/components/form-field/form-field.module';
 import { InvitationDialogComponent } from './invitation-dialog/invitation-dialog.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -26,7 +26,6 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from '../../../@arpa/components/table/table.module';
 import { ProjectsComponent } from './projects/projects.component';
 import { ParticipationDialogComponent } from './participation-dialog/participation-dialog.component';
-import { ProjectsByMuproComponent } from './projects-by-mupro/projects-by-mupro.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +35,6 @@ import { ProjectsByMuproComponent } from './projects-by-mupro/projects-by-mupro.
     ProjectsComponent,
     InvitationDialogComponent,
     ParticipationDialogComponent,
-    ProjectsByMuproComponent,
   ],
   imports: [
     CommonModule,
