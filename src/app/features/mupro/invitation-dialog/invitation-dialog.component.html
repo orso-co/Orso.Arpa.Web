@@ -1,39 +1,39 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="p-grid p-formgrid p-fluid">
-    <div class="p-col">
-      <arpa-form-field label="PROJECTS" type="select">
+<form (ngSubmit)='onSubmit()' [formGroup]='form'>
+  <div class='p-grid p-formgrid p-fluid'>
+    <div class='p-col'>
+      <arpa-form-field label='PROJECTS' type='select'>
         <p-multiSelect
-          [options]="projects || []"
+          [options]='projects || []'
           [placeholder]="'NOTHING_SELECTED' | translate"
-          display="chip"
-          formControlName="projects"
-          optionLabel="title"
-          optionValue="id"
+          display='chip'
+          formControlName='projects'
+          optionLabel='title'
+          optionValue='id'
         >
-          <ng-template let-project pTemplate="item">
+          <ng-template let-project pTemplate='item'>
             <span>{{ project.title }} ({{ project.code }})</span>
           </ng-template>
         </p-multiSelect>
       </arpa-form-field>
     </div>
   </div>
-  <div class="p-formgroup-inline p-jc-between">
-    <div class="p-text-left">
+  <div class='p-formgroup-inline p-jc-between'>
+    <div class='p-text-left'>
       <p-button
-        [disabled]="form.pristine || form.invalid"
+        [disabled]='form.pristine || form.invalid'
         [label]="'SAVE' | translate"
-        icon="pi pi-check"
-        iconPos="left"
-        type="submit"
+        icon='pi pi-check'
+        iconPos='left'
+        type='submit'
       ></p-button>
     </div>
-    <div class="p-text-right">
+    <div class='p-text-right'>
       <button
-        (click)="cancel()"
+        (click)='cancel()'
         [label]="'CANCEL' | translate"
-        class="p-ml-3 p-button-outlined"
-        icon="pi pi-times"
-        iconPos="left"
+        class='p-ml-3 p-button-outlined'
+        icon='pi pi-times'
+        iconPos='left'
         pButton
       ></button>
     </div>

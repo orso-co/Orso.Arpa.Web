@@ -1,3 +1,4 @@
+import { ProjectParticipationDto } from './../../../../@arpa/models/projectParticipationDto';
 import { ProjectLayoutComponent } from './../project-layout/project-layout.component';
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -85,6 +86,10 @@ export class ProjectListComponent {
         musicianProfiles: this.meService.getProfilesMusician<MusicianProfileDto[]>(),
         sections: this.sectionService.load(),
         id,
+        participationPerformer: this.projectService.getParticipations,
+        participationStaff: this.projectService.getParticipations,
+        statusOptionsPerformer$: this.projectService.getParticipations,
+        statusOptionsStaff$: this.projectService.getParticipations,
       },
       header: this.translate.instant('projects.EDIT_PARTICIPATION'),
       styleClass: 'form-modal',

@@ -31,6 +31,8 @@
   "INSTRUMENT": "Instrument",
   "INSTRUMENTS": "Instrumente",
   "LEVEL_ASSESSMENT": "Level",
+  "LEVEL_ASSESSMENT_TEAM": "Einschätzung KBB",
+  "LEVEL_ASSESSMENT_PERFORMER":"Selbsteinschätzung",
   "MAIN_INSTRUMENT": "Hauptinstrument",
   "MAIN_PROFILE": "Hauptprofil",
   "MY_PROFILES": "Meine Profile",
@@ -56,8 +58,6 @@
   "INQUIRY_STATUS_INNER": "Anfragestatus",
   "PREFERRED_POSITIONS_TEAM": "Präferierte Position",
   "PREFERRED_POSITIONS_INNER": "Präferierte Position",
-  "LEVEL_ASSESSMENT_TEAM": "Leistungslevel",
-  "LEVEL_ASSESSMENT_INNER": "Leistungslevel",
   "BACKGROUND_TEAM": "Background",
   "BACKGROUND_INNER": "Background"
 }

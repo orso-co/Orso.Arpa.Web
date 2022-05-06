@@ -10,12 +10,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DetailsComponent {
 
-  menuItems: Array<MenuItem>;
+  tabMenuItems: Array<MenuItem>;
 
   constructor(authService: AuthService, private router: Router, private route: ActivatedRoute) {
-    this.menuItems = [
-      { label: 'Projects', target: '.' },
-      { label: 'Details', target: '.' },
+    this.tabMenuItems = [
+      { label: 'PROJECTS', target: '.' },
+      { label: 'APPOINTMENTS', target: '.' },
     ];
   }
 

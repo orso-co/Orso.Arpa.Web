@@ -1,6 +1,17 @@
 {
-    "PAGE_TITLE": "Profils de musiciens",
-    "PROFILE": "Profil du musicien",
-    "MAIN_PROFILE": "Profil principal",
-    "INVITE": "Inviter au projet"
-  }
+  "PAGE_TITLE": "Profils de musiciens",
+  "PROFILE": "Profil du musicien",
+  "MAIN_PROFILE": "Profil principal",
+  "INVITE": "Inviter au projet",
+  "EDIT_PARTICIPATION": "Modifier le statut de participation",
+  "STATUS_STAFF": "Point de vue des employés",
+  "STATUS_PERFORMER": "Point de vue de l'interprète",
+  "PARTICIPATION_STATUS_INTERNAL": "Statut de participation",
+  "PARTICIPATION_STATUS_INNER": "Statut de participation",
+  "PARTICIPATION_COMMENT_PERFORMER": "Commentaire du l'interprète",
+  "PARTICIPATION_COMMENT_STAFF": "Commentaire du personnel",
+  "MUPRO_CREATION_DATE": "Date de création de ce profil",
+  "PARTICIPATION_COMMENT_TEAM": "Commentaire au sein de l'équipe uniquement"
+
+
+}

@@ -2,5 +2,16 @@
   "PAGE_TITLE": "Musikerprofile",
   "PROFILE": "Musikerprofil",
   "MAIN_PROFILE": "Hauptprofil",
-  "INVITE": "Zu Projekt einladen"
+  "INVITE": "Zu Projekt einladen",
+  "EDIT_PARTICIPATION": "Teilnahmestatus bearbeiten",
+  "PROJECTS": "Projekte für dieses Profil",
+  "STATUS_STAFF": "Stand seitens KBB",
+  "STATUS_PERFORMER": "Stand seitens Performer",
+  "PARTICIPATION_STATUS_INTERNAL": "Teilnahmestatus",
+  "PARTICIPATION_STATUS_INNER": "Teilnahmestatus",
+  "PARTICIPATION_COMMENT_PERFORMER": "Kommentar Performer",
+  "PARTICIPATION_COMMENT_STAFF": "Kommentar Mitarbeiter",
+  "MUPRO_CREATION_DATE": "Profil-Erstellungsdatum",
+  "PARTICIPATION_COMMENT_TEAM": "Kommentar nur KBB-intern"
+
 }

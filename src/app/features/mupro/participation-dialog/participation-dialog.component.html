@@ -1,0 +1,76 @@
+<h2 class='title'>{{ projectTitle }}</h2>
+<form [formGroup]='form' class='p-mt-5'>
+  <div>
+    <h4>{{ 'mupro.STATUS_PERFORMER' | translate }}</h4>
+  </div>
+  <div class='p-grid p-formgrid p-fluid'>
+    <div class='p-col'>
+      <arpa-form-field label="{{ 'mupro.PARTICIPATION_STATUS_INNER' | translate }}" type='select'>
+        <p-dropdown
+          [autoDisplayFirst]='false'
+          [options]='(participationStatusInner | async)!'
+          [placeholder]="'NOTHING_SELECTED' | translate"
+          [showClear]='true'
+          appendTo='body'
+          formControlName='participationStatusInnerId'
+          id='participationStatusInnerId'
+        ></p-dropdown>
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class='p-field p-col12'>
+    <span class='comment'>{{ commentByPerformerInner }}
+    </span>
+  </div>
+  <hr>
+  <div>
+    <h4>{{ 'mupro.STATUS_STAFF' | translate }}</h4>
+  </div>
+  <div class='p-grid p-formgrid p-fluid'>
+    <div class='p-col'>
+      <arpa-form-field label="{{ 'mupro.PARTICIPATION_STATUS_INTERNAL' | translate }}" type='select'>
+        <p-dropdown
+          [autoDisplayFirst]='false'
+          [options]='(participationStatusInternal | async)!'
+          [placeholder]="'NOTHING_SELECTED' | translate"
+          [showClear]='true'
+          appendTo='body'
+          formControlName='participationStatusInternalId'
+          id='participationStatusInternalId'
+        ></p-dropdown>
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class='p-field p-col12'>
+    <arpa-form-field label="{{ 'mupro.PARTICIPATION_COMMENT_STAFF' | translate }}">
+      <textarea formControlName='commentByStaffInner' id='commentByStaffId' pInputText rows='5'></textarea>
+    </arpa-form-field>
+  </div>
+  <div class='p-field p-col12'>
+    <arpa-form-field label="{{ 'mupro.PARTICIPATION_COMMENT_TEAM' | translate }}">
+      <textarea formControlName='commentTeam' id='commentTeam' pInputText rows='5'></textarea>
+    </arpa-form-field>
+  </div>
+
+  <div class='p-formgroup-inline p-jc-between'>
+    <div class='p-text-left'>
+      <p-button
+        (click)='onSubmit()'
+        [disabled]='form.pristine || form.invalid'
+        [label]="'SAVE' | translate"
+        icon='pi pi-check'
+        iconPos='left'
+      ></p-button>
+    </div>
+    <div class='p-text-right'>
+      <button
+        (click)='cancel()'
+        [label]="'CANCEL' | translate"
+        class='p-ml-3 p-button-outlined'
+        icon='pi pi-times'
+        iconPos='left'
+        pButton
+      ></button>
+    </div>
+  </div>
+</form>

@@ -2,5 +2,16 @@
   "PAGE_TITLE": "Musician Profiles",
   "PROFILE": "Musician Profile",
   "MAIN_PROFILE": "Main Profile",
-  "INVITE": "Invite to project"
+  "INVITE": "Invite to project",
+  "EDIT_PARTICIPATION": "Edit participation status",
+  "PROJECTS": "Projects for this profile",
+  "STATUS_STAFF": "Status by Staff",
+  "STATUS_PERFORMER": "Status by Performer",
+  "PARTICIPATION_STATUS_INTERNAL": "Participation Status",
+  "PARTICIPATION_STATUS_INNER": "Participation Status",
+  "PARTICIPATION_COMMENT_PERFORMER": "Comment by Performer",
+  "PARTICIPATION_COMMENT_STAFF": "Comment by Staff",
+  "MUPRO_CREATION_DATE": "Date of creation of this profile",
+  "PARTICIPATION_COMMENT_TEAM": "Comment within team only"
+
 }

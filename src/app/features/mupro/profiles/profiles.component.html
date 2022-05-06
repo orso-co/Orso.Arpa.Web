@@ -1,70 +1,75 @@
 <h1>{{ 'PROFILE' | translate }}</h1>
-<div class="p-grid profile">
-  <div class="p-col-12 p-lg-6 p-lg-5">
-    <div class="p-grid">
-      <div class="p-col-12 p-lg-4" style="text-align: center">
-        <arpa-avatar [image]="false" [user]="(person | async) || {}" size="xlarge"></arpa-avatar>
+<div class='p-grid profile'>
+  <div class='p-col-12 p-lg-6 p-lg-5'>
+    <div class='p-grid'>
+      <div class='p-col-12 p-lg-4' style='text-align: center'>
+        <arpa-avatar [image]='false' [user]='(person | async) || {}' size='xlarge'></arpa-avatar>
       </div>
-      <div class="p-col-12 p-lg-8 details">
+      <div class='p-col-12 p-lg-8 details'>
         <div>
-          <div class="name">{{ getName(person | async) }}</div>
-          <div class="country">Deutschland, Berlin</div>
+          <div class='name'>{{ getName(person | async) }}</div>
         </div>
       </div>
     </div>
   </div>
-  <div class="p-col-12 p-md-6 p-lg-7"></div>
+  <div class='p-col-12 p-md-6 p-lg-7'></div>
 </div>
-<div class="profiles">
-  <arpa-graph-ql-feed #feedSource [contentTemplate]="feed" [query]="query" [variables]="{personId}">
+<div class='profiles'>
+  <arpa-graph-ql-feed #feedSource [contentTemplate]='feed' [query]='query' [variables]='{personId}'>
     <ng-template #feed let-feed>
       <ul>
-        <ng-container *ngFor="let profile of $any((feed.values | async) || []); let i = index">
-          <li *ngIf="activeIndex === i">
-            <div class="profile">
-              <div class="p-grid">
-                <div class="p-col-12 section-detail">
+        <ng-container *ngFor='let profile of $any((feed.values | async) || []); let i = index'>
+          <li *ngIf='activeIndex === i'>
+            <div class='profile'>
+              <div class='p-grid'>
+                <div class='p-col-12 section-detail'>
                   <header>
                     <h2>{{ profile.instrument.name }}</h2>
                     <p-button
-                      *ngIf="!profile.deactivation"
-                      styleClass="p-button-sm"
+                      (click)='openInvitationDialog(profile.id)'
+                      *ngIf='!profile.deactivation'
                       [label]="'INVITE' | translate"
-                      icon="pi pi-plus-circle"
-                      class="p-text-right p-ml-3"
-                      type="button"
-                      (click)="openInvitationDialog(profile.id)"
+                      class='p-text-right p-ml-3'
+                      icon='pi pi-plus-circle'
+                      styleClass='p-button-sm'
+                      type='button'
                     ></p-button>
                     <button
-                      [queryParams]="{ comboInstruments: true }"
-                      [routerLink]="[{ outlets: { modal: [personId, profile.id] } }]"
-                      class="p-button-rounded p-button-text p-button-icon-only"
-                      icon="pi pi-pencil"
+                      [queryParams]='{ comboInstruments: true }'
+                      [routerLink]='[{ outlets: { modal: [personId, profile.id] } }]'
+                      class='p-button-rounded p-button-text'
+                      icon='pi pi-pencil'
+                      label="{{ 'EDIT' | translate }}"
                       pButton
-                      type="button"
+                      type='button'
                     ></button>
                   </header>
-                  <div class="rating">
-                    <p-rating
-                      [(ngModel)]="profile.levelAssessmentInner"
-                      [cancel]="false"
-                      [disabled]="true"
-                      pTooltip="{{ 'musician-profile-dialog.LEVEL_ASSESSMENT' | translate }}"
-                    ></p-rating>
-                    <p-badge
-                      [severity]="'default'"
-                      [value]="profile.levelAssessmentTeam || 0"
-                      pTooltip="{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_TEAM' | translate }}"
-                    ></p-badge>
+                  <label>{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_PERFORMER' | translate }}</label>
+                  <p-rating
+                    [(ngModel)]='profile.levelAssessmentInner'
+                    [cancel]='false'
+                    [disabled]='true'
+                    pTooltip="{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_PERFORMER' | translate }}"
+                  ></p-rating>
 
-                    <p-badge *ngIf="profile.isMainProfile" [value]="'MAIN_PROFILE' | translate"></p-badge>
+                  <label>{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_TEAM' | translate }}</label>
+                  <p-rating
+                    [(ngModel)]='profile.levelAssessmentTeam'
+                    [cancel]='false'
+                    [disabled]='true'
+                    pTooltip="{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_TEAM' | translate }}"
+                  ></p-rating>
 
-                    <p-badge
-                      *ngIf="profile.deactivation"
-                      severity="danger"
-                      value="{{ 'musician-profile-dialog.DEACTIVATED' | translate }}"
-                    ></p-badge>
-                  </div>
+                  <p-badge
+                    *ngIf='profile.isMainProfile'
+                    [value]="'MAIN_PROFILE' | translate"
+                  ></p-badge>
+
+                  <p-badge
+                    *ngIf='profile.deactivation'
+                    severity='danger'
+                    value="{{ 'musician-profile-dialog.DEACTIVATED' | translate }}"
+                  ></p-badge>
                 </div>
               </div>
             </div>
@@ -73,7 +78,8 @@
       </ul>
     </ng-template>
   </arpa-graph-ql-feed>
-  <p-steps [activeIndex]="activeIndex" [model]="(profileNav | async) || []" [readonly]="false" styleClass="dot-profile"></p-steps>
+  <p-steps [activeIndex]='activeIndex' [model]='(profileNav | async) || []' [readonly]='false'
+           styleClass='dot-profile'></p-steps>
 </div>
-<router-outlet name="modal"></router-outlet>
+<router-outlet name='modal'></router-outlet>
 <arpa-mupro-details></arpa-mupro-details>
