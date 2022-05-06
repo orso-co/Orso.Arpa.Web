@@ -1,6 +1,7 @@
 <form [formGroup]='form' class='p-mt-5'>
   <div>
     <h4>{{ 'mupro.STATUS_PERFORMER' | translate }}</h4>
+    <h3>{{ projecttitle }}</h3>
   </div>
   <div class='p-grid p-formgrid p-fluid'>
     <div class='p-col'>
@@ -18,9 +19,9 @@
     </div>
   </div>
   <div class='p-field p-col12'>
-    <arpa-form-field label="{{ 'mupro.PARTICIPATION_COMMENT_PERFORMER' | translate }}">
-      <textarea formControlName='commentByPerformerInner' id='commentByPerformerId' pInputText rows='5'></textarea>
-    </arpa-form-field>
+    <span>
+      {{commentByPerformer}}
+    </span>
   </div>
   <div>
     <h4>{{ 'mupro.STATUS_STAFF' | translate }}</h4>

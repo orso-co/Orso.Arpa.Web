@@ -17,7 +17,9 @@ export class ParticipationDialogComponent implements OnInit {
   form: FormGroup;
   public participationStatusInner: Observable<SelectItem[]>;
   public participationStatusInternal: Observable<SelectItem[]>;
-  private participation: ProjectParticipationDto;
+  public participation: ProjectParticipationDto;
+  public commentByPerformer: ProjectParticipationDto;
+  public projecttitle: ProjectParticipationDto;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,19 +33,17 @@ export class ParticipationDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.projecttitle = this.config.data.projectParticipation;
     this.participation = this.config.data.projectParticipations[0];
     this.form = this.formBuilder.group({
       participationStatusInnerId: [null],
       participationStatusInternalId: [null, [Validators.required]],
-      commentByPerformerInner: [null, [Validators.maxLength(500)]],
       commentByStaffInner: [null, [Validators.maxLength(500)]],
       commentTeam: [null, [Validators.maxLength(500)]],
       invitationStatusId: [null, [Validators.required]],
       musicianProfileId: [null, [Validators.required]],
     });
     this.form.patchValue({
-      commentByPerformerInner: this.participation.commentByPerformerInner,
       commentByStaffInner: this.participation.commentByStaffInner,
       commentTeam: this.participation.commentTeam,
       participationStatusInnerId: this.participation.participationStatusInnerId,
