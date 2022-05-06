@@ -46,6 +46,7 @@ export const ProjectsQuery = gql`
           selectValue {name}
         }
         projectParticipations {
+          invitationStatusId
           participationStatusInnerId
           participationStatusInner {
             selectValue {

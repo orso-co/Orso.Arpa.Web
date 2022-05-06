@@ -39,6 +39,8 @@ export class ParticipationDialogComponent implements OnInit {
       commentByPerformerInner: [null, [Validators.maxLength(500)]],
       commentByStaffInner: [null, [Validators.maxLength(500)]],
       commentTeam: [null, [Validators.maxLength(500)]],
+      invitationStatusId: [null, [Validators.required]],
+      musicianProfileId: [null, [Validators.required]],
     });
     this.form.patchValue({
       commentByPerformerInner: this.participation.commentByPerformerInner,
@@ -46,6 +48,8 @@ export class ParticipationDialogComponent implements OnInit {
       commentTeam: this.participation.commentTeam,
       participationStatusInnerId: this.participation.participationStatusInnerId,
       participationStatusInternalId: this.participation.participationStatusInternalId,
+      invitationStatusId: this.participation.invitationStatusId,
+      musicianProfileId: this.participation.musicianProfile?.id,
     });
   }
 

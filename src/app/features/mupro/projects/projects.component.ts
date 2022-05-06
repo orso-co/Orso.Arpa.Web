@@ -1,4 +1,4 @@
-import { ProjectParticipationDto } from './../../../../@arpa/models/projectParticipationDto';
+import { ProjectParticipationDto } from '../../../../@arpa/models/projectParticipationDto';
 import { NotificationsService } from 'src/@arpa/services/notifications.service';
 import { TranslateService } from '@ngx-translate/core';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -12,8 +12,9 @@ import { Subscription } from 'rxjs';
 import { GraphQlFeedComponent } from 'src/@arpa/components/graph-ql-feed/graph-ql-feed.component';
 import { filter, first } from 'rxjs/operators';
 import { ParticipationDialogComponent } from '../participation-dialog/participation-dialog.component';
-import { ProjectService } from './../../../shared/services/project.service';
+import { ProjectService } from '../../../shared/services/project.service';
 import { LoggerService } from '../../../../@arpa/services/logger.service';
+import { SetProjectParticipationBodyDto } from '../../../../@arpa/models/setProjectParticipationBodyDto';
 
 @Component({
   selector: 'arpa-mupro-projects',
@@ -73,7 +74,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     this.routeEventsSubscription.unsubscribe();
   }
 
-  openParticipationDialog(project: string) {
+  openParticipationDialog(project: ProjectDto) {
     const ref = this.dialogService.open(ParticipationDialogComponent, {
       data: project,
       header: this.translate.instant('mupro.EDIT_PARTICIPATION'),
@@ -82,10 +83,15 @@ export class ProjectsComponent implements OnInit, OnDestroy {
       width: window.innerWidth > 1000 ? '66%' : '100%',
     });
 
-    ref.onClose.pipe(first()).subscribe((project) => {
-      if (project) {
-        this.logger.info('updated:', project);
-        this.notificationsService.success('UPDATED_PROJECT_PARTICIPATION');
+    ref.onClose.pipe(first()).subscribe((projectParticipation: SetProjectParticipationBodyDto) => {
+      if (projectParticipation) {
+        this.projectService.setParticipation(project.id, projectParticipation)
+          .pipe(first())
+          .subscribe(() => {
+            this.logger.info('updated:', projectParticipation);
+            this.notificationsService.success('UPDATED_PROJECT_PARTICIPATION');
+            this.feedSource.refresh();
+          });
       }
     });
   }
