@@ -12,6 +12,7 @@
   "PARTICIPATION_COMMENT_PERFORMER": "Comment by Performer",
   "PARTICIPATION_COMMENT_STAFF": "Comment by Staff",
   "MUPRO_CREATION_DATE": "Date of creation of this profile",
-  "PARTICIPATION_COMMENT_TEAM": "Comment within team only"
+  "PARTICIPATION_COMMENT_TEAM": "Comment within team only",
+  "PARTICIPANT": "Participant"
 
 }

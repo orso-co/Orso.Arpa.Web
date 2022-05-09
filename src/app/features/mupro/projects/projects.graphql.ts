@@ -64,13 +64,19 @@ export const ProjectsQuery = gql`
           commentByPerformerInner
           commentByStaffInner
           commentTeam
+
           musicianProfile {
             id
             isMainProfile
             instrument {
               name
             }
+            person {
+            id
+            surname
+            }
           }
+
         }
       }
     }
