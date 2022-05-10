@@ -7,6 +7,7 @@ import { SelectItem } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SelectValueService } from '../../../shared/services/select-value.service';
+import { ReducedPersonDto } from '../../../../@arpa/models/reducedPersonDto';
 
 @Component({
   selector: 'arpa-participation-dialog',
@@ -20,6 +21,7 @@ export class ParticipationDialogComponent implements OnInit {
   public participation: ProjectParticipationDto;
   public commentByPerformerInner: any;
   public projectTitle: string;
+  public person: ReducedPersonDto | null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,6 +38,9 @@ export class ParticipationDialogComponent implements OnInit {
     this.projectTitle = this.config.data.title;
     this.participation = this.config.data.projectParticipations[0];
     this.commentByPerformerInner = this.participation.commentByPerformerInner;
+    const profile: any = this.participation.musicianProfile;
+    this.person = profile.person;
+
     this.form = this.formBuilder.group({
       participationStatusInnerId: [null],
       participationStatusInternalId: [null, [Validators.required]],
@@ -44,6 +49,7 @@ export class ParticipationDialogComponent implements OnInit {
       invitationStatusId: [null, [Validators.required]],
       musicianProfileId: [null, [Validators.required]],
     });
+
     this.form.patchValue({
       commentByStaffInner: this.participation.commentByStaffInner,
       commentTeam: this.participation.commentTeam,
@@ -52,6 +58,10 @@ export class ParticipationDialogComponent implements OnInit {
       invitationStatusId: this.participation.invitationStatusId,
       musicianProfileId: this.participation.musicianProfile?.id,
     });
+  }
+
+  getName(person: ReducedPersonDto | null) {
+    return person ? `${person.givenName} ${person.surname}` : '';
   }
 
   onSubmit() {

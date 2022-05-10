@@ -11,7 +11,9 @@
   "PARTICIPATION_COMMENT_PERFORMER": "Commentaire du l'interprète",
   "PARTICIPATION_COMMENT_STAFF": "Commentaire du personnel",
   "MUPRO_CREATION_DATE": "Date de création de ce profil",
-  "PARTICIPATION_COMMENT_TEAM": "Commentaire au sein de l'équipe uniquement"
+  "PARTICIPATION_COMMENT_TEAM": "Commentaire au sein de l'équipe uniquement",
+  "PARTICIPANT": "Participant"
+
 
 
 }
