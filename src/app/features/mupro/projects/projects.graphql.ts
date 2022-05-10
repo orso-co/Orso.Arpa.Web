@@ -72,8 +72,9 @@ export const ProjectsQuery = gql`
               name
             }
             person {
-            id
-            surname
+              id
+              givenName
+              surname
             }
           }
 

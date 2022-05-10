@@ -21,8 +21,7 @@ export class ParticipationDialogComponent implements OnInit {
   public participation: ProjectParticipationDto;
   public commentByPerformerInner: any;
   public projectTitle: string;
-  public person: ReducedPersonDto;
-  public personName: any;
+  public person: ReducedPersonDto | null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -39,7 +38,8 @@ export class ParticipationDialogComponent implements OnInit {
     this.projectTitle = this.config.data.title;
     this.participation = this.config.data.projectParticipations[0];
     this.commentByPerformerInner = this.participation.commentByPerformerInner;
-    this.personName = this.config.data.participation.person.surname;
+    const profile: any = this.participation.musicianProfile;
+    this.person = profile.person;
 
     this.form = this.formBuilder.group({
       participationStatusInnerId: [null],
@@ -58,6 +58,10 @@ export class ParticipationDialogComponent implements OnInit {
       invitationStatusId: this.participation.invitationStatusId,
       musicianProfileId: this.participation.musicianProfile?.id,
     });
+  }
+
+  getName(person: ReducedPersonDto | null) {
+    return person ? `${person.givenName} ${person.surname}` : '';
   }
 
   onSubmit() {
