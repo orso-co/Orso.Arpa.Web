@@ -12,6 +12,7 @@ interface Participant {
   instrument: string;
   state: string;
   participationStatusInner: string;
+  participationStatusInternal: string;
 }
 
 @Component({
@@ -22,11 +23,14 @@ interface Participant {
 export class ProjectParticipantsComponent {
   participants: Observable<Participant[]>;
   participationStatusInner: Observable<ProjectParticipationDto>;
+  participationStatusInternal: Observable<ProjectParticipationDto>;
 
   columns: ColumnDefinition<any>[] = [
     { label: 'projects.PARTICIPANTS', property: 'participant', type: 'text' },
     { label: 'projects.INSTRUMENT', property: 'instrument', type: 'text' },
     { label: 'projects.PARTICIPATION_STATUS_PERFORMER', property: 'participationStatusInner', type: 'text' },
+    { label: 'projects.PARTICIPATION_STATUS_STAFF', property: 'participationStatusInternal', type: 'text' },
+
     // {
     //   label: 'projects.INSTRUMENT_STATE',
     //   property: 'state',
@@ -54,6 +58,7 @@ export class ProjectParticipantsComponent {
           instrument: participant.musicianProfile?.instrumentName || '',
           state: this.isDeactivated(participant),
           participationStatusInner: participant.participationStatusInner || '',
+          participationStatusInternal: participant.participationStatusInternal || '',
         }))
       )
     );
