@@ -35,8 +35,8 @@ export class ParticipationDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.projectTitle = this.config.data.title;
-    this.participation = this.config.data.projectParticipations[0];
+    this.projectTitle = this.config.data.project.title;
+    this.participation = this.config.data.project.projectParticipations.find((participation: any) => participation.musicianProfile.person.id === this.config.data.personId);
     this.commentByPerformerInner = this.participation.commentByPerformerInner;
     const profile: any = this.participation.musicianProfile;
     this.person = profile.person;
