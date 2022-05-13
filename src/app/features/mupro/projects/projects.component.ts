@@ -76,7 +76,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 
   openParticipationDialog(project: ProjectDto) {
     const ref = this.dialogService.open(ParticipationDialogComponent, {
-      data: project,
+      data: { project, personId: this.personId },
       header: this.translate.instant('mupro.EDIT_PARTICIPATION'),
       styleClass: 'form-modal',
       dismissableMask: true,
