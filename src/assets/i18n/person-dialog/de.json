@@ -1,4 +1,5 @@
 {
   "BASE_DATA": "Stammdaten",
-  "CONTACT_DATA": "Kontakt"
+  "CONTACT_DATA": "Kontakt",
+  "BANK_DATA": "Bankdaten"
 }

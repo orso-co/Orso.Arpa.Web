@@ -1,6 +1,8 @@
-import { BankAccountCreateBodyDto } from './bankAccountCreateBodyDto';
-
 export interface BankAccountCreateDto {
   id: string;
-  body: BankAccountCreateBodyDto;
+  statusId: string;
+  commentInner: string;
+  accountOwner: string;
+  iban: string;
+  bic: string;
 }

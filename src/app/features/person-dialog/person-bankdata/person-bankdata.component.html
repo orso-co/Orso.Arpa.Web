@@ -1,34 +1,35 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-my-5">
   <div class="p-grid p-fluid p-formgrid">
-    <div class="p-field p-col-12 p-xl-6">
-      <p-selectButton [options]="keyOptions" formControlName="key" optionLabel="icon" optionValue="value" id="key-select-button">
-        <ng-template let-item>
-          <i [class]="item.icon"></i>
-        </ng-template>
-      </p-selectButton>
-    </div>
-    <div class="p-col-12 p-xl-6">
-      <arpa-form-field label="persons.contact.TYPE" type="select">
-        <p-dropdown
-          [options]="(typeOptions$ | async) || []"
-          [placeholder]="'NOTHING_SELECTED' | translate"
-          formControlName="typeId"
-          optionLabel="label"
-          optionValue="value"
-        ></p-dropdown>
+
+    <div class="p-col-12 p-xl-9">
+      <arpa-form-field label="persons.bank.IBAN">
+        <input autocomplete="off" formControlName="iban" id="iban" pInputText type="text" />
       </arpa-form-field>
     </div>
     <div class="p-col-12 p-xl-9">
-      <arpa-form-field label="persons.contact.VALUE">
-        <input autocomplete="off" formControlName="value" id="value" pInputText type="text" />
+      <arpa-form-field label="persons.bank.BIC">
+        <input autocomplete="off" formControlName="bic" id="bic" pInputText type="text" />
       </arpa-form-field>
     </div>
-    <div class="p-col-12 p-xl-3 p-pt-2">
-      <p-rating formControlName="preference" [cancel]="false" [stars]="5"></p-rating>
+    <div class="p-col-12 p-xl-9">
+      <arpa-form-field label="persons.bank.ACCOUNT_OWNER">
+        <input autocomplete="off" formControlName="accountOwner" id="accountOwner" pInputText type="text" />
+      </arpa-form-field>
     </div>
     <div class="p-col-12">
-      <arpa-form-field label="persons.contact.COMMENT">
+      <arpa-form-field label="persons.bank.COMMENT_INNER">
         <textarea autocomplete="off" formControlName="commentInner" id="commentInner" pInputText type="text"></textarea>
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-6">
+      <arpa-form-field label="persons.bank.STATUS" type="select">
+        <p-dropdown
+          [options]="(statusOptions$ | async) || []"
+          [placeholder]="'NOTHING_SELECTED' | translate"
+          formControlName="statusId"
+          optionLabel="label"
+          optionValue="value"
+        ></p-dropdown>
       </arpa-form-field>
     </div>
   </div>
@@ -56,27 +57,22 @@
     </div>
   </div>
 </form>
+
 <hr />
+
 <arpa-table
   [actionsTemplateRef]="actionsTemplate"
   [columns]="columns"
   [data]="tableData"
   [showFilter]="false"
   [showPagination]="false"
-  ><ng-template arpaTableColumn="keyTemplate" let-key>
-    <ng-container [ngSwitch]="key">
-      <i *ngSwitchCase="1" class="pi pi-envelope"></i>
-      <i *ngSwitchCase="2" class="pi pi-phone"></i>
-      <i *ngSwitchCase="3" class="pi pi-link"></i>
-      <i *ngSwitchDefault class="pi pi-circle"></i>
-    </ng-container>
-  </ng-template>
+>
 </arpa-table>
 
 <ng-template #actionsTemplate let-row>
   <button
     (click)="update(row)"
-    [label]="'person-dialog.UPDATE' | translate"
+    [label]="'project-dialog.UPDATE' | translate"
     class="p-button-rounded p-button-text p-button-icon-only"
     icon="pi pi-pencil"
     pButton

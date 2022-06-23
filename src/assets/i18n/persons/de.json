@@ -29,5 +29,16 @@
     "COMMENT_INNER" :"Kommentar Person",
     "COMMENT_TEAM" :"Kommentar Team",
     "PREFERENCE": "Präferenz"
+  },
+  "bank": {
+    "BIC": "BIC",
+    "IBAN": "IBAN",
+    "ACCOUNT_OWNER": "Kontoinhaber",
+    "COMMENT_INNER": "Kommentar",
+    "STATUS": "Status",
+    "BANK_ACCOUNT_REMOVED": "Bankverbindung gelöscht",
+    "BANK_ACCOUNT_ADDED": "Bankverbindung hinzugefügt",
+    "BANK_ACCOUNT_MODIFIED": "Bankverbindung geändert"
+
   }
 }
