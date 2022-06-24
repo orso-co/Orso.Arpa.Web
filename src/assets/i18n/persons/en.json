@@ -22,5 +22,25 @@
   "QUALIFICATION": "Qualification",
   "RELIABILITY": "Reliability",
   "SECTION": "Section",
-  "SURNAME": "Surname"
+  "SURNAME": "Surname",
+  "contact": {
+    "VALUE": "Value",
+    "TYPE": "Type",
+    "COMMENT_INNER" :"Comment Performer",
+    "COMMENT_TEAM" :"Comment Staff",
+    "PREFERENCE": "Preference"
+  },
+  "bank": {
+    "BIC": "BIC",
+    "IBAN": "IBAN",
+    "ACCOUNT_OWNER": "Account Owner",
+    "COMMENT_INNER": "Comment",
+    "STATUS": "Status",
+    "BANK_ACCOUNT_REMOVED": "Bank account removed",
+    "BANK_ACCOUNT_ADDED": "Bank account added",
+    "BANK_ACCOUNT_MODIFIED": "Bank account modified"
+
+
+
+  }
 }

@@ -1,13 +1,12 @@
 import { BadgeModule } from 'primeng/badge';
-import { SelectValueModule } from './../../../@arpa/pipes/select-value/select-value.module';
-import { SelectDialogModule } from './../profile/select-dialog/select-dialog.module';
+import { SelectValueModule } from '../../../@arpa/pipes/select-value/select-value.module';
+import { SelectDialogModule } from '../profile/select-dialog/select-dialog.module';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import { TableModule } from './../../../@arpa/components/table/table.module';
+import { TableModule } from '../../../@arpa/components/table/table.module';
 import { AutoCompleteModule } from 'primeng/autocomplete';
-import { AvatarModule } from './../../../@arpa/components/avatar/avatar.module';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
-import { FormFieldModule } from './../../../@arpa/components/form-field/form-field.module';
+import { FormFieldModule } from '../../../@arpa/components/form-field/form-field.module';
 import { ButtonModule } from 'primeng/button';
 import { PersonDialogEntryComponent } from './person-dialog-entry/person-dialog-entry.component';
 import { PersonLayoutComponent } from './person-layout/person-layout.component';
@@ -24,13 +23,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { RatingModule } from 'primeng/rating';
 import { MenuModule } from 'src/@arpa/components/menu/menu.module';
+import { PersonBankdataComponent } from './person-bankdata/person-bankdata.component';
 
 @NgModule({
   declarations: [
     PersonDialogEntryComponent,
     PersonLayoutComponent,
     PersonBasedataComponent,
-    PersonContactdataComponent
+    PersonContactdataComponent,
+    PersonBankdataComponent
   ],
   imports: [
     CommonModule,

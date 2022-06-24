@@ -22,5 +22,23 @@
   "QUALIFICATION": "qualificação",
   "RELIABILITY": "fiabilidade",
   "SECTION": "Seção",
-  "SURNAME": "sobrenome"
+  "SURNAME": "sobrenome",
+  "contact": {
+    "VALUE": "Valor",
+    "TYPE": "Modelo",
+    "COMMENT_INNER" :"Comentarista ",
+    "COMMENT_TEAM" :"Pessoal de comentários",
+    "PREFERENCE": "Preferência"
+  },
+  "bank": {
+    "BIC": "BIC",
+    "IBAN": "IBAN",
+    "ACCOUNT_OWNER": "Dono da conta",
+    "COMMENT_INNER": "Comente",
+    "STATUS": "Status",
+    "BANK_ACCOUNT_REMOVED": "Dados bancários removidos",
+    "BANK_ACCOUNT_ADDED": "Dados bancários adicionados",
+    "BANK_ACCOUNT_MODIFIED": "Dados bancários alterados"
+
+  }
 }

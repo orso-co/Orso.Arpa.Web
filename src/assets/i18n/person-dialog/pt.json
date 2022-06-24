@@ -12,8 +12,10 @@
   "BIRTHPLACE": "local de nascimento",
   "GENDER": "género",
   "MODIFIED_AT": "modificado em",
-  "MODIFIED_BY": "modificado por"
+  "MODIFIED_BY": "modificado por",
+  "BASE_DATA": "Dados básicos",
+  "CONTACT_DATA": "Detalhes do contato",
+  "BANK_DATA": "Detalhes bancários"
 }
-      
-    
-    
+
+

@@ -1,17 +1,19 @@
 {
-    "PERSONS": "Personnes",
-    "GIVEN_NAME": "Prénom",
-    "SURNAME": "Nom",
-    "ABOUT_ME": "À propos de moi",
-    "DATEOFBIRTH": "Date de naissance",
-    "BIRTHPLACE": "Lieu de naissance",
-    "RELIABILITY": "Fiabilité",
-    "GENERAL_PREFERENCE": "Préférence",
-    "EXPERIENCE_LEVEL": "Expérience",
-    "GENDER": "Sexe",
-    "CREATED_AT": "Créé le",
-    "CREATED_BY": "Créé par",
-    "MODIFIED_AT": "Modifié le",
-    "MODIFIED_BY": "Modifié par"
-  }
-  
+  "PERSONS": "Personnes",
+  "GIVEN_NAME": "Prénom",
+  "SURNAME": "Nom",
+  "ABOUT_ME": "À propos de moi",
+  "DATEOFBIRTH": "Date de naissance",
+  "BIRTHPLACE": "Lieu de naissance",
+  "RELIABILITY": "Fiabilité",
+  "GENERAL_PREFERENCE": "Préférence",
+  "EXPERIENCE_LEVEL": "Expérience",
+  "GENDER": "Sexe",
+  "CREATED_AT": "Créé le",
+  "CREATED_BY": "Créé par",
+  "MODIFIED_AT": "Modifié le",
+  "MODIFIED_BY": "Modifié par",
+  "BASE_DATA": "Données de base",
+  "CONTACT_DATA": "Détails du contact",
+  "BANK_DATA": "Coordonnées bancaires"
+}

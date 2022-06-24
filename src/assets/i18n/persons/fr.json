@@ -22,5 +22,25 @@
     "QUALIFICATION": "Qualification",
     "RELIABILITY": "Fiabilité",
     "SECTION": "Section",
-    "SURNAME": "Nom"
+    "SURNAME": "Nom",
+  "contact": {
+    "VALUE": "Wert",
+    "TYPE": "Typ",
+    "COMMENT_INNER" :"Commentaire personne",
+    "COMMENT_TEAM" :"Personnel de commentaire",
+    "PREFERENCE": "Préférence"
+  },
+  "bank": {
+    "BIC": "BIC",
+    "IBAN": "IBAN",
+    "ACCOUNT_OWNER": "Propriétaire du compte",
+    "COMMENT_INNER": "Commentaire",
+    "STATUS": "Statut",
+    "BANK_ACCOUNT_REMOVED": "Coordonnées bancaires supprimées",
+    "BANK_ACCOUNT_ADDED": "Coordonnées bancaires ajoutées",
+    "BANK_ACCOUNT_MODIFIED": "Coordonnées bancaires modifiées"
+
+
+
+  }
   }
