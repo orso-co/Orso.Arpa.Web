@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Observable } from 'rxjs';
 import { ProjectDto } from '../../../../@arpa/models/projectDto';
 
 @Component({

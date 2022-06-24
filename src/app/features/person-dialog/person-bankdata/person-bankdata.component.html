@@ -1,0 +1,89 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-my-5">
+  <div class="p-grid p-fluid p-formgrid">
+
+    <div class="p-col-12 p-xl-9">
+      <arpa-form-field label="persons.bank.IBAN">
+        <input autocomplete="off" formControlName="iban" id="iban" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-9">
+      <arpa-form-field label="persons.bank.BIC">
+        <input autocomplete="off" formControlName="bic" id="bic" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-9">
+      <arpa-form-field label="persons.bank.ACCOUNT_OWNER">
+        <input autocomplete="off" formControlName="accountOwner" id="accountOwner" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12">
+      <arpa-form-field label="persons.bank.COMMENT_INNER">
+        <textarea autocomplete="off" formControlName="commentInner" id="commentInner" pInputText type="text"></textarea>
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-6">
+      <arpa-form-field label="persons.bank.STATUS" type="select">
+        <p-dropdown
+          [options]="(statusOptions$ | async) || []"
+          [placeholder]="'NOTHING_SELECTED' | translate"
+          formControlName="statusId"
+          optionLabel="label"
+          optionValue="value"
+        ></p-dropdown>
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class="p-formgroup-inline p-jc-between">
+    <div class="p-text-left">
+      <button
+        [disabled]="form.pristine || form.invalid"
+        [label]="'SAVE' | translate"
+        icon="pi pi-check"
+        iconPos="right"
+        pButton
+        type="submit"
+      ></button>
+    </div>
+    <div class="p-text-right">
+      <button
+        [label]="'CANCEL' | translate"
+        icon="pi pi-times"
+        iconPos="right"
+        pButton
+        type="button"
+        (click)="onCancel()"
+        class="p-button-outlined"
+      ></button>
+    </div>
+  </div>
+</form>
+
+<hr />
+
+<arpa-table
+  [actionsTemplateRef]="actionsTemplate"
+  [columns]="columns"
+  [data]="tableData"
+  [showFilter]="false"
+  [showPagination]="false"
+>
+</arpa-table>
+
+<ng-template #actionsTemplate let-row>
+  <button
+    (click)="update(row)"
+    [label]="'project-dialog.UPDATE' | translate"
+    class="p-button-rounded p-button-text p-button-icon-only"
+    icon="pi pi-pencil"
+    pButton
+    type="button"
+  ></button>
+  <button
+    (click)="remove(row)"
+    [label]="'person-dialog.DELETE' | translate"
+    class="p-button-rounded p-button-text p-button-icon-only"
+    icon="pi pi-trash"
+    pButton
+    type="button"
+  ></button>
+</ng-template>

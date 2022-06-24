@@ -15,6 +15,9 @@
     "USERS": "Utilisateurs",
     "USER_DELETED": "L'utilisateur a été supprimé",
     "USER_MANAGEMENT": "Administration d'utilisateurs",
-    "USER_ROLES_SET": "L'attribution des rôles a été sauvegardée"
+    "USER_ROLES_SET": "L'attribution des rôles a été sauvegardée",
+    "NEWS": "Nouvelles",
+    "PROJECTSTATS": "Statistiques du projet"
+
   }
   

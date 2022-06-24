@@ -1,17 +1,17 @@
-import { TranslateService } from '@ngx-translate/core';
-import { MyProjectParticipationDialogComponent } from './../my-project-participation-dialog/my-project-participation-dialog.component';
-import { MyProjectParticipationDto } from './../../../../@arpa/models/myProjectDto';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SelectItem } from 'primeng/api';
-import { Observable, of } from 'rxjs';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { DialogService } from 'primeng/dynamicdialog';
 import { first, map } from 'rxjs/operators';
 import { MeService } from '../../../shared/services/me.service';
-import { ProjectDto } from '../../../../@arpa/models/projectDto';
-import { SelectValueService } from '../../../shared/services/select-value.service';
-import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 import { MyProjectDto } from 'src/@arpa/models/myProjectDto';
-import { DialogService } from 'primeng/dynamicdialog';
+import { MyProjectParticipationDialogComponent } from './../my-project-participation-dialog/my-project-participation-dialog.component';
+import { MyProjectParticipationDto } from './../../../../@arpa/models/myProjectDto';
+import { NotificationsService } from '../../../../@arpa/services/notifications.service';
+import { Observable, of } from 'rxjs';
+import { ProjectDto } from '../../../../@arpa/models/projectDto';
+import { SelectItem } from 'primeng/api';
+import { SelectValueService } from '../../../shared/services/select-value.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'arpa-profile-my-projects',
@@ -61,7 +61,7 @@ export class MyProjectsComponent implements AfterViewInit, OnInit {
         participation,
         statusOptions$: this.participationStatusInner$,
       },
-      header: this.translate.instant('projects.EDIT_PARTICIPATION'),
+      header: this.translate.instant('profile.my-projects.EDIT_PARTICIPATION'),
       styleClass: 'form-modal',
       dismissableMask: true,
       width: window.innerWidth > 350 ? '350px' : '100%',

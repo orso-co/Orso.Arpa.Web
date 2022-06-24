@@ -49,7 +49,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { UserWidgetComponent } from './user-widget/user-widget.component';
 import { WidgetComponent } from './widget/widget.component';
 import { ChipModule } from 'primeng/chip';
-
+import { MessageModule } from 'primeng/message';
+import { IframeWidgetProjectstatsComponent } from './iframe-widget-projectstats/iframe-widget-projectstats.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,9 @@ import { ChipModule } from 'primeng/chip';
     ChartWidgetComponent,
     ArpaWidgetConfigDirective,
     ChoirGridWidgetComponent,
-    IframeWidgetComponent],
+    IframeWidgetComponent,
+    IframeWidgetProjectstatsComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -108,12 +111,12 @@ import { ChipModule } from 'primeng/chip';
     TabViewModule,
     LocalizedDateModule,
     ChipModule,
-
+    MessageModule,
   ],
 })
 export class DashboardModule {
   constructor(private translateService: TranslateService, private languageService: LanguageService) {
-    languageService.languageEvent.subscribe(lang => {
+    languageService.languageEvent.subscribe((lang) => {
       /**
        * Reset lang for lazy module.
        * Fixes: https://github.com/ngx-translate/core/issues/1193

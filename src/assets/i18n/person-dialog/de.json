@@ -18,8 +18,5 @@
   "CONTACT_DATA": "Kontakt",
   "PERSON_MODIFIED": "Personendaten geändert",
   "ADD_NEW_PERSON": "Neue Person anlegen",
-  "LEVEL_ASSESSMENT_TEAM": "Level",
-  "QUALIFICATION": "Qualifikation",
-  "INSTRUMENT": "Instrument",
-  "SECTION": "Register"
+  "BANK_DATA": "Bankdaten"
 }

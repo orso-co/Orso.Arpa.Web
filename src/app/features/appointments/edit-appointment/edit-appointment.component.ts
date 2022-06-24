@@ -1,3 +1,5 @@
+import { AppointmentParticipationListItemDto } from './../../../../@arpa/models/appointmentParticipationListItemDto';
+import { ReducedMusicianProfileDto } from './../../../../@arpa/models/reducedMusicianProfileDto';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -30,7 +32,7 @@ class ParticipationTableItem {
     sections: string,
     qualification: string,
     predictionId: string,
-    resultId: string,
+    resultId: string
   ) {
     this.givenName = givenName;
     this.surname = surname;
@@ -83,9 +85,8 @@ export class EditAppointmentComponent implements OnInit {
     private appointmentService: AppointmentService,
     private formBuilder: FormBuilder,
     private translate: TranslateService,
-    private confirmationService: ConfirmationService,
-  ) {
-  }
+    private confirmationService: ConfirmationService
+  ) {}
 
   get isNew(): boolean {
     return !this.appointment.id;
@@ -101,21 +102,21 @@ export class EditAppointmentComponent implements OnInit {
       this.sectionSelectItems = sortBy(
         uniq(
           this.appointment.participations
-            .map((p: any) => p.musicianProfiles)
-            .reduce((a: any, b: any) => a.concat(b), [])
-            .map((mp: any) => this.mapMusicianProfileToSectionSelectItem(mp)),
-        ),
-        (selectItem) => selectItem.label,
+            .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles || [])
+            .reduce((a, b) => a.concat(b), [])
+            .map((mp: ReducedMusicianProfileDto) => mp?.instrumentName || '')
+        ).map(val => ({ label: val, value: val})),
+        (selectItem) => selectItem.label
       );
 
       this.qualificationOptions = sortBy(
         uniq(
           this.appointment.participations
-            .map((p) => p.musicianProfiles)
-            .reduce((a: any, b: any) => a.concat(b), [])
-            .map((mp: any) => this.mapMusicianProfileToQualificationSelectItem(mp)),
-        ),
-        (selectItem) => selectItem.label,
+            .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles || [])
+            .reduce((a, b) => a.concat(b), [])
+            .map((mp: ReducedMusicianProfileDto) => mp?.qualification || '')
+        ).map(val => ({ label: val, value: val})),
+        (selectItem) => selectItem.label
       );
 
       this.mapParticipations();
@@ -124,12 +125,13 @@ export class EditAppointmentComponent implements OnInit {
     this.setRooms(this.appointment.venueId);
 
     this.columns = [
-      { field: 'surname', header: this.translate.instant('SURNAME') },
-      { field: 'givenName', header: this.translate.instant('GIVENNAME') },
-      // { field: 'sections', header: this.translate.instant('appointments.SECTIONS') },
-      // { field: 'qualification', header: this.translate.instant('appointments.LEVEL') },
-      { field: 'predictionId', header: this.translate.instant('appointments.PREDICTION') },
-      { field: 'resultId', header: this.translate.instant('appointments.RESULTS') },
+      { field: 'surname', header: this.translate.instant('SURNAME'), width: '15%' },
+      { field: 'givenName', header: this.translate.instant('GIVENNAME'), width: '15%' },
+      { field: 'predictionId', header: this.translate.instant('appointments.PREDICTION'), width: '25%' },
+      { field: 'resultId', header: this.translate.instant('appointments.RESULTS'), width: '15%' },
+      { field: 'sections', header: this.translate.instant('appointments.SECTIONS'), width: '15%' },
+      { field: 'qualification', header: this.translate.instant('appointments.LEVEL'), width: '15%' },
+  
     ];
 
     this.createStepperMenu();
@@ -148,14 +150,6 @@ export class EditAppointmentComponent implements OnInit {
 
   mapVenueToSelectItem(venue: VenueDto): SelectItem {
     return { label: `${venue?.address?.city} ${venue?.address?.urbanDistrict} | ${venue?.name}`, value: venue?.id };
-  }
-
-  mapMusicianProfileToSectionSelectItem(musicianProfile: MusicianProfileDto): SelectItem {
-    return { label: musicianProfile.sectionName, value: musicianProfile.sectionName };
-  }
-
-  mapMusicianProfileToQualificationSelectItem(musicianProfile: MusicianProfileDto): SelectItem {
-    return { label: musicianProfile.qualification, value: musicianProfile.qualification };
   }
 
   updateAppointment(appointment: AppointmentDto, continueToNextStep: boolean): void {
@@ -205,20 +199,22 @@ export class EditAppointmentComponent implements OnInit {
   searchProject(event: any): void {
     this.projectOptions = this.projects.filter(
       (p) =>
-        p.title.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.projects.map((r: any) => r.id).includes(p.id),
+        p.title.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) &&
+        !this.appointment.projects.map((r: any) => r.id).includes(p.id)
     );
   }
 
   searchSection(event: any): void {
     this.sectionOptions = this.sections.filter(
       (p) =>
-        p.name.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.sections.map((r: any) => r.id).includes(p.id),
+        p.name.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) &&
+        !this.appointment.sections.map((r: any) => r.id).includes(p.id)
     );
   }
 
   searchRoom(event: any): void {
     this.roomOptions = this.rooms.filter(
-      (p) => p.name.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.rooms.map((r) => r.id).includes(p.id),
+      (p) => p.name.toLocaleLowerCase().includes(event.query.toLocaleLowerCase()) && !this.appointment.rooms.map((r) => r.id).includes(p.id)
     );
   }
 
@@ -321,8 +317,8 @@ export class EditAppointmentComponent implements OnInit {
       });
   }
 
-  getSectionNames(musicianProfiles: MusicianProfileDto[]): string {
-    return musicianProfiles.map((p) => p.sectionName).join(', ');
+  getSectionNames(musicianProfiles: ReducedMusicianProfileDto[]): string {
+    return musicianProfiles.map((p) => p.instrumentName).join(', ');
   }
 
   onTableFiltered(event: any): void {
@@ -392,17 +388,17 @@ export class EditAppointmentComponent implements OnInit {
 
   private mapParticipations(): void {
     this.participationTableItems = [];
-    this.appointment.participations.forEach((element: any) => {
+    this.appointment.participations.forEach((element: AppointmentParticipationListItemDto) => {
       this.participationTableItems.push(
         new ParticipationTableItem(
-          element.person.id,
-          element.person.givenName,
-          element.person.surname,
-          this.getSectionNames(element.musicianProfiles),
-          element.musicianProfiles.map((mp: any) => mp.qualification).join(', '),
-          element.participation ? element.participation.predictionId : '',
-          element.participation ? element.participation.resultId : '',
-        ),
+          element.person?.id || '',
+          element.person?.givenName || '',
+          element.person?.surname || '',
+          this.getSectionNames(element.musicianProfiles || []),
+          element.musicianProfiles?.map((mp: any) => mp.qualification).join(', ') || '',
+          element.participation?.predictionId || '',
+          element.participation?.resultId || ''
+        )
       );
     });
     this.filteredDataCount = this.participationTableItems.length;
@@ -433,7 +429,7 @@ export class EditAppointmentComponent implements OnInit {
         },
       },
       {
-        label: this.translate.instant('appointments.PARTICIPATIONS'),
+        label: this.translate.instant('appointments.RESULTS'),
         disabled: this.isNew,
         command: (event: any) => {
           this.activeIndex = 2;

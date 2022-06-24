@@ -1,14 +1,17 @@
 {
-  "ABOUT_ME": "Sobre mim",
   "ADD_NEW_PERSON": "Criar nova pessoa",
-  "BASE_DATA": "Dados básicos",
-  "BIRTHNAME": "Nome de nascença",
+ 
+  "ABOUT_ME": "sobre mim",
+  "BASE_DATA": "dados básicos",
+  "BIRTHNAME": "nome de nascença",
   "BIRTHPLACE": "local de nascimento",
-  "CONTACT_DATA": "Dados de contato",
-  "CONTACTVIA": "contacto via",
+  "CONTACT_DATA": "detalhes do contato",
+  "CONTACT_VIA_PLACEHOLDER": "Insira o contato de mediação aqui",
+  "CONTACT_VIA": "contato via",
   "CREATED_AT": "cratera em",
   "CREATED_BY": "criado por",
   "DATEOFBIRTH": "data de nascimento",
+  "EMPTYMESSAGE": "nada selecionado",
   "EXPERIENCE_LEVEL": "nível de experiência",
   "GENDER": "género",
   "GENERAL_PREFERENCE": "preferência geral",
@@ -19,4 +22,29 @@
   "PERSONS": "pessoas",
   "RELIABILITY": "fiabilidade",
   "SURNAME": "sobrenome"
+  "INSTRUMENT": "instrumento",
+  "LEVEL_ASSESSMENT_TEAM": "nível (equipe)",
+  "PERSONS": "pessoas",
+  "QUALIFICATION": "qualificação",
+  "RELIABILITY": "fiabilidade",
+  "SECTION": "Seção",
+  "SURNAME": "sobrenome",
+  "contact": {
+    "VALUE": "Valor",
+    "TYPE": "Modelo",
+    "COMMENT_INNER" :"Comentarista ",
+    "COMMENT_TEAM" :"Pessoal de comentários",
+    "PREFERENCE": "Preferência"
+  },
+  "bank": {
+    "BIC": "BIC",
+    "IBAN": "IBAN",
+    "ACCOUNT_OWNER": "Dono da conta",
+    "COMMENT_INNER": "Comente",
+    "STATUS": "Status",
+    "BANK_ACCOUNT_REMOVED": "Dados bancários removidos",
+    "BANK_ACCOUNT_ADDED": "Dados bancários adicionados",
+    "BANK_ACCOUNT_MODIFIED": "Dados bancários alterados"
+
+  }
 }

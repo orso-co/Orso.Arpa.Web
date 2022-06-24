@@ -28,6 +28,8 @@
   "BIRTHNAME": "Geburtsname",
   "DATEOFBIRTH": "Geburtsdatum",
   "MY_DATA_TOOLTIP": "Hier kannst du deine Stammdaten ändern",
+  "FUTURE_APPOINTMENTS": "Zukünftige Termine",
+  "PAST_APPOINTMENTS": "Vergangene Termine",
   "contact": {
     "NOTHING_SELECTED": "Nichts ausgewählt",
     "TYPE": "Typ",
@@ -48,6 +50,7 @@
     "MY_PROFILE": "Mein Profil für diese Anmeldung",
     "PROJECTDETAILS": "Projektdetails",
     "RESPONSE_STAFF": "Rückmeldung KBB",
+    "RESPONSE_STAFF_PROFILE": "Rückmeldung für Profil:",
     "RESPONSE_STATUS": "Rückmeldestatus",
     "STATUS": "Status",
     "TYPE": "Typ",

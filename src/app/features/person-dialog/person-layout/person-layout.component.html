@@ -2,7 +2,11 @@
   <p-tabPanel header="{{ 'persons.BASE_DATA' | translate }}" leftIcon="pi pi-user">
     <arpa-person-basedata [person]="person | async" (personSaved)="close(true)"></arpa-person-basedata>
   </p-tabPanel>
-  <p-tabPanel header="{{ 'persons.CONTACT_DATA' | translate }}" leftIcon="pi pi-phone">
-    <arpa-person-contactdata>Hier sollen die Kontaktdaten erscheinen...</arpa-person-contactdata>
+
+  <p-tabPanel header="{{ 'person-dialog.CONTACT_DATA' | translate }}" leftIcon="pi pi-phone">
+    <arpa-person-contactdata [person]="person | async"></arpa-person-contactdata>
+  </p-tabPanel>
+  <p-tabPanel header="{{ 'person-dialog.BANK_DATA' | translate }}" leftIcon="pi pi-credit-card">
+    <arpa-person-bankdata [person]="person | async"></arpa-person-bankdata>
   </p-tabPanel>
 </p-tabView>

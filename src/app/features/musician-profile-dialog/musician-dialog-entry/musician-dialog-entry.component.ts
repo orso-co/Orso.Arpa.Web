@@ -74,8 +74,8 @@ export class MusicianDialogEntryComponent {
 
     ref.onClose.pipe(first()).subscribe((profile: MusicianProfileDto) => {
       if (profile && selection) {
-        this.notificationsService.success('UPDATED');
-        this.logger.info('update:', selection);
+        this.logger.info('created:', profile);
+        this.notificationsService.success('CREATED');
       } else if (profile) {
         this.logger.info('created:', profile);
         this.notificationsService.success('CREATED');

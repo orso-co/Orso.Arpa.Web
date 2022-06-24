@@ -15,4 +15,7 @@
   "MODIFIED_BY": "modificado por",
   "ADD_NEW_PERSON": "Criar nova pessoa",
   "PERSON_MODIFIED": "dados pessoais modificados"
+  "BASE_DATA": "Dados básicos",
+  "CONTACT_DATA": "Detalhes do contato",
+  "BANK_DATA": "Detalhes bancários"
 }

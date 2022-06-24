@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class MuproComponent implements OnInit, OnDestroy {
   person: any;
+  mupro: any;
   routeData: any;
 
   query: DocumentNode = MuproProfilesQuery;
@@ -33,8 +34,9 @@ export class MuproComponent implements OnInit, OnDestroy {
     }
   }
 
-  public select({ person }: any) {
+  public select({ person, id }: any) {
     this.person = person.id;
+    this.mupro = id;
     this.router.navigate([person.id], { relativeTo: this.route });
   }
 }

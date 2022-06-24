@@ -4,11 +4,13 @@
     "BASE_DATA": "Données de base",
     "BIRTHNAME": "Nom de naissance",
     "BIRTHPLACE": "Lieu de naissance",
-    "CONTACT_DATA": "Données de contact",
-    "CONTACTVIA": "contacter via",
+    "CONTACT_DATA": "Détails du contact",
+    "CONTACT_VIA_PLACEHOLDER": "Entrez la personne de contact ici",
+    "CONTACT_VIA": "Contacter via",
     "CREATED_AT": "Créé le",
     "CREATED_BY": "Créé par",
     "DATEOFBIRTH": "Date de naissance",
+    "EMPTYMESSAGE": "Rien de sélectionné",
     "EXPERIENCE_LEVEL": "Expérience",
     "GENDER": "Sexe",
     "GENERAL_PREFERENCE": "Préférence",
@@ -19,4 +21,27 @@
     "PERSONS": "Personnes",
     "RELIABILITY": "Fiabilité",
     "SURNAME": "Nom"
+    "INSTRUMENT": "Instrument",
+    "LEVEL_ASSESSMENT_TEAM": "Niveau (Équipe)",
+    "QUALIFICATION": "Qualification",
+    "RELIABILITY": "Fiabilité",
+    "SECTION": "Section",
+    "SURNAME": "Nom",
+  "contact": {
+    "VALUE": "Wert",
+    "TYPE": "Typ",
+    "COMMENT_INNER" :"Commentaire personne",
+    "COMMENT_TEAM" :"Personnel de commentaire",
+    "PREFERENCE": "Préférence"
+  },
+  "bank": {
+    "BIC": "BIC",
+    "IBAN": "IBAN",
+    "ACCOUNT_OWNER": "Propriétaire du compte",
+    "COMMENT_INNER": "Commentaire",
+    "STATUS": "Statut",
+    "BANK_ACCOUNT_REMOVED": "Coordonnées bancaires supprimées",
+    "BANK_ACCOUNT_ADDED": "Coordonnées bancaires ajoutées",
+    "BANK_ACCOUNT_MODIFIED": "Coordonnées bancaires modifiées"
+  }
   }

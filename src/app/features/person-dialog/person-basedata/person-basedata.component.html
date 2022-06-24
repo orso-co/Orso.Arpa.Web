@@ -33,7 +33,7 @@
       </arpa-form-field>
     </div>
     <div class="p-col-12 p-md-6">
-      <arpa-form-field label="GENDER" type="select">
+      <arpa-form-field label="persons.GENDER" type="select">
         <p-dropdown
           [options]="(genderOptions$ | async) || []"
           [placeholder]="'NOTHING_SELECTED' | translate"
@@ -44,7 +44,8 @@
       </arpa-form-field>
     </div>
     <div class="p-col-12 p-md-6">
-      <arpa-form-field label="persons.CONTACTVIA" type="select">
+
+      <arpa-form-field label="persons.CONTACT_VIA" type="select">
         <p-autoComplete
           formControlName="contactVia"
           [suggestions]="filteredPersons"
@@ -52,9 +53,9 @@
           field="displayName"
           [forceSelection]="true"
           [minLength]="3"
-          [placeholder]="'PLACEHOLDER' | translate"
+          [placeholder]="'persons.CONTACT_VIA_PLACEHOLDER' | translate"
           [showEmptyMessage]="true"
-          [emptyMessage]="'EMPTYMESSAGE' | translate"
+          [emptyMessage]="'persons.EMPTYMESSAGE' | translate"
         >
         </p-autoComplete
       ></arpa-form-field>

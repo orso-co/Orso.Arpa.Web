@@ -23,8 +23,9 @@
       </div>
     </div>
   </div>
-  <ng-container [ngTemplateOutletContext]="{ $implicit: this }" [ngTemplateOutlet]="footerTemplateRef || null"></ng-container>
+
   <div *ngIf="hasErrors && showErrors" [@inOutAnimation] class="error">
     <span><i class="pi pi-exclamation-triangle"></i> {{ errorMessage }}</span>
   </div>
+  <ng-container [ngTemplateOutletContext]="{ $implicit: this }" [ngTemplateOutlet]="footerTemplateRef || null"></ng-container>
 </div>

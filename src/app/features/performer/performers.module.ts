@@ -9,7 +9,7 @@ import { GraphQlFeedModule } from '../../../@arpa/components/graph-ql-feed/graph
 import { LanguageService } from '../../../@arpa/services/language.service';
 import { TableModule } from '../../../@arpa/components/table/table.module';
 import { PerformerListComponent } from './performer-list/performer-list.component';
-
+import {OverlayPanelModule} from 'primeng/overlaypanel';
 @NgModule({
   declarations: [
     PerformerListComponent,
@@ -18,12 +18,13 @@ import { PerformerListComponent } from './performer-list/performer-list.componen
     PerformersRoutingModule,
     CommonModule,
     // Arpa Lib
-    TranslateModule.forChild(['persons']),
+    TranslateModule.forChild(['performers']),
     GraphQlFeedModule,
     TableModule,
     // NG Prime Dependencies
     DropdownModule,
     ButtonModule,
+    OverlayPanelModule
   ],
   exports: [
     PerformerListComponent,

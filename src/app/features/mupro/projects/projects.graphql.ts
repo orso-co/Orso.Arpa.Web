@@ -46,25 +46,38 @@ export const ProjectsQuery = gql`
           selectValue {name}
         }
         projectParticipations {
+          invitationStatusId
+          participationStatusInnerId
           participationStatusInner {
             selectValue {
+              id
               name
             }
           }
+          participationStatusInternalId
           participationStatusInternal {
             selectValue {
+              id
               name
             }
           }
           commentByPerformerInner
           commentByStaffInner
           commentTeam
+
           musicianProfile {
+            id
             isMainProfile
             instrument {
               name
             }
+            person {
+              id
+              givenName
+              surname
+            }
           }
+
         }
       }
     }

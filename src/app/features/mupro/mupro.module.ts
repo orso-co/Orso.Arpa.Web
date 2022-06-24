@@ -1,5 +1,6 @@
+import { DropdownModule } from 'primeng/dropdown';
 import { MultiSelectModule } from 'primeng/multiselect';
-import { FormFieldModule } from './../../../@arpa/components/form-field/form-field.module';
+import { FormFieldModule } from '../../../@arpa/components/form-field/form-field.module';
 import { InvitationDialogComponent } from './invitation-dialog/invitation-dialog.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -24,9 +25,17 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from '../../../@arpa/components/table/table.module';
 import { ProjectsComponent } from './projects/projects.component';
+import { ParticipationDialogComponent } from './participation-dialog/participation-dialog.component';
 
 @NgModule({
-  declarations: [MuproComponent, DetailsComponent, ProfilesComponent, ProjectsComponent, InvitationDialogComponent],
+  declarations: [
+    MuproComponent,
+    DetailsComponent,
+    ProfilesComponent,
+    ProjectsComponent,
+    InvitationDialogComponent,
+    ParticipationDialogComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -39,6 +48,7 @@ import { ProjectsComponent } from './projects/projects.component';
     GraphQlFeedModule,
     TableModule,
     FormFieldModule,
+
     // NG Prime Dependencies
     ListboxModule,
     StepsModule,
@@ -48,6 +58,7 @@ import { ProjectsComponent } from './projects/projects.component';
     InputTextModule,
     ButtonModule,
     MultiSelectModule,
+    DropdownModule,
   ],
   providers: [MuproService],
 })

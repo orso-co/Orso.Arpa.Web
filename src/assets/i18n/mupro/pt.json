@@ -1,6 +1,17 @@
 {
-  "PAGE_TITLE": "perfis musicanos",
-  "PROFILE": "perfil musicano" ,
+  "PAGE_TITLE": "perfis musicais",
+  "PROFILE": "perfil de músico",
   "MAIN_PROFILE": "perfil principal",
-  "INVITE": "Convidar para o projeto"
+  "INVITE": "Convidar para o projecto",
+  "EDIT_PARTICIPATION": "Editar estado da participação",
+  "STATUS_STAFF": "perspectiva do funcionário",
+  "STATUS_PERFORMER": "perspectiva do intérprete",
+  "PARTICIPATION_STATUS_INTERNAL": "estado da participação",
+  "PARTICIPATION_STATUS_INNER": "estado da participação",
+  "PARTICIPATION_COMMENT_PERFORMER": "comentário do artista",
+  "PARTICIPATION_COMMENT_STAFF": "comentário da equipa",
+  "MUPRO_CREATION_DATE": "data de criação deste perfil",
+  "PARTICIPATION_COMMENT_TEAM": "comentar apenas dentro da equipe",
+  "PARTICIPANT": "Participante"
+
 }

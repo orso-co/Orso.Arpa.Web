@@ -6,32 +6,29 @@ export const MuproProfilesQuery = gql`
       skip: $skip
       take: $take
       where: {
-        isMainProfile: {equals: true}
-        and: {
-          or: [
-            {
-              person : {
-                givenName: {
-                  contains: $searchQuery
-                }
+        or: [
+          {
+            person : {
+              givenName: {
+                contains: $searchQuery
               }
             }
-            {
-              person : {
-                surname: {
-                  contains: $searchQuery
-                }
+          }
+          {
+            person : {
+              surname: {
+                contains: $searchQuery
               }
             }
-            {
-              instrument : {
-                name: {
-                  contains: $searchQuery
-                }
+          }
+          {
+            instrument : {
+              name: {
+                contains: $searchQuery
               }
             }
-          ]
-        }
+          }
+        ]
       }
       order: {person: {givenName: $order, surname: $order}}
     ) {
@@ -42,6 +39,7 @@ export const MuproProfilesQuery = gql`
       totalCount
       items {
         id
+        createdAt
         isMainProfile
         person {
           id
@@ -51,10 +49,31 @@ export const MuproProfilesQuery = gql`
             country
             zip
           }
+
         }
         instrument {
           id
           name
+        }
+        regionPreferences {
+          id
+          region {
+            id
+            name
+          }
+        }
+        projectParticipations {
+          id
+          project {
+            id
+            title
+          }
+          participationStatusInnerId
+          participationStatusInner {selectValue { name}}
+          participationStatusInternalId
+          participationStatusInternal {selectValue {name}}
+          invitationStatusId
+          invitationStatus {selectValue {name}}
         }
       }
     }

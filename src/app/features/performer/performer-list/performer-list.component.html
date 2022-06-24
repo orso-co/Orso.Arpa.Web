@@ -1,23 +1,70 @@
-<!-- Graphql feed controls and holds graphql api results. -->
-<arpa-graph-ql-feed #feedSource [contentTemplate]='feed' [query]='query'></arpa-graph-ql-feed>
+<p-overlayPanel #op [showCloseIcon]="true">
+  <ng-template pTemplate>
+    <ng-container *ngIf="lastInvitation; else EMPTY">
+      <p>{{ 'INVITATION_SUCCESS' | translate }}:</p>
+      <ul>
+        <li *ngFor="let item of lastInvitation.successfulInvites | keyvalue">{{ item.key }} ({{ item.value }})</li>
+      </ul>
+      <p>
+        {{ 'INVITATION_HINT' | translate }}:
+      </p>
+      <ul>
+        <li *ngFor="let item of lastInvitation.personsWithMultipleEmailAddresses | keyvalue">
+          {{ item.key }} ({{ item.value.join(', ') }})
+        </li>
+      </ul>
+      <p>{{ 'NO_INVITATION_DUE_TO' | translate }}...</p>
+      <p>...{{ 'MISSING_MAIL' | translate }}:</p>
+      <ul>
+        <li *ngFor="let item of lastInvitation.personsWithoutEmailAddress">
+          {{ item }}
+        </li>
+      </ul>
+      <p>...{{ 'EXISTING_REGISTRATION' | translate }}:</p>
+      <ul>
+        <li *ngFor="let item of lastInvitation.personsAlreadyRegistered">
+          {{ item }}
+        </li>
+      </ul>
+      <p>...{{ 'INVITATION_FAILURE' | translate }}:</p>
+      <ul>
+        <li *ngFor="let item of lastInvitation.failedInvites | keyvalue">{{ item.key }} ({{ item.value }})</li>
+      </ul>
+    </ng-container>
+  </ng-template>
+</p-overlayPanel>
+<ng-template #EMPTY>
+  <p>{{'NO_INVITATION_YET' | translate }}</p>
+</ng-template>
+<button
+  class="p-mb-3"
+  pButton
+  type="button"
+  [label]="'Alle Personen auf dieser Seite einladen'"
+  (click)="sendInvitationToMultiplePersons($event, op)"
+></button>
 
-<router-outlet name='modal'></router-outlet>
+<!-- Graphql feed controls and holds graphql api results. -->
+<arpa-graph-ql-feed #feedSource [contentTemplate]="feed" [query]="query"></arpa-graph-ql-feed>
+
+<router-outlet name="modal"></router-outlet>
 
 <!-- The feed template is projected into the graph-ql-feed component. -->
 <ng-template #feed let-feed>
   <arpa-table
-    (lazyEvents)='feedSource.onLazy($event)'
-    [columns]='columns'
-    [feed]='feed'
+    (lazyEvents)="feedSource.onLazy($event)"
+    [columns]="columns"
+    [feed]="feed"
     [actionsTemplateRef]="actionsTemplate"
   ></arpa-table>
 </ng-template>
 
 <ng-template #actionsTemplate let-row>
   <button
-    (click)="sendInvite(row.person.id)"
+    (click)="sendSingleInvite(row.person.id)"
     class="p-button-rounded p-button-text p-button-icon-only"
     icon="pi pi-envelope"
     pButton
     type="button"
   ></button>
+</ng-template>

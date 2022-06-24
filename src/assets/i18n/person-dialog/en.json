@@ -16,4 +16,7 @@
   "ADD_NEW_PERSON": "Add new person",
   "PERSON_MODIFIED": "Person data modified",
   "PLACEHOLDER": "Placeholder"
+  "BANK_DATA": "Bank Data",
+  "BASE_DATA": "Base Data",
+  "CONTACT_DATA": "Contact Data"
 }

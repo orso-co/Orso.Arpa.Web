@@ -1,3 +1,5 @@
+import { MyProjectParticipationDialogComponent } from './../profile/my-project-participation-dialog/my-project-participation-dialog.component';
+import { MyProjectsComponent } from './../profile/my-projects/my-projects.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MusicianDialogEntryComponent } from './musician-dialog-entry/musician-dialog-entry.component';

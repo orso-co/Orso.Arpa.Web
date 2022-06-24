@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MuproComponent } from './mupro.component';
 import { ProfilesComponent } from './profiles/profiles.component';
-import { PersonsService } from './services/persons.service';
 import { ProfileMusicianResolver } from './resolvers/profile-musician.resolver';
 import { SectionsResolver } from '../profile/resolvers/sections.resolver';
 import { ProjectsComponent } from './projects/projects.component';
@@ -46,4 +45,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class MuProRoutingModule {}
+export class MuProRoutingModule {
+}
