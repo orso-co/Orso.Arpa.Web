@@ -74,7 +74,7 @@ export class PersonBankdataComponent implements OnInit {
           });
       } else {
         this.bankService
-          .addBankAccount(this.person.id, { id, statusId, bic, iban, accountOwner, commentInner })
+          .addBankAccount(this.person.id, { id, bic, iban, accountOwner, commentInner })
           .pipe(first())
           .subscribe((result) => {
             this.tableData.next(this.person?.bankAccounts?.push(result));

@@ -24,6 +24,7 @@
   "USER_PROFILE_UPDATE_ERROR": "Não foi possível actualizar o perfil",
   "MY_CONTACT_DATA": "Os meus detalhes de contacto",
   "MY_CONTACT_DATA_TOOLTIP": "Adiciona números de telefone, endereços de e-mail e URLs",
+  "MY_BANK_DATA": "Os meus dados bancários",
   "BIRTHPLACE": "Local de nascimento",
   "BIRTHNAME": "Nome de nascença",
   "DATEOFBIRTH": "Data de nascimento",
@@ -54,5 +55,12 @@
     "STATUS": "Estado",
     "TYPE": "tipo",
     "URLS": "URLs"
+  },
+  "bank": {
+    "ACCOUNT_OWNER": "Titular da conta",
+    "IBAN": "IBAN",
+    "BIC": "BIC",
+    "COMMENT_INNER": "Comentário",
+    "STATUS": "Status"
   }
 }

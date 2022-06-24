@@ -1,5 +1,5 @@
 <div class='p-grid p-jc-center'>
-  <h1>{{ 'MY_DATA' | translate }}</h1>
+  <h1>{{ 'MY_DATA' | translate }}</h1>
 </div>
 
 <div class="user-container">
@@ -8,11 +8,12 @@
       <arpa-user-data [email]="email" [person]="person" [displayName]="displayName"></arpa-user-data>
     </p-tabPanel>
     <p-tabPanel
-      leftIcon="pi pi-phone"
-      [header]="'profile.MY_CONTACT_DATA' | translate"
-      [tooltip]="'profile.MY_CONTACT_DATA_TOOLTIP' | translate"
-    >
+      leftIcon="pi pi-phone" [header]="'profile.MY_CONTACT_DATA' | translate" [tooltip]="'profile.MY_CONTACT_DATA_TOOLTIP' | translate">
       <arpa-user-contact-data [contactDetails]="person.contactDetails || []"></arpa-user-contact-data>
+    </p-tabPanel>
+    <p-tabPanel
+      leftIcon="pi pi-credit-card" [header]="'profile.MY_BANK_DATA' | translate" [tooltip]="'profile.MY_BANK_DATA_TOOLTIP' | translate">
+      <arpa-user-bankdata [bankAccounts]="person.bankAccounts || []"></arpa-user-bankdata>
     </p-tabPanel>
   </p-tabView>
 </div>

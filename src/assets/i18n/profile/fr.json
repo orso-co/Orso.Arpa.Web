@@ -24,6 +24,7 @@
   "USER_PROFILE_UPDATE_ERROR": "Impossible de mettre à jour le profil",
   "MY_CONTACT_DATA": "Détails du contact",
   "MY_CONTACT_DATA_TOOLTIP": "Indiquez vos numéros de téléphone, adresses e-mail et URL",
+  "MY_BANK_DATA": "Coordonnées bancaires",
   "BIRTHPLACE": "Lieu de naissance",
   "BIRTHNAME": "Nom de naissance",
   "DATEOFBIRTH": "Date de naissance",
@@ -54,5 +55,12 @@
     "STATUS": "Statut",
     "TYPE": "Taper",
     "URLS": "URLs"
+  },
+  "bank": {
+    "ACCOUNT_OWNER": "Propriétaire du compte",
+    "IBAN": "IBAN",
+    "BIC": "BIC",
+    "COMMENT_INNER": "Commentaire",
+    "STATUS": "Statut"
   }
 }

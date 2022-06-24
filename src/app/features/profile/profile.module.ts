@@ -37,6 +37,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { UserComponent } from './user/user.component';
 import { UserContactDataComponent } from './user-contact-data/user-contact-data.component';
 import { UserDataComponent } from './user-data/user-data.component';
+import { UserBankdataComponent } from './user-bankdata/user-bankdata.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { UserDataComponent } from './user-data/user-data.component';
     MyProjectParticipationDialogComponent,
     UserDataComponent,
     UserContactDataComponent,
+    UserBankdataComponent,
   ],
   imports: [
     CommonModule,
