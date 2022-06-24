@@ -104,6 +104,7 @@ export class PersonBankdataComponent implements OnInit {
       commentInner: bankAccounts.commentInner,
       iban: bankAccounts.iban,
       bic: bankAccounts.bic,
+      accountOwner: bankAccounts.accountOwner,
     });
   }
 
