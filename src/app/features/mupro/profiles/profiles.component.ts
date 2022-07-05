@@ -47,6 +47,7 @@ export class ProfilesComponent implements OnInit, OnDestroy {
   ) {
   }
 
+
   ngOnInit(): void {
     this.paramSubscription = this.route.paramMap.subscribe((params) => {
       if (params.has('personId')) {
@@ -82,6 +83,12 @@ export class ProfilesComponent implements OnInit, OnDestroy {
           ) as MenuItem[],
       ),
     );
+  }
+
+  openPersonDetail(personId: string) {
+    this.router.navigate([{ outlets: {modal: [ 'persons','detail', personId] }}], {
+      relativeTo: this.route,
+  });
   }
 
   ngOnDestroy() {
@@ -158,5 +165,5 @@ export class ProfilesComponent implements OnInit, OnDestroy {
         );
       }
     });
-  }
+    }
 }
