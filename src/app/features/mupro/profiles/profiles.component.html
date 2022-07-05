@@ -7,7 +7,9 @@
       </div>
       <div class='p-col-12 p-lg-8 details'>
         <div>
-          <div class='name'>{{ getName(person | async) }}</div>
+          <div class='name'>
+            <a (click)='openPersonDetail(personId)'> {{ getName(person | async) }}</a>
+          </div>
         </div>
       </div>
     </div>
@@ -18,6 +20,14 @@
   <arpa-graph-ql-feed #feedSource [contentTemplate]='feed' [query]='query' [variables]='{personId}'>
     <ng-template #feed let-feed>
       <ul>
+        <button
+          [routerLink]="[ {outlets:  {modal: ['detail', personId] } }]"
+          class='p-button-rounded p-button-text'
+          icon='pi pi-user'
+          label="{{ 'GO_TO_PERSON' | translate }}"
+          pButton
+          type='button'
+        ></button>
         <ng-container *ngFor='let profile of $any((feed.values | async) || []); let i = index'>
           <li *ngIf='activeIndex === i'>
             <div class='profile'>
@@ -25,21 +35,12 @@
                 <div class='p-col-12 section-detail'>
                   <header>
                     <h2>{{ profile.instrument.name }}</h2>
-                    <p-button
-                      (click)='openInvitationDialog(profile.id)'
-                      *ngIf='!profile.deactivation'
-                      [label]="'INVITE' | translate"
-                      class='p-text-right p-ml-3'
-                      icon='pi pi-plus-circle'
-                      styleClass='p-button-sm'
-                      type='button'
-                    ></p-button>
                     <button
                       [queryParams]='{ comboInstruments: true }'
                       [routerLink]='[{ outlets: { modal: [personId, profile.id] } }]'
                       class='p-button-rounded p-button-text'
                       icon='pi pi-pencil'
-                      label="{{ 'EDIT' | translate }}"
+                      label="{{ 'EDIT' | translate }}"
                       pButton
                       type='button'
                     ></button>
@@ -70,10 +71,24 @@
                     severity='danger'
                     value="{{ 'musician-profile-dialog.DEACTIVATED' | translate }}"
                   ></p-badge>
+
+                  <div style='text-align: right'>
+                    <p-button
+                      (click)='openInvitationDialog(profile.id)'
+                      *ngIf='!profile.deactivation'
+                      [label]="'INVITE' | translate"
+                      class='p-text-right p-ml-3'
+                      icon='pi pi-plus-circle'
+                      styleClass='p-button-sm'
+                      type='button'
+                    ></p-button>
+                  </div>
                 </div>
               </div>
             </div>
+
           </li>
+
         </ng-container>
       </ul>
     </ng-template>
