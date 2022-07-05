@@ -24,7 +24,7 @@ export class BankAccountService {
     return this.apiService.put(`${this.baseUrl}/bankaccounts/${id}`, dto).pipe(shareReplay());
   }
 
-  deleteBankAccount(id: string): Observable<any> {
-    return this.apiService.delete(`${this.baseUrl}/bankaccounts/${id}`).pipe(shareReplay());
+  deleteBankAccount(id: string, personId: any): Observable<any> {
+    return this.apiService.delete(`${this.baseUrl}/${personId}/bankaccounts/${id}`).pipe(shareReplay());
   }
 }

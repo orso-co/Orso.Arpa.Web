@@ -88,7 +88,7 @@ export class PersonBankdataComponent implements OnInit {
   remove(bankAccounts: BankAccountDto): void {
     if (typeof bankAccounts.id === 'string') {
       this.bankService
-        .deleteBankAccount(bankAccounts.id)
+        .deleteBankAccount(bankAccounts.id, this.person?.id )
         .pipe(first())
         .subscribe(() => {
           this.tableData.next(this.person?.bankAccounts?.filter((e) => e.id != bankAccounts.id));
