@@ -107,15 +107,15 @@ export class MeService {
     return this.apiService.delete(`${this.baseUrl}/contactdetails/${id}`).pipe(shareReplay());
   }
 
-  addBankAccount(dto: BankAccountCreateDto): Observable<BankAccountDto> {
-    return this.apiService.post<BankAccountDto>(`persons/${this.baseUrl}/bankaccounts`, dto).pipe(shareReplay());
+  addBankAccount(personId: any, dto: BankAccountCreateDto): Observable<BankAccountDto> {
+    return this.apiService.post<BankAccountDto>(`/persons/${personId}/bankaccounts`, dto).pipe(shareReplay());
   }
 
   updateBankAccount(id: string, dto: BankAccountDto): Observable<any> {
-    return this.apiService.put(`persons/${this.baseUrl}/bankaccounts/${id}`, dto).pipe(shareReplay());
+    return this.apiService.put(`/persons/${this.baseUrl}/bankaccounts/${id}`, dto).pipe(shareReplay());
   }
 
-  deleteBankAccount(id: string | undefined): Observable<any> {
-    return this.apiService.delete(`persons/${this.baseUrl}/bankaccounts/${id}`).pipe(shareReplay());
+  deleteBankAccount(id: string | undefined, personId: any): Observable<any> {
+    return this.apiService.delete(`/persons/${personId}/bankaccounts/${id}`).pipe(shareReplay());
   }
 }

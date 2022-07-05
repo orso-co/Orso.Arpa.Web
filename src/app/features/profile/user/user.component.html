@@ -13,7 +13,7 @@
     </p-tabPanel>
     <p-tabPanel
       leftIcon="pi pi-credit-card" [header]="'profile.MY_BANK_DATA' | translate" [tooltip]="'profile.MY_BANK_DATA_TOOLTIP' | translate">
-      <arpa-user-bankdata [bankAccounts]="person.bankAccounts || []"></arpa-user-bankdata>
+      <arpa-user-bankdata [bankAccounts]="person.bankAccounts || []" [person]="person" ></arpa-user-bankdata>
     </p-tabPanel>
   </p-tabView>
 </div>
