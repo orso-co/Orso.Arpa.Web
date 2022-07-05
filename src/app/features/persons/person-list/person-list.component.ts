@@ -1,6 +1,6 @@
 import { SelectValueService } from 'src/app/shared/services/select-value.service';
-import { PersonService } from './../services/person.service';
-import { PersonLayoutComponent } from './../../person-dialog/person-layout/person-layout.component';
+import { PersonService } from '../services/person.service';
+import { PersonLayoutComponent } from '../../person-dialog/person-layout/person-layout.component';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SelectItem } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';

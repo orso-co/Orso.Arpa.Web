@@ -1,9 +1,9 @@
-import { NotificationsService } from './../../../../@arpa/services/notifications.service';
-import { PersonService } from './../../persons/services/person.service';
-import { ReducedPersonDto } from './../../../../@arpa/models/reducedPersonDto';
+import { NotificationsService } from '../../../../@arpa/services/notifications.service';
+import { PersonService } from '../../persons/services/person.service';
+import { ReducedPersonDto } from '../../../../@arpa/models/reducedPersonDto';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { SelectValueService } from './../../../shared/services/select-value.service';
-import { PersonDto } from './../../../../@arpa/models/personDto';
+import { SelectValueService } from '../../../shared/services/select-value.service';
+import { PersonDto } from '../../../../@arpa/models/personDto';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
@@ -32,7 +32,7 @@ export class PersonBasedataComponent implements OnInit, OnChanges {
       givenName: [null, [Validators.required, Validators.maxLength(50)]],
       surname: [null, [Validators.required, Validators.maxLength(50)]],
       birthName: [null, [Validators.maxLength(50)]],
-      aboutMe: [null, [Validators.required, Validators.maxLength(1000)]],
+      aboutMe: [null, [Validators.maxLength(1000)]],
       birthplace: [null, [Validators.maxLength(50)]],
       dateOfBirth: [null],
       experienceLevel: [0],
