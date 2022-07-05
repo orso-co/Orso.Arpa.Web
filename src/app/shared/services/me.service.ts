@@ -1,6 +1,6 @@
-import { MyContactDetailModifyBodyDto } from './../../../@arpa/models/myContactDetailModifyBodyDto';
-import { ContactDetailDto } from './../../../@arpa/models/contactDetailDto';
-import { MyContactDetailCreateDto } from './../../../@arpa/models/myContactDetailCreateDto';
+import { MyContactDetailModifyBodyDto } from '../../../@arpa/models/myContactDetailModifyBodyDto';
+import { ContactDetailDto } from '../../../@arpa/models/contactDetailDto';
+import { MyContactDetailCreateDto } from '../../../@arpa/models/myContactDetailCreateDto';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { finalize, first, map, shareReplay, switchMap, tap } from 'rxjs/operators';
@@ -12,6 +12,8 @@ import { MusicianProfileDto } from '../../../@arpa/models/musicianProfileDto';
 import { MyProjectParticipationModifyBodyDto } from '../../../@arpa/models/myProjectParticipationModifyBodyDto';
 import { AuthService } from '../../../@arpa/services/auth.service';
 import { RoleNames } from '../../../@arpa/models/roleNames';
+import { BankAccountDto } from '../../../@arpa/models/bankAccountDto';
+import { BankAccountCreateDto } from '../../../@arpa/models/bankAccountCreateDto';
 
 @Injectable({
   providedIn: 'root',
@@ -103,5 +105,17 @@ export class MeService {
 
   deleteContactDetail(id: string): Observable<any> {
     return this.apiService.delete(`${this.baseUrl}/contactdetails/${id}`).pipe(shareReplay());
+  }
+
+  addBankAccount(personId: any, dto: BankAccountCreateDto): Observable<BankAccountDto> {
+    return this.apiService.post<BankAccountDto>(`/persons/${personId}/bankaccounts`, dto).pipe(shareReplay());
+  }
+
+  updateBankAccount(id: string, dto: BankAccountDto): Observable<any> {
+    return this.apiService.put(`/persons/${this.baseUrl}/bankaccounts/${id}`, dto).pipe(shareReplay());
+  }
+
+  deleteBankAccount(id: string | undefined, personId: any): Observable<any> {
+    return this.apiService.delete(`/persons/${personId}/bankaccounts/${id}`).pipe(shareReplay());
   }
 }

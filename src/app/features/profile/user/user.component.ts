@@ -1,9 +1,10 @@
-import { PersonDto } from './../../../../@arpa/models/personDto';
+import { PersonDto } from '../../../../@arpa/models/personDto';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
 import { AuthService } from '../../../../@arpa/services/auth.service';
 import { Subscription } from 'rxjs';
+import { BankAccountDto } from '../../../../@arpa/models/bankAccountDto';
 
 @Component({
   selector: 'arpa-user',
@@ -16,6 +17,7 @@ export class UserComponent implements OnInit, OnDestroy {
   displayName: string;
   email: string;
   person: PersonDto;
+  bankAccounts: BankAccountDto;
 
   constructor(private route: ActivatedRoute, private authService: AuthService) {}
 
