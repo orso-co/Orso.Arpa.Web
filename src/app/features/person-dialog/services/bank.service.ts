@@ -20,8 +20,8 @@ export class BankAccountService {
     return this.apiService.post<BankAccountDto>(`${this.baseUrl}/${personId}/bankaccounts`, dto).pipe(shareReplay());
   }
 
-  updateBankAccount(id: string,  dto: BankAccountModifyBodyDto): Observable<any> {
-    return this.apiService.put(`${this.baseUrl}/bankaccounts/${id}`, dto).pipe(shareReplay());
+  updateBankAccount(personId: string, id: string,  dto: BankAccountModifyBodyDto): Observable<any> {
+    return this.apiService.put(`${this.baseUrl}/${personId}/bankaccounts/${id}`, dto).pipe(shareReplay());
   }
 
   deleteBankAccount(id: string, personId: any): Observable<any> {
