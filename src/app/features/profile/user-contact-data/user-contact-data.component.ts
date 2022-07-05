@@ -1,6 +1,6 @@
-import { SelectValueService } from './../../../shared/services/select-value.service';
-import { ContactDetailDto } from './../../../../@arpa/models/contactDetailDto';
-import { MeService } from './../../../shared/services/me.service';
+import { SelectValueService } from '../../../shared/services/select-value.service';
+import { ContactDetailDto } from '../../../../@arpa/models/contactDetailDto';
+import { MeService } from '../../../shared/services/me.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationsService } from 'src/@arpa/services/notifications.service';

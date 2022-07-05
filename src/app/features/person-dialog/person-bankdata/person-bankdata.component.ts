@@ -27,7 +27,7 @@ export class PersonBankdataComponent implements OnInit {
     { label: 'persons.bank.IBAN', property: 'iban', type: 'text'},
     { label: 'persons.bank.BIC', property: 'bic', type: 'text'},
     { label: 'persons.bank.ACCOUNT_OWNER', property: 'accountOwner', type: 'text'},
-    { label: 'persons.bank.STATUS', property: 'statusId', type: 'state', stateTable: 'BankAccount', stateProperty: 'Status'},
+    { label: 'persons.bank.STATUS', property: 'statusId', type: 'state', stateTable: 'BankAccount', stateProperty: 'State'},
     { label: 'persons.bank.COMMENT_INNER', property: 'commentInner', type: 'text'},
 
   ];
@@ -63,7 +63,7 @@ export class PersonBankdataComponent implements OnInit {
       const { id, statusId, commentInner, iban, bic, accountOwner } = this.form.getRawValue();
       if (id) {
         this.bankService
-          .updateBankAccount(id, { statusId, commentInner, bic, iban, accountOwner })
+          .updateBankAccount(this.person?.id, id, { statusId, commentInner, bic, iban, accountOwner })
           .pipe(first())
           .subscribe((_) => {
             const index = this._tableData.findIndex((el) => el.id === id);
@@ -74,7 +74,7 @@ export class PersonBankdataComponent implements OnInit {
           });
       } else {
         this.bankService
-          .addBankAccount(this.person.id, { id, statusId, bic, iban, accountOwner, commentInner })
+          .addBankAccount(this.person.id, { id, bic, iban, accountOwner, commentInner })
           .pipe(first())
           .subscribe((result) => {
             this.tableData.next(this.person?.bankAccounts?.push(result));
@@ -88,7 +88,7 @@ export class PersonBankdataComponent implements OnInit {
   remove(bankAccounts: BankAccountDto): void {
     if (typeof bankAccounts.id === 'string') {
       this.bankService
-        .deleteBankAccount(bankAccounts.id)
+        .deleteBankAccount(bankAccounts.id, this.person?.id )
         .pipe(first())
         .subscribe(() => {
           this.tableData.next(this.person?.bankAccounts?.filter((e) => e.id != bankAccounts.id));
@@ -104,6 +104,7 @@ export class PersonBankdataComponent implements OnInit {
       commentInner: bankAccounts.commentInner,
       iban: bankAccounts.iban,
       bic: bankAccounts.bic,
+      accountOwner: bankAccounts.accountOwner,
     });
   }
 

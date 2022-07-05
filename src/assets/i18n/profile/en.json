@@ -24,9 +24,11 @@
   "USER_PROFILE_UPDATE_ERROR": "Could not update profile",
   "MY_CONTACT_DATA": "My Contact Data",
   "MY_CONTACT_DATA_TOOLTIP": "Provide your phonenumbers, Email-adresses and URLs",
+  "MY_BANK_DATA": "My Bank Data",
   "BIRTHPLACE": "Birthplace",
   "BIRTHNAME": "Birthname",
   "DATEOFBIRTH": "Date of birth",
+  "ABOUT_ME": "About me",
   "MY_DATA_TOOLTIP": "Edit your name, about me, etc.",
   "FUTURE_APPOINTMENTS": "Future appointments",
   "PAST_APPOINTMENTS": "Passed appointments",
@@ -55,6 +57,13 @@
     "STATUS": "Status",
     "TYPE": "Type",
     "URLS": "Links"
+  },
+  "bank": {
+    "ACCOUNT_OWNER": "Account Owner",
+    "IBAN": "IBAN",
+    "BIC": "BIC",
+    "COMMENT_INNER": "Comment",
+    "STATUS": "Status"
   }
 
 }

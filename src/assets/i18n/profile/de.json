@@ -24,6 +24,7 @@
   "USER_PROFILE_UPDATE_ERROR": "Profil konnte nicht aktualisiert werden",
   "MY_CONTACT_DATA": "Kontaktdaten",
   "MY_CONTACT_DATA_TOOLTIP": "Hier kannst du Telefonnummern, Emailadressen und Links angeben",
+  "MY_BANK_DATA": "Bankdaten",
   "BIRTHPLACE": "Geburtsort",
   "BIRTHNAME": "Geburtsname",
   "DATEOFBIRTH": "Geburtsdatum",
@@ -55,5 +56,12 @@
     "STATUS": "Status",
     "TYPE": "Typ",
     "URLS": "Links"
+  },
+  "bank": {
+    "ACCOUNT_OWNER": "Kontoinhaber",
+    "IBAN": "IBAN",
+    "BIC": "BIC",
+    "COMMENT_INNER": "Kommentar",
+    "STATUS": "Status"
   }
 }
