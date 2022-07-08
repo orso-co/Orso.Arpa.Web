@@ -1,4 +1,4 @@
-import { AuditLogDto } from './../../../../@arpa/models/auditLogDto';
+import { AuditLogDto } from '../../../../@arpa/models/auditLogDto';
 import { Component } from '@angular/core';
 import { AuditLogQuery } from './audit-log.graphql';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
@@ -16,10 +16,10 @@ export class AuditLogComponent {
   public query = AuditLogQuery;
 
   columns: ColumnDefinition<ProjectDto>[] = [
-    { label: 'TIME', property: 'createdAt', type: 'date' },
+    { label: 'DATE', property: 'createdAt', type: 'date' },
+    { label: 'CHANGED_BY', property: 'createdBy', type: 'text' },
     { label: 'TABLE', property: 'tableName', type: 'text' },
     { label: 'TYPE', property: 'type', type: 'text' },
-    { label: 'CHANGED_BY', property: 'createdBy', type: 'text' },
   ];
 
   constructor(private dialogService: DialogService, private translate: TranslateService) {}
