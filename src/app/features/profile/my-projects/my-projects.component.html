@@ -32,42 +32,42 @@
         <p-tabPanel header="{{ 'my-projects.MY_APPLICATION' | translate }}" *ngIf="myProject.participations.length > 0">
           <div class="p-grid" *ngFor="let participation of myProject.participations">
             <div class="p-col-6 content-item">
-              <label>{{ 'my-projects.MY_PROFILE' | translate }}</label>
+              <label>{{ 'my-projects.MY_PROFILE' | translate }}</label>
               <span> {{ participation.musicianProfile?.instrumentName }} ({{ participation.musicianProfile?.qualification }})</span>
             </div>
             <div class="p-col-6 p-text-right">
               <p-button type="button" label="{{ 'my-projects.CHANGE_APPLICATION' | translate }}" (click)="openDialog(myProject.project.id, participation)"></p-button>
             </div>
             <div class="p-col-12 content-item" *ngIf="participation.participationStatusInner?.name">
-              <label>{{ 'my-projects.APPLICATIONSTATUS' | translate }}</label>
+              <label>{{ 'my-projects.APPLICATIONSTATUS' | translate }}</label>
               <span>{{ participation.participationStatusInner?.name }}</span>
             </div>
             <div class="p-col-12 content-item" *ngIf="participation.commentByPerformerInner">
-              <label>{{ 'my-projects.MY_COMMENT' | translate }}</label>
+              <label>{{ 'my-projects.MY_COMMENT' | translate }}</label>
               <span>{{ participation.commentByPerformerInner }}</span>
             </div>
           </div>
         </p-tabPanel>
-        <p-tabPanel header="{{ 'my-projects.RESPONSE_STAFF' | translate }}" *ngIf="myProject.participations.length > 0">
+        <p-tabPanel header="{{ 'my-projects.RESPONSE_STAFF' | translate }}" *ngIf="myProject.participations.length > 0">
           <div class="p-grid" *ngFor="let participation of myProject.participations">
             <div class="p-col-12 content-item">
-              <label>{{ 'my-projects.RESPONSE_STAFF_PROFILE' | translate }}</label>
+              <label>{{ 'my-projects.RESPONSE_STAFF_PROFILE' | translate }}</label>
               <span> {{ participation.musicianProfile?.instrumentName }} ({{ participation.musicianProfile?.qualification }})</span>
             </div>
             <div class="p-col-12 content-item" *ngIf="participation.participationStatusInternal?.name">
-              <label>{{ 'my-projects.RESPONSE_STATUS' | translate }}</label>
+              <label>{{ 'my-projects.RESPONSE_STATUS' | translate }}</label>
               <span>{{ participation.participationStatusInternal?.name }}</span>
             </div>
             <div class="p-col-12 content-item" *ngIf="participation.commentByStaffInner">
-              <label>{{ 'my-projects.COMMENT_STAFF' | translate }}</label>
+              <label>{{ 'my-projects.COMMENT_STAFF' | translate }}</label>
               <span>{{ participation.commentByStaffInner }}</span>
             </div>
           </div>
         </p-tabPanel>
-        <p-tabPanel header="{{ 'my-projects.PROJECTDETAILS' | translate }}">
+        <p-tabPanel header="{{ 'my-projects.PROJECTDETAILS' | translate }}">
           <div class="p-grid">
             <div class="p-col-12 content-item">
-              <label>{{ 'my-projects.DESCRIPTION' | translate }}</label>
+              <label>{{ 'my-projects.DESCRIPTION' | translate }}</label>
               <span>{{ myProject.project.description }}</span>
             </div>
             <div class="p-col-6 content-item" *ngIf="myProject.project.type?.name">
@@ -75,11 +75,11 @@
               <span>{{ myProject.project.type?.name || '' }}</span>
             </div>
             <div class="p-col-6 content-item" *ngIf="myProject.project.state?.name">
-              <label>{{ 'my-projects.STATUS' | translate }}</label>
+              <label>{{ 'my-projects.STATUS' | translate }}</label>
               <span>{{ myProject.project.state?.name }}</span>
             </div>
             <div class="p-col-12 content-item" *ngIf="(myProject.project.urls?.length || 0) > 0">
-              <label>{{ 'my-projects.URLS' | translate }}</label>
+              <label>{{ 'my-projects.URLS' | translate }}</label>
               <ul>
                 <li *ngFor="let url of myProject.project.urls">
                   <a [href]="url.href" target="_blank">{{ url.anchorText }}</a>
