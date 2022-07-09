@@ -4,9 +4,7 @@ export const ProjectsQuery = gql`
   query Projects(
     $skip: Int
     $take: Int
-    $orderTitle: SortEnumType = ASC
-    $orderStartDate: SortEnumType = ASC
-    $orderEndDate: SortEnumType = ASC
+    $orderEndDate: SortEnumType = DESC
     $orderGenreId: SortEnumType = ASC
     $orderStateId: SortEnumType = ASC
     $searchQuery: String = ""
@@ -15,8 +13,6 @@ export const ProjectsQuery = gql`
       skip: $skip
       take: $take
       order: {
-        title: $orderTitle,
-        startDate: $orderStartDate,
         endDate: $orderEndDate,
         genre: {
           selectValue: {
