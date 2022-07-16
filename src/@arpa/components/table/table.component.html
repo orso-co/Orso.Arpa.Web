@@ -164,7 +164,7 @@
           </ng-container>
           <ng-container *ngIf="column.type === 'date'">
             <td [classList]="column.cssClasses">
-              {{ resolveValue(column.property, row) | date: 'mediumDate' }}
+              {{ resolveValue(column.property, row) | date: 'short' }}
             </td>
           </ng-container>
           <ng-container *ngIf="column.type === 'rating'">

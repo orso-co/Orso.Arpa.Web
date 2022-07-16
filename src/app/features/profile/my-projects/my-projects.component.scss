@@ -1,5 +1,5 @@
 .project-title {
-  font-size: x-large;
+  font-size: large;
 }
 
 .project-date {
@@ -25,4 +25,24 @@
     padding: 0;
     list-style: none;
   }
+
 }
+.status-item {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+
+    > label {
+      font-size: x-small;
+      opacity: 60%;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+  }
+

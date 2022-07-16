@@ -1,4 +1,4 @@
-<ng-container *ngIf="detail">
+<ng-container *ngIf="detail" >
   <div class="p-d-flex">
     <div class="p-mr-4 title">
       {{ 'audit-log.TIME' | translate }}<br />
@@ -16,14 +16,15 @@
       <br />
     </div>
   </div>
+
   <div class="p-grid p-mt-4">
-    <div class="p-col-12 p-md-6 p-pr-2 new">
-      <h3>{{ 'audit-log.NEW_VALUES' | translate }}</h3>
-      <pre [innerHTML]="detail.newValuesJson | prettyjson: [true, 3]"></pre>
-    </div>
     <div class="p-col-12 p-md-6 p-pl-2 old">
       <h3>{{ 'audit-log.OLD_VALUES' | translate }}</h3>
-      <pre [innerHTML]="detail.oldValuesJson | prettyjson: [true, 3]"></pre>
+      <pre [innerHTML]="detail.oldValuesJson | prettyjson: [true, 3]" class='old'></pre>
+    </div>
+    <div class="p-col-12 p-md-6 p-pr-2 new">
+      <h3>{{ 'audit-log.NEW_VALUES' | translate }}</h3>
+      <pre [innerHTML]="detail.newValuesJson | prettyjson: [true, 3]" class='new'></pre>
     </div>
   </div>
 </ng-container>
