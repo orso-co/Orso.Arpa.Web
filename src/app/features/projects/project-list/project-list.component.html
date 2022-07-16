@@ -1,3 +1,11 @@
+<div class='p-field p-col p-text-left' style='margin-left: 0'>
+  <button
+    (click)='openProjectDetailDialog(null)'
+    icon='pi pi-plus'
+    label=" {{ 'projects.NEW_PROJECT' | translate }}"
+    pButton
+  ></button>
+</div>
 <!-- Graphql feed controls and holds graphql api results. -->
 <arpa-graph-ql-feed #feedSource [contentTemplate]='feed' [query]='query'></arpa-graph-ql-feed>
 
@@ -11,7 +19,7 @@
     [feed]='feed'
   >
     <ng-template arpaTableColumn='completed' let-value>
-      <i *ngIf='value' class='pi pi-check-square'></i>
+      <i *ngIf='value' class='pi pi-check'></i>
     </ng-template>
   </arpa-table>
 </ng-template>
@@ -23,7 +31,7 @@
     [label]='"TOGGLE_MENU" | translate'
     [matMenuTriggerFor]='menu'
     class='p-button-rounded p-button-text p-button-icon-only'
-    icon='pi pi-ellipsis-v'
+    icon='pi pi-users'
     pButton
     type='button'></button>
   <mat-menu #menu='matMenu' xPosition='before'>
@@ -34,22 +42,14 @@
       icon='pi pi-users'
       mat-menu-item
       pButton></button>
-    <button
+    <!--<button
       (click)='openParticipationDialog($event, row.id)'
       *ngIf='!row.isCompleted'
       [label]='"EDIT_PARTICIPATION" | translate'
       class='p-button-text'
       icon='pi pi-sign-in'
       mat-menu-item
-      pButton></button>
+      pButton></button>-->
   </mat-menu>
 </ng-template>
-<div class='p-formgroup-inline p-jc-between'>
-  <div class='p-field p-col p-text-right' style='margin-right: 0'>
-    <button
-      (click)='openProjectDetailDialog(null)'
-      icon='pi pi-plus'
-      label=" {{ 'projects.NEW_PROJECT' | translate }}"
-      pButton></button>
-  </div>
-</div>
+

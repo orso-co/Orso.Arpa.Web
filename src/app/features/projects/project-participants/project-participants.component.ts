@@ -28,8 +28,8 @@ export class ProjectParticipantsComponent {
   columns: ColumnDefinition<any>[] = [
     { label: 'projects.PARTICIPANTS', property: 'participant', type: 'text' },
     { label: 'projects.INSTRUMENT', property: 'instrument', type: 'text' },
-    { label: 'projects.PARTICIPATION_STATUS_PERFORMER', property: 'participationStatusInner', type: 'text' },
-    { label: 'projects.PARTICIPATION_STATUS_STAFF', property: 'participationStatusInternal', type: 'text' },
+    { label: 'projects.PARTICIPATION_STATUS_PERFORMER', property: 'participationStatusInner', type: 'text'},
+    { label: 'projects.PARTICIPATION_STATUS_STAFF', property: 'participationStatusInternal', type: 'text'},
 
     // {
     //   label: 'projects.INSTRUMENT_STATE',

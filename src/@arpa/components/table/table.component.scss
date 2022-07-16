@@ -12,9 +12,11 @@
   td.start {
     i.pi {
       font-weight: 800;
+      align-items: center;
       color: var(--green-500);
     }
   }
+
 }
 
 .filter {
@@ -23,7 +25,7 @@
   align-items: center;
 
   .search {
-    width: 100%;
+    width:100%;
     position: relative;
 
     & > span {
@@ -56,4 +58,11 @@
 
 
   }
+}
+.badge {
+  background-color: black;
+  text-align: right;
+
+
+
 }
