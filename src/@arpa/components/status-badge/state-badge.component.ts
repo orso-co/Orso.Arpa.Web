@@ -45,26 +45,26 @@ export class StateBadgeComponent implements OnInit {
         },
         {
           label: 'POSTPONED',
-          severity: 'warning',
+          severity: 'danger',
           value: 'postponed',
         },
         {
           label: 'CANCELLED',
-          severity: '',
+          severity: 'warning',
           value: 'cancelled',
         },
         {
           label: 'UNKNOWN',
-          severity: '',
+          severity: 'info',
           value: 'unknown',
         },
         {
           label: 'ARCHIVED',
-          severity: '',
+          severity: 'info',
           value: 'archived',
         },
         {
-          label: 'CONFIRMED',
+          label:'CONFIRMED',
           severity: 'success',
           value: 'confirmed',
         },
@@ -72,6 +72,26 @@ export class StateBadgeComponent implements OnInit {
           label: 'NOT_CONFIRMED',
           severity: 'warning',
           value: 'not_confirmed',
+        },
+        {
+          label: 'CONCERT',
+          severity: 'success',
+          value: 'concert',
+        },
+        {
+          label: 'CONCERT_TOUR',
+          severity: 'warning',
+          value: 'concert tour',
+        },
+        {
+          label: 'CANDIDATE',
+          severity: 'danger',
+          value: 'candidate',
+        },
+        {
+          label: 'ACCEPTANCE',
+          severity: 'success',
+          value: 'acceptance',
         },
       ];
     }

@@ -113,6 +113,9 @@ import { IframeWidgetProjectstatsComponent } from './iframe-widget-projectstats/
     ChipModule,
     MessageModule,
   ],
+  exports: [
+    ProjectsWidgetComponent,
+  ],
 })
 export class DashboardModule {
   constructor(private translateService: TranslateService, private languageService: LanguageService) {
