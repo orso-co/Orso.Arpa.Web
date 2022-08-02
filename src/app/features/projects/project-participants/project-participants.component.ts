@@ -1,83 +1,83 @@
-import { Component } from '@angular/core';
-import { ProjectService } from '../../../shared/services/project.service';
-import { Observable } from 'rxjs';
+import { AfterViewInit, ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { Table } from 'primeng/table';
-import { map } from 'rxjs/operators';
 import { ProjectParticipationDto } from '../../../../@arpa/models/projectParticipationDto';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
+import { GraphQlFeedComponent } from '../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
+import { DocumentNode } from 'graphql';
+import { ProjectsQuery } from './projectparticipations.graphql';
 
-interface Participant {
-  participant: string;
-  instrument: string;
-  state: string;
-  participationStatusInner: string;
-  participationStatusInternal: string;
-}
+// interface Participant {
+//   participant: string;
+//   instrument: string;
+//   state: string;
+//   participationStatusInner: string;
+//   participationStatusInternal: string;
+// }
 
 @Component({
   selector: 'arpa-project-participants',
   templateUrl: './project-participants.component.html',
   styleUrls: ['./project-participants.component.scss'],
 })
-export class ProjectParticipantsComponent {
-  participants: Observable<Participant[]>;
+export class ProjectParticipantsComponent implements AfterViewInit {
+  // participants: Observable<Participant[]>;
   participationStatusInner: Observable<ProjectParticipationDto>;
   participationStatusInternal: Observable<ProjectParticipationDto>;
+  projectId: String;
+
+  constructor(private cdref: ChangeDetectorRef, private config: DynamicDialogConfig) {
+    this.projectId = this.config.data.project.id;
+  }
+
+  query: DocumentNode = ProjectsQuery;
 
   columns: ColumnDefinition<any>[] = [
-    { label: 'projects.PARTICIPANTS', property: 'participant', type: 'text' },
-    { label: 'projects.INSTRUMENT', property: 'instrument', type: 'text' },
-    { label: 'projects.PARTICIPATION_STATUS_PERFORMER', property: 'participationStatusInner', type: 'text'},
-    { label: 'projects.PARTICIPATION_STATUS_STAFF', property: 'participationStatusInternal', type: 'text'},
-
-    // {
-    //   label: 'projects.INSTRUMENT_STATE',
-    //   property: 'state',
-    //   type: 'badge',
-    //   badgeStateMap: [
-    //     {
-    //       label: 'DEACTIVATED',
-    //       value: 'deactivated',
-    //       severity: '',
-    //     },
-    //     {
-    //       label: 'ACTIVE',
-    //       value: 'active',
-    //       severity: 'success',
-    //     },
-    //   ],
-    // },
+    { label: 'projects.PARTICIPANTS', property: 'musicianProfile.person.displayName', type: 'text' },
+    { label: 'projects.INSTRUMENT', property: 'musicianProfile.instrument.name', type: 'text' },
+    {
+      label: 'projects.PARTICIPATION_STATUS_PERFORMER',
+      property: 'participationStatusInner.selectValue.name',
+      type: 'text',
+    },
+    {
+      label: 'projects.PARTICIPATION_STATUS_STAFF',
+      property: 'participationStatusInternal.selectValue.name',
+      type: 'text',
+    },
   ];
 
-  constructor(private projectService: ProjectService, private config: DynamicDialogConfig) {
-    this.participants = this.projectService.getParticipations(this.config.data.project.id).pipe(
-      map((participation: ProjectParticipationDto[]) =>
-        participation.map((participant: ProjectParticipationDto) => ({
-          participant: participant.person?.displayName || '',
-          instrument: participant.musicianProfile?.instrumentName || '',
-          state: this.isDeactivated(participant),
-          participationStatusInner: participant.participationStatusInner || '',
-          participationStatusInternal: participant.participationStatusInternal || '',
-        }))
-      )
-    );
+  @ViewChild('feedSource') private feedSource: GraphQlFeedComponent;
+
+  public tableData = new BehaviorSubject([]);
+  private innerStatsCount: Record<string, number> = {};
+
+  get innerStatsValues() {
+    return Object.values(this.innerStatsCount);
   }
 
-  public clear(ref: Table) {
-    ref.clear();
+  get innerStatsKeys() {
+    return Object.keys(this.innerStatsCount);
   }
 
-  private isDeactivated(participant: ProjectParticipationDto): string {
-    let state = 'active';
-    if (participant.musicianProfile?.deactivation) {
-      const { deactivationStart } = participant.musicianProfile.deactivation;
-      const start = new Date((deactivationStart as unknown as string) || '');
-      const projectDate = new Date(this.config.data.project.startDate);
-      if (start.getTime() < projectDate.getTime()) {
-        state = 'deactivated';
-      }
-    }
-    return state;
+  ngAfterViewInit(): void {
+    this.feedSource.values.subscribe({
+      next: (result: Record<string, any>[]) => {
+        if (result.length) {
+          this.tableData.next(result[0].projectParticipations);
+          result[0].projectParticipations.forEach((p: Record<string, any>) => {
+            if (p.participationStatusInner) {
+              if (this.innerStatsCount[p.participationStatusInner.selectValue.name]) {
+                this.innerStatsCount[p.participationStatusInner.selectValue.name]++;
+              } else {
+                this.innerStatsCount[p.participationStatusInner.selectValue.name] = 1;
+              }
+            }
+          });
+          this.cdref.detectChanges();
+        }
+      },
+    });
   }
 }
+

@@ -9,7 +9,6 @@ import { ProjectGenreResolver } from './resolvers/project-genre.resolver';
 import { ProjectTypeResolver } from './resolvers/project-type.resolver';
 import { ProjectParticipationComponent } from './project-participation/project-participation.component';
 import { ProjectParticipantsComponent } from './project-participants/project-participants.component';
-import { ProjectchartParticipantsComponent } from './projectchart-participants/projectchart-participants.component';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateModule } from '../../../@arpa/translate';
 import { DropdownModule } from 'primeng/dropdown';
@@ -29,13 +28,14 @@ import { TabViewModule } from 'primeng/tabview';
 import { TagModule } from 'primeng/tag';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { ChartModule } from '../../../@arpa/components/chart/chart.module';
+
 @NgModule({
   declarations: [
     ProjectListComponent,
     EditProjectComponent,
     ProjectParticipationComponent,
     ProjectParticipantsComponent,
-    ProjectchartParticipantsComponent,
     ProjectLayoutComponent,
     EditProjectUrlsComponent,
   ],
@@ -62,6 +62,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     TagModule,
     MultiSelectModule,
     OverlayPanelModule,
+    ChartModule,
   ],
   exports: [ProjectListComponent],
   providers: [ProjectGenreResolver, ProjectTypeResolver],

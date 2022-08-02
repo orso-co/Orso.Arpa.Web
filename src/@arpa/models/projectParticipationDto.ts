@@ -9,7 +9,7 @@ export interface ProjectParticipationDto {
   modifiedBy?: string;
   modifiedAt?: Date;
   participationStatusInnerId?: string;
-  participationStatusInner?: string;
+  participationStatusInner?: any;
   participationStatusInternalId?: string;
   participationStatusInternal?: string;
   invitationStatusId?: string;

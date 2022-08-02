@@ -55,7 +55,7 @@ export class ProjectListComponent {
     private meService: MeService,
     private selectValueService: SelectValueService,
     private venueService: VenueService,
-    private sectionService: SectionService
+    // private sectionService: SectionService
   ) {}
 
   public openProjectDetailDialog(selection: ProjectDto | null): void {
