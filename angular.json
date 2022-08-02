@@ -46,7 +46,7 @@
               }
             ],
             "scripts": [
-              "node_modules/@fullcalendar/core/locales-all.min.js"
+              "node_modules/@fullcalendar/core/locales-all.min.js",
             ],
             "serviceWorker": false,
             "ngswConfigPath": "ngsw-config.json",
