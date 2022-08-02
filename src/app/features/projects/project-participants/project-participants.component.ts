@@ -80,3 +80,4 @@ export class ProjectParticipantsComponent implements AfterViewInit {
     });
   }
 }
+
