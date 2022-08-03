@@ -42,5 +42,8 @@
   "URL": "URL",
   "URLS_TOOLTIP": "Collection of URLs for external content",
   "URLS": "URLs",
-  "VENUE": "Venue"
+  "VENUE": "Venue",
+  "TOTAL": "Total",
+  "CHOIR": "Choir",
+  "ORCHESTRA": "Orchestra"
 }

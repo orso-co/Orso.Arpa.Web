@@ -1,8 +1,32 @@
-<div style='width: 500px; height: 300px;'>
-  <arpa-chart
+<div class='chart-container' >
+  <div style='width: 200px; height: 200px;' >
+    <h5>{{'projects.TOTAL' | translate}}: {{innerStatsValues}}</h5>
+    <arpa-chart
     [data]='innerStatsValues'
     [labels]='innerStatsKeys'
-    [type]='"doughnut"'></arpa-chart>
+    [type]='"pie"'
+    [legend]='true'
+    ></arpa-chart>
+  </div>
+  <div style='width: 200px; height: 200px;'>
+    <h5>{{'projects.CHOIR' | translate}}: {{innerStatsKeys}} {{innerStatsValues}}</h5>
+
+    <arpa-chart
+      [data]='innerStatsValues'
+      [labels]='innerStatsKeys'
+      [type]='"doughnut"'
+      [legend]='true'></arpa-chart>
+  </div>
+  <div style='width: 200px; height: 200px;'>
+    <h5>{{'projects.ORCHESTRA' | translate}}: {{feedSource.totalCount}}</h5>
+
+    <arpa-chart
+      [data]='innerStatsValues'
+      [labels]='innerStatsKeys'
+      [type]='"doughnut"'
+      [legend]='true'
+    ></arpa-chart>
+  </div>
 </div>
 <!-- Graphql feed controls and holds graphql api results. -->
 <arpa-graph-ql-feed #feedSource [query]='query'

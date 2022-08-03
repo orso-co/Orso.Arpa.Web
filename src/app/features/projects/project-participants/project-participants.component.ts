@@ -7,13 +7,6 @@ import { GraphQlFeedComponent } from '../../../../@arpa/components/graph-ql-feed
 import { DocumentNode } from 'graphql';
 import { ProjectsQuery } from './projectparticipations.graphql';
 
-// interface Participant {
-//   participant: string;
-//   instrument: string;
-//   state: string;
-//   participationStatusInner: string;
-//   participationStatusInternal: string;
-// }
 
 @Component({
   selector: 'arpa-project-participants',
@@ -21,7 +14,6 @@ import { ProjectsQuery } from './projectparticipations.graphql';
   styleUrls: ['./project-participants.component.scss'],
 })
 export class ProjectParticipantsComponent implements AfterViewInit {
-  // participants: Observable<Participant[]>;
   participationStatusInner: Observable<ProjectParticipationDto>;
   participationStatusInternal: Observable<ProjectParticipationDto>;
   projectId: String;
@@ -35,22 +27,14 @@ export class ProjectParticipantsComponent implements AfterViewInit {
   columns: ColumnDefinition<any>[] = [
     { label: 'projects.PARTICIPANTS', property: 'musicianProfile.person.displayName', type: 'text' },
     { label: 'projects.INSTRUMENT', property: 'musicianProfile.instrument.name', type: 'text' },
-    {
-      label: 'projects.PARTICIPATION_STATUS_PERFORMER',
-      property: 'participationStatusInner.selectValue.name',
-      type: 'text',
-    },
-    {
-      label: 'projects.PARTICIPATION_STATUS_STAFF',
-      property: 'participationStatusInternal.selectValue.name',
-      type: 'text',
-    },
+    { label: 'projects.PARTICIPATION_STATUS_PERFORMER', property: 'participationStatusInner.selectValue.name', type: 'text', },
+    { label: 'projects.PARTICIPATION_STATUS_STAFF', property: 'participationStatusInternal.selectValue.name', type: 'text', },
   ];
 
   @ViewChild('feedSource') private feedSource: GraphQlFeedComponent;
 
   public tableData = new BehaviorSubject([]);
-  private innerStatsCount: Record<string, number> = {};
+  public innerStatsCount: Record<string, number> = {};
 
   get innerStatsValues() {
     return Object.values(this.innerStatsCount);
