@@ -56,6 +56,7 @@ export class PersonBankdataComponent implements OnInit {
   this.statusOptions$ = this.selectValueService
     .load('BankAccount', 'State')
     .pipe(map(() => this.selectValueService.get('BankAccount', 'State')));
+    console.log("dropdown-values" , this.statusOptions$);
   }
 
   onSubmit() {

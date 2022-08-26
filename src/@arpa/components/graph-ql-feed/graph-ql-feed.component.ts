@@ -51,7 +51,7 @@ export class GraphQlFeedComponent implements OnInit, OnDestroy, OnChanges {
   private hasPreviousPage: boolean;
 
   constructor(private apollo: Apollo) {
-    this.variables.take = this.variables.take ? this.variables.take : 10;
+    this.variables.take = this.variables.take ? this.variables.take : 20;
   }
 
   ngOnInit(): void {

@@ -1,5 +1,14 @@
+<div style='width: 500px; height: 300px;'>
+  <arpa-chart
+    [data]='innerStatsValues'
+    [labels]='innerStatsKeys'
+    [type]='"doughnut"'></arpa-chart>
+</div>
+<!-- Graphql feed controls and holds graphql api results. -->
+<arpa-graph-ql-feed #feedSource [query]='query'
+                    [variables]='{ projectId }'></arpa-graph-ql-feed>
 <arpa-table
   [columns]='columns'
-  [values]='participants'
+  [values]='tableData'
 ></arpa-table>
 

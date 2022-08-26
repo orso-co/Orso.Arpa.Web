@@ -1,24 +1,17 @@
-import { ProjectParticipationDto } from './../../../../@arpa/models/projectParticipationDto';
-import { ProjectLayoutComponent } from './../project-layout/project-layout.component';
+import { ProjectLayoutComponent } from '../project-layout/project-layout.component';
 import { Component, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { first, map } from 'rxjs/operators';
-import { EditProjectComponent } from '../edit-project/edit-project.component';
 import { DialogService } from 'primeng/dynamicdialog';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable } from 'rxjs';
 import { ProjectService } from '../../../shared/services/project.service';
 import { NotificationsService } from '../../../../@arpa/services/notifications.service';
-import { ProjectParticipationComponent } from '../project-participation/project-participation.component';
 import { MeService } from '../../../shared/services/me.service';
 import { SelectValueService } from '../../../shared/services/select-value.service';
 import { Table } from 'primeng/table';
 import { VenueService } from '../../../shared/services/venue.service';
 import { SectionService } from '../../../shared/services/section.service';
 import { ProjectParticipantsComponent } from '../project-participants/project-participants.component';
-import { SelectItem } from 'primeng/api';
 import { ProjectDto } from '../../../../@arpa/models/projectDto';
-import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
 import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator';
 import { DocumentNode } from 'graphql';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
@@ -35,12 +28,21 @@ export class ProjectListComponent {
   query: DocumentNode = ProjectsQuery;
 
   columns: ColumnDefinition<ProjectDto>[] = [
-    { label: '#', property: 'isCompleted', type: 'template', template: 'completed', cssClasses: ['start'] },
     { label: 'TITLE', property: 'title', type: 'text' },
+    { label: 'TYPE', property: 'typeId', type: 'state', stateTable: 'Project', stateProperty: 'Type', show: true},
     { label: 'GENRE', property: 'genreId', type: 'state', stateTable: 'Project', stateProperty: 'Genre', show: true },
+    { label: 'STATE', property: 'stateId', type: 'state',
+      badgeStateMap: [
+        { label: 'PENDING', value: 'pending', severity: 'info'},
+        { label: 'CONFIRMED', value: 'confirmed', severity: 'success'},
+        { label: 'CANCELLED', value: 'cancelled', severity: 'warning'},
+        { label: 'POSTPONED', value: 'postponed', severity: 'info'},
+        { label: 'ARCHIVED', value: 'archived', severity: 'danger'},
+      ], stateTable: 'Project', stateProperty: 'State', show: true },
     { label: 'START', property: 'startDate', type: 'date' },
     { label: 'END', property: 'endDate', type: 'date' },
-    { label: 'STATE', property: 'stateId', type: 'state', stateTable: 'Project', stateProperty: 'State', show: true },
+    { label: '#', property: 'isCompleted', type: 'template', template: 'completed', cssClasses: ['start'] }
+
   ];
 
   @ViewChild('feedSource') private feedSource: GraphQlFeedComponent;
@@ -53,7 +55,7 @@ export class ProjectListComponent {
     private meService: MeService,
     private selectValueService: SelectValueService,
     private venueService: VenueService,
-    private sectionService: SectionService
+    // private sectionService: SectionService
   ) {}
 
   public openProjectDetailDialog(selection: ProjectDto | null): void {
@@ -78,32 +80,32 @@ export class ProjectListComponent {
     });
   }
 
-  public openParticipationDialog(event: Event, id: string) {
-    event.stopPropagation();
-    const ref = this.dialogService.open(ProjectParticipationComponent, {
-      data: {
-        projectParticipation: this.selectValueService.load('ProjectParticipation', 'ParticipationStatusInner'),
-        musicianProfiles: this.meService.getProfilesMusician<MusicianProfileDto[]>(),
-        sections: this.sectionService.load(),
-        id,
-        participationPerformer: this.projectService.getParticipations,
-        participationStaff: this.projectService.getParticipations,
-        statusOptionsPerformer$: this.projectService.getParticipations,
-        statusOptionsStaff$: this.projectService.getParticipations,
-      },
-      header: this.translate.instant('projects.EDIT_PARTICIPATION'),
-      styleClass: 'form-modal',
-      dismissableMask: true,
-    });
-
-    ref.onClose.pipe(first()).subscribe((result) => {
-      if (result) {
-        this.meService
-          .putProjectParticipation(result.musicianId, id, result)
-          .subscribe(() => this.notificationsService.success('projects.SET_PARTICIPATION_STATUS'));
-      }
-    });
-  }
+  // public openParticipationDialog(event: Event, id: string) {
+  //   event.stopPropagation();
+  //   const ref = this.dialogService.open(ProjectParticipationComponent, {
+  //     data: {
+  //       projectParticipation: this.selectValueService.load('ProjectParticipation', 'ParticipationStatusInner'),
+  //       musicianProfiles: this.meService.getProfilesMusician<MusicianProfileDto[]>(),
+  //       sections: this.sectionService.load(),
+  //       id,
+  //       participationPerformer: this.projectService.getParticipations,
+  //       participationStaff: this.projectService.getParticipations,
+  //       statusOptionsPerformer$: this.projectService.getParticipations,
+  //       statusOptionsStaff$: this.projectService.getParticipations,
+  //     },
+  //     header: this.translate.instant('projects.EDIT_PARTICIPATION'),
+  //     styleClass: 'form-modal',
+  //     dismissableMask: true,
+  //   });
+  //
+  //   ref.onClose.pipe(first()).subscribe((result) => {
+  //     if (result) {
+  //       this.meService
+  //         .putProjectParticipation(result.musicianId, id, result)
+  //         .subscribe(() => this.notificationsService.success('projects.SET_PARTICIPATION_STATUS'));
+  //     }
+  //   });
+  // }
 
   public openParticipationListDialog(event: Event, project: ProjectDto) {
     event.stopPropagation();

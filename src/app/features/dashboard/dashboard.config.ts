@@ -41,8 +41,8 @@ export const dashboards: Record<string, Record<string, any>> = {
     charts: [['ChartWidget', {
       title: 'PROJECTS',
       store: 'projectsStats',
-      props: ['done', 'cancelled'],
-      labels: ['DONE', 'CANCELLED'],
+      props: ['done', 'cancelled', 'confirmed', 'postponed', 'archived'],
+      labels: ['DONE', 'CANCELLED', 'CONFIRMED', 'POSTPONED', 'ARCHIVED'],
       type: 'pie',
     }]],
     widgets: [['AppointmentsWidget', {

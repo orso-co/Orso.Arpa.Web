@@ -27,6 +27,7 @@
   "GENERIC": "Please check your input",
   "GIVENNAME": "Given name",
   "INVALID_EMAIL": "Invalid email address",
+  "INVITE_TO_PROJECT": "Invite to project(s):",
   "LANGUAGE": "Language",
   "LIBRARY": "Library",
   "LOG_OUT": "Log out",

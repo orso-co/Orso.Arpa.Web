@@ -27,6 +27,7 @@
     "GENERIC": "Veuillez vérifier votre entrée",
     "GIVENNAME": "Prénom",
     "INVALID_EMAIL": "Email non valide" ,
+    "INVITE_TO_PROJECT": "Inviter à des projet(s):",
     "LANGUAGE": "Langue",
     "LIBRARY": "Bibliothèque",
     "LOG_OUT": "Se déconnecter",

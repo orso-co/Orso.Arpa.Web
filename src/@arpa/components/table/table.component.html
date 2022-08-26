@@ -62,7 +62,7 @@
     </div>
     <div *ngIf="feed">
       <h4>
-        {{ feed.totalCount | async }} {{ 'RESULTS' | translate }}
+        {{ feed.totalCount | async }} {{ 'RESULTS' | translate }}
       </h4>
     </div>
   </ng-template>
@@ -110,7 +110,7 @@
         </ng-container>
         <ng-container *ngIf="column.type === 'state'">
           <th [classList]="column.cssClasses" [pSortableColumn]="column.property">
-            <div class="p-d-flex p-jc-between p-ai-center">
+            <div class="p-d-flex p-jc-between p-ai-center p-text-center">
               {{ column.label | translate }}
             </div>
           </th>
@@ -150,10 +150,10 @@
             </td>
           </ng-container>
           <ng-container *ngIf="column.type === 'state'">
-            <td [classList]="column.cssClasses">
-              <arpa-state-badge
-                [stateMap]="column.badgeStateMap"
-                [value]="resolveState(column.stateTable || '', column.stateProperty, resolveValue(column.property, row)) | async"
+            <td [classList]="column.cssClasses" >
+                <arpa-state-badge
+                                     [stateMap]="column.badgeStateMap"
+                                     [value]="resolveState(column.stateTable || '', column.stateProperty, resolveValue(column.property, row)) | async"
               ></arpa-state-badge>
             </td>
           </ng-container>
@@ -164,7 +164,7 @@
           </ng-container>
           <ng-container *ngIf="column.type === 'date'">
             <td [classList]="column.cssClasses">
-              {{ resolveValue(column.property, row) | date: 'mediumDate' }}
+              {{ resolveValue(column.property, row) | date: 'short' }}
             </td>
           </ng-container>
           <ng-container *ngIf="column.type === 'rating'">
