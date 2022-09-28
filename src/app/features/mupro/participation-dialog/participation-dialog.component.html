@@ -1,8 +1,7 @@
-<h3 class='title'>{{ 'mupro.PARTICIPANT' |translate }}: {{ getName(this.person) }}</h3>
-<h3 class='title'>{{ 'PROJECT' | translate }}: {{ projectTitle }}</h3>
+<h3 class='title'>{{ getName(this.person) }} @ {{ projectTitle }} </h3>
 <form [formGroup]='form' class='p-mt-5'>
   <div>
-    <h4>{{ 'mupro.STATUS_PERFORMER' | translate }}</h4>
+    <h4 class='status'>{{ 'mupro.STATUS_PERFORMER' | translate }}</h4>
   </div>
   <div class='p-grid p-formgrid p-fluid'>
     <div class='p-col'>
@@ -23,9 +22,9 @@
     <span class='comment'>{{ commentByPerformerInner }}
     </span>
   </div>
-  <hr>
+  <hr class='hr1'>
   <div>
-    <h4>{{ 'mupro.STATUS_STAFF' | translate }}</h4>
+    <h4 class='status'>{{ 'mupro.STATUS_STAFF' | translate }}</h4>
   </div>
   <div class='p-grid p-formgrid p-fluid'>
     <div class='p-col'>
@@ -44,12 +43,12 @@
   </div>
   <div class='p-field p-col12'>
     <arpa-form-field label="{{ 'mupro.PARTICIPATION_COMMENT_STAFF' | translate }}">
-      <textarea formControlName='commentByStaffInner' id='commentByStaffId' pInputText rows='5'></textarea>
+      <textarea formControlName='commentByStaffInner' id='commentByStaffId' pInputText rows='5' style='width: 100%'></textarea>
     </arpa-form-field>
   </div>
   <div class='p-field p-col12'>
     <arpa-form-field label="{{ 'mupro.PARTICIPATION_COMMENT_TEAM' | translate }}">
-      <textarea formControlName='commentTeam' id='commentTeam' pInputText rows='5'></textarea>
+      <textarea formControlName='commentTeam' id='commentTeam' pInputText rows='5' style='width: 100%'></textarea>
     </arpa-form-field>
   </div>
 
