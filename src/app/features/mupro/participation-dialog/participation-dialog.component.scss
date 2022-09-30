@@ -1,8 +1,30 @@
-.comment {
-  font-weight: lighter;
-  font-style: italic;
-}
-
 .title {
   color: cornflowerblue;
+  font-weight: normal;
+  font-size: xx-large;
+
 }
+
+.status {
+  color: darkgrey;;
+  font-weight: normal;
+
+}
+
+.selectStatus {
+  font-weight: bold;
+}
+
+.comment {
+  font-weight: normal;
+  font-size: larger;
+  font-style: italic;
+  color: yellow;
+}
+
+.hr1 {
+  height: 5px;
+  color: #cccccc;
+  background: #cccccc;
+}
+

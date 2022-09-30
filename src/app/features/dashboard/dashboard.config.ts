@@ -32,9 +32,9 @@ export const dashboards: Record<string, Record<string, any>> = {
     ['ProjectsWidget', {
       title: 'PROJECTS',
     }],
-    ['IframeWidgetProjectstats', {
-      title: 'PROJECTSTATS',
-    }]
+    // ['IframeWidgetProjectstats', {
+    //   title: 'PROJECTSTATS',
+    // }]
   ],
   },
   staff: {

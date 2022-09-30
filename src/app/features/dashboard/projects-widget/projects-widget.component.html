@@ -24,6 +24,13 @@
           <span *ngIf="myProject.project.startDate">{{ myProject.project.startDate | date: 'dd.MM.yy':'locale(de)' }}</span>
         <span *ngIf="myProject.project.endDate"> - {{ myProject.project.endDate | date: 'dd.MM.yy':'locale(de)' }}</span>
           <p-tag
+            *ngIf="myProject.project.type"
+            styleClass="p-ml-2"
+            severity="info"
+            [value]="myProject.project.type.name!"
+            [rounded]="false"
+          ></p-tag>
+          <p-tag
           *ngIf="myProject.project.genre"
           styleClass="p-ml-2"
           severity="info"
