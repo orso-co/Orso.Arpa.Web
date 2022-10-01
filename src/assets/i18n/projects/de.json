@@ -42,5 +42,8 @@
   "URL": "URL",
   "URLS_TOOLTIP": "Linksammlung zu externen Inhalten außerhalb von ARPA",
   "URLS": "URLs",
-  "VENUE": "Ort"
+  "VENUE": "Ort",
+  "TOTAL": "Gesamt",
+  "CHOIR": "Chor",
+  "ORCHESTRA": "Orchester"
 }
