@@ -56,7 +56,7 @@ export class PersonBankdataComponent implements OnInit {
   this.statusOptions$ = this.selectValueService
     .load('BankAccount', 'State')
     .pipe(map(() => this.selectValueService.get('BankAccount', 'State')));
-    console.log("dropdown-values" , this.statusOptions$);
+    // console.log("dropdown-values" , this.statusOptions$);
   }
 
   onSubmit() {
@@ -70,7 +70,7 @@ export class PersonBankdataComponent implements OnInit {
             const index = this._tableData.findIndex((el) => el.id === id);
             this._tableData[index] = { ...this._tableData[index], statusId, commentInner, bic, iban, accountOwner };
             this.tableData.next(this._tableData);
-            this.notificationsService.success('BANK_ACCOUNT_MODIFIED', 'bank');
+            this.notificationsService.success('BANK_ACCOUNT_MODIFIED', 'person-dialog');
             this.form.reset({});
           });
       } else {
@@ -78,8 +78,12 @@ export class PersonBankdataComponent implements OnInit {
           .addBankAccount(this.person.id, { id, bic, iban, accountOwner, commentInner })
           .pipe(first())
           .subscribe((result) => {
-            this.tableData.next(this.person?.bankAccounts?.push(result));
-            this.notificationsService.success('BANK_ACCOUNT_ADDED', 'bank');
+            if (this.person && !this.person?.bankAccounts) {
+              this.person.bankAccounts = [];
+            }
+            this.person?.bankAccounts?.push(result);
+            this.tableData.next(this.person?.bankAccounts);
+            this.notificationsService.success('BANK_ACCOUNT_ADDED', 'person-dialog');
             this.form.reset({});
           });
       }
@@ -93,7 +97,7 @@ export class PersonBankdataComponent implements OnInit {
         .pipe(first())
         .subscribe(() => {
           this.tableData.next(this.person?.bankAccounts?.filter((e) => e.id != bankAccounts.id));
-          this.notificationsService.success('BANK_ACCOUNT_REMOVED', 'bank');
+          this.notificationsService.success('BANK_ACCOUNT_REMOVED', 'person-dialog');
         });
     }
   }

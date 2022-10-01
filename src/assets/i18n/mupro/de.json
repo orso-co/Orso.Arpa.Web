@@ -13,7 +13,6 @@
   "PARTICIPATION_COMMENT_STAFF": "Kommentar Mitarbeiter",
   "MUPRO_CREATION_DATE": "Profil-Erstellungsdatum",
   "PARTICIPATION_COMMENT_TEAM": "Kommentar nur KBB-intern",
-  "PARTICIPANT": "Teilnehmer"
-
-
+  "PARTICIPANT": "Teilnehmer",
+  "SET_PARTICIPATION_STATUS": "Teilnahmestatus gesetzt"
 }

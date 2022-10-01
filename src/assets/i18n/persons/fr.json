@@ -1,5 +1,6 @@
 {
     "ABOUT_ME": "À propos de moi",
+    "ADD_NEW_PERSON": "Créer une nouvelle personne",
     "BASE_DATA": "Données de base",
     "BIRTHNAME": "Nom de naissance",
     "BIRTHPLACE": "Lieu de naissance",
@@ -14,22 +15,25 @@
     "GENDER": "Sexe",
     "GENERAL_PREFERENCE": "Préférence",
     "GIVEN_NAME": "Prénom",
-    "INSTRUMENT": "Instrument",
-    "LEVEL_ASSESSMENT_TEAM": "Niveau (Équipe)",
     "MODIFIED_AT": "Modifié le",
     "MODIFIED_BY": "Modifié par",
+    "PERSON_MODIFIED": "Données personnelles modifiées",
     "PERSONS": "Personnes",
-    "QUALIFICATION": "Qualification",
     "RELIABILITY": "Fiabilité",
-    "SECTION": "Section",
     "SURNAME": "Nom",
+    "INSTRUMENT": "Instrument",
+    "LEVEL_ASSESSMENT_TEAM": "Niveau (Équipe)",
+    "QUALIFICATION": "Qualification",
+    "SECTION": "Section",
+
   "contact": {
-    "VALUE": "Wert",
-    "TYPE": "Typ",
+    "VALUE": "Valeur",
+    "TYPE": "Taper",
     "COMMENT_INNER" :"Commentaire personne",
     "COMMENT_TEAM" :"Personnel de commentaire",
     "PREFERENCE": "Préférence"
-  },
+    },
+
   "bank": {
     "BIC": "BIC",
     "IBAN": "IBAN",
@@ -39,8 +43,5 @@
     "BANK_ACCOUNT_REMOVED": "Coordonnées bancaires supprimées",
     "BANK_ACCOUNT_ADDED": "Coordonnées bancaires ajoutées",
     "BANK_ACCOUNT_MODIFIED": "Coordonnées bancaires modifiées"
-
-
-
-  }
+    }
   }
