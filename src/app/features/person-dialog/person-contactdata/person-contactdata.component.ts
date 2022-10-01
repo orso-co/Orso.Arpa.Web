@@ -62,7 +62,7 @@ export class PersonContactdataComponent implements OnInit {
     this.typeOptions$ = this.selectValueService
       .load('ContactDetail', 'Type')
       .pipe(map(() => this.selectValueService.get('ContactDetail', 'Type')));
-    console.log("Type: ", this.typeOptions$);
+    // console.log("Type: ", this.typeOptions$);
   }
 
   onSubmit() {
@@ -70,13 +70,13 @@ export class PersonContactdataComponent implements OnInit {
       const { id, key, value, typeId, commentInner, preference } = this.form.getRawValue();
       if (id) {
         this.contactService
-          .updateContactDetail(id, { key, value, typeId, commentInner, preference: preference || 0 })
+          .updateContactDetail(this.person?.id, id, { key, value, typeId, commentInner, preference: preference || 0 })
           .pipe(first())
           .subscribe((_) => {
             const index = this._tableData.findIndex((el) => el.id === id);
             this._tableData[index] = { ...this._tableData[index], key, value, typeId, commentInner, preference };
             this.tableData.next(this._tableData);
-            this.notificationsService.success('CONTACT_DETAIL_MODIFIED', 'contact');
+            this.notificationsService.success('CONTACT_DETAIL_MODIFIED', 'person-dialog');
             this.form.reset({});
           });
       } else {
@@ -84,32 +84,39 @@ export class PersonContactdataComponent implements OnInit {
           .addContactDetail(this.person.id, { id, key, value, typeId, commentInner, preference: preference || 0 })
           .pipe(first())
           .subscribe((result) => {
-            this.tableData.next(this.person?.contactDetails?.push(result));
-            this.notificationsService.success('CONTACT_DETAIL_ADDED', 'contact');
+            if (this.person && !this.person?.contactDetails) {
+              this.person.contactDetails = [];
+            }
+            this.person?.contactDetails?.push(result);
+            this.tableData.next(this.person?.contactDetails);
+            this.notificationsService.success('CONTACT_DETAIL_ADDED', 'person-dialog');
             this.form.reset({});
           });
       }
     }
   }
 
-  remove(contactDetail: ContactDetailDto): void {
-    this.contactService
-      .deleteContactDetail(contactDetail.id)
-      .pipe(first())
-      .subscribe(() => {
-        this.tableData.next(this.person?.contactDetails?.filter((e) => e.id != contactDetail.id));
-        this.notificationsService.success('CONTACT_DETAIL_REMOVED', 'contact');
-      });
+  remove(contactDetails: ContactDetailDto): void {
+    if (typeof contactDetails.id === 'string') {
+      this.contactService
+        .deleteContactDetail(contactDetails.id, this.person?.id )
+        .pipe(first())
+        .subscribe(() => {
+          this.tableData.next(this.person?.contactDetails?.filter((e) => e.id != contactDetails.id));
+          this.notificationsService.success('CONTACT_DETAIL_REMOVED', 'person-dialog');
+        });
+    }
   }
 
-  update(contactDetail: ContactDetailDto) {
+
+  update(contactDetails: ContactDetailDto) {
     this.form.reset({
-      id: contactDetail.id,
-      key: contactDetail.key,
-      typeId: contactDetail.typeId,
-      commentInner: contactDetail.commentInner,
-      preference: contactDetail.preference,
-      value: contactDetail.value,
+      id: contactDetails.id,
+      key: contactDetails.key,
+      typeId: contactDetails.typeId,
+      commentInner: contactDetails.commentInner,
+      preference: contactDetails.preference,
+      value: contactDetails.value,
     });
   }
 

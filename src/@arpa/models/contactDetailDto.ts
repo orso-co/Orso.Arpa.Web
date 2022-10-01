@@ -2,7 +2,7 @@ import { ContactDetailKey } from './contactDetailKey';
 import { SelectValueDto } from './selectValueDto';
 
 export interface ContactDetailDto {
-  id: string;
+  id?: string | undefined;
   createdBy?: string;
   createdAt?: Date;
   modifiedBy?: string;

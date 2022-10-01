@@ -1,28 +1,32 @@
 {
   "ABOUT_ME": "About Me",
-  "BASE_DATA": "Base Data",
-  "BIRTHNAME": "Birthname",
+  "ADD_NEW_PERSON": "Add new person",
   "BIRTHPLACE": "Birtplace",
-  "CONTACT_DATA": "Contact Data",
-  "CONTACT_VIA_PLACEHOLDER": "Put contact-via-person here",
-  "CONTACT_VIA": "Contact via",
+  "BASE_DATA": "Base data",
+  "CONTACT_DATA": "Contact data",
+  "BIRTHNAME": "Birthname",
+  "CONTACTVIA": "Contact via",
   "CREATED_AT": "Created at",
   "CREATED_BY": "Created by",
   "DATEOFBIRTH": "Date of Birth",
+  "CONTACT_VIA_PLACEHOLDER": "Put contact-via-person here",
+  "CONTACT_VIA": "Contact via",
   "EMPTYMESSAGE": "Nothing selected",
   "EXPERIENCE_LEVEL": "Experience Level",
   "GENDER": "Gender",
   "GENERAL_PREFERENCE": "General Preference",
   "GIVEN_NAME": "Givenname",
-  "INSTRUMENT": "Instrument",
-  "LEVEL_ASSESSMENT_TEAM": "Level (Tea)",
   "MODIFIED_AT": "Modified at",
   "MODIFIED_BY": "Modified by",
+  "PERSON_MODIFIED": "Person data modified",
   "PERSONS": "Persons",
-  "QUALIFICATION": "Qualification",
   "RELIABILITY": "Reliability",
-  "SECTION": "Section",
   "SURNAME": "Surname",
+  "INSTRUMENT": "Instrument",
+  "LEVEL_ASSESSMENT_TEAM": "Level (Tea)",
+  "QUALIFICATION": "Qualification",
+  "SECTION": "Section",
+
   "contact": {
     "VALUE": "Value",
     "TYPE": "Type",
@@ -39,8 +43,5 @@
     "BANK_ACCOUNT_REMOVED": "Bank account removed",
     "BANK_ACCOUNT_ADDED": "Bank account added",
     "BANK_ACCOUNT_MODIFIED": "Bank account modified"
-
-
-
   }
 }
