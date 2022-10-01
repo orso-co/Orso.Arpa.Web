@@ -1,3 +1,7 @@
+import { SelectValueService } from 'src/app/shared/services/select-value.service';
+import { PersonService } from '../services/person.service';
+import { PersonLayoutComponent } from '../../person-dialog/person-layout/person-layout.component';
+import { DialogService } from 'primeng/dynamicdialog';
 import { SelectItem } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -8,7 +12,12 @@ import { GraphQlFeedComponent } from '../../../../@arpa/components/graph-ql-feed
 import { Observable, Subscription } from 'rxjs';
 import { PersonDto } from '../../../../@arpa/models/personDto';
 import { ActivatedRoute, NavigationExtras, NavigationStart, Router } from '@angular/router';
-import { filter, map } from 'rxjs/operators';
+import { filter, first,  map } from 'rxjs/operators';
+import { NotificationsService } from '../../../../@arpa/services/notifications.service';
+import { DocumentNode } from 'graphql';
+
+
+
 
 @Component({
   selector: 'arpa-person-list',
@@ -18,14 +27,12 @@ import { filter, map } from 'rxjs/operators';
 @Unsubscribe()
 export class PersonListComponent implements OnInit {
   state: Observable<SelectItem>;
-  query = PersonsQuery;
+  query: DocumentNode = PersonsQuery;
   private routeEventsSubscription: Subscription = Subscription.EMPTY;
 
   columns: ColumnDefinition<PersonDto>[] = [
     { label: 'SURNAME', property: 'surname', type: 'text' },
     { label: 'GIVEN_NAME', property: 'givenName', type: 'text' },
-    { label: 'ID', property: 'id', type: 'text', show: false },
-    { label: 'ABOUTME', property: 'aboutMe', type: 'text', show: false },
     { label: 'EXPERIENCE_LEVEL', property: 'experienceLevel', type: 'rating', show: true },
     { label: 'RELIABILITY', property: 'reliability', type: 'rating', show: true },
     { label: 'GENERAL_PREFERENCE', property: 'generalPreference', type: 'rating', show: true },
@@ -36,11 +43,34 @@ export class PersonListComponent implements OnInit {
   ];
   @ViewChild('feedSource') private feedSource: GraphQlFeedComponent;
 
-  constructor(public translate: TranslateService, private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private dialogService: DialogService,
+    public translate: TranslateService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private personService: PersonService,
+    private notificationsService: NotificationsService,
+    private selectValueService: SelectValueService
+    ) {}
 
   onRowClick(person: PersonDto) {
     this.router.navigate([{ outlets: { modal: ['detail', person.id] } }], {
       relativeTo: this.route,
+    });
+  }
+
+  public openPersonDetailDialog(selection: PersonDto | null): void {
+    const ref = this.dialogService.open(PersonLayoutComponent, {
+      data: {
+        person: selection ? selection : null,
+        gender: this.selectValueService.load('Person', 'Gender').pipe(map(() => this.selectValueService.get('Person', 'Gender'))),
+      },
+      header: selection ? this.translate.instant('persons.EDIT_PERSON') : this.translate.instant('persons.ADD_NEW_PERSON'),
+      styleClass: 'form-modal',
+      dismissableMask: true,
+    });
+    ref.onClose.pipe(first()).subscribe((person: PersonDto) => {
+      this.feedSource.refresh();
     });
   }
 

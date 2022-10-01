@@ -158,8 +158,8 @@ export class ProfilesComponent implements OnInit, OnDestroy {
             this.notificationsService.error(error);
           },
           () => {
-            console.log(successfulCount); // ToDo: Anzahl in Notification aufnehmen
-            this.notificationsService.success('projects.SET_PARTICIPATION_STATUS');
+            // console.log(successfulCount); // ToDo: Anzahl in Notification aufnehmen
+            this.notificationsService.success('SET_PARTICIPATION_STATUS');
             this.router.navigate([this.router.url]);
           },
         );

@@ -13,9 +13,16 @@
   "GENDER": "género",
   "MODIFIED_AT": "modificado em",
   "MODIFIED_BY": "modificado por",
+  "ADD_NEW_PERSON": "Criar nova pessoa",
+  "PERSON_MODIFIED": "dados pessoais modificados",
+  "PERSON_CREATED": "pessoa criada",
   "BASE_DATA": "Dados básicos",
   "CONTACT_DATA": "Detalhes do contato",
-  "BANK_DATA": "Detalhes bancários"
+  "BANK_DATA": "Detalhes bancários",
+  "CONTACT_DETAIL_ADDED": "Detalhes de contato adicionados",
+  "CONTACT_DETAIL_MODIFIED": "Detalhes de contato modificados",
+  "CONTACT_DETAIL_REMOVED": "Detalhes de contato excluídos",
+  "BANK_ACCOUNT_REMOVED": "Dados bancários excluídos",
+  "BANK_ACCOUNT_MODIFIED": "Dados bancários modificados",
+  "BANK_ACCOUNT_ADDED": "Dados bancários adicionados"
 }
-
-

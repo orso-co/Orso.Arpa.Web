@@ -1,5 +1,6 @@
 {
   "ABOUT_ME": "Über mich",
+  "ADD_NEW_PERSON": "Neue Person anlegen",
   "BASE_DATA": "Stammdaten",
   "BIRTHNAME": "Geburtsname",
   "BIRTHPLACE": "Geburtsort",
@@ -15,9 +16,10 @@
   "GENERAL_PREFERENCE": "Präferenz",
   "GIVEN_NAME": "Vorname",
   "INSTRUMENT": "Instrument",
-  "LEVEL_ASSESSMENT_TEAM": "Level (KBB)",
+  "LEVEL_ASSESSMENT_TEAM": "Level",
   "MODIFIED_AT": "Geändert am",
   "MODIFIED_BY": "Geändert von",
+  "PERSON_MODIFIED": "Personendaten geändert",
   "PERSONS": "Personen",
   "QUALIFICATION": "Qualifikation",
   "RELIABILITY": "Zuverlässigkeit",

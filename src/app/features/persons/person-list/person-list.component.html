@@ -1,3 +1,12 @@
+<div class='p-formgroup-inline p-jc-between'>
+  <div class='p-field p-col p-text-left' >
+    <button label="{{ 'persons.ADD_NEW_PERSON' | translate }}"
+            icon='pi pi-plus' pButton
+            (click)='openPersonDetailDialog(null)'
+            type='button'></button>
+  </div>
+</div>
+
 <!-- Graphql feed controls and holds graphql api results. -->
 <arpa-graph-ql-feed #feedSource [contentTemplate]='feed' [query]='query'></arpa-graph-ql-feed>
 
@@ -12,3 +21,4 @@
     [feed]='feed'
   ></arpa-table>
 </ng-template>
+

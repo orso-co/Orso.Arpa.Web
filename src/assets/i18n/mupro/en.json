@@ -13,6 +13,7 @@
   "PARTICIPATION_COMMENT_STAFF": "Comment by Staff",
   "MUPRO_CREATION_DATE": "Date of creation of this profile",
   "PARTICIPATION_COMMENT_TEAM": "Comment within team only",
-  "PARTICIPANT": "Participant"
+  "PARTICIPANT": "Participant",
+  "SET_PARTICIPATION_STATUS": "Participation Status set"
 
 }

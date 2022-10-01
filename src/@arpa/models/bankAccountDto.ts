@@ -1,7 +1,7 @@
 import { SelectValueDto } from './selectValueDto';
 
 export interface BankAccountDto {
-  id?: string | undefined;
+  id?: string;
   createdBy?: string;
   createdAt?: Date;
   modifiedBy?: string;

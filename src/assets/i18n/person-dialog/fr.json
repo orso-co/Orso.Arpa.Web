@@ -14,6 +14,16 @@
   "MODIFIED_AT": "Modifié le",
   "MODIFIED_BY": "Modifié par",
   "BASE_DATA": "Données de base",
+  "ADD_NEW_PERSON": "Créer une nouvelle personne",
+  "PERSON_MODIFIED": "Données personnelles modifiées",
+  "PERSON_CREATED": "Personne créée",
   "CONTACT_DATA": "Détails du contact",
-  "BANK_DATA": "Coordonnées bancaires"
+  "BANK_DATA": "Coordonnées bancaires",
+  "CONTACT_DETAIL_ADDED": "Coordonnées contactes ajoutées",
+  "CONTACT_DETAIL_MODIFIED": "Coordonnées contactes modifièes",
+  "CONTACT_DETAIL_REMOVED": "Coordonnées contactes supprimées",
+  "BANK_ACCOUNT_REMOVED": "Coordonnées bancaires supprimées",
+  "BANK_ACCOUNT_MODIFIED": "Coordonnées bancaires modifièes",
+  "BANK_ACCOUNT_ADDED": "Coordonnées bancaires ajoutées"
 }
+
