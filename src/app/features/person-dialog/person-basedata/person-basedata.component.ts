@@ -1,13 +1,13 @@
 import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 import { PersonService } from '../../persons/services/person.service';
 import { ReducedPersonDto } from '../../../../@arpa/models/reducedPersonDto';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { SelectValueService } from '../../../shared/services/select-value.service';
 import { PersonDto } from '../../../../@arpa/models/personDto';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
-import { first, map, filter } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'arpa-person-basedata',
@@ -48,11 +48,13 @@ export class PersonBasedataComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     const person: PersonDto = changes.person.currentValue;
-    this.form.patchValue({
-      ...person,
-      genderId: person.gender?.id,
-      dateOfBirth: person.dateOfBirth ? new Date(person.dateOfBirth) : null,
-    });
+    if (person) {
+      this.form.patchValue({
+        ...person,
+        genderId: person.gender?.id,
+        dateOfBirth: person.dateOfBirth ? new Date(person.dateOfBirth) : null,
+      });
+    }
   }
 
   submit() {
@@ -61,13 +63,23 @@ export class PersonBasedataComponent implements OnInit, OnChanges {
     }
     const value = { ...this.form.value, contactViaId: this.form.controls.contactVia.value?.id };
     delete value.contactVia;
-    this.personService
-      .update(this.person!.id!, value)
-      .pipe(first())
-      .subscribe(() => {
-        this.notificationService.success('PERSON_MODIFIED', 'persons');
-        this.personSaved.emit();
-      });
+    if (!this.person?.id) {
+      this.personService.create(this.form.value)
+        .pipe(first())
+        .subscribe((person) => {
+          this.notificationService.success('PERSON_CREATED', 'persons');
+          this.personSaved.emit(person);
+          this.form.markAsPristine();
+        })
+    } else {
+      this.personService
+        .update(this.person!.id!, value)
+        .pipe(first())
+        .subscribe(() => {
+          this.notificationService.success('PERSON_MODIFIED', 'persons');
+          this.personSaved.emit();
+        });
+    }
   }
 
   filterPersons(event: { query: string }) {

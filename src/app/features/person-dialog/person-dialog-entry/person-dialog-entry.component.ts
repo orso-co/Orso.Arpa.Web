@@ -27,11 +27,10 @@ export class PersonDialogEntryComponent {
   }
 
   public openDialog(selection?: PersonDto) {
-    const person = new BehaviorSubject(selection);
 
     const ref = this.dialogService.open(PersonLayoutComponent, {
       data: {
-        person,
+        person: selection,
       },
       header: `${this.translate.instant('PERSON')}: ${selection?.givenName}, ${selection?.surname}`,
       styleClass: 'form-modal',

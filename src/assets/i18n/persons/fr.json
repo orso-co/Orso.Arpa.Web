@@ -20,20 +20,20 @@
     "PERSON_MODIFIED": "Données personnelles modifiées",
     "PERSONS": "Personnes",
     "RELIABILITY": "Fiabilité",
-    "SURNAME": "Nom"
+    "SURNAME": "Nom",
     "INSTRUMENT": "Instrument",
     "LEVEL_ASSESSMENT_TEAM": "Niveau (Équipe)",
     "QUALIFICATION": "Qualification",
-    "RELIABILITY": "Fiabilité",
     "SECTION": "Section",
-    "SURNAME": "Nom",
+
   "contact": {
-    "VALUE": "Wert",
-    "TYPE": "Typ",
+    "VALUE": "Valeur",
+    "TYPE": "Taper",
     "COMMENT_INNER" :"Commentaire personne",
     "COMMENT_TEAM" :"Personnel de commentaire",
     "PREFERENCE": "Préférence"
-  },
+    },
+
   "bank": {
     "BIC": "BIC",
     "IBAN": "IBAN",
@@ -43,5 +43,5 @@
     "BANK_ACCOUNT_REMOVED": "Coordonnées bancaires supprimées",
     "BANK_ACCOUNT_ADDED": "Coordonnées bancaires ajoutées",
     "BANK_ACCOUNT_MODIFIED": "Coordonnées bancaires modifiées"
-  }
+    }
   }

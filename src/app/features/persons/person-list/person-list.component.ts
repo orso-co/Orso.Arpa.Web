@@ -70,16 +70,7 @@ export class PersonListComponent implements OnInit {
       dismissableMask: true,
     });
     ref.onClose.pipe(first()).subscribe((person: PersonDto) => {
-      if(!selection && person) {
-        this.saveNewPerson(person);
-      }
-    });
-  }
-
-  private saveNewPerson(person: PersonDto): void {
-    this.personService.create(person).subscribe((result) => {
       this.feedSource.refresh();
-      this.notificationsService.success('persons.PERSON_CREATED');
     });
   }
 

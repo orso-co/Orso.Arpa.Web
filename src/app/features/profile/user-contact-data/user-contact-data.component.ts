@@ -88,14 +88,17 @@ export class UserContactDataComponent implements OnInit {
   }
 
   remove(contactDetail: ContactDetailDto): void {
-    this.meService
-      .deleteContactDetail(contactDetail.id)
-      .pipe(first())
-      .subscribe(() => {
-        this._tableData = this._tableData.filter((e) => e.id != contactDetail.id);
-        this.tableData.next(this._tableData);
-        this.notificationsService.success('CONTACT_DETAIL_REMOVED', 'contact');
-      });
+    if (typeof  contactDetail.id === 'string') {
+      this.meService
+        .deleteContactDetail(contactDetail.id)
+        .pipe(first())
+        .subscribe(() => {
+          this._tableData = this._tableData.filter((e) => e.id != contactDetail.id);
+          this.tableData.next(this._tableData);
+          this.notificationsService.success('CONTACT_DETAIL_REMOVED', 'contact');
+        });
+    }
+
   }
 
   update(contactDetail: ContactDetailDto) {

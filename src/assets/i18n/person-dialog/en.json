@@ -1,6 +1,6 @@
 {
   "PERSONS": "Persons",
-  "GIVEN_NAME": "Givenname",
+  "GIVEN_NAME": "Given Name",
   "SURNAME": "Surname",
   "ABOUT_ME": "About Me",
   "CREATED_AT": "Created at",
@@ -15,8 +15,14 @@
   "MODIFIED_BY": "Modified by",
   "ADD_NEW_PERSON": "Add new person",
   "PERSON_MODIFIED": "Person data modified",
-  "PLACEHOLDER": "Placeholder"
+  "PERSON_CREATED": "Person created",
+  "PLACEHOLDER": "Placeholder",
   "BANK_DATA": "Bank Data",
   "BASE_DATA": "Base Data",
-  "CONTACT_DATA": "Contact Data"
+  "CONTACT_DATA": "Contact Data",
+  "CONTACT_DETAIL_ADDED": "Contact Detail added",
+  "BANK_ACCOUNT_MODIFIED": "Bank Account modified",
+  "BANK_ACCOUNT_REMOVED": "Bank Account removed",
+  "BANK_ACCOUNT_ADDED": "Bank Account added",
+  "CONTACT_DETAIL_REMOVED": "Contact Detail removed"
 }

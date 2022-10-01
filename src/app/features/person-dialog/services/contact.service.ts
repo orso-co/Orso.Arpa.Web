@@ -20,11 +20,11 @@ export class ContactService {
     return this.apiService.post<ContactDetailDto>(`${this.baseUrl}/${personId}/contactdetails`, dto).pipe(shareReplay());
   }
 
-  updateContactDetail(id: string,  dto: ContactDetailModifyBodyDto): Observable<any> {
-    return this.apiService.put(`${this.baseUrl}/contactdetails/${id}`, dto).pipe(shareReplay());
+  updateContactDetail(personId: string, id: string, dto: ContactDetailModifyBodyDto): Observable<any> {
+    return this.apiService.put(`${this.baseUrl}/${personId}/contactdetails/${id}`, dto).pipe(shareReplay());
   }
 
-  deleteContactDetail(id: string): Observable<any> {
-    return this.apiService.delete(`${this.baseUrl}/contactdetails/${id}`).pipe(shareReplay());
+  deleteContactDetail(id: string, personId: any): Observable<any> {
+    return this.apiService.delete(`${this.baseUrl}/${personId}/contactdetails/${id}`).pipe(shareReplay());
   }
 }

@@ -1,6 +1,5 @@
 {
   "ADD_NEW_PERSON": "Criar nova pessoa",
- 
   "ABOUT_ME": "sobre mim",
   "BASE_DATA": "dados básicos",
   "BIRTHNAME": "nome de nascença",
@@ -21,21 +20,20 @@
   "PERSON_MODIFIED": "dados pessoais modificados",
   "PERSONS": "pessoas",
   "RELIABILITY": "fiabilidade",
-  "SURNAME": "sobrenome"
+  "SURNAME": "sobrenome",
   "INSTRUMENT": "instrumento",
   "LEVEL_ASSESSMENT_TEAM": "nível (equipe)",
-  "PERSONS": "pessoas",
   "QUALIFICATION": "qualificação",
-  "RELIABILITY": "fiabilidade",
   "SECTION": "Seção",
-  "SURNAME": "sobrenome",
+
   "contact": {
     "VALUE": "Valor",
     "TYPE": "Modelo",
     "COMMENT_INNER" :"Comentarista ",
     "COMMENT_TEAM" :"Pessoal de comentários",
     "PREFERENCE": "Preferência"
-  },
+    },
+
   "bank": {
     "BIC": "BIC",
     "IBAN": "IBAN",
@@ -46,5 +44,5 @@
     "BANK_ACCOUNT_ADDED": "Dados bancários adicionados",
     "BANK_ACCOUNT_MODIFIED": "Dados bancários alterados"
 
-  }
+    }
 }

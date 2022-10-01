@@ -1,12 +1,12 @@
 <p-tabView [(activeIndex)]="index">
   <p-tabPanel header="{{ 'persons.BASE_DATA' | translate }}" leftIcon="pi pi-user">
-    <arpa-person-basedata [person]="person | async" (personSaved)="close(true)"></arpa-person-basedata>
+    <arpa-person-basedata [person]="person" (personSaved)="personSaved($event)"></arpa-person-basedata>
   </p-tabPanel>
 
-  <p-tabPanel header="{{ 'person-dialog.CONTACT_DATA' | translate }}" leftIcon="pi pi-phone">
-    <arpa-person-contactdata [person]="person | async"></arpa-person-contactdata>
+  <p-tabPanel header="{{ 'person-dialog.CONTACT_DATA' | translate }}" leftIcon="pi pi-phone" *ngIf='person?.id'>
+    <arpa-person-contactdata [person]="person"></arpa-person-contactdata>
   </p-tabPanel>
-  <p-tabPanel header="{{ 'person-dialog.BANK_DATA' | translate }}" leftIcon="pi pi-credit-card">
-    <arpa-person-bankdata [person]="person | async"></arpa-person-bankdata>
+  <p-tabPanel header="{{ 'person-dialog.BANK_DATA' | translate }}" leftIcon="pi pi-credit-card" *ngIf='person?.id'>
+    <arpa-person-bankdata [person]="person"></arpa-person-bankdata>
   </p-tabPanel>
 </p-tabView>
