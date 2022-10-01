@@ -1,14 +1,14 @@
 .date {
-    text-align: center;
-    width: 8.5rem;
+    text-align: left;
     border-right: 1px solid rgba(#fff, 0.25);
-  
+    padding-right: 1rem;
+
     .day {
       font-size: 2em;
       font-weight: 600;
       display: block;
     }
-  
+
     .day-name {
       display: block;
       font-size: 0.7em;
@@ -33,28 +33,28 @@
       letter-spacing: 0.1rem;
     }
   }
-  
+
   .details {
     flex-grow: 1;
     line-height: 1.5em;
-  
+
     .name {
       display: block;
       font-weight: 600;
       line-height: 2em;
-  
+
       p-badge {
         display: inline;
         margin-left: 1rem;
       }
     }
-  
+
     .time {
       display: block;
       opacity: .85;
       font-size: .85em;
     }
-  
+
     .projects {
       display: block;
       opacity: .60;
@@ -67,10 +67,9 @@
       opacity: 0.70;
       margin-left: 0.5rem;
     }
-  
+
   }
   .headlineinfo {
     font-size: 1.0em;
     opacity: 0.50;
   }
-  
