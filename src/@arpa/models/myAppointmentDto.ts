@@ -20,4 +20,5 @@ export interface MyAppointmentDto {
   predictionId?: string;
   categoryId?: string;
   statusId?: string;
+  commentByPerformerInner?: string;
 }

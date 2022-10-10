@@ -1,4 +1,3 @@
-import { VenueDto } from './../../../../@arpa/models/venueDto';
 import { AfterViewInit, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'primeng/api';
