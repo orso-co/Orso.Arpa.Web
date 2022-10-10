@@ -43,7 +43,7 @@
   "URLS_TOOLTIP": "Linksammlung zu externen Inhalten außerhalb von ARPA",
   "URLS": "URLs",
   "VENUE": "Ort",
-  "TOTAL": "Gesamt",
-  "CHOIR": "Chor",
-  "ORCHESTRA": "Orchester"
+  "TOTAL": "Gesamt Rückmeldungen",
+  "CHOIR": "Chor Rückmeldungen",
+  "ORCHESTRA": "Orchester Rückmeldungen"
 }

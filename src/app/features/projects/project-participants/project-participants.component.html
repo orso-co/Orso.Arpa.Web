@@ -1,6 +1,11 @@
-<div class='chart-container' >
+<div>
+  <h4 style='text-align: center'>{{'projects.TOTAL' | translate }} {{filteredDataCount}}</h4>
+</div>
+<div class='chart-container'>
+<div class='chart-subcontainer'>
   <div style='width: 200px; height: 200px;' >
-    <h5>{{'projects.TOTAL' | translate}}: {{innerStatsValues}}</h5>
+    <h3>{{'projects.TOTAL' | translate}}</h3>
+    <h4>{{innerStatsValues}}</h4>
     <arpa-chart
     [data]='innerStatsValues'
     [labels]='innerStatsKeys'
@@ -9,17 +14,18 @@
     ></arpa-chart>
   </div>
   <div style='width: 200px; height: 200px;'>
-    <h5>{{'projects.CHOIR' | translate}}: {{innerStatsKeys}} {{innerStatsValues}}</h5>
-
+    <h3>{{'projects.CHOIR' | translate}}</h3>
+    <h4>{{innerStatsValues}}</h4>
     <arpa-chart
       [data]='innerStatsValues'
       [labels]='innerStatsKeys'
       [type]='"doughnut"'
-      [legend]='true'></arpa-chart>
+      [legend]='true'
+    ></arpa-chart>
   </div>
   <div style='width: 200px; height: 200px;'>
-    <h5>{{'projects.ORCHESTRA' | translate}}: {{feedSource.totalCount}}</h5>
-
+    <h3>{{'projects.ORCHESTRA' | translate}}</h3>
+    <h4>{{innerStatsValues}}</h4>
     <arpa-chart
       [data]='innerStatsValues'
       [labels]='innerStatsKeys'
@@ -28,11 +34,17 @@
     ></arpa-chart>
   </div>
 </div>
+</div>
+
 <!-- Graphql feed controls and holds graphql api results. -->
 <arpa-graph-ql-feed #feedSource [query]='query'
-                    [variables]='{ projectId }'></arpa-graph-ql-feed>
+                    [variables]='{ projectId }'
+></arpa-graph-ql-feed>
+
 <arpa-table
   [columns]='columns'
   [values]='tableData'
 ></arpa-table>
+<h4 style='text-align: left'>{{ 'projects.TOTAL'|translate }} {{filteredDataCount}}</h4>
+
 

@@ -24,8 +24,6 @@
   "PROJECT_UPDATED": "projecto actualizado com sucesso",
   "PARTICIPATION_STATUS_PERFORMER": "status de artista",
   "PARTICIPATION_STATUS_STAFF": "status da equipe",
-  "PROJECT_CREATED": "projeto criado com sucesso",
-  "PROJECT_UPDATED": "atualização do projeto com sucesso",
   "ROLE_ADDED": "função adicionada",
   "ROLE_REMOVED": "função removida",
   "ROLES": "funções",
@@ -43,5 +41,8 @@
   "URL": "URL",
   "URLS_TOOLTIP": "URLs para conteúdo externo",
   "URLS": "URLs",
-  "VENUE": "Local"
+  "VENUE": "Local",
+  "TOTAL": "Total de respostas",
+  "CHOIR": "Respostas do Coro",
+  "ORCHESTRA": "Respostas da orquestra"
 }

@@ -42,5 +42,8 @@
   "URL": "URL",
   "URLS_TOOLTIP": "Collection d'URL pour le contenu externe",
   "URLS": "URLs",
-  "VENUE": "Lieu"
+  "VENUE": "Lieu",
+  "TOTAL": "Total des réponses",
+  "CHOIR": "Réponses du chœur",
+  "ORCHESTRA": "Réponses d'orchestre"
 }
