@@ -19,5 +19,7 @@
     "RESEND_DONE": "Le lien de validation a été à nouveau envoyé, consultez la boîte mail s’il vous plaît",
     "PRIVACY_POLICY": "Règles de protection des données",
     "USERNAME_OR_EMAIL": "Nom d’utilisateur ou e-mail",
-    "USER_CREDENTIALS": "Nom d'utilisateur ou mot de passe incorrect"
-  }
+    "USER_CREDENTIALS": "Nom d'utilisateur ou mot de passe incorrect",
+    "USERNAME_INFO": "Le nom d'utilisateur ne peut contenir que des lettres majuscules et minuscules et des chiffres."
+
+}

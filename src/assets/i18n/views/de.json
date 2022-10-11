@@ -20,6 +20,6 @@
   "RESEND_CONFIRMATION": "Bestätigungslink nochmal zusenden",
   "RESEND_DONE": "Bestätigungslink wurde erneut versendet, bitte Mailbox prüfen",
   "USERNAME_OR_EMAIL": "Benutzername oder E-Mail",
-  "USER_CREDENTIALS": "Benutzername oder Passwort falsch"
-
+  "USER_CREDENTIALS": "Benutzername oder Passwort falsch",
+  "USERNAME_INFO": "Der Benutzername darf nur Groß- und Kleinbuchstaben sowie Zahlen enthalten."
 }
