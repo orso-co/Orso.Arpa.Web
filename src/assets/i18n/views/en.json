@@ -20,5 +20,6 @@
   "RESEND_DONE": "Confirmation link sent, please check your inbox",
   "PRIVACY_POLICY": "Privacy Policy",
   "USERNAME_OR_EMAIL": "Username or Email",
-  "USER_CREDENTIALS": "Username or Password invalid."
+  "USER_CREDENTIALS": "Username or Password invalid.",
+  "USERNAME_INFO": "The username can only contain upper and lower case letters and numbers."
 }
