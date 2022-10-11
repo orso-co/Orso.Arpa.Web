@@ -19,5 +19,6 @@
   "RESEND_DONE": "Link de confirmação enviado. Por favor, verfica a tua caixa de entrada.",
   "PRIVACY_POLICY": "Política de privacidade" ,
   "USERNAME_OR_EMAIL": "Nome de utilizador ou e-mail" ,
-  "USER_CREDENTIALS": "Nome de utilizador ou palavra-passe inválida"
+  "USER_CREDENTIALS": "Nome de utilizador ou palavra-passe inválida",
+  "USERNAME_INFO": "O nome de usuário só pode conter letras maiúsculas e minúsculas e números."
 }
