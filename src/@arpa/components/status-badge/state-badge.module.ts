@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { StateBadgeComponent } from './state-badge.component';
 import { TranslateModule } from '../../translate';
 import { BadgeModule } from 'primeng/badge';
+import { TagModule } from 'primeng/tag';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { BadgeModule } from 'primeng/badge';
     CommonModule,
     TranslateModule,
     BadgeModule,
+    TagModule,
   ],
   exports: [StateBadgeComponent],
 })

@@ -81,7 +81,7 @@ export class StateBadgeComponent implements OnInit {
         {
           label: 'CONCERT_TOUR',
           severity: 'warning',
-          value: 'concert tour',
+          value: 'concert_tour',
         },
         {
           label: 'CANDIDATE',
@@ -92,6 +92,11 @@ export class StateBadgeComponent implements OnInit {
           label: 'ACCEPTANCE',
           severity: 'success',
           value: 'acceptance',
+        },
+        {
+          label: 'REFUSAL',
+          severity: 'danger',
+          value: 'refusal',
         },
       ];
     }
