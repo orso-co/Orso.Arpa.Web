@@ -19,6 +19,10 @@
   "MODIFIED_AT": "Modified at",
   "MODIFIED_BY": "Modified by",
   "PERSON_MODIFIED": "Person data modified",
+  "PERSON_CREATED": "Person created",
+  "DONT_DELETE_PERSON":"Don't delete person",
+  "DELETE_PERSON_NOW": "Delete person now? Are you sure?",
+  "DELETE_NOW": "Delete person now. This cannot be undone!",
   "PERSONS": "Persons",
   "RELIABILITY": "Reliability",
   "SURNAME": "Surname",
@@ -30,10 +34,12 @@
   "contact": {
     "VALUE": "Value",
     "TYPE": "Type",
-    "COMMENT_INNER" :"Comment Performer",
-    "COMMENT_TEAM" :"Comment Staff",
-    "PREFERENCE": "Preference"
+    "COMMENT_INNER" :"Comment by User",
+    "COMMENT_TEAM" :"Comment by Staff",
+    "PREFERENCE": "Preference",
+    "CREATE_NEW_CONTACT": "Add new contact details"
   },
+
   "bank": {
     "BIC": "BIC",
     "IBAN": "IBAN",

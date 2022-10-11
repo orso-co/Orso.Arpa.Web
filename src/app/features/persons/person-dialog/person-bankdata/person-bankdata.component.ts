@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { PersonDto } from '../../../../@arpa/models/personDto';
+import { PersonDto } from '../../../../../@arpa/models/personDto';
 import { SelectItem } from 'primeng/api';
-import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
-import { BankAccountDto } from '../../../../@arpa/models/bankAccountDto';
+import { ColumnDefinition } from '../../../../../@arpa/components/table/table.component';
+import { BankAccountDto } from '../../../../../@arpa/models/bankAccountDto';
 import { BankAccountService } from '../services/bank.service';
-import { NotificationsService } from '../../../../@arpa/services/notifications.service';
-import { SelectValueService } from '../../../shared/services/select-value.service';
+import { NotificationsService } from '../../../../../@arpa/services/notifications.service';
+import { SelectValueService } from '../../../../shared/services/select-value.service';
 import { first, map } from 'rxjs/operators';
 
 @Component({
