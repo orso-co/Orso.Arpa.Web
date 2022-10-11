@@ -10,7 +10,7 @@ const routes: Routes = [
       {
         path: 'detail',
         outlet: 'modal',
-        loadChildren: () => import('../person-dialog/person-dialog.module').then(m => m.PersonDialogModule),
+        loadChildren: () => import('../persons/person-dialog/person-dialog.module').then(m => m.PersonDialogModule),
       },
     ],
   },

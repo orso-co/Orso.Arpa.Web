@@ -6,6 +6,7 @@ export interface ContactDetailCreateDto {
   value: string;
   typeId: string;
   commentInner: string;
+  commentTeam: string;
   preference: number;
   // body: ContactDetailCreateBodyDto;
 }

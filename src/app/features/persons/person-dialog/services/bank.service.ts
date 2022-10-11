@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiService } from '../../../../@arpa/services/api.service';
+import { ApiService } from '../../../../../@arpa/services/api.service';
 import { shareReplay } from 'rxjs/operators';
 import { BankAccountDto } from 'src/@arpa/models/bankAccountDto';
-import { BankAccountCreateDto } from '../../../../@arpa/models/bankAccountCreateDto';
-import { BankAccountModifyBodyDto } from '../../../../@arpa/models/bankAccountModifyBodyDto';
+import { BankAccountCreateDto } from '../../../../../@arpa/models/bankAccountCreateDto';
+import { BankAccountModifyBodyDto } from '../../../../../@arpa/models/bankAccountModifyBodyDto';
 
 
 @Injectable({

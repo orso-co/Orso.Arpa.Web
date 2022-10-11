@@ -1,14 +1,10 @@
-import { PersonDto } from '../../../../@arpa/models/personDto';
-import { PersonService } from '../../persons/services/person.service';
+import { PersonDto } from '../../../../../@arpa/models/personDto';
 import { PersonLayoutComponent } from '../person-layout/person-layout.component';
 import { Component } from '@angular/core';
 import { ActivatedRoute, PRIMARY_OUTLET, Router } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
-import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 import { TranslateService } from '@ngx-translate/core';
 import { first } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
-import { LoggerService } from '../../../../@arpa/services/logger.service';
 
 @Component({
   selector: 'arpa-person-dialog-entry',

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ApiService } from '../../../../@arpa/services/api.service';
 import { PersonDto } from '../../../../@arpa/models/personDto';
 import { ReducedPersonDto } from 'src/@arpa/models/reducedPersonDto';
-import { map, tap, shareReplay } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 import { PersonModifyBodyDto } from 'src/@arpa/models/personModifyBodyDto';
 import { PersonInviteResultDto } from 'src/@arpa/models/personInviteResultDto';
 
@@ -37,6 +37,11 @@ export class PersonService {
   public update(id: string, dto: PersonModifyBodyDto): Observable<any> {
     return this.apiService.put(`${this.baseUrl}/${id}`, dto).pipe(shareReplay());
   }
+
+  public delete(id: string): Observable<any> {
+    return this.apiService.delete(`${this.baseUrl}/${id}`).pipe(shareReplay());
+  }
+
 
   public searchPerson(query: string): Observable<ReducedPersonDto[]> {
     return this.apollo
