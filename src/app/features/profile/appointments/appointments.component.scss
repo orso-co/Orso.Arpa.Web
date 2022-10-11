@@ -14,6 +14,7 @@
     display: block;
     font-size: 0.7em;
     font-weight: 200;
+    padding-bottom: 0.3rem;
   }
   .month-name {
     display: block;
@@ -24,6 +25,13 @@
     display: block;
     font-size: 0.7em;
     font-weight: 100;
+  }
+  .time {
+    display: block;
+    opacity: .85;
+    font-size: .85em;
+    padding-bottom: 0.5rem;
+
   }
   .status {
     display: block;
@@ -44,33 +52,39 @@
     font-weight: 600;
     line-height: 2em;
 
-    p-badge {
+    .p-badge {
       display: inline;
       margin-left: 1rem;
     }
-  }
 
-  .time {
-    display: block;
-    opacity: .85;
-    font-size: .85em;
+    .p-tag {
+      display: inline;
+      margin-right: 1rem;
+    }
   }
+}
 
-  .projects {
+.projects {
     display: block;
     opacity: .60;
     font-size: 0.8em;
   }
-  .publicDetails {
+.publicDetails {
     font-size: 0.9em;
-    font-weight: 50;
+    font-weight: 30;
+    color: dodgerblue;
     font-style: italic;
-    opacity: 0.70;
-    margin-left: 0.5rem;
   }
 
-}
 .headlineinfo {
   font-size: 1.0em;
   opacity: 0.50;
 }
+.venue {
+  flex-grow: 1;
+  line-height: 1.5em;
+  display: block;
+  font-size: small;
+  font-weight: 300;
+}
+
