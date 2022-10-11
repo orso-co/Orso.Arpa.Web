@@ -25,6 +25,9 @@
     <arpa-form-field label='USERNAME'>
       <input (ngModelChange)='onChange()' autocomplete='off' formControlName='userName' pInputText type='text'>
     </arpa-form-field>
+    <p class='usernameInfo'>
+      <i class='pi pi-info-circle'></i>{{ 'USERNAME_INFO' | translate }}
+    </p>
 
     <arpa-form-field label='PASSWORD'>
       <p-password (blur)='reValidate(registerFormGroup.controls["password"])'
@@ -33,11 +36,12 @@
                   autocomplete='off'
                   formControlName='password'></p-password>
       <ng-template #footerTemplate>
-        <arpa-password-strength (valid)='setPasswordState($event)'
-                                [control]="registerFormGroup.controls['password']"></arpa-password-strength>
         <p class='passwordInfo'>
           <i class='pi pi-info-circle'></i>{{ 'PASSWORD_INFO' | translate }}
         </p>
+        <arpa-password-strength (valid)='setPasswordState($event)'
+                                [control]="registerFormGroup.controls['password']"></arpa-password-strength>
+
       </ng-template>
     </arpa-form-field>
 
