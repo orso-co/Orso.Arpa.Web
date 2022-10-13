@@ -1,5 +1,17 @@
 <h2 *ngIf="project">{{project.title}}</h2>
 <p-tabView [(activeIndex)]="index">
+  <p-tabPanel *ngIf="project"
+              leftIcon="pi pi-users"
+              header="{{ 'projects.PARTICIPANTS' | translate }}"
+              tooltip="{{ 'projects.PARTICIPANTS_TOOLTIP' | translate }}">
+    <arpa-project-participants ></arpa-project-participants>
+  </p-tabPanel>
+  <p-tabPanel *ngIf="project"
+              leftIcon="pi pi-link"
+              header="{{ 'projects.URLS' | translate }}"
+              tooltip="{{ 'projects.URLS_TOOLTIP' | translate }}">
+    <arpa-edit-project-urls [urls]="project.urls || []" [projectId]="project.id"></arpa-edit-project-urls>
+  </p-tabPanel>
   <p-tabPanel
     leftIcon="pi pi-cog"
     header="{{ 'projects.BASICDATA' | translate }}"
@@ -12,16 +24,6 @@
       [genre]="(genre | async)!"
     ></arpa-edit-project>
   </p-tabPanel>
-  <p-tabPanel *ngIf="project"
-    leftIcon="pi pi-link"
-    header="{{ 'projects.URLS' | translate }}"
-    tooltip="{{ 'projects.URLS_TOOLTIP' | translate }}">
-    <arpa-edit-project-urls [urls]="project.urls || []" [projectId]="project.id"></arpa-edit-project-urls>
-  </p-tabPanel>
-  <p-tabPanel *ngIf="project"
-              leftIcon="pi pi-users"
-              header="{{ 'projects.PARTICIPANTS' | translate }}"
-              tooltip="{{ 'projects.PARTICIPANTS_TOOLTIP' | translate }}">
-    <arpa-project-participants ></arpa-project-participants>
-  </p-tabPanel>
+
+
 </p-tabView>

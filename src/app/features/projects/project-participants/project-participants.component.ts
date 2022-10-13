@@ -6,6 +6,7 @@ import { ColumnDefinition } from '../../../../@arpa/components/table/table.compo
 import { GraphQlFeedComponent } from '../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
 import { DocumentNode } from 'graphql';
 import { ProjectsQuery } from './projectparticipations.graphql';
+import { SectionService } from '../../../shared/services/section.service';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class ProjectParticipantsComponent implements AfterViewInit {
   participationStatusInner: Observable<ProjectParticipationDto>;
   participationStatusInternal: Observable<ProjectParticipationDto>;
   projectId: String;
+  filteredDataCount: number;
 
   constructor(private cdref: ChangeDetectorRef, private config: DynamicDialogConfig) {
     this.projectId = this.config.data.project.id;
@@ -59,6 +61,8 @@ export class ProjectParticipantsComponent implements AfterViewInit {
             }
           });
           this.cdref.detectChanges();
+          this.filteredDataCount = this.tableData.value.length;
+
         }
       },
     });
