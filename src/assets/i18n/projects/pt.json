@@ -43,6 +43,7 @@
   "URLS": "URLs",
   "VENUE": "Local",
   "TOTAL": "Total de respostas",
+  "TOTAL_FILTERED": "Resultado do filtro",
   "CHOIR": "Respostas do Coro",
   "ORCHESTRA": "Respostas da orquestra"
 }

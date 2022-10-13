@@ -44,6 +44,7 @@
   "URLS": "URLs",
   "VENUE": "Venue",
   "TOTAL": "Total Responses",
+  "TOTAL_FILTERED": "Filtered Records",
   "CHOIR": "Choir Responses",
   "ORCHESTRA": "Orchestra Responses"
 }

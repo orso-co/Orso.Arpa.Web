@@ -44,6 +44,7 @@
   "URLS": "URLs",
   "VENUE": "Lieu",
   "TOTAL": "Total des réponses",
+  "TOTAL_FILTERED": "Résultat du filtre",
   "CHOIR": "Réponses du chœur",
   "ORCHESTRA": "Réponses d'orchestre"
 }

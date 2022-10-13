@@ -44,6 +44,7 @@
   "URLS": "URLs",
   "VENUE": "Ort",
   "TOTAL": "Gesamt Rückmeldungen",
+  "TOTAL_FILTERED": "Filterergebnis",
   "CHOIR": "Chor Rückmeldungen",
   "ORCHESTRA": "Orchester Rückmeldungen"
 }

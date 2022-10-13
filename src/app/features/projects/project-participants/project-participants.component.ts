@@ -67,9 +67,5 @@ export class ProjectParticipantsComponent implements AfterViewInit {
       },
     });
   }
-
-  // onTableFiltered(event: any): void {
-  //   this.filteredDataCount = event.filteredValue.length;
-  // }
 }
 
