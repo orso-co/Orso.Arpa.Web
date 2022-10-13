@@ -1,13 +1,14 @@
-import { NotificationsService } from '../../../../@arpa/services/notifications.service';
-import { PersonService } from '../../persons/services/person.service';
-import { ReducedPersonDto } from '../../../../@arpa/models/reducedPersonDto';
-import { SelectValueService } from '../../../shared/services/select-value.service';
-import { PersonDto } from '../../../../@arpa/models/personDto';
+import { NotificationsService } from '../../../../../@arpa/services/notifications.service';
+import { PersonService } from '../../services/person.service';
+import { ReducedPersonDto } from '../../../../../@arpa/models/reducedPersonDto';
+import { SelectValueService } from '../../../../shared/services/select-value.service';
+import { PersonDto } from '../../../../../@arpa/models/personDto';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 import { first, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'arpa-person-basedata',
@@ -20,13 +21,21 @@ export class PersonBasedataComponent implements OnInit, OnChanges {
   public form: FormGroup;
   public genderOptions$: Observable<SelectItem[]>;
   public filteredPersons: ReducedPersonDto[] = [];
+  showButton = 0;
+  selectOptions = [
+    {id: false, name: 'persons.DONT_DELETE_PERSON'},
+    {id: true, name: 'persons.DELETE_PERSON_NOW'}
+  ]
+  selectedOption: boolean = false;
 
   constructor(
     formBuilder: FormBuilder,
     private selectValueService: SelectValueService,
     private personService: PersonService,
-    private notificationService: NotificationsService
-  ) {
+    private notificationService: NotificationsService,
+    public ref: DynamicDialogRef,
+
+) {
     this.form = formBuilder.group({
       genderId: [null, [Validators.required]],
       givenName: [null, [Validators.required, Validators.maxLength(50)]],
@@ -81,6 +90,16 @@ export class PersonBasedataComponent implements OnInit, OnChanges {
         });
     }
   }
+  onSelectedOptionChange(event: {value: number}) {
+  }
+
+  public deletePerson(): void {
+    if (this.person?.id){
+    this.personService.delete(this.person.id).subscribe(() => {
+      this.notificationService.success('persons.PERSON_DELETED');
+      this.ref.close(this.person?.id);
+    });
+  }}
 
   filterPersons(event: { query: string }) {
     this.personService

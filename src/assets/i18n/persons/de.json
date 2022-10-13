@@ -20,17 +20,23 @@
   "MODIFIED_AT": "Geändert am",
   "MODIFIED_BY": "Geändert von",
   "PERSON_MODIFIED": "Personendaten geändert",
+  "PERSON_CREATED": "Person erstellt",
+  "DONT_DELETE_PERSON":"Person nicht löschen",
+  "DELETE_PERSON_NOW": "Diese Person soll gelöscht werden? Ganz sicher?",
+  "DELETE_NOW": "Diese Person wird jetzt gelöscht. Dies kann nicht rückgängig gemacht werden!",
   "PERSONS": "Personen",
   "QUALIFICATION": "Qualifikation",
   "RELIABILITY": "Zuverlässigkeit",
   "SECTION": "Register",
   "SURNAME": "Nachname",
+
   "contact": {
     "VALUE": "Wert",
     "TYPE": "Typ",
     "COMMENT_INNER" :"Kommentar Person",
     "COMMENT_TEAM" :"Kommentar Team",
-    "PREFERENCE": "Präferenz"
+    "PREFERENCE": "Präferenz",
+    "CREATE_NEW_CONTACT": "Kontaktdaten hinzufügen"
   },
   "bank": {
     "BIC": "BIC",

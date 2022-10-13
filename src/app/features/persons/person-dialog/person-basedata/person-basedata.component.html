@@ -82,3 +82,33 @@
     <p-button [disabled]="form.invalid || form.pristine" type="submit" [label]="'SAVE' | translate"></p-button>
   </div>
 </form>
+<div *ngIf='person?.id'>
+  <hr>
+  <div class="p-formgroup-inline p-jc-center">
+    <div class="p-col-12 p-text-center">
+      <p-selectButton
+        (onChange)="onSelectedOptionChange($event)"
+        [(ngModel)]="selectedOption"
+        [options]="selectOptions"
+        optionLabel="name"
+        optionValue="id"
+      >
+        <ng-template let-item>
+          {{ item.name | translate }}
+        </ng-template>
+      </p-selectButton>
+    </div>
+    <button
+      *ngIf='selectedOption'
+      (click)="deletePerson()"
+      [label]="'persons.DELETE_NOW' | translate"
+      [disabled]="!selectedOption"
+      class="ml-3 p-button-danger"
+      icon="pi pi-trash"
+      iconPos="left"
+      pButton
+      type="button"
+    ></button>
+  </div>
+</div>
+
