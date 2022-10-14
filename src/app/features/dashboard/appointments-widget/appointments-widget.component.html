@@ -1,11 +1,14 @@
 <div class="p-d-flex p-flex-column">
-  <span>Deinen Terminstatus kannst du ändern unter "Meine Termine"</span>
+  <p-button
+    routerLink="../../profile/appointments"
+    [label]="'dashboard.GO_TO_MY_APPOINTMENTS'| translate"
+    align='center'
+  ></p-button>
 </div>
 <div class='p-grid p-jc-center p-mt-4'>
   <div class='p-col-12 p-md-10 p-lg-12'>
     <p-table
       (onLazyLoad)='loadData($event.rows, $event.first)'
-      routerLink="../../profile/appointments"
       [lazy]='true'
       [rows]='5'
       [totalRecords]='(totalRecordsCount$ | async) || 0'
@@ -24,32 +27,30 @@
     <div class="p-flex-column p-mr-4 date">
       <span class="year">{{ appointment.startTime | localizedDate: 'YYYY' }}</span>
       <span class="month-name">{{ appointment.startTime | localizedDate: 'MMMM' }}</span>
-      <span class="day-name">{{ appointment.startTime | localizedDate: 'EEEE' }}</span>
-
       <span class="day">{{ appointment.startTime | date: 'dd':'locale(de)' }}</span>
-      <span class="status">{{ appointment.status?.name | uppercase }}</span>
+      <span class="day-name">{{ appointment.startTime | localizedDate: 'EEEE' }}</span>
+      <span class="time">{{ appointment.startTime | date: 'H:mm':'locale(de)' }}-{{ appointment.endTime | date: 'H:mm':'locale(de)' }}</span>
+      <p-tag
+      *ngIf="appointment.status"
+      [value]='appointment.status?.name' severity='info'
+      ></p-tag>
+
     </div>
     <div class="p-flex-column p-mr-2 details">
+      <p-badge
+        *ngIf="appointment.predictionId"
+        [value]="appointment.predictionId | selectValue: predictions"
+        severity="warning"
+      ></p-badge>
       <span class="name"
-        >{{ appointment.name }}
-        <p-badge
-          *ngIf="appointment.predictionId"
-          [value]="appointment.predictionId | selectValue: predictions"
-          severity="warning"
-        ></p-badge>
-        <p-badge *ngIf="appointment.result" [value]="appointment.result" severity="info"></p-badge>
+      >{{ appointment.name }}
       </span>
-      <span class="time"
-        >{{ appointment.startTime | date: 'H:mm':'locale(de)' }}-{{ appointment.endTime | date: 'H:mm':'locale(de)' }}
-        <span *ngIf="appointment.venue?.name" class="venue"> - {{ appointment.venue?.name }}</span>
-      </span>
-      <p-badge *ngIf="appointment.category?.name" class="category" [value]="appointment.category?.name">
-      </p-badge>
-      <span class="publicDetails">{{ appointment.publicDetails }}</span>
-
-      <span *ngIf="appointment.projects.length > 0" class="projects">
-        {{ 'PROJECT' | translate }}: {{ getProjectNames(appointment.projects) }}
-      </span>
+      <div class="details">
+        <p-tag *ngIf="appointment.category?.name" [value]="appointment.category?.name" class="category"></p-tag>
+        <p-tag *ngIf="appointment.result" [value]="appointment.result" severity="danger"></p-tag>
+        <span *ngIf="appointment.projects.length > 0" class="projects">{{ 'PROJECT' | translate }}: {{ getProjectNames(appointment.projects) }}</span>
+        <span *ngIf="appointment.venue?.name" class="venue">{{ 'VENUE' | translate }}: {{ appointment.venue?.name }}, {{ appointment.venue?.address.address1 }} {{ appointment.venue?.address.zip }} {{ appointment.venue?.address.city }}</span>
+      </div>
     </div>
   </td>
 </ng-template>
