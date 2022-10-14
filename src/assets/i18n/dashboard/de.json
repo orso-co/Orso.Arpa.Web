@@ -20,5 +20,7 @@
   "DESCRIPTION": "Beschreibung",
   "GOTO_PROJECT": "Gehe zu Projekt",
   "NEWS": "Nachrichten",
-  "PROJECTSTATS": "Projektstatistik"
+  "PROJECTSTATS": "Projektstatistik",
+  "GO_TO_MY_APPOINTMENTS": "Gehe zu 'Meine Termine'"
+
 }

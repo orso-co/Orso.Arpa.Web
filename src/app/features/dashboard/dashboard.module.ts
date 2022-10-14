@@ -51,6 +51,7 @@ import { WidgetComponent } from './widget/widget.component';
 import { ChipModule } from 'primeng/chip';
 import { MessageModule } from 'primeng/message';
 import { IframeWidgetProjectstatsComponent } from './iframe-widget-projectstats/iframe-widget-projectstats.component';
+import { AppointmentsRoutingModule } from '../appointments/appointments-routing.module';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { IframeWidgetProjectstatsComponent } from './iframe-widget-projectstats/
     DashboardRoutingModule,
     StoreModule.forFeature('dashboard', reducers),
     ProjectsRoutingModule,
+    AppointmentsRoutingModule,
     SelectDialogModule,
 
     // Arpa Lib
