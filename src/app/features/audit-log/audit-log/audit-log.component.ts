@@ -12,14 +12,17 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './audit-log.component.html',
   styleUrls: ['./audit-log.component.scss'],
 })
+
 export class AuditLogComponent {
   public query = AuditLogQuery;
 
   columns: ColumnDefinition<ProjectDto>[] = [
-    { label: 'DATE', property: 'createdAt', type: 'date' },
-    { label: 'CHANGED_BY', property: 'createdBy', type: 'text' },
     { label: 'TABLE', property: 'tableName', type: 'text' },
     { label: 'TYPE', property: 'type', type: 'text' },
+    { label: 'CHANGED_AT', property: 'createdAt', type: 'date' },
+    { label: 'CHANGED_BY', property: 'createdBy', type: 'text' },
+    { label: 'CHANGED_COLUMNS', property: 'changedColumns', type: 'text' },
+
   ];
 
   constructor(private dialogService: DialogService, private translate: TranslateService) {}
