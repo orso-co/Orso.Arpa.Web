@@ -1,6 +1,8 @@
 {
   "AUDITLOGS": "Auditlogs",
   "CHANGED_BY": "Geändert von",
+  "CHANGED_AT": "Geändert am",
+  "CHANGED_COLUMNS": "Geänderte Spalten",
   "DETAILS": "Entity Details",
   "KEY_VALUES": "Schlüsselwerte",
   "NEW_VALUES": "Neue Werte",

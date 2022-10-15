@@ -1,11 +1,12 @@
 pre {
   white-space: pre-line;
   word-wrap: normal;
-  color: black;
+  color: blue;
 }
 
 .title {
   font-weight: 400;
+  color: dimgray;
 }
 
 .title, .value {
@@ -13,10 +14,11 @@ pre {
 }
 
 .new{
-  color: black;
-  background: dimgrey;
+  color: darkgrey;
+  background: black;
 }
 .old {
   color: black;
-  background: dimgrey;
+  background: darkslategrey;
 }
+

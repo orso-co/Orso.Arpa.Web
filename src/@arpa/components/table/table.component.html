@@ -12,6 +12,8 @@
   [paginator]="showPagination"
   [rowsPerPageOptions]="rowsPerPage"
   [rows]="rows"
+  [resizableColumns]="true"
+  [autoLayout]="true"
   [scrollHeight]="scrollHeight"
   [scrollable]="scrollable"
   [selectionMode]="selectionMode"
@@ -20,9 +22,11 @@
   [showPageLinks]="showPageLinks"
   [styleClass]="(isMobile | async) ? 'mobile' : ''"
   [tableStyleClass]="tableStyleClass"
+  [tableStyle]="{width: 'max-content'}"
   [totalRecords]="feed ? (feed.totalCount | async) || 0 : 0"
   [value]="(data | async) || []"
   sortMode="multiple"
+  columnResizeMode="expand"
 >
   <ng-template pTemplate="caption">
     <div *ngIf="showFilter" class="filter">
@@ -72,7 +76,7 @@
       <!-- Render all header columns by type -->
       <ng-container *ngFor="let column of activeColumns; trackBy: trackByProperty">
         <ng-container *ngIf="column.type === 'text'">
-          <th [classList]="column.cssClasses" [pSortableColumn]="column.property">
+          <th pResizableColumn [classList]="column.cssClasses" [pSortableColumn]="column.property">
             <div class="p-d-flex p-jc-between p-ai-center">
               {{ column.label | translate }}
               <p-columnFilter *ngIf="!column.hideFilter" display="menu" field="{{ column.property }}" type="text"></p-columnFilter>
@@ -80,7 +84,7 @@
           </th>
         </ng-container>
         <ng-container *ngIf="column.type === 'date'">
-          <th [classList]="column.cssClasses" [pSortableColumn]="column.property">
+          <th pResizableColumn [classList]="column.cssClasses" [pSortableColumn]="column.property">
             <div class="p-d-flex p-jc-between p-ai-center">
               {{ column.label | translate }}
               <p-columnFilter
@@ -95,28 +99,28 @@
           </th>
         </ng-container>
         <ng-container *ngIf="column.type === 'template'">
-          <th [classList]="column.cssClasses" [pSortableColumn]="column.property">
+          <th pResizableColumn [classList]="column.cssClasses" [pSortableColumn]="column.property">
             <div class="p-d-flex p-jc-between p-ai-center">
               {{ column.label | translate }}
             </div>
           </th>
         </ng-container>
         <ng-container *ngIf="column.type === 'badge'">
-          <th [classList]="column.cssClasses" [pSortableColumn]="column.property">
+          <th pResizableColumn style='width: 50px' [classList]="column.cssClasses" [pSortableColumn]="column.property">
             <div class="p-d-flex p-jc-between p-ai-center">
               {{ column.label | translate }}
             </div>
           </th>
         </ng-container>
         <ng-container *ngIf="column.type === 'state'">
-          <th [classList]="column.cssClasses" [pSortableColumn]="column.property">
+          <th pResizableColumn style='width: 50px' [classList]="column.cssClasses" [pSortableColumn]="column.property">
             <div class="p-d-flex p-jc-between p-ai-center p-text-center">
               {{ column.label | translate }}
             </div>
           </th>
         </ng-container>
         <ng-container *ngIf="column.type === 'rating'">
-          <th [classList]="column.cssClasses" [pSortableColumn]="column.property">
+          <th pResizableColumn [classList]="column.cssClasses" [pSortableColumn]="column.property">
             <div class="p-d-flex p-jc-between p-ai-center">
               {{ column.label | translate }}
             </div>
@@ -162,9 +166,9 @@
               {{ resolveValue(column.property, row) }}
             </td>
           </ng-container>
-          <ng-container *ngIf="column.type === 'date'">
-            <td [classList]="column.cssClasses">
-              {{ resolveValue(column.property, row) | date: 'YYYY-MM-dd' }}
+          <ng-container *ngIf="column.type === 'date'" >
+            <td  [classList]="column.cssClasses">
+              {{ resolveValue(column.property, row) | date: 'EE, dd.MM.YYYY - HH:mm': 'locale(de)'  }}
             </td>
           </ng-container>
           <ng-container *ngIf="column.type === 'rating'">

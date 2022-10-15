@@ -1,11 +1,13 @@
 {
-    "AUDITLOGS": "Auditlogs",
-    "CHANGED_BY": "Alterado por",
-    "DETAILS": "Detalhes da entidade",
-    "KEY_VALUES": "Valores-chave",
-    "NEW_VALUES": "Valores actualizados",
-    "OLD_VALUES": "Valores antigos" ,
-    "TABLE": "Tabela",
-    "TIME": "Dia e hora",
-    "TYPE": "Tipo"
+  "AUDITLOGS": "Auditlogs",
+  "CHANGED_BY": "Alterado por",
+  "CHANGED_AT": "Alterado em",
+  "CHANGED_COLUMNS": "Colunas alteradas",
+  "DETAILS": "Detalhes da entidade",
+  "KEY_VALUES": "Valores-chave",
+  "NEW_VALUES": "Valores actualizados",
+  "OLD_VALUES": "Valores antigos",
+  "TABLE": "Tabela",
+  "TIME": "Dia e hora",
+  "TYPE": "Tipo"
 }

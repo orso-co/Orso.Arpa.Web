@@ -1,6 +1,8 @@
 {
   "AUDITLOGS": "Auditlogs",
   "CHANGED_BY": "Changed by",
+  "CHANGED_AT": "Changed at",
+  "CHANGED_COLUMNS": "Changed columns",
   "DETAILS": "Entity Details",
   "KEY_VALUES": "Key Values",
   "NEW_VALUES": "New Values",
