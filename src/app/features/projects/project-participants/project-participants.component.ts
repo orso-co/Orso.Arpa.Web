@@ -6,8 +6,6 @@ import { ColumnDefinition } from '../../../../@arpa/components/table/table.compo
 import { GraphQlFeedComponent } from '../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
 import { DocumentNode } from 'graphql';
 import { ProjectsQuery } from './projectparticipations.graphql';
-import { SectionService } from '../../../shared/services/section.service';
-
 
 @Component({
   selector: 'arpa-project-participants',
@@ -15,35 +13,29 @@ import { SectionService } from '../../../shared/services/section.service';
   styleUrls: ['./project-participants.component.scss'],
 })
 export class ProjectParticipantsComponent implements AfterViewInit {
+
+  @ViewChild('feedSource')
+  private feedSource: GraphQlFeedComponent;
+
   participationStatusInner: Observable<ProjectParticipationDto>;
   participationStatusInternal: Observable<ProjectParticipationDto>;
   projectId: String;
   filteredDataCount: number;
-
-  constructor(private cdref: ChangeDetectorRef, private config: DynamicDialogConfig) {
-    this.projectId = this.config.data.project.id;
-  }
-
+  ready = false;
   query: DocumentNode = ProjectsQuery;
-
   columns: ColumnDefinition<any>[] = [
     { label: 'projects.PARTICIPANTS', property: 'musicianProfile.person.displayName', type: 'text' },
     { label: 'projects.INSTRUMENT', property: 'musicianProfile.instrument.name', type: 'text' },
     { label: 'projects.PARTICIPATION_STATUS_PERFORMER', property: 'participationStatusInner.selectValue.name', type: 'text', },
     { label: 'projects.PARTICIPATION_STATUS_STAFF', property: 'participationStatusInternal.selectValue.name', type: 'text', },
   ];
+  tableData = new BehaviorSubject([]);
+  innerStatsCount: Record<string, number> = {};
+  innerStatsValues: number[] = [];
+  innerStatsKeys: string[] = [];
 
-  @ViewChild('feedSource') private feedSource: GraphQlFeedComponent;
-
-  public tableData = new BehaviorSubject([]);
-  public innerStatsCount: Record<string, number> = {};
-
-  get innerStatsValues() {
-    return Object.values(this.innerStatsCount);
-  }
-
-  get innerStatsKeys() {
-    return Object.keys(this.innerStatsCount);
+  constructor(private cdref: ChangeDetectorRef, private config: DynamicDialogConfig) {
+    this.projectId = this.config.data.project.id;
   }
 
   ngAfterViewInit(): void {
@@ -60,12 +52,14 @@ export class ProjectParticipantsComponent implements AfterViewInit {
               }
             }
           });
+
+          this.innerStatsValues = Object.values(this.innerStatsCount);
+          this.innerStatsKeys = Object.keys(this.innerStatsCount);
+          this.ready = true;
           this.cdref.detectChanges();
           this.filteredDataCount = this.tableData.value.length;
-
         }
       },
     });
   }
 }
-

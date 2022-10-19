@@ -1,13 +1,22 @@
-.chart-container {
+.chart {
+  &-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 330px;
+  }
+
+  &-subcontainer {
+    display: block;
+    flex-direction: row;
+    width: 100%;
+    height: 75%;
+  }
+}
+
+.spinner-container {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 330px;
-}
-
-.chart-subcontainer {
-  display: block;
-  flex-direction: row;
-  width: 100%;
-  height: 75%;
+  justify-content: center;
 }
