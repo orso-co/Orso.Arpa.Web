@@ -29,6 +29,7 @@
   "RELIABILITY": "Zuverlässigkeit",
   "SECTION": "Register",
   "SURNAME": "Nachname",
+  "PROFILE": "Profil",
 
   "contact": {
     "VALUE": "Wert",
@@ -46,7 +47,16 @@
     "STATUS": "Status",
     "BANK_ACCOUNT_REMOVED": "Bankverbindung gelöscht",
     "BANK_ACCOUNT_ADDED": "Bankverbindung hinzugefügt",
-    "BANK_ACCOUNT_MODIFIED": "Bankverbindung geändert"
+    "BANK_ACCOUNT_MODIFIED": "Bankverbindung geändert",
+    "CREATE_NEW_BANK_ACCOUNT": "Bankverbindung hinzufügen"
+
+
+  },
+  "mupro": {
+    "ID": "ID",
+    "INSTRUMENT": "Instrument",
+    "QUALIFICATION": "Qualification",
+    "CREATE_NEW_MUPRO": "Musikerprofil hinzufügen"
 
   }
 }

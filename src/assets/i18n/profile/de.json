@@ -38,7 +38,9 @@
     "PREFERENCE": "Präferenz",
     "COMMENT_INNER": "Kommentar",
     "COMMENT": "Kommentar",
-    "COMMENT_TEAM": "Kommentar Mitarbeiter"
+    "COMMENT_TEAM": "Kommentar Mitarbeiter",
+    "CREATE_NEW_CONTACT": "Kontaktdaten hinzufügen"
+
   },
   "my-projects": {
     "APPLICATIONSTATUS": "Mein Anmeldestatus",
@@ -63,6 +65,8 @@
     "IBAN": "IBAN",
     "BIC": "BIC",
     "COMMENT_INNER": "Kommentar",
-    "STATUS": "Status"
+    "STATUS": "Status",
+    "CREATE_NEW_BANK_ACCOUNT": "Bankverbindung hinzufügen"
+
   }
 }

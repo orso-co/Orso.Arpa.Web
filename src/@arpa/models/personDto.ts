@@ -4,6 +4,7 @@ import { ContactDetailDto } from './contactDetailDto';
 import { ReducedPersonDto } from './reducedPersonDto';
 import { SectionDto } from './sectionDto';
 import { SelectValueDto } from './selectValueDto';
+import { MusicianProfileDto } from './musicianProfileDto';
 
 export interface PersonDto {
   id: string;
@@ -18,6 +19,7 @@ export interface PersonDto {
   contactsRecommended?: Array<ReducedPersonDto>;
   bankAccounts?: Array<BankAccountDto>;
   contactDetails?: Array<ContactDetailDto>;
+  musicianProfiles?: Array<MusicianProfileDto>;
   gender?: SelectValueDto;
   birthName?: string;
   dateOfBirth?: Date;

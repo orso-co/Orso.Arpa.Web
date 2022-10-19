@@ -24,6 +24,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { RatingModule } from 'primeng/rating';
 import { MenuModule } from 'src/@arpa/components/menu/menu.module';
 import { PersonBankdataComponent } from './person-bankdata/person-bankdata.component';
+import { PersonProfilesComponent } from './person-profiles/person-profiles.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { PersonBankdataComponent } from './person-bankdata/person-bankdata.compo
     PersonLayoutComponent,
     PersonBasedataComponent,
     PersonContactdataComponent,
-    PersonBankdataComponent
+    PersonBankdataComponent,
+    PersonProfilesComponent
   ],
   imports: [
     CommonModule,
@@ -58,7 +60,8 @@ import { PersonBankdataComponent } from './person-bankdata/person-bankdata.compo
     CalendarModule,
     AutoCompleteModule,
     RatingModule,
-    SelectButtonModule,
+    SelectButtonModule
+
   ],
 })
 export class PersonDialogModule {

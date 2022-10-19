@@ -28,8 +28,8 @@ export class PersonContactdataComponent implements OnInit {
     { label: 'persons.contact.VALUE', property: 'value', type: 'text' },
     { label: 'persons.contact.PREFERENCE', property: 'preference', type: 'rating', show: true },
     { label: 'persons.contact.TYPE', property: 'typeId', type: 'state', stateTable: 'ContactDetail', stateProperty: 'Type'},
-    { label: 'persons.contact.COMMENT_INNER', property: 'commentInner', type: 'text', show: false },
-    { label: 'persons.contact.COMMENT_TEAM', property: 'commentTeam', type: 'text', show: false },
+    { label: 'persons.contact.COMMENT_INNER', property: 'commentInner', type: 'text', show: true },
+    { label: 'persons.contact.COMMENT_TEAM', property: 'commentTeam', type: 'text', show: true },
   ];
 
   keyOptions = [
