@@ -1,3 +1,41 @@
+<arpa-table
+  [actionsTemplateRef]="actionsTemplate"
+  [columns]="columns"
+  [data]="tableData"
+  [showFilter]="false"
+  [showPagination]="false"
+><ng-template arpaTableColumn="keyTemplate" let-key>
+  <ng-container [ngSwitch]="key">
+    <i *ngSwitchCase="1" class="pi pi-envelope"></i>
+    <i *ngSwitchCase="2" class="pi pi-phone"></i>
+    <i *ngSwitchCase="3" class="pi pi-link"></i>
+    <i *ngSwitchDefault class="pi pi-circle"></i>
+  </ng-container>
+</ng-template>
+</arpa-table>
+<hr />
+
+<h5>{{ 'profile.contact.CREATE_NEW_CONTACT' | translate }}</h5>
+
+<ng-template #actionsTemplate let-row>
+  <button
+    (click)="update(row)"
+    [label]="'project-dialog.UPDATE' | translate"
+    class="p-button-rounded p-button-text p-button-icon-only"
+    icon="pi pi-pencil"
+    pButton
+    type="button"
+  ></button>
+  <button
+    (click)="remove(row)"
+    [label]="'project-dialog.DELETE' | translate"
+    class="p-button-rounded p-button-text p-button-icon-only"
+    icon="pi pi-trash"
+    pButton
+    type="button"
+  ></button>
+</ng-template>
+
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-my-5">
   <div class="p-grid p-fluid p-formgrid">
     <div class="p-field p-col-12 p-xl-6">
@@ -56,38 +94,4 @@
     </div>
   </div>
 </form>
-<hr />
-<arpa-table
-  [actionsTemplateRef]="actionsTemplate"
-  [columns]="columns"
-  [data]="tableData"
-  [showFilter]="false"
-  [showPagination]="false"
-  ><ng-template arpaTableColumn="keyTemplate" let-key>
-    <ng-container [ngSwitch]="key">
-      <i *ngSwitchCase="1" class="pi pi-envelope"></i>
-      <i *ngSwitchCase="2" class="pi pi-phone"></i>
-      <i *ngSwitchCase="3" class="pi pi-link"></i>
-      <i *ngSwitchDefault class="pi pi-circle"></i>
-    </ng-container>
-  </ng-template>
-</arpa-table>
 
-<ng-template #actionsTemplate let-row>
-  <button
-    (click)="update(row)"
-    [label]="'project-dialog.UPDATE' | translate"
-    class="p-button-rounded p-button-text p-button-icon-only"
-    icon="pi pi-pencil"
-    pButton
-    type="button"
-  ></button>
-  <button
-    (click)="remove(row)"
-    [label]="'project-dialog.DELETE' | translate"
-    class="p-button-rounded p-button-text p-button-icon-only"
-    icon="pi pi-trash"
-    pButton
-    type="button"
-  ></button>
-</ng-template>

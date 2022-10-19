@@ -27,8 +27,8 @@ export class UserContactDataComponent implements OnInit {
     { label: 'contact.VALUE', property: 'value', type: 'text' },
     { label: 'contact.PREFERENCE', property: 'preference', type: 'rating', show: true },
     { label: 'contact.TYPE', property: 'typeId', type: 'state', stateTable: 'ContactDetail', stateProperty: 'Type' },
-    { label: 'contact.COMMENT_INNER', property: 'commentInner', type: 'text', show: false },
-    { label: 'contact.COMMENT_TEAM', property: 'commentTeam', type: 'text', show: false },
+    { label: 'contact.COMMENT_INNER', property: 'commentInner', type: 'text', show: true },
+    { label: 'contact.COMMENT_TEAM', property: 'commentTeam', type: 'text', show: true },
   ];
 
   keyOptions = [

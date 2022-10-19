@@ -4,12 +4,12 @@
 
 <div class="user-container">
   <p-tabView [(activeIndex)]="index">
-    <p-tabPanel leftIcon="pi pi-user" [header]="'profile.MY_DATA' | translate" [tooltip]="'profile.MY_DATA_TOOLTIP' | translate">
-      <arpa-user-data [email]="email" [person]="person" [displayName]="displayName"></arpa-user-data>
-    </p-tabPanel>
     <p-tabPanel
       leftIcon="pi pi-phone" [header]="'profile.MY_CONTACT_DATA' | translate" [tooltip]="'profile.MY_CONTACT_DATA_TOOLTIP' | translate">
       <arpa-user-contact-data [contactDetails]="person.contactDetails || []"></arpa-user-contact-data>
+    </p-tabPanel>
+    <p-tabPanel leftIcon="pi pi-user" [header]="'profile.MY_DATA' | translate" [tooltip]="'profile.MY_DATA_TOOLTIP' | translate">
+      <arpa-user-data [email]="email" [person]="person" [displayName]="displayName"></arpa-user-data>
     </p-tabPanel>
     <p-tabPanel
       leftIcon="pi pi-credit-card" [header]="'profile.MY_BANK_DATA' | translate" [tooltip]="'profile.MY_BANK_DATA_TOOLTIP' | translate">

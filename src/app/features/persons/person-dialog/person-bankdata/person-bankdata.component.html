@@ -1,3 +1,14 @@
+<arpa-table
+  [actionsTemplateRef]="actionsTemplate"
+  [columns]="columns"
+  [data]="tableData"
+  [showFilter]="false"
+  [showPagination]="false"
+>
+</arpa-table>
+<hr />
+<h5>{{ 'persons.bank.CREATE_NEW_BANK_ACCOUNT' | translate }}</h5>
+
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-my-5">
   <div class="p-grid p-fluid p-formgrid">
 
@@ -57,17 +68,6 @@
     </div>
   </div>
 </form>
-
-<hr />
-
-<arpa-table
-  [actionsTemplateRef]="actionsTemplate"
-  [columns]="columns"
-  [data]="tableData"
-  [showFilter]="false"
-  [showPagination]="false"
->
-</arpa-table>
 
 <ng-template #actionsTemplate let-row>
   <button
