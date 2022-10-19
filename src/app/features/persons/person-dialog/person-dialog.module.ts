@@ -60,7 +60,8 @@ import { PersonProfilesComponent } from './person-profiles/person-profiles.compo
     CalendarModule,
     AutoCompleteModule,
     RatingModule,
-    SelectButtonModule,
+    SelectButtonModule
+
   ],
 })
 export class PersonDialogModule {
