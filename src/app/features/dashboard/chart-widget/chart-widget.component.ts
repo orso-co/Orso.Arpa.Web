@@ -1,6 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Label } from 'ng2-charts';
 import { selectDashboardFeature } from '../state/state';
 import { WidgetStateService } from '../dashboard.component';
 import { createSelector, Store } from '@ngrx/store';
@@ -10,7 +9,7 @@ import { map } from 'rxjs/operators';
 
 export interface ChartWidgetConfig {
   type: ChartType,
-  labels: Label[],
+  labels: string[],
   store: string,
   props: string[],
 }
@@ -21,7 +20,7 @@ export interface ChartWidgetConfig {
   styleUrls: ['./chart-widget.component.scss'],
 })
 export class ChartWidgetComponent implements OnDestroy {
-  public labels: Observable<Label[]>;
+  public labels: Observable<string[]>;
   public chartType: ChartType = this.widgetStateService.config.type;
   public data: Observable<any> = this.getSelector(this.widgetStateService.config);
   private translateSubscription: Subscription;

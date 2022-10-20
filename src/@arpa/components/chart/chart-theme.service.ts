@@ -7,11 +7,6 @@ import { THEME_NAME } from '../theme-switcher/theme-switcher.service';
   providedIn: 'root',
 })
 export class ChartThemeService {
-
-
-  constructor(private themeService: ThemeService) {
-  }
-
   private _theme: THEME_NAME;
 
   public get theme() {
@@ -23,20 +18,7 @@ export class ChartThemeService {
     let overrides: ChartOptions;
     if (this._theme === THEME_NAME.DARK) {
       overrides = {
-        legend: {
-          labels: { fontColor: 'white' },
-        },
-        scales: {
-          xAxes: [{
-            ticks: { fontColor: 'white' },
-            gridLines: { color: 'rgba(255,255,255,0.1)' },
-          }],
-          yAxes: [{
-            ticks: { fontColor: 'white' },
-            gridLines: { color: 'rgba(255,255,255,0.1)' },
-          }],
-
-        },
+        color: 'white'
       };
     } else {
       overrides = {};
@@ -45,5 +27,8 @@ export class ChartThemeService {
       arc: {},
     };
     this.themeService.setColorschemesOptions(overrides);
+  }
+
+  constructor(private themeService: ThemeService) {
   }
 }

@@ -1,24 +1,25 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, } from '@angular/core';
 import { ChartOptions, ChartType } from 'chart.js';
-import { Label, SingleOrMultiDataSet } from 'ng2-charts';
 
 @Component({
   selector: 'arpa-chart',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.scss'],
 })
-export class ChartComponent implements OnInit {
+export class ChartComponent implements OnInit, OnChanges {
 
-  @Input() data: SingleOrMultiDataSet;
+  @Input() data: any;
+
+  @Input() values: number[];
   @Input() options: ChartOptions = {};
   @Input() type: ChartType;
   @Input() legend: boolean = true;
-  @Input() labels: Label[];
-
-  constructor() {
-  }
+  @Input() labels: string[];
 
   ngOnInit(): void {
+    if (this.values?.length) {
+      this.updateDataset();
+    }
     this.options = {
       responsive: true,
       maintainAspectRatio: false,
@@ -26,4 +27,13 @@ export class ChartComponent implements OnInit {
     };
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.values?.currentValue !== changes.values?.previousValue && changes.values.currentValue) {
+      this.updateDataset();
+    }
+  }
+
+  private updateDataset() {
+    setTimeout(() => this.data = [{ data: this.values }]);
+  }
 }

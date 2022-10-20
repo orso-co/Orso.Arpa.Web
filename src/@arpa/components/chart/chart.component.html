@@ -1,10 +1,12 @@
-<div style='display: block; height: 100%'>
-  <canvas [chartType]='type'
-          [data]='data' [labels]='labels'
-          [legend]='legend'
-          [options]='options'
-          baseChart
-          height='100%'
-          width='100%'>
+<div style="display: block; height: 100%">
+  <canvas baseChart
+    *ngIf="data"
+    [type]="type"
+    [datasets]="data"
+    [labels]="labels"
+    [legend]="legend"
+    [options]="options"
+    height="100%"
+    width="100%">
   </canvas>
 </div>
