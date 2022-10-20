@@ -1,8 +1,9 @@
-<arpa-table
+<arpa-table *ngIf='person?.contactDetails?.length'
   [actionsTemplateRef]="actionsTemplate"
   [columns]="columns"
   [data]="tableData"
   [showFilter]="false"
+  [columnFilter]="false"
   [showPagination]="false"
 ><ng-template arpaTableColumn="keyTemplate" let-key>
   <ng-container [ngSwitch]="key">
@@ -32,7 +33,6 @@
     type="button"
   ></button>
 </ng-template>
-<hr>
 <h5>{{ 'persons.contact.CREATE_NEW_CONTACT' | translate }}</h5>
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-my-5">
   <div class="p-grid p-fluid p-formgrid">

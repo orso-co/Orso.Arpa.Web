@@ -29,7 +29,7 @@
   "RELIABILITY": "Zuverlässigkeit",
   "SECTION": "Register",
   "SURNAME": "Nachname",
-  "PROFILE": "Profil",
+  "PROFILES": "Profile",
 
   "contact": {
     "VALUE": "Wert",
@@ -37,7 +37,7 @@
     "COMMENT_INNER" :"Kommentar Person",
     "COMMENT_TEAM" :"Kommentar Team",
     "PREFERENCE": "Präferenz",
-    "CREATE_NEW_CONTACT": "Kontaktdaten hinzufügen"
+    "CREATE_NEW_CONTACT": "Kontaktdaten hinzufügen:"
   },
   "bank": {
     "BIC": "BIC",
@@ -48,7 +48,7 @@
     "BANK_ACCOUNT_REMOVED": "Bankverbindung gelöscht",
     "BANK_ACCOUNT_ADDED": "Bankverbindung hinzugefügt",
     "BANK_ACCOUNT_MODIFIED": "Bankverbindung geändert",
-    "CREATE_NEW_BANK_ACCOUNT": "Bankverbindung hinzufügen"
+    "CREATE_NEW_BANK_ACCOUNT": "Bankverbindung hinzufügen:"
 
 
   },
@@ -56,7 +56,19 @@
     "ID": "ID",
     "INSTRUMENT": "Instrument",
     "QUALIFICATION": "Qualification",
-    "CREATE_NEW_MUPRO": "Musikerprofil hinzufügen"
+    "CREATE_NEW_MUPRO": "Musikerprofil hinzufügen",
+    "MUSICIAN_PROFILE": "Musikerprofil"
+
+  },
+
+  "member": {
+    "CREATE_NEW_MEMPRO": "Mitgliedsprofil hinzufügen",
+    "MEMBER_PROFILE": "Mitgliedsprofil"
+
+  },
+  "client": {
+    "CREATE_NEW_CLIPRO": "Kundenprofil hinzufügen",
+    "CLIENT_PROFILE": "Kundenprofil"
 
   }
 }

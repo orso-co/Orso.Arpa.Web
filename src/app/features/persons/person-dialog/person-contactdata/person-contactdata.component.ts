@@ -24,7 +24,7 @@ export class PersonContactdataComponent implements OnInit {
   public typeOptions$: Observable<SelectItem[]>;
 
   columns: ColumnDefinition<ContactDetailDto>[] = [
-    { label: '#', property: 'key', type: 'template', template: 'keyTemplate' },
+    // { label: '#', property: 'key', type: 'template', template: 'keyTemplate' },
     { label: 'persons.contact.VALUE', property: 'value', type: 'text' },
     { label: 'persons.contact.PREFERENCE', property: 'preference', type: 'rating', show: true },
     { label: 'persons.contact.TYPE', property: 'typeId', type: 'state', stateTable: 'ContactDetail', stateProperty: 'Type'},

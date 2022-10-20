@@ -1,10 +1,20 @@
-<arpa-table
-  [columns]="columns"
-  [data]="tableData"
-  [showFilter]="false"
-  [showPagination]="false"
->
-</arpa-table>
-<h5>{{ 'persons.mupro.CREATE_NEW_MUPRO' | translate }}</h5>
+<!--<arpa-table-->
+<!--  [columns]="columns"-->
+<!--  [data]="tableData"-->
+<!--  [showFilter]="false"-->
+<!--  [showPagination]="false"-->
+<!--&gt;-->
+<!--</arpa-table>-->
+<!--<h5>{{ 'persons.mupro.CREATE_NEW_MUPRO' | translate }}</h5>-->
 
-<p>An add-button for new musician-profil should appear soon here! (WIP)</p>
+<p-tabView>
+  <p-tabPanel header="{{ 'persons.mupro.MUSICIAN_PROFILE' | translate }}" leftIcon="pi pi-id-card" *ngIf='person?.id'>
+    <arpa-person-profiles-musician [person]="person"></arpa-person-profiles-musician>
+  </p-tabPanel>
+  <p-tabPanel header="{{ 'persons.member.MEMBER_PROFILE' | translate }}" leftIcon="pi pi-id-card" *ngIf='person?.id'>
+    <arpa-person-profiles-member [person]="person"></arpa-person-profiles-member>
+  </p-tabPanel>
+  <p-tabPanel header="{{ 'persons.client.CLIENT_PROFILE' | translate }}" leftIcon="pi pi-id-card" *ngIf='person?.id'>
+    <arpa-person-profiles-client [person]="person"></arpa-person-profiles-client>
+  </p-tabPanel>
+</p-tabView>
