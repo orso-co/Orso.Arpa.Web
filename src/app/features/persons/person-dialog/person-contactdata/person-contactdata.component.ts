@@ -62,7 +62,6 @@ export class PersonContactdataComponent implements OnInit {
     this.typeOptions$ = this.selectValueService
       .load('ContactDetail', 'Type')
       .pipe(map(() => this.selectValueService.get('ContactDetail', 'Type')));
-    // console.log("Type: ", this.typeOptions$);
   }
 
   onSubmit() {

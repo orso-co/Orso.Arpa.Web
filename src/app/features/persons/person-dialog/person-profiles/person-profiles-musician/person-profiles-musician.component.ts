@@ -9,6 +9,8 @@ import { MusicianProfileDto } from '../../../../../../@arpa/models/musicianProfi
 import { MuproService } from '../../services/mupro.service';
 import { NotificationsService } from '../../../../../../@arpa/services/notifications.service';
 import { SelectValueService } from '../../../../../shared/services/select-value.service';
+import { DocumentNode } from 'graphql';
+import { PersonQuery } from '../../../services/person.graphql';
 
 @Component({
   selector: 'arpa-person-profiles-musician',
@@ -23,9 +25,14 @@ export class PersonProfilesMusicianComponent implements OnInit {
   private _tableData: Array<any>;
   tableData: BehaviorSubject<any> = new BehaviorSubject([])
 
+
   columns: ColumnDefinition<MusicianProfileDto>[] = [
-    { label: 'persons.mupro.INSTRUMENT', property: 'sectionName', type: 'text'},
-    { label: 'persons.mupro.QUALIFICATION', property: 'qualification', type: 'text'}
+    { label: 'persons.mupro.INSTRUMENT', property: 'instrument.name', type: 'text'},
+    { label: 'persons.mupro.LEVEL_ASSESSMENT_TEAM', property: 'levelAssessmentTeam', type: 'rating'},
+    { label: 'persons.mupro.BACKGROUND_TEAM', property: 'backgroundTeam', type: 'text'},
+
+    // { label: 'persons.mupro.QUALIFICATION', property: 'qualificationId', type: 'state', stateTable: 'MusicianProfile', stateProperty: 'Qualification', show: true},
+
   ];
 
   constructor(
