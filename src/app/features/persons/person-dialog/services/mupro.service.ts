@@ -20,11 +20,11 @@ export class MuproService {
     return this.apiService.post<MusicianProfileDto>(`${this.baseUrl}/${personId}/musician`, dto).pipe(shareReplay());
   }
 
-  // updateMusicianProfile(personId: string, id: string, dto: MusicianProfileModifyBodyDto): Observable<any> {
-  //   return this.apiService.put(`${this.baseUrl}/${personId}/musician/${id}`, dto).pipe(shareReplay());
-  // }
-  //
-  // deleteMusicianProfile(id: string, personId: any): Observable<any> {
-  //   return this.apiService.delete(`${this.baseUrl}/${personId}/musician/${id}`).pipe(shareReplay());
-  // }
+  updateMusicianProfile(personId: string, id: string, dto: MusicianProfileModifyBodyDto): Observable<any> {
+    return this.apiService.put(`${this.baseUrl}/${personId}/musician/${id}`, dto).pipe(shareReplay());
+  }
+
+  deleteMusicianProfile(id: string, personId: any): Observable<any> {
+    return this.apiService.delete(`${this.baseUrl}/${personId}/musician/${id}`).pipe(shareReplay());
+  }
 }

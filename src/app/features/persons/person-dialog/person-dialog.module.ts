@@ -25,6 +25,9 @@ import { RatingModule } from 'primeng/rating';
 import { MenuModule } from 'src/@arpa/components/menu/menu.module';
 import { PersonBankdataComponent } from './person-bankdata/person-bankdata.component';
 import { PersonProfilesComponent } from './person-profiles/person-profiles.component';
+import { PersonProfilesMusicianComponent } from './person-profiles/person-profiles-musician/person-profiles-musician.component';
+import { PersonProfilesMemberComponent } from './person-profiles/person-profiles-member/person-profiles-member.component';
+import { PersonProfilesClientComponent } from './person-profiles/person-profiles-client/person-profiles-client.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { PersonProfilesComponent } from './person-profiles/person-profiles.compo
     PersonBasedataComponent,
     PersonContactdataComponent,
     PersonBankdataComponent,
-    PersonProfilesComponent
+    PersonProfilesComponent,
+    PersonProfilesMusicianComponent,
+    PersonProfilesMemberComponent,
+    PersonProfilesClientComponent
   ],
   imports: [
     CommonModule,

@@ -1,12 +1,10 @@
-<arpa-table
+<arpa-table *ngIf='person?.bankAccounts?.length'
   [actionsTemplateRef]="actionsTemplate"
   [columns]="columns"
   [data]="tableData"
   [showFilter]="false"
   [showPagination]="false"
->
-</arpa-table>
-<hr />
+></arpa-table>
 <h5>{{ 'persons.bank.CREATE_NEW_BANK_ACCOUNT' | translate }}</h5>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-my-5">
