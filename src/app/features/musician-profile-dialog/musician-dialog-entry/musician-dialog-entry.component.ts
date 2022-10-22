@@ -65,6 +65,7 @@ export class MusicianDialogEntryComponent {
         sections,
         doublingInstruments,
         isMe: this.route.snapshot.url.length > 1 && this.route.snapshot.url[0].path === 'me',
+        personId: this.route.snapshot.params?.personId,
         comboInstrumentView: this.route.snapshot.queryParamMap.get('comboInstruments') || false,
       },
       header: selection ? this.translate.instant('EDIT') : this.translate.instant('CREATE'),

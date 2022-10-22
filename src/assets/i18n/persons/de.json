@@ -57,7 +57,10 @@
     "INSTRUMENT": "Instrument",
     "QUALIFICATION": "Qualification",
     "CREATE_NEW_MUPRO": "Musikerprofil hinzufügen",
-    "MUSICIAN_PROFILE": "Musikerprofil"
+    "MUSICIAN_PROFILE": "Musikerprofil",
+    "LEVEL_ASSESSMENT_TEAM": "Level KBB",
+    "BACKGROUND_TEAM": "Background (Team)"
+
 
   },
 

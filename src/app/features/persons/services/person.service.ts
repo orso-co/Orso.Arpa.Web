@@ -4,9 +4,11 @@ import { Observable } from 'rxjs';
 import { ApiService } from '../../../../@arpa/services/api.service';
 import { PersonDto } from '../../../../@arpa/models/personDto';
 import { ReducedPersonDto } from 'src/@arpa/models/reducedPersonDto';
-import { map, shareReplay } from 'rxjs/operators';
+import { first, map, shareReplay } from 'rxjs/operators';
 import { PersonModifyBodyDto } from 'src/@arpa/models/personModifyBodyDto';
 import { PersonInviteResultDto } from 'src/@arpa/models/personInviteResultDto';
+import { PersonQuery } from './person.graphql';
+import { cloneDeep } from 'lodash-es';
 
 @Injectable({
   providedIn: 'root',
@@ -23,8 +25,15 @@ export class PersonService {
   }
 
   public getPerson(id: string): Observable<PersonDto> {
-    return this.apiService.get<PersonDto>(`${this.baseUrl}/${id}`);
-
+    // return this.apiService.get<PersonDto>(`${this.baseUrl}/${id}`);
+    return this.apollo.query({query: PersonQuery, variables: {id}})
+      .pipe(
+        first(),
+        map((result:any) => {
+          const person =  result.data.persons.items?.[0];
+          return person ? cloneDeep(person) : {};
+        })
+      );
   }
   public invitePersons(ids: string[]): Observable<PersonInviteResultDto> {
     return this.apiService.post<PersonInviteResultDto>(`${this.baseUrl}/invite`, {personIds: ids}).pipe(shareReplay());

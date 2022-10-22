@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { Observable } from 'rxjs';
-import { map, shareReplay, tap } from 'rxjs/operators';
+import { catchError, map, shareReplay, tap } from 'rxjs/operators';
 import { ApiService } from '../../../@arpa/services/api.service';
 import { SelectValueDto } from '../../../@arpa/models/selectValueDto';
 
@@ -18,6 +18,7 @@ export class SelectValueService {
 
   load(tableName: string, propertyName: string): Observable<SelectItem[]> {
     return this.apiService.get<SelectValueDto[]>(`${this.baseUrl}/${tableName}/properties/${propertyName}`).pipe(
+      catchError(err => []),
       shareReplay(),
       map((dtos) => dtos.map((v) => this.mapSelectValueToSelectItem(v))),
       tap((selectItems) => this.selectValues.set(this.getMapKey(tableName, propertyName), selectItems)),

@@ -1,37 +1,22 @@
-<arpa-table *ngIf='person?.musicianProfiles?.length'
+<arpa-table *ngIf="person?.musicianProfiles?.length"
   [columns]="columns"
   [data]="tableData"
   [showFilter]="false"
+  [columnFilter]="false"
   [showPagination]="false"
 ></arpa-table>
 
 <h5>{{ 'persons.mupro.CREATE_NEW_MUPRO' | translate }}</h5>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-my-5">
-  <div class="p-grid p-fluid p-formgrid">
-
-    <div class="p-col-12 p-xl-6">
-      <arpa-form-field label="persons.mupro.INSTRUMENT" type="select">
-        <p-dropdown
-          [options]="(instrumentOptions$ | async) || []"
-          [placeholder]="'NOTHING_SELECTED' | translate"
-          formControlName="instrumentId"
-          optionLabel="label"
-          optionValue="value"
-        ></p-dropdown>
-      </arpa-form-field>
-    </div>
+<div class="p-formgroup-inline p-jc-between">
+  <div class="p-text-left">
+    <button
+      [label]="'persons.mupro.CREATE_NEW_MUPRO' | translate"
+      icon="pi pi-check"
+      iconPos="right"
+      [disabled]="!person?.id"
+      pButton
+      (click)="createNewMuPro()"
+    ></button>
   </div>
-  <div class="p-formgroup-inline p-jc-between">
-    <div class="p-text-left">
-      <button
-        [disabled]="form.pristine || form.invalid"
-        [label]="'SAVE' | translate"
-        icon="pi pi-check"
-        iconPos="right"
-        pButton
-        type="submit"
-      ></button>
-    </div>
-  </div>
-</form>
+</div>

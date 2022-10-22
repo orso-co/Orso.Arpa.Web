@@ -1,10 +1,10 @@
 import { SelectValueService } from '../../../../shared/services/select-value.service';
 import { ContactDetailDto } from '../../../../../@arpa/models/contactDetailDto';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationsService } from 'src/@arpa/services/notifications.service';
 import { ColumnDefinition } from 'src/@arpa/components/table/table.component';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 import { SelectItem } from 'primeng/api';
 import { PersonDto } from 'src/@arpa/models/personDto';
@@ -15,7 +15,7 @@ import { ContactService } from '../services/contact.service';
   templateUrl: './person-contactdata.component.html',
   styleUrls: ['./person-contactdata.component.scss'],
 })
-export class PersonContactdataComponent implements OnInit {
+export class PersonContactdataComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   tableData: BehaviorSubject<any> = new BehaviorSubject([]);
   private _tableData: Array<any>;
@@ -37,6 +37,7 @@ export class PersonContactdataComponent implements OnInit {
     { icon: 'pi pi-phone', value: 2 },
     { icon: 'pi pi-link', value: 3 },
   ];
+  private subscription: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -57,12 +58,14 @@ export class PersonContactdataComponent implements OnInit {
 
   ngOnInit() {
     if (this.person) {
-      this.tableData.next(this.person.contactDetails);
+      this.person.contactDetails = this.person.contactDetails || [];
+      this._tableData = this.person.contactDetails;
+      this.tableData.next(this._tableData);
+      this.subscription = this.tableData.subscribe(d => this.person!.contactDetails = d);
     }
     this.typeOptions$ = this.selectValueService
       .load('ContactDetail', 'Type')
       .pipe(map(() => this.selectValueService.get('ContactDetail', 'Type')));
-    // console.log("Type: ", this.typeOptions$);
   }
 
   onSubmit() {
@@ -84,11 +87,8 @@ export class PersonContactdataComponent implements OnInit {
           .addContactDetail(this.person.id, { id, key, value, typeId, commentInner, commentTeam, preference: preference || 0 })
           .pipe(first())
           .subscribe((result) => {
-            if (this.person && !this.person?.contactDetails) {
-              this.person.contactDetails = [];
-            }
-            this.person?.contactDetails?.push(result);
-            this.tableData.next(this.person?.contactDetails);
+            this._tableData.push(result);
+            this.tableData.next(this._tableData);
             this.notificationsService.success('CONTACT_DETAIL_ADDED', 'person-dialog');
             this.form.reset({});
           });
@@ -102,7 +102,8 @@ export class PersonContactdataComponent implements OnInit {
         .deleteContactDetail(contactDetails.id, this.person?.id )
         .pipe(first())
         .subscribe(() => {
-          this.tableData.next(this.person?.contactDetails?.filter((e) => e.id != contactDetails.id));
+          this._tableData = this._tableData.filter(e => e.id !== contactDetails.id);
+          this.tableData.next(this._tableData);
           this.notificationsService.success('CONTACT_DETAIL_REMOVED', 'person-dialog');
         });
     }
@@ -123,5 +124,9 @@ export class PersonContactdataComponent implements OnInit {
 
   onCancel(): void {
     this.form.reset({});
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }

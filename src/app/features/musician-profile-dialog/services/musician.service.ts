@@ -28,8 +28,12 @@ export class MusicianService {
     return this.apiService.get<MusicianProfileDto>(`${this.baseUrlPersons}/${id}/profiles/musician`);
   }
 
-  createProfile(profile: MusicianProfileDto): Observable<any> {
+  createProfileForMe(profile: MusicianProfileDto): Observable<any> {
     return this.apiService.post(`${this.baseUrlMe}`, profile);
+  }
+
+  createProfileForPerson(personId: string, profile: MusicianProfileDto): Observable<any> {
+    return this.apiService.post(`${this.baseUrlPersons}/${personId}/profiles/musician`, profile);
   }
 
   deactivateProfile(id: any, data: MusicianProfileDeactivationCreateDto): Observable<any> {
