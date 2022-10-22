@@ -14,6 +14,7 @@ import { PersonQuery } from '../../../services/person.graphql';
 import { Router } from '@angular/router';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
+
 @Component({
   selector: 'arpa-person-profiles-musician',
   templateUrl: './person-profiles-musician.component.html',
