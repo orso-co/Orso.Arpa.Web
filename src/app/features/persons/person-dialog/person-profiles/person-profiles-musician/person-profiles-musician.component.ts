@@ -12,6 +12,7 @@ import { SelectValueService } from '../../../../../shared/services/select-value.
 import { DocumentNode } from 'graphql';
 import { PersonQuery } from '../../../services/person.graphql';
 
+
 @Component({
   selector: 'arpa-person-profiles-musician',
   templateUrl: './person-profiles-musician.component.html',
