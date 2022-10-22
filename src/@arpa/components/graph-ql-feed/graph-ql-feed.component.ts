@@ -47,8 +47,8 @@ export class GraphQlFeedComponent implements OnInit, OnDestroy, OnChanges {
   };
   private feedQuery: QueryRef<any, Record<string, any>>;
   private feedSubscription: Subscription;
-  private hasNextPage: boolean;
-  private hasPreviousPage: boolean;
+  private hasNextPage?: boolean;
+  private hasPreviousPage?: boolean;
 
   constructor(private apollo: Apollo) {
     this.variables.take = this.variables.take ? this.variables.take : 20;
