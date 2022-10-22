@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { PersonDto } from '../../../../../@arpa/models/personDto';
 import { SelectItem } from 'primeng/api';
 import { ColumnDefinition } from '../../../../../@arpa/components/table/table.component';
@@ -15,7 +15,7 @@ import { first, map } from 'rxjs/operators';
   templateUrl: './person-bankdata.component.html',
   styleUrls: ['./person-bankdata.component.scss']
 })
-export class PersonBankdataComponent implements OnInit {
+export class PersonBankdataComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   tableData: BehaviorSubject<any> = new BehaviorSubject([]);
   private _tableData: Array<any>;
@@ -31,7 +31,7 @@ export class PersonBankdataComponent implements OnInit {
     { label: 'persons.bank.COMMENT_INNER', property: 'commentInner', type: 'text'},
 
   ];
-
+  private subscription: Subscription;
   constructor(
     private formBuilder: FormBuilder,
     private bankService: BankAccountService,
@@ -51,12 +51,14 @@ export class PersonBankdataComponent implements OnInit {
 
   ngOnInit() {
     if (this.person) {
-    this.tableData.next(this.person.bankAccounts);
+      this.person.bankAccounts = this.person.bankAccounts || [];
+      this._tableData = this.person.bankAccounts;
+      this.tableData.next(this._tableData);
+      this.subscription = this.tableData.subscribe(d => this.person!.bankAccounts = d);
   }
   this.statusOptions$ = this.selectValueService
     .load('BankAccount', 'State')
     .pipe(map(() => this.selectValueService.get('BankAccount', 'State')));
-    // console.log("dropdown-values" , this.statusOptions$);
   }
 
   onSubmit() {
@@ -78,11 +80,8 @@ export class PersonBankdataComponent implements OnInit {
           .addBankAccount(this.person.id, { id, bic, iban, accountOwner, commentInner })
           .pipe(first())
           .subscribe((result) => {
-            if (this.person && !this.person?.bankAccounts) {
-              this.person.bankAccounts = [];
-            }
-            this.person?.bankAccounts?.push(result);
-            this.tableData.next(this.person?.bankAccounts);
+            this._tableData.push(result);
+            this.tableData.next(this._tableData);
             this.notificationsService.success('BANK_ACCOUNT_ADDED', 'person-dialog');
             this.form.reset({});
           });
@@ -96,7 +95,8 @@ export class PersonBankdataComponent implements OnInit {
         .deleteBankAccount(bankAccounts.id, this.person?.id )
         .pipe(first())
         .subscribe(() => {
-          this.tableData.next(this.person?.bankAccounts?.filter((e) => e.id != bankAccounts.id));
+          this._tableData = this._tableData.filter(e => e.id !== bankAccounts.id);
+          this.tableData.next(this._tableData);
           this.notificationsService.success('BANK_ACCOUNT_REMOVED', 'person-dialog');
         });
     }
@@ -115,6 +115,10 @@ export class PersonBankdataComponent implements OnInit {
 
   onCancel(): void {
     this.form.reset({});
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 
 }

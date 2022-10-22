@@ -8,6 +8,7 @@ import { first, map, shareReplay } from 'rxjs/operators';
 import { PersonModifyBodyDto } from 'src/@arpa/models/personModifyBodyDto';
 import { PersonInviteResultDto } from 'src/@arpa/models/personInviteResultDto';
 import { PersonQuery } from './person.graphql';
+import { cloneDeep } from 'lodash-es';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +30,8 @@ export class PersonService {
       .pipe(
         first(),
         map((result:any) => {
-          return result.data.persons.items?.[0]
+          const person =  result.data.persons.items?.[0];
+          return person ? cloneDeep(person) : {};
         })
       );
   }
