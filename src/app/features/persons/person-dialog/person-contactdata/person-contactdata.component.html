@@ -5,7 +5,9 @@
   [showFilter]="false"
   [columnFilter]="false"
   [showPagination]="false"
-><ng-template arpaTableColumn="keyTemplate" let-key>
+  (rowClickEvents)='update($event)'
+
+><ng-template arpaTableColumn="keyTemplate" let-key >
   <ng-container [ngSwitch]="key">
     <i *ngSwitchCase="1" class="pi pi-envelope"></i>
     <i *ngSwitchCase="2" class="pi pi-phone"></i>
@@ -16,14 +18,6 @@
 </arpa-table>
 
 <ng-template #actionsTemplate let-row>
-  <button
-    (click)="update(row)"
-    [label]="'person-dialog.UPDATE' | translate"
-    class="p-button-rounded p-button-text p-button-icon-only"
-    icon="pi pi-pencil"
-    pButton
-    type="button"
-  ></button>
   <button
     (click)="remove(row)"
     [label]="'person-dialog.DELETE' | translate"
