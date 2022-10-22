@@ -4,6 +4,7 @@
   [showFilter]="false"
   [columnFilter]="false"
   [showPagination]="false"
+  (rowClickEvents)='onRowClick($event)'
 ></arpa-table>
 
 <h5>{{ 'persons.mupro.CREATE_NEW_MUPRO' | translate }}</h5>

@@ -53,6 +53,12 @@ export class PersonProfilesMusicianComponent implements OnInit {
     })
 
   }
+  onRowClick(person: PersonDto) {
+    this.router
+      .navigate(['/arpa', 'mupro', this.person!.id, 'projects'])
+      .then(() => this.ref.close(true));
+  }
+
   ngOnInit(): void {
     if (this.person) {
       this.tableData.next(this.person.musicianProfiles);
