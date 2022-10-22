@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
 import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { SectionDto } from '../../../../@arpa/models/sectionDto';
@@ -10,6 +10,7 @@ import { first, map, tap } from 'rxjs/operators';
 import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 import { MusicianService } from '../services/musician.service';
 import { SectionService } from '../../../shared/services/section.service';
+import { cloneDeep } from 'lodash-es';
 
 @Component({
   selector: 'arpa-musician-main-instrument',
@@ -20,6 +21,8 @@ export class MusicianMainInstrumentComponent implements OnInit {
   @Output()
   viewState = new EventEmitter<number>();
 
+  private personId: string;
+
   public form: FormGroup;
 
   public profile: MusicianProfileDto;
@@ -27,6 +30,7 @@ export class MusicianMainInstrumentComponent implements OnInit {
   public inquiryStatus: Observable<SelectItem[]>;
   public preferredParts: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
   public preferredPositions: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
+  public qualificationOptions$: Observable<SelectItem[]>;
 
   selectedInstrument: any;
   state: string = 'createOrUpdate';
@@ -40,10 +44,12 @@ export class MusicianMainInstrumentComponent implements OnInit {
     private notificationsService: NotificationsService,
     private sectionsService: SectionService
   ) {
+    this.qualificationOptions$ = this.resolveSelect('Qualification');
     this.inquiryStatus = this.resolveSelect('InquiryStatusInner');
     this.config.data.profile.pipe(first()).subscribe((profile: MusicianProfileDto) => {
       this.profile = profile;
     });
+    this.personId = this.config.data.personId;
   }
 
   get isNew(): boolean {
@@ -59,6 +65,7 @@ export class MusicianMainInstrumentComponent implements OnInit {
       inquiryStatusInnerId: [null, [Validators.required]],
       preferredPositionsInnerIds: [[], []],
       isMainProfile: [false, []],
+      qualificationId: [null, [Validators.required]]
     });
 
     this.form.controls.instrumentId.valueChanges.subscribe((id) => {
@@ -121,14 +128,28 @@ export class MusicianMainInstrumentComponent implements OnInit {
 
   private createOrUpdate(profile: MusicianProfileDto): void {
     if (this.isNew) {
-      this.musicianService
-        .createProfile(profile)
-        .pipe(first())
-        .subscribe((result) => {
-          this.config.data.profile.next(result);
-          this.notificationsService.success('CREATED', 'musician-profile-dialog');
-          this.state = 'created';
-        });
+      if (this.personId) {
+        const otherPersonProfile = cloneDeep(profile);
+        otherPersonProfile.levelAssessmentTeam = otherPersonProfile.levelAssessmentInner;
+        delete otherPersonProfile.levelAssessmentInner;
+        this.musicianService
+          .createProfileForPerson(this.personId, otherPersonProfile)
+          .pipe(first())
+          .subscribe((result) => {
+            this.config.data.profile.next(result);
+            this.notificationsService.success('CREATED', 'musician-profile-dialog');
+            this.state = 'created';
+          });
+      } else {
+        this.musicianService
+          .createProfileForMe(profile)
+          .pipe(first())
+          .subscribe((result) => {
+            this.config.data.profile.next(result);
+            this.notificationsService.success('CREATED', 'musician-profile-dialog');
+            this.state = 'created';
+          });
+      }
     } else {
       this.musicianService
         .updateProfile(profile)
