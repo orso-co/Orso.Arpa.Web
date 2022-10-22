@@ -8,6 +8,14 @@ import { ProfilesResolver } from './resolvers/profiles.resolver';
 
 const routes: Routes = [
   {
+    path: 'create/:personId',
+    component: MusicianDialogEntryComponent,
+    resolve: {
+      profiles: ProfileMusicianResolver,
+      sections: SectionsResolver,
+    },
+  },
+  {
     path: 'create',
     component: MusicianDialogEntryComponent,
     resolve: {

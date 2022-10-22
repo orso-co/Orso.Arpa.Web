@@ -21,7 +21,7 @@
     <ng-template #feed let-feed>
       <ul>
         <button
-          [routerLink]="[ {outlets:  {modal: ['detail', personId] } }]"
+          [routerLink]="[ '/arpa', 'persons', {outlets:  {modal: ['detail', personId] } }]"
           class='p-button-rounded p-button-text'
           icon='pi pi-user'
           label="{{ 'GO_TO_PERSON' | translate }}"
