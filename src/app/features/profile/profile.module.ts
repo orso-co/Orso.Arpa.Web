@@ -38,6 +38,9 @@ import { UserComponent } from './user/user.component';
 import { UserContactDataComponent } from './user-contact-data/user-contact-data.component';
 import { UserDataComponent } from './user-data/user-data.component';
 import { UserBankdataComponent } from './user-bankdata/user-bankdata.component';
+import { MyProjectsParticipationComponent } from './my-projects/my-projects-participation/my-projects-participation.component';
+import { MyProjectsDetailsComponent } from './my-projects/my-projects-details/my-projects-details.component';
+import { MyProjectsAppointmentsComponent } from './my-projects/my-projects-appointments/my-projects-appointments.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,9 @@ import { UserBankdataComponent } from './user-bankdata/user-bankdata.component';
     UserDataComponent,
     UserContactDataComponent,
     UserBankdataComponent,
+    MyProjectsParticipationComponent,
+    MyProjectsDetailsComponent,
+    MyProjectsAppointmentsComponent,
   ],
   imports: [
     CommonModule,
