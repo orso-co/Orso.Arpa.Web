@@ -52,7 +52,7 @@
 
     <ng-template pTemplate='content'>
       <p-tabView>
-        <p-tabPanel header="{{ 'my-projects.APPLICATIONSTATUS' | translate }}" leftIcon='pi pi-user-edit'>
+        <p-tabPanel [headerStyle]="{'font-size': 'smaller', 'font-weight': 'lighter'}" header="{{ 'my-projects.APPLICATIONSTATUS' | translate }}" leftIcon='pi pi-user-edit'>
           <div class='p-fluid p-mt-1 p-formgrid p-grid general-container'>
             <div *ngFor='let participation of myProject.participations' class='p-col-12'>
 
@@ -90,7 +90,7 @@
           </div>
         </p-tabPanel>
 
-        <p-tabPanel header="{{ 'my-projects.PROJECTDETAILS' | translate }}" leftIcon='pi pi-info-circle'>
+        <p-tabPanel [headerStyle]="{'font-size': 'smaller', 'font-weight': 'lighter'}" header="{{ 'my-projects.PROJECTDETAILS' | translate }}" leftIcon='pi pi-info-circle'>
           <div class='p-fluid p-mt-1 p-formgrid p-grid comparison-container'>
             <div *ngIf='myProject.project.type?.name' class='p-col-3 content-item'>
 
@@ -125,7 +125,7 @@
             </div>
         </p-tabPanel>
 
-        <p-tabPanel header="{{ 'my-projects.MY_PROJECT_APPOINTMENTS' | translate }}" leftIcon='pi pi-calendar-times'>
+        <p-tabPanel [headerStyle]="{'font-size': 'smaller', 'font-weight': 'lighter'}" header="{{ 'my-projects.MY_PROJECT_APPOINTMENTS' | translate }}" leftIcon='pi pi-calendar-times'>
 <h3 align='center'>Coming soon...</h3>
         </p-tabPanel>
       </p-tabView>
