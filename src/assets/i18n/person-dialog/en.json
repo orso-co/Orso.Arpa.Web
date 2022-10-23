@@ -21,6 +21,7 @@
   "BASE_DATA": "Base Data",
   "CONTACT_DATA": "Contact Data",
   "CONTACT_DETAIL_ADDED": "Contact Detail added",
+  "CONTACT_DETAIL_MODIEFIED": "Contact Detail modified",
   "BANK_ACCOUNT_MODIFIED": "Bank Account modified",
   "BANK_ACCOUNT_REMOVED": "Bank Account removed",
   "BANK_ACCOUNT_ADDED": "Bank Account added",
