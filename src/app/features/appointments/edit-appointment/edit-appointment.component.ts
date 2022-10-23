@@ -1,5 +1,5 @@
-import { AppointmentParticipationListItemDto } from './../../../../@arpa/models/appointmentParticipationListItemDto';
-import { ReducedMusicianProfileDto } from './../../../../@arpa/models/reducedMusicianProfileDto';
+import { AppointmentParticipationListItemDto } from '../../../../@arpa/models/appointmentParticipationListItemDto';
+import { ReducedMusicianProfileDto } from '../../../../@arpa/models/reducedMusicianProfileDto';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +14,6 @@ import { SectionDto } from '../../../../@arpa/models/sectionDto';
 import { ProjectDto } from '../../../../@arpa/models/projectDto';
 import { VenueDto } from '../../../../@arpa/models/venueDto';
 import { RoomDto } from '../../../../@arpa/models/roomDto';
-import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
 
 class ParticipationTableItem {
   givenName: string;
@@ -125,13 +124,13 @@ export class EditAppointmentComponent implements OnInit {
     this.setRooms(this.appointment.venueId);
 
     this.columns = [
-      { field: 'surname', header: this.translate.instant('SURNAME'), width: '15%' },
-      { field: 'givenName', header: this.translate.instant('GIVENNAME'), width: '15%' },
-      { field: 'predictionId', header: this.translate.instant('appointments.PREDICTION'), width: '25%' },
+      { field: 'surname', header: this.translate.instant('SURNAME'), width: '10%' },
+      { field: 'givenName', header: this.translate.instant('GIVENNAME'), width: '10%' },
+      { field: 'predictionId', header: this.translate.instant('appointments.PREDICTION'), width: '15%' },
       { field: 'resultId', header: this.translate.instant('appointments.RESULTS'), width: '15%' },
-      { field: 'sections', header: this.translate.instant('appointments.SECTIONS'), width: '15%' },
-      { field: 'qualification', header: this.translate.instant('appointments.LEVEL'), width: '15%' },
-  
+      { field: 'sections', header: this.translate.instant('appointments.SECTIONS'), width: '20%' },
+      { field: 'qualification', header: this.translate.instant('appointments.QUALIFICATION'), width: '20%' },
+
     ];
 
     this.createStepperMenu();

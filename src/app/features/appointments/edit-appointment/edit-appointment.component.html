@@ -15,8 +15,8 @@
             type="text"
           />
         </div>
-        <div class="p-field p-fluid p-col-12 p-md-6">
-          <label for="status">{{ 'appointments.STATUS' | translate }} </label>
+        <div class="p-field p-fluid p-col-12 p-md-6 ">
+          <label for="status" >{{ 'appointments.STATUS' | translate }} </label>
           <p-dropdown
             [autoDisplayFirst]="false"
             [options]="statusOptions"
@@ -25,7 +25,7 @@
             formControlName="statusId"
             id="status"
             placeholer="Select status"
-          ></p-dropdown>
+            ></p-dropdown>
         </div>
 
         <div class="p-field p-fluid p-col-8 p-md-4">
@@ -100,7 +100,6 @@
           <label for="category">{{ 'appointments.CATEGORY' | translate }} </label>
           <p-dropdown
             [autoDisplayFirst]="false"
-            [autoDisplayFirst]="false"
             [options]="categoryOptions"
             [showClear]="true"
             appendTo="body"
@@ -112,7 +111,6 @@
         <div class="p-field p-fluid p-col-12 p-md-6">
           <label for="expectation">{{ 'appointments.EXPECTATION' | translate }} </label>
           <p-dropdown
-            [autoDisplayFirst]="false"
             [autoDisplayFirst]="false"
             [options]="expectationOptions"
             [showClear]="true"
@@ -199,7 +197,6 @@
             <p-dropdown
               (onChange)="onVenueChanged($event)"
               [(ngModel)]="appointment.venueId"
-              [autoDisplayFirst]="false"
               [autoDisplayFirst]="false"
               [options]="venueOptions"
               [showClear]="true"
@@ -299,12 +296,18 @@
                 *ngSwitchCase="'surname'"
                 pInputText
                 type="text"
+                [style]="{ width: '100%' }"
+
+
               />
               <input
                 (input)="participationTable.filter($event.target.value, col.field, 'contains')"
                 *ngSwitchCase="'givenName'"
                 pInputText
                 type="text"
+                [style]="{ width: '100%' }"
+
+
               />
               <p-dropdown
               (onChange)="participationTable.filter($event.value, col.field, 'equals')"
@@ -333,7 +336,7 @@
                 [style]="{ width: '100%' }"
                 appendTo="body"
               ></p-dropdown>
-           
+
               <p-dropdown
                 (onChange)="participationTable.filter($event.value, col.field, 'contains')"
                 *ngSwitchCase="'qualification'"
@@ -348,15 +351,15 @@
         </ng-template>
         <ng-template let-item pTemplate="body">
           <tr>
-            <td width="15%">
+            <td>
               <span class="p-column-title">{{ 'SURNAME' | translate }}</span>
               {{ item.surname }}
             </td>
-            <td width="15%">
+            <td>
               <span class="p-column-title">{{ 'GIVENNAME' | translate }}</span>
               {{ item.givenName }}
             </td>
-            <td width="25%">
+            <td>
               <span class="p-column-title">{{ 'appointments.PREDICTION' | translate }}</span>
               <p-dropdown
                 *ngIf="item.predictionId"
@@ -369,7 +372,7 @@
                 placeholder="Select prediction"
               ></p-dropdown>
             </td>
-            <td width="15%">
+            <td>
               <span class="p-column-title">{{ 'appointments.RESULTS' | translate }}</span>
               <p-dropdown
                 (onChange)="onResultChanged(item, $event)"
@@ -381,15 +384,15 @@
                 placeholder="Select result"
               ></p-dropdown>
             </td>
-            <td width="15%">
+            <td>
               <span class="p-column-title">{{ 'SECTIONS' | translate }}</span>
               {{ item.sections }}
             </td>
-            <td width="15%">
-              <span class="p-column-title">{{ 'appointments.LEVEL' | translate }}</span>
+            <td>
+              <span class="p-column-title">{{ 'appointments.QUALIFICATION' | translate }}</span>
               {{ item.qualification }}
             </td>
-            
+
           </tr>
         </ng-template>
         <ng-template let-columns pTemplate="emptymessage">

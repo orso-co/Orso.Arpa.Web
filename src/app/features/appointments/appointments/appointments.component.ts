@@ -34,7 +34,9 @@ export interface CalendarEvent {
   styleUrls: ['./appointments.component.scss'],
 })
 @Unsubscribe()
+
 export class AppointmentsComponent {
+
   langChangeListener: Subscription;
   sectionsSubscription: Subscription;
   categoryOptions: SelectItem[] = [];
@@ -47,9 +49,13 @@ export class AppointmentsComponent {
   venues: VenueDto[] = [];
   predictionOptions: SelectItem[] = [];
   resultOptions: SelectItem[] = [];
-
+  statusId: string;
+  // statusName: string = this.statusId.nam
+  statusName = "ambigious";
   fullCalendarOptions$: Observable<any>;
   events: CalendarEvent[] = [];
+
+
 
   constructor(
     private appointmentService: AppointmentService,
@@ -79,7 +85,9 @@ export class AppointmentsComponent {
 
   get appointments(): AppointmentListDto[] {
     return this._appointments;
+
   }
+
 
   set appointments(values: AppointmentListDto[]) {
     this._appointments = values;
@@ -99,6 +107,7 @@ export class AppointmentsComponent {
       endAdjusted.setDate(endAdjusted.getDate() + 1);
     }
 
+
     return {
       id: appointment.id,
       //end: new Date(appointment.endTime),
@@ -106,6 +115,7 @@ export class AppointmentsComponent {
       start: new Date(appointment.startTime),
       title: appointment.name,
       allDay: isAllDay,
+
     };
   }
 
@@ -219,6 +229,7 @@ export class AppointmentsComponent {
         calendarWeekends: true,
         defaultView: 'dayGridMonth',
         defaultDate: new Date(),
+
         eventResize: (e: any) => {
           this.changeDates(e.prevEvent, e.event);
         },

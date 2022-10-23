@@ -40,6 +40,7 @@
   "STATUS": "Status",
   "TITLE": "Appointment description",
   "VENUE": "Venue",
-  "VENUE_SET": "Venue set"
-  
+  "VENUE_SET": "Venue set",
+  "QUALIFICATION": "Qualification"
+
 }

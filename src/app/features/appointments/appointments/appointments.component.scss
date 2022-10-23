@@ -1,9 +1,21 @@
-::ng-deep {
+:host ::ng-deep {
   #calendar {
     .fc-right,
     .fc-left {
       display: flex;
     }
+
+    .ambigious {
+      .fc-day-grid-event {
+        background-color: yellow;
+      }
+    }
+    .refused {
+      .fc-day-grid-event {
+        background-color: lightgrey;
+      }
+  }
+  }
 
     @media screen and (max-width: 50em) {
       .fc-toolbar {
@@ -11,4 +23,5 @@
       }
     }
   }
-}
+
+
