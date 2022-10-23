@@ -21,6 +21,7 @@
 
       .p-menuitem-icon {
         margin-left: .5rem;
+        opacity: 1;
       }
 
       .p-menuitem-text {
@@ -37,7 +38,8 @@
         width: 200px;
 
         .p-submenu-header {
-          opacity: .5;
+          opacity: 0.5;
+          font-size: small;
         }
 
         &.mobile {
@@ -50,6 +52,17 @@
       }
 
       .icon-pin {
+        opacity: .75;
+        transition: opacity .85s ease-in-out;
+        margin-left: auto;
+
+        &:hover {
+          opacity: 1;
+          cursor: pointer;
+        }
+      }
+
+      .icon-menu {
         opacity: .75;
         transition: opacity .85s ease-in-out;
         margin-left: auto;
@@ -83,6 +96,14 @@
         }
 
         .icon-pin {
+          opacity: .25;
+
+          &:hover {
+            opacity: 1;
+            cursor: pointer;
+          }
+        }
+        .icon-menu {
           opacity: .25;
 
           &:hover {
