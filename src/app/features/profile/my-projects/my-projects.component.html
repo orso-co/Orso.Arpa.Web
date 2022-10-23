@@ -25,10 +25,11 @@
       </div>
       <div *ngFor='let participation of myProject.participations' class='p-grid'>
         <span class='tag-width'>
-          <p class='tag-label'>{{ 'my-projects.MY_POV' | translate }}</p>
+          <p *ngIf='participation.participationStatusInner'
+             class='tag-label'>{{ 'my-projects.MY_POV' | translate }}</p>
           <p-tag
             *ngIf='participation.participationStatusInner'
-            [rounded]='false'
+            [rounded]='true'
             [value]='participation.participationStatusInner.name!'
             severity='warning'
           ></p-tag>
