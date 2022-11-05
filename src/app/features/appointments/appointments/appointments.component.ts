@@ -26,6 +26,7 @@ export interface CalendarEvent {
   start: Date;
   end: Date;
   title: string;
+  classNames: string[]
 }
 
 @Component({
@@ -34,7 +35,9 @@ export interface CalendarEvent {
   styleUrls: ['./appointments.component.scss'],
 })
 @Unsubscribe()
+
 export class AppointmentsComponent {
+
   langChangeListener: Subscription;
   sectionsSubscription: Subscription;
   categoryOptions: SelectItem[] = [];
@@ -47,9 +50,11 @@ export class AppointmentsComponent {
   venues: VenueDto[] = [];
   predictionOptions: SelectItem[] = [];
   resultOptions: SelectItem[] = [];
-
+  statusId: string;
   fullCalendarOptions$: Observable<any>;
   events: CalendarEvent[] = [];
+  statusMap: any = {};
+
 
   constructor(
     private appointmentService: AppointmentService,
@@ -69,6 +74,11 @@ export class AppointmentsComponent {
       this.statusOptions = data.status || [];
       this.predictionOptions = data.predictions || [];
       this.resultOptions = data.results || [];
+      if(this.statusOptions) {
+        this.statusOptions.forEach(option => {
+          this.statusMap[option.value] = option.label?.toLowerCase().replace(' ', '-')
+        })
+      }
     });
     this.sectionsSubscription = this.sectionService.sections$.subscribe((sections) => (this.sections = sections || []));
     this.langChangeListener = this.translate.onLangChange.subscribe(() => this.setOptions());
@@ -79,7 +89,9 @@ export class AppointmentsComponent {
 
   get appointments(): AppointmentListDto[] {
     return this._appointments;
+
   }
+
 
   set appointments(values: AppointmentListDto[]) {
     this._appointments = values;
@@ -106,6 +118,7 @@ export class AppointmentsComponent {
       start: new Date(appointment.startTime),
       title: appointment.name,
       allDay: isAllDay,
+      classNames: [this.statusMap[appointment.statusId || ''] || '']
     };
   }
 
@@ -219,6 +232,7 @@ export class AppointmentsComponent {
         calendarWeekends: true,
         defaultView: 'dayGridMonth',
         defaultDate: new Date(),
+
         eventResize: (e: any) => {
           this.changeDates(e.prevEvent, e.event);
         },

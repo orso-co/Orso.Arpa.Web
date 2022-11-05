@@ -40,5 +40,7 @@
   "STATUS": "Status",
   "TITLE": "Terminbezeichnung",
   "VENUE": "Ort",
-  "VENUE_SET": "Veranstaltungsort gesetzt"
+  "VENUE_SET": "Veranstaltungsort gesetzt",
+  "QUALIFICATION": "Qualifikation"
+
 }
