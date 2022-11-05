@@ -6,15 +6,20 @@
     }
 
     .ambigious {
-      .fc-day-grid-event {
-        background-color: yellow;
-      }
+      background-color: yellow;
+    }
+    .confirmed {
+      background-color: green;
+    }
+    .scheduled {
+      background-color: orangered;
+    }
+    .awaiting-poll {
+      background-color: red;
     }
     .refused {
-      .fc-day-grid-event {
-        background-color: lightgrey;
-      }
-  }
+      background-color: lightgrey;
+    }
   }
 
     @media screen and (max-width: 50em) {
@@ -23,5 +28,6 @@
       }
     }
   }
+
 
 

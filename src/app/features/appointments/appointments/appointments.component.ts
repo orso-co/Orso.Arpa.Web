@@ -26,6 +26,7 @@ export interface CalendarEvent {
   start: Date;
   end: Date;
   title: string;
+  classNames: string[]
 }
 
 @Component({
@@ -50,11 +51,9 @@ export class AppointmentsComponent {
   predictionOptions: SelectItem[] = [];
   resultOptions: SelectItem[] = [];
   statusId: string;
-  // statusName: string = this.statusId.nam
-  statusName = "ambigious";
   fullCalendarOptions$: Observable<any>;
   events: CalendarEvent[] = [];
-
+  statusMap: any = {};
 
 
   constructor(
@@ -75,6 +74,11 @@ export class AppointmentsComponent {
       this.statusOptions = data.status || [];
       this.predictionOptions = data.predictions || [];
       this.resultOptions = data.results || [];
+      if(this.statusOptions) {
+        this.statusOptions.forEach(option => {
+          this.statusMap[option.value] = option.label?.toLowerCase().replace(' ', '-')
+        })
+      }
     });
     this.sectionsSubscription = this.sectionService.sections$.subscribe((sections) => (this.sections = sections || []));
     this.langChangeListener = this.translate.onLangChange.subscribe(() => this.setOptions());
@@ -107,7 +111,6 @@ export class AppointmentsComponent {
       endAdjusted.setDate(endAdjusted.getDate() + 1);
     }
 
-
     return {
       id: appointment.id,
       //end: new Date(appointment.endTime),
@@ -115,7 +118,7 @@ export class AppointmentsComponent {
       start: new Date(appointment.startTime),
       title: appointment.name,
       allDay: isAllDay,
-
+      classNames: [this.statusMap[appointment.statusId || ''] || '']
     };
   }
 
