@@ -58,7 +58,10 @@
     "RESPONSE_STATUS": "Rückmeldung KBB:",
     "STATUS": "Status",
     "TYPE": "Typ",
-    "URLS": "Links"
+    "URLS": "Links",
+    "MY_PROJECT_APPOINTMENTS": "Meine Projekttermine",
+    "STAFF_POV": "Seitens Mitarbeiter:",
+    "MY_POV": "Von meiner Seite:"
   },
   "bank": {
     "ACCOUNT_OWNER": "Kontoinhaber",

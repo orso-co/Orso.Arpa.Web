@@ -57,7 +57,9 @@
     "RESPONSE_STATUS": "Response status",
     "STATUS": "Status",
     "TYPE": "Type",
-    "URLS": "Links"
+    "URLS": "Links",
+    "STAFF_POV": "Staff point of view ",
+    "MY_POV": "My point of view"
   },
   "bank": {
     "ACCOUNT_OWNER": "Account Owner",
