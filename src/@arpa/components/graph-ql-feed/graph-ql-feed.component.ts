@@ -71,10 +71,17 @@ export class GraphQlFeedComponent implements OnInit, OnDestroy, OnChanges {
         this.values.next(data);
       } else if (data) {
         const type = Object.keys(data)[0];
-        this.hasNextPage = data[type].pageInfo.hasNextPage;
-        this.hasPreviousPage = data[type].pageInfo.hasPreviousPage;
-        this.values.next(data[type].items);
-        this.totalCount.next(data[type].totalCount);
+        if (type && data[type]) {
+          this.hasNextPage = data[type].pageInfo?.hasNextPage;
+          this.hasPreviousPage = data[type].pageInfo?.hasPreviousPage;
+          this.values.next(data[type].items || []);
+          this.totalCount.next(data[type].totalCount || 0);
+        } else {
+          this.hasNextPage = false;
+          this.hasPreviousPage = false;
+          this.values.next([]);
+          this.totalCount.next(0);
+        }
       }
     });
   }
