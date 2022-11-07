@@ -3,4 +3,5 @@ export interface AppointmentListDto {
   startTime: Date;
   endTime: Date;
   name: string;
+  statusId?: string;
 }

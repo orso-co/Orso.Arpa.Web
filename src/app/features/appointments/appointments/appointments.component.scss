@@ -1,9 +1,26 @@
-::ng-deep {
+:host ::ng-deep {
   #calendar {
     .fc-right,
     .fc-left {
       display: flex;
     }
+
+    .ambigious {
+      background-color: yellow;
+    }
+    .confirmed {
+      background-color: green;
+    }
+    .scheduled {
+      background-color: orangered;
+    }
+    .awaiting-poll {
+      background-color: red;
+    }
+    .refused {
+      background-color: lightgrey;
+    }
+  }
 
     @media screen and (max-width: 50em) {
       .fc-toolbar {
@@ -11,4 +28,6 @@
       }
     }
   }
-}
+
+
+
