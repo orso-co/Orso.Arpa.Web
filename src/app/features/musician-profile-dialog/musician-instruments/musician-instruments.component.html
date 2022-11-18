@@ -51,7 +51,7 @@
     <div class="p-col-6">
       <arpa-form-field label="musician-profile-dialog.INQUIRY_STATUS_TEAM" type="select">
         <p-dropdown
-          [options]="(inquiryStatusTeamOptions$ | async) || []"
+          [options]="(inquiryStatusOptions$ | async) || []"
           [placeholder]="'NOTHING_SELECTED' | translate"
           formControlName="inquiryStatusTeamId"
           optionLabel="label"
@@ -62,7 +62,7 @@
     <div class="p-col-6 inner">
       <arpa-form-field label="musician-profile-dialog.INQUIRY_STATUS_INNER" type="select">
         <p-dropdown
-          [options]="(inquiryStatusInnerOptions$ | async) || []"
+          [options]="(inquiryStatusOptions$ | async) || []"
           [placeholder]="'NOTHING_SELECTED' | translate"
           formControlName="inquiryStatusInnerId"
           optionLabel="label"

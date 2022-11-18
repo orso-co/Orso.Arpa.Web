@@ -1,10 +1,8 @@
-import { PersonDto } from './../../../../@arpa/models/personDto';
+import { PersonDto } from '@arpa/models';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first, map } from 'rxjs/operators';
-import { NotificationsService } from 'src/@arpa/services/notifications.service';
-import { MeService } from 'src/app/shared/services/me.service';
-import { SelectValueService } from 'src/app/shared/services/select-value.service';
+import { NotificationsService, MeService, SelectValueService } from '@arpa/services';
 
 @Component({
   selector: 'arpa-user-data',
@@ -46,8 +44,8 @@ export class UserDataComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.genderSelectValue = this.selectValueService
-      .load('Person', 'gender')
-      .pipe(map(() => this.selectValueService.get('Person', 'gender')));
+      .load('Person', 'Gender')
+      .pipe(map(() => this.selectValueService.get('Person', 'Gender')));
   }
 
   submit(): void {

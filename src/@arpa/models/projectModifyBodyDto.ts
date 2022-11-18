@@ -1,3 +1,4 @@
+import { ProjectStatus } from './projectStatus';
 export interface ProjectModifyBodyDto {
   title: string;
   shortTitle: string;
@@ -7,7 +8,7 @@ export interface ProjectModifyBodyDto {
   genreId?: string;
   startDate?: Date;
   endDate?: Date;
-  stateId?: string;
+  status?: ProjectStatus;
   parentId?: string;
   isCompleted?: boolean;
 }

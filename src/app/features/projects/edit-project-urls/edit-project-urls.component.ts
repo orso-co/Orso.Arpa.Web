@@ -1,15 +1,11 @@
 import { OverlayPanel } from 'primeng/overlaypanel';
-import { UrlRoleDto } from './../../../../@arpa/models/urlDto';
-import { RoleDto } from './../../../../@arpa/models/roleDto';
-import { RoleService } from './../../../../@arpa/services/role.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ColumnDefinition } from './../../../../@arpa/components/table/table.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UrlDto } from 'src/@arpa/models/urlDto';
-import { ProjectService } from 'src/app/shared/services/project.service';
+import { UrlDto, RoleDto, UrlRoleDto } from '@arpa/models';
+import { ProjectService, NotificationsService, RoleService } from '@arpa/services';
 import { first, map } from 'rxjs/operators';
-import { NotificationsService } from 'src/@arpa/services/notifications.service';
 import { cloneDeep } from 'lodash-es';
 
 @Component({

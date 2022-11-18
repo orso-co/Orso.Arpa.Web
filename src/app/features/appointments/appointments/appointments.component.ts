@@ -1,3 +1,4 @@
+import { AppointmentStatus } from './../../../../@arpa/models/appointmentStatus';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
@@ -9,16 +10,10 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { Observable, Subscription } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 import { AppointmentService } from '../services/appointment.service';
-import { NotificationsService } from '../../../../@arpa/services/notifications.service';
-import { SectionService } from '../../../shared/services/section.service';
+import { SectionService, NotificationsService, EnumService } from '@arpa/services';
 import { EditAppointmentComponent } from '../edit-appointment/edit-appointment.component';
-import { ProjectDto } from '../../../../@arpa/models/projectDto';
-import { VenueDto } from '../../../../@arpa/models/venueDto';
-import { AppointmentDto } from '../../../../@arpa/models/appointmentDto';
-import { SectionDto } from '../../../../@arpa/models/sectionDto';
-import { DateRange } from '../../../../@arpa/models/dateRange';
+import { ProjectDto, VenueDto, AppointmentDto, SectionDto, DateRange, AppointmentListDto } from '@arpa/models';
 import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator';
-import { AppointmentListDto } from 'src/@arpa/models/appointmentListDto';
 
 export interface CalendarEvent {
   id: string;
@@ -26,7 +21,7 @@ export interface CalendarEvent {
   start: Date;
   end: Date;
   title: string;
-  classNames: string[]
+  classNames: string[];
 }
 
 @Component({
@@ -35,13 +30,12 @@ export interface CalendarEvent {
   styleUrls: ['./appointments.component.scss'],
 })
 @Unsubscribe()
-
 export class AppointmentsComponent {
-
   langChangeListener: Subscription;
   sectionsSubscription: Subscription;
   categoryOptions: SelectItem[] = [];
   statusOptions: SelectItem[] = [];
+  statusSubscription: Subscription;
   salaryPatternOptions: SelectItem[] = [];
   salaryOptions: SelectItem[] = [];
   expectationOptions: SelectItem[] = [];
@@ -49,12 +43,12 @@ export class AppointmentsComponent {
   projects: ProjectDto[] = [];
   venues: VenueDto[] = [];
   predictionOptions: SelectItem[] = [];
+  predictionSubscription: Subscription;
   resultOptions: SelectItem[] = [];
-  statusId: string;
+  resultSubscription: Subscription;
+  status: AppointmentStatus;
   fullCalendarOptions$: Observable<any>;
   events: CalendarEvent[] = [];
-  statusMap: any = {};
-
 
   constructor(
     private appointmentService: AppointmentService,
@@ -62,7 +56,8 @@ export class AppointmentsComponent {
     private route: ActivatedRoute,
     private translate: TranslateService,
     private dialogService: DialogService,
-    private sectionService: SectionService
+    private sectionService: SectionService,
+    private enumService: EnumService
   ) {
     this.route.data.pipe(first()).subscribe((data) => {
       this.projects = data.projects || [];
@@ -71,16 +66,11 @@ export class AppointmentsComponent {
       this.salaryPatternOptions = data.salaryPatterns || [];
       this.expectationOptions = data.expectations || [];
       this.categoryOptions = data.categories || [];
-      this.statusOptions = data.status || [];
-      this.predictionOptions = data.predictions || [];
-      this.resultOptions = data.results || [];
-      if(this.statusOptions) {
-        this.statusOptions.forEach(option => {
-          this.statusMap[option.value] = option.label?.toLowerCase().replace(' ', '-')
-        })
-      }
     });
     this.sectionsSubscription = this.sectionService.sections$.subscribe((sections) => (this.sections = sections || []));
+    this.statusSubscription = this.enumService.getAppointmentStatusSelectItems().subscribe(items => this.statusOptions = items || []);
+    this.resultSubscription = this.enumService.getAppointmentParticipationResultSelectItems().subscribe(items => this.resultOptions = items || []);
+    this.predictionSubscription = this.enumService.getAppointmentParticipationPredictionSelectItems().subscribe(items => this.predictionOptions = items || []);
     this.langChangeListener = this.translate.onLangChange.subscribe(() => this.setOptions());
     this.setOptions();
   }
@@ -89,9 +79,7 @@ export class AppointmentsComponent {
 
   get appointments(): AppointmentListDto[] {
     return this._appointments;
-
   }
-
 
   set appointments(values: AppointmentListDto[]) {
     this._appointments = values;
@@ -118,7 +106,7 @@ export class AppointmentsComponent {
       start: new Date(appointment.startTime),
       title: appointment.name,
       allDay: isAllDay,
-      classNames: [this.statusMap[appointment.statusId || ''] || '']
+      classNames: [appointment.status || ''],
     };
   }
 
@@ -188,7 +176,7 @@ export class AppointmentsComponent {
           publicDetails: null,
           categoryId: null,
           expectationId: null,
-          statusId: null,
+          status: null,
           name: null,
           salaryPatternId: null,
           salaryId: null,

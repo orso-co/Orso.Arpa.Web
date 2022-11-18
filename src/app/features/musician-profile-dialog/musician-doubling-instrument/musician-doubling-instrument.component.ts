@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
+import { MusicianProfileDto, MyDoublingInstrumentDto, DoublingInstrumentDto } from '@arpa/models';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { SelectValueService } from '../../../shared/services/select-value.service';
+import { SelectValueService, NotificationsService } from '@arpa/services';
 import { MusicianService } from '../services/musician.service';
-import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 import { first, map, take } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { SelectItem } from 'primeng/api';
-import { MyDoublingInstrumentDto } from '../../../../@arpa/models/myDoublingInstrumentDto';
-import { DoublingInstrumentDto } from '../../../../@arpa/models/doublingInstrumentDto';
 
 export interface FormList extends MyDoublingInstrumentDto {
   formGroup: FormGroup;

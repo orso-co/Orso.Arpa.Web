@@ -8,12 +8,12 @@
       <arpa-form-field label="{{ 'mupro.PARTICIPATION_STATUS_INNER' | translate }}" type='select'>
         <p-dropdown
           [autoDisplayFirst]='false'
-          [options]='(participationStatusInner | async)!'
+          [options]='(participationStatusInnerOptions$ | async)!'
           [placeholder]="'NOTHING_SELECTED' | translate"
           [showClear]='true'
           appendTo='body'
-          formControlName='participationStatusInnerId'
-          id='participationStatusInnerId'
+          formControlName='participationStatusInner'
+          id='participationStatusInner'
         ></p-dropdown>
       </arpa-form-field>
     </div>
@@ -31,12 +31,12 @@
       <arpa-form-field label="{{ 'mupro.PARTICIPATION_STATUS_INTERNAL' | translate }}" type='select'>
         <p-dropdown
           [autoDisplayFirst]='false'
-          [options]='(participationStatusInternal | async)!'
+          [options]='(participationStatusInternalOptions$ | async)!'
           [placeholder]="'NOTHING_SELECTED' | translate"
           [showClear]='true'
           appendTo='body'
-          formControlName='participationStatusInternalId'
-          id='participationStatusInternalId'
+          formControlName='participationStatusInternal'
+          id='participationStatusInternal'
         ></p-dropdown>
       </arpa-form-field>
     </div>

@@ -18,7 +18,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map, share } from 'rxjs/operators';
 import { FeedScope } from '../graph-ql-feed/graph-ql-feed.component';
 import { StateItem } from '../status-badge/state-badge.component';
-import { SelectValueService } from '../../../app/shared/services/select-value.service';
+import { SelectValueService } from '@arpa/services';
 
 export interface ColumnDefinition<T extends Record<string, any>> {
   label: string;

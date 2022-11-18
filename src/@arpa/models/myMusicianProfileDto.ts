@@ -1,3 +1,4 @@
+import { MusicianProfileInquiryStatus } from './musicianProfileInquiryStatus';
 import { CurriculumVitaeReferenceDto } from './curriculumVitaeReferenceDto';
 import { EducationDto } from './educationDto';
 import { MusicianProfileDeactivationDto } from './musicianProfileDeactivationDto';
@@ -16,7 +17,7 @@ export interface MyMusicianProfileDto {
   backgroundInner?: string;
   personId?: string;
   instrumentId?: string;
-  inquiryStatusInnerId?: string;
+  inquiryStatusInner?: MusicianProfileInquiryStatus;
   doublingInstruments?: Array<MyDoublingInstrumentDto>;
   educations?: Array<EducationDto>;
   curriculumVitaeReferences?: Array<CurriculumVitaeReferenceDto>;

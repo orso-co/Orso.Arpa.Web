@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '../../../../../@arpa/services/api.service';
 import { shareReplay } from 'rxjs/operators';
-import { MusicianProfileCreateDto } from '../../../../../@arpa/models/musicianProfileCreateDto';
+import { MusicianProfileCreateBodyDto } from '../../../../../@arpa/models/musicianProfileCreateBodyDto';
 import { MusicianProfileDto } from '../../../../../@arpa/models/musicianProfileDto';
 import { MusicianProfileModifyBodyDto } from '../../../../../@arpa/models/musicianProfileModifyBodyDto';
 
@@ -16,7 +16,7 @@ export class MuproService {
   constructor(private apiService: ApiService, private apollo: Apollo) {
     this.baseUrl = '/persons';
   }
-  addMusicianProfile(personId: string, dto: MusicianProfileCreateDto): Observable<MusicianProfileDto> {
+  addMusicianProfile(personId: string, dto: MusicianProfileCreateBodyDto): Observable<MusicianProfileDto> {
     return this.apiService.post<MusicianProfileDto>(`${this.baseUrl}/${personId}/musician`, dto).pipe(shareReplay());
   }
 

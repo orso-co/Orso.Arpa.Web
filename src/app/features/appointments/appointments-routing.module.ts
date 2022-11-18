@@ -5,13 +5,10 @@ import { AppointmentSalaryPatternListResolver } from './resolvers/appointment-sa
 import { AppointmentExpectationListResolver } from './resolvers/appointment-expectation-list.resolver';
 import { SectionListResolver } from './resolvers/section-list.resolver';
 import { AppointmentCategoryListResolver } from './resolvers/appointment-category-list.resolver';
-import { AppointmentStatusListResolver } from './resolvers/appointment-status-list.resolver';
-import { AppointmentParticipationResultListResolver } from './resolvers/appointment-participation-result-list.resolver';
 import { AppointmentsComponent } from './appointments/appointments.component';
-import { VenueService } from '../../shared/services/venue.service';
+import { VenueService } from '@arpa/services';
 import { ProjectListResolver } from './resolvers/project-list.resolver';
-import { RoleNames } from '../../../@arpa/models/roleNames';
-import { AppointmentParticipationPredictionListResolver } from './resolvers/appointment-participation-prediction-list.resolver';
+import { RoleNames } from '@arpa/models';
 
 const routes: Routes = [
   {
@@ -27,9 +24,6 @@ const routes: Routes = [
       sectionsLoaded: SectionListResolver,
       venues: VenueService,
       categories: AppointmentCategoryListResolver,
-      status: AppointmentStatusListResolver,
-      predictions: AppointmentParticipationPredictionListResolver,
-      results: AppointmentParticipationResultListResolver,
     },
   },
 ];

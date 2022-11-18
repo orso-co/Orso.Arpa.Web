@@ -77,11 +77,11 @@
       <arpa-form-field label="projects.STATE" type="select">
         <p-dropdown
           [autoDisplayFirst]="false"
-          [options]="state || []"
+          [options]="(projectStatusOptions$ | async) || []"
           [showClear]="true"
           appendTo="body"
-          formControlName="stateId"
-          id="state"
+          formControlName="status"
+          id="status"
         ></p-dropdown>
       </arpa-form-field>
     </div>

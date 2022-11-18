@@ -1,4 +1,5 @@
+import { AppointmentParticipationPrediction } from './appointmentParticipationPrediction';
 export interface SetMyProjectAppointmentPredictionDto {
-  id: string;
-  predictionId: string;
+  commentByPerformerInner?: string;
+  prediction: AppointmentParticipationPrediction;
 }

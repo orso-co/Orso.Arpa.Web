@@ -1,17 +1,12 @@
-import { SectionService } from './../../../shared/services/section.service';
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { DoublingInstrumentDto } from '../../../../@arpa/models/doublingInstrumentDto';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first, map } from 'rxjs/operators';
-import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
-import { SectionDto } from '../../../../@arpa/models/sectionDto';
 import { SelectItem } from 'primeng/api';
-import { SelectValueService } from '../../../shared/services/select-value.service';
+import { SelectValueService, NotificationsService, SectionService, EnumService } from '@arpa/services';
 import { MusicianService } from '../services/musician.service';
-import { NotificationsService } from '../../../../@arpa/services/notifications.service';
-import { MusicianProfileModifyBodyDto } from 'src/@arpa/models/musicianProfileModifyBodyDto';
+import { MusicianProfileModifyBodyDto, SectionDto, MusicianProfileDto, DoublingInstrumentDto } from '@arpa/models';
 
 interface FormListElement extends DoublingInstrumentDto {
   formGroup: FormGroup;
@@ -29,13 +24,12 @@ export class MusicianInstrumentsComponent implements OnInit {
   public instrumentName: string;
 
   public sections: Observable<SectionDto[]> = this.config.data.sections;
-  public inquiryStatusTeamOptions$: Observable<SelectItem[]>;
-  public inquiryStatusInnerOptions$: Observable<SelectItem[]>;
   public preferredParts: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
   public preferredPositionOptions$: Observable<SelectItem[]>;
   public availabilityOptions$: Observable<SelectItem[]>;
   public salaryOptions$: Observable<SelectItem[]>;
   public qualificationOptions$: Observable<SelectItem[]>;
+  inquiryStatusOptions$: Observable<SelectItem[]>;
 
   public instruments: Observable<DoublingInstrumentDto[]>;
   public doublingInstruments: FormListElement[] = [];
@@ -47,15 +41,15 @@ export class MusicianInstrumentsComponent implements OnInit {
     private selectValueService: SelectValueService,
     private musicianService: MusicianService,
     private notificationsService: NotificationsService,
-    private sectionService: SectionService
+    private sectionService: SectionService,
+    private enumService: EnumService
   ) {
-    this.inquiryStatusInnerOptions$ = this.resolveSelect('InquiryStatusInner');
-    this.inquiryStatusTeamOptions$ = this.resolveSelect('InquiryStatusTeam');
     this.availabilityOptions$ = this.selectValueService
       .load('MusicianProfileSection', 'InstrumentAvailability')
       .pipe(map(() => this.selectValueService.get('MusicianProfileSection', 'InstrumentAvailability')));
     this.salaryOptions$ = this.resolveSelect('Salary');
     this.qualificationOptions$ = this.resolveSelect('Qualification');
+    this.inquiryStatusOptions$ = this.enumService.getMusicianProfileInquiryStatusSelectItems();
 
     this.config.data.profile.pipe(first()).subscribe((profile: MusicianProfileDto) => {
       this.profile = profile;

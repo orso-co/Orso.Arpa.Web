@@ -1,7 +1,8 @@
+import { AppointmentStatus } from './appointmentStatus';
 export interface AppointmentListDto {
   id: string;
   startTime: Date;
   endTime: Date;
   name: string;
-  statusId?: string;
+  status?: AppointmentStatus;
 }

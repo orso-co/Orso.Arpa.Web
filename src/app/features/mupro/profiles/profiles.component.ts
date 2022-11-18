@@ -1,6 +1,5 @@
-import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 import { TranslateService } from '@ngx-translate/core';
-import { ProjectService } from '../../../shared/services/project.service';
+import { ProjectService, NotificationsService } from '@arpa/services';
 import { DialogService } from 'primeng/dynamicdialog';
 import { InvitationDialogComponent } from '../invitation-dialog/invitation-dialog.component';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
@@ -9,12 +8,16 @@ import { MenuItem } from 'primeng/api';
 import { catchError, filter, first, map } from 'rxjs/operators';
 import { ActivatedRoute, NavigationExtras, NavigationStart, Router } from '@angular/router';
 import { PersonsService } from '../services/persons.service';
-import { PersonDto } from '../../../../@arpa/models/personDto';
-import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
-import { SectionDto } from '../../../../@arpa/models/sectionDto';
+import {
+  PersonDto,
+  MusicianProfileDto,
+  SectionDto,
+  ProjectDto,
+  ProjectParticipationStatusInternal,
+  ProjectInvitationStatus,
+} from '@arpa/models';
 import { ProfileQuery } from './profile.graphql';
 import { GraphQlFeedComponent } from '../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
-import { ProjectDto } from 'src/@arpa/models/projectDto';
 
 @Component({
   selector: 'arpa-mupro-profiles',
@@ -43,10 +46,8 @@ export class ProfilesComponent implements OnInit, OnDestroy {
     private dialogService: DialogService,
     private projectService: ProjectService,
     private translate: TranslateService,
-    private notificationsService: NotificationsService,
-  ) {
-  }
-
+    private notificationsService: NotificationsService
+  ) {}
 
   ngOnInit(): void {
     this.paramSubscription = this.route.paramMap.subscribe((params) => {
@@ -59,7 +60,7 @@ export class ProfilesComponent implements OnInit, OnDestroy {
     this.routeEventsSubscription = this.router.events
       .pipe(
         filter((e) => e instanceof NavigationStart),
-        map(() => this.router.getCurrentNavigation()?.extras as NavigationExtras),
+        map(() => this.router.getCurrentNavigation()?.extras as NavigationExtras)
       )
       .subscribe(({ state }) => {
         if (state && state.refresh) {
@@ -79,16 +80,16 @@ export class ProfilesComponent implements OnInit, OnDestroy {
               ({
                 profile,
                 command: (e: any) => this.show(e),
-              } as unknown),
-          ) as MenuItem[],
-      ),
+              } as unknown)
+          ) as MenuItem[]
+      )
     );
   }
 
   openPersonDetail(personId: string) {
-    this.router.navigate([{ outlets: {modal: [ 'persons','detail', personId] }}], {
+    this.router.navigate([{ outlets: { modal: ['persons', 'detail', personId] } }], {
       relativeTo: this.route,
-  });
+    });
   }
 
   ngOnDestroy() {
@@ -128,20 +129,20 @@ export class ProfilesComponent implements OnInit, OnDestroy {
             this.projectService
               .setParticipation(projectId, {
                 musicianProfileId,
-                participationStatusInternalId: 'b0dcb5e9-bbc6-4004-b9d7-0f6723416b9b',
-                invitationStatusId: '2a5f85e6-a7ed-48eb-852c-0b191d7ba949',
+                participationStatusInternal: ProjectParticipationStatusInternal.CANDIDATE,
+                invitationStatus: ProjectInvitationStatus.CANDIDATE,
               })
               .pipe(
                 catchError((err) =>
                   of(err).pipe(
                     map((err) => {
                       return { projectId: projectId, error: err };
-                    }),
-                  ),
+                    })
+                  )
                 ),
-                map(() => ({ projectId })),
-              ),
-          ),
+                map(() => ({ projectId }))
+              )
+          )
         );
 
         let successfulCount = 0;
@@ -161,9 +162,9 @@ export class ProfilesComponent implements OnInit, OnDestroy {
             // console.log(successfulCount); // ToDo: Anzahl in Notification aufnehmen
             this.notificationsService.success('SET_PARTICIPATION_STATUS');
             this.router.navigate([this.router.url]);
-          },
+          }
         );
       }
     });
-    }
+  }
 }

@@ -1,16 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PersonDto } from '../../../../../../@arpa/models/personDto';
-import { first, map } from 'rxjs/operators';
+import { PersonDto, MusicianProfileDto } from '@arpa/models';
+import { map } from 'rxjs/operators';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { SelectItem } from 'primeng/api';
 import { ColumnDefinition } from '../../../../../../@arpa/components/table/table.component';
-import { MusicianProfileDto } from '../../../../../../@arpa/models/musicianProfileDto';
 import { MuproService } from '../../services/mupro.service';
-import { NotificationsService } from '../../../../../../@arpa/services/notifications.service';
-import { SelectValueService } from '../../../../../shared/services/select-value.service';
-import { DocumentNode } from 'graphql';
-import { PersonQuery } from '../../../services/person.graphql';
+import { NotificationsService, SelectValueService } from '@arpa/services';
 import { Router } from '@angular/router';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
@@ -25,7 +21,6 @@ export class PersonProfilesMusicianComponent implements OnInit {
 
   public form: FormGroup;
   public instrumentOptions$: Observable<SelectItem[]>;
-  private _tableData: Array<any>;
   tableData: BehaviorSubject<any> = new BehaviorSubject([])
 
 
@@ -40,8 +35,6 @@ export class PersonProfilesMusicianComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private muproService: MuproService,
-    private notificationsService: NotificationsService,
     private selectValueService: SelectValueService,
     private router: Router,
     private ref: DynamicDialogRef
@@ -63,28 +56,29 @@ export class PersonProfilesMusicianComponent implements OnInit {
     if (this.person) {
       this.tableData.next(this.person.musicianProfiles);
     }
+    // ToDo: Mira 17.11. Eine solche Select Value Category gibt es nicht. Kann also nicht funktionieren.
     this.instrumentOptions$ = this.selectValueService
       .load('Sections', 'Name')
       .pipe(map(() => this.selectValueService.get('Sections', 'Name')));
   }
 
-  onSubmit() {
-    if (this.person) {
-      const { id, body } = this.form.getRawValue();
-        this.muproService
-          .addMusicianProfile(this.person.id, { id, body })
-          .pipe(first())
-          .subscribe((result) => {
-            if (this.person && !this.person?.musicianProfiles) {
-              this.person.musicianProfiles = [];
-            }
-            this.person?.musicianProfiles?.push(result);
-            this.tableData.next(this.person?.musicianProfiles);
-            this.notificationsService.success('MUSICIAN_PROFILE_ADDED', 'person.mupro');
-            this.form.reset({});
-          });
-      }
-    }
+  // onSubmit() {
+  //   if (this.person) {
+  //     const { instrumentId } = this.form.getRawValue();
+  //       this.muproService
+  //         .addMusicianProfile(this.person.id, { instrumentId })
+  //         .pipe(first())
+  //         .subscribe((result) => {
+  //           if (this.person && !this.person?.musicianProfiles) {
+  //             this.person.musicianProfiles = [];
+  //           }
+  //           this.person?.musicianProfiles?.push(result);
+  //           this.tableData.next(this.person?.musicianProfiles);
+  //           this.notificationsService.success('MUSICIAN_PROFILE_ADDED', 'person.mupro');
+  //           this.form.reset({});
+  //         });
+  //     }
+  //   }
 
   createNewMuPro() {
     this.router

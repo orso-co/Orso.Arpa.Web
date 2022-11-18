@@ -1,3 +1,6 @@
+import { ProjectParticipationStatusInternal } from './projectParticipationStatusInternal';
+import { ProjectParticipationStatusInner } from './projectParticipationStatusInner';
+import { ProjectInvitationStatus } from './projectInvitationStatus';
 import { ReducedMusicianProfileDto } from './reducedMusicianProfileDto';
 import { ReducedPersonDto } from './reducedPersonDto';
 import { ReducedProjectDto } from './reducedProjectDto';
@@ -8,12 +11,9 @@ export interface ProjectParticipationDto {
   createdAt?: Date;
   modifiedBy?: string;
   modifiedAt?: Date;
-  participationStatusInnerId?: string;
-  participationStatusInner?: any;
-  participationStatusInternalId?: string;
-  participationStatusInternal?: string;
-  invitationStatusId?: string;
-  invitationStatus?: string;
+  participationStatusInner?: ProjectParticipationStatusInner;
+  participationStatusInternal?: ProjectParticipationStatusInternal;
+  invitationStatus?: ProjectInvitationStatus;
   commentByPerformerInner?: string;
   commentByStaffInner?: string;
   commentTeam?: string;

@@ -2,14 +2,12 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
 import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { SectionDto } from '../../../../@arpa/models/sectionDto';
+import { SectionDto } from '@arpa/models';
 import { SelectItem } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { SelectValueService } from '../../../shared/services/select-value.service';
+import { SelectValueService, SectionService, NotificationsService, EnumService } from '@arpa/services';
 import { first, map, tap } from 'rxjs/operators';
-import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 import { MusicianService } from '../services/musician.service';
-import { SectionService } from '../../../shared/services/section.service';
 import { cloneDeep } from 'lodash-es';
 
 @Component({
@@ -27,10 +25,10 @@ export class MusicianMainInstrumentComponent implements OnInit {
 
   public profile: MusicianProfileDto;
   public sections: Observable<SectionDto[]> = this.config.data.sections;
-  public inquiryStatus: Observable<SelectItem[]>;
   public preferredParts: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
   public preferredPositions: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
   public qualificationOptions$: Observable<SelectItem[]>;
+  inquiryStatusOptions$: Observable<SelectItem[]>;
 
   selectedInstrument: any;
   state: string = 'createOrUpdate';
@@ -42,10 +40,11 @@ export class MusicianMainInstrumentComponent implements OnInit {
     private selectValueService: SelectValueService,
     private musicianService: MusicianService,
     private notificationsService: NotificationsService,
-    private sectionsService: SectionService
+    private sectionsService: SectionService,
+    private enumService: EnumService
   ) {
     this.qualificationOptions$ = this.resolveSelect('Qualification');
-    this.inquiryStatus = this.resolveSelect('InquiryStatusInner');
+    this.inquiryStatusOptions$ = this.enumService.getMusicianProfileInquiryStatusSelectItems();
     this.config.data.profile.pipe(first()).subscribe((profile: MusicianProfileDto) => {
       this.profile = profile;
     });

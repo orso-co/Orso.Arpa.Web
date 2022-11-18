@@ -1,3 +1,6 @@
+import { AppointmentStatus } from './appointmentStatus';
+import { AppointmentParticipationPrediction } from './appointmentParticipationPrediction';
+import { AppointmentParticipationResult } from './appointmentParticipationResult';
 import { ProjectDto } from './projectDto';
 import { RoomDto } from './roomDto';
 import { VenueDto } from './venueDto';
@@ -16,9 +19,9 @@ export interface MyAppointmentDto {
   rooms?: Array<RoomDto>;
   publicDetails?: string;
   expectation?: string;
-  result?: string;
-  predictionId?: string;
+  result?: AppointmentParticipationResult;
+  prediction?: AppointmentParticipationPrediction;
   categoryId?: string;
-  statusId?: string;
+  status?: AppointmentStatus;
   commentByPerformerInner?: string;
 }

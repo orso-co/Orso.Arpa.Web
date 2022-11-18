@@ -4,6 +4,6 @@ export interface ContactDetailCreateBodyDto {
   key: ContactDetailKey;
   value: string;
   typeId?: string;
-  commentInner?: string;
-  preference?: number;
+  commentTeam?: string;
+  preference: number;
 }

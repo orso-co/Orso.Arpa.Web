@@ -22,9 +22,9 @@
             [options]="statusOptions"
             [showClear]="true"
             appendTo="body"
-            formControlName="statusId"
+            formControlName="status"
             id="status"
-            placeholer="Select status"
+            [placeholder]="'appointments.SELECT_STATUS' | translate"
             ></p-dropdown>
         </div>
 
@@ -311,7 +311,7 @@
               />
               <p-dropdown
               (onChange)="participationTable.filter($event.value, col.field, 'equals')"
-              *ngSwitchCase="'predictionId'"
+              *ngSwitchCase="'prediction'"
               [autoDisplayFirst]="false"
               [options]="predictionOptions"
               [showClear]="true"
@@ -320,7 +320,7 @@
             ></p-dropdown>
             <p-dropdown
               (onChange)="participationTable.filter($event.value, col.field, 'equals')"
-              *ngSwitchCase="'resultId'"
+              *ngSwitchCase="'result'"
               [autoDisplayFirst]="false"
               [options]="resultOptions"
               [showClear]="true"
@@ -362,26 +362,26 @@
             <td>
               <span class="p-column-title">{{ 'appointments.PREDICTION' | translate }}</span>
               <p-dropdown
-                *ngIf="item.predictionId"
-                [(ngModel)]="item.predictionId"
+                *ngIf="item.prediction"
+                [(ngModel)]="item.prediction"
                 [autoDisplayFirst]="false"
                 [disabled]="true"
                 [name]="'prediction-' + item.id"
                 [options]="predictionOptions"
                 appendTo="body"
-                placeholder="Select prediction"
+                [placeholder]="'appointments.SELECT_PREDICTION' | translate"
               ></p-dropdown>
             </td>
             <td>
               <span class="p-column-title">{{ 'appointments.RESULTS' | translate }}</span>
               <p-dropdown
                 (onChange)="onResultChanged(item, $event)"
-                [(ngModel)]="item.resultId"
+                [(ngModel)]="item.result"
                 [autoDisplayFirst]="false"
                 [name]="'result-' + item.id"
                 [options]="resultOptions"
                 appendTo="body"
-                placeholder="Select result"
+                [placeholder]="'appointments.SELECT_RESULT' | translate"
               ></p-dropdown>
             </td>
             <td>

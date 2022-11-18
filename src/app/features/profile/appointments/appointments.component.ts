@@ -1,43 +1,32 @@
-import { AfterViewInit, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { SelectItem } from 'primeng/api';
+import { Component } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { first, map } from 'rxjs/operators';
-import { MeService } from '../../../shared/services/me.service';
-import { MyAppointmentDto } from '../../../../@arpa/models/myAppointmentDto';
-import { ProjectDto } from '../../../../@arpa/models/projectDto';
-import { RoomDto } from '../../../../@arpa/models/roomDto';
-import { SelectValueService } from '../../../shared/services/select-value.service';
-import { NotificationsService } from '../../../../@arpa/services/notifications.service';
+import { MeService, NotificationsService, EnumService } from '@arpa/services';
+import { MyAppointmentDto, ProjectDto, RoomDto } from '@arpa/models';
+import { SelectItem } from 'primeng/api';
 
 @Component({
   selector: 'arpa-profile-appointments',
   templateUrl: './appointments.component.html',
   styleUrls: ['./appointments.component.scss'],
 })
-export class AppointmentsComponent implements AfterViewInit {
+export class AppointmentsComponent {
   userAppointments$: Observable<MyAppointmentDto[]> = of([]);
   totalRecordsCount$: Observable<number> = of(0);
-  predictions: Observable<SelectItem[]>;
   itemsPerPage = 25;
   selectOptions = [
     { id: false, name: 'FUTURE_APPOINTMENTS'},
     { id: true, name: 'PAST_APPOINTMENTS'}
   ]
   selectedOption: boolean = false;
+  predictions$: Observable<SelectItem[]>;
 
   constructor(
     private meService: MeService,
-    private route: ActivatedRoute,
-    private selectValueService: SelectValueService,
     private notificationsService: NotificationsService,
+    private enumService: EnumService
   ) {
-  }
-
-  ngAfterViewInit(): void {
-    this.predictions = this.selectValueService.load('AppointmentParticipation', 'Prediction').pipe(
-      map(() => this.selectValueService.get('AppointmentParticipation', 'Prediction')),
-    );
+    this.predictions$ = this.enumService.getAppointmentParticipationPredictionSelectItems();
   }
 
   loadData(take: number, skip: number): void {
@@ -56,10 +45,10 @@ export class AppointmentsComponent implements AfterViewInit {
 
   onPredictionChanged(event: any): void {
     this.meService
-      .setAppointmentPrediction(event.ctx.id, event.value)
+      .setAppointmentPrediction(event.ctx.id, { prediction: event.value.value })
       .pipe(first())
       .subscribe(() => {
-        event.ctx.predictionId = event.value;
+        event.ctx.prediction = event.value.value;
         this.notificationsService.success('profile.PREDICTION_SET');
       });
   }

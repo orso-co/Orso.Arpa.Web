@@ -1,16 +1,9 @@
-import { ActivatedRoute } from '@angular/router';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
-import { first, map } from 'rxjs/operators';
-import { MeService } from '../../../shared/services/me.service';
-import { MyProjectDto } from 'src/@arpa/models/myProjectDto';
+import { first } from 'rxjs/operators';
+import { MeService, EnumService, NotificationsService } from '@arpa/services';
 import { MyProjectParticipationDialogComponent } from '../my-project-participation-dialog/my-project-participation-dialog.component';
-import { MyProjectParticipationDto } from '../../../../@arpa/models/myProjectDto';
-import { NotificationsService } from '../../../../@arpa/services/notifications.service';
-import { Observable, of } from 'rxjs';
-import { ProjectDto } from '../../../../@arpa/models/projectDto';
-import { SelectItem } from 'primeng/api';
-import { SelectValueService } from '../../../shared/services/select-value.service';
+import { MyProjectParticipationDto, ProjectDto, MyProjectDto } from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -18,24 +11,16 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './my-projects.component.html',
   styleUrls: ['./my-projects.component.scss'],
 })
-export class MyProjectsComponent implements AfterViewInit, OnInit {
+export class MyProjectsComponent implements OnInit {
   myProjects: MyProjectDto[] = [];
-  participationStatusInner$: Observable<SelectItem[]>;
 
   constructor(
     private meService: MeService,
-    private route: ActivatedRoute,
-    private selectValueService: SelectValueService,
+    private enumService: EnumService,
     private notificationsService: NotificationsService,
     private dialogService: DialogService,
     private translate: TranslateService
   ) {}
-
-  ngAfterViewInit(): void {
-    this.participationStatusInner$ = this.selectValueService
-      .load('ProjectParticipation', 'ParticipationStatusInner')
-      .pipe(map(() => this.selectValueService.get('ProjectParticipation', 'ParticipationStatusInner')));
-  }
 
   ngOnInit(): void {
     this.meService.getMyProjects().subscribe((projects) => (this.myProjects = projects));
@@ -59,7 +44,7 @@ export class MyProjectsComponent implements AfterViewInit, OnInit {
     const ref = this.dialogService.open(MyProjectParticipationDialogComponent, {
       data: {
         participation,
-        statusOptions$: this.participationStatusInner$,
+        statusOptions$: this.enumService.getProjectParticipationStatusInnerSelectItems(),
       },
       header: this.translate.instant('profile.my-projects.EDIT_PARTICIPATION'),
       styleClass: 'form-modal',

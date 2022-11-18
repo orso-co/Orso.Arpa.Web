@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProfileComponent } from './profile.component';
 import { UserComponent } from './user/user.component';
 import { MusicianComponent } from './musician/musician.component';
 import { ProfileResolver } from './resolvers/profile.resolver';

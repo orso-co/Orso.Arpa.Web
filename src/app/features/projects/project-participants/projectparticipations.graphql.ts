@@ -19,16 +19,8 @@ export const ProjectsQuery = gql`
       items {
         id
         projectParticipations {
-          participationStatusInner {
-            selectValue {
-              name
-            }
-          }
-          participationStatusInternal {
-            selectValue {
-              name
-            }
-          }
+          participationStatusInner
+          participationStatusInternal
           musicianProfile {
             instrument {
               name
