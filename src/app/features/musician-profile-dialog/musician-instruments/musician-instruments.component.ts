@@ -110,6 +110,7 @@ export class MusicianInstrumentsComponent implements OnInit {
       .subscribe((updatedProfile) => {
         this.config.data.profile.next(updatedProfile);
         this.ref.close(updatedProfile);
+        this.notificationsService.success('UPDATED', 'musician-profile-dialog')
       });
   }
 
