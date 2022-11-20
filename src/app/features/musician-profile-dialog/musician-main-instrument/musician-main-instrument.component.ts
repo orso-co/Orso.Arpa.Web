@@ -61,7 +61,7 @@ export class MusicianMainInstrumentComponent implements OnInit {
       instrumentId: [null, [Validators.required]],
       doublingInstruments: [[], []],
       preferredPartsInner: [[], []],
-      inquiryStatusInnerId: [null, [Validators.required]],
+      inquiryStatusInner: [null, [Validators.required]],
       preferredPositionsInnerIds: [[], []],
       isMainProfile: [false, []],
       qualificationId: [null, [Validators.required]]

@@ -74,8 +74,8 @@ export class MusicianInstrumentsComponent implements OnInit {
       preferredPartsInner: [[], []],
       preferredPositionsTeamIds: [[], []],
       preferredPositionsInnerIds: [[], []],
-      inquiryStatusTeamId: [null, []],
-      inquiryStatusInnerId: [null, []],
+      inquiryStatusTeam: [null, []],
+      inquiryStatusInner: [null, []],
       isMainProfile: [null, []],
     });
 
