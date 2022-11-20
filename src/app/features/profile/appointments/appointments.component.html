@@ -33,7 +33,7 @@
       (onLazyLoad)="loadData($event.rows, $event.first)"
       [lazy]="true"
       [paginator]="true"
-      [rowsPerPageOptions]="[10,25,50]"
+      [rowsPerPageOptions]="[10, 25, 50]"
       [rows]="itemsPerPage"
       [totalRecords]="(totalRecordsCount$ | async) || 0"
       [value]="(userAppointments$ | async) || []"
@@ -54,35 +54,61 @@
         <span class="month-name">{{ appointment.startTime | localizedDate: 'MMMM' }}</span>
         <span class="day">{{ appointment.startTime | date: 'dd':'locale(de)' }}</span>
         <span class="day-name">{{ appointment.startTime | localizedDate: 'EEEE' }}</span>
-        <span class="time">{{ appointment.startTime | date: 'H:mm':'locale(de)' }}-{{ appointment.endTime | date: 'H:mm':'locale(de)' }}</span>
-        <p-tag
-        *ngIf="appointment.status"
-          [value]="'appointmentStatus.' + appointment.status | translate" severity='"info'
-        ></p-tag>
-
+        <span class="time"
+          >{{ appointment.startTime | date: 'H:mm':'locale(de)' }}-{{ appointment.endTime | date: 'H:mm':'locale(de)' }}</span
+        >
+        <p-tag styleClass="tag" *ngIf="appointment.status" [value]="'appointmentStatus.' + appointment.status | translate" severity='"info'></p-tag>
       </div>
       <div class="p-flex-column p-mr-2 details">
-        <p-badge
-          *ngIf="appointment.prediction"
-          [value]="'appointmentParticipationPrediction.' + appointment.prediction | translate"
-          severity="warning"
-        ></p-badge>
-        <span class="name"
-          >{{ appointment.name }}
-        </span>
-        <div class="details">
-          <p-tag *ngIf="appointment.category?.name" [value]="appointment.category?.name" class="category"></p-tag>
-          <p-tag *ngIf="appointment.result" [value]="'appointmentParticipationResult.' + appointment.result | translate" severity="danger"></p-tag>
-          <span *ngIf="appointment.projects.length > 0" class="projects">{{ 'PROJECT' | translate }}: {{ getProjectNames(appointment.projects) }}</span>
-          <span *ngIf="appointment.venue?.name" class="venue">{{ 'VENUE' | translate }}: {{ appointment.venue?.name }}, {{ appointment.venue?.address.address1 }} {{ appointment.venue?.address.zip }} {{ appointment.venue?.address.city }}</span>
+        <div class="p-grid">
+          <div class="p-col-12">
+            <span class="name"
+              >{{ appointment.name }}
+              <p-badge
+                *ngIf="appointment.prediction"
+                [value]="
+                  ('PARTICIPATION_PREDICTION' | translate) +
+                  ': ' +
+                  ('appointmentParticipationPrediction.' + appointment.prediction | translate)
+                "
+                severity="warning"
+              ></p-badge>
+            </span>
+          </div>
+          <div class="p-col-12 p-pb-0" *ngIf="appointment.category?.name">
+            <span class="label">{{ 'CATEGORY' | translate }}</span>
+          </div>
+          <div class="p-col-12 p-pt-0" *ngIf="appointment.category?.name">
+            <span>{{ appointment.category?.name }}</span>
+          </div>
+          <div class="p-col-12 p-pb-0" *ngIf="appointment.result">
+            <span class="label">{{ 'PARTICIPATION' | translate }}</span>
+          </div>
+          <div class="p-col-12 p-pt-0" *ngIf="appointment.result">
+            <span>{{ 'appointmentParticipationResult.' + appointment.result | translate }}</span>
+          </div>
+          <div class="p-col-12 p-pb-0" *ngIf="appointment.projects.length > 0">
+            <span class="label">{{ 'PROJECT' | translate }}</span>
+          </div>
+          <div class="p-col-12 p-pt-0" *ngIf="appointment.projects.length > 0">
+            <span>{{ getProjectNames(appointment.projects) }}</span>
+          </div>
+          <div class="p-col-12 p-pb-0" *ngIf="appointment.venue?.name">
+            <span class="label">{{ 'VENUE' | translate }}</span>
+          </div>
+          <div class="p-col-12 p-pt-0" *ngIf="appointment.venue?.name">
+            <span
+              >{{ appointment.venue?.name }}, {{ appointment.venue?.address.address1 }}, {{ appointment.venue?.address.zip }}
+              {{ appointment.venue?.address.city }}</span
+            >
+          </div>
+          <div class="p-col-12 p-pb-0" *ngIf="appointment.publicDetails">
+            <span class="label">{{ 'DETAILS' | translate }}</span>
+          </div>
+          <div class="p-col-12 p-pt-0" *ngIf="appointment.publicDetails">
+            <span>{{ appointment.publicDetails }}</span>
+          </div>
         </div>
-
-        <div>
-          <span class="publicDetails">{{ 'DETAILS' | translate }}: {{ appointment.publicDetails }}</span>
-        </div>
-
-
-
       </div>
       <div class="p-flex-column actions">
         <button

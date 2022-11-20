@@ -1,8 +1,10 @@
 .date {
   text-align: left;
-  width: 7.0rem;
+  width: 7rem;
   border-right: 1px solid rgba(#fff, 0.25);
   padding-right: 1rem;
+  height: 100%;
+  padding-top: 0.5rem;
 
   .day {
     font-size: 2em;
@@ -28,10 +30,9 @@
   }
   .time {
     display: block;
-    opacity: .85;
-    font-size: .85em;
+    opacity: 0.85;
+    font-size: 0.85em;
     padding-bottom: 0.5rem;
-
   }
   .status {
     display: block;
@@ -45,12 +46,13 @@
 
 .details {
   flex-grow: 1;
-  line-height: 1.5em;
+  height: 100%;
 
   .name {
     display: block;
     font-weight: 600;
     line-height: 2em;
+    font-size: 1.3rem;
 
     .p-badge {
       display: inline;
@@ -62,23 +64,31 @@
       margin-right: 1rem;
     }
   }
+
+  .label {
+    font-size: small;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+    opacity: 0.7;
+  }
 }
 
 .projects {
-    display: block;
-    opacity: .60;
-    font-size: 0.8em;
-  }
+  display: block;
+  opacity: 0.6;
+  font-size: 0.8em;
+}
 .publicDetails {
-    font-size: 0.9em;
-    font-weight: 30;
-    color: dodgerblue;
-    font-style: italic;
-  }
+  font-size: 0.9em;
+  font-weight: 30;
+  color: dodgerblue;
+  font-style: italic;
+}
 
 .headlineinfo {
-  font-size: 1.0em;
-  opacity: 0.50;
+  font-size: 1em;
+  opacity: 0.5;
 }
 .venue {
   flex-grow: 1;
@@ -88,3 +98,8 @@
   font-weight: 300;
 }
 
+::ng-deep {
+.tag.p-tag {
+  width: 100%;
+}
+}
