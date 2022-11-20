@@ -21,7 +21,11 @@
       "esnext.asynciterable"
     ],
     "strictPropertyInitialization": false,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@arpa/models": ["src/@arpa/models/index.ts"],
+      "@arpa/services": ["src/@arpa/services/index.ts"]
+    }
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,

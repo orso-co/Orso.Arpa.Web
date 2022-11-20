@@ -3,15 +3,10 @@ import { Component, ViewChild } from '@angular/core';
 import { first, map } from 'rxjs/operators';
 import { DialogService } from 'primeng/dynamicdialog';
 import { TranslateService } from '@ngx-translate/core';
-import { ProjectService } from '../../../shared/services/project.service';
-import { NotificationsService } from '../../../../@arpa/services/notifications.service';
-import { MeService } from '../../../shared/services/me.service';
-import { SelectValueService } from '../../../shared/services/select-value.service';
+import { ProjectService, NotificationsService, SelectValueService, VenueService } from '@arpa/services';
 import { Table } from 'primeng/table';
-import { VenueService } from '../../../shared/services/venue.service';
-import { SectionService } from '../../../shared/services/section.service';
 import { ProjectParticipantsComponent } from '../project-participants/project-participants.component';
-import { ProjectDto } from '../../../../@arpa/models/projectDto';
+import { ProjectDto } from '@arpa/models';
 import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator';
 import { DocumentNode } from 'graphql';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
@@ -31,14 +26,14 @@ export class ProjectListComponent {
     { label: 'TITLE', property: 'title', type: 'text' },
     { label: 'TYPE', property: 'typeId', type: 'state', stateTable: 'Project', stateProperty: 'Type', show: true},
     { label: 'GENRE', property: 'genreId', type: 'state', stateTable: 'Project', stateProperty: 'Genre', show: true },
-    { label: 'STATE', property: 'stateId', type: 'state',
+    { label: 'STATE', property: 'status', type: 'badge',
       badgeStateMap: [
-        { label: 'PENDING', value: 'pending', severity: 'info'},
-        { label: 'CONFIRMED', value: 'confirmed', severity: 'success'},
-        { label: 'CANCELLED', value: 'cancelled', severity: 'warning'},
-        { label: 'POSTPONED', value: 'postponed', severity: 'info'},
-        { label: 'ARCHIVED', value: 'archived', severity: 'danger'},
-      ], stateTable: 'Project', stateProperty: 'State', show: true },
+        { label: 'projectStatus.PENDING', value: 'PENDING', severity: 'info'},
+        { label: 'projectStatus.CONFIRMED', value: 'CONFIRMED', severity: 'success'},
+        { label: 'projectStatus.CANCELLED', value: 'CANCELLED', severity: 'warning'},
+        { label: 'projectStatus.POSTPONED', value: 'POSTPONED', severity: 'info'},
+        { label: 'projectStatus.ARCHIVED', value: 'ARCHIVED', severity: 'danger'},
+      ], show: true },
     { label: 'START', property: 'startDate', type: 'date' },
     { label: 'END', property: 'endDate', type: 'date' },
     { label: '#', property: 'isCompleted', type: 'template', template: 'completed', cssClasses: ['start'] }
@@ -52,10 +47,8 @@ export class ProjectListComponent {
     public translate: TranslateService,
     private projectService: ProjectService,
     private notificationsService: NotificationsService,
-    private meService: MeService,
     private selectValueService: SelectValueService,
     private venueService: VenueService,
-    // private sectionService: SectionService
   ) {}
 
   public openProjectDetailDialog(selection: ProjectDto | null): void {
@@ -65,7 +58,6 @@ export class ProjectListComponent {
         venues: this.venueService.load(),
         type: this.selectValueService.load('Project', 'Type').pipe(map(() => this.selectValueService.get('Project', 'Type'))),
         genre: this.selectValueService.load('Project', 'Genre').pipe(map(() => this.selectValueService.get('Project', 'Genre'))),
-        state: this.selectValueService.load('Project', 'State').pipe(map(() => this.selectValueService.get('Project', 'State'))),
       },
       header: selection ? this.translate.instant('projects.EDIT_PROJECT') : this.translate.instant('projects.NEW_PROJECT'),
       styleClass: 'form-modal',

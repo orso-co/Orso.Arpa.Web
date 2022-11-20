@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, PRIMARY_OUTLET, Router } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
-import { NotificationsService } from '../../../../@arpa/services/notifications.service';
-import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
+import { NotificationsService, LoggerService } from '@arpa/services';
+import { MusicianProfileDto, SectionDto } from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
 import { MusicianLayoutComponent } from '../musician-layout/musician-layout.component';
 import { first, map, switchMap } from 'rxjs/operators';
-import { SectionDto } from '../../../../@arpa/models/sectionDto';
 import { BehaviorSubject, combineLatest, of } from 'rxjs';
 import { MusicianService } from '../services/musician.service';
-import { LoggerService } from '../../../../@arpa/services/logger.service';
 
 @Component({
   selector: 'arpa-musician-dialog-entry',

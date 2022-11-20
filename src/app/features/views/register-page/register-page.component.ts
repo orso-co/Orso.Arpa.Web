@@ -1,13 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { finalize, first, map } from 'rxjs/operators';
-import { RecaptchaComponent } from 'ng-recaptcha';
-import { AuthService } from '../../../../@arpa/services/auth.service';
-import { NotificationsService } from '../../../../@arpa/services/notifications.service';
-import { LoadingService } from '../../../../@arpa/services/loading.service';
-import { SelectValueService } from '../../../shared/services/select-value.service';
-import { ConfigService } from '../../../../@arpa/services/config.service';
+import { SelectValueService, ConfigService, LoadingService, NotificationsService, AuthService } from '@arpa/services';
 
 @Component({
   selector: 'arpa-register-page',
@@ -15,7 +10,6 @@ import { ConfigService } from '../../../../@arpa/services/config.service';
   styleUrls: ['./register-page.component.scss'],
 })
 export class RegisterPageComponent {
-
   // @ViewChild('captchaRef') reCaptcha: RecaptchaComponent;
   validPassword: boolean = false;
   registerRequest: boolean = false;
@@ -24,67 +18,30 @@ export class RegisterPageComponent {
   // siteKey: string;
   genderSelectValue: any;
 
-  constructor(formBuilder: FormBuilder,
-              private router: Router,
-              private authService: AuthService,
-              private configService: ConfigService,
-              private notificationsService: NotificationsService,
-              private loadingService: LoadingService,
-              private selectValueService: SelectValueService,
+  constructor(
+    formBuilder: FormBuilder,
+    private router: Router,
+    private authService: AuthService,
+    private notificationsService: NotificationsService,
+    private loadingService: LoadingService,
+    private selectValueService: SelectValueService,
+    private configService: ConfigService
   ) {
-
     // this.siteKey = configService.getEnv('captcha').key;
 
-    this.genderSelectValue = this.selectValueService.load('Person', 'gender')
-      .pipe(map(() => this.selectValueService.get('Person', 'gender')));
+    this.genderSelectValue = this.selectValueService
+      .load('Person', 'Gender')
+      .pipe(map(() => this.selectValueService.get('Person', 'Gender')));
 
     this.registerFormGroup = formBuilder.group({
       genderId: [null, [Validators.required]],
-      userName: [null,
-        [
-          Validators.required,
-          Validators.minLength(4),
-          Validators.maxLength(256),
-        ],
-      ],
-      givenName: [null,
-        [
-          Validators.required,
-          Validators.maxLength(50),
-        ],
-      ],
-      surname: [null,
-        [
-          Validators.required,
-          Validators.maxLength(50),
-        ],
-      ],
-      email: [null,
-        [
-          Validators.required,
-          Validators.pattern(configService.getEnv('validation').email),
-        ],
-      ],
-      password: [
-        null,
-        [
-          Validators.required,
-          Validators.pattern(configService.getEnv('validation').password),
-        ],
-      ],
-      confirmPassword: [
-        null,
-        [
-          Validators.required,
-          this.comparePasswords,
-        ],
-      ],
-      privacyPolicy: [
-        null,
-        [
-          Validators.required,
-        ],
-      ],
+      userName: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(256)]],
+      givenName: [null, [Validators.required, Validators.maxLength(50)]],
+      surname: [null, [Validators.required, Validators.maxLength(50)]],
+      email: [null, [Validators.required, Validators.pattern(configService.getEnv('validation').email)]],
+      password: [null, [Validators.required, Validators.pattern(configService.getEnv('validation').password)]],
+      confirmPassword: [null, [Validators.required, this.comparePasswords]],
+      privacyPolicy: [null, [Validators.required]],
     });
   }
 
@@ -122,26 +79,30 @@ export class RegisterPageComponent {
         first(),
         finalize(() => {
           this.loadingService.reset();
-        }))
-      .subscribe(() => {
-        this.notificationsService.info('REGISTER_SUCCESS', 'views');
-        this.router.navigate(['activation']);
-      }, error => {
-        if (error.status < 500 && error.errors) {
-          Object.keys(error.errors).forEach(prop => {
-            const formProp = prop[0].toLowerCase() + prop.slice(1);
-            const formControl = this.registerFormGroup.get(formProp);
-            if (formControl) {
-              formControl.setErrors({
-                resultError: error.errors[prop],
-              });
-              formControl.markAsTouched();
-            }
-          });
-        } else {
-          this.router.navigate(['regError']);
+        })
+      )
+      .subscribe(
+        () => {
+          this.notificationsService.info('REGISTER_SUCCESS', 'views');
+          this.router.navigate(['activation']);
+        },
+        (error) => {
+          if (error.status < 500 && error.errors) {
+            Object.keys(error.errors).forEach((prop) => {
+              const formProp = prop[0].toLowerCase() + prop.slice(1);
+              const formControl = this.registerFormGroup.get(formProp);
+              if (formControl) {
+                formControl.setErrors({
+                  resultError: error.errors[prop],
+                });
+                formControl.markAsTouched();
+              }
+            });
+          } else {
+            this.router.navigate(['regError']);
+          }
         }
-      });
+      );
   }
 
   onChange(): void {
@@ -151,5 +112,4 @@ export class RegisterPageComponent {
   goToLogin(): void {
     this.router.navigate(['login']);
   }
-
 }

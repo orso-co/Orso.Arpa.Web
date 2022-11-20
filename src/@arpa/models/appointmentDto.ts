@@ -1,3 +1,4 @@
+import { AppointmentStatus } from './appointmentStatus';
 import { AppointmentParticipationListItemDto } from './appointmentParticipationListItemDto';
 import { ProjectDto } from './projectDto';
 import { RoomDto } from './roomDto';
@@ -15,7 +16,7 @@ export interface AppointmentDto {
   name: string;
   publicDetails?: string;
   internalDetails?: string;
-  statusId?: string;
+  status?: AppointmentStatus;
   salaryId?: string;
   salaryPatternId?: string;
   expectationId?: string;

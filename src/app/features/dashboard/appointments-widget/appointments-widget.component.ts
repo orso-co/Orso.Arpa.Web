@@ -1,37 +1,23 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { SelectItem } from 'primeng/api';
+import { Component } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { first, map } from 'rxjs/operators';
-import { MeService } from '../../../shared/services/me.service';
-import { MyAppointmentDto } from '../../../../@arpa/models/myAppointmentDto';
-import { ProjectDto } from '../../../../@arpa/models/projectDto';
-import { RoomDto } from '../../../../@arpa/models/roomDto';
-import { SelectValueService } from '../../../shared/services/select-value.service';
-import { NotificationsService } from '../../../../@arpa/services/notifications.service';
+import { MeService, NotificationsService } from '@arpa/services';
+import { MyAppointmentDto, ProjectDto, RoomDto } from '@arpa/models';
+
 @Component({
   selector: 'arpa-appointments-widget',
   templateUrl: './appointments-widget.component.html',
   styleUrls: ['./appointments-widget.component.scss'],
 })
-export class AppointmentsWidgetComponent implements AfterViewInit {
+export class AppointmentsWidgetComponent {
   userAppointments$: Observable<MyAppointmentDto[]> = of([]);
   totalRecordsCount$: Observable<number> = of(0);
-  predictions: Observable<SelectItem[]>;
   itemsPerPage = 8;
 
   constructor(
     private meService: MeService,
-    private route: ActivatedRoute,
-    private selectValueService: SelectValueService,
     private notificationsService: NotificationsService,
   ) {
-  }
-
-  ngAfterViewInit(): void {
-    this.predictions = this.selectValueService.load('AppointmentParticipation', 'Prediction').pipe(
-      map(() => this.selectValueService.get('AppointmentParticipation', 'Prediction')),
-    );
   }
 
   loadData(take: number, skip: number): void {

@@ -51,7 +51,6 @@ import { UserBankdataComponent } from './user-bankdata/user-bankdata.component';
     UserDataComponent,
     UserContactDataComponent,
     UserBankdataComponent,
-
   ],
   imports: [
     CommonModule,

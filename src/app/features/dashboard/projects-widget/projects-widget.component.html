@@ -11,10 +11,10 @@
       </div>
 
     <p-tag
-    *ngIf="myProject.project.state"
+    *ngIf="myProject.project.status"
     styleClass="p-ml-2"
     severity="info"
-    [value]="myProject.project.state.name!"
+    [value]="('projectStatus.' + myProject.project.status) | translate"
     [rounded]="false"
   ></p-tag>
     </ng-template>

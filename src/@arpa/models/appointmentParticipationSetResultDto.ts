@@ -1,5 +1,6 @@
+import { AppointmentParticipationResult } from './appointmentParticipationResult';
 export interface AppointmentParticipationSetResultDto {
   id: string;
   personId: string;
-  resultId: string;
+  result: AppointmentParticipationResult;
 }

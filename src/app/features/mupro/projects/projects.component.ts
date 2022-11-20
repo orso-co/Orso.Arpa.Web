@@ -1,10 +1,9 @@
-import { ProjectParticipationDto } from '../../../../@arpa/models/projectParticipationDto';
+import { ProjectParticipationDto, ProjectDto, SetProjectParticipationBodyDto } from '@arpa/models';
 import { NotificationsService } from 'src/@arpa/services/notifications.service';
 import { TranslateService } from '@ngx-translate/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
-import { ProjectDto } from '../../../../@arpa/models/projectDto';
 import { DocumentNode } from 'graphql';
 import { ProjectsQuery } from './projects.graphql';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
@@ -12,9 +11,7 @@ import { Subscription } from 'rxjs';
 import { GraphQlFeedComponent } from 'src/@arpa/components/graph-ql-feed/graph-ql-feed.component';
 import { filter, first } from 'rxjs/operators';
 import { ParticipationDialogComponent } from '../participation-dialog/participation-dialog.component';
-import { ProjectService } from '../../../shared/services/project.service';
-import { LoggerService } from '../../../../@arpa/services/logger.service';
-import { SetProjectParticipationBodyDto } from '../../../../@arpa/models/setProjectParticipationBodyDto';
+import { ProjectService, LoggerService } from '@arpa/services';
 
 @Component({
   selector: 'arpa-mupro-projects',
@@ -27,13 +24,13 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     { label: 'PROJECT', property: 'title', type: 'text' },
     {
       label: 'PARTICIPATIONSTATUS_PERFORMER',
-      property: 'projectParticipations.participationStatusInner.selectValue.name',
+      property: 'projectParticipations.participationStatusInner',
       type: 'text',
       show: true,
     },
     {
       label: 'PARTICIPATIONSTATUS_STAFF',
-      property: 'projectParticipations.participationStatusInternal.selectValue.name',
+      property: 'projectParticipations.participationStatusInternal',
       type: 'text',
       show: true,
     },

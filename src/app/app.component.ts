@@ -1,14 +1,11 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
+import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { filter, map, shareReplay } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { fromEvent, merge, Observable, of, Subscription } from 'rxjs';
-import { RouteTitleService } from '../@arpa/services/route-title.service';
-import { ConfigService } from '../@arpa/services/config.service';
-import { LoadingService } from '../@arpa/services/loading.service';
 import { AuthEvents, AuthService } from '../@arpa/services/auth.service';
-import { MeService } from './shared/services/me.service';
+import { MeService, LoadingService, ConfigService, RouteTitleService } from '@arpa/services';
 
 @Component({
   selector: 'arpa-root',

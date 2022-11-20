@@ -1,11 +1,9 @@
-import { SelectValueDto } from './../../../@arpa/models/selectValueDto';
+import { SelectValueDto, SectionTreeDto, SectionDto } from '@arpa/models';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, shareReplay, tap } from 'rxjs/operators';
-import { ApiService } from '../../../@arpa/services/api.service';
-import { SectionTreeDto } from '../../../@arpa/models/sectionTreeDto';
-import { SectionDto } from '../../../@arpa/models/sectionDto';
+import { ApiService } from '@arpa/services';
 import { SelectItem } from 'primeng/api';
 
 @Injectable({

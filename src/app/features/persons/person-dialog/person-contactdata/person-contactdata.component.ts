@@ -1,13 +1,11 @@
-import { SelectValueService } from '../../../../shared/services/select-value.service';
-import { ContactDetailDto } from '../../../../../@arpa/models/contactDetailDto';
+import { SelectValueService, NotificationsService } from '@arpa/services';
+import { ContactDetailDto, PersonDto } from '@arpa/models';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NotificationsService } from 'src/@arpa/services/notifications.service';
 import { ColumnDefinition } from 'src/@arpa/components/table/table.component';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 import { SelectItem } from 'primeng/api';
-import { PersonDto } from 'src/@arpa/models/personDto';
 import { ContactService } from '../services/contact.service';
 
 @Component({
@@ -49,7 +47,6 @@ export class PersonContactdataComponent implements OnInit, OnDestroy {
       key: [null, [Validators.required]],
       value: [null, [Validators.required, Validators.maxLength(1000)]],
       typeId: [null],
-      commentInner: [null, [Validators.maxLength(500)]],
       commentTeam: [null, [Validators.maxLength(500)]],
       preference: [null],
       id: [null],
@@ -70,21 +67,21 @@ export class PersonContactdataComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     if (this.person) {
-      const { id, key, value, typeId, commentInner, commentTeam, preference } = this.form.getRawValue();
+      const { id, key, value, typeId, commentTeam, preference } = this.form.getRawValue();
       if (id) {
         this.contactService
-          .updateContactDetail(this.person?.id, id, { key, value, typeId, commentInner, commentTeam, preference: preference || 0 })
+          .updateContactDetail(this.person?.id, id, { key, value, typeId, commentTeam, preference: preference || 0 })
           .pipe(first())
           .subscribe((_) => {
             const index = this._tableData.findIndex((el) => el.id === id);
-            this._tableData[index] = { ...this._tableData[index], key, value, typeId, commentInner, commentTeam, preference };
+            this._tableData[index] = { ...this._tableData[index], key, value, typeId, commentTeam, preference };
             this.tableData.next(this._tableData);
             this.notificationsService.success('CONTACT_DETAIL_MODIFIED', 'person-dialog');
             this.form.reset({});
           });
       } else {
         this.contactService
-          .addContactDetail(this.person.id, { id, key, value, typeId, commentInner, commentTeam, preference: preference || 0 })
+          .addContactDetail(this.person.id, { key, value, typeId, commentTeam, preference: preference || 0 })
           .pipe(first())
           .subscribe((result) => {
             this._tableData.push(result);

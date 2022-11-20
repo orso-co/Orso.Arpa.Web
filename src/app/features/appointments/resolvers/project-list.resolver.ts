@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ProjectService } from '../../../shared/services/project.service';
+import { ProjectService } from '@arpa/services';
 import { ProjectListComponent } from '../../projects/project-list/project-list.component';
-import { ProjectDto } from '../../../../@arpa/models/projectDto';
+import { ProjectDto } from '@arpa/models';
 
 @Injectable({ providedIn: 'root' })
 export class ProjectListResolver implements Resolve<ProjectDto[]> {

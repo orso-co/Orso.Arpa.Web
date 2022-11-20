@@ -1,14 +1,16 @@
-import { MusicianProfileModifyBodyDto } from './../../../../@arpa/models/musicianProfileModifyBodyDto';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiService } from '../../../../@arpa/services/api.service';
-import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
-import { MusicianProfileDeactivationCreateDto } from '../../../../@arpa/models/musicianProfileDeactivationCreateDto';
-import { MyMusicianProfileAddDocumentDto } from '../../../../@arpa/models/myMusicianProfileAddDocumentDto';
-import { EducationDto } from '../../../../@arpa/models/educationDto';
-import { EducationCreateDto } from '../../../../@arpa/models/educationCreateDto';
-import { MyDoublingInstrumentModifyDto } from '../../../../@arpa/models/myDoublingInstrumentModifyDto';
-import { MyDoublingInstrumentCreateDto } from '../../../../@arpa/models/myDoublingInstrumentCreateDto';
+import { ApiService } from '@arpa/services';
+import {
+  EducationCreateBodyDto,
+  MyDoublingInstrumentModifyBodyDto,
+  EducationDto,
+  MyMusicianProfileAddDocumentDto,
+  MusicianProfileDeactivationCreateBodyDto,
+  MyDoublingInstrumentCreateBodyDto,
+  MusicianProfileDto,
+  MusicianProfileModifyBodyDto,
+} from '@arpa/models';
 
 @Injectable({
   providedIn: 'root',
@@ -36,7 +38,7 @@ export class MusicianService {
     return this.apiService.post(`${this.baseUrlPersons}/${personId}/profiles/musician`, profile);
   }
 
-  deactivateProfile(id: any, data: MusicianProfileDeactivationCreateDto): Observable<any> {
+  deactivateProfile(id: any, data: MusicianProfileDeactivationCreateBodyDto): Observable<any> {
     return this.apiService.post(`${this.baseUrl}/${id}/deactivation`, data);
   }
 
@@ -62,18 +64,18 @@ export class MusicianService {
     return this.apiService.delete(`${this.baseUrlMe}/${id}/documents/${documentId}`);
   }
 
-  addEducation(id: any, data: EducationCreateDto, isMeEndpoint: boolean): Observable<any> {
+  addEducation(id: any, data: EducationCreateBodyDto, isMeEndpoint: boolean): Observable<any> {
     return this.apiService.post(`${isMeEndpoint ? this.baseUrlMe : this.baseUrl}/${id}/educations`, data);
   }
 
-  addDoublingInstrument(id: any, data: MyDoublingInstrumentCreateDto): Observable<any> {
+  addDoublingInstrument(id: any, data: MyDoublingInstrumentCreateBodyDto): Observable<any> {
     return this.apiService.post(`${this.baseUrlMe}/${id}/doublinginstruments`, data);
   }
 
   updateDoublingInstrument(
     profileId: any,
     instrumentId: string,
-    data: MyDoublingInstrumentModifyDto,
+    data: MyDoublingInstrumentModifyBodyDto,
     isMeEndpoint: boolean
   ): Observable<any> {
     return this.apiService.put(`${isMeEndpoint ? this.baseUrlMe : this.baseUrl}/${profileId}/doublinginstruments/${instrumentId}`, data);

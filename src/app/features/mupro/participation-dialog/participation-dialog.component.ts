@@ -1,13 +1,10 @@
-import { ProjectParticipationDto } from '../../../../@arpa/models/projectParticipationDto';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { EnumService } from '@arpa/services';
+import { ReducedPersonDto, ProjectParticipationDto } from '@arpa/models';
 import { SelectItem } from 'primeng/api';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { SelectValueService } from '../../../shared/services/select-value.service';
-import { ReducedPersonDto } from '../../../../@arpa/models/reducedPersonDto';
 
 @Component({
   selector: 'arpa-participation-dialog',
@@ -16,22 +13,19 @@ import { ReducedPersonDto } from '../../../../@arpa/models/reducedPersonDto';
 })
 export class ParticipationDialogComponent implements OnInit {
   form: FormGroup;
-  public participationStatusInner: Observable<SelectItem[]>;
-  public participationStatusInternal: Observable<SelectItem[]>;
   public participation: ProjectParticipationDto;
   public commentByPerformerInner: any;
   public projectTitle: string;
   public person: ReducedPersonDto | null;
+  participationStatusInnerOptions$: Observable<SelectItem[]>;
+  participationStatusInternalOptions$: Observable<SelectItem[]>;
 
   constructor(
     private formBuilder: FormBuilder,
     public config: DynamicDialogConfig,
     private ref: DynamicDialogRef,
-    private translate: TranslateService,
-    private selectValueService: SelectValueService,
+    private enumService: EnumService
   ) {
-    this.participationStatusInner = this.selectValueService.load('ProjectParticipation', 'ParticipationStatusInner').pipe(map(() => this.selectValueService.get('ProjectParticipation', 'ParticipationStatusInner')));
-    this.participationStatusInternal = this.selectValueService.load('ProjectParticipation', 'ParticipationStatusInternal').pipe(map(() => this.selectValueService.get('ProjectParticipation', 'ParticipationStatusInternal')));
   }
 
   ngOnInit() {
@@ -40,22 +34,22 @@ export class ParticipationDialogComponent implements OnInit {
     this.commentByPerformerInner = this.participation.commentByPerformerInner;
     const profile: any = this.participation.musicianProfile;
     this.person = profile.person;
+    this.participationStatusInnerOptions$ = this.enumService.getProjectParticipationStatusInnerSelectItems();
+    this.participationStatusInternalOptions$ = this.enumService.getProjectParticipationStatusInternalSelectItems();
 
     this.form = this.formBuilder.group({
-      participationStatusInnerId: [null],
-      participationStatusInternalId: [null, [Validators.required]],
+      participationStatusInner: [null],
+      participationStatusInternal: [null, [Validators.required]],
       commentByStaffInner: [null, [Validators.maxLength(500)]],
       commentTeam: [null, [Validators.maxLength(500)]],
-      invitationStatusId: [null, [Validators.required]],
       musicianProfileId: [null, [Validators.required]],
     });
 
     this.form.patchValue({
       commentByStaffInner: this.participation.commentByStaffInner,
       commentTeam: this.participation.commentTeam,
-      participationStatusInnerId: this.participation.participationStatusInnerId,
-      participationStatusInternalId: this.participation.participationStatusInternalId,
-      invitationStatusId: this.participation.invitationStatusId,
+      participationStatusInner: this.participation.participationStatusInner,
+      participationStatusInternal: this.participation.participationStatusInternal,
       musicianProfileId: this.participation.musicianProfile?.id,
     });
   }
@@ -68,7 +62,7 @@ export class ParticipationDialogComponent implements OnInit {
     if (this.form.invalid || this.form.pristine) {
       return;
     }
-    this.ref.close({ ...this.form.value });
+    this.ref.close({ ...this.participation, ...this.form.value });
   }
 
   cancel() {

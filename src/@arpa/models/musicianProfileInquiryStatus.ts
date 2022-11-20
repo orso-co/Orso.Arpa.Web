@@ -1,0 +1,7 @@
+export enum MusicianProfileInquiryStatus {
+  GLADLY = "GLADLY",
+  EMGERGENCE_ONLY = "EMERGENCY_ONLY",
+  FOR_CONTACTS_ONLY = "FOR_CONTACTS_ONLY",
+  UNKNOWN = "UNKNOWN",
+  NEVER_AGAIN = "NEVER_AGAIN"
+}

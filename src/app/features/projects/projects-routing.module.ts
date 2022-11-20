@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectGenreResolver } from './resolvers/project-genre.resolver';
 import { ProjectTypeResolver } from './resolvers/project-type.resolver';
-import { VenueService } from '../../shared/services/venue.service';
+import { VenueService } from '@arpa/services';
 
 const routes: Routes = [
   {

@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { SelectItem } from 'primeng/api';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { SelectValueService } from '../../../shared/services/select-value.service';
+import { SelectValueService } from '@arpa/services';
 
 @Injectable()
 export class AppointmentCategoryListResolver implements Resolve<SelectItem[]> {

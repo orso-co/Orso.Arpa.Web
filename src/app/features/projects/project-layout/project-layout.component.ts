@@ -26,7 +26,6 @@ export class ProjectLayoutComponent {
   );
   type: Observable<SelectItem[]> = this.config.data.type;
   genre: Observable<SelectItem[]> = this.config.data.genre;
-  state: Observable<SelectItem[]> = this.config.data.state;
   public index = 0;
 
   constructor(public config: DynamicDialogConfig) {}

@@ -68,12 +68,9 @@ export const MuproProfilesQuery = gql`
             id
             title
           }
-          participationStatusInnerId
-          participationStatusInner {selectValue { name}}
-          participationStatusInternalId
-          participationStatusInternal {selectValue {name}}
-          invitationStatusId
-          invitationStatus {selectValue {name}}
+          participationStatusInner
+          participationStatusInternal
+          invitationStatus
         }
       }
     }

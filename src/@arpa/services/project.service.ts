@@ -1,14 +1,16 @@
-import { SetProjectParticipationBodyDto } from './../../../@arpa/models/setProjectParticipationBodyDto';
-import { UrlModifyBodyDto } from './../../../@arpa/models/urlModifyBodyDto';
-import { UrlDto } from 'src/@arpa/models/urlDto';
-import { UrlCreateBodyDto } from './../../../@arpa/models/urlCreateBodyDto';
+import {
+  SetProjectParticipationBodyDto,
+  UrlModifyBodyDto,
+  UrlDto,
+  UrlCreateBodyDto,
+  ProjectDto,
+  ProjectParticipationDto,
+} from '@arpa/models';
 import { shareReplay } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiService } from '../../../@arpa/services/api.service';
-import { ProjectDto } from '../../../@arpa/models/projectDto';
-import { ProjectParticipationDto } from '../../../@arpa/models/projectParticipationDto';
+import { ApiService } from '@arpa/services';
 
 @Injectable({
   providedIn: 'root',

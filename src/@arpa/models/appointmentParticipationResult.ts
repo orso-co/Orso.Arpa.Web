@@ -1,0 +1,7 @@
+export enum AppointmentParticipationResult {
+  PRESENT = "PRESENT",
+  ABSENT = "ABSENT",
+  INAPPLICABLE = "INAPPLICABLE",
+  AMBIGUOUS = "AMBIGUOUS",
+  AWAITING_SCAN = "AWAITING_SCAN"
+}

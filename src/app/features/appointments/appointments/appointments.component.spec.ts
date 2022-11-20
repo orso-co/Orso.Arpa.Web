@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AppointmentService } from '../services/appointment.service';
 import { NotificationsMockService } from '../../../../testing/notifications.mock.service';
 import { LoadingService } from '../../../../@arpa/services/loading.service';
-import { SectionService } from '../../../shared/services/section.service';
+import { SectionService } from '@arpa/services';
 import { TranslateMockModule } from '../../../../testing/translate.mock.module';
 
 describe('AppointmentsComponent', () => {

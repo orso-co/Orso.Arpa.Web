@@ -1,3 +1,4 @@
+import { AppointmentStatus } from './appointmentStatus';
 export interface AppointmentCreateDto {
   categoryId?: string;
   startTime: Date;
@@ -5,7 +6,7 @@ export interface AppointmentCreateDto {
   name: string;
   publicDetails?: string;
   internalDetails?: string;
-  statusId?: string;
+  status?: AppointmentStatus;
   salaryId?: string;
   salaryPatternId?: string;
   expectationId?: string;

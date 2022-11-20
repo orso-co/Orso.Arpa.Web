@@ -1,6 +1,7 @@
 import { ReducedMusicianProfileDto } from './reducedMusicianProfileDto';
-import { SelectValueDto } from './selectValueDto';
 import { ProjectDto } from './projectDto';
+import { ProjectParticipationStatusInner } from './projectParticipationStatusInner';
+import { ProjectParticipationStatusInternal } from './projectParticipationStatusInternal';
 
 export interface MyProjectDto {
   project: ProjectDto;
@@ -8,8 +9,8 @@ export interface MyProjectDto {
 }
 
 export interface MyProjectParticipationDto {
-  participationStatusInner?: SelectValueDto;
-  participationStatusInternal?: SelectValueDto;
+  participationStatusInner?: ProjectParticipationStatusInner;
+  participationStatusInternal?: ProjectParticipationStatusInternal;
   commentByPerformerInner?: string;
   commentByStaffInner?: string;
   musicianProfile: ReducedMusicianProfileDto;
