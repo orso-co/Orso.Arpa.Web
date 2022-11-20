@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { MeService } from '../../services/me.service';
+import { MeService } from '@arpa/services';
 
 @Component({
   selector: 'arpa-offline',

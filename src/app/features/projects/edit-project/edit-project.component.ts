@@ -1,3 +1,4 @@
+import { ProjectStatus } from './../../../../@arpa/models/projectStatus';
 import { Component, Input, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -9,6 +10,7 @@ import { ProjectDto } from '../../../../@arpa/models/projectDto';
 import { VenueDto } from '../../../../@arpa/models/venueDto';
 import { ParentProjectsQuery } from './projectParents.graphql';
 import { FeedScope } from '../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
+import { EnumService } from '@arpa/services';
 
 @Component({
   selector: 'arpa-edit-project',
@@ -21,8 +23,9 @@ export class EditProjectComponent implements OnInit {
   @Input() venues: SelectItem[];
   @Input() type: SelectItem[];
   @Input() genre: SelectItem[];
-  @Input() state: SelectItem[];
+  projectStatusOptions$: Observable<SelectItem[]>;
 
+  // Info: In this component "translate.instant" is used. This will not update the translations on language change
   completedOptions: SelectItem[] = [
     { label: this.translate.instant('YES'), value: true },
     { label: this.translate.instant('NO'), value: false },
@@ -31,7 +34,14 @@ export class EditProjectComponent implements OnInit {
   form: FormGroup;
   parentProjectList = new BehaviorSubject([]);
 
-  constructor(private formBuilder: FormBuilder, public ref: DynamicDialogRef, private translate: TranslateService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    public ref: DynamicDialogRef,
+    private translate: TranslateService,
+    private enumService: EnumService
+  ) {
+    this.projectStatusOptions$ = this.enumService.getProjecttatusSelectItems();
+  }
 
   get isNew(): boolean {
     return !this.project;
@@ -45,7 +55,7 @@ export class EditProjectComponent implements OnInit {
       endDate: [null],
       description: [null],
       typeId: [null],
-      stateId: [null],
+      status: [null],
       genreId: [null],
       parentId: [null],
       code: [null, [Validators.required]],

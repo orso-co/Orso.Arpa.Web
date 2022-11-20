@@ -1,27 +1,31 @@
-import { AppointmentParticipationListItemDto } from '../../../../@arpa/models/appointmentParticipationListItemDto';
-import { ReducedMusicianProfileDto } from '../../../../@arpa/models/reducedMusicianProfileDto';
+import {
+  AppointmentParticipationListItemDto,
+  ReducedMusicianProfileDto,
+  AppointmentDto,
+  SectionDto,
+  ProjectDto,
+  VenueDto,
+  RoomDto,
+  AppointmentParticipationPrediction,
+  AppointmentParticipationResult
+} from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MenuItem, SelectItem } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { sortBy, uniq } from 'lodash-es';
-import { NotificationsService } from '../../../../@arpa/services/notifications.service';
+import { NotificationsService } from '@arpa/services';
 import { AppointmentService } from '../services/appointment.service';
 import { first } from 'rxjs/operators';
-import { AppointmentDto } from '../../../../@arpa/models/appointmentDto';
-import { SectionDto } from '../../../../@arpa/models/sectionDto';
-import { ProjectDto } from '../../../../@arpa/models/projectDto';
-import { VenueDto } from '../../../../@arpa/models/venueDto';
-import { RoomDto } from '../../../../@arpa/models/roomDto';
 
 class ParticipationTableItem {
   givenName: string;
   surname: string;
   sections: string;
   qualification: string;
-  predictionId: string;
-  resultId: string;
+  prediction?: AppointmentParticipationPrediction;
+  result?: AppointmentParticipationResult;
   personId: string;
 
   constructor(
@@ -30,15 +34,15 @@ class ParticipationTableItem {
     surname: string,
     sections: string,
     qualification: string,
-    predictionId: string,
-    resultId: string
+    prediction?: AppointmentParticipationPrediction,
+    result?: AppointmentParticipationResult
   ) {
     this.givenName = givenName;
     this.surname = surname;
     this.sections = sections;
     this.qualification = qualification;
-    this.resultId = resultId;
-    this.predictionId = predictionId;
+    this.result = result;
+    this.prediction = prediction;
     this.personId = personId;
   }
 }
@@ -104,7 +108,7 @@ export class EditAppointmentComponent implements OnInit {
             .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles || [])
             .reduce((a, b) => a.concat(b), [])
             .map((mp: ReducedMusicianProfileDto) => mp?.instrumentName || '')
-        ).map(val => ({ label: val, value: val})),
+        ).map((val) => ({ label: val, value: val })),
         (selectItem) => selectItem.label
       );
 
@@ -114,7 +118,7 @@ export class EditAppointmentComponent implements OnInit {
             .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles || [])
             .reduce((a, b) => a.concat(b), [])
             .map((mp: ReducedMusicianProfileDto) => mp?.qualification || '')
-        ).map(val => ({ label: val, value: val})),
+        ).map((val) => ({ label: val, value: val })),
         (selectItem) => selectItem.label
       );
 
@@ -126,11 +130,10 @@ export class EditAppointmentComponent implements OnInit {
     this.columns = [
       { field: 'surname', header: this.translate.instant('SURNAME'), width: '10%' },
       { field: 'givenName', header: this.translate.instant('GIVENNAME'), width: '10%' },
-      { field: 'predictionId', header: this.translate.instant('appointments.PREDICTION'), width: '15%' },
-      { field: 'resultId', header: this.translate.instant('appointments.RESULTS'), width: '15%' },
+      { field: 'prediction', header: this.translate.instant('appointments.PREDICTION'), width: '15%' },
+      { field: 'result', header: this.translate.instant('appointments.RESULTS'), width: '15%' },
       { field: 'sections', header: this.translate.instant('appointments.SECTIONS'), width: '20%' },
       { field: 'qualification', header: this.translate.instant('appointments.QUALIFICATION'), width: '20%' },
-
     ];
 
     this.createStepperMenu();
@@ -378,7 +381,7 @@ export class EditAppointmentComponent implements OnInit {
       publicDetails: [null],
       internalDetails: [null],
       categoryId: [null],
-      statusId: [null],
+      status: [null],
       salaryId: [null],
       salaryPatternId: [null],
       expectationId: [null],
@@ -395,8 +398,8 @@ export class EditAppointmentComponent implements OnInit {
           element.person?.surname || '',
           this.getSectionNames(element.musicianProfiles || []),
           element.musicianProfiles?.map((mp: any) => mp.qualification).join(', ') || '',
-          element.participation?.predictionId || '',
-          element.participation?.resultId || ''
+          element.participation?.prediction,
+          element.participation?.result
         )
       );
     });

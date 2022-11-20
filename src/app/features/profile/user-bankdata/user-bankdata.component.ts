@@ -2,12 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
-import { BankAccountDto } from '../../../../@arpa/models/bankAccountDto';
-import { NotificationsService } from '../../../../@arpa/services/notifications.service';
+import { BankAccountDto, PersonDto } from '@arpa/models';
+import { NotificationsService, MeService } from '@arpa/services';
 import { first } from 'rxjs/operators';
 import { cloneDeep } from 'lodash-es';
-import { MeService} from '../../../shared/services/me.service';
-import { PersonDto } from '../../../../@arpa/models/personDto';
 
 @Component({
   selector: 'arpa-user-bankdata',
@@ -70,7 +68,7 @@ export class UserBankdataComponent implements OnInit {
         });
     } else {
       this.meService
-        .addBankAccount(this.person?.id, { bic, iban, accountOwner, commentInner, id })
+        .addBankAccount(this.person?.id, { bic, iban, accountOwner, commentInner })
         .pipe(first())
         .subscribe((result) => {
           this._tableData.push(result);
@@ -82,12 +80,12 @@ export class UserBankdataComponent implements OnInit {
   }
 
 
-  remove(bankAccounts: BankAccountDto): void {
+  remove(bankAccount: BankAccountDto): void {
     this.meService
-      .deleteBankAccount(bankAccounts.id, this.person?.id)
+      .deleteBankAccount(bankAccount.id, this.person?.id)
       .pipe(first())
       .subscribe(() => {
-        this.tableData.next(this._tableData.filter((e) => e.id != bankAccounts.id));
+        this.tableData.next(this._tableData.filter((e) => e.id != bankAccount.id));
         this.notificationsService.success('BANK_ACCOUNT_REMOVED', 'bank');
       });
   }

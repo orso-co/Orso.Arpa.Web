@@ -8,7 +8,7 @@
       <mat-icon class='mat-icon'>wifi_off</mat-icon>
     </div>
     <div *ngIf='qrCode' class='p-col-12'>
-      <img [src]='qrCode'>
+      <img [src]='qrCode' alt="qr-code">
       {{ 'OFFLINE_QR_CODE' | translate }}
     </div>
   </div>

@@ -1,19 +1,23 @@
-import { MyContactDetailModifyBodyDto } from '../../../@arpa/models/myContactDetailModifyBodyDto';
-import { ContactDetailDto } from '../../../@arpa/models/contactDetailDto';
-import { MyContactDetailCreateDto } from '../../../@arpa/models/myContactDetailCreateDto';
+import {
+  SetMyProjectAppointmentPredictionDto,
+  BankAccountModifyBodyDto,
+  MyContactDetailModifyBodyDto,
+  ContactDetailDto,
+  MyContactDetailCreateDto,
+  MyUserProfileDto,
+  MyAppointmentListDto,
+  MyProjectDto,
+  MyProjectParticipationDto,
+  MusicianProfileDto,
+  BankAccountDto,
+  BankAccountCreateBodyDto,
+  RoleNames,
+  MyProjectParticipationModifyBodyDto,
+} from '@arpa/models';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { finalize, first, map, shareReplay, switchMap, tap } from 'rxjs/operators';
-import { ApiService } from '../../../@arpa/services/api.service';
-import { MyUserProfileDto } from '../../../@arpa/models/myUserProfileDto';
-import { MyAppointmentListDto } from '../../../@arpa/models/myAppointmentListDto';
-import { MyProjectDto, MyProjectParticipationDto } from 'src/@arpa/models/myProjectDto';
-import { MusicianProfileDto } from '../../../@arpa/models/musicianProfileDto';
-import { MyProjectParticipationModifyBodyDto } from '../../../@arpa/models/myProjectParticipationModifyBodyDto';
-import { AuthService } from '../../../@arpa/services/auth.service';
-import { RoleNames } from '../../../@arpa/models/roleNames';
-import { BankAccountDto } from '../../../@arpa/models/bankAccountDto';
-import { BankAccountCreateDto } from '../../../@arpa/models/bankAccountCreateDto';
+import { ApiService, AuthService } from '@arpa/services';
 
 @Injectable({
   providedIn: 'root',
@@ -62,17 +66,17 @@ export class MeService {
   }
 
   getMyAppointments(take: number | null, skip: number | null, passed: boolean = false): Observable<MyAppointmentListDto> {
-    return this.apiService.get<MyAppointmentListDto>(`${this.baseUrl}/appointments?limit=${take}&offset=${skip}&passed=${passed}`).pipe(shareReplay());
+    return this.apiService
+      .get<MyAppointmentListDto>(`${this.baseUrl}/appointments?limit=${take}&offset=${skip}&passed=${passed}`)
+      .pipe(shareReplay());
   }
 
   getMyProjects(): Observable<MyProjectDto[]> {
     return this.apiService.get<MyProjectDto[]>(`${this.baseUrl}/projects`).pipe(shareReplay());
   }
 
-  setAppointmentPrediction(appointmentId: string, predictionId: string): Observable<any> {
-    return this.apiService
-      .put(`${this.baseUrl}/appointments/${appointmentId}/participation/prediction/${predictionId}`, {})
-      .pipe(shareReplay());
+  setAppointmentPrediction(appointmentId: string, dto: SetMyProjectAppointmentPredictionDto): Observable<any> {
+    return this.apiService.put(`${this.baseUrl}/appointments/${appointmentId}/participation/prediction`, dto).pipe(shareReplay());
   }
 
   setProjectParticipationStatus(projectId: string, dto: MyProjectParticipationModifyBodyDto): Observable<MyProjectParticipationDto> {
@@ -107,15 +111,15 @@ export class MeService {
     return this.apiService.delete(`${this.baseUrl}/contactdetails/${id}`).pipe(shareReplay());
   }
 
-  addBankAccount(personId: any, dto: BankAccountCreateDto): Observable<BankAccountDto> {
+  addBankAccount(personId: any, dto: BankAccountCreateBodyDto): Observable<BankAccountDto> {
     return this.apiService.post<BankAccountDto>(`/persons/${personId}/bankaccounts`, dto).pipe(shareReplay());
   }
 
-  updateBankAccount(id: string, dto: BankAccountDto): Observable<any> {
+  updateBankAccount(id: string, dto: BankAccountModifyBodyDto): Observable<any> {
     return this.apiService.put(`/persons/${this.baseUrl}/bankaccounts/${id}`, dto).pipe(shareReplay());
   }
 
-  deleteBankAccount(id: string | undefined, personId: any): Observable<any> {
+  deleteBankAccount(id: string, personId: any): Observable<any> {
     return this.apiService.delete(`/persons/${personId}/bankaccounts/${id}`).pipe(shareReplay());
   }
 }

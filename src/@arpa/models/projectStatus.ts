@@ -1,0 +1,7 @@
+export enum ProjectStatus {
+  PENDING = "PENDING",
+  CONFIRMED = "CONFIRMED",
+  CANCELLED = "CANCELLED",
+  POSTPONED = "POSTPONED",
+  ARCHIVED = "ARCHIVED"
+}

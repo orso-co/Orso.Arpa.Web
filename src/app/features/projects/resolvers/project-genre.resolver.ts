@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { SelectValueService } from '../../../shared/services/select-value.service';
+import { SelectValueService } from '@arpa/services';
 import { SelectItem } from 'primeng/api';
 import { map } from 'rxjs/operators';
 

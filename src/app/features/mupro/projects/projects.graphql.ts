@@ -41,26 +41,14 @@ export const ProjectsQuery = gql`
         title
         id
         startDate
-        stateId
+        status
         genre {
           selectValue {name}
         }
         projectParticipations {
-          invitationStatusId
-          participationStatusInnerId
-          participationStatusInner {
-            selectValue {
-              id
-              name
-            }
-          }
-          participationStatusInternalId
-          participationStatusInternal {
-            selectValue {
-              id
-              name
-            }
-          }
+          invitationStatus
+          participationStatusInner
+          participationStatusInternal
           commentByPerformerInner
           commentByStaffInner
           commentTeam

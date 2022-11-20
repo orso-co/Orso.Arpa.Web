@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MeService } from '../../../shared/services/me.service';
+import { MeService, NotificationsService } from '@arpa/services';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 
 @Component({
   selector: 'arpa-qrcode',

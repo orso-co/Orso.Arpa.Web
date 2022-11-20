@@ -1,3 +1,4 @@
+import { MusicianProfileInquiryStatus } from './musicianProfileInquiryStatus';
 export interface MusicianProfileModifyBodyDto {
   isMainProfile?: boolean;
   levelAssessmentInner?: number;
@@ -9,8 +10,8 @@ export interface MusicianProfileModifyBodyDto {
   salaryComment?: string;
   qualificationId: string;
   salaryId?: string;
-  inquiryStatusInnerId?: string;
-  inquiryStatusTeamId?: string;
+  inquiryStatusInner?: MusicianProfileInquiryStatus;
+  inquiryStatusTeam?: MusicianProfileInquiryStatus;
   preferredPositionsInnerIds: Array<string>;
   preferredPositionsTeamIds: Array<string>;
   preferredPartsInner: Array<number>;

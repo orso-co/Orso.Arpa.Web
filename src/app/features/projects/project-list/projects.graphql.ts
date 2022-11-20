@@ -6,7 +6,7 @@ export const ProjectsQuery = gql`
     $take: Int
     $orderEndDate: SortEnumType = DESC
     $orderGenreId: SortEnumType = ASC
-    $orderStateId: SortEnumType = ASC
+    $orderStatus: SortEnumType = ASC
     $searchQuery: String = ""
   ) {
     projects(
@@ -19,11 +19,7 @@ export const ProjectsQuery = gql`
             name: $orderGenreId
           },
         },
-        state: {
-          selectValue: {
-            name: $orderStateId
-          },
-        },
+        status: $orderStatus,
       }
       where: {
         or: [{ title: { contains: $searchQuery } }, { code: { contains: $searchQuery } }, { shortTitle: { contains: $searchQuery } }]
@@ -41,7 +37,7 @@ export const ProjectsQuery = gql`
         title
         startDate
         endDate
-        stateId
+        status
         isCompleted
         genreId
         genre {
@@ -54,11 +50,6 @@ export const ProjectsQuery = gql`
         shortTitle
         description
         code
-        state {
-          selectValue {
-            name
-          }
-        }
         parent {
           title
           id

@@ -1,3 +1,5 @@
+import { ProjectStatus } from './projectStatus';
+
 export interface ProjectCreateDto {
   title: string;
   shortTitle: string;
@@ -7,7 +9,7 @@ export interface ProjectCreateDto {
   genreId?: string;
   startDate?: Date;
   endDate?: Date;
-  stateId?: string;
+  status?: ProjectStatus;
   parentId?: string;
   isCompleted?: boolean;
 }

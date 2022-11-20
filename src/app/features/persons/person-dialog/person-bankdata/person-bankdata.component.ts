@@ -1,13 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { PersonDto } from '../../../../../@arpa/models/personDto';
 import { SelectItem } from 'primeng/api';
 import { ColumnDefinition } from '../../../../../@arpa/components/table/table.component';
-import { BankAccountDto } from '../../../../../@arpa/models/bankAccountDto';
+import { BankAccountDto, PersonDto } from '@arpa/models';
 import { BankAccountService } from '../services/bank.service';
-import { NotificationsService } from '../../../../../@arpa/services/notifications.service';
-import { SelectValueService } from '../../../../shared/services/select-value.service';
+import { SelectValueService, NotificationsService } from '@arpa/services';
 import { first, map } from 'rxjs/operators';
 
 @Component({
@@ -57,8 +55,8 @@ export class PersonBankdataComponent implements OnInit, OnDestroy {
       this.subscription = this.tableData.subscribe(d => this.person!.bankAccounts = d);
   }
   this.statusOptions$ = this.selectValueService
-    .load('BankAccount', 'State')
-    .pipe(map(() => this.selectValueService.get('BankAccount', 'State')));
+    .load('BankAccount', 'Status')
+    .pipe(map(() => this.selectValueService.get('BankAccount', 'Status')));
   }
 
   onSubmit() {
@@ -77,7 +75,7 @@ export class PersonBankdataComponent implements OnInit, OnDestroy {
           });
       } else {
         this.bankService
-          .addBankAccount(this.person.id, { id, bic, iban, accountOwner, commentInner })
+          .addBankAccount(this.person.id, { bic, iban, accountOwner, commentInner })
           .pipe(first())
           .subscribe((result) => {
             this._tableData.push(result);

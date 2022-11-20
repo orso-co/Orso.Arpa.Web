@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '../../../../../@arpa/services/api.service';
 import { shareReplay } from 'rxjs/operators';
-import { ContactDetailCreateDto } from 'src/@arpa/models/contactDetailCreateDto';
+import { ContactDetailCreateBodyDto } from 'src/@arpa/models/contactDetailCreateBodyDto';
 import { ContactDetailModifyBodyDto } from 'src/@arpa/models/contactDetailModifyBodyDto';
 import { ContactDetailDto } from 'src/@arpa/models/contactDetailDto';
 
@@ -16,7 +16,7 @@ export class ContactService {
   constructor(private apiService: ApiService, private apollo: Apollo) {
     this.baseUrl = '/persons';
   }
-  addContactDetail(personId: string, dto: ContactDetailCreateDto): Observable<ContactDetailDto> {
+  addContactDetail(personId: string, dto: ContactDetailCreateBodyDto): Observable<ContactDetailDto> {
     return this.apiService.post<ContactDetailDto>(`${this.baseUrl}/${personId}/contactdetails`, dto).pipe(shareReplay());
   }
 

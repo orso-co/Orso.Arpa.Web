@@ -1,3 +1,4 @@
+import { MusicianProfileInquiryStatus } from './musicianProfileInquiryStatus';
 import { DoublingInstrumentCreateBodyDto } from './doublingInstrumentCreateBodyDto';
 
 export interface MusicianProfileCreateBodyDto {
@@ -5,8 +6,8 @@ export interface MusicianProfileCreateBodyDto {
   levelAssessmentTeam?: number;
   instrumentId: string;
   qualificationId: string;
-  inquiryStatusInnerId?: string;
-  inquiryStatusTeamId?: string;
+  inquiryStatusInner?: MusicianProfileInquiryStatus;
+  inquiryStatusTeam?: MusicianProfileInquiryStatus;
   doublingInstruments: Array<DoublingInstrumentCreateBodyDto>;
   preferredPositionsInnerIds: Array<string>;
   preferredPositionsTeamIds: Array<string>;

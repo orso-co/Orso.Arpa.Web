@@ -1,3 +1,4 @@
+import { ProjectStatus } from './projectStatus';
 import { SelectValueDto } from './selectValueDto';
 import { UrlDto } from './urlDto';
 
@@ -16,7 +17,7 @@ export interface ProjectDto {
   startDate?: Date;
   endDate?: Date;
   urls?: Array<UrlDto>;
-  state?: SelectValueDto;
+  status?: ProjectStatus;
   parentId?: string;
   isCompleted?: boolean;
 }

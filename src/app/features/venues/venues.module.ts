@@ -1,6 +1,6 @@
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { FormFieldModule } from './../../../@arpa/components/form-field/form-field.module';
-import { VenueService } from './../../shared/services/venue.service';
+import { VenueService } from '@arpa/services';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VenuesComponent } from './venues.component';

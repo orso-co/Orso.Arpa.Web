@@ -1,7 +1,6 @@
-import { MyProjectParticipationDto } from 'src/@arpa/models/myProjectDto';
-import { Component, Input, OnInit } from '@angular/core';
+import { MyProjectParticipationDto } from '@arpa/models';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { SelectItem } from 'primeng/api';
 import { Observable } from 'rxjs';
@@ -20,17 +19,16 @@ export class MyProjectParticipationDialogComponent implements OnInit {
     private formBuilder: FormBuilder,
     public config: DynamicDialogConfig,
     public ref: DynamicDialogRef,
-    private translate: TranslateService
   ) {}
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      participationStatusId: [null, [Validators.required]],
+      participationStatus: [null, [Validators.required]],
       comment: [null, [Validators.maxLength(500)]],
     });
 
     this.form.patchValue({
-      participationStatusId: this.participation.participationStatusInner?.id,
+      participationStatus: this.participation.participationStatusInner,
       comment: this.participation.commentByPerformerInner,
     });
   }

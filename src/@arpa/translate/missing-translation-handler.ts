@@ -26,9 +26,9 @@ export class ArpaMissingTranslationHandler extends MissingTranslationHandler {
       map((t: Record<string, any>) => {
         let scope = '';
         if (this.modules.length) {
-          for (let i = 0; i < this.modules.length; i++) {
-            if (t[this.modules[i]]) {
-              scope = this.modules[i] + '.';
+          for (const element of this.modules) {
+            if (t[element]) {
+              scope = element + '.';
               break;
             }
           }

@@ -1,7 +1,6 @@
-import { NotificationsService } from '../../../../../@arpa/services/notifications.service';
+import { NotificationsService, SelectValueService } from '@arpa/services';
 import { PersonService } from '../../services/person.service';
-import { ReducedPersonDto } from '../../../../../@arpa/models/reducedPersonDto';
-import { SelectValueService } from '../../../../shared/services/select-value.service';
+import { ReducedPersonDto } from '@arpa/models';
 import { PersonDto } from '../../../../../@arpa/models/personDto';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -52,7 +51,7 @@ export class PersonBasedataComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.genderOptions$ = this.selectValueService.load('Person', 'gender').pipe(map(() => this.selectValueService.get('Person', 'gender')));
+    this.genderOptions$ = this.selectValueService.load('Person', 'Gender').pipe(map(() => this.selectValueService.get('Person', 'Gender')));
   }
 
   ngOnChanges(changes: SimpleChanges): void {

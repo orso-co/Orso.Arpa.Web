@@ -1,7 +1,10 @@
+import { ProjectInvitationStatus } from './projectInvitationStatus';
+import { ProjectParticipationStatusInternal } from './projectParticipationStatusInternal';
+import { ProjectParticipationStatusInner } from './projectParticipationStatusInner';
 export interface SetProjectParticipationBodyDto {
-  participationStatusInnerId?: string;
-  participationStatusInternalId: string;
-  invitationStatusId: string;
+  participationStatusInner?: ProjectParticipationStatusInner;
+  participationStatusInternal: ProjectParticipationStatusInternal;
+  invitationStatus: ProjectInvitationStatus;
   commentByStaffInner?: string;
   commentTeam?: string;
   musicianProfileId: string;

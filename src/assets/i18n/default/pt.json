@@ -92,6 +92,58 @@
   "norole": {
     "BE_PATIENT": "Por favor, aguarda até que a nossa equipa active o teu registo. Receberás um e-mail quando o registo estiver activo."
   },
+  "appointmentParticipationPrediction": {
+    "YES": "Yes",
+    "NO": "No",
+    "PARTLY": "Partly",
+    "DONT_KNOW_YET": "Don't know yet"
+  },
+  "appointmentParticipationResult": {
+    "PRESENT": "Present",
+    "ABSENT": "Absent",
+    "INAPPLICABLE": "Inapplicable",
+    "AMBIGUOUS": "Ambiguous",
+    "AWAITING_SCAN": "Awaiting scan"
+  },
+  "appointmentStatus": {
+    "CONFIRMED": "Confirmed",
+    "SCHEDULED": "Scheduled",
+    "AMBIGUOUS": "Ambiguous",
+    "AWAITING_POLL": "Awaiting poll",
+    "REFUSED": "Refused"
+  },
+  "musicianProfileInquiryStatus": {
+    "GLADLY": "Gladly",
+    "EMERGENCY_ONLY": "Emergency only",
+    "FOR_CONTACTS_ONLY": "For contacts only",
+    "UNKNOWN": "Unknown",
+    "NEVER_AGAIN": "Never again"
+  },
+  "projectInvitationStatus": {
+    "CANDIDATE": "Candidate",
+    "INVITED": "Invited",
+    "NOT_INVITED": "Not invited",
+    "UNCLEAR": "Unclear"
+  },
+  "projectParticipationStatusInner": {
+    "INTERESTED": "Interested",
+    "PENDING": "Pending",
+    "ACCEPTANCE": "Acceptance",
+    "REFUSAL": "Refusal"
+  },
+  "projectParticipationStatusInternal": {
+    "CANDIDATE": "Candidate",
+    "PENDING": "Pending",
+    "ACCEPTANCE": "Accteptance",
+    "REFUSAL": "Refusal"
+  },
+  "projectStatus": {
+    "PENDING": "Pending",
+    "CONFIRMED": "Confirmed",
+    "CANCELLED": "Cancelled",
+    "POSTPONED": "Postponed",
+    "ARCHIVED": "Archived"
+  },
   "primeng": {
     "accept": "Sim",
     "addRule": "Adicionar regra",

@@ -1,12 +1,9 @@
-import { VenueModifyBodyDto } from './../../../@arpa/models/venueModifyBodyDto';
-import { VenueCreateDto } from './../../../@arpa/models/venueCreateDto';
+import { VenueModifyBodyDto, VenueCreateDto, VenueDto, RoomDto } from '@arpa/models';
 import { shareReplay } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiService } from '../../../@arpa/services/api.service';
+import { ApiService } from '@arpa/services';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import { VenueDto } from '../../../@arpa/models/venueDto';
-import { RoomDto } from '../../../@arpa/models/roomDto';
 
 @Injectable({
   providedIn: 'root',

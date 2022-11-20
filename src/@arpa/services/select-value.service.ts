@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { catchError, map, shareReplay, tap } from 'rxjs/operators';
-import { ApiService } from '../../../@arpa/services/api.service';
-import { SelectValueDto } from '../../../@arpa/models/selectValueDto';
+import { ApiService } from '@arpa/services';
+import { SelectValueDto } from '@arpa/models';
 
 @Injectable({
   providedIn: 'root',

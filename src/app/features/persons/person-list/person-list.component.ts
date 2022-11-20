@@ -1,4 +1,4 @@
-import { SelectValueService } from 'src/app/shared/services/select-value.service';
+import { SelectValueService, NotificationsService } from '@arpa/services';
 import { PersonService } from '../services/person.service';
 import { PersonLayoutComponent } from '../person-dialog/person-layout/person-layout.component';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -10,10 +10,9 @@ import { PersonsQuery } from './persons.graphql';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
 import { GraphQlFeedComponent } from '../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
 import { Observable, Subscription } from 'rxjs';
-import { PersonDto } from '../../../../@arpa/models/personDto';
+import { PersonDto } from '@arpa/models';
 import { ActivatedRoute, NavigationExtras, NavigationStart, Router } from '@angular/router';
 import { filter, first,  map } from 'rxjs/operators';
-import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 import { DocumentNode } from 'graphql';
 
 

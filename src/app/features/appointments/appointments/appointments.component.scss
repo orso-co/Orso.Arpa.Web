@@ -5,19 +5,19 @@
       display: flex;
     }
 
-    .ambigious {
+    .AMBIGUOUS {
       background-color: yellow;
     }
-    .confirmed {
+    .CONFIRMED {
       background-color: green;
     }
-    .scheduled {
+    .SCHEDULED {
       background-color: orangered;
     }
-    .awaiting-poll {
+    .AWAITING_POLL {
       background-color: red;
     }
-    .refused {
+    .REFUSED {
       background-color: lightgrey;
     }
   }

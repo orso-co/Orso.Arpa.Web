@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { ApiService } from '../../../../../@arpa/services/api.service';
 import { shareReplay } from 'rxjs/operators';
 import { BankAccountDto } from 'src/@arpa/models/bankAccountDto';
-import { BankAccountCreateDto } from '../../../../../@arpa/models/bankAccountCreateDto';
+import { BankAccountCreateBodyDto } from '../../../../../@arpa/models/bankAccountCreateBodyDto';
 import { BankAccountModifyBodyDto } from '../../../../../@arpa/models/bankAccountModifyBodyDto';
 
 
@@ -16,7 +16,7 @@ export class BankAccountService {
   constructor(private apiService: ApiService) {
     this.baseUrl = '/persons';
   }
-  addBankAccount(personId: string, dto: BankAccountCreateDto): Observable<BankAccountDto> {
+  addBankAccount(personId: string, dto: BankAccountCreateBodyDto): Observable<BankAccountDto> {
     return this.apiService.post<BankAccountDto>(`${this.baseUrl}/${personId}/bankaccounts`, dto).pipe(shareReplay());
   }
 

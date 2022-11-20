@@ -94,6 +94,58 @@
   "norole": {
     "BE_PATIENT": "Wir bitten um ein wenig Geduld, bis du von unserem Team freigeschaltet wurdest. Du wirst per E-Mail benachrichtigt."
   },
+  "appointmentParticipationPrediction": {
+    "YES": "Ja",
+    "NO": "Nein",
+    "PARTLY": "Teilweise",
+    "DONT_KNOW_YET": "Ich weiß es noch nicht"
+  },
+  "appointmentParticipationResult": {
+    "PRESENT": "Anwesend",
+    "ABSENT": "Nicht anwesend",
+    "INAPPLICABLE": "Unzutreffend",
+    "AMBIGUOUS": "Unklar",
+    "AWAITING_SCAN": "Eintrag nach Scan"
+  },
+  "appointmentStatus": {
+    "CONFIRMED": "Bestätigt",
+    "SCHEDULED": "Geplant",
+    "AMBIGUOUS": "Unklar",
+    "AWAITING_POLL": "Umfrage abwarten",
+    "REFUSED": "Verworfen"
+  },
+  "musicianProfileInquiryStatus": {
+    "GLADLY": "Gerne anfragen",
+    "EMERGENCY_ONLY": "Nur im Notfall",
+    "FOR_CONTACTS_ONLY": "Aquisekontakt",
+    "UNKNOWN": "Unbekannt",
+    "NEVER_AGAIN": "Nie wieder"
+  },
+  "projectInvitationStatus": {
+    "CANDIDATE": "Kandidat",
+    "INVITED": "Eingeladen",
+    "NOT_INVITED": "Nicht eingeladen",
+    "UNCLEAR": "Unklar"
+  },
+  "projectParticipationStatusInner": {
+    "INTERESTED": "Interessiert",
+    "PENDING": "Ausstehend",
+    "ACCEPTANCE": "Zusage",
+    "REFUSAL": "Absage"
+  },
+  "projectParticipationStatusInternal": {
+    "CANDIDATE": "Kandidat",
+    "PENDING": "Ausstehend",
+    "ACCEPTANCE": "Zusage",
+    "REFUSAL": "Absage"
+  },
+  "projectStatus": {
+    "PENDING": "PendAusstehending",
+    "CONFIRMED": "Bestätigt",
+    "CANCELLED": "Abgesagt",
+    "POSTPONED": "Verschoben",
+    "ARCHIVED": "Archiviert"
+  },
   "primeng": {
     "accept": "Ja",
     "addRule": "Regel hinzufügen",
@@ -104,33 +156,9 @@
     "choose": "Wählen",
     "clear": "Löschen",
     "contains": "Enthält",
-    "dayNames": [
-      "Sonntag",
-      "Montag",
-      "Dienstag",
-      "Mittwoch",
-      "Donnerstag",
-      "Freitag",
-      "Samstag"
-    ],
-    "dayNamesMin": [
-      "So",
-      "Mo",
-      "Di",
-      "Mi",
-      "Do",
-      "Fr",
-      "Sa"
-    ],
-    "dayNamesShort": [
-      "Son",
-      "Mon",
-      "Die",
-      "Mit",
-      "Don",
-      "Fre",
-      "Sam"
-    ],
+    "dayNames": ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
+    "dayNamesMin": ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+    "dayNamesShort": ["Son", "Mon", "Die", "Mit", "Don", "Fre", "Sam"],
     "endsWith": "Endet mit",
     "equals": "Ist gleich",
     "gt": "Größer als",
@@ -141,34 +169,8 @@
     "lte": "Kleiner oder gleich",
     "matchAll": "Zutreffend für ALLES",
     "matchAny": "Für irgendwas zutreffend",
-    "monthNames": [
-      "Januar",
-      "Februar",
-      "März",
-      "April",
-      "Mai",
-      "Juni",
-      "Juli",
-      "August",
-      "September",
-      "Oktober",
-      "November",
-      "Dezember"
-    ],
-    "monthNamesShort": [
-      "Jan",
-      "Feb",
-      "Mär",
-      "Apr",
-      "Mai",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Okt",
-      "Nov",
-      "Dez"
-    ],
+    "monthNames": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+    "monthNamesShort": ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
     "noFilter": "Filter aus",
     "notContains": "Enhält nicht",
     "notEquals": "Ist nicht gleich",

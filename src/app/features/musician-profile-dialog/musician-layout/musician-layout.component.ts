@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
+import { MusicianProfileDto, DoublingInstrumentDto } from '@arpa/models';
 import { Observable } from 'rxjs';
-import { DoublingInstrumentDto } from '../../../../@arpa/models/doublingInstrumentDto';
 
 export enum ViewState {
   MAIN_INSTRUMENT,
