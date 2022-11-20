@@ -140,7 +140,7 @@
     "REFUSAL": "Absage"
   },
   "projectStatus": {
-    "PENDING": "PendAusstehending",
+    "PENDING": "Ausstehend",
     "CONFIRMED": "Bestätigt",
     "CANCELLED": "Abgesagt",
     "POSTPONED": "Verschoben",
