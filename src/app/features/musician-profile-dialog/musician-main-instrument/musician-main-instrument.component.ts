@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
-import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MusicianProfileDto } from '@arpa/models';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { SectionDto } from '@arpa/models';
 import { SelectItem } from 'primeng/api';
