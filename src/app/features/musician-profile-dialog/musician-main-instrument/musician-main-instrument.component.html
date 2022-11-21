@@ -21,18 +21,6 @@
         </arpa-form-field>
       </div>
     </div>
-    <!-- Qualification -->
-    <div class="p-col">
-      <arpa-form-field label="musician-profile-dialog.QUALIFICATION" type="select">
-        <p-dropdown
-          [options]="(qualificationOptions$ | async) || []"
-          [placeholder]="'NOTHING_SELECTED' | translate"
-          formControlName="qualificationId"
-          optionLabel="label"
-          optionValue="value"
-        ></p-dropdown>
-      </arpa-form-field>
-    </div>
     <div *ngIf='(preferredParts | async)' class='p-fluid p-formgrid p-grid'>
       <div class='p-col'>
         <arpa-form-field label='musician-profile-dialog.PREFERRED_PARTS' type='select'>

@@ -7,14 +7,14 @@
           [options]="(statusOptions$ | async)!"
           [showClear]="true"
           appendTo="body"
-          formControlName="participationStatus"
-          id="participationStatus"
+          formControlName="participationStatusInner"
+          id="participationStatusInner"
         ></p-dropdown>
       </arpa-form-field>
     </div>
     <div class="p-field p-col-12">
       <arpa-form-field label="{{ 'my-projects.MY_COMMENT' | translate }}">
-        <textarea formControlName="comment" id="comment" pInputText rows="3"></textarea>
+        <textarea formControlName="commentByPerformerInner" id="commentByPerformerInner" pInputText rows="3"></textarea>
       </arpa-form-field>
     </div>
   </div>

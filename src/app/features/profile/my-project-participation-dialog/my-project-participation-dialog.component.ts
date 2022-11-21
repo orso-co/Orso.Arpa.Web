@@ -23,14 +23,11 @@ export class MyProjectParticipationDialogComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      participationStatus: [null, [Validators.required]],
-      comment: [null, [Validators.maxLength(500)]],
+      participationStatusInner: [null, [Validators.required]],
+      commentByPerformerInner: [null, [Validators.maxLength(500)]],
     });
 
-    this.form.patchValue({
-      participationStatus: this.participation.participationStatusInner,
-      comment: this.participation.commentByPerformerInner,
-    });
+    this.form.patchValue(this.participation);
   }
 
   onSubmit() {

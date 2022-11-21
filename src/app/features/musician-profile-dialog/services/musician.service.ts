@@ -1,3 +1,4 @@
+import { MyMusicianProfileModifyBodyDto } from './../../../../@arpa/models/myMusicianProfileModifyBodyDto';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '@arpa/services';
@@ -10,6 +11,8 @@ import {
   MyDoublingInstrumentCreateBodyDto,
   MusicianProfileDto,
   MusicianProfileModifyBodyDto,
+  MyMusicianProfileCreateDto,
+  MusicianProfileCreateBodyDto,
 } from '@arpa/models';
 
 @Injectable({
@@ -30,11 +33,11 @@ export class MusicianService {
     return this.apiService.get<MusicianProfileDto>(`${this.baseUrlPersons}/${id}/profiles/musician`);
   }
 
-  createProfileForMe(profile: MusicianProfileDto): Observable<any> {
+  createProfileForMe(profile: MyMusicianProfileCreateDto): Observable<any> {
     return this.apiService.post(`${this.baseUrlMe}`, profile);
   }
 
-  createProfileForPerson(personId: string, profile: MusicianProfileDto): Observable<any> {
+  createProfileForPerson(personId: string, profile: MusicianProfileCreateBodyDto): Observable<any> {
     return this.apiService.post(`${this.baseUrlPersons}/${personId}/profiles/musician`, profile);
   }
 
@@ -46,8 +49,7 @@ export class MusicianService {
     return this.apiService.delete(`${this.baseUrl}/${id}/deactivation`);
   }
 
-  updateProfile(profile: MusicianProfileDto): Observable<any> {
-    const { id } = profile;
+  updateMyProfile(id: string, profile: MyMusicianProfileModifyBodyDto): Observable<any> {
     return this.apiService.put(`${this.baseUrlMe}/${id}`, profile);
   }
 

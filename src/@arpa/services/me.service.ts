@@ -1,5 +1,5 @@
 import {
-  SetMyProjectAppointmentPredictionDto,
+  SetMyAppointmentParticipationPredictionDto,
   BankAccountModifyBodyDto,
   MyContactDetailModifyBodyDto,
   ContactDetailDto,
@@ -75,7 +75,7 @@ export class MeService {
     return this.apiService.get<MyProjectDto[]>(`${this.baseUrl}/projects`).pipe(shareReplay());
   }
 
-  setAppointmentPrediction(appointmentId: string, dto: SetMyProjectAppointmentPredictionDto): Observable<any> {
+  setAppointmentPrediction(appointmentId: string, dto: SetMyAppointmentParticipationPredictionDto): Observable<any> {
     return this.apiService.put(`${this.baseUrl}/appointments/${appointmentId}/participation/prediction`, dto).pipe(shareReplay());
   }
 

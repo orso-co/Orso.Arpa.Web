@@ -1,14 +1,17 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MusicianProfileDto } from '@arpa/models';
+import {
+  MyMusicianProfileCreateDto,
+  MyMusicianProfileDto,
+  MyMusicianProfileModifyBodyDto,
+  SectionDto,
+} from '@arpa/models';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { SectionDto } from '@arpa/models';
 import { SelectItem } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { SelectValueService, SectionService, NotificationsService, EnumService } from '@arpa/services';
 import { first, map, tap } from 'rxjs/operators';
 import { MusicianService } from '../services/musician.service';
-import { cloneDeep } from 'lodash-es';
 
 @Component({
   selector: 'arpa-musician-main-instrument',
@@ -19,11 +22,9 @@ export class MusicianMainInstrumentComponent implements OnInit {
   @Output()
   viewState = new EventEmitter<number>();
 
-  private personId: string;
-
   public form: FormGroup;
 
-  public profile: MusicianProfileDto;
+  public profile: MyMusicianProfileDto;
   public sections: Observable<SectionDto[]> = this.config.data.sections;
   public preferredParts: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
   public preferredPositions: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
@@ -45,10 +46,9 @@ export class MusicianMainInstrumentComponent implements OnInit {
   ) {
     this.qualificationOptions$ = this.resolveSelect('Qualification');
     this.inquiryStatusOptions$ = this.enumService.getMusicianProfileInquiryStatusSelectItems();
-    this.config.data.profile.pipe(first()).subscribe((profile: MusicianProfileDto) => {
+    this.config.data.profile.pipe(first()).subscribe((profile: MyMusicianProfileDto) => {
       this.profile = profile;
     });
-    this.personId = this.config.data.personId;
   }
 
   get isNew(): boolean {
@@ -64,7 +64,6 @@ export class MusicianMainInstrumentComponent implements OnInit {
       inquiryStatusInner: [null, [Validators.required]],
       preferredPositionsInnerIds: [[], []],
       isMainProfile: [false, []],
-      qualificationId: [null, [Validators.required]]
     });
 
     this.form.controls.instrumentId.valueChanges.subscribe((id) => {
@@ -105,7 +104,7 @@ export class MusicianMainInstrumentComponent implements OnInit {
     if (this.form.invalid || this.form.pristine) {
       return;
     }
-    this.createOrUpdate({ ...this.profile, ...this.form.value } as MusicianProfileDto);
+    this.createOrUpdate({ ...this.profile, ...this.form.value });
   }
 
   cancel(): void {
@@ -125,39 +124,27 @@ export class MusicianMainInstrumentComponent implements OnInit {
       .pipe(map(() => this.selectValueService.get('MusicianProfile', property)));
   }
 
-  private createOrUpdate(profile: MusicianProfileDto): void {
+  private createOrUpdate(
+    profile: MyMusicianProfileCreateDto | MyMusicianProfileModifyBodyDto
+  ): void {
     if (this.isNew) {
-      if (this.personId) {
-        const otherPersonProfile = cloneDeep(profile);
-        otherPersonProfile.levelAssessmentTeam = otherPersonProfile.levelAssessmentInner;
-        delete otherPersonProfile.levelAssessmentInner;
         this.musicianService
-          .createProfileForPerson(this.personId, otherPersonProfile)
+          .createProfileForMe(profile as MyMusicianProfileCreateDto)
           .pipe(first())
           .subscribe((result) => {
             this.config.data.profile.next(result);
             this.notificationsService.success('CREATED', 'musician-profile-dialog');
             this.state = 'created';
           });
-      } else {
-        this.musicianService
-          .createProfileForMe(profile)
-          .pipe(first())
-          .subscribe((result) => {
-            this.config.data.profile.next(result);
-            this.notificationsService.success('CREATED', 'musician-profile-dialog');
-            this.state = 'created';
-          });
-      }
     } else {
-      this.musicianService
-        .updateProfile(profile)
-        .pipe(first())
-        .subscribe(() => {
-          this.config.data.profile.next(profile);
-          this.notificationsService.success('INSTRUMENT_UPDATED', 'musician-profile-dialog');
-          this.close();
-        });
+        this.musicianService
+          .updateMyProfile(this.profile.id!, profile as MyMusicianProfileModifyBodyDto)
+          .pipe(first())
+          .subscribe(() => {
+            this.config.data.profile.next(profile);
+            this.notificationsService.success('INSTRUMENT_UPDATED', 'musician-profile-dialog');
+            this.close();
+          });
     }
   }
 }

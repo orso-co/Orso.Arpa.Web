@@ -1,5 +1,5 @@
 import { AppointmentParticipationPrediction } from './appointmentParticipationPrediction';
-export interface SetMyProjectAppointmentPredictionDto {
+export interface SetMyAppointmentParticipationPredictionDto {
   commentByPerformerInner?: string;
   prediction: AppointmentParticipationPrediction;
 }

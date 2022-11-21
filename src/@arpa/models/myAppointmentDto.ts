@@ -6,7 +6,7 @@ import { RoomDto } from './roomDto';
 import { VenueDto } from './venueDto';
 
 export interface MyAppointmentDto {
-  id?: string;
+  id: string;
   createdBy?: string;
   createdAt?: Date;
   modifiedBy?: string;

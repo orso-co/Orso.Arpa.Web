@@ -1,6 +1,6 @@
 import { ProjectParticipationStatusInner } from './projectParticipationStatusInner';
 export interface MyProjectParticipationModifyBodyDto {
   participationStatusInner: ProjectParticipationStatusInner;
-  comment?: string;
+  commentByPerformerInner?: string;
   musicianProfileId: string;
 }

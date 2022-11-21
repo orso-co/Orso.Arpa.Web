@@ -99,7 +99,7 @@ export * from "./roomDto";
 export * from "./sectionDto";
 export * from "./sectionTreeDto";
 export * from "./selectValueDto";
-export * from "./setMyProjectAppointmentPredictionDto";
+export * from "./setMyAppointmentParticipationPredictionDto";
 export * from "./setProjectParticipationBodyDto";
 export * from "./setRoleDto";
 export * from "./tokenDto";
