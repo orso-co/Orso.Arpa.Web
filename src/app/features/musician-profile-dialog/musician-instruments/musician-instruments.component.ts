@@ -2,11 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first, map } from 'rxjs/operators';
+import { first, map, filter } from 'rxjs/operators';
 import { SelectItem } from 'primeng/api';
 import { SelectValueService, NotificationsService, SectionService, EnumService } from '@arpa/services';
 import { MusicianService } from '../services/musician.service';
-import { MusicianProfileModifyBodyDto, SectionDto, MusicianProfileDto, DoublingInstrumentDto } from '@arpa/models';
+import {
+  MusicianProfileModifyBodyDto,
+  SectionDto,
+  MusicianProfileDto,
+  DoublingInstrumentDto,
+  MusicianProfileCreateBodyDto,
+} from '@arpa/models';
 
 interface FormListElement extends DoublingInstrumentDto {
   formGroup: FormGroup;
@@ -19,10 +25,8 @@ interface FormListElement extends DoublingInstrumentDto {
 })
 export class MusicianInstrumentsComponent implements OnInit {
   public form: FormGroup;
-
-  public profile: MusicianProfileDto;
+  public profile: MusicianProfileDto | undefined = undefined;
   public instrumentName: string;
-
   public sections: Observable<SectionDto[]> = this.config.data.sections;
   public preferredParts: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
   public preferredPositionOptions$: Observable<SelectItem[]>;
@@ -30,9 +34,9 @@ export class MusicianInstrumentsComponent implements OnInit {
   public salaryOptions$: Observable<SelectItem[]>;
   public qualificationOptions$: Observable<SelectItem[]>;
   inquiryStatusOptions$: Observable<SelectItem[]>;
-
   public instruments: Observable<DoublingInstrumentDto[]>;
   public doublingInstruments: FormListElement[] = [];
+  public isNew: boolean;
 
   constructor(
     public config: DynamicDialogConfig,
@@ -53,6 +57,7 @@ export class MusicianInstrumentsComponent implements OnInit {
 
     this.config.data.profile.pipe(first()).subscribe((profile: MusicianProfileDto) => {
       this.profile = profile;
+      this.isNew = !profile.id;
       if (profile.doublingInstruments?.length) {
         profile.doublingInstruments.forEach((instrument) => this.doublingInstruments.push(this.getFormGroup(instrument)));
       }
@@ -77,33 +82,54 @@ export class MusicianInstrumentsComponent implements OnInit {
       inquiryStatusTeam: [null, []],
       inquiryStatusInner: [null, []],
       isMainProfile: [null, []],
+      instrumentId: [null, [Validators.required]],
     });
 
     if (this.profile) {
-      this.preferredPositionOptions$ = this.sectionService.getPositionsByInstrument(this.profile.instrumentId!);
-
-      this.sections
-        .pipe(
-          map((sections) => sections.find((section) => section.id === this.profile.instrumentId) as SectionDto),
-          first()
-        )
-        .subscribe((section: SectionDto) => {
-          this.instrumentName = section.name || '';
-          if (section.instrumentPartCount && section.instrumentPartCount > 0) {
-            const options = [];
-            for (let i = 0; i < section.instrumentPartCount; i++) {
-              options.push({ label: ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'][i], value: i + 1 });
-            }
-            this.preferredParts.next(options);
-          }
-        });
+      if (!this.isNew) {
+       this.onChangeInstrumentId(this.profile.instrumentId!)
+      }
       this.form.patchValue(this.profile);
+      this.form.controls.instrumentId.valueChanges.subscribe(instrumentId => this.onChangeInstrumentId(instrumentId));
     }
   }
 
+  onChangeInstrumentId(instrumentId: string){
+    this.preferredPositionOptions$ = this.sectionService.getPositionsByInstrument(instrumentId!);
+    this.form.controls.preferredPositionsTeamIds.setValue([]);
+    this.form.controls.preferredPositionsInnerIds.setValue([]);
+
+    this.sections
+      .pipe(
+        map((sections) => sections.find((section) => section.id === instrumentId) as SectionDto),
+        first(),
+        filter(section => !!section)
+      )
+      .subscribe((section: SectionDto) => {
+        this.instrumentName = section.name || '';
+        const options = [];
+        if (section.instrumentPartCount && section.instrumentPartCount > 0) {
+          for (let i = 0; i < section.instrumentPartCount; i++) {
+            options.push({ label: ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'][i], value: i + 1 });
+          }
+        }
+        this.preferredParts.next(options);
+        this.form.controls.preferredPartsTeam.setValue([]);
+        this.form.controls.preferredPartsInner.setValue([]);
+      });
+
+  }
+onSubmit() {
+    if (this.isNew){
+      this.create();
+    } else {
+      this.update();
+    }
+}
+
   update() {
     this.musicianService
-      .updatePersonProfile(this.profile.id!, {
+      .updatePersonProfile(this.profile?.id!, {
         ...this.form.value,
       } as MusicianProfileModifyBodyDto)
       .pipe(first())
@@ -111,6 +137,18 @@ export class MusicianInstrumentsComponent implements OnInit {
         this.config.data.profile.next(updatedProfile);
         this.ref.close(updatedProfile);
         this.notificationsService.success('UPDATED', 'musician-profile-dialog')
+      });
+  }
+  create() {
+    this.musicianService
+      .createProfileForPerson(this.config.data.personId, {
+        ...this.form.value,
+      } as MusicianProfileCreateBodyDto)
+      .pipe(first())
+      .subscribe((createdProfile) => {
+        this.config.data.profile.next(createdProfile);
+        this.ref.close(createdProfile);
+        this.notificationsService.success('CREATED', 'musician-profile-dialog')
       });
   }
 
@@ -122,7 +160,7 @@ export class MusicianInstrumentsComponent implements OnInit {
     const { formGroup, ...listData } = item;
     const { id, ...data } = formGroup.value;
     this.musicianService
-      .updateDoublingInstrument(this.profile.id, id, data, false)
+      .updateDoublingInstrument(this.profile?.id, id, data, false)
       .pipe(first())
       .subscribe(() => {
         this.doublingInstruments.forEach((item, i) => {
