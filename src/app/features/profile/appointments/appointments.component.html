@@ -63,51 +63,46 @@
         <div class="p-grid">
           <div class="p-col-12">
             <span class="name"
-              >{{ appointment.name }}
-              <p-badge
-                *ngIf="appointment.prediction"
-                [value]="
-                  ('PARTICIPATION_PREDICTION' | translate) +
-                  ': ' +
-                  ('appointmentParticipationPrediction.' + appointment.prediction | translate)
-                "
-                severity="warning"
-              ></p-badge>
+              ><span *ngIf="appointment.category?.name" class="category">{{appointment.category?.name}} </span>"{{ appointment.name }}"
             </span>
+            <p-badge
+            *ngIf="appointment.prediction"
+            [value]="
+              (('PARTICIPATION_PREDICTION' | translate) | uppercase) +
+              ': ' +
+              ('appointmentParticipationPrediction.' + appointment.prediction | translate)
+            "
+            severity="warning"
+          ></p-badge>
           </div>
-          <div class="p-col-12 p-pb-0" *ngIf="appointment.category?.name">
-            <span class="label">{{ 'CATEGORY' | translate }}</span>
+          <div class="p-col-12 p-lg-6">
+            <ng-container *ngIf="appointment.projects.length > 0">
+              <span class="label">{{ 'PROJECT' | translate }}</span><br/>
+              <span>{{ getProjectNames(appointment.projects) }}</span>
+            </ng-container>
           </div>
-          <div class="p-col-12 p-pt-0" *ngIf="appointment.category?.name">
-            <span>{{ appointment.category?.name }}</span>
+          <div class="p-col-12 p-lg-6">
+            <ng-container *ngIf="appointment.result">
+              <span class="label">{{ 'PARTICIPATION' | translate }}</span><br/>
+              <span>{{ 'appointmentParticipationResult.' + appointment.result | translate }}</span>
+            </ng-container>
           </div>
-          <div class="p-col-12 p-pb-0" *ngIf="appointment.result">
-            <span class="label">{{ 'PARTICIPATION' | translate }}</span>
+          <div class="p-col-12 p-lg-6">
+            <ng-container *ngIf="appointment.publicDetails">
+              <span class="label">{{ 'DETAILS' | translate }}</span><br/>
+              <span>{{ appointment.publicDetails }}</span>
+            </ng-container>
           </div>
-          <div class="p-col-12 p-pt-0" *ngIf="appointment.result">
-            <span>{{ 'appointmentParticipationResult.' + appointment.result | translate }}</span>
+          <div class="p-col-12 p-lg-6">
+            <ng-container *ngIf="appointment.venue?.name">
+              <span class="label">{{ 'VENUE' | translate }}</span><br/>
+              <span
+                >{{ appointment.venue?.name }}<br/>{{ appointment.venue?.address.address1 }}<br/>{{ appointment.venue?.address.zip }}
+                 {{ appointment.venue?.address.city }}</span
+              >
+            </ng-container>
           </div>
-          <div class="p-col-12 p-pb-0" *ngIf="appointment.projects.length > 0">
-            <span class="label">{{ 'PROJECT' | translate }}</span>
-          </div>
-          <div class="p-col-12 p-pt-0" *ngIf="appointment.projects.length > 0">
-            <span>{{ getProjectNames(appointment.projects) }}</span>
-          </div>
-          <div class="p-col-12 p-pb-0" *ngIf="appointment.venue?.name">
-            <span class="label">{{ 'VENUE' | translate }}</span>
-          </div>
-          <div class="p-col-12 p-pt-0" *ngIf="appointment.venue?.name">
-            <span
-              >{{ appointment.venue?.name }}, {{ appointment.venue?.address.address1 }}, {{ appointment.venue?.address.zip }}
-              {{ appointment.venue?.address.city }}</span
-            >
-          </div>
-          <div class="p-col-12 p-pb-0" *ngIf="appointment.publicDetails">
-            <span class="label">{{ 'DETAILS' | translate }}</span>
-          </div>
-          <div class="p-col-12 p-pt-0" *ngIf="appointment.publicDetails">
-            <span>{{ appointment.publicDetails }}</span>
-          </div>
+
         </div>
       </div>
       <div class="p-flex-column actions">
