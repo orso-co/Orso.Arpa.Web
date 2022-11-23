@@ -28,7 +28,7 @@
       <span class="time"
         >{{ appointment.startTime | date: 'H:mm':'locale(de)' }}-{{ appointment.endTime | date: 'H:mm':'locale(de)' }}</span
       >
-      <p-tag *ngIf="'appointmentStatus.' + appointment.status | translate" [value]="appointment.status" severity="info"></p-tag>
+      <p-tag *ngIf="appointment.status" [value]="'appointmentStatus.' + appointment.status | translate" severity="info"></p-tag>
     </div>
     <div class="p-flex-column p-mr-2 details">
       <p-badge
