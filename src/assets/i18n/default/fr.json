@@ -79,6 +79,11 @@
     "RECORDS": "enregistrements",
     "RESULTS": "Résultats",
     "VENUES": "Lieux",
+    "VENUE": "Lieu",
+    "CATEGORY": "Category",
+    "DETAILS": "Details",
+    "PARTICIPATION_PREDICTION": "Participation prediction",
+    "PARTICIPATION": "Participation",
 
     "error": {
       "BAD_REQUEST": "Une erreur s’est produite",

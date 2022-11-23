@@ -1,5 +1,5 @@
 {
-  "ABOUT_ME":"About me",
+  "ABOUT_ME": "About me",
   "ADD": "Add",
   "ADMIN": "Admin",
   "APPOINTMENTS": "Appointments",
@@ -80,7 +80,11 @@
   "RECORDS": "Records",
   "RESULTS": "Results",
   "VENUES": "Venues",
-
+  "VENUE": "Venue",
+  "CATEGORY": "Category",
+  "DETAILS": "Details",
+  "PARTICIPATION_PREDICTION": "Participation prediction",
+  "PARTICIPATION": "Participation",
 
   "error": {
     "BAD_REQUEST": "An error occured",
@@ -156,33 +160,9 @@
     "choose": "Choose",
     "clear": "Clear",
     "contains": "Contains",
-    "dayNames": [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "dayNamesMin": [
-      "Su",
-      "Mo",
-      "Tu",
-      "We",
-      "Th",
-      "Fr",
-      "Sa"
-    ],
-    "dayNamesShort": [
-      "Sun",
-      "Mon",
-      "Tue",
-      "Wed",
-      "Thu",
-      "Fri",
-      "Sat"
-    ],
+    "dayNames": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    "dayNamesMin": ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+    "dayNamesShort": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
     "endsWith": "Ends with",
     "equals": "Equals",
     "gt": "Greater than",
@@ -207,20 +187,7 @@
       "November",
       "December"
     ],
-    "monthNamesShort": [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec"
-    ],
+    "monthNamesShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     "noFilter": "No Filter",
     "notContains": "Does not contain",
     "notEquals": "Is not equal to",
