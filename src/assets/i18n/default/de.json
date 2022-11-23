@@ -81,6 +81,11 @@
   "RECORDS": "Datensätze",
   "RESULTS": "Ergebnisse",
   "VENUES": "Veranstaltungsorte",
+  "VENUE": "Veranstaltungsort",
+  "CATEGORY": "Kategorie",
+  "DETAILS": "Details",
+  "PARTICIPATION_PREDICTION": "Voraussichtliche Teilnahme",
+  "PARTICIPATION": "Tatsächliche Teilnahme",
 
   "error": {
     "BAD_REQUEST": "Es ist ein Fehler aufgetreten",
