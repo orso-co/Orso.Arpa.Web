@@ -34,24 +34,24 @@
               <div class='p-grid'>
                 <div class='p-col-12 section-detail'>
                   <header>
-                    <h2>{{ profile.instrument.name }}</h2>
-                    <button
-                      [queryParams]='{ comboInstruments: true }'
-                      [routerLink]='[{ outlets: { modal: [personId, profile.id] } }]'
-                      class='p-button-rounded p-button-text'
-                      icon='pi pi-pencil'
-                      label="{{ 'EDIT' | translate }}"
-                      pButton
-                      type='button'
-                    ></button>
+                    <h2 style='padding-right: 1rem'
+                    >{{ profile.instrument.name }}</h2>
+                    <p-badge
+                      *ngIf='profile.isMainProfile'
+                      [value]="'MAIN_PROFILE' | translate"
+                    ></p-badge>
                   </header>
-                  <label>{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_PERFORMER' | translate }}</label>
-                  <p-rating
-                    [(ngModel)]='profile.levelAssessmentInner'
-                    [cancel]='false'
-                    [disabled]='true'
-                    pTooltip="{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_PERFORMER' | translate }}"
-                  ></p-rating>
+                  <div style='display:inline-flex'>
+                    <label>{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_INNER' | translate }}</label>
+                    <p-rating
+                      [(ngModel)]='profile.levelAssessmentInner'
+                      [cancel]='false'
+                      [disabled]='true'
+                      pTooltip="{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_PERFORMER' | translate }}"
+                      style='padding-left: 1rem'
+                    ></p-rating>
+                  </div>
+                  <div style='display:inline-flex'>
 
                   <label>{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_TEAM' | translate }}</label>
                   <p-rating
@@ -59,20 +59,10 @@
                     [cancel]='false'
                     [disabled]='true'
                     pTooltip="{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_TEAM' | translate }}"
+                    style='padding-left: 1rem'
                   ></p-rating>
-
-                  <p-badge
-                    *ngIf='profile.isMainProfile'
-                    [value]="'MAIN_PROFILE' | translate"
-                  ></p-badge>
-
-                  <p-badge
-                    *ngIf='profile.deactivation'
-                    severity='danger'
-                    value="{{ 'musician-profile-dialog.DEACTIVATED' | translate }}"
-                  ></p-badge>
-
-                  <div style='text-align: right'>
+                  </div>
+                  <div style='text-align: left'>
                     <p-button
                       (click)='openInvitationDialog(profile.id)'
                       *ngIf='!profile.deactivation'
@@ -83,6 +73,24 @@
                       type='button'
                     ></p-button>
                   </div>
+                  <div>
+                  <button
+                    [queryParams]='{ comboInstruments: true }'
+                    [routerLink]='[{ outlets: { modal: [personId, profile.id] } }]'
+                    class='p-button-rounded p-button-text'
+                    icon='pi pi-pencil'
+                    label="{{ 'EDIT' | translate }}"
+                    pButton
+                    type='button'
+                  ></button>
+                  </div>
+                  <p-badge
+                    *ngIf='profile.deactivation'
+                    severity='danger'
+                    value="{{ 'musician-profile-dialog.DEACTIVATED' | translate }}"
+                  ></p-badge>
+
+
                 </div>
               </div>
             </div>

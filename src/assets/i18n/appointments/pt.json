@@ -41,5 +41,7 @@
     "TIME": "Hora",
     "TITLE": "Nome do evento",
     "VENUE_SET": "Local definido",
-    "VENUE": "Local"
+    "VENUE": "Local",
+    "SELECT_STATUS": "selecionar status"
+
     }

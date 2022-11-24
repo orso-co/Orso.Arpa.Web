@@ -66,7 +66,7 @@ export class MusicianInstrumentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      levelAssessmentInner: [null, [Validators.min(0), Validators.max(5)]],
+      levelAssessmentInner: [null, []],
       levelAssessmentTeam: [null, [Validators.min(0), Validators.max(5)]],
       profilePreferenceInner: [null, [Validators.min(0), Validators.max(5)]],
       profilePreferenceTeam: [null, [Validators.min(0), Validators.max(5)]],

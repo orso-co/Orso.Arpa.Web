@@ -41,6 +41,7 @@
   "TITLE": "Appointment description",
   "VENUE": "Venue",
   "VENUE_SET": "Venue set",
-  "QUALIFICATION": "Qualification"
+  "QUALIFICATION": "Qualification",
+  "SELECT_STATUS": "Select status"
 
 }
