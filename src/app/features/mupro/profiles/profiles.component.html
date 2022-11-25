@@ -34,8 +34,7 @@
               <div class='p-grid'>
                 <div class='p-col-12 section-detail'>
                   <header>
-                    <h2 style='padding-right: 1rem'
-                    >{{ profile.instrument.name }}</h2>
+                    <h2 class='p-pr-3'>{{ profile.instrument.name }}</h2>
                     <p-badge
                       *ngIf='profile.isMainProfile'
                       [value]="'MAIN_PROFILE' | translate"
@@ -61,12 +60,12 @@
                     class='p-pl-3'
                   ></p-rating>
                   </div>
-                  <div class='p-text-left'>
+                  <div class='p-d-inline-flex'>
                     <p-button
                       (click)='openInvitationDialog(profile.id)'
                       *ngIf='!profile.deactivation'
                       [label]="'INVITE' | translate"
-                      class='p-text-right p-ml-3'
+                      class='p-text-left p-ml-3'
                       icon='pi pi-plus-circle'
                       styleClass='p-button-sm'
                       type='button'
