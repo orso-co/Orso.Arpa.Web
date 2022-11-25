@@ -1,48 +1,31 @@
 <div class="instrument">
-  <header>
-    <h3>{{ instrumentName }}</h3>
-    <p-badge *ngIf="profile.isMainProfile" severity="info" value="{{ 'musician-profile-dialog.MAIN_PROFILE' | translate }}"></p-badge>
-    <p-badge *ngIf="profile.deactivation" severity="danger" value="{{ 'musician-profile-dialog.DEACTIVATED' | translate }}"></p-badge>
+  <header *ngIf="isNew; else editHeader">
+    {{'mupro.CREATE_NEW_MUPRO' | translate }}
   </header>
-  <!-- <div class="p-d-flex p-flex-column p-flex-md-row">
-    <div class="p-mb-4 p-mr-6">
-      <div class="p-d-flex p-flex-row">
-        <div class="p-mr-3">{{ 'musician-profile-dialog.LEVEL_ASSESSMENT' | translate }}:</div>
-        <div class="p-mr-2">
-          <p-rating [(ngModel)]="profile.levelAssessmentInner" [cancel]="false" [readonly]="true" [stars]="5"></p-rating>
-        </div>
-      </div>
-    </div>
-    <div class="p-mb-4 p-mr-6">
-      <div class="p-d-flex p-flex-row">
-        <div class="p-mr-3">{{ 'musician-profile-dialog.INQUIRY_STATUS' | translate }}:</div>
-        <div class="p-mr-2">
-          {{ profile.inquiryStatusInnerId | selectValue: inquiryStatus }}
-        </div>
-      </div>
-    </div>
-    <div *ngIf="profile && profile.preferredPartsInner!.length > 0" class="p-mb-4 p-mr-6">
-      <div class="p-d-flex p-flex-row">
-        <div class="p-mr-3">{{ 'musician-profile-dialog.PREFERRED_PARTS' | translate }}:</div>
-        <div class="p-mr-2">
-          {{ profile.preferredPartsInner | instrumentParts }}
-        </div>
-      </div>
-    </div>
-  </div> -->
 </div>
 <form [formGroup]="form">
+      <arpa-form-field *ngIf="isNew" label="musician-profile-dialog.INSTRUMENT" type="select">
+      <p-dropdown
+        [filter]="true"
+        [options]="(sections$ | async) || []"
+        [placeholder]="'NOTHING_SELECTED' | translate"
+        formControlName="instrumentId"
+        optionLabel="name"
+        optionValue="id"
+      ></p-dropdown>
+    </arpa-form-field>
+
   <div class="p-fluid p-mt-3 p-formgrid p-grid comparison-container">
-    <div class="p-col-6"><h3>{{ 'musician-profile-dialog.STAFF_ASSESSMENT' | translate }}</h3></div>
+    <div class="p-col-6"><h3>{{ 'musician-profile-dialog.STAFF_ASSESSMENT' | translate }}</h3></div>
     <div class="p-col-6 inner"><h3>{{ 'musician-profile-dialog.SELF_ASSESSMENT' | translate }}</h3></div>
     <!-- Level Assessment -->
     <div class="p-col-6">
-      <arpa-form-field label="musician-profile-dialog.LEVEL_ASSESSMENT_TEAM" type="rating">
+      <arpa-form-field label="musician-profile-dialog.LEVEL_ASSESSMENT" type="rating">
         <p-rating [cancel]="false" [stars]="5" formControlName="levelAssessmentTeam"></p-rating>
       </arpa-form-field>
     </div>
     <div class="p-col-6 inner">
-      <arpa-form-field label="musician-profile-dialog.LEVEL_ASSESSMENT_INNER" type="rating">
+      <arpa-form-field label="musician-profile-dialog.LEVEL_ASSESSMENT" type="rating">
         <p-rating [cancel]="false" [stars]="5" formControlName="levelAssessmentInner"></p-rating>
       </arpa-form-field>
     </div>
@@ -182,7 +165,7 @@
      <!-- Is Main Profile -->
      <div class="p-col-4">
       <arpa-form-field label="musician-profile-dialog.MAIN_PROFILE" type="checkbox" style="text-align: right">
-        <p-checkbox [binary]="true" formControlName="isMainProfile" name="isMainProfile" [disabled]="profile.isMainProfile!"></p-checkbox>
+        <p-checkbox [binary]="true" formControlName="isMainProfile" name="isMainProfile" [disabled]="profile$$?.isMainProfile!"></p-checkbox>
       </arpa-form-field>
     </div>
   </div>
@@ -197,9 +180,9 @@
       pButton
     ></button>
     <button
-      (click)="update()"
+      (click)="onSubmit()"
       [disabled]="form.pristine || form.invalid"
-      [label]="'musician-profile-dialog.UPDATE' | translate"
+      [label]="(isNew ? 'musician-profile-dialog.CREATE' : 'musician-profile-dialog.UPDATE') | translate"
       icon="pi pi-check"
       iconPos="right"
       pButton
@@ -214,7 +197,7 @@
     <ng-template pTemplate="header">
       <div class="p-d-flex">
         <div class="p-mr-6 name">
-          {{ instrument.instrumentId | section: sections }}
+          {{ instrument.instrumentId | section: sections$ }}
         </div>
         <div class="p-mr-4 rating">
           <p-rating [(ngModel)]="instrument.levelAssessmentInner" [cancel]="false" [readonly]="true" [stars]="5"></p-rating>
@@ -256,3 +239,8 @@
     </ng-template>
   </p-accordionTab>
 </p-accordion>
+<ng-template #editHeader>
+  <h3>{{ instrumentName }}</h3>
+  <p-badge *ngIf="profile$$?.isMainProfile" severity="info" value="{{ 'musician-profile-dialog.MAIN_PROFILE' | translate }}"></p-badge>
+  <p-badge *ngIf="profile$$?.deactivation" severity="danger" value="{{ 'musician-profile-dialog.DEACTIVATED' | translate }}"></p-badge>
+</ng-template>

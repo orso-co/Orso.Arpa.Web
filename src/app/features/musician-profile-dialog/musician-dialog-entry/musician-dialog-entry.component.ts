@@ -72,13 +72,7 @@ export class MusicianDialogEntryComponent {
     });
 
     ref.onClose.pipe(first()).subscribe((profile: MusicianProfileDto) => {
-      if (profile && selection) {
-        this.logger.info('created:', profile);
-        this.notificationsService.success('CREATED');
-      } else if (profile) {
-        this.logger.info('created:', profile);
-        this.notificationsService.success('CREATED');
-      }
+
       this.router.navigate([this.router.createUrlTree(['.'], { relativeTo: this.route }).root.children[PRIMARY_OUTLET].toString()], {
         state: { refresh: true },
       });

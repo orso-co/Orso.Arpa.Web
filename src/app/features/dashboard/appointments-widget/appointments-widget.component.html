@@ -1,25 +1,21 @@
 <div class="p-d-flex p-flex-column">
-  <p-button
-    routerLink="../../profile/appointments"
-    [label]="'dashboard.GO_TO_MY_APPOINTMENTS'| translate"
-    align='center'
-  ></p-button>
+  <p-button routerLink="../../profile/appointments" [label]="'dashboard.GO_TO_MY_APPOINTMENTS' | translate" align="center"></p-button>
 </div>
-<div class='p-grid p-jc-center p-mt-4'>
-  <div class='p-col-12 p-md-10 p-lg-12'>
+<div class="p-grid p-jc-center p-mt-4">
+  <div class="p-col-12 p-md-10 p-lg-12">
     <p-table
-      (onLazyLoad)='loadData($event.rows, $event.first)'
-      [lazy]='true'
-      [rows]='5'
-      [totalRecords]='(totalRecordsCount$ | async) || 0'
-      [value]='(userAppointments$ | async) || []'
-      tableStyleClass='arpa-table-list'
+      (onLazyLoad)="loadData($event.rows, $event.first)"
+      [lazy]="true"
+      [rows]="5"
+      [totalRecords]="(totalRecordsCount$ | async) || 0"
+      [value]="(userAppointments$ | async) || []"
+      tableStyleClass="arpa-table-list"
     >
-    <ng-template let-appointment pTemplate="body">
-      <ng-container *ngTemplateOutlet="listElement; context: { $implicit: appointment }"></ng-container>
-    </ng-template>
-  </p-table>
-</div>
+      <ng-template let-appointment pTemplate="body">
+        <ng-container *ngTemplateOutlet="listElement; context: { $implicit: appointment }"></ng-container>
+      </ng-template>
+    </p-table>
+  </div>
 </div>
 
 <ng-template #listElement let-appointment>
@@ -29,12 +25,10 @@
       <span class="month-name">{{ appointment.startTime | localizedDate: 'MMMM' }}</span>
       <span class="day">{{ appointment.startTime | date: 'dd':'locale(de)' }}</span>
       <span class="day-name">{{ appointment.startTime | localizedDate: 'EEEE' }}</span>
-      <span class="time">{{ appointment.startTime | date: 'H:mm':'locale(de)' }}-{{ appointment.endTime | date: 'H:mm':'locale(de)' }}</span>
-      <p-tag
-      *ngIf="appointment.status"
-      [value]='appointment.status?.name' severity='info'
-      ></p-tag>
-
+      <span class="time"
+        >{{ appointment.startTime | date: 'H:mm':'locale(de)' }}-{{ appointment.endTime | date: 'H:mm':'locale(de)' }}</span
+      >
+      <p-tag *ngIf="appointment.status" [value]="'appointmentStatus.' + appointment.status | translate" severity="info"></p-tag>
     </div>
     <div class="p-flex-column p-mr-2 details">
       <p-badge
@@ -42,14 +36,21 @@
         [value]="'appointmentParticipationPrediction.' + appointment.prediction | translate"
         severity="warning"
       ></p-badge>
-      <span class="name"
-      >{{ appointment.name }}
-      </span>
+      <span class="name">{{ appointment.name }} </span>
       <div class="details">
         <p-tag *ngIf="appointment.category?.name" [value]="appointment.category?.name" class="category"></p-tag>
-        <p-tag *ngIf="appointment.result" [value]="'appointmentParticipationResult.' + appointment.result | translate" severity="danger"></p-tag>
-        <span *ngIf="appointment.projects.length > 0" class="projects">{{ 'PROJECT' | translate }}: {{ getProjectNames(appointment.projects) }}</span>
-        <span *ngIf="appointment.venue?.name" class="venue">{{ 'VENUE' | translate }}: {{ appointment.venue?.name }}, {{ appointment.venue?.address.address1 }} {{ appointment.venue?.address.zip }} {{ appointment.venue?.address.city }}</span>
+        <p-tag
+          *ngIf="appointment.result"
+          [value]="'appointmentParticipationResult.' + appointment.result | translate"
+          severity="danger"
+        ></p-tag>
+        <span *ngIf="appointment.projects.length > 0" class="projects"
+          >{{ 'PROJECT' | translate }}: {{ getProjectNames(appointment.projects) }}</span
+        >
+        <span *ngIf="appointment.venue?.name" class="venue"
+          >{{ 'VENUE' | translate }}: {{ appointment.venue?.name }}, {{ appointment.venue?.address.address1 }}
+          {{ appointment.venue?.address.zip }} {{ appointment.venue?.address.city }}</span
+        >
       </div>
     </div>
   </td>

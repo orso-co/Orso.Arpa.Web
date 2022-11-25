@@ -22,18 +22,9 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   query: DocumentNode = ProjectsQuery;
   columns: ColumnDefinition<ProjectDto>[] = [
     { label: 'PROJECT', property: 'title', type: 'text' },
-    {
-      label: 'PARTICIPATIONSTATUS_PERFORMER',
-      property: 'projectParticipations.participationStatusInner',
-      type: 'text',
-      show: true,
-    },
-    {
-      label: 'PARTICIPATIONSTATUS_STAFF',
-      property: 'projectParticipations.participationStatusInternal',
-      type: 'text',
-      show: true,
-    },
+    { label: 'INVITATION_STATUS', property: 'projectParticipations.invitationStatus', type: 'text', show: true},
+    { label: 'PARTICIPATIONSTATUS_PERFORMER', property: 'projectParticipations.participationStatusInner', type: 'text', show: true, },
+    { label: 'PARTICIPATIONSTATUS_STAFF', property: 'projectParticipations.participationStatusInternal', type: 'text', show: true, },
     { label: 'COMMENT_PERFORMER', property: 'projectParticipations.commentByPerformerInner', type: 'text', show: true },
   ];
 

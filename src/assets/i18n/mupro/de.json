@@ -14,5 +14,6 @@
   "MUPRO_CREATION_DATE": "Profil-Erstellungsdatum",
   "PARTICIPATION_COMMENT_TEAM": "Kommentar nur KBB-intern",
   "PARTICIPANT": "Teilnehmer",
-  "SET_PARTICIPATION_STATUS": "Teilnahmestatus gesetzt"
+  "SET_PARTICIPATION_STATUS": "Teilnahmestatus gesetzt",
+  "CREATE_NEW_MUPRO": "Neues Musikerprofil erstellen"
 }

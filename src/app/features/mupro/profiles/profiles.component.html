@@ -34,55 +34,61 @@
               <div class='p-grid'>
                 <div class='p-col-12 section-detail'>
                   <header>
-                    <h2>{{ profile.instrument.name }}</h2>
-                    <button
-                      [queryParams]='{ comboInstruments: true }'
-                      [routerLink]='[{ outlets: { modal: [personId, profile.id] } }]'
-                      class='p-button-rounded p-button-text'
-                      icon='pi pi-pencil'
-                      label="{{ 'EDIT' | translate }}"
-                      pButton
-                      type='button'
-                    ></button>
+                    <h2 class='p-pr-3'>{{ profile.instrument.name }}</h2>
+                    <p-badge
+                      *ngIf='profile.isMainProfile'
+                      [value]="'MAIN_PROFILE' | translate"
+                    ></p-badge>
                   </header>
-                  <label>{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_PERFORMER' | translate }}</label>
-                  <p-rating
-                    [(ngModel)]='profile.levelAssessmentInner'
-                    [cancel]='false'
-                    [disabled]='true'
-                    pTooltip="{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_PERFORMER' | translate }}"
-                  ></p-rating>
-
+                  <div class='p-d-inline-flex'>
+                    <label>{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_INNER' | translate }}</label>
+                    <p-rating
+                      [(ngModel)]='profile.levelAssessmentInner'
+                      [cancel]='false'
+                      [disabled]='true'
+                      pTooltip="{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_PERFORMER' | translate }}"
+                      class='p-pl-3'
+                    ></p-rating>
+                  </div>
+                  <div class='p-d-inline-flex'>
                   <label>{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_TEAM' | translate }}</label>
                   <p-rating
                     [(ngModel)]='profile.levelAssessmentTeam'
                     [cancel]='false'
                     [disabled]='true'
                     pTooltip="{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_TEAM' | translate }}"
+                    class='p-pl-3'
                   ></p-rating>
-
-                  <p-badge
-                    *ngIf='profile.isMainProfile'
-                    [value]="'MAIN_PROFILE' | translate"
-                  ></p-badge>
-
+                  </div>
+                  <div class='p-d-inline-flex'>
+                    <p-button
+                      (click)='openInvitationDialog(profile.id)'
+                      *ngIf='!profile.deactivation'
+                      [label]="'INVITE' | translate"
+                      class='p-text-left p-ml-3'
+                      icon='pi pi-plus-circle'
+                      styleClass='p-button-sm'
+                      type='button'
+                    ></p-button>
+                  </div>
+                  <div>
+                  <button
+                    [queryParams]='{ comboInstruments: true }'
+                    [routerLink]='[{ outlets: { modal: [personId, profile.id] } }]'
+                    class='p-button-rounded p-button-text'
+                    icon='pi pi-pencil'
+                    label="{{ 'EDIT' | translate }}"
+                    pButton
+                    type='button'
+                  ></button>
+                  </div>
                   <p-badge
                     *ngIf='profile.deactivation'
                     severity='danger'
                     value="{{ 'musician-profile-dialog.DEACTIVATED' | translate }}"
                   ></p-badge>
 
-                  <div style='text-align: right'>
-                    <p-button
-                      (click)='openInvitationDialog(profile.id)'
-                      *ngIf='!profile.deactivation'
-                      [label]="'INVITE' | translate"
-                      class='p-text-right p-ml-3'
-                      icon='pi pi-plus-circle'
-                      styleClass='p-button-sm'
-                      type='button'
-                    ></p-button>
-                  </div>
+
                 </div>
               </div>
             </div>

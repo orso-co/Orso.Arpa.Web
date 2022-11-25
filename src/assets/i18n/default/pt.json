@@ -98,56 +98,56 @@
     "BE_PATIENT": "Por favor, aguarda até que a nossa equipa active o teu registo. Receberás um e-mail quando o registo estiver activo."
   },
   "appointmentParticipationPrediction": {
-    "YES": "Yes",
-    "NO": "No",
-    "PARTLY": "Partly",
-    "DONT_KNOW_YET": "Don't know yet"
+    "YES": "Sim",
+    "NO": "Não",
+    "PARTLY": "Parcialmente",
+    "DONT_KNOW_YET": "Não sei ainda"
   },
   "appointmentParticipationResult": {
-    "PRESENT": "Present",
-    "ABSENT": "Absent",
-    "INAPPLICABLE": "Inapplicable",
-    "AMBIGUOUS": "Ambiguous",
-    "AWAITING_SCAN": "Awaiting scan"
+    "PRESENT": "Presente",
+    "ABSENT": "Ausente",
+    "INAPPLICABLE": "Não aplicável",
+    "AMBIGUOUS": "Não está claro",
+    "AWAITING_SCAN": "Aguardando enquete"
   },
   "appointmentStatus": {
-    "CONFIRMED": "Confirmed",
-    "SCHEDULED": "Scheduled",
-    "AMBIGUOUS": "Ambiguous",
+    "CONFIRMED": "Confirmado",
+    "SCHEDULED": "Agendado",
+    "AMBIGUOUS": "Não está claro",
     "AWAITING_POLL": "Awaiting poll",
-    "REFUSED": "Refused"
+    "REFUSED": "Recusou"
   },
   "musicianProfileInquiryStatus": {
-    "GLADLY": "Gladly",
-    "EMERGENCY_ONLY": "Emergency only",
-    "FOR_CONTACTS_ONLY": "For contacts only",
-    "UNKNOWN": "Unknown",
-    "NEVER_AGAIN": "Never again"
+    "GLADLY": "Com prazer",
+    "EMERGENCY_ONLY": "Apenas emergência",
+    "FOR_CONTACTS_ONLY": "Apenas para contatos",
+    "UNKNOWN": "Desconhecido",
+    "NEVER_AGAIN": "Nunca mais"
   },
   "projectInvitationStatus": {
-    "CANDIDATE": "Candidate",
-    "INVITED": "Invited",
-    "NOT_INVITED": "Not invited",
-    "UNCLEAR": "Unclear"
+    "CANDIDATE": "Candidato",
+    "INVITED": "Invitado",
+    "NOT_INVITED": "Não invitado",
+    "UNCLEAR": "Obscuro"
   },
   "projectParticipationStatusInner": {
-    "INTERESTED": "Interested",
-    "PENDING": "Pending",
-    "ACCEPTANCE": "Acceptance",
-    "REFUSAL": "Refusal"
+    "INTERESTED": "Interessado",
+    "PENDING": "Pendente",
+    "ACCEPTANCE": "Aceitação",
+    "REFUSAL": "Recusa"
   },
   "projectParticipationStatusInternal": {
-    "CANDIDATE": "Candidate",
-    "PENDING": "Pending",
-    "ACCEPTANCE": "Accteptance",
-    "REFUSAL": "Refusal"
+    "CANDIDATE": "Candidato",
+    "PENDING": "Pendente",
+    "ACCEPTANCE": "Aceitação",
+    "REFUSAL": "Recusa"
   },
   "projectStatus": {
-    "PENDING": "Pending",
-    "CONFIRMED": "Confirmed",
-    "CANCELLED": "Cancelled",
-    "POSTPONED": "Postponed",
-    "ARCHIVED": "Archived"
+    "PENDING": "Pendente",
+    "CONFIRMED": "Confirmado",
+    "CANCELLED": "Cancelado",
+    "POSTPONED": "Postergado",
+    "ARCHIVED": "Arquivado"
   },
   "primeng": {
     "accept": "Sim",
