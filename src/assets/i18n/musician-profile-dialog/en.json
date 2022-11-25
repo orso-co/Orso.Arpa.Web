@@ -57,8 +57,8 @@
   "INQUIRY_STATUS_INNER": "Inquiry Status",
   "PREFERRED_POSITIONS_TEAM": "Preferred Position",
   "PREFERRED_POSITIONS_INNER": "Preferred Position",
-  "LEVEL_ASSESSMENT_TEAM": "Level",
-  "LEVEL_ASSESSMENT_INNER": "Level",
+  "LEVEL_ASSESSMENT_TEAM": "Level by staff",
+  "LEVEL_ASSESSMENT_INNER": "Level by performer",
   "BACKGROUND_TEAM": "Background",
   "BACKGROUND_INNER": "Background"
 }

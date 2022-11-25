@@ -29,7 +29,6 @@
   "INSTRUMENT_UPDATED": "actualização de instrumentos",
   "INSTRUMENT": "Instrumento",
   "INSTRUMENTS": "Instrumentos" ,
-  "LEVEL_ASSESSMENT_TEAM": "Avaliação interna",
   "LEVEL_ASSESSMENT": "Avaliação",
   "LEVEL_ASSESSMENT_PERFORMER": "Auto-avaliação",
   "MAIN_INSTRUMENT": "instrumento principal",
@@ -57,8 +56,8 @@
   "INQUIRY_STATUS_INNER": "status da consulta",
   "PREFERRED_POSITIONS_TEAM": "posição preferida",
   "PREFERRED_POSITIONS_INNER": "posição preferida",
-  "LEVEL_ASSESSMENT_TEAM": "nível de performance",
-  "LEVEL_ASSESSMENT_INNER": "nível de performance",
+  "LEVEL_ASSESSMENT_TEAM": "Avaliação de nível pela equipe",
+  "LEVEL_ASSESSMENT_INNER": "Avaliação de nível por performer",
   "BACKGROUND_TEAM": "fundo",
   "BACKGROUND_INNER": "fundo"
 }

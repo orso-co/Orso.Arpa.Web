@@ -25,9 +25,9 @@ interface FormListElement extends DoublingInstrumentDto {
 })
 export class MusicianInstrumentsComponent implements OnInit {
   public form: FormGroup;
-  public profile: MusicianProfileDto | undefined = undefined;
+  public profile$$: MusicianProfileDto | undefined = undefined;
   public instrumentName: string;
-  public sections: Observable<SectionDto[]> = this.config.data.sections;
+  public sections$: Observable<SectionDto[]> = this.config.data.sections;
   public preferredParts: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
   public preferredPositionOptions$: Observable<SelectItem[]>;
   public availabilityOptions$: Observable<SelectItem[]>;
@@ -55,8 +55,8 @@ export class MusicianInstrumentsComponent implements OnInit {
     this.qualificationOptions$ = this.resolveSelect('Qualification');
     this.inquiryStatusOptions$ = this.enumService.getMusicianProfileInquiryStatusSelectItems();
 
-    this.config.data.profile.pipe(first()).subscribe((profile: MusicianProfileDto) => {
-      this.profile = profile;
+    this.config.data.profile$$.pipe(first()).subscribe((profile: MusicianProfileDto) => {
+      this.profile$$ = profile;
       this.isNew = !profile.id;
       if (profile.doublingInstruments?.length) {
         profile.doublingInstruments.forEach((instrument) => this.doublingInstruments.push(this.getFormGroup(instrument)));
@@ -85,11 +85,11 @@ export class MusicianInstrumentsComponent implements OnInit {
       instrumentId: [null, [Validators.required]],
     });
 
-    if (this.profile) {
+    if (this.profile$$) {
       if (!this.isNew) {
-       this.onChangeInstrumentId(this.profile.instrumentId!)
+       this.onChangeInstrumentId(this.profile$$.instrumentId!)
       }
-      this.form.patchValue(this.profile);
+      this.form.patchValue(this.profile$$);
       this.form.controls.instrumentId.valueChanges.subscribe(instrumentId => this.onChangeInstrumentId(instrumentId));
     }
   }
@@ -99,7 +99,7 @@ export class MusicianInstrumentsComponent implements OnInit {
     this.form.controls.preferredPositionsTeamIds.setValue([]);
     this.form.controls.preferredPositionsInnerIds.setValue([]);
 
-    this.sections
+    this.sections$
       .pipe(
         map((sections) => sections.find((section) => section.id === instrumentId) as SectionDto),
         first(),
@@ -129,7 +129,7 @@ onSubmit() {
 
   update() {
     this.musicianService
-      .updatePersonProfile(this.profile?.id!, {
+      .updatePersonProfile(this.profile$$?.id!, {
         ...this.form.value,
       } as MusicianProfileModifyBodyDto)
       .pipe(first())
@@ -160,7 +160,7 @@ onSubmit() {
     const { formGroup, ...listData } = item;
     const { id, ...data } = formGroup.value;
     this.musicianService
-      .updateDoublingInstrument(this.profile?.id, id, data, false)
+      .updateDoublingInstrument(this.profile$$?.id, id, data, false)
       .pipe(first())
       .subscribe(() => {
         this.doublingInstruments.forEach((item, i) => {

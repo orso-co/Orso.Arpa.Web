@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { PersonDto } from '../../../../../@arpa/models/personDto';
+import { PersonDto } from '@arpa/models';
 
 
 @Component({

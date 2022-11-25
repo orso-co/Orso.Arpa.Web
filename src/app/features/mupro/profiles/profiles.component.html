@@ -41,28 +41,27 @@
                       [value]="'MAIN_PROFILE' | translate"
                     ></p-badge>
                   </header>
-                  <div style='display:inline-flex'>
+                  <div class='p-d-inline-flex'>
                     <label>{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_INNER' | translate }}</label>
                     <p-rating
                       [(ngModel)]='profile.levelAssessmentInner'
                       [cancel]='false'
                       [disabled]='true'
                       pTooltip="{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_PERFORMER' | translate }}"
-                      style='padding-left: 1rem'
+                      class='p-pl-3'
                     ></p-rating>
                   </div>
-                  <div style='display:inline-flex'>
-
+                  <div class='p-d-inline-flex'>
                   <label>{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_TEAM' | translate }}</label>
                   <p-rating
                     [(ngModel)]='profile.levelAssessmentTeam'
                     [cancel]='false'
                     [disabled]='true'
                     pTooltip="{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_TEAM' | translate }}"
-                    style='padding-left: 1rem'
+                    class='p-pl-3'
                   ></p-rating>
                   </div>
-                  <div style='text-align: left'>
+                  <div class='p-text-left'>
                     <p-button
                       (click)='openInvitationDialog(profile.id)'
                       *ngIf='!profile.deactivation'
