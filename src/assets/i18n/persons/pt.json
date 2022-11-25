@@ -1,9 +1,9 @@
 {
   "ADD_NEW_PERSON": "Criar nova pessoa",
-  "ABOUT_ME": "sobre mim",
-  "BASE_DATA": "dados básicos",
-  "BIRTHNAME": "nome de nascença",
-  "BIRTHPLACE": "local de nascimento",
+  "ABOUT_ME": "Sobre mim",
+  "BASE_DATA": "Dados básicos",
+  "BIRTHNAME": "Nome de nascença",
+  "BIRTHPLACE": "Local de nascimento",
   "CONTACT_DATA": "detalhes do contato",
   "CONTACT_VIA_PLACEHOLDER": "Insira o contato de mediação aqui",
   "CONTACT_VIA": "contato via",
@@ -25,13 +25,15 @@
   "LEVEL_ASSESSMENT_TEAM": "nível (equipe)",
   "QUALIFICATION": "qualificação",
   "SECTION": "Seção",
+  "PROFILES": "Perfis",
 
   "contact": {
     "VALUE": "Valor",
     "TYPE": "Modelo",
     "COMMENT_INNER" :"Comentarista ",
     "COMMENT_TEAM" :"Pessoal de comentários",
-    "PREFERENCE": "Preferência"
+    "PREFERENCE": "Preferência",
+    "CREATE_NEW_CONTACT": "Criar novo contato"
     },
 
   "bank": {
@@ -43,6 +45,5 @@
     "BANK_ACCOUNT_REMOVED": "Dados bancários removidos",
     "BANK_ACCOUNT_ADDED": "Dados bancários adicionados",
     "BANK_ACCOUNT_MODIFIED": "Dados bancários alterados"
-
     }
 }

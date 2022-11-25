@@ -25,14 +25,16 @@
     "LEVEL_ASSESSMENT_TEAM": "Niveau (Équipe)",
     "QUALIFICATION": "Qualification",
     "SECTION": "Section",
+    "PROFILES": "Profils",
 
   "contact": {
     "VALUE": "Valeur",
     "TYPE": "Taper",
     "COMMENT_INNER" :"Commentaire personne",
     "COMMENT_TEAM" :"Personnel de commentaire",
-    "PREFERENCE": "Préférence"
-    },
+    "PREFERENCE": "Préférence",
+    "CREATE_NEW_CONTACT": "Créer un nouveau contact"
+  },
 
   "bank": {
     "BIC": "BIC",

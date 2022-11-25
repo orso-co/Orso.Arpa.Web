@@ -1,14 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PersonDto, MusicianProfileDto } from '@arpa/models';
-import { map } from 'rxjs/operators';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { SelectItem } from 'primeng/api';
+import { first } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 import { ColumnDefinition } from '../../../../../../@arpa/components/table/table.component';
-import { MuproService } from '../../services/mupro.service';
-import { NotificationsService, SelectValueService } from '@arpa/services';
+import { SectionService } from '@arpa/services';
 import { Router } from '@angular/router';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { TranslateService } from '@ngx-translate/core';
+import { MusicianInstrumentsComponent } from '../../../../musician-profile-dialog/musician-instruments/musician-instruments.component';
 
 
 @Component({
@@ -19,8 +18,6 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 export class PersonProfilesMusicianComponent implements OnInit {
   @Input() person: PersonDto | null;
 
-  public form: FormGroup;
-  public instrumentOptions$: Observable<SelectItem[]>;
   tableData: BehaviorSubject<any> = new BehaviorSubject([])
 
 
@@ -28,23 +25,15 @@ export class PersonProfilesMusicianComponent implements OnInit {
     { label: 'persons.mupro.INSTRUMENT', property: 'instrument.name', type: 'text'},
     { label: 'persons.mupro.LEVEL_ASSESSMENT_TEAM', property: 'levelAssessmentTeam', type: 'rating'},
     { label: 'persons.mupro.BACKGROUND_TEAM', property: 'backgroundTeam', type: 'text'},
-
-    // { label: 'persons.mupro.QUALIFICATION', property: 'qualificationId', type: 'state', stateTable: 'MusicianProfile', stateProperty: 'Qualification', show: true},
-
   ];
 
   constructor(
-    private formBuilder: FormBuilder,
-    private selectValueService: SelectValueService,
     private router: Router,
-    private ref: DynamicDialogRef
+    private ref: DynamicDialogRef,
+    private dialogService: DialogService,
+    private sectionService: SectionService,
+    private translate: TranslateService,
   ) {
-    this.form = this.formBuilder.group({
-      id: [null],
-      instrumentId: [null],
-      sectionName: [null],
-    })
-
   }
   onRowClick(person: PersonDto) {
     this.router
@@ -56,33 +45,32 @@ export class PersonProfilesMusicianComponent implements OnInit {
     if (this.person) {
       this.tableData.next(this.person.musicianProfiles);
     }
-    // ToDo: Mira 17.11. Eine solche Select Value Category gibt es nicht. Kann also nicht funktionieren.
-    this.instrumentOptions$ = this.selectValueService
-      .load('Sections', 'Name')
-      .pipe(map(() => this.selectValueService.get('Sections', 'Name')));
-  }
+   }
 
-  // onSubmit() {
-  //   if (this.person) {
-  //     const { instrumentId } = this.form.getRawValue();
-  //       this.muproService
-  //         .addMusicianProfile(this.person.id, { instrumentId })
-  //         .pipe(first())
-  //         .subscribe((result) => {
-  //           if (this.person && !this.person?.musicianProfiles) {
-  //             this.person.musicianProfiles = [];
-  //           }
-  //           this.person?.musicianProfiles?.push(result);
-  //           this.tableData.next(this.person?.musicianProfiles);
-  //           this.notificationsService.success('MUSICIAN_PROFILE_ADDED', 'person.mupro');
-  //           this.form.reset({});
-  //         });
-  //     }
-  //   }
 
   createNewMuPro() {
-    this.router
-      .navigate(['/arpa', 'mupro', this.person?.id, { outlets: { modal: ['create', this.person?.id] } }])
-      .then(() => this.ref.close(false) );
+    const ref = this.dialogService.open(MusicianInstrumentsComponent, {
+      data: {
+        profile$$: new BehaviorSubject({doublingInstruments: [],
+          educations: [],
+          curriculumVitaeReferences: [],
+          preferredPositionsInnerIds: [],
+          preferredPositionsTeamIds: [],
+          preferredPartsInner: [],
+          preferredPartsTeam: [],
+          documents: [],
+          regionPreferencesRehearsal: [],
+          regionPreferencesPerformance: []}),
+        sections: this.sectionService.sectionsLoaded ? this.sectionService.sections$ : this.sectionService.load(),
+        personId: this.person?.id,
+      },
+      header: this.translate.instant('CREATE'),
+      styleClass: 'form-modal',
+      dismissableMask: true,
+    });
+
+    ref.onClose.pipe(first()).subscribe((profile: MusicianProfileDto) => {
+      this.ref.close(profile);
+      });
   }
 }

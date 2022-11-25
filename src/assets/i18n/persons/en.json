@@ -1,35 +1,35 @@
 {
   "ABOUT_ME": "About Me",
   "ADD_NEW_PERSON": "Add new person",
-  "BIRTHPLACE": "Birtplace",
   "BASE_DATA": "Base data",
-  "CONTACT_DATA": "Contact data",
   "BIRTHNAME": "Birthname",
+  "BIRTHPLACE": "Birtplace",
   "CONTACTVIA": "Contact via",
+  "CONTACT_DATA": "Contact data",
+  "CONTACT_VIA": "Contact via",
+  "CONTACT_VIA_PLACEHOLDER": "Put contact-via-person here",
   "CREATED_AT": "Created at",
   "CREATED_BY": "Created by",
   "DATEOFBIRTH": "Date of Birth",
-  "CONTACT_VIA_PLACEHOLDER": "Put contact-via-person here",
-  "CONTACT_VIA": "Contact via",
+  "DELETE_NOW": "Delete person now. This cannot be undone!",
+  "DELETE_PERSON_NOW": "Delete person now? Are you sure?",
+  "DONT_DELETE_PERSON":"Don't delete person",
   "EMPTYMESSAGE": "Nothing selected",
   "EXPERIENCE_LEVEL": "Experience Level",
   "GENDER": "Gender",
   "GENERAL_PREFERENCE": "General Preference",
   "GIVEN_NAME": "Givenname",
-  "MODIFIED_AT": "Modified at",
-  "MODIFIED_BY": "Modified by",
-  "PERSON_MODIFIED": "Person data modified",
-  "PERSON_CREATED": "Person created",
-  "DONT_DELETE_PERSON":"Don't delete person",
-  "DELETE_PERSON_NOW": "Delete person now? Are you sure?",
-  "DELETE_NOW": "Delete person now. This cannot be undone!",
-  "PERSONS": "Persons",
-  "RELIABILITY": "Reliability",
-  "SURNAME": "Surname",
   "INSTRUMENT": "Instrument",
   "LEVEL_ASSESSMENT_TEAM": "Level (Tea)",
+  "MODIFIED_AT": "Modified at",
+  "MODIFIED_BY": "Modified by",
+  "PERSONS": "Persons",
+  "PERSON_CREATED": "Person created",
+  "PERSON_MODIFIED": "Person data modified",
   "QUALIFICATION": "Qualification",
+  "RELIABILITY": "Reliability",
   "SECTION": "Section",
+  "SURNAME": "Surname",
 
   "contact": {
     "VALUE": "Value",
@@ -49,5 +49,26 @@
     "BANK_ACCOUNT_REMOVED": "Bank account removed",
     "BANK_ACCOUNT_ADDED": "Bank account added",
     "BANK_ACCOUNT_MODIFIED": "Bank account modified"
+  },
+  "mupro": {
+    "ID": "ID",
+    "INSTRUMENT": "Instrument",
+    "QUALIFICATION": "Qualification",
+    "CREATE_NEW_MUPRO": "Create new musician profile",
+    "MUSICIAN_PROFILE": "Musician profile",
+    "LEVEL_ASSESSMENT_TEAM": "Level by staff",
+    "BACKGROUND_TEAM": "Background by staff"
+  },
+  "member": {
+    "CREATE_NEW_MEMPRO": "Add new member profile",
+    "MEMBER_PROFILE": "Member profile"
+  },
+  "client": {
+    "CREATE_NEW_CLIPRO": "Create new client profile",
+    "CLIENT_PROFILE": "Client profile"
+  },
+
+  "profiles": {
+    "PROFILES": "Profiles"
   }
 }

@@ -98,56 +98,56 @@
       "BE_PATIENT": "Nous te demandons un peu de patience jusqu’à ce que ton compte soit activé par notre équipe.Tu seras informé de l’activation réussie de ton compte par e-mail."
     },
     "appointmentParticipationPrediction": {
-      "YES": "Yes",
-      "NO": "No",
-      "PARTLY": "Partly",
-      "DONT_KNOW_YET": "Don't know yet"
+      "YES": "Oui",
+      "NO": "Non",
+      "PARTLY": "Partiellement",
+      "DONT_KNOW_YET": "Je ne sais pas encore"
     },
     "appointmentParticipationResult": {
-      "PRESENT": "Present",
+      "PRESENT": "Cadeau",
       "ABSENT": "Absent",
-      "INAPPLICABLE": "Inapplicable",
-      "AMBIGUOUS": "Ambiguous",
-      "AWAITING_SCAN": "Awaiting scan"
+      "INAPPLICABLE": "N'est pas applicable",
+      "AMBIGUOUS": "Pas clair",
+      "AWAITING_SCAN": "Analyse en attente"
     },
     "appointmentStatus": {
-      "CONFIRMED": "Confirmed",
-      "SCHEDULED": "Scheduled",
-      "AMBIGUOUS": "Ambiguous",
-      "AWAITING_POLL": "Awaiting poll",
-      "REFUSED": "Refused"
+      "CONFIRMED": "Confirmé",
+      "SCHEDULED": "Prévu",
+      "AMBIGUOUS": "Pas clair",
+      "AWAITING_POLL": "Attendre le sondage",
+      "REFUSED": "Annulé"
     },
     "musicianProfileInquiryStatus": {
-      "GLADLY": "Gladly",
-      "EMERGENCY_ONLY": "Emergency only",
-      "FOR_CONTACTS_ONLY": "For contacts only",
-      "UNKNOWN": "Unknown",
-      "NEVER_AGAIN": "Never again"
+      "GLADLY": "Avec plaisir",
+      "EMERGENCY_ONLY": "Uniquement en cas d'urgence",
+      "FOR_CONTACTS_ONLY": "Pour les contacts uniquement",
+      "UNKNOWN": "Inconnue",
+      "NEVER_AGAIN": "Plus jamais"
     },
     "projectInvitationStatus": {
-      "CANDIDATE": "Candidate",
-      "INVITED": "Invited",
-      "NOT_INVITED": "Not invited",
-      "UNCLEAR": "Unclear"
+      "CANDIDATE": "Candidat",
+      "INVITED": "Invité",
+      "NOT_INVITED": "Non invité",
+      "UNCLEAR": "Pas clair"
     },
     "projectParticipationStatusInner": {
-      "INTERESTED": "Interested",
-      "PENDING": "Pending",
-      "ACCEPTANCE": "Acceptance",
-      "REFUSAL": "Refusal"
+      "INTERESTED": "Intéressé",
+      "PENDING": "En attente",
+      "ACCEPTANCE": "Acceptation",
+      "REFUSAL": "Refus"
     },
     "projectParticipationStatusInternal": {
-      "CANDIDATE": "Candidate",
-      "PENDING": "Pending",
-      "ACCEPTANCE": "Accteptance",
-      "REFUSAL": "Refusal"
+      "CANDIDATE": "Candidat",
+      "PENDING": "En attente",
+      "ACCEPTANCE": "Acceptation",
+      "REFUSAL": "Refus"
     },
     "projectStatus": {
-      "PENDING": "Pending",
-      "CONFIRMED": "Confirmed",
-      "CANCELLED": "Cancelled",
-      "POSTPONED": "Postponed",
-      "ARCHIVED": "Archived"
+      "PENDING": "En attente",
+      "CONFIRMED": "Confirmé",
+      "CANCELLED": "Annulé",
+      "POSTPONED": "Reporté",
+      "ARCHIVED": "Archivé"
     },
     "primeng": {
       "accept": "Oui",

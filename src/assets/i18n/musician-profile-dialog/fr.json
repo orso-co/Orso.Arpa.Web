@@ -55,8 +55,8 @@
   "INQUIRY_STATUS_INNER": "Statut de l'enquête",
   "PREFERRED_POSITIONS_TEAM": "Position préférée",
   "PREFERRED_POSITIONS_INNER": "Position préférée",
-  "LEVEL_ASSESSMENT_TEAM": "Niveau de performance",
-  "LEVEL_ASSESSMENT_INNER": "Niveau de performance",
+  "LEVEL_ASSESSMENT_TEAM": "Évaluation du niveau par le personnel",
+  "LEVEL_ASSESSMENT_INNER": "Évaluation du niveau par interprète",
   "BACKGROUND_TEAM": "Contexte",
   "BACKGROUND_INNER": "Contexte"
 }
