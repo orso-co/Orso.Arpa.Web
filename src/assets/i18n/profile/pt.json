@@ -65,8 +65,8 @@
     "STATUS": "Status"
   },
   "appointmentRibbon": {
-    "POLL_MISSING": "TRANSLATE ME",
-    "AWAITING_POLL": "TRANSLATE ME",
-    "AMBIGUOUS": "TRANSLATE ME"
+    "POLL_MISSING": "Por favor, participe da enquete!",
+    "AWAITING_POLL": "A enquete de nomeação ainda está em andamento",
+    "AMBIGUOUS": "Não está claro se a nomeação ocorrerá"
   }
 }

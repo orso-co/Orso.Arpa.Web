@@ -69,8 +69,8 @@
     "STATUS": "Status"
   },
   "appointmentRibbon": {
-    "POLL_MISSING": "TRANSLATE ME",
-    "AWAITING_POLL": "TRANSLATE ME",
-    "AMBIGUOUS": "TRANSLATE ME"
+    "POLL_MISSING": "Please take part in the poll!",
+    "AWAITING_POLL": "The poll is still running",
+    "AMBIGUOUS": "Unclear whether the appointment will take place"
   }
 }
