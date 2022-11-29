@@ -67,5 +67,10 @@
     "BIC": "BIC",
     "COMMENT_INNER": "Comment",
     "STATUS": "Status"
+  },
+  "appointmentRibbon": {
+    "POLL_MISSING": "Please take part in the poll!",
+    "AWAITING_POLL": "The poll is still running",
+    "AMBIGUOUS": "Unclear whether the appointment will take place"
   }
 }

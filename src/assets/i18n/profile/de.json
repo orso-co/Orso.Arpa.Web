@@ -70,5 +70,10 @@
     "COMMENT_INNER": "Kommentar",
     "STATUS": "Status",
     "CREATE_NEW_BANK_ACCOUNT": "Bankverbindung hinzufügen"
+  },
+  "appointmentRibbon": {
+    "POLL_MISSING": "Bitte an der Terminumfrage teilnehmen!",
+    "AWAITING_POLL": "Terminumfrage läuft noch",
+    "AMBIGUOUS": "Unklar, ob Termin stattfindet"
   }
 }

@@ -1,0 +1,31 @@
+.ribbon {
+  position: absolute;
+  z-index: 10;
+  padding: 0px 7px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  font-size: 15px;
+  line-height: 32px;
+  font-weight: bold;
+  text-align: center;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  zoom: 1;
+  right: -9px;
+  border-radius: 4px 0 0 4px;
+  min-width: 20%;
+  max-width: 50%;
+  height: 32px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: -20;
+    top: 100%;
+    left: auto;
+    border-style: solid;
+    border-width: 0 0 10px 10px;
+    right: 0;
+  }
+}

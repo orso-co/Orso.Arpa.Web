@@ -63,5 +63,10 @@
     "BIC": "BIC",
     "COMMENT_INNER": "Commentaire",
     "STATUS": "Statut"
+  },
+  "appointmentRibbon": {
+    "POLL_MISSING": "Merci de participer au sondage !",
+    "AWAITING_POLL": "Le sondage est toujours en cours",
+    "AMBIGUOUS": "On ne sait pas si le rendez-vous aura lieu"
   }
 }
