@@ -1,51 +1,80 @@
-.date {
-  text-align: left;
-  width: 7rem;
-  border-right: 1px solid rgba(#fff, 0.25);
-  padding-right: 1rem;
-  height: 100%;
-  padding-top: 0.5rem;
-
-  .day {
-    font-size: 2em;
-    font-weight: 600;
-    display: block;
+.date-container {
+  @media (min-width: 768px) {
+    border-right: 1px solid rgba(#fff, 0.25);
   }
 
-  .day-name {
-    display: block;
-    font-size: 0.7em;
-    font-weight: 200;
-    padding-bottom: 0.3rem;
+  .status-badge {
+    @media (min-width: 768px) {
+      padding: 0.5rem 1rem 0 0;
+      width: 7rem;
+    }
   }
-  .month-name {
-    display: block;
-    font-size: 1.2em;
-    font-weight: 300;
-  }
-  .year {
-    display: block;
-    font-size: 0.7em;
-    font-weight: 100;
-  }
-  .time {
-    display: block;
-    opacity: 0.85;
-    font-size: 0.85em;
-    padding-bottom: 0.5rem;
-  }
-  .status {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 700;
-    font-style: italic;
-    opacity: 0.7;
-    letter-spacing: 0.1rem;
+
+  .date {
+    align-self: normal;
+    border-bottom: 1px solid rgba(#fff, 0.25);
+    padding-right: 0;
+    padding: 0 0 1rem 0;
+    width: inherit;
+    flex-direction: row;
+    display: flex;
+
+    @media (max-width: 767px) {
+      .day,
+      .day-name,
+      .month-name,
+      .year,
+      .time {
+        margin-right: 0.3rem;
+        color: var(--primary-color);
+        font-weight: 600;
+      }
+
+      .day:after {
+        content: '.';
+      }
+
+      .day-name:after {
+        content: ',';
+      }
+    }
+
+    @media (min-width: 768px) {
+      text-align: left;
+      width: 7rem;
+      padding: 0.5rem 1rem 0 0;
+      border-bottom: none;
+      flex-direction: column;
+
+      .day {
+        font-size: 2em;
+        font-weight: 600;
+      }
+
+      .day-name {
+        font-size: 0.7em;
+        font-weight: 200;
+        padding-bottom: 0.3rem;
+      }
+      .month-name {
+        font-size: 1.2em;
+        font-weight: 300;
+      }
+      .year {
+        font-size: 0.7em;
+        font-weight: 100;
+      }
+      .time {
+        opacity: 0.85;
+        font-size: 0.85em;
+        padding-bottom: 0.5rem;
+      }
+    }
   }
 }
 
 .details {
-  flex-grow: 1;
+  flex: 1;
   height: 100%;
 
   .name {
@@ -85,12 +114,6 @@
   opacity: 0.6;
   font-size: 0.8em;
 }
-.publicDetails {
-  font-size: 0.9em;
-  font-weight: 30;
-  color: dodgerblue;
-  font-style: italic;
-}
 
 .headlineinfo {
   font-size: 1em;
@@ -105,7 +128,16 @@
 }
 
 ::ng-deep {
-.tag.p-tag {
-  width: 100%;
+  .tag.p-tag {
+    width: 100%;
+  }
 }
+
+.venue-container {
+  background-color: var(--surface-d);
+  border-radius: 3px;
+}
+
+i.marker-icon {
+  line-height: 1.5;
 }

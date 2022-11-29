@@ -1,0 +1,35 @@
+.ribbon.success {
+  background-color: #9fdaa8;
+  color: #151515;
+  &:after {
+    border-color: transparent darken(#9fdaa8, 30%);
+  }
+}
+.ribbon.primary {
+  background-color: #64B5F6;
+  color: #151515;
+  &:after {
+    border-color: transparent darken(#64B5F6, 30%);
+  }
+}
+.ribbon.info {
+  background-color: #7fd8e6;
+  color: #151515;
+  &:after {
+    border-color: transparent darken(#7fd8e6, 30%);
+  }
+}
+.ribbon.warning {
+  background-color: #ffe082;
+  color: #151515;
+  &:after {
+    border-color: transparent darken(#ffe082, 30%);
+  }
+}
+.ribbon.danger {
+  background-color: #f19ea6;
+  color: #151515;
+  &:after {
+    border-color: transparent darken(#f19ea6, 20%);
+  }
+}

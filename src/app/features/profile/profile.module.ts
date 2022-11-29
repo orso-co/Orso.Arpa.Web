@@ -1,3 +1,4 @@
+import { RibbonComponent } from './../../shared/components/ribbon/ribbon.component';
 import { AccordionModule } from 'primeng/accordion';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { AvatarModule } from '../../../@arpa/components/avatar/avatar.module';
@@ -38,6 +39,7 @@ import { UserComponent } from './user/user.component';
 import { UserContactDataComponent } from './user-contact-data/user-contact-data.component';
 import { UserDataComponent } from './user-data/user-data.component';
 import { UserBankdataComponent } from './user-bankdata/user-bankdata.component';
+import { ChipModule } from 'primeng/chip';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,7 @@ import { UserBankdataComponent } from './user-bankdata/user-bankdata.component';
     UserDataComponent,
     UserContactDataComponent,
     UserBankdataComponent,
+    RibbonComponent
   ],
   imports: [
     CommonModule,
@@ -80,6 +83,7 @@ import { UserBankdataComponent } from './user-bankdata/user-bankdata.component';
     CalendarModule,
     SelectButtonModule,
     RatingModule,
+    ChipModule
   ],
   providers: [ProfileService, ProfileResolver, LocalizedDatePipe],
 })

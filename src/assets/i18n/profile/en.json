@@ -67,5 +67,10 @@
     "BIC": "BIC",
     "COMMENT_INNER": "Comment",
     "STATUS": "Status"
+  },
+  "appointmentRibbon": {
+    "POLL_MISSING": "TRANSLATE ME",
+    "AWAITING_POLL": "TRANSLATE ME",
+    "AMBIGUOUS": "TRANSLATE ME"
   }
 }
