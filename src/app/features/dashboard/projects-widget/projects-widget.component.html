@@ -2,50 +2,50 @@
   <span>Du siehst hier Projekttitel + Projektstatus. Bitte nicht verwechseln mit Teilnahmestatus! Deinen Teilnahmestatus änderst du unter "Meine Projekte"</span>
 </div>
 <p-accordion>
-  <p-accordionTab *ngFor="let myProject of myProjects">
+  <p-accordionTab *ngFor="let allProjects of allProjects">
     <ng-template pTemplate="header">
       <div class="p-d-flex p-flex-column">
         <div class="p-as-start p-d-flex p-ai-center">
-          <span class="project-title">{{ myProject.project.title }}</span>
+          <span class="project-title">{{ allProjects.title }}</span>
         </div>
       </div>
 
     <p-tag
-    *ngIf="myProject.project.status"
+    *ngIf="allProjects.status"
     styleClass="p-ml-2"
     severity="info"
-    [value]="('projectStatus.' + myProject.project.status) | translate"
+    [value]="('projectStatus.' + allProjects.status) | translate"
     [rounded]="false"
   ></p-tag>
     </ng-template>
     <ng-template pTemplate="content">
       <div class="p-col-12 content-item">
         <div>
-          <span *ngIf="myProject.project.startDate">{{ myProject.project.startDate | date: 'dd.MM.yy':'locale(de)' }}</span>
-        <span *ngIf="myProject.project.endDate"> - {{ myProject.project.endDate | date: 'dd.MM.yy':'locale(de)' }}</span>
+          <span *ngIf="allProjects.startDate">{{ allProjects.startDate | date: 'dd.MM.yy':'locale(de)' }}</span>
+        <span *ngIf="allProjects.endDate"> - {{ allProjects.endDate | date: 'dd.MM.yy':'locale(de)' }}</span>
           <p-tag
-            *ngIf="myProject.project.type"
+            *ngIf="allProjects.type"
             styleClass="p-ml-2"
             severity="info"
-            [value]="myProject.project.type.name!"
+            [value]="allProjects.type.name!"
             [rounded]="false"
           ></p-tag>
           <p-tag
-          *ngIf="myProject.project.genre"
+          *ngIf="allProjects.genre"
           styleClass="p-ml-2"
           severity="info"
-          [value]="myProject.project.genre.name!"
+          [value]="allProjects.genre.name!"
           [rounded]="false"
         ></p-tag>
         </div>
       </div>
      <div class="p-col-12 content-item">
-       <span>{{ myProject.project.description }}</span>
+       <span>{{ allProjects.description }}</span>
      </div>
      <div>
       <button
         routerLink="../../profile/my-projects"
-        [label]="'MY_PROJECTS'| translate"
+        [label]="'PROJECTS'| translate"
         class="p-button-rounded p-button-text"
         icon="pi pi-angle-right"
         pButton
