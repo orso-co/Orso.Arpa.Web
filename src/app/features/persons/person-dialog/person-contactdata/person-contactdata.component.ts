@@ -1,5 +1,5 @@
 import { SelectValueService, NotificationsService } from '@arpa/services';
-import { ContactDetailDto, PersonDto } from '@arpa/models';
+import { ContactDetailDto, ContactDetailKey, PersonDto } from '@arpa/models';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ColumnDefinition } from 'src/@arpa/components/table/table.component';
@@ -18,11 +18,12 @@ export class PersonContactdataComponent implements OnInit, OnDestroy {
   tableData: BehaviorSubject<any> = new BehaviorSubject([]);
   private _tableData: Array<any>;
   @Input() person: PersonDto | null;
+  public ContactDetailKey = ContactDetailKey;
 
   public typeOptions$: Observable<SelectItem[]>;
 
   columns: ColumnDefinition<ContactDetailDto>[] = [
-    // { label: '#', property: 'key', type: 'template', template: 'keyTemplate' },
+    { label: '#', property: 'key', type: 'template', template: 'keyTemplate' },
     { label: 'persons.contact.VALUE', property: 'value', type: 'text' },
     { label: 'persons.contact.PREFERENCE', property: 'preference', type: 'rating', show: true },
     { label: 'persons.contact.TYPE', property: 'typeId', type: 'state', stateTable: 'ContactDetail', stateProperty: 'Type'},
@@ -31,9 +32,9 @@ export class PersonContactdataComponent implements OnInit, OnDestroy {
   ];
 
   keyOptions = [
-    { icon: 'pi pi-envelope', value: 1 },
-    { icon: 'pi pi-phone', value: 2 },
-    { icon: 'pi pi-link', value: 3 },
+    { icon: 'pi pi-envelope', value: ContactDetailKey.E_MAIL },
+    { icon: 'pi pi-phone', value: ContactDetailKey.PHONE_NUMBER },
+    { icon: 'pi pi-link', value: ContactDetailKey.URL },
   ];
   private subscription: Subscription;
 

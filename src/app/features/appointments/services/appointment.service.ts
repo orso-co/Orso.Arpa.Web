@@ -20,7 +20,7 @@ export class AppointmentService {
   }
 
   get(range: DateRange, date: Date): Observable<AppointmentListDto[]> {
-    const params = new HttpParams().set('date', date.toISOString()).set('range', DateRange[range]);
+    const params = new HttpParams().set('date', date.toISOString()).set('range', range);
 
     return this.apiService.get<AppointmentListDto[]>(this.baseUrl, params).pipe(shareReplay());
   }
