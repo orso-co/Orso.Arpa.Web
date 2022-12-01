@@ -1,5 +1,4 @@
 import { ContactDetailKey } from './contactDetailKey';
-import { SelectValueDto } from './selectValueDto';
 
 export interface ContactDetailDto {
   id?: string | undefined;

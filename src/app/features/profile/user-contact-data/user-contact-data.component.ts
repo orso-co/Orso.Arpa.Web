@@ -1,5 +1,5 @@
 import { SelectValueService, MeService } from '@arpa/services';
-import { ContactDetailDto } from '@arpa/models';
+import { ContactDetailDto, ContactDetailKey } from '@arpa/models';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationsService } from 'src/@arpa/services/notifications.service';
@@ -20,6 +20,7 @@ export class UserContactDataComponent implements OnInit {
   private _tableData: Array<any>;
   @Input() contactDetails: ContactDetailDto[] = [];
   public typeOptions$: Observable<SelectItem[]>;
+  public ContactDetailKey = ContactDetailKey;
 
   columns: ColumnDefinition<ContactDetailDto>[] = [
     { label: '#', property: 'key', type: 'template', template: 'keyTemplate' },
@@ -31,9 +32,9 @@ export class UserContactDataComponent implements OnInit {
   ];
 
   keyOptions = [
-    { icon: 'pi pi-envelope', value: 1 },
-    { icon: 'pi pi-phone', value: 2 },
-    { icon: 'pi pi-link', value: 3 },
+    { icon: 'pi pi-envelope', value: ContactDetailKey.E_MAIL },
+    { icon: 'pi pi-phone', value: ContactDetailKey.PHONE_NUMBER },
+    { icon: 'pi pi-link', value: ContactDetailKey.URL },
   ];
 
   constructor(

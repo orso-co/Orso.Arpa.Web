@@ -18,8 +18,4 @@ export class AuditDialogComponent {
     private auditLogService: AuditLogService) {
     this.detail = this.config.data.auditLogDto;
   }
-
-  public getTypeName(type: number): string {
-    return this.auditLogService.getTypeName(type);
-  }
 }

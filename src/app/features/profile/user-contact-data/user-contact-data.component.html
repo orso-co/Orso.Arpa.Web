@@ -1,17 +1,12 @@
-<arpa-table
-  [actionsTemplateRef]="actionsTemplate"
-  [columns]="columns"
-  [data]="tableData"
-  [showFilter]="false"
-  [showPagination]="false"
-><ng-template arpaTableColumn="keyTemplate" let-key>
-  <ng-container [ngSwitch]="key">
-    <i *ngSwitchCase="1" class="pi pi-envelope"></i>
-    <i *ngSwitchCase="2" class="pi pi-phone"></i>
-    <i *ngSwitchCase="3" class="pi pi-link"></i>
-    <i *ngSwitchDefault class="pi pi-circle"></i>
-  </ng-container>
-</ng-template>
+<arpa-table [actionsTemplateRef]="actionsTemplate" [columns]="columns" [data]="tableData" [showFilter]="false" [showPagination]="false"
+  ><ng-template arpaTableColumn="keyTemplate" let-key>
+    <ng-container [ngSwitch]="key">
+      <i *ngSwitchCase="ContactDetailKey.E_MAIL" class="pi pi-envelope"></i>
+      <i *ngSwitchCase="ContactDetailKey.PHONE_NUMBER" class="pi pi-phone"></i>
+      <i *ngSwitchCase="ContactDetailKey.URL" class="pi pi-link"></i>
+      <i *ngSwitchDefault class="pi pi-circle"></i>
+    </ng-container>
+  </ng-template>
 </arpa-table>
 <hr />
 
@@ -94,4 +89,3 @@
     </div>
   </div>
 </form>
-

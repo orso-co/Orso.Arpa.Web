@@ -154,11 +154,11 @@ export class AppointmentsComponent {
   getRange(viewName: string): DateRange {
     switch (viewName) {
       case 'dayGridMonth':
-        return DateRange.month;
+        return DateRange.MONTH;
       case 'timeGridWeek':
-        return DateRange.week;
+        return DateRange.WEEK;
       case 'timeGridDay':
-        return DateRange.day;
+        return DateRange.DAY;
       default:
         throw Error('not supported');
     }
