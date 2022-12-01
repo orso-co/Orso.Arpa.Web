@@ -55,7 +55,7 @@ export class MusicianInstrumentsComponent implements OnInit {
     this.qualificationOptions$ = this.resolveSelect('Qualification');
     this.inquiryStatusOptions$ = this.enumService.getMusicianProfileInquiryStatusSelectItems();
 
-    this.config.data.profile$$.pipe(first()).subscribe((profile: MusicianProfileDto) => {
+    this.config.data.profile.pipe(first()).subscribe((profile: MusicianProfileDto) => {
       this.profile$$ = profile;
       this.isNew = !profile.id;
       if (profile.doublingInstruments?.length) {
