@@ -57,6 +57,11 @@
     "TYPE": "tipo",
     "URLS": "URLs"
   },
+  "my-appointments": {
+    "PREDICTION":"TRANSLATE ME",
+    "MY_COMMENT": "TRANSLATE ME",
+    "EDIT_PREDICTION": "TRANSLATE ME"
+  },
   "bank": {
     "ACCOUNT_OWNER": "Titular da conta",
     "IBAN": "IBAN",

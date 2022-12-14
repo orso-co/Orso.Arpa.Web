@@ -57,6 +57,11 @@
     "TYPE": "Taper",
     "URLS": "URLs"
   },
+  "my-appointments": {
+    "PREDICTION":"TRANSLATE ME",
+    "MY_COMMENT": "TRANSLATE ME",
+    "EDIT_PREDICTION": "TRANSLATE ME"
+  },
   "bank": {
     "ACCOUNT_OWNER": "Propriétaire du compte",
     "IBAN": "IBAN",
