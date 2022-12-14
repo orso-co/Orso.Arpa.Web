@@ -18,7 +18,12 @@ export const PersonQuery = gql`
         createdBy
         modifiedAt
         modifiedBy
-
+        gender {
+          id
+          selectValue {
+            name
+          }
+        }
         musicianProfiles {
           id
           isMainProfile
