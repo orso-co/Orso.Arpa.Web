@@ -27,6 +27,7 @@ class ParticipationTableItem {
   prediction?: AppointmentParticipationPrediction;
   result?: AppointmentParticipationResult;
   personId: string;
+  commentByPerformerInner?: string;
 
   constructor(
     personId: string,
@@ -35,7 +36,8 @@ class ParticipationTableItem {
     sections: string,
     qualification: string,
     prediction?: AppointmentParticipationPrediction,
-    result?: AppointmentParticipationResult
+    result?: AppointmentParticipationResult,
+    commentByPerformerInner?: string
   ) {
     this.givenName = givenName;
     this.surname = surname;
@@ -44,6 +46,7 @@ class ParticipationTableItem {
     this.result = result;
     this.prediction = prediction;
     this.personId = personId;
+    this.commentByPerformerInner = commentByPerformerInner;
   }
 }
 
@@ -399,7 +402,8 @@ export class EditAppointmentComponent implements OnInit {
           this.getSectionNames(element.musicianProfiles || []),
           element.musicianProfiles?.map((mp: any) => mp.qualification).join(', ') || '',
           element.participation?.prediction,
-          element.participation?.result
+          element.participation?.result,
+          element.participation?.commentByPerformerInner
         )
       );
     });

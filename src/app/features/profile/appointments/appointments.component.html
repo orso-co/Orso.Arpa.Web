@@ -1,13 +1,3 @@
-<arpa-select-dialog
-  #selectDialog
-  (closeEvent)="onPredictionChanged($event)"
-  [options]="(predictions$ | async) || []"
-  [target]="predictionAction"
-  dismissableMask="true"
-  modal="true"
-  title="profile.PREDICTION"
-></arpa-select-dialog>
-
 <div class="p-grid p-jc-center">
   <div class="p-col-12 p-text-center">
     <h1 #predictionAction>{{ 'profile.MY_APPOINTMENTS' | translate }}</h1>
@@ -47,22 +37,21 @@
 </div>
 
 <ng-template #listElement let-appointment>
-  <tr (click)="selectDialog.openDialog(appointment.predictionId, appointment)">
+  <tr (click)="openPredictionDialog(appointment)">
     <td>
       <div class="p-d-flex p-jc-between p-flex-column p-flex-md-row full-width">
         <div class="p-mr-md-4 p-d-flex p-flex-column date-container">
           <div class="date">
-            <span class="year p-order-3 p-md-order-0">{{ appointment.startTime | localizedDate: 'YYYY' }}</span>
-            <span class="month-name p-order-2 p-md-order-1">{{ appointment.startTime | localizedDate: 'MMMM' }}</span>
-            <span class="day p-order-1 p-md-order-2">{{ appointment.startTime | date: 'dd':'locale(de)' }}</span>
-            <span class="day-name p-order-0 p-md-order-3">{{ appointment.startTime | localizedDate: 'EEEE' }}</span>
+            <span class="year p-order-3 p-md-order-0">{{ appointment.startTime | localizedDate : 'YYYY' }}</span>
+            <span class="month-name p-order-2 p-md-order-1">{{ appointment.startTime | localizedDate : 'MMMM' }}</span>
+            <span class="day p-order-1 p-md-order-2">{{ appointment.startTime | date : 'dd' : 'locale(de)' }}</span>
+            <span class="day-name p-order-0 p-md-order-3">{{ appointment.startTime | localizedDate : 'EEEE' }}</span>
             <span class="time p-order-4"
-              >{{ appointment.startTime | date: 'H:mm':'locale(de)' }}-{{ appointment.endTime | date: 'H:mm':'locale(de)' }}</span
+              >{{ appointment.startTime | date : 'H:mm' : 'locale(de)' }}-{{ appointment.endTime | date : 'H:mm' : 'locale(de)' }}</span
             >
           </div>
           <div class="p-d-lg-none status-badge p-mt-3">
             <p-tag
-
               styleClass="tag"
               *ngIf="showRibbon(appointment.status)"
               [value]="getRibbonContentKey(appointment.status, appointment.prediction) | translate"
@@ -90,6 +79,20 @@
                   ('appointmentParticipationPrediction.' + appointment.prediction | translate)
                 "
               ></p-chip>
+              <button
+                pButton
+                pRipple
+                type="button"
+                class="p-button-text"
+                *ngIf="appointment.commentByPerformerInner"
+                icon="pi pi-comment"
+                (click)="$event.stopPropagation(); op.toggle($event);"
+              ></button>
+              <p-overlayPanel #op>
+                <ng-template pTemplate>
+                  <p class="comment-overlay">{{ appointment.commentByPerformerInner }}</p>
+                </ng-template>
+              </p-overlayPanel>
             </div>
             <div class="p-col-12 p-lg-6">
               <ng-container *ngIf="appointment.projects.length > 0">
@@ -126,7 +129,7 @@
         </div>
         <div class="p-d-flex p-flex-column p-jc-center p-ai-end">
           <button
-            (click)="selectDialog.openDialog(appointment.predictionId, appointment)"
+            (click)="openPredictionDialog(appointment)"
             class="p-button-rounded p-button-text p-button-icon-only"
             icon="pi pi-pencil"
             pButton

@@ -1,3 +1,6 @@
+import { TranslateService } from '@ngx-translate/core';
+import { MyAppointmentParticipationDialogComponent } from './../my-appointment-participation-dialog/my-appointment-participation-dialog.component';
+import { DialogService } from 'primeng/dynamicdialog';
 import { Component } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { first, map } from 'rxjs/operators';
@@ -21,7 +24,13 @@ export class AppointmentsComponent {
   selectedOption: boolean = false;
   predictions$: Observable<SelectItem[]>;
 
-  constructor(private meService: MeService, private notificationsService: NotificationsService, private enumService: EnumService) {
+  constructor(
+    private meService: MeService,
+    private notificationsService: NotificationsService,
+    private enumService: EnumService,
+    private dialogService: DialogService,
+    private translate: TranslateService
+  ) {
     this.predictions$ = this.enumService.getAppointmentParticipationPredictionSelectItems();
   }
 
@@ -39,14 +48,30 @@ export class AppointmentsComponent {
     return rooms.map((r) => r.name).join(', ');
   }
 
-  onPredictionChanged(event: { ctx: MyAppointmentDto; value: AppointmentParticipationPrediction }): void {
-    this.meService
-      .setAppointmentPrediction(event.ctx.id, { prediction: event.value })
-      .pipe(first())
-      .subscribe(() => {
-        event.ctx.prediction = event.value;
-        this.notificationsService.success('profile.PREDICTION_SET');
-      });
+  openPredictionDialog(myAppointmentDto: MyAppointmentDto) {
+    const ref = this.dialogService.open(MyAppointmentParticipationDialogComponent, {
+      data: {
+        participation: { prediction: myAppointmentDto.prediction, commentByPerformerInner: myAppointmentDto.commentByPerformerInner },
+        statusOptions$: this.predictions$,
+      },
+      header: this.translate.instant('profile.my-appointments.EDIT_PREDICTION'),
+      styleClass: 'form-modal',
+      dismissableMask: true,
+      width: window.innerWidth > 350 ? '350px' : '100%',
+    });
+
+    ref.onClose.pipe(first()).subscribe((result) => {
+      if (result) {
+        this.meService
+          .setAppointmentPrediction(myAppointmentDto.id, result)
+          .pipe(first())
+          .subscribe(() => {
+            myAppointmentDto.prediction = result.prediction;
+            myAppointmentDto.commentByPerformerInner = result.commentByPerformerInner
+            this.notificationsService.success('profile.PREDICTION_SET');
+          });
+      }
+    });
   }
 
   onSelectedOptionChange(event: { value: number }) {
@@ -76,8 +101,8 @@ export class AppointmentsComponent {
       appointmentStatus === AppointmentStatus.AWAITING_POLL &&
       (!appointmentPrediction || appointmentPrediction === AppointmentParticipationPrediction.DONT_KNOW_YET)
     ) {
-      return "warning";
+      return 'warning';
     }
-    return "primary";
+    return 'primary';
   }
 }

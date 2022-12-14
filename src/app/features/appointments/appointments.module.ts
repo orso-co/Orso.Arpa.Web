@@ -25,6 +25,7 @@ import { StepsModule } from 'primeng/steps';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @NgModule({
   declarations: [AppointmentsComponent, EditAppointmentComponent],
@@ -48,6 +49,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
     InputTextareaModule,
     InputTextModule,
     InputNumberModule,
+    OverlayPanelModule,
   ],
   providers: [
     AppointmentCategoryListResolver,
@@ -59,7 +61,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 })
 export class AppointmentsModule {
   constructor(private translateService: TranslateService, private languageService: LanguageService) {
-    languageService.languageEvent.subscribe(lang => {
+    languageService.languageEvent.subscribe((lang) => {
       /**
        * Reset lang for lazy module.
        * Fixes: https://github.com/ngx-translate/core/issues/1193

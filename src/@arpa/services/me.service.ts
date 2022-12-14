@@ -1,3 +1,4 @@
+import { AppointmentParticipationDto } from './../models/appointmentParticipationDto';
 import {
   SetMyAppointmentParticipationPredictionDto,
   BankAccountModifyBodyDto,
@@ -75,8 +76,13 @@ export class MeService {
     return this.apiService.get<MyProjectDto[]>(`${this.baseUrl}/projects`).pipe(shareReplay());
   }
 
-  setAppointmentPrediction(appointmentId: string, dto: SetMyAppointmentParticipationPredictionDto): Observable<any> {
-    return this.apiService.put(`${this.baseUrl}/appointments/${appointmentId}/participation/prediction`, dto).pipe(shareReplay());
+  setAppointmentPrediction(
+    appointmentId: string,
+    dto: SetMyAppointmentParticipationPredictionDto
+  ): Observable<any> {
+    return this.apiService
+      .put(`${this.baseUrl}/appointments/${appointmentId}/participation/prediction`, dto)
+      .pipe(shareReplay());
   }
 
   setProjectParticipationStatus(projectId: string, dto: MyProjectParticipationModifyBodyDto): Observable<MyProjectParticipationDto> {

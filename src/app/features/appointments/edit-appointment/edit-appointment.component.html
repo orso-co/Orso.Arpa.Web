@@ -15,8 +15,8 @@
             type="text"
           />
         </div>
-        <div class="p-field p-fluid p-col-12 p-md-6 ">
-          <label for="status" >{{ 'appointments.STATUS' | translate }} </label>
+        <div class="p-field p-fluid p-col-12 p-md-6">
+          <label for="status">{{ 'appointments.STATUS' | translate }} </label>
           <p-dropdown
             [autoDisplayFirst]="false"
             [options]="statusOptions"
@@ -25,7 +25,7 @@
             formControlName="status"
             id="status"
             [placeholder]="'appointments.SELECT_STATUS' | translate"
-            ></p-dropdown>
+          ></p-dropdown>
         </div>
 
         <div class="p-field p-fluid p-col-8 p-md-4">
@@ -297,8 +297,6 @@
                 pInputText
                 type="text"
                 [style]="{ width: '100%' }"
-
-
               />
               <input
                 (input)="participationTable.filter($event.target.value, col.field, 'contains')"
@@ -306,27 +304,25 @@
                 pInputText
                 type="text"
                 [style]="{ width: '100%' }"
-
-
               />
               <p-dropdown
-              (onChange)="participationTable.filter($event.value, col.field, 'equals')"
-              *ngSwitchCase="'prediction'"
-              [autoDisplayFirst]="false"
-              [options]="predictionOptions"
-              [showClear]="true"
-              [style]="{ width: '100%' }"
-              appendTo="body"
-            ></p-dropdown>
-            <p-dropdown
-              (onChange)="participationTable.filter($event.value, col.field, 'equals')"
-              *ngSwitchCase="'result'"
-              [autoDisplayFirst]="false"
-              [options]="resultOptions"
-              [showClear]="true"
-              [style]="{ width: '100%' }"
-              appendTo="body"
-            ></p-dropdown>
+                (onChange)="participationTable.filter($event.value, col.field, 'equals')"
+                *ngSwitchCase="'prediction'"
+                [autoDisplayFirst]="false"
+                [options]="predictionOptions"
+                [showClear]="true"
+                [style]="{ width: '100%' }"
+                appendTo="body"
+              ></p-dropdown>
+              <p-dropdown
+                (onChange)="participationTable.filter($event.value, col.field, 'equals')"
+                *ngSwitchCase="'result'"
+                [autoDisplayFirst]="false"
+                [options]="resultOptions"
+                [showClear]="true"
+                [style]="{ width: '100%' }"
+                appendTo="body"
+              ></p-dropdown>
               <p-dropdown
                 (onChange)="participationTable.filter($event.value, col.field, 'contains')"
                 *ngSwitchCase="'sections'"
@@ -371,6 +367,20 @@
                 appendTo="body"
                 [placeholder]="'appointments.SELECT_PREDICTION' | translate"
               ></p-dropdown>
+              <button
+                pButton
+                pRipple
+                type="button"
+                class="p-button-text"
+                *ngIf="item.commentByPerformerInner"
+                icon="pi pi-comment"
+                (click)="op.toggle($event)"
+              ></button>
+              <p-overlayPanel #op>
+                <ng-template pTemplate>
+                  <p class="comment-overlay">{{ item.commentByPerformerInner }}</p>
+                </ng-template>
+              </p-overlayPanel>
             </td>
             <td>
               <span class="p-column-title">{{ 'appointments.RESULTS' | translate }}</span>
@@ -392,7 +402,6 @@
               <span class="p-column-title">{{ 'appointments.QUALIFICATION' | translate }}</span>
               {{ item.qualification }}
             </td>
-
           </tr>
         </ng-template>
         <ng-template let-columns pTemplate="emptymessage">

@@ -8,4 +8,5 @@ export interface AppointmentParticipationDto {
   modifiedAt?: Date;
   result?: AppointmentParticipationResult;
   prediction?: AppointmentParticipationPrediction;
+  commentByPerformerInner?: string;
 }
