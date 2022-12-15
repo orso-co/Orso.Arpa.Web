@@ -61,6 +61,11 @@
     "STAFF_POV": "Staff point of view ",
     "MY_POV": "My point of view"
   },
+  "my-appointments": {
+    "PREDICTION":"Prediction ",
+    "MY_COMMENT": "My Comment",
+    "EDIT_PREDICTION": "Edit Prediction"
+  },
   "bank": {
     "ACCOUNT_OWNER": "Account Owner",
     "IBAN": "IBAN",

@@ -63,6 +63,11 @@
     "STAFF_POV": "Seitens Mitarbeiter:",
     "MY_POV": "Von meiner Seite:"
   },
+  "my-appointments": {
+    "PREDICTION":"Vorhersage",
+    "MY_COMMENT": "Mein Kommentar",
+    "EDIT_PREDICTION": "Vorhersage bearbeiten"
+  },
   "bank": {
     "ACCOUNT_OWNER": "Kontoinhaber",
     "IBAN": "IBAN",

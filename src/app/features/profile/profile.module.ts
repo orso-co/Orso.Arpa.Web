@@ -1,3 +1,4 @@
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { RibbonComponent } from './../../shared/components/ribbon/ribbon.component';
 import { AccordionModule } from 'primeng/accordion';
 import { AppointmentsComponent } from './appointments/appointments.component';
@@ -40,6 +41,7 @@ import { UserContactDataComponent } from './user-contact-data/user-contact-data.
 import { UserDataComponent } from './user-data/user-data.component';
 import { UserBankdataComponent } from './user-bankdata/user-bankdata.component';
 import { ChipModule } from 'primeng/chip';
+import { MyAppointmentParticipationDialogComponent } from './my-appointment-participation-dialog/my-appointment-participation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { ChipModule } from 'primeng/chip';
     UserDataComponent,
     UserContactDataComponent,
     UserBankdataComponent,
-    RibbonComponent
+    RibbonComponent,
+    MyAppointmentParticipationDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -69,7 +72,7 @@ import { ChipModule } from 'primeng/chip';
     SelectValueModule,
     FormFieldModule,
     TableModule,
-    // NG Prime Dependencies
+    // PrimeNG Dependencies
     ButtonModule,
     DropdownModule,
     BadgeModule,
@@ -83,7 +86,8 @@ import { ChipModule } from 'primeng/chip';
     CalendarModule,
     SelectButtonModule,
     RatingModule,
-    ChipModule
+    ChipModule,
+    OverlayPanelModule,
   ],
   providers: [ProfileService, ProfileResolver, LocalizedDatePipe],
 })

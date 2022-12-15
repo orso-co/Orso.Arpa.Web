@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { first, map } from 'rxjs/operators';
-import { MeService, NotificationsService } from '@arpa/services';
+import { map } from 'rxjs/operators';
+import { MeService} from '@arpa/services';
 import { MyAppointmentDto, ProjectDto, RoomDto } from '@arpa/models';
 
 @Component({
@@ -15,8 +15,7 @@ export class AppointmentsWidgetComponent {
   itemsPerPage = 8;
 
   constructor(
-    private meService: MeService,
-    private notificationsService: NotificationsService,
+    private meService: MeService
   ) {
   }
 
@@ -32,15 +31,5 @@ export class AppointmentsWidgetComponent {
 
   getRoomNames(rooms: RoomDto[]): string {
     return rooms.map((r) => r.name).join(', ');
-  }
-
-  onPredictionChanged(event: any): void {
-    this.meService
-      .setAppointmentPrediction(event.ctx.id, event.value)
-      .pipe(first())
-      .subscribe(() => {
-        event.ctx.predictionId = event.value;
-        this.notificationsService.success('profile.PREDICTION_SET');
-      });
   }
 }

@@ -57,6 +57,11 @@
     "TYPE": "tipo",
     "URLS": "URLs"
   },
+  "my-appointments": {
+    "PREDICTION":"Previsão",
+    "MY_COMMENT": "Meu comentário",
+    "EDIT_PREDICTION": "Editar previsão"
+  },
   "bank": {
     "ACCOUNT_OWNER": "Titular da conta",
     "IBAN": "IBAN",
