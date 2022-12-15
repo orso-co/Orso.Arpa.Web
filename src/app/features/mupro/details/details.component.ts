@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { AuthService } from '../../../../@arpa/services/auth.service';
+import { AuthService } from '@arpa/services';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -16,6 +16,7 @@ export class DetailsComponent {
     this.tabMenuItems = [
       { label: 'PROJECTS', target: '.' },
       { label: 'APPOINTMENTS', target: '.' },
+
     ];
   }
 

@@ -26,6 +26,8 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from '../../../@arpa/components/table/table.module';
 import { ProjectsComponent } from './projects/projects.component';
 import { ParticipationDialogModule } from '../../../@arpa/components/participation-dialog/participation-dialog.module';
+import { TabViewModule } from 'primeng/tabview';
+import { AppointmentsComponent } from './appointments/appointments.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { ParticipationDialogModule } from '../../../@arpa/components/participati
     ProfilesComponent,
     ProjectsComponent,
     InvitationDialogComponent,
+    AppointmentsComponent,
   ],
   imports: [
     CommonModule,
@@ -60,6 +63,7 @@ import { ParticipationDialogModule } from '../../../@arpa/components/participati
     ButtonModule,
     MultiSelectModule,
     DropdownModule,
+    TabViewModule,
   ],
   providers: [MuproService],
 })
