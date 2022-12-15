@@ -69,12 +69,8 @@ export const AppointmentsQuery = gql`
                 appointment {
                   name
                 }
-                prediction {
-                  selectValue{name}
-                }
-                result {
-                  selectValue {name}
-                }
+                prediction
+                result
               }
             }
           }
