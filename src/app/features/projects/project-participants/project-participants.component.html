@@ -3,7 +3,7 @@
     <div class="arpa-spinner">
       <div class="spinner"></div>
     </div>
-  </div>  
+  </div>
 </ng-template>
 
 <ng-container *ngIf="ready; else loading">
@@ -44,10 +44,12 @@
       ></arpa-chart>
     </div>
   </div>
-  
+
   <arpa-table *ngIf="ready"
     [columns]="columns"
     [values]="tableData"
+    (rowClickEvents)='openParticipationDialog($event)'
+
   ></arpa-table>
 </ng-container>
 

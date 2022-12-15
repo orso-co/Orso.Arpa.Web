@@ -18,14 +18,22 @@ export const ProjectsQuery = gql`
 
       items {
         id
+        title
         projectParticipations {
+          invitationStatus
           participationStatusInner
           participationStatusInternal
+          commentByStaffInner
+          commentTeam
           musicianProfile {
+            id
             instrument {
               name
             }
             person {
+              id
+              surname
+              givenName
               displayName
             }
           }
