@@ -10,7 +10,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { GraphQlFeedComponent } from 'src/@arpa/components/graph-ql-feed/graph-ql-feed.component';
 import { filter, first } from 'rxjs/operators';
-import { ParticipationDialogComponent } from '../participation-dialog/participation-dialog.component';
+import { ParticipationDialogComponent } from '../../../../@arpa/components/participation-dialog/participation-dialog.component';
 import { ProjectService, LoggerService } from '@arpa/services';
 
 @Component({

@@ -16,7 +16,7 @@ import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
-import { LanguageService } from '../../../@arpa/services/language.service';
+import { LanguageService } from '@arpa/services';
 import { GraphQlFeedModule } from '../../../@arpa/components/graph-ql-feed/graph-ql-feed.module';
 import { TableModule } from '../../../@arpa/components/table/table.module';
 import { FormFieldModule } from '../../../@arpa/components/form-field/form-field.module';
@@ -29,6 +29,7 @@ import { TagModule } from 'primeng/tag';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ChartModule } from '../../../@arpa/components/chart/chart.module';
+import { ParticipationDialogModule } from '../../../@arpa/components/participation-dialog/participation-dialog.module';
 
 @NgModule({
   declarations: [
@@ -44,11 +45,14 @@ import { ChartModule } from '../../../@arpa/components/chart/chart.module';
     FormsModule,
     ReactiveFormsModule,
     ProjectsRoutingModule,
+
     // Arpa Lib
-    TranslateModule.forChild(['projects']),
+    TranslateModule.forChild(['projects', 'mupro']),
     GraphQlFeedModule,
     TableModule,
     FormFieldModule,
+    ParticipationDialogModule,
+
     // NG Prime Dependencies
     DropdownModule,
     ButtonModule,

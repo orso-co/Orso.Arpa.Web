@@ -6,8 +6,8 @@ import { ColumnDefinition } from '../../../../@arpa/components/table/table.compo
 import { GraphQlFeedComponent } from '../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
 import { DocumentNode } from 'graphql';
 import { ProjectsQuery } from './projectparticipations.graphql';
-import { ProjectDto, ProjectParticipationDto, SetProjectParticipationBodyDto } from '@arpa/models';
-import { ParticipationDialogComponent } from '../../mupro/participation-dialog/participation-dialog.component';
+import { ProjectParticipationDto, SetProjectParticipationBodyDto } from '@arpa/models';
+import { ParticipationDialogComponent } from '../../../../@arpa/components/participation-dialog/participation-dialog.component';
 import { filter, first } from 'rxjs/operators';
 import { DialogService } from 'primeng/dynamicdialog';
 import { NotificationsService, ProjectService, LoggerService } from '@arpa/services';
@@ -57,13 +57,9 @@ export class ProjectParticipantsComponent implements AfterViewInit {
   innerStatsValues: number[] = [];
   innerStatsKeys: string[] = [];
   personId: string | undefined;
-  projects: ProjectDto[] = [];
+  project: any;
   participations: ProjectParticipationDto[] = [];
   private routeEventsSubscription: Subscription = Subscription.EMPTY;
-  private routeSubscription: Subscription = Subscription.EMPTY;
-
-
-
 
   constructor(
     private cdref: ChangeDetectorRef,
@@ -91,8 +87,9 @@ export class ProjectParticipantsComponent implements AfterViewInit {
     this.feedSource.values.subscribe({
       next: (result: Record<string, any>[]) => {
         if (result.length) {
-          this.tableData.next(result[0].projectParticipations);
-          result[0].projectParticipations.forEach((p: Record<string, any>) => {
+          this.project = result[0] as any;
+          this.tableData.next(this.project.projectParticipations);
+          this.project.projectParticipations.forEach((p: Record<string, any>) => {
             if (p.participationStatusInner) {
               if (this.innerStatsCount[p.participationStatusInner]) {
                 this.innerStatsCount[p.participationStatusInner]++;
@@ -113,26 +110,27 @@ export class ProjectParticipantsComponent implements AfterViewInit {
       },
     });
   }
-  openParticipationDialog(project: ProjectDto) {
+  openParticipationDialog(row: any) {
+    const project = row.project;
     const ref = this.dialogService.open(ParticipationDialogComponent, {
-      data: { project, personId: this.personId },
-      header: this.translate.instant('mupro.EDIT_PARTICIPATION'),
-    styleClass: 'form-modal',
-    dismissableMask: true,
-    width: window.innerWidth > 1000 ? '66%' : '100%',
-  });
+      data: { project: this.project, personId: row.musicianProfile.person.id },
+      header: this.translate.instant('projects.EDIT_PARTICIPATION'),
+      styleClass: 'form-modal',
+      dismissableMask: true,
+      width: window.innerWidth > 1000 ? '66%' : '100%',
+    });
 
-  ref.onClose.pipe(first()).subscribe((projectParticipation: SetProjectParticipationBodyDto) => {
-  if (projectParticipation) {
-    this.projectService.setParticipation(project.id, projectParticipation)
-      .pipe(first())
-      .subscribe(() => {
-        this.logger.info('updated:', projectParticipation);
-        this.notificationsService.success('UPDATED_PROJECT_PARTICIPATION');
-        this.feedSource.refresh();
-      });
-  }
-});
+    ref.onClose.pipe(first()).subscribe((projectParticipation: SetProjectParticipationBodyDto) => {
+      if (projectParticipation) {
+        this.projectService.setParticipation(this.projectId, projectParticipation)
+          .pipe(first())
+          .subscribe(() => {
+            this.logger.info('updated:', projectParticipation);
+            this.notificationsService.success('UPDATED_PROJECT_PARTICIPATION');
+            this.feedSource.refresh();
+          });
+      }
+    });
 
   }
 }

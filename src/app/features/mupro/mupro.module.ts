@@ -11,7 +11,7 @@ import { ProfilesComponent } from './profiles/profiles.component';
 import { MuproService } from './services/mupro.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AvatarModule } from '../../../@arpa/components/avatar/avatar.module';
-import { LanguageService } from '../../../@arpa/services/language.service';
+import { LanguageService } from '@arpa/services';
 import { TranslateModule } from '../../../@arpa/translate';
 import { SplitViewModule } from '../../../@arpa/components/split-view/split-view.module';
 import { ListboxModule } from 'primeng/listbox';
@@ -25,7 +25,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from '../../../@arpa/components/table/table.module';
 import { ProjectsComponent } from './projects/projects.component';
-import { ParticipationDialogComponent } from './participation-dialog/participation-dialog.component';
+import { ParticipationDialogModule } from '../../../@arpa/components/participation-dialog/participation-dialog.module';
 
 @NgModule({
   declarations: [
@@ -34,13 +34,13 @@ import { ParticipationDialogComponent } from './participation-dialog/participati
     ProfilesComponent,
     ProjectsComponent,
     InvitationDialogComponent,
-    ParticipationDialogComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     MuProRoutingModule,
+
     // Arpa Lib
     TranslateModule.forChild(['mupro', 'mupro']),
     AvatarModule,
@@ -48,6 +48,7 @@ import { ParticipationDialogComponent } from './participation-dialog/participati
     GraphQlFeedModule,
     TableModule,
     FormFieldModule,
+    ParticipationDialogModule,
 
     // NG Prime Dependencies
     ListboxModule,
