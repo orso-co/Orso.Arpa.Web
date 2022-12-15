@@ -12,13 +12,14 @@ import { filter, first } from 'rxjs/operators';
 import { DialogService } from 'primeng/dynamicdialog';
 import { NotificationsService, ProjectService, LoggerService } from '@arpa/services';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'arpa-project-participants',
   templateUrl: './project-participants.component.html',
   styleUrls: ['./project-participants.component.scss'],
 })
-export class ProjectParticipantsComponent implements AfterViewInit {
+export class ProjectParticipantsComponent implements AfterViewInit, OnInit {
   @ViewChild('feedSource')
   private feedSource: GraphQlFeedComponent;
 

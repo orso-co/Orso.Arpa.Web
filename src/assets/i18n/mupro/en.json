@@ -15,5 +15,7 @@
   "PARTICIPATION_COMMENT_TEAM": "Comment within team only",
   "PARTICIPANT": "Participant",
   "SET_PARTICIPATION_STATUS": "Participation Status set",
-  "CREATE_NEW_MUPRO": "Neues Musikerprofil erstellen"
+  "CREATE_NEW_MUPRO": "Neues Musikerprofil erstellen",
+  "GO_TO_PERSON": "Go To Person"
+
 }

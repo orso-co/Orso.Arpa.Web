@@ -1,0 +1,90 @@
+import {
+  ProjectDto,
+  SetProjectParticipationBodyDto,
+  AppointmentParticipationDto, AppointmentDto,
+} from '@arpa/models';
+import { NotificationsService } from 'src/@arpa/services/notifications.service';
+import { TranslateService } from '@ngx-translate/core';
+import { DialogService } from 'primeng/dynamicdialog';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
+import { DocumentNode } from 'graphql';
+import { AppointmentsQuery } from './appointments.graphql';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { GraphQlFeedComponent } from 'src/@arpa/components/graph-ql-feed/graph-ql-feed.component';
+import { filter, first } from 'rxjs/operators';
+import { ParticipationDialogComponent } from '../../../../@arpa/components/participation-dialog/participation-dialog.component';
+import { ProjectService, LoggerService } from '@arpa/services';
+
+@Component({
+  selector: 'arpa-mupro-appointments',
+  templateUrl: './appointments.component.html',
+  styleUrls: ['./appointments.component.scss'],
+})
+export class AppointmentsComponent implements OnInit, OnDestroy {
+  query: DocumentNode = AppointmentsQuery;
+  columns: ColumnDefinition<AppointmentParticipationDto>[] = [
+    { label: 'APPOINTMENT', property: 'name', type: 'text' },
+    { label: 'PREDICTION', property: 'appointmentParticipations.prediction', type: 'text', show: true},
+    { label: 'RESULT', property: 'appointmentParticipations.result', type: 'text', show: true},
+    { label: 'COMMENT_BY_PERFORMER', property: 'appointmentParticipations.commentByPerformerInner', type: 'text', show: true}
+  ];
+
+  personId: string | undefined;
+  appointments: AppointmentDto[] = [];
+  participations: AppointmentParticipationDto[] = [];
+
+  private routeEventsSubscription: Subscription = Subscription.EMPTY;
+  private routeSubscription: Subscription = Subscription.EMPTY;
+  @ViewChild('feedSource') private feedSource: GraphQlFeedComponent;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private dialogService: DialogService,
+    private projectService: ProjectService,
+    private translate: TranslateService,
+    private notificationsService: NotificationsService,
+    private logger: LoggerService,
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.route.parent?.paramMap.subscribe((params) => {
+      this.personId = params.get('personId') || undefined;
+      this.feedSource?.refresh();
+    });
+
+    this.routeEventsSubscription = this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe(() => {
+      this.feedSource.refresh();
+    });
+  }
+
+  ngOnDestroy() {
+    this.routeSubscription.unsubscribe();
+    this.routeEventsSubscription.unsubscribe();
+  }
+
+  openParticipationDialog(project: ProjectDto) {
+    const ref = this.dialogService.open(ParticipationDialogComponent, {
+      data: { project, personId: this.personId },
+      header: this.translate.instant('mupro.EDIT_PARTICIPATION'),
+      styleClass: 'form-modal',
+      dismissableMask: true,
+      width: window.innerWidth > 1000 ? '66%' : '100%',
+    });
+
+    ref.onClose.pipe(first()).subscribe((projectParticipation: SetProjectParticipationBodyDto) => {
+      if (projectParticipation) {
+        this.projectService.setParticipation(project.id, projectParticipation)
+          .pipe(first())
+          .subscribe(() => {
+            this.logger.info('updated:', projectParticipation);
+            this.notificationsService.success('UPDATED_PROJECT_PARTICIPATION');
+            this.feedSource.refresh();
+          });
+      }
+    });
+  }
+}

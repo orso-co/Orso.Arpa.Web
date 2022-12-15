@@ -86,12 +86,6 @@ export class ProfilesComponent implements OnInit, OnDestroy {
     );
   }
 
-  openPersonDetail(personId: string) {
-    this.router.navigate([{ outlets: { modal: ['persons', 'detail', personId] } }], {
-      relativeTo: this.route,
-    });
-  }
-
   ngOnDestroy() {
     this.paramSubscription.unsubscribe();
     this.routeEventsSubscription.unsubscribe();

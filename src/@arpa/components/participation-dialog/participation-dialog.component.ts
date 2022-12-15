@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { EnumService } from '@arpa/services';
-import { ReducedPersonDto, ProjectParticipationDto } from '@arpa/models';
+import { ReducedPersonDto, ProjectParticipationDto, ReducedMusicianProfileDto } from '@arpa/models';
 import { SelectItem } from 'primeng/api';
 
 @Component({
@@ -19,6 +19,7 @@ export class ParticipationDialogComponent implements OnInit {
   public person: ReducedPersonDto | null;
   participationStatusInnerOptions$: Observable<SelectItem[]>;
   participationStatusInternalOptions$: Observable<SelectItem[]>;
+  public instrumentName: ReducedMusicianProfileDto;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,6 +37,7 @@ export class ParticipationDialogComponent implements OnInit {
     this.person = profile.person;
     this.participationStatusInnerOptions$ = this.enumService.getProjectParticipationStatusInnerSelectItems();
     this.participationStatusInternalOptions$ = this.enumService.getProjectParticipationStatusInternalSelectItems();
+    this.instrumentName = profile.instrumentName;
 
     this.form = this.formBuilder.group({
       participationStatusInner: [null],

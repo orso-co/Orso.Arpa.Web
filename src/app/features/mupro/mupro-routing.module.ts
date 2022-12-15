@@ -5,6 +5,7 @@ import { ProfilesComponent } from './profiles/profiles.component';
 import { ProfileMusicianResolver } from './resolvers/profile-musician.resolver';
 import { SectionsResolver } from '../profile/resolvers/sections.resolver';
 import { ProjectsComponent } from './projects/projects.component';
+import { AppointmentsComponent } from './appointments/appointments.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,11 @@ const routes: Routes = [
           {
             path: 'projects',
             component: ProjectsComponent,
+            runGuardsAndResolvers: 'always',
+          },
+          {
+            path: 'appointments',
+            component: AppointmentsComponent,
             runGuardsAndResolvers: 'always',
           },
         ],
