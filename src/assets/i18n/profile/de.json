@@ -64,9 +64,9 @@
     "MY_POV": "Von meiner Seite:"
   },
   "my-appointments": {
-    "PREDICTION":"Teilnahme Vorhersage",
+    "PREDICTION":"Vorhersage",
     "MY_COMMENT": "Mein Kommentar",
-    "EDIT_PREDICTION": "Voraussichtliche Teilnahme bearbeiten"
+    "EDIT_PREDICTION": "Vorhersage bearbeiten"
   },
   "bank": {
     "ACCOUNT_OWNER": "Kontoinhaber",

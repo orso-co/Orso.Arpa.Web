@@ -62,9 +62,9 @@
     "MY_POV": "My point of view"
   },
   "my-appointments": {
-    "PREDICTION":"TRANSLATE ME",
-    "MY_COMMENT": "TRANSLATE ME",
-    "EDIT_PREDICTION": "TRANSLATE ME"
+    "PREDICTION":"Prediction ",
+    "MY_COMMENT": "My Comment",
+    "EDIT_PREDICTION": "Edit Prediction"
   },
   "bank": {
     "ACCOUNT_OWNER": "Account Owner",

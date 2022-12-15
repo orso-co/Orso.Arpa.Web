@@ -58,9 +58,9 @@
     "URLS": "URLs"
   },
   "my-appointments": {
-    "PREDICTION":"TRANSLATE ME",
-    "MY_COMMENT": "TRANSLATE ME",
-    "EDIT_PREDICTION": "TRANSLATE ME"
+    "PREDICTION":"Previsão",
+    "MY_COMMENT": "Meu comentário",
+    "EDIT_PREDICTION": "Editar previsão"
   },
   "bank": {
     "ACCOUNT_OWNER": "Titular da conta",
