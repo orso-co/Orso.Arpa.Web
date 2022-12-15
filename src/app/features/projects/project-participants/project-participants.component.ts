@@ -1,11 +1,17 @@
 import { TranslateService } from '@ngx-translate/core';
 import { AfterViewInit, ChangeDetectorRef, Component, ViewChild } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
 import { GraphQlFeedComponent } from '../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
 import { DocumentNode } from 'graphql';
 import { ProjectsQuery } from './projectparticipations.graphql';
+import { ProjectDto, ProjectParticipationDto, SetProjectParticipationBodyDto } from '@arpa/models';
+import { ParticipationDialogComponent } from '../../mupro/participation-dialog/participation-dialog.component';
+import { filter, first } from 'rxjs/operators';
+import { DialogService } from 'primeng/dynamicdialog';
+import { NotificationsService, ProjectService, LoggerService } from '@arpa/services';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'arpa-project-participants',
@@ -50,11 +56,37 @@ export class ProjectParticipantsComponent implements AfterViewInit {
   innerStatsCount: Record<string, number> = {};
   innerStatsValues: number[] = [];
   innerStatsKeys: string[] = [];
+  personId: string | undefined;
+  projects: ProjectDto[] = [];
+  participations: ProjectParticipationDto[] = [];
+  private routeEventsSubscription: Subscription = Subscription.EMPTY;
+  private routeSubscription: Subscription = Subscription.EMPTY;
 
-  constructor(private cdref: ChangeDetectorRef, private config: DynamicDialogConfig, private translate: TranslateService) {
-    this.projectId = this.config.data.project.id;
+
+
+
+  constructor(
+    private cdref: ChangeDetectorRef,
+    private config: DynamicDialogConfig,
+    private translate: TranslateService,
+    private dialogService: DialogService,
+    private notificationsService: NotificationsService,
+    private logger: LoggerService,
+    private route: ActivatedRoute,
+    private router: Router,
+
+    private projectService: ProjectService) {this.projectId = this.config.data.project.id;}
+
+  ngOnInit(): void {
+    this.route.parent?.paramMap.subscribe((params) => {
+      this.personId = params.get('personId') || undefined;
+      this.feedSource?.refresh();
+    });
+
+    this.routeEventsSubscription = this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe(() => {
+      this.feedSource.refresh();
+    });
   }
-
   ngAfterViewInit(): void {
     this.feedSource.values.subscribe({
       next: (result: Record<string, any>[]) => {
@@ -80,5 +112,27 @@ export class ProjectParticipantsComponent implements AfterViewInit {
         }
       },
     });
+  }
+  openParticipationDialog(project: ProjectDto) {
+    const ref = this.dialogService.open(ParticipationDialogComponent, {
+      data: { project, personId: this.personId },
+      header: this.translate.instant('mupro.EDIT_PARTICIPATION'),
+    styleClass: 'form-modal',
+    dismissableMask: true,
+    width: window.innerWidth > 1000 ? '66%' : '100%',
+  });
+
+  ref.onClose.pipe(first()).subscribe((projectParticipation: SetProjectParticipationBodyDto) => {
+  if (projectParticipation) {
+    this.projectService.setParticipation(project.id, projectParticipation)
+      .pipe(first())
+      .subscribe(() => {
+        this.logger.info('updated:', projectParticipation);
+        this.notificationsService.success('UPDATED_PROJECT_PARTICIPATION');
+        this.feedSource.refresh();
+      });
+  }
+});
+
   }
 }
