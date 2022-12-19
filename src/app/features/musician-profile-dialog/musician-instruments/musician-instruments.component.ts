@@ -55,7 +55,7 @@ export class MusicianInstrumentsComponent implements OnInit {
     this.qualificationOptions$ = this.resolveSelect('Qualification');
     this.inquiryStatusOptions$ = this.enumService.getMusicianProfileInquiryStatusSelectItems();
 
-    this.config.data.profile$$?.pipe(first()).subscribe((profile: MusicianProfileDto) => {
+    this.config.data.profile.pipe(first()).subscribe((profile: MusicianProfileDto) => {
       this.profile$$ = profile;
       this.isNew = !profile.id;
       if (profile.doublingInstruments?.length) {
@@ -134,7 +134,7 @@ onSubmit() {
       } as MusicianProfileModifyBodyDto)
       .pipe(first())
       .subscribe((updatedProfile) => {
-        this.config.data.profile$$.next(updatedProfile);
+        this.config.data.profile.next(updatedProfile);
         this.ref.close(updatedProfile);
         this.notificationsService.success('UPDATED', 'musician-profile-dialog')
       });
@@ -146,7 +146,7 @@ onSubmit() {
       } as MusicianProfileCreateBodyDto)
       .pipe(first())
       .subscribe((createdProfile) => {
-        this.config.data.profile$$.next(createdProfile);
+        this.config.data.profile.next(createdProfile);
         this.ref.close(createdProfile);
         this.notificationsService.success('CREATED', 'musician-profile-dialog')
       });

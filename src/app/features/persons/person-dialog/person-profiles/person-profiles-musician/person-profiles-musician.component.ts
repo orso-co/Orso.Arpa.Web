@@ -51,7 +51,7 @@ export class PersonProfilesMusicianComponent implements OnInit {
   createNewMuPro() {
     const ref = this.dialogService.open(MusicianInstrumentsComponent, {
       data: {
-        profile$$: new BehaviorSubject({doublingInstruments: [],
+        profile: new BehaviorSubject({doublingInstruments: [],
           educations: [],
           curriculumVitaeReferences: [],
           preferredPositionsInnerIds: [],
