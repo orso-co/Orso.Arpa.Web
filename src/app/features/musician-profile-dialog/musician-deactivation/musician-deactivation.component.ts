@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
+import { MusicianProfileDto } from '@arpa/models';
 import { first } from 'rxjs/operators';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MusicianService } from '../services/musician.service';
-import { NotificationsService } from '../../../../@arpa/services/notifications.service';
+import { NotificationsService } from '@arpa/services';
 
 @Component({
   selector: 'arpa-musician-deactivation',

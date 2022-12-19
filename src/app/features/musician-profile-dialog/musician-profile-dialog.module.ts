@@ -28,7 +28,7 @@ import { TableModule as PrimeTableModule } from 'primeng/table';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 import { TranslateService } from '@ngx-translate/core';
-import { LanguageService } from '../../../@arpa/services/language.service';
+import { LanguageService } from '@arpa/services';
 import { TableModule } from '../../../@arpa/components/table/table.module';
 import { BadgeModule } from 'primeng/badge';
 

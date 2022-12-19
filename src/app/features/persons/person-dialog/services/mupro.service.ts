@@ -1,11 +1,11 @@
 import { Apollo } from 'apollo-angular';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiService } from '../../../../../@arpa/services/api.service';
+import { ApiService } from '@arpa/services';
 import { shareReplay } from 'rxjs/operators';
-import { MusicianProfileCreateBodyDto } from '../../../../../@arpa/models/musicianProfileCreateBodyDto';
-import { MusicianProfileDto } from '../../../../../@arpa/models/musicianProfileDto';
-import { MusicianProfileModifyBodyDto } from '../../../../../@arpa/models/musicianProfileModifyBodyDto';
+import { MusicianProfileCreateBodyDto } from '@arpa/models';
+import { MusicianProfileDto } from '@arpa/models';
+import { MusicianProfileModifyBodyDto } from '@arpa/models';
 
 @Injectable({
   providedIn: 'root',
