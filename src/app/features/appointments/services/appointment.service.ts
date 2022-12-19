@@ -70,12 +70,10 @@ export class AppointmentService {
   }
 
   setDates(id: string, startTime: Date | null, endTime: Date | null): Observable<AppointmentDto> {
-    return this.apiService
-      .put<AppointmentDto>(`${this.baseUrl}/${id}/dates/set`, { startTime, endTime })
-      .pipe(shareReplay());
+    return this.apiService.put<AppointmentDto>(`${this.baseUrl}/${id}/dates/set`, { startTime, endTime }).pipe(shareReplay());
   }
 
   setResult(personId: string, appointmentId: string, result: AppointmentParticipationResult): Observable<any> {
-    return this.apiService.put(`${this.baseUrl}/${appointmentId}/participations/${personId}/result/${result}`, {}).pipe(shareReplay());
+    return this.apiService.put(`${this.baseUrl}/${appointmentId}/participations/${personId}/result`, { result }).pipe(shareReplay());
   }
 }
