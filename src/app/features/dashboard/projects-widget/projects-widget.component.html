@@ -1,5 +1,15 @@
 <div class="p-d-flex p-flex-column">
-  <span>Du siehst hier Projekttitel + Projektstatus. Bitte nicht verwechseln mit Teilnahmestatus! Deinen Teilnahmestatus änderst du unter "Meine Projekte"</span>
+  <div *ngIf="!isStaff">
+    <button
+      routerLink="../../profile/my-projects"
+      [label]="'GO_TO_PROJECTS'| translate"
+      class="p-button-rounded p-button-text"
+      icon="pi pi-angle-right"
+      pButton
+      type="button"
+    ></button>
+    <span>Du siehst hier Projekttitel + Projektstatus. Bitte nicht verwechseln mit Teilnahmestatus! Deinen Teilnahmestatus änderst du unter "Meine Projekte"</span>
+  </div>
 </div>
 <p-accordion>
   <p-accordionTab *ngFor="let allProjects of allProjects">
@@ -41,16 +51,6 @@
       </div>
      <div class="p-col-12 content-item">
        <span>{{ allProjects.description }}</span>
-     </div>
-     <div>
-      <button
-        routerLink="../../profile/my-projects"
-        [label]="'PROJECTS'| translate"
-        class="p-button-rounded p-button-text"
-        icon="pi pi-angle-right"
-        pButton
-        type="button"
-      ></button>
      </div>
     </ng-template>
   </p-accordionTab>

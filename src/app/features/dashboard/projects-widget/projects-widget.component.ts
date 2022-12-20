@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectDto } from '@arpa/models';
+import { ProjectDto, UserDto } from '@arpa/models';
 import { shareReplay } from 'rxjs/operators';
-import { ApiService, AuthService } from '@arpa/services';
+import { ApiService } from '@arpa/services';
 
 @Component({
   selector: 'arpa-projects-widget',
@@ -10,16 +10,21 @@ import { ApiService, AuthService } from '@arpa/services';
 })
 export class ProjectsWidgetComponent implements OnInit {
   allProjects: ProjectDto[] = [];
+  user: UserDto;
   private baseUrl = '/api';
+
+  public isStaff(): boolean {
+    return this.user.roleNames!.includes('staff');
+  }
 
   constructor(
     private apiService: ApiService,
-    private AuthService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.apiService.get<ProjectDto[]>(`${this.baseUrl}/projects`).pipe(shareReplay());
   }
+
 
   getProjectNames(projects: ProjectDto[]): string {
     return projects.map((p) => p.title).join(', ');
