@@ -69,7 +69,7 @@ export class MusicianInstrumentsComponent implements OnInit {
       levelAssessmentInner: [null, []],
       levelAssessmentTeam: [null, [Validators.min(0), Validators.max(5)]],
       profilePreferenceInner: [null, [Validators.min(0), Validators.max(5)]],
-      profilePreferenceTeam: [null, [Validators.min(0), Validators.max(5)]],
+      profilePreferenceTeam: [null, [Validators.min(0), Validators.max(5), Validators.required]],
       salaryComment: [null, [Validators.maxLength(500)]],
       salaryId: [null, []],
       qualificationId: [null, [Validators.required]],

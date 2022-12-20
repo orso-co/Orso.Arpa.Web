@@ -49,7 +49,7 @@ import { PersonProfilesClientComponent } from './person-profiles/person-profiles
     SelectDialogModule,
 
     // Arpa Lib
-    TranslateModule.forChild(['person-dialog']),
+    TranslateModule.forChild(['person-dialog', 'musician-profile-dialog']),
     MenuModule,
     FormFieldModule,
     TableModule,

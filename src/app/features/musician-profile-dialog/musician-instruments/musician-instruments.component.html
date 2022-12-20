@@ -1,19 +1,19 @@
 <div class="instrument">
   <header *ngIf="isNew; else editHeader">
-    {{'mupro.CREATE_NEW_MUPRO' | translate }}
+    {{'musician-profile-dialog.CREATE_NEW_MUPRO' | translate }}
   </header>
 </div>
 <form [formGroup]="form">
-      <arpa-form-field *ngIf="isNew" label="musician-profile-dialog.INSTRUMENT" type="select">
-      <p-dropdown
-        [filter]="true"
-        [options]="(sections$ | async) || []"
-        [placeholder]="'NOTHING_SELECTED' | translate"
-        formControlName="instrumentId"
-        optionLabel="name"
-        optionValue="id"
-      ></p-dropdown>
-    </arpa-form-field>
+  <arpa-form-field *ngIf="isNew" label="musician-profile-dialog.INSTRUMENT" type="select">
+    <p-dropdown
+      [filter]="true"
+      [options]="(sections$ | async) || []"
+      [placeholder]="'NOTHING_SELECTED' | translate"
+      formControlName="instrumentId"
+      optionLabel="name"
+      optionValue="id"
+    ></p-dropdown>
+  </arpa-form-field>
 
   <div class="p-fluid p-mt-3 p-formgrid p-grid comparison-container">
     <div class="p-col-6"><h3>{{ 'musician-profile-dialog.STAFF_ASSESSMENT' | translate }}</h3></div>
