@@ -7,7 +7,7 @@ import { TranslateService } from 'src/@arpa/translate';
 import { PersonsRoutingModule } from './persons-routing.module';
 import { PersonListComponent } from './person-list/person-list.component';
 import { GraphQlFeedModule } from '../../../@arpa/components/graph-ql-feed/graph-ql-feed.module';
-import { LanguageService } from '../../../@arpa/services/language.service';
+import { LanguageService } from '@arpa/services';
 import { TableModule } from '../../../@arpa/components/table/table.module';
 
 @NgModule({

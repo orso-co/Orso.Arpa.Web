@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { PersonDto } from '../../../../../@arpa/models/personDto';
+import { PersonDto } from '@arpa/models';
 
 @Component({
   selector: 'arpa-person-layout',
@@ -11,7 +11,10 @@ export class PersonLayoutComponent {
   public index = 0;
   public person: PersonDto = this.config.data.person;
 
-  constructor(public config: DynamicDialogConfig, private ref: DynamicDialogRef) {}
+  constructor(
+    public config: DynamicDialogConfig,
+    private ref: DynamicDialogRef
+  ) {}
 
   viewStateEvents(event: any) {
     this.index = event.state || 0;

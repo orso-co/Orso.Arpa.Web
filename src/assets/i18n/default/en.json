@@ -22,6 +22,8 @@
   "EDIT": "edit",
   "EMAIL": "E-Mail",
   "EMAILADDRESS": "Email address",
+  "EXISTING_USER": "Useraccount",
+  "NO_USER_ACCOUNT": "No user account existing",
   "GENDER": "Gender",
   "GENERAL": "General",
   "GENERIC": "Please check your input",

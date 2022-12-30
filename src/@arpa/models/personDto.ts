@@ -5,6 +5,7 @@ import { ReducedPersonDto } from './reducedPersonDto';
 import { SectionDto } from './sectionDto';
 import { SelectValueDto } from './selectValueDto';
 import { MusicianProfileDto } from './musicianProfileDto';
+import { UserDto } from './userDto';
 
 export interface PersonDto {
   id: string;
@@ -29,4 +30,5 @@ export interface PersonDto {
   generalPreference?: number;
   addresses?: Array<AddressDto>;
   stakeholderGroups?: Array<SectionDto>;
+  user?: UserDto;
 }
