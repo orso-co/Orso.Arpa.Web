@@ -86,6 +86,8 @@
   "DETAILS": "Details",
   "PARTICIPATION_PREDICTION": "Voraussichtliche Teilnahme",
   "PARTICIPATION": "Tatsächliche Teilnahme",
+  "UPDATED_PROJECT_PARTICIPATION": "Teilnahme aktualisiert",
+  "FAILED_TO_UPDATE_PROJECT_PARTICIPATION": "Aktualisierung fehlgeschlagen!",
 
   "error": {
     "BAD_REQUEST": "Es ist ein Fehler aufgetreten",

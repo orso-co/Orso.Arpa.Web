@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { EnumService, NotificationsService, ProjectService } from '@arpa/services';
 import { ReducedPersonDto, ProjectParticipationDto, ReducedMusicianProfileDto } from '@arpa/models';
 import { SelectItem } from 'primeng/api';
@@ -15,7 +15,7 @@ import { first } from 'rxjs/operators';
 export class ParticipationEditComponent implements OnInit {
   @Input() participation: ProjectParticipationDto;
   @Input() projectId: string;
-  
+
   form: FormGroup;
   public commentByPerformerInner: any;
   public projectTitle: string;

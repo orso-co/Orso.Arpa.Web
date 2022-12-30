@@ -6,13 +6,15 @@ import { ColumnDefinition } from '../../../../@arpa/components/table/table.compo
 import { GraphQlFeedComponent } from '../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
 import { DocumentNode } from 'graphql';
 import { ProjectsQuery } from './projectparticipations.graphql';
-import { ProjectParticipationDto, SetProjectParticipationBodyDto } from '@arpa/models';
-import { ParticipationDialogComponent } from '../../../../@arpa/components/participation-dialog';
+import { ProjectParticipationDto } from '@arpa/models';
 import { filter, first } from 'rxjs/operators';
 import { DialogService } from 'primeng/dynamicdialog';
 import { NotificationsService, ProjectService, LoggerService } from '@arpa/services';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { OnInit } from '@angular/core';
+import {
+  ParticipationDialogComponent
+} from '../../../../@arpa/components/participation-dialog/components/participation-dialog/participation-dialog.component';
 
 @Component({
   selector: 'arpa-project-participants',
