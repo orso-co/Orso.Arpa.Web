@@ -1,19 +1,22 @@
 import { Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { EnumService } from '@arpa/services';
+import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { EnumService, NotificationsService, ProjectService } from '@arpa/services';
 import { ReducedPersonDto, ProjectParticipationDto, ReducedMusicianProfileDto } from '@arpa/models';
 import { SelectItem } from 'primeng/api';
+import { first } from 'rxjs/operators';
 
 @Component({
-  selector: 'arpa-participation-dialog',
-  templateUrl: './participation-dialog.component.html',
-  styleUrls: ['./participation-dialog.component.scss'],
+  selector: 'arpa-participation-edit',
+  templateUrl: './participation-edit.component.html',
+  styleUrls: ['./participation-edit.component.scss'],
 })
-export class ParticipationDialogComponent implements OnInit {
+export class ParticipationEditComponent implements OnInit {
+  @Input() participation: ProjectParticipationDto;
+  @Input() projectId: string;
+
   form: FormGroup;
-  public participation: ProjectParticipationDto;
   public commentByPerformerInner: any;
   public projectTitle: string;
   public person: ReducedPersonDto | null;
@@ -24,14 +27,13 @@ export class ParticipationDialogComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public config: DynamicDialogConfig,
-    private ref: DynamicDialogRef,
-    private enumService: EnumService
+    private enumService: EnumService,
+    private projectService: ProjectService,
+    private notificationsService: NotificationsService
   ) {
   }
 
   ngOnInit() {
-    this.projectTitle = this.config.data.project.title;
-    this.participation = this.config.data.project.projectParticipations.find((participation: any) => participation.musicianProfile.person.id === this.config.data.personId);
     this.commentByPerformerInner = this.participation.commentByPerformerInner;
     const profile: any = this.participation.musicianProfile;
     this.person = profile.person;
@@ -62,12 +64,17 @@ export class ParticipationDialogComponent implements OnInit {
 
   onSubmit() {
     if (this.form.invalid || this.form.pristine) {
+      this.notificationsService.error('FAILED_TO_UPDATE_PROJECT_PARTICIPATION');
       return;
     }
-    this.ref.close({ ...this.participation, ...this.form.value });
-  }
 
-  cancel() {
-    this.ref.close(null);
+    const projectParticipation = { ...this.participation, ...this.form.value };
+    if (projectParticipation) {
+      this.projectService.setParticipation(this.projectId, projectParticipation)
+        .pipe(first())
+        .subscribe(() => {
+          this.notificationsService.success('UPDATED_PROJECT_PARTICIPATION');
+        });
+    }
   }
 }

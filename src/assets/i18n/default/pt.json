@@ -86,6 +86,8 @@
   "DETAILS": "Details",
   "PARTICIPATION_PREDICTION": "Participation prediction",
   "PARTICIPATION": "Participation",
+  "UPDATED_PROJECT_PARTICIPATION": "Participação atualizada",
+  "FAILED_TO_UPDATE_PROJECT_PARTICIPATION": "Atualização falhou!",
 
   "error": {
     "BAD_REQUEST": "Alguma coisa correu mal",

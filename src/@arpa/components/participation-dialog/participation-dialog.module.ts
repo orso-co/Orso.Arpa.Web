@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ParticipationDialogComponent } from './participation-dialog.component';
+import { ParticipationDialogComponent } from './components/participation-dialog/participation-dialog.component';
+import { ParticipationEditComponent } from './components/participation-edit/participation-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { LayoutModule } from '../../layout/layout.module';
@@ -14,6 +15,7 @@ import { BadgeModule } from 'primeng/badge';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { StepsModule } from 'primeng/steps';
 import { FormFieldModule } from '../form-field/form-field.module';
+import { TabViewModule } from 'primeng/tabview';
 
 @NgModule({
   imports: [
@@ -32,9 +34,12 @@ import { FormFieldModule } from '../form-field/form-field.module';
     MultiSelectModule,
     DropdownModule,
     FormFieldModule,
-
+    TabViewModule,
   ],
-  declarations: [ParticipationDialogComponent],
+  declarations: [
+    ParticipationDialogComponent,
+    ParticipationEditComponent
+  ],
   exports: [ParticipationDialogComponent],
 })
 export class ParticipationDialogModule {

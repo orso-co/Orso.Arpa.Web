@@ -1,0 +1,24 @@
+<h3 class='title'>{{ getName() }} @ {{ projectTitle }}</h3>
+
+<p-tabView>
+  <p-tabPanel *ngFor="let participation of participations"
+    [header]="participation.musicianProfile?.instrument?.name">
+    <arpa-participation-edit
+      [participation]="participation"
+      [projectId]="projectId">
+    </arpa-participation-edit>
+  </p-tabPanel>
+</p-tabView>
+
+<div class='p-formgroup-inline p-jc-between'>
+  <div class='p-text-right'>
+    <button
+      (click)='cancel()'
+      [label]="'CANCEL' | translate"
+      class='p-ml-3 p-button-outlined'
+      icon='pi pi-times'
+      iconPos='left'
+      pButton
+    ></button>
+  </div>
+</div>

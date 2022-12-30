@@ -1,4 +1,4 @@
-<h3 class='title'>{{ getName(this.person) }}, {{instrumentName}} @ {{ projectTitle }}</h3>
+<h3 class='title'>{{instrumentName}}</h3>
 <form [formGroup]='form' class='p-mt-5'>
   <div>
     <h4 class='status'>{{ 'mupro.STATUS_PERFORMER' | translate }}</h4>
@@ -61,16 +61,6 @@
         icon='pi pi-check'
         iconPos='left'
       ></p-button>
-    </div>
-    <div class='p-text-right'>
-      <button
-        (click)='cancel()'
-        [label]="'CANCEL' | translate"
-        class='p-ml-3 p-button-outlined'
-        icon='pi pi-times'
-        iconPos='left'
-        pButton
-      ></button>
     </div>
   </div>
 </form>

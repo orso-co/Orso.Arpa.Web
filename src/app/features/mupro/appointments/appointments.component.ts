@@ -1,9 +1,7 @@
 import {
   ProjectDto,
-  SetProjectParticipationBodyDto,
   AppointmentParticipationDto, AppointmentDto,
 } from '@arpa/models';
-import { NotificationsService } from 'src/@arpa/services/notifications.service';
 import { TranslateService } from '@ngx-translate/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
@@ -14,8 +12,10 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { GraphQlFeedComponent } from 'src/@arpa/components/graph-ql-feed/graph-ql-feed.component';
 import { filter, first } from 'rxjs/operators';
-import { ParticipationDialogComponent } from '../../../../@arpa/components/participation-dialog/participation-dialog.component';
-import { ProjectService, LoggerService } from '@arpa/services';
+import { ProjectService } from '@arpa/services';
+import {
+  ParticipationDialogComponent
+} from '../../../../@arpa/components/participation-dialog/components/participation-dialog/participation-dialog.component';
 
 @Component({
   selector: 'arpa-mupro-appointments',
@@ -45,8 +45,6 @@ export class AppointmentsComponent implements OnInit, OnDestroy {
     private dialogService: DialogService,
     private projectService: ProjectService,
     private translate: TranslateService,
-    private notificationsService: NotificationsService,
-    private logger: LoggerService,
   ) {
   }
 
@@ -75,16 +73,8 @@ export class AppointmentsComponent implements OnInit, OnDestroy {
       width: window.innerWidth > 1000 ? '66%' : '100%',
     });
 
-    ref.onClose.pipe(first()).subscribe((projectParticipation: SetProjectParticipationBodyDto) => {
-      if (projectParticipation) {
-        this.projectService.setParticipation(project.id, projectParticipation)
-          .pipe(first())
-          .subscribe(() => {
-            this.logger.info('updated:', projectParticipation);
-            this.notificationsService.success('UPDATED_PROJECT_PARTICIPATION');
-            this.feedSource.refresh();
-          });
-      }
+    ref.onClose.pipe(first()).subscribe(() => {
+      this.feedSource.refresh();
     });
   }
 }
