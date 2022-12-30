@@ -15,7 +15,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '../../../../@arpa/translate';
 import { TranslateService } from '@ngx-translate/core';
-import { LanguageService } from '../../../../@arpa/services/language.service';
+import { LanguageService } from '@arpa/services';
 import { PersonBasedataComponent } from './person-basedata/person-basedata.component';
 import { PersonContactdataComponent } from './person-contactdata/person-contactdata.component';
 import { TabViewModule } from 'primeng/tabview';
@@ -28,6 +28,9 @@ import { PersonProfilesComponent } from './person-profiles/person-profiles.compo
 import { PersonProfilesMusicianComponent } from './person-profiles/person-profiles-musician/person-profiles-musician.component';
 import { PersonProfilesMemberComponent } from './person-profiles/person-profiles-member/person-profiles-member.component';
 import { PersonProfilesClientComponent } from './person-profiles/person-profiles-client/person-profiles-client.component';
+import { ProfileModule } from '../../profile/profile.module';
+import { ChipModule } from 'primeng/chip';
+import { TagModule } from 'primeng/tag';
 
 @NgModule({
   declarations: [
@@ -66,7 +69,10 @@ import { PersonProfilesClientComponent } from './person-profiles/person-profiles
     CalendarModule,
     AutoCompleteModule,
     RatingModule,
-    SelectButtonModule
+    SelectButtonModule,
+    ProfileModule,
+    ChipModule,
+    TagModule,
 
   ],
 })

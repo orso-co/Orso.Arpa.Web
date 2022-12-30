@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PersonDto } from '@arpa/models';
-import { UserDto } from '@arpa/models';
 
 @Component({
   selector: 'arpa-person-layout',

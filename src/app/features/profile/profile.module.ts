@@ -1,5 +1,5 @@
 import { OverlayPanelModule } from 'primeng/overlaypanel';
-import { RibbonComponent } from './../../shared/components/ribbon/ribbon.component';
+import { RibbonComponent } from '../../shared/components/ribbon/ribbon.component';
 import { AccordionModule } from 'primeng/accordion';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { AvatarModule } from '../../../@arpa/components/avatar/avatar.module';
@@ -12,7 +12,7 @@ import { FormFieldModule } from '../../../@arpa/components/form-field/form-field
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GraphQlFeedModule } from '../../../@arpa/components/graph-ql-feed/graph-ql-feed.module';
 import { InputTextModule } from 'primeng/inputtext';
-import { LanguageService } from '../../../@arpa/services/language.service';
+import { LanguageService } from '@arpa/services';
 import { LocalizedDateModule } from '../../../@arpa/pipes/localized-date/localized-date.module';
 import { LocalizedDatePipe } from '../../../@arpa/pipes/localized-date/localized-date.pipe';
 import { MenuModule } from '../../../@arpa/components/menu/menu.module';
@@ -90,6 +90,9 @@ import { MyAppointmentParticipationDialogComponent } from './my-appointment-part
     OverlayPanelModule,
   ],
   providers: [ProfileService, ProfileResolver, LocalizedDatePipe],
+  exports: [
+    RibbonComponent,
+  ],
 })
 export class ProfileModule {
   constructor(private translateService: TranslateService, private languageService: LanguageService) {
