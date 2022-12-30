@@ -7,7 +7,7 @@ import { GraphQlFeedComponent } from '../../../../@arpa/components/graph-ql-feed
 import { DocumentNode } from 'graphql';
 import { ProjectsQuery } from './projectparticipations.graphql';
 import { ProjectParticipationDto, SetProjectParticipationBodyDto } from '@arpa/models';
-import { ParticipationDialogComponent } from '../../../../@arpa/components/participation-dialog/participation-dialog.component';
+import { ParticipationDialogComponent } from '../../../../@arpa/components/participation-dialog';
 import { filter, first } from 'rxjs/operators';
 import { DialogService } from 'primeng/dynamicdialog';
 import { NotificationsService, ProjectService, LoggerService } from '@arpa/services';
@@ -121,16 +121,8 @@ export class ProjectParticipantsComponent implements AfterViewInit, OnInit {
       width: window.innerWidth > 1000 ? '66%' : '100%',
     });
 
-    ref.onClose.pipe(first()).subscribe((projectParticipation: SetProjectParticipationBodyDto) => {
-      if (projectParticipation) {
-        this.projectService.setParticipation(this.projectId, projectParticipation)
-          .pipe(first())
-          .subscribe(() => {
-            this.logger.info('updated:', projectParticipation);
-            this.notificationsService.success('UPDATED_PROJECT_PARTICIPATION');
-            this.feedSource.refresh();
-          });
-      }
+    ref.onClose.pipe(first()).subscribe(() => {
+      this.feedSource.refresh();
     });
 
   }
