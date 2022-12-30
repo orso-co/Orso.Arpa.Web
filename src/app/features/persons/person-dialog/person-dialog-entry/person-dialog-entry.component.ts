@@ -1,4 +1,4 @@
-import { PersonDto } from '../../../../../@arpa/models/personDto';
+import { PersonDto } from '@arpa/models';
 import { PersonLayoutComponent } from '../person-layout/person-layout.component';
 import { Component } from '@angular/core';
 import { ActivatedRoute, PRIMARY_OUTLET, Router } from '@angular/router';

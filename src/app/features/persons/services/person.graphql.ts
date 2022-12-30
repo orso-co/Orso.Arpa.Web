@@ -78,6 +78,11 @@ export const PersonQuery = gql`
 
         }
 
+        user{
+          userName
+          email
+        }
+
       }
     }
   }`;

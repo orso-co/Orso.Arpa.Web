@@ -1,3 +1,4 @@
+<h3 *ngIf = 'person?.user' >{{person.user!.userName}} ({{person.user!.email}})</h3>
 <p-tabView [(activeIndex)]="index">
   <p-tabPanel header="{{ 'person-dialog.CONTACT_DATA' | translate }}" leftIcon="pi pi-phone" *ngIf='person?.id'>
     <arpa-person-contactdata [person]="person"></arpa-person-contactdata>
