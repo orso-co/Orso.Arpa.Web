@@ -2,7 +2,7 @@ import { SelectValueDto, SectionTreeDto, SectionDto } from '@arpa/models';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, shareReplay, tap } from 'rxjs/operators';
+import { filter, map, shareReplay, tap } from 'rxjs/operators';
 import { ApiService } from '@arpa/services';
 import { SelectItem } from 'primeng/api';
 
@@ -15,6 +15,7 @@ export class SectionService {
   private sectionTrees = new Map<number | undefined, SectionTreeDto>();
   private sections$$ = new BehaviorSubject<SectionDto[]>([]);
   sections$: Observable<SectionDto[]> = this.sections$$.asObservable();
+  isInstrument: boolean;
 
   constructor(private apiService: ApiService) {
     this.baseUrl = '/sections';
@@ -23,9 +24,10 @@ export class SectionService {
   load(): Observable<SectionDto[]> {
     return this.apiService.get<SectionDto[]>(this.baseUrl).pipe(
       shareReplay(),
+      filter(section => section.isInstrument === this.isInstrument),
       tap((sections) => this.sections$$.next(sections)),
-      tap((sections) => (this.sectionsLoaded = true))
-    );
+      tap((sections) => (this.sectionsLoaded = true)),
+  );
   }
 
   loadTree(treeMaxLevel?: number): Observable<SectionTreeDto> {
