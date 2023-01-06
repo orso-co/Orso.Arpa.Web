@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
-import { SectionDto } from '../../../../@arpa/models/sectionDto';
+import { MusicianProfileDto } from '@arpa/models';
+import { SectionDto } from '@arpa/models';
 
 @Component({
   selector: 'arpa-musician',
