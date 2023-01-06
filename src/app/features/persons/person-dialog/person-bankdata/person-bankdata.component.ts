@@ -43,7 +43,6 @@ export class PersonBankdataComponent implements OnInit, OnDestroy {
       iban:[null, [Validators.required]],
       bic: [null],
       accountOwner: [null, [Validators.required]],
-
     });
   }
 
