@@ -18,11 +18,11 @@
       </arpa-form-field>
     </div>
   </div>
-  <div class='p-field p-col12'>
-    <span class='comment'>{{ commentByPerformerInner }}
-    </span>
+  <div *ngIf='commentByPerformerInner' class='p-field p-col12'>
+    <span class='comment'>{{ commentByPerformerInner }}</span>
+    <hr class='hr1'>
+
   </div>
-  <hr class='hr1'>
   <div>
     <h4 class='status'>{{ 'mupro.STATUS_STAFF' | translate }}</h4>
   </div>

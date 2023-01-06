@@ -3,10 +3,22 @@
 <p-tabView>
   <p-tabPanel *ngFor="let participation of participations"
     [header]="participation.musicianProfile?.instrument?.name">
-    <arpa-participation-edit
-      [participation]="participation"
-      [projectId]="projectId">
-    </arpa-participation-edit>
+    <div class='columns'>
+      <div>
+        <h4>{{ 'PROJECT_PARTICIPATION_STATUS' | translate }}:</h4>
+        <arpa-participation-edit
+          [participation]="participation"
+          [projectId]="projectId">
+        </arpa-participation-edit>
+      </div>
+      <div class='vertical'></div>
+      <div>
+        <h4>{{ 'APPOINTMENTS_PARTICIPATIONS_STATUS' | translate }}:</h4>
+        <arpa-appointment-edit></arpa-appointment-edit>
+      </div>
+    </div>
+
+
   </p-tabPanel>
 </p-tabView>
 

@@ -16,6 +16,7 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { StepsModule } from 'primeng/steps';
 import { FormFieldModule } from '../form-field/form-field.module';
 import { TabViewModule } from 'primeng/tabview';
+import { AppointmentEditComponent } from './components/appointment-edit/appointment-edit.component';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { TabViewModule } from 'primeng/tabview';
   ],
   declarations: [
     ParticipationDialogComponent,
-    ParticipationEditComponent
+    ParticipationEditComponent,
+    AppointmentEditComponent
   ],
   exports: [ParticipationDialogComponent],
 })

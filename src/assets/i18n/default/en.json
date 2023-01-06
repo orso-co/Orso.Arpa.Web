@@ -89,6 +89,8 @@
   "PARTICIPATION": "Participation",
   "UPDATED_PROJECT_PARTICIPATION": "Participation updated",
   "FAILED_TO_UPDATE_PROJECT_PARTICIPATION": "Participation update failed!",
+  "APPOINTMENTS_PARTICIPATIONS_STATUS": "Appointments Status",
+  "PROJECT_PARTICIPATION_STATUS": "Participation Status",
 
   "error": {
     "BAD_REQUEST": "An error occured",
