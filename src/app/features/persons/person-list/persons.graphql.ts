@@ -3,7 +3,7 @@ import { gql } from 'apollo-angular';
 export const PersonsQuery = gql`
   query Persons(
     $skip: Int,
-    $take: Int,
+    $take: Int = 20,
     $orderSurname: SortEnumType = ASC,
     $orderGivenName: SortEnumType = ASC,
     $orderAboutMe: SortEnumType = ASC,

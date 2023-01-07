@@ -3,7 +3,7 @@ import { gql } from 'apollo-angular';
 export const PerformersQuery = gql`
   query MusicianProfiles(
     $skip: Int,
-    $take: Int,
+    $take: Int = 20,
     $orderLevelAssessmentTeam: SortEnumType = ASC,
     $orderLevelAssessmentInner: SortEnumType = ASC,
     $orderInstrument__name: SortEnumType = ASC,

@@ -57,7 +57,7 @@ export class PersonService {
       .watchQuery<any>({
         query: gql`query Persons(
           $skip: Int = 0,
-          $take: Int = 11,
+          $take: Int = 20,
           $orderName: SortEnumType = ASC,
           $orderSurname: SortEnumType = ASC,
           $searchQuery: String = "${query}"){
