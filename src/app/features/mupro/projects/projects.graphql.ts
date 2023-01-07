@@ -3,7 +3,7 @@ import { gql } from 'apollo-angular';
 export const ProjectsQuery = gql`
   query Projects(
     $skip: Int,
-    $take: Int,
+    $take: Int = 20,
     $orderTitle: SortEnumType = ASC,
     $orderStartDate: SortEnumType = ASC,
     $orderGenre__selectValue__name: SortEnumType = ASC,

@@ -1,7 +1,7 @@
 import { gql } from 'apollo-angular';
 
 export const MuproProfilesQuery = gql`
-  query Profiles($skip: Int, $take: Int, $order: SortEnumType = ASC, $searchQuery: String = "") {
+  query Profiles($skip: Int, $take: Int = 20, $order: SortEnumType = ASC, $searchQuery: String = "") {
     musicianProfiles(
       skip: $skip
       take: $take
