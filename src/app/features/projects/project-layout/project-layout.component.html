@@ -25,6 +25,6 @@
   </p-tabPanel>
   <p-tabPanel leftIcon="pi pi-calendar"
               header="{{ 'APPOINTMENTS' | translate }}">
-<arpa-project-appointments></arpa-project-appointments>
+<arpa-project-appointments [projectId]="project.id"></arpa-project-appointments>
   </p-tabPanel>
 </p-tabView>

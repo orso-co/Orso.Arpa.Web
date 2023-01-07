@@ -102,7 +102,7 @@ export class EditAppointmentComponent implements OnInit {
     this.createForm();
     this.fillForm();
 
-    this.venueOptions = this.venues.map((v) => this.mapVenueToSelectItem(v));
+    this.venueOptions = this.venues?.map((v) => this.mapVenueToSelectItem(v));
 
     if (this.appointment.participations) {
       this.sectionSelectItems = sortBy(
