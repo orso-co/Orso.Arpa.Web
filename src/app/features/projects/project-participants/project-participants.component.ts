@@ -92,7 +92,7 @@ export class ProjectParticipantsComponent implements AfterViewInit, OnInit {
         if (result.length) {
           this.project = result[0] as any;
           this.tableData.next(this.project.projectParticipations);
-          this.project.projectParticipations.forEach((p: Record<string, any>) => {
+          this.project.projectParticipations?.forEach((p: Record<string, any>) => {
             if (p.participationStatusInner) {
               if (this.innerStatsCount[p.participationStatusInner]) {
                 this.innerStatsCount[p.participationStatusInner]++;
@@ -108,7 +108,7 @@ export class ProjectParticipantsComponent implements AfterViewInit, OnInit {
           );
           this.ready = true;
           this.cdref.detectChanges();
-          this.filteredDataCount = this.tableData.value.length;
+          this.filteredDataCount = this.tableData?.value?.length || 0;
         }
       },
     });

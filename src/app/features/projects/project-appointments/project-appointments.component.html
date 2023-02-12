@@ -1,0 +1,12 @@
+<arpa-table *ngIf='appointments | async'
+            [columnFilter]='true'
+            [values]="appointments"
+            [columns]='columns'
+            [showFilter]='false'
+            [showFirstLastIcon]='false'
+            [showPageLinks]='false'
+            [showPagination]='true'
+            selectionMode='single'
+            tableStyleClass='arpa-table-list'
+></arpa-table>
+

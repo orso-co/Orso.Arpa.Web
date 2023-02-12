@@ -1,6 +1,7 @@
 {
   "ADDITIONALDATA": "Additional data",
   "ALLDAY": "All-day event",
+  "APPOINTMENT": "Appointment",
   "APPOINTMENT_CREATED": "Appointment created",
   "APPOINTMENT_DELETED": "Appointment deleted",
   "APPOINTMENT_UPDATED": "Appointment updated",
@@ -42,5 +43,7 @@
   "VENUE": "Venue",
   "VENUE_SET": "Venue set",
   "QUALIFICATION": "Qualification",
-  "SELECT_STATUS": "Select status"
+  "SELECT_STATUS": "Select status",
+  "CREATED_BY": "Created by",
+  "CREATED_AT": "Created at"
 }
