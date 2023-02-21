@@ -51,7 +51,11 @@
     (rowClickEvents)='openParticipationDialog($event)'
 
   ></arpa-table>
+
 </ng-container>
+<div>
+  <p-button (click)="downloadCsv()">Download CSV</p-button>
+</div>
 
 <!-- Graphql feed controls and holds graphql api results. -->
 <arpa-graph-ql-feed #feedSource [query]="query"

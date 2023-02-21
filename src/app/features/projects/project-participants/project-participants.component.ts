@@ -15,6 +15,7 @@ import { OnInit } from '@angular/core';
 import {
   ParticipationDialogComponent
 } from '../../../../@arpa/components/participation-dialog/components/participation-dialog/participation-dialog.component';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'arpa-project-participants',
@@ -32,10 +33,7 @@ export class ProjectParticipantsComponent implements AfterViewInit, OnInit {
   columns: ColumnDefinition<any>[] = [
     { label: 'projects.PARTICIPANTS', property: 'musicianProfile.person.displayName', type: 'text' },
     { label: 'projects.INSTRUMENT', property: 'musicianProfile.instrument.name', type: 'text' },
-    {
-      label: 'projects.PARTICIPATION_STATUS_PERFORMER',
-      property: 'participationStatusInner',
-      type: 'badge',
+    { label: 'projects.PARTICIPATION_STATUS_PERFORMER', property: 'participationStatusInner', type: 'badge',
       badgeStateMap: [
         { label: 'projectParticipationStatusInner.INTERESTED', value: 'INTERESTED', severity: 'info' },
         { label: 'projectParticipationStatusInner.PENDING', value: 'PENDING', severity: 'warning' },
@@ -43,10 +41,7 @@ export class ProjectParticipantsComponent implements AfterViewInit, OnInit {
         { label: 'projectParticipationStatusInner.REFUSAL', value: 'REFUSAL', severity: 'danger' },
       ],
     },
-    {
-      label: 'projects.PARTICIPATION_STATUS_STAFF',
-      property: 'participationStatusInternal',
-      type: 'badge',
+    { label: 'projects.PARTICIPATION_STATUS_STAFF', property: 'participationStatusInternal', type: 'badge',
       badgeStateMap: [
         { label: 'projectParticipationStatusInternal.CANDIDATE', value: 'CANDIDATE', severity: 'info' },
         { label: 'projectParticipationStatusInternal.PENDING', value: 'PENDING', severity: 'warning' },
@@ -127,5 +122,15 @@ export class ProjectParticipantsComponent implements AfterViewInit, OnInit {
       this.feedSource.refresh();
     });
 
+  }
+  downloadCsv() {
+    const headerRow = this.columns.map((column) => column.label);
+    const dataRows = this.tableData.value.map((rowData) =>
+      this.columns.map((column) => rowData[column.property])
+    );
+    const csvData = [headerRow, ...dataRows].map((row) => row.join(',')).join('\n');
+
+    const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
+    saveAs(blob, 'data.csv');
   }
 }
