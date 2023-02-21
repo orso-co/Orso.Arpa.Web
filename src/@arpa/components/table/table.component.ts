@@ -63,7 +63,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
   columnFilter: boolean = true;
 
   @Input()
-  rows: number = 50;
+  rows: number = 20;
 
   @Input()
   rowsPerPage: undefined | any | number[] = [20, 50, 100, 200];
