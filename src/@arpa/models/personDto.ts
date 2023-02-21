@@ -16,6 +16,7 @@ export interface PersonDto {
   givenName?: string;
   surname?: string;
   aboutMe?: string;
+  personBackgroundTeam?: string;
   contactVia?: ReducedPersonDto;
   contactsRecommended?: Array<ReducedPersonDto>;
   bankAccounts?: Array<BankAccountDto>;
