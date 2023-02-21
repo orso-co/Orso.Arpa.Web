@@ -2129,6 +2129,16 @@
             "defaultValue": null
           },
           {
+            "name": "personBackgroundTeam",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringOperationFilterInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "contactViaId",
             "description": null,
             "type": {
@@ -2411,6 +2421,16 @@
           },
           {
             "name": "aboutMe",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "SortEnumType",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "personBackgroundTeam",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -7750,6 +7770,18 @@
           },
           {
             "name": "aboutMe",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "personBackgroundTeam",
             "description": null,
             "args": [],
             "type": {
