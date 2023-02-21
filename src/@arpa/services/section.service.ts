@@ -21,14 +21,23 @@ export class SectionService {
     this.baseUrl = '/sections';
   }
 
-  load(instrumentsOnly= true): Observable<SectionDto[]> {
-    const params = new HttpParams().set('instrumentsOnly', instrumentsOnly.toString());
-    return this.apiService.get<SectionDto[]>(this.baseUrl, params).pipe(
+  load(): Observable<SectionDto[]> {
+    const params = new HttpParams().set('instrumentsOnly', 'true');
+    return this.apiService.get<SectionDto[]>(`${this.baseUrl}`, params).pipe(
       shareReplay(),
       tap((sections) => this.sections$$.next(sections)),
-      tap((sections) => (this.sectionsLoaded = true)),
-  );
+      tap((sections) => (this.sectionsLoaded = true))
+    );
   }
+
+
+  // load(): Observable<SectionDto[]> {
+  //   return this.apiService.get<SectionDto[]>(this.baseUrl).pipe(
+  //     shareReplay(),
+  //     tap((sections) => this.sections$$.next(sections)),
+  //     tap((sections) => (this.sectionsLoaded = true))
+  //   );
+  // }
 
   loadTree(treeMaxLevel?: number): Observable<SectionTreeDto> {
     let params: HttpParams = new HttpParams();
