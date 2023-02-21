@@ -6,11 +6,14 @@ import {
   ProjectDto,
   ProjectParticipationDto,
 } from '@arpa/models';
-import { shareReplay } from 'rxjs/operators';
+import { first, map, shareReplay } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '@arpa/services';
+import { Apollo } from 'apollo-angular';
+import { cloneDeep } from 'lodash-es';
+import { ProjectAppointments } from './project-appointments.graphql';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +21,7 @@ import { ApiService } from '@arpa/services';
 export class ProjectService {
   readonly baseUrl: string;
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private apollo: Apollo) {
     this.baseUrl = '/projects';
   }
 
@@ -66,5 +69,16 @@ export class ProjectService {
 
   public removeRoleFromUrl(urlId: string, roleId: string): Observable<any> {
     return this.apiService.delete(`/urls/${urlId}/roles/${roleId}`).pipe(shareReplay());
+  }
+
+  public getAppointmentsForProject(projectId: string): Observable<any> {
+    return this.apollo.query({query: ProjectAppointments, variables: {projectId}})
+      .pipe(
+        first(),
+        map((result:any) => {
+          const appointments =  result.data.projects.items?.[0]?.projectAppointments;
+          return appointments ? cloneDeep(appointments) : [];
+        })
+      );
   }
 }

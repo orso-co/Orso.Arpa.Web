@@ -11,6 +11,7 @@ export const PersonQuery = gql`
         givenName
         surname
         aboutMe
+        personBackgroundTeam
         reliability
         generalPreference
         experienceLevel

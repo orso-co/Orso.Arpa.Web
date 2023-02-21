@@ -65,6 +65,11 @@
         <textarea autocomplete="aboutMe" formControlName="aboutMe" id="aboutMe" pInputText type="text"></textarea>
       </arpa-form-field>
     </div>
+    <div class="p-col-12">
+      <arpa-form-field label="persons.BACKGROUND">
+        <textarea autocomplete="personBackgroundTeam" formControlName="personBackgroundTeam" id="personBackgroundTeam" pInputText type="text"></textarea>
+      </arpa-form-field>
+    </div>
     <div class="p-col-12 p-md-4">
       <label class="p-d-block p-mb-3">{{ 'persons.EXPERIENCE_LEVEL' | translate }}</label>
       <p-rating formControlName="experienceLevel" [cancel]="false" [stars]="5"></p-rating>

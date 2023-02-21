@@ -30,6 +30,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ChartModule } from '../../../@arpa/components/chart/chart.module';
 import { ParticipationDialogModule } from '../../../@arpa/components/participation-dialog/participation-dialog.module';
+import { ProjectAppointmentsComponent } from './project-appointments/project-appointments.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ParticipationDialogModule } from '../../../@arpa/components/participati
     ProjectParticipantsComponent,
     ProjectLayoutComponent,
     EditProjectUrlsComponent,
+    ProjectAppointmentsComponent,
   ],
   imports: [
     CommonModule,
