@@ -15,14 +15,14 @@ export class SectionService {
   private sectionTrees = new Map<number | undefined, SectionTreeDto>();
   private sections$$ = new BehaviorSubject<SectionDto[]>([]);
   sections$: Observable<SectionDto[]> = this.sections$$.asObservable();
-  instrumentsOnly = true;
+  instrumentsWithChildrenOnly = true;
 
   constructor(private apiService: ApiService) {
     this.baseUrl = '/sections';
   }
 
   load(): Observable<SectionDto[]> {
-    const params = new HttpParams().set('instrumentsOnly', 'true');
+    const params = new HttpParams().set('instrumentsWithChildrenOnly', 'true');
     return this.apiService.get<SectionDto[]>(`${this.baseUrl}`, params).pipe(
       shareReplay(),
       tap((sections) => this.sections$$.next(sections)),
