@@ -41,6 +41,7 @@ export class PersonBasedataComponent implements OnInit, OnChanges {
       surname: [null, [Validators.required, Validators.maxLength(50)]],
       birthName: [null, [Validators.maxLength(50)]],
       aboutMe: [null, [Validators.maxLength(1000)]],
+      personBackgroundTeam: [null, [Validators.maxLength(500)]],
       birthplace: [null, [Validators.maxLength(50)]],
       dateOfBirth: [null],
       experienceLevel: [0],
