@@ -23,7 +23,8 @@
       [genre]="(genre | async)!"
     ></arpa-edit-project>
   </p-tabPanel>
-  <p-tabPanel leftIcon="pi pi-calendar"
+  <p-tabPanel *ngIf="project"
+    leftIcon="pi pi-calendar"
               header="{{ 'APPOINTMENTS' | translate }}">
 <arpa-project-appointments [projectId]="project.id"></arpa-project-appointments>
   </p-tabPanel>
