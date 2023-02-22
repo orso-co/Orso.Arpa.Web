@@ -1,3 +1,4 @@
+<h3 style='text-align: center' class='appointment-title'>{{appointment.name}} - {{appointment.startTime | date: 'dd.MM.yy':'locale(de)'}}</h3>
 <p-steps [(activeIndex)]="activeIndex" [model]="items" [readonly]="false"></p-steps>
 <div [ngSwitch]="activeIndex">
   <ng-container *ngSwitchCase="0">

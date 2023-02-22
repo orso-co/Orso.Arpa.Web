@@ -8,6 +8,7 @@ import { SectionDto } from '@arpa/models';
   providedIn: 'root',
 })
 export class SectionsResolver implements Resolve<SectionDto[]> {
+  isInstrument: boolean
   constructor(private sectionService: SectionService) {
   }
 
