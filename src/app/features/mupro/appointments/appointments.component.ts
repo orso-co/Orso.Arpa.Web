@@ -15,7 +15,7 @@ import { filter, first } from 'rxjs/operators';
 import { ProjectService } from '@arpa/services';
 import {
   ParticipationDialogComponent
-} from '../../../../@arpa/components/participation-dialog/components/participation-dialog/participation-dialog.component';
+} from '../../participation-dialog/participation-dialog.component';
 
 @Component({
   selector: 'arpa-mupro-appointments',

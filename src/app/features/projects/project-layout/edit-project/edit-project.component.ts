@@ -1,4 +1,4 @@
-import { ProjectStatus } from './../../../../@arpa/models/projectStatus';
+import { ProjectStatus } from '../../../../../@arpa/models/projectStatus';
 import { Component, Input, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -6,10 +6,10 @@ import { SelectItem } from 'primeng/api';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { map } from 'rxjs/operators';
-import { ProjectDto } from '../../../../@arpa/models/projectDto';
-import { VenueDto } from '../../../../@arpa/models/venueDto';
+import { ProjectDto } from '../../../../../@arpa/models/projectDto';
+import { VenueDto } from '../../../../../@arpa/models/venueDto';
 import { ParentProjectsQuery } from './projectParents.graphql';
-import { FeedScope } from '../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
+import { FeedScope } from '../../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
 import { EnumService } from '@arpa/services';
 
 @Component({

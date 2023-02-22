@@ -1,14 +1,14 @@
-import { EditProjectUrlsComponent } from './edit-project-urls/edit-project-urls.component';
+import { ProjectUrlsComponent } from './project-layout/project-urls/project-urls.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectsRoutingModule } from './projects-routing.module';
-import { EditProjectComponent } from './edit-project/edit-project.component';
+import { EditProjectComponent } from './project-layout/edit-project/edit-project.component';
 import { ProjectGenreResolver } from './resolvers/project-genre.resolver';
 import { ProjectTypeResolver } from './resolvers/project-type.resolver';
 import { ProjectParticipationComponent } from './project-participation/project-participation.component';
-import { ProjectParticipantsComponent } from './project-participants/project-participants.component';
+import { ProjectParticipantsComponent } from './project-layout/project-participants/project-participants.component';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateModule } from '../../../@arpa/translate';
 import { DropdownModule } from 'primeng/dropdown';
@@ -29,8 +29,8 @@ import { TagModule } from 'primeng/tag';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ChartModule } from '../../../@arpa/components/chart/chart.module';
-import { ParticipationDialogModule } from '../../../@arpa/components/participation-dialog/participation-dialog.module';
-import { ProjectAppointmentsComponent } from './project-appointments/project-appointments.component';
+import { ParticipationDialogModule } from '../participation-dialog/participation-dialog.module';
+import { ProjectAppointmentsComponent } from './project-layout/project-appointments/project-appointments.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,7 @@ import { ProjectAppointmentsComponent } from './project-appointments/project-app
     ProjectParticipationComponent,
     ProjectParticipantsComponent,
     ProjectLayoutComponent,
-    EditProjectUrlsComponent,
+    ProjectUrlsComponent,
     ProjectAppointmentsComponent,
   ],
   imports: [

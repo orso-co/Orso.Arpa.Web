@@ -2,8 +2,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { AfterViewInit, ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
-import { GraphQlFeedComponent } from '../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
+import { ColumnDefinition } from '../../../../../@arpa/components/table/table.component';
+import { GraphQlFeedComponent } from '../../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
 import { DocumentNode } from 'graphql';
 import { ProjectsQuery } from './projectparticipations.graphql';
 import { ProjectParticipationDto } from '@arpa/models';
@@ -14,7 +14,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { OnInit } from '@angular/core';
 import {
   ParticipationDialogComponent
-} from '../../../../@arpa/components/participation-dialog/components/participation-dialog/participation-dialog.component';
+} from '../../../participation-dialog/participation-dialog.component';
 
 @Component({
   selector: 'arpa-project-participants',
