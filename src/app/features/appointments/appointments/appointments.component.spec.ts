@@ -7,7 +7,7 @@ import { of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { AppointmentService } from '../services/appointment.service';
 import { NotificationsMockService } from '../../../../testing/notifications.mock.service';
-import { LoadingService } from '../../../../@arpa/services/loading.service';
+import { LoadingService } from '@arpa/services';
 import { SectionService } from '@arpa/services';
 import { TranslateMockModule } from '../../../../testing/translate.mock.module';
 
@@ -23,7 +23,7 @@ describe('AppointmentsComponent', () => {
         { provide: NotificationsMockService },
         { provide: DialogService, useValue: {} },
         { provide: LoadingService, useValue: {} },
-        { provide: SectionService, useValue: { sections$: of([]) } },
+        { provide: SectionService, useValue: { sectionsAll$: of([]) } },
         { provide: ActivatedRoute, useValue: { data: of({}) } },
       ],
       imports: [
