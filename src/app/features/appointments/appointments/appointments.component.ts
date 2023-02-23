@@ -1,4 +1,4 @@
-import { AppointmentStatus } from './../../../../@arpa/models/appointmentStatus';
+import { AppointmentStatus } from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
@@ -67,7 +67,7 @@ export class AppointmentsComponent {
       this.expectationOptions = data.expectations || [];
       this.categoryOptions = data.categories || [];
     });
-    this.sectionsSubscription = this.sectionService.sections$.subscribe((sections) => (this.sections = sections || []));
+    this.sectionsSubscription = this.sectionService.sectionsAll$.subscribe((sections) => (this.sections = sections || []));
     this.statusSubscription = this.enumService.getAppointmentStatusSelectItems().subscribe(items => this.statusOptions = items || []);
     this.resultSubscription = this.enumService.getAppointmentParticipationResultSelectItems().subscribe(items => this.resultOptions = items || []);
     this.predictionSubscription = this.enumService.getAppointmentParticipationPredictionSelectItems().subscribe(items => this.predictionOptions = items || []);

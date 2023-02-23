@@ -14,6 +14,6 @@ export class SectionListResolver implements Resolve<boolean> {
       return of(true);
     }
 
-    return this.sectionService.load().pipe(map(() => this.sectionService.sectionsLoaded));
+    return this.sectionService.loadAll().pipe(map(() => this.sectionService.sectionsLoaded));
   }
 }
