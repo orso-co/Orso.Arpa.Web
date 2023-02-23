@@ -97,6 +97,7 @@ export * from "./roleDto";
 export * from "./roleNames";
 export * from "./roomDto";
 export * from "./sectionDto";
+export * from "./sectionsAllDto";
 export * from "./sectionTreeDto";
 export * from "./selectValueDto";
 export * from "./setMyAppointmentParticipationPredictionDto";

@@ -1,4 +1,4 @@
-import { SelectValueDto, SectionTreeDto, SectionDto } from '@arpa/models';
+import { SelectValueDto, SectionTreeDto, SectionDto, SectionsAllDto } from '@arpa/models';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -11,10 +11,13 @@ import { SelectItem } from 'primeng/api';
 })
 export class SectionService {
   sectionsLoaded = false;
+  sectionsAllLoaded = false;
   private baseUrl: string;
   private sectionTrees = new Map<number | undefined, SectionTreeDto>();
   private sections$$ = new BehaviorSubject<SectionDto[]>([]);
+  private sectionsAll$$ = new BehaviorSubject<SectionsAllDto[]>([]);
   sections$: Observable<SectionDto[]> = this.sections$$.asObservable();
+  sectionsAll$: Observable<SectionsAllDto[]> = this.sectionsAll$$.asObservable();
   instrumentsWithChildrenOnly = true;
 
   constructor(private apiService: ApiService) {
@@ -30,14 +33,15 @@ export class SectionService {
     );
   }
 
+  loadAll(): Observable<SectionsAllDto[]> {
+    const params = new HttpParams().set('instrumentsWithChildrenOnly', 'false');
+    return this.apiService.get<SectionsAllDto[]>(`${this.baseUrl}`, params).pipe(
+      shareReplay(),
+      tap((sections) => this.sectionsAll$$.next(sections)),
+      tap((sections) => (this.sectionsAllLoaded = true))
+    );
+  }
 
-  // load(): Observable<SectionDto[]> {
-  //   return this.apiService.get<SectionDto[]>(this.baseUrl).pipe(
-  //     shareReplay(),
-  //     tap((sections) => this.sections$$.next(sections)),
-  //     tap((sections) => (this.sectionsLoaded = true))
-  //   );
-  // }
 
   loadTree(treeMaxLevel?: number): Observable<SectionTreeDto> {
     let params: HttpParams = new HttpParams();

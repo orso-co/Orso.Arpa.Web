@@ -1,12 +1,12 @@
 import { AppointmentParticipationPrediction } from './../../../../@arpa/models/appointmentParticipationPrediction';
-import { AppointmentParticipationResult } from './../../../../@arpa/models/appointmentParticipationResult';
+import { AppointmentParticipationResult } from '@arpa/models';
 import { shareReplay } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiService } from '../../../../@arpa/services/api.service';
-import { AppointmentDto } from '../../../../@arpa/models/appointmentDto';
-import { DateRange } from '../../../../@arpa/models/dateRange';
+import { ApiService } from '@arpa/services';
+import { AppointmentDto } from '@arpa/models';
+import { DateRange } from '@arpa/models';
 import { AppointmentListDto } from 'src/@arpa/models/appointmentListDto';
 
 @Injectable({
