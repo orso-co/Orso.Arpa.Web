@@ -27,4 +27,17 @@
   color: #cccccc;
   background: #cccccc;
 }
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 0fr 2fr;
+  gap: 2em;
+}
+.vertical {
+  border-left: 2px solid;
+  color: var(--surface-d);
+  height: 550px;
+  //position: absolute;
+  left: 33%;
+  padding-right: 10px;
+}
 

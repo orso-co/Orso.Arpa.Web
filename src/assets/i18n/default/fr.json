@@ -88,6 +88,8 @@
     "PARTICIPATION": "Participation",
     "UPDATED_PROJECT_PARTICIPATION": "Participation mise à jour",
     "FAILED_TO_UPDATE_PROJECT_PARTICIPATION": "Mise à jour a échoué!",
+    "APPOINTMENTS_PARTICIPATIONS_STATUS": "état du rendez-vous",
+    "PROJECT_PARTICIPATION_STATUS": "statut de participation",
 
     "error": {
       "BAD_REQUEST": "Une erreur s’est produite",
