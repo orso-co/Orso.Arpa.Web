@@ -1,6 +1,6 @@
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ColumnDefinition } from './../../../../@arpa/components/table/table.component';
+import { ColumnDefinition } from '../../../../../@arpa/components/table/table.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UrlDto, RoleDto, UrlRoleDto } from '@arpa/models';
@@ -9,11 +9,11 @@ import { first, map } from 'rxjs/operators';
 import { cloneDeep } from 'lodash-es';
 
 @Component({
-  selector: 'arpa-edit-project-urls',
-  templateUrl: './edit-project-urls.component.html',
-  styleUrls: ['./edit-project-urls.component.scss'],
+  selector: 'arpa-project-urls',
+  templateUrl: './project-urls.component.html',
+  styleUrls: ['./project-urls.component.scss'],
 })
-export class EditProjectUrlsComponent implements OnInit {
+export class ProjectUrlsComponent implements OnInit {
   @Input() urls: UrlDto[];
   @Input() projectId: string;
 

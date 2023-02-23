@@ -10,7 +10,7 @@
               leftIcon="pi pi-link"
               header="{{ 'projects.URLS' | translate }}"
               tooltip="{{ 'projects.URLS_TOOLTIP' | translate }}">
-    <arpa-edit-project-urls [urls]="project.urls || []" [projectId]="project.id"></arpa-edit-project-urls>
+    <arpa-project-urls [urls]="project.urls || []" [projectId]="project.id"></arpa-project-urls>
   </p-tabPanel>
   <p-tabPanel
     leftIcon="pi pi-cog"
@@ -26,6 +26,8 @@
   <p-tabPanel *ngIf="project"
     leftIcon="pi pi-calendar"
               header="{{ 'APPOINTMENTS' | translate }}">
-<arpa-project-appointments [projectId]="project.id"></arpa-project-appointments>
+<arpa-project-appointments
+  [projectId]="project.id"
+></arpa-project-appointments>
   </p-tabPanel>
 </p-tabView>

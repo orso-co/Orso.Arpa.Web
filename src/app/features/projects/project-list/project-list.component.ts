@@ -5,7 +5,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { TranslateService } from '@ngx-translate/core';
 import { ProjectService, NotificationsService, SelectValueService, VenueService } from '@arpa/services';
 import { Table } from 'primeng/table';
-import { ProjectParticipantsComponent } from '../project-participants/project-participants.component';
+import { ProjectParticipantsComponent } from '../project-layout/project-participants/project-participants.component';
 import { ProjectDto } from '@arpa/models';
 import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator';
 import { DocumentNode } from 'graphql';

@@ -1,15 +1,15 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
+import { ColumnDefinition } from '../../../../../@arpa/components/table/table.component';
 import { AppointmentDto } from '@arpa/models';
 import { NotificationsService, ProjectService } from '@arpa/services';
 import { DialogService } from 'primeng/dynamicdialog';
 import { TranslateService } from '@ngx-translate/core';
 import { first } from 'rxjs/operators';
-import { EditAppointmentComponent } from '../../appointments/edit-appointment/edit-appointment.component';
-import { AppointmentService } from '../../appointments/services/appointment.service';
-import { GraphQlFeedComponent } from '../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
+import { EditAppointmentComponent } from '../../../appointments/edit-appointment/edit-appointment.component';
+import { AppointmentService } from '../../../appointments/services/appointment.service';
+import { GraphQlFeedComponent } from '../../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
 
 
 @Component({

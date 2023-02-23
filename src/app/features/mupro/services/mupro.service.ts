@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PersonDto } from '../../../../@arpa/models/personDto';
+import { PersonDto } from '@arpa/models';
 
 @Injectable()
 export class MuproService {

@@ -25,7 +25,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from '../../../@arpa/components/table/table.module';
 import { ProjectsComponent } from './projects/projects.component';
-import { ParticipationDialogModule } from '../../../@arpa/components/participation-dialog/participation-dialog.module';
+import { ParticipationDialogModule } from '../participation-dialog/participation-dialog.module';
 import { TabViewModule } from 'primeng/tabview';
 import { AppointmentsComponent } from './appointments/appointments.component';
 

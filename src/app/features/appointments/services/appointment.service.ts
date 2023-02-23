@@ -1,4 +1,3 @@
-import { AppointmentParticipationPrediction } from './../../../../@arpa/models/appointmentParticipationPrediction';
 import { AppointmentParticipationResult } from '@arpa/models';
 import { shareReplay } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
