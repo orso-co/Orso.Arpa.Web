@@ -2,7 +2,7 @@ import { AppointmentStatus } from './appointmentStatus';
 import { AppointmentParticipationListItemDto } from './appointmentParticipationListItemDto';
 import { ProjectDto } from './projectDto';
 import { RoomDto } from './roomDto';
-import { SectionDto } from './sectionDto';
+import { SectionsAllDto } from './sectionsAllDto';
 
 export interface AppointmentDto {
   id: string;
@@ -23,6 +23,6 @@ export interface AppointmentDto {
   venueId?: string;
   rooms: Array<RoomDto>;
   projects: Array<ProjectDto>;
-  sections: Array<SectionDto>;
+  sections: Array<SectionsAllDto>;
   participations: Array<AppointmentParticipationListItemDto>;
 }

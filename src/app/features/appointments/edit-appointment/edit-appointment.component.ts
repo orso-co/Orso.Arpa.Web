@@ -2,7 +2,7 @@ import {
   AppointmentParticipationListItemDto,
   ReducedMusicianProfileDto,
   AppointmentDto,
-  SectionDto,
+  SectionsAllDto,
   ProjectDto,
   VenueDto,
   RoomDto,
@@ -61,7 +61,7 @@ export class EditAppointmentComponent implements OnInit {
   formGroup: FormGroup;
 
   appointment: AppointmentDto = this.config.data.appointment;
-  sections: SectionDto[] = this.config.data.sections;
+  sections: SectionsAllDto[] = this.config.data.sections;
   projects: ProjectDto[] = this.config.data.projects;
   venues: VenueDto[] = this.config.data.venues;
   predictionOptions: SelectItem[] = this.config.data.predictionOptions;
@@ -75,7 +75,7 @@ export class EditAppointmentComponent implements OnInit {
 
   participationTableItems: ParticipationTableItem[] = [];
   projectOptions: ProjectDto[] = [];
-  sectionOptions: SectionDto[] = [];
+  sectionOptions: SectionsAllDto[] = [];
   roomOptions: RoomDto[] = [];
   rooms: RoomDto[] = [];
   venueOptions: SelectItem[] = [];
