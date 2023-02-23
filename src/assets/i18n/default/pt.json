@@ -88,6 +88,8 @@
   "PARTICIPATION": "Participation",
   "UPDATED_PROJECT_PARTICIPATION": "Participação atualizada",
   "FAILED_TO_UPDATE_PROJECT_PARTICIPATION": "Atualização falhou!",
+  "APPOINTMENTS_PARTICIPATIONS_STATUS": "status de compromisso",
+  "PROJECT_PARTICIPATION_STATUS": "status de participação",
 
   "error": {
     "BAD_REQUEST": "Alguma coisa correu mal",

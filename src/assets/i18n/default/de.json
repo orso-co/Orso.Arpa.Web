@@ -96,6 +96,18 @@
   "WEEK": "Woche",
   "WELCOME": "Willkommen auf ARPA 2.0",
   "YES": "Ja",
+  "RECORDS": "Datensätze",
+  "RESULTS": "Ergebnisse",
+  "VENUES": "Veranstaltungsorte",
+  "VENUE": "Veranstaltungsort",
+  "CATEGORY": "Kategorie",
+  "DETAILS": "Details",
+  "PARTICIPATION_PREDICTION": "Voraussichtliche Teilnahme",
+  "PARTICIPATION": "Tatsächliche Teilnahme",
+  "UPDATED_PROJECT_PARTICIPATION": "Teilnahme aktualisiert",
+  "FAILED_TO_UPDATE_PROJECT_PARTICIPATION": "Aktualisierung fehlgeschlagen!",
+  "APPOINTMENTS_PARTICIPATIONS_STATUS": "Terminstatus",
+  "PROJECT_PARTICIPATION_STATUS": "Teilnahmestatus",
 
   "error": {
     "BAD_REQUEST": "Es ist ein Fehler aufgetreten",
