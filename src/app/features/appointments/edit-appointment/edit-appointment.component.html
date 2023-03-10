@@ -359,10 +359,9 @@
             <td>
               <span class="p-column-title">{{ 'appointments.PREDICTION' | translate }}</span>
               <p-dropdown
-                *ngIf="item.prediction"
+                (onChange)="onPredictionChanged(item, $event)"
                 [(ngModel)]="item.prediction"
                 [autoDisplayFirst]="false"
-                [disabled]="true"
                 [name]="'prediction-' + item.id"
                 [options]="predictionOptions"
                 appendTo="body"
