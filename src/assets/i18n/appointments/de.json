@@ -37,6 +37,7 @@
   "SECTIONS": "Register",
   "SECTION_ADDED": "Register hinzugefügt",
   "SECTION_REMOVED": "Register entfernt",
+  "SELECT_PREDICTION": "Vorhersage wählen",
   "START": "Beginn",
   "STATUS": "Status",
   "TITLE": "Terminbezeichnung",

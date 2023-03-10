@@ -37,6 +37,7 @@
   "SECTIONS": "Section",
   "SECTION_ADDED": "Section added",
   "SECTION_REMOVED": "Section removed",
+  "SELECT_PREDICTION": "Select prediction",
   "START": "Start",
   "STATUS": "Status",
   "TITLE": "Appointment description",
