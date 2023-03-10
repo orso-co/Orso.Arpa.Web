@@ -2,7 +2,7 @@ import { SelectItem } from 'primeng/api';
 import { Component } from '@angular/core';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { LanguageService } from '../../services/language.service';
+import { LanguageService } from '@arpa/services';
 import { Unsubscribe } from '../../decorators/unsubscribe.decorator';
 
 @Component({

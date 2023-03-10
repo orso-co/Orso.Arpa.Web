@@ -5,7 +5,7 @@ import { Menu } from 'primeng/menu';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { intersection } from 'lodash-es';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '@arpa/services';
 import { Unsubscribe } from '../../decorators/unsubscribe.decorator';
 
 export interface MenuItemTplContext {
