@@ -1,4 +1,4 @@
-import { AppointmentParticipationResult } from '@arpa/models';
+import { AppointmentParticipationPrediction, AppointmentParticipationResult } from '@arpa/models';
 import { shareReplay } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -74,5 +74,9 @@ export class AppointmentService {
 
   setResult(personId: string, appointmentId: string, result: AppointmentParticipationResult): Observable<any> {
     return this.apiService.put(`${this.baseUrl}/${appointmentId}/participations/${personId}/result`, { result }).pipe(shareReplay());
+  }
+
+  setPrediction(personId: string, appointmentId: string, prediction: AppointmentParticipationPrediction): Observable<any> {
+    return this.apiService.put(`${this.baseUrl}/${appointmentId}/participations/${personId}/prediction`, { prediction }).pipe(shareReplay());
   }
 }
