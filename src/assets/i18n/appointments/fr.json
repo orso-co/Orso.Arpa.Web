@@ -37,6 +37,7 @@
     "SECTIONS": "Registres",
     "SECTION_ADDED": "Registre ajouté",
     "SECTION_REMOVED": "Registre supprimé",
+    "SELECT_PREDICTION": "Sélectionnez la prédiction",
     "START": "Début",
     "STATUS": "Statut",
     "TITLE": "Nom de l'événement",
