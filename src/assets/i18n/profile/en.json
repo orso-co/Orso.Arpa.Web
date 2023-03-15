@@ -42,7 +42,8 @@
     "COMMENT_TEAM": "Comment by staff"
   },
   "my-projects": {
-    "APPLICATIONSTATUS": "My application status",
+    "APPLICATIONSTATUS": "Participation",
+    "MY_APPLICATIONSTATUS": "My application",
     "CHANGE_APPLICATION": "Change application",
     "COMMENT_STAFF": "Comment by staff",
     "DESCRIPTION": "Description",
@@ -51,15 +52,18 @@
     "MY_APPLICATION": "My application",
     "MY_COMMENT": "My Comment",
     "MY_PROFILE": "My profile for this application",
-    "PROJECTDETAILS": "Projectdetails",
+    "PROJECTDETAILS": "Details",
     "RESPONSE_STAFF": "Response by staff",
     "RESPONSE_STAFF_PROFILE": "Profile, staff is responding to",
     "RESPONSE_STATUS": "Response status",
     "STATUS": "Status",
     "TYPE": "Type",
     "URLS": "Links",
+    "MY_PROJECT_APPOINTMENTS": "Appointments",
     "STAFF_POV": "Staff point of view ",
-    "MY_POV": "My point of view"
+    "MY_POV": "My point of view",
+    "NO_COMMENT": "(no comment left so far)",
+    "NO_STATUS": "(no status yet)"
   },
   "my-appointments": {
     "PREDICTION":"Prediction ",

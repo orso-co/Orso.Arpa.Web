@@ -100,6 +100,8 @@
   "WEEK": "Woche",
   "WELCOME": "Willkommen auf ARPA 2.0",
   "YES": "Ja",
+  "TARGET_GROUP": "Zielgruppe",
+  "SECTION": "Register",
 
   "error": {
     "BAD_REQUEST": "Es ist ein Fehler aufgetreten",

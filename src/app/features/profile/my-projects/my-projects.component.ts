@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
-import { first } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 import { MeService, EnumService, NotificationsService } from '@arpa/services';
 import { MyProjectParticipationDialogComponent } from '../my-project-participation-dialog/my-project-participation-dialog.component';
-import { MyProjectParticipationDto, ProjectDto, MyProjectDto } from '@arpa/models';
+import { MyProjectParticipationDto, ProjectDto, MyProjectDto,  MyAppointmentListDto, MyProjectListDto } from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
+import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'arpa-profile-my-projects',
@@ -13,6 +15,22 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class MyProjectsComponent implements OnInit {
   myProjects: MyProjectDto[] = [];
+
+  userProjects$: Observable<MyProjectDto[]> = of ([]);
+  totalRecordsCount$: Observable<number> = of(0);
+  itemsPerPage = 25;
+  selectOptions = [
+    { id: false, name: 'FUTURE_PROJECTS' },
+    { id: true, name: 'PAST_PROJECTS' },
+  ];
+  selectedOption: boolean = false;
+  appointmentParticipations$: Observable<any>;
+  columns: ColumnDefinition<MyAppointmentListDto>[] =[
+    { label: 'APPOINTMENT', property: 'appointment.name', type: 'text' },
+    { label: 'BEGIN', property: 'appointment.startTime', type: 'date' },
+    { label: 'PREDICTION', property: 'appointmentParticipation.prediction', type: 'text' },
+    { label: 'RESULT', property: 'appointmentParticipation.result', type: 'text' },
+  ];
 
   constructor(
     private meService: MeService,
@@ -75,5 +93,13 @@ export class MyProjectsComponent implements OnInit {
           });
       }
     });
+  }
+  loadData(take: number, skip: number): void {
+    const loadResult$ = this.meService.getCompletedProjects(take, skip, this.selectedOption);
+    this.userProjects$ = loadResult$.pipe(map((result) => result.userProjects || []));
+    this.totalRecordsCount$ = loadResult$.pipe(map((result) => result.totalRecordsCount || 0));
+  }
+  onSelectedOptionChange(event: { value: number }) {
+    this.loadData(this.itemsPerPage, 0);
   }
 }

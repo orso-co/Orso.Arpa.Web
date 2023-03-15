@@ -41,21 +41,27 @@
     "COMMENT_TEAM": "Comentário da equipe"
   },
   "my-projects": {
-    "APPLICATIONSTATUS": "estado do meu pedido",
-    "CHANGE_APPLICATION": "alterar participação",
-    "COMMENT_STAFF": "comentário da equipa",
-    "DESCRIPTION": "descrição",
-    "GENRE": "gênero",
+    "APPLICATIONSTATUS": "Meu pedido",
+    "CHANGE_APPLICATION": "Alterar participação",
+    "COMMENT_STAFF": "Comentário da equipa",
+    "DESCRIPTION": "Descrição",
+    "GENRE": "Gênero",
     "MY_APPLICATION": "A minha participação",
     "MY_COMMENT": "O meu comentário",
     "MY_PROFILE": "O meu perfil para este registro",
-    "PROJECTDETAILS": "detalhes do projecto",
-    "RESPONSE_STAFF": "resposta da equipa",
+    "PROJECTDETAILS": "Detalhes",
+    "RESPONSE_STAFF": "Resposta da equipa",
     "RESPONSE_STAFF_PROFILE": "Resposta da equipa ao perfil para",
     "RESPONSE_STATUS": "Estado da resposta",
     "STATUS": "Estado",
-    "TYPE": "tipo",
-    "URLS": "URLs"
+    "TYPE": "Tipo",
+    "URLS": "URLs",
+    "MY_PROJECT_APPOINTMENTS": "Eventos",
+
+    "STAFF_POV": "Ponto de vista do pessoal",
+    "MY_POV": "Meu ponto de vista",
+    "NO_COMMENT": "(sem comentários até ao momento)",
+    "NO_STATUS": "(ainda sem estatuto)"
   },
   "my-appointments": {
     "PREDICTION":"Previsão",

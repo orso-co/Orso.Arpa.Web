@@ -70,7 +70,7 @@ import { ProjectAppointmentsComponent } from './project-layout/project-appointme
     OverlayPanelModule,
     ChartModule,
   ],
-  exports: [ProjectListComponent],
+  exports: [ProjectListComponent, ProjectAppointmentsComponent],
   providers: [ProjectGenreResolver, ProjectTypeResolver],
 })
 export class ProjectsModule {

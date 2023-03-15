@@ -44,7 +44,7 @@ import { TableModule } from '../../../@arpa/components/table/table.module';
     ParticipationEditComponent,
     AppointmentParticipationsComponent
   ],
-  exports: [ParticipationDialogComponent],
+  exports: [ParticipationDialogComponent, AppointmentParticipationsComponent],
 })
 export class ParticipationDialogModule {
 }

@@ -98,6 +98,11 @@ export class StateBadgeComponent implements OnInit {
           severity: 'danger',
           value: 'refusal',
         },
+        {
+          label: 'SCHEDULED',
+          severity: 'warning',
+          value: 'scheduled',
+        },
       ];
     }
   }

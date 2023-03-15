@@ -1,10 +1,12 @@
 .project-title {
-  font-size: large;
+  font-size: normal;
 }
-
+.project-type {
+  font-size: small;
+}
 .project-date {
   text-transform: uppercase;
-  font-weight: bold;
+  font-weight: normal;
   opacity: 60%;
   font-size: small;
 }
@@ -15,9 +17,14 @@
 
   > label {
     font-size: x-small;
-    opacity: 60%;
-    font-weight: bold;
+    opacity: 70%;
+    font-weight: normal;
     text-transform: uppercase;
+    padding-bottom: 0.3rem;
+  }
+  > span {
+    font-size: small;
+    opacity: 90%;
   }
 
   ul {
@@ -35,9 +42,13 @@
     > label {
       font-size: x-small;
       opacity: 60%;
-      font-weight: bold;
+      font-weight: normal;
       text-transform: uppercase;
+      padding-bottom: 0.3rem;
     }
+  > span {
+    font-size: large;
+  }
 
     ul {
       margin: 0;
@@ -57,3 +68,7 @@
   font-weight: lighter;
 }
 
+.li {
+  padding-bottom: 0.5rem;
+  list-style-type: disc;
+}

@@ -168,7 +168,7 @@
           </ng-container>
           <ng-container *ngIf="column.type === 'date'" >
             <td  [classList]="column.cssClasses">
-              {{ resolveValue(column.property, row) | date: 'EE, dd.MM.YYYY - HH:mm': 'locale(de)'  }}
+              {{ resolveValue(column.property, row) | date: 'dd.MM.YYYY - HH:mm': 'locale(de)'  }}
             </td>
           </ng-container>
           <ng-container *ngIf="column.type === 'rating'">
