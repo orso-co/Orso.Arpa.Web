@@ -39,13 +39,6 @@ export class EditProjectComponent implements OnInit {
     private enumService: EnumService
   ) {
     this.projectStatusOptions$ = this.enumService.getProjecttatusSelectItems();
-  }
-
-  get isNew(): boolean {
-    return !this.project;
-  }
-
-  public ngOnInit(): void {
     this.form = this.formBuilder.group({
       title: [null, [Validators.required]],
       shortTitle: [null, [Validators.required]],
@@ -58,8 +51,16 @@ export class EditProjectComponent implements OnInit {
       parentId: [null],
       code: [null, [Validators.required]],
       isCompleted: [null, [Validators.required]],
-      isHiddenForPerformers: [null],
+      isHiddenForPerformers: [false],
     });
+  }
+
+  get isNew(): boolean {
+    return !this.project;
+  }
+
+  public ngOnInit(): void {
+
 
     if (!this.isNew) {
       this.form.patchValue({
