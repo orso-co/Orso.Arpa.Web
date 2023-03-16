@@ -31,6 +31,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ChartModule } from '../../../@arpa/components/chart/chart.module';
 import { ParticipationDialogModule } from '../participation-dialog/participation-dialog.module';
 import { ProjectAppointmentsComponent } from './project-layout/project-appointments/project-appointments.component';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { ProjectAppointmentsComponent } from './project-layout/project-appointme
     MultiSelectModule,
     OverlayPanelModule,
     ChartModule,
+    CheckboxModule,
   ],
   exports: [ProjectListComponent],
   providers: [ProjectGenreResolver, ProjectTypeResolver],

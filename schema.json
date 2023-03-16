@@ -2817,6 +2817,16 @@
             "defaultValue": null
           },
           {
+            "name": "isHiddenForPerformers",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "BooleanOperationFilterInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "projectAppointments",
             "description": null,
             "type": {
