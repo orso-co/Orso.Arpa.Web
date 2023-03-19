@@ -3,7 +3,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { first, map } from 'rxjs/operators';
 import { MeService, EnumService, NotificationsService } from '@arpa/services';
 import { MyProjectParticipationDialogComponent } from '../my-project-participation-dialog/my-project-participation-dialog.component';
-import { MyProjectParticipationDto, ProjectDto, MyProjectDto,  MyAppointmentListDto, MyProjectListDto } from '@arpa/models';
+import { MyProjectParticipationDto, ProjectDto, MyProjectDto,  MyAppointmentListDto } from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
 import { Observable, of } from 'rxjs';
@@ -96,9 +96,10 @@ export class MyProjectsComponent implements OnInit {
   }
   loadData(take: number, skip: number): void {
     const loadResult$ = this.meService.getCompletedProjects(take, skip, this.selectedOption);
-    this.userProjects$ = loadResult$.pipe(map((result) => result.userProjects || []));
-    this.totalRecordsCount$ = loadResult$.pipe(map((result) => result.totalRecordsCount || 0));
+    this.userProjects$ = loadResult$.pipe(map((result) => result || []));
+    this.totalRecordsCount$ = loadResult$.pipe(map((result) => result.length || 0));
   }
+
   onSelectedOptionChange(event: { value: number }) {
     this.loadData(this.itemsPerPage, 0);
   }

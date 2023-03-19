@@ -7,7 +7,6 @@ import {
   MyContactDetailCreateDto,
   MyUserProfileDto,
   MyAppointmentListDto,
-  MyProjectListDto,
   MyProjectDto,
   MyProjectParticipationDto,
   MusicianProfileDto,
@@ -82,12 +81,12 @@ export class MeService {
   getMyProjects(): Observable<MyProjectDto[]> {
     return this.apiService.get<MyProjectDto[]>(`${this.baseUrl}/projects`).pipe(shareReplay());
   }
-  getCompletedProjects(take: number | null, skip: number | null, passed: boolean = false): Observable<MyProjectListDto[]> {
+  getCompletedProjects(take: number | null, skip: number | null, passed: boolean = false): Observable<MyProjectDto[]> {
     // set the value of `includecompleted` variable
     const includecompleted = true;
     // create a new HttpParams object and set the value of `includecompleted`
     let params = new HttpParams().set('includecompleted', includecompleted.toString());
-    return this.apiService.get<MyProjectListDto[]>(`${this.baseUrl}/projects?limit=${take}&offset=${skip}&¢passed=${passed}`, params ).pipe(shareReplay());
+    return this.apiService.get<MyProjectDto[]>(`${this.baseUrl}/projects?limit=${take}&offset=${skip}&passed=${passed}`, params ).pipe(shareReplay());
   }
 
   setAppointmentPrediction(

@@ -64,7 +64,6 @@ export * from "./myMusicianProfileDto";
 export * from "./myMusicianProfileModifyBodyDto";
 export * from "./myMusicianProfileRemoveDocumentDto";
 export * from "./myProjectDto";
-export * from "./myProjectListDto";
 export * from "./myProjectParticipationModifyBodyDto";
 export * from "./myRegionPreferenceCreateBodyDto";
 export * from "./myRegionPreferenceModifyBodyDto";
