@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 import { LayoutModule } from './layout/layout.module';
 import { TranslateModule } from './translate';
 import { TranslateService } from '@ngx-translate/core';
-import { ConfigService } from './services/config.service';
+import { ConfigService } from '@arpa/services';
 import { HttpLink } from 'apollo-angular/http';
 import { ApolloClientOptions, ApolloLink, InMemoryCache } from '@apollo/client/core';
 import { setContext } from '@apollo/client/link/context';
