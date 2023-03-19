@@ -39,6 +39,7 @@ export const ProjectsQuery = gql`
         endDate
         status
         isCompleted
+        isHiddenForPerformers
         genreId
         genre {
           selectValue {
