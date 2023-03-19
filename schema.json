@@ -3058,6 +3058,16 @@
             "defaultValue": null
           },
           {
+            "name": "isHiddenForPerformers",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "BooleanOperationFilterInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "id",
             "description": null,
             "type": {
