@@ -1,13 +1,11 @@
-import { ProjectStatus } from '../../../../../@arpa/models/projectStatus';
 import { Component, Input, OnInit } from '@angular/core';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { map } from 'rxjs/operators';
-import { ProjectDto } from '../../../../../@arpa/models/projectDto';
-import { VenueDto } from '../../../../../@arpa/models/venueDto';
+import { ProjectDto } from '@arpa/models';
 import { ParentProjectsQuery } from './projectParents.graphql';
 import { FeedScope } from '../../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
 import { EnumService } from '@arpa/services';
@@ -41,13 +39,6 @@ export class EditProjectComponent implements OnInit {
     private enumService: EnumService
   ) {
     this.projectStatusOptions$ = this.enumService.getProjecttatusSelectItems();
-  }
-
-  get isNew(): boolean {
-    return !this.project;
-  }
-
-  public ngOnInit(): void {
     this.form = this.formBuilder.group({
       title: [null, [Validators.required]],
       shortTitle: [null, [Validators.required]],
@@ -60,7 +51,16 @@ export class EditProjectComponent implements OnInit {
       parentId: [null],
       code: [null, [Validators.required]],
       isCompleted: [null, [Validators.required]],
+      isHiddenForPerformers: [false],
     });
+  }
+
+  get isNew(): boolean {
+    return !this.project;
+  }
+
+  public ngOnInit(): void {
+
 
     if (!this.isNew) {
       this.form.patchValue({
