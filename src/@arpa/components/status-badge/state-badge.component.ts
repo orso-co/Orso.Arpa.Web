@@ -99,9 +99,14 @@ export class StateBadgeComponent implements OnInit {
           value: 'refusal',
         },
         {
+          label: 'SCHEDULED',
+          severity: 'warning',
+          value: 'scheduled',
+        },
+        {
           label:'REHEARSALS_ONLY',
           severity: 'info',
-          value: 'rehearsal_only'
+          value: 'rehearsals_only'
         }
       ];
     }

@@ -42,6 +42,9 @@ import { UserDataComponent } from './user-data/user-data.component';
 import { UserBankdataComponent } from './user-bankdata/user-bankdata.component';
 import { ChipModule } from 'primeng/chip';
 import { MyAppointmentParticipationDialogComponent } from './my-appointment-participation-dialog/my-appointment-participation-dialog.component';
+import { ProjectsModule } from '../projects/projects.module';
+import { ParticipationDialogModule } from '../participation-dialog/participation-dialog.module';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
   declarations: [
@@ -88,6 +91,9 @@ import { MyAppointmentParticipationDialogComponent } from './my-appointment-part
     RatingModule,
     ChipModule,
     OverlayPanelModule,
+    ProjectsModule,
+    ParticipationDialogModule,
+    TooltipModule,
   ],
   providers: [ProfileService, ProfileResolver, LocalizedDatePipe],
   exports: [

@@ -72,7 +72,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     ChartModule,
     CheckboxModule,
   ],
-  exports: [ProjectListComponent],
+  exports: [ProjectListComponent, ProjectAppointmentsComponent],
   providers: [ProjectGenreResolver, ProjectTypeResolver],
 })
 export class ProjectsModule {

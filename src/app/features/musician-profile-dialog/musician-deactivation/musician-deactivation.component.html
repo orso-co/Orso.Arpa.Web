@@ -22,8 +22,8 @@
       </arpa-form-field>
     </div>
   </div>
-  <div class='p-formgroup-inline p-jc-between'>
-    <div class='p-field p-col'>
+  <div class='p-d-flex p-jc-center'>
+    <div class='p-d-flex p-jc-centerl'>
       <button
         (click)='activate()'
         *ngIf='profile.deactivation'
@@ -34,7 +34,7 @@
         type='button'
       ></button>
     </div>
-    <div class='p-field p-col p-text-right' style='margin-right: 0'>
+    <div class='p-d-flex p-jc-center'>
       <button
         (click)='deactivate()'
         [disabled]='form.pristine || form.invalid'
@@ -46,5 +46,10 @@
         type='button'
       ></button>
     </div>
-  </div>
+    </div>
+    <div>
+      <div class='p-d-flex p-jc-center'>
+      <p>{{ 'musician-profile-dialog.NO_DEACTIVATION_POSSIBLE' | translate }}</p>
+      </div>
+    </div>
 </form>

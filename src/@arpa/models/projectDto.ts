@@ -20,4 +20,5 @@ export interface ProjectDto {
   status?: ProjectStatus;
   parentId?: string;
   isCompleted?: boolean;
+  parentProject?: string;
 }

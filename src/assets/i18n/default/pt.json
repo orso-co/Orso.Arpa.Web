@@ -94,6 +94,11 @@
   "FAILED_TO_UPDATE_PROJECT_PARTICIPATION": "Atualização falhou!",
   "APPOINTMENTS_PARTICIPATIONS_STATUS": "status de compromisso",
   "PROJECT_PARTICIPATION_STATUS": "status de participação",
+  "TARGET_GROUP": "Grupo alvo",
+  "SECTION": "Secção",
+  "OPEN_PROJECTS": "Projectos abertos",
+  "CLOSED_PROJECTS": "Projectos fechados",
+  "ALL_PROJECTS": "Todos os projectos",
 
   "error": {
     "BAD_REQUEST": "Alguma coisa correu mal",

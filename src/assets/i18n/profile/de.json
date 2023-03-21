@@ -43,7 +43,8 @@
 
   },
   "my-projects": {
-    "APPLICATIONSTATUS": "Mein Anmeldestatus",
+    "APPLICATIONSTATUS": "Teilnahme",
+    "MY_APPLICATIONSTATUS": "Meine Anmeldung",
     "CHANGE_APPLICATION": "Anmeldung ändern",
     "COMMENT_STAFF": "Kommentar KBB",
     "DESCRIPTION": "Beschreibung",
@@ -52,16 +53,26 @@
     "MY_APPLICATION": "Meine Anmeldung",
     "MY_COMMENT": "Mein Kommentar",
     "MY_PROFILE": "Mein Profil für diese Anmeldung",
-    "PROJECTDETAILS": "Projektdetails",
+    "PROJECTDETAILS": "Details",
     "RESPONSE_STAFF": "Rückmeldung KBB",
     "RESPONSE_STAFF_PROFILE": "Rückmeldung für Profil:",
     "RESPONSE_STATUS": "Rückmeldung KBB:",
     "STATUS": "Status",
     "TYPE": "Typ",
     "URLS": "Links",
-    "MY_PROJECT_APPOINTMENTS": "Meine Projekttermine",
-    "STAFF_POV": "Seitens Mitarbeiter:",
-    "MY_POV": "Von meiner Seite:"
+    "MY_PROJECT_APPOINTMENTS": "Termine",
+    "STAFF_POV": "Seitens KBB:",
+    "MY_POV": "Von meiner Seite:",
+    "NO_COMMENT": "(noch kein Kommentar vorhanden)",
+    "NO_STATUS": "(noch kein Status angegeben)",
+    "IS_PART_OF_PROJECT": "ist Teil von",
+    "WORK_IN_PROGRESS": "Estamos a trabalhar no seu estatuto de participação e a enviar-lhe um e-mail, quando algo muda.",
+    "RESULT_IS_REFUSAL": "Schade, du bist leider nicht dabei",
+    "RESULT_IS_ALARM": "Bitte dringend im KBB melden!",
+    "RESULT_IS_ACCEPTANCE": "Wie schön, Du bist dabei!",
+    "RESULT_IS_PENDING": "Es besteht noch Klärungsbedarf. Bitte Teilnahmestatus aktualisieren",
+    "RESULT_IS_CANDIDATE": "Du bist Kandidat:in"
+
   },
   "my-appointments": {
     "PREDICTION":"Vorhersage",

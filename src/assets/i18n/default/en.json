@@ -95,6 +95,11 @@
   "FAILED_TO_UPDATE_PROJECT_PARTICIPATION": "Participation update failed!",
   "APPOINTMENTS_PARTICIPATIONS_STATUS": "Appointments Status",
   "PROJECT_PARTICIPATION_STATUS": "Participation Status",
+  "TARGET_GROUP": "Target group",
+  "SECTION": "Section",
+  "OPEN_PROJECTS": "Open Projects",
+  "CLOSED_PROJECTS": "Closed Projects",
+  "ALL_PROJECTS": "All Projects",
 
   "error": {
     "BAD_REQUEST": "An error occured",

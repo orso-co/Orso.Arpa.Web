@@ -25,12 +25,14 @@ export class ProjectAppointmentsComponent implements OnInit {
 
   columns: ColumnDefinition<AppointmentDto>[] = [
     { label: 'APPOINTMENT', property: 'appointment.name', type: 'text' },
-    { label: 'CATEGORY', property: 'appointment.categoryId.name', type: 'badge', show: true},
+    { label: 'SECTION', property: 'appointment.sections.name', type: 'badge', show: true },
     { label: 'START', property: 'appointment.startTime', type: 'date', show: true },
     { label: 'END', property: 'appointment.endTime', type: 'date', show: true },
     { label: 'STATUS', property: 'appointment.status', type: 'badge', show: true},
-    { label: 'CREATED_BY', property: 'appointment.createdBy', type: 'text', show: true},
-    { label: 'CREATED_AT', property: 'appointment.createdAt', type: 'date', show: true}
+    { label: 'VENUE', property: 'appointment.venue.name', type: 'text', show: true},
+
+    // { label: 'CREATED_BY', property: 'appointment.createdBy', type: 'text', show: true},
+    // { label: 'CREATED_AT', property: 'appointment.createdAt', type: 'date', show: true}
 
 
   ];

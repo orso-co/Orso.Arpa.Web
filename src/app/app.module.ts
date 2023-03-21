@@ -10,7 +10,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { ArpaModule } from '../@arpa/arpa.module';
 import { ThemeSwitcherService } from '../@arpa/components/theme-switcher/theme-switcher.service';
-import { ConfigService } from '../@arpa/services/config.service';
+import { ConfigService } from '@arpa/services';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { OfflineComponent } from './shared/components/offline/offline.component';
 import { TranslateModule } from '@ngx-translate/core';

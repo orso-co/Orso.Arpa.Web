@@ -61,5 +61,6 @@
   "LEVEL_ASSESSMENT_TEAM": "Level by staff",
   "LEVEL_ASSESSMENT_INNER": "Level by performer",
   "BACKGROUND_TEAM": "Background",
-  "BACKGROUND_INNER": "Background"
+  "BACKGROUND_INNER": "Background",
+  "NO_DEACTIVATION_POSSIBLE": "You may not deactivate a musician profile which is participating in an active project"
 }

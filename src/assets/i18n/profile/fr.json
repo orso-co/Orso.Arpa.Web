@@ -41,7 +41,8 @@
     "COMMENT_TEAM": "Commentaire du personnel"
   },
   "my-projects": {
-    "APPLICATIONSTATUS": "Statut de ma candidature",
+    "APPLICATIONSTATUS": "La candidature",
+    "MY_APPLICATIONSTATUS": "Ma candidature",
     "CHANGE_APPLICATION": "Changer de candidature",
     "COMMENT_STAFF": "commentaire du personnel",
     "DESCRIPTION": "Description",
@@ -49,13 +50,27 @@
     "MY_APPLICATION": "Mon inscription",
     "MY_COMMENT": "Mon commentaire",
     "MY_PROFILE": "Mon profil pour cette inscription",
-    "PROJECTDETAILS": "Détails du projet",
+    "PROJECTDETAILS": "Détails",
     "RESPONSE_STAFF": "Eéponse du personnel",
     "RESPONSE_STAFF_PROFILE": "Profil auquel le personnel répond",
     "RESPONSE_STATUS": "État de la réponse",
     "STATUS": "Statut",
     "TYPE": "Taper",
-    "URLS": "URLs"
+    "URLS": "URLs",
+    "MY_PROJECT_APPOINTMENTS": "Événements",
+    "IS_PART_OF_PROJECT": "fait partie de",
+    "WORK_IN_PROGRESS": "Nous travaillons sur votre statut de participation et vous enverrons un e-mail en cas de changement.",
+    "RESULT_IS_REFUSAL": "Dommage, tu n'es pas là.",
+    "RESULT_IS_ALARM": "Appelez la direction!",
+    "RESULT_IS_ACCEPTANCE": "Oui, vous en êtes!",
+    "RESULT_IS_PENDING": "Il y a encore besoin de clarification. Veuillez mettre à jour votre statut de participation",
+    "RESULT_IS_CANDIDATE": "Vous êtes candidat",
+
+
+    "STAFF_POV": "Point de vue du personnel",
+    "MY_POV": "Mon point de vue",
+    "NO_COMMENT": "(aucun commentaire n'a été laissé jusqu'à présent)",
+    "NO_STATUS": "(pas encore de statut)"
   },
   "my-appointments": {
     "PREDICTION":"Prédiction",

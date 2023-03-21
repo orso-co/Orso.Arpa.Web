@@ -3,8 +3,10 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { first } from 'rxjs/operators';
 import { MeService, EnumService, NotificationsService } from '@arpa/services';
 import { MyProjectParticipationDialogComponent } from '../my-project-participation-dialog/my-project-participation-dialog.component';
-import { MyProjectParticipationDto, ProjectDto, MyProjectDto } from '@arpa/models';
+import { MyProjectParticipationDto, MyProjectDto,  MyAppointmentListDto } from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
+import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'arpa-profile-my-projects',
@@ -12,7 +14,21 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./my-projects.component.scss'],
 })
 export class MyProjectsComponent implements OnInit {
-  myProjects: MyProjectDto[] = [];
+  userProjects$: BehaviorSubject<MyProjectDto[]> = new BehaviorSubject<MyProjectDto[]>([]);
+  totalRecordsCount$: BehaviorSubject<number> = new BehaviorSubject(0);
+  itemsPerPage = 25;
+  selectOptions = [
+    { id: false, name: 'OPEN_PROJECTS' },
+    { id: true, name: 'ALL_PROJECTS' },
+  ];
+  selectedOption: boolean = false;
+  appointmentParticipations$: Observable<any>;
+  columns: ColumnDefinition<MyAppointmentListDto>[] =[
+    { label: 'APPOINTMENT', property: 'appointment.name', type: 'text' },
+    { label: 'BEGIN', property: 'appointment.startTime', type: 'date' },
+    { label: 'PREDICTION', property: 'appointmentParticipation.prediction', type: 'text' },
+    { label: 'RESULT', property: 'appointmentParticipation.result', type: 'text' },
+  ];
 
   constructor(
     private meService: MeService,
@@ -23,22 +39,9 @@ export class MyProjectsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.meService.getMyProjects().subscribe((projects) => (this.myProjects = projects));
+    this.reloadProjects();
   }
 
-  getProjectNames(projects: ProjectDto[]): string {
-    return projects.map((p) => p.title).join(', ');
-  }
-
-  onParticipationStatusChanged(event: any): void {
-    this.meService
-      .setProjectParticipationStatus(event.ctx.id, event.value)
-      .pipe(first())
-      .subscribe(() => {
-        event.ctx.predictionId = event.value;
-        this.notificationsService.success('profile.PROJECTPARTICIPATION_SET');
-      });
-  }
 
   openDialog(projectId: string, participation: MyProjectParticipationDto) {
     const ref = this.dialogService.open(MyProjectParticipationDialogComponent, {
@@ -56,24 +59,34 @@ export class MyProjectsComponent implements OnInit {
       if (result) {
         this.meService
           .setProjectParticipationStatus(projectId, { ...result, musicianProfileId: participation.musicianProfile?.id })
-          .subscribe((updatedParticipation) => {
+          .subscribe(() => {
             this.notificationsService.success('projects.SET_PARTICIPATION_STATUS');
-            this.myProjects = this.myProjects.map((myProject) => {
-              if (myProject.project.id !== projectId) {
-                return myProject;
-              }
-              return {
-                ...myProject,
-                participations: myProject.participations.map((p) => {
-                  if (p.musicianProfile.id !== participation.musicianProfile.id) {
-                    return p;
-                  }
-                  return updatedParticipation;
-                }),
-              };
-            });
+            this.reloadProjects();
           });
       }
     });
+  }
+
+  loadData(take: number, skip: number): void {
+    const loadResult$ = this.meService.getAllProjects(take, skip, this.selectedOption)
+      .subscribe((response: MyProjectDto[]) => {
+
+        // TODO: when the endpoint changes, change response to response.result
+        const projects: MyProjectDto[] = response || [];
+
+        // TODO: change the response object type to the correct one after the endpoint is fixed
+        //  and change this operation to response.size or equivalent property
+        this.totalRecordsCount$.next(response.length)
+
+        this.userProjects$.next(projects)
+      });
+  }
+
+
+  // TODO: this will give us problems due to missing pagination.
+  reloadProjects(event?: { value: number }) {
+    // TODO: implement pagination
+    const take = 0;
+    this.loadData(this.itemsPerPage, take);
   }
 }
