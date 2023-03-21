@@ -144,7 +144,8 @@
     "INTERESTED": "Interessado",
     "PENDING": "Pendente",
     "ACCEPTANCE": "Aceitação",
-    "REFUSAL": "Recusa"
+    "REFUSAL": "Recusa",
+    "REHEARSALS_ONLY": "Apenas ensaios"
   },
   "projectParticipationStatusInternal": {
     "CANDIDATE": "Candidato",
