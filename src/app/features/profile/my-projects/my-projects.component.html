@@ -1,12 +1,14 @@
 <div class="p-grid p-jc-center">
   <h1>{{ 'MY_PROJECTS' | translate }}</h1>
 </div>
+
 <p-message
   *ngIf="(totalRecordsCount$ | async) === 0"
   severity="info"
   styleClass="mr-2"
   text="{{ 'profile.NO_PROJECTS' | translate }}"
 ></p-message>
+
 <div class="p-grid p-jc-center">
   <div class="p-col-12 p-text-center">
     <p>{{ totalRecordsCount$ | async }} {{ 'RESULTS' | translate }}</p>
@@ -25,8 +27,30 @@
     </p-selectButton>
   </div>
 </div>
-<p-accordion>
-  <p-accordionTab *ngFor="let myProject of userProjects$ | async">
+
+
+<div class="p-grid p-jc-center p-mt-4">
+  <div class="p-col-12 p-md-10 p-lg-12">
+    <p-table
+      (onLazyLoad)="reloadProjects($event)"
+      [lazy]="true"
+      [paginator]="true"
+      [rowsPerPageOptions]="[10, 25, 50]"
+      [rows]="itemsPerPage"
+      [totalRecords]="(totalRecordsCount$ | async) || 0"
+      [value]="(userProjects$ | async) || []"
+      tableStyleClass="arpa-table-list"
+    >
+      <ng-template let-myProject pTemplate="body">
+        <ng-container *ngTemplateOutlet="listElement; context: { $implicit: myProject }"></ng-container>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+
+<ng-template #listElement let-myProject>
+  <p-accordionTab>
     <ng-template pTemplate="header">
       <div class="p-d-flex p-flex-column">
         <div class="p-as-start p-d-flex p-ai-center">
@@ -180,7 +204,8 @@
       </p-tabView>
     </ng-template>
   </p-accordionTab>
-</p-accordion>
+</ng-template>
+
 <ng-template #noCommentByMe>
   <div class="p-col-6 p-mt-2 content-item">
   <label>{{ 'my-projects.MY_COMMENT' | translate }}</label>
