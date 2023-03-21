@@ -76,11 +76,13 @@ export class MeService {
       .pipe(shareReplay());
   }
 
-  getMyProjects(): Observable<MyProjectDto[]> {
-    return this.apiService.get<MyProjectDto[]>(`${this.baseUrl}/projects`).pipe(shareReplay());
-  }
+  // TODO: this endpoint is returning an array.
+  //  because of that, we are not able to know the amount of projects a user has, only the size of the array (which is limited by take)
+  //  therefore, we need to update the output of this endpoint to a paginated output that includes the total number of items
   getAllProjects(take: number | null, skip: number | null, includecompleted: boolean = false): Observable<MyProjectDto[]> {
-    return this.apiService.get<MyProjectDto[]>(`${this.baseUrl}/projects?limit=${take}&offset=${skip}&includecompleted=${includecompleted}` ).pipe(shareReplay());
+    return this.apiService
+      .get<MyProjectDto[]>(`${this.baseUrl}/projects?limit=${take}&offset=${skip}&includecompleted=${includecompleted}` )
+      .pipe(shareReplay());
   }
 
   setAppointmentPrediction(

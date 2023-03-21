@@ -6,7 +6,7 @@ import { MyProjectParticipationDialogComponent } from '../my-project-participati
 import { MyProjectParticipationDto, MyProjectDto,  MyAppointmentListDto } from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'arpa-profile-my-projects',
@@ -14,10 +14,9 @@ import { Observable, of } from 'rxjs';
   styleUrls: ['./my-projects.component.scss'],
 })
 export class MyProjectsComponent implements OnInit {
-  myProjects: MyProjectDto[] = [];
-
-  userProjects$: Observable<MyProjectDto[]> = of ([]);
-  totalRecordsCount$: Observable<number> = of(0);
+  userProjects$: BehaviorSubject<MyProjectDto[]> = new BehaviorSubject<MyProjectDto[]>([]);
+  totalRecordsCount$: BehaviorSubject<number> = new BehaviorSubject(0);
+  
   itemsPerPage = 25;
   selectOptions = [
     { id: false, name: 'OPEN_PROJECTS' },
@@ -41,7 +40,7 @@ export class MyProjectsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.meService.getMyProjects().subscribe((projects) => (this.myProjects = projects));
+    this.reloadProjects();
   }
 
 
@@ -61,33 +60,34 @@ export class MyProjectsComponent implements OnInit {
       if (result) {
         this.meService
           .setProjectParticipationStatus(projectId, { ...result, musicianProfileId: participation.musicianProfile?.id })
-          .subscribe((updatedParticipation) => {
+          .subscribe(() => {
             this.notificationsService.success('projects.SET_PARTICIPATION_STATUS');
-            this.myProjects = this.myProjects.map((myProject) => {
-              if (myProject.project.id !== projectId) {
-                return myProject;
-              }
-              return {
-                ...myProject,
-                participations: myProject.participations.map((p) => {
-                  if (p.musicianProfile.id !== participation.musicianProfile.id) {
-                    return p;
-                  }
-                  return updatedParticipation;
-                }),
-              };
-            });
+            this.reloadProjects();
           });
       }
     });
   }
+
   loadData(take: number, skip: number): void {
-    const loadResult$ = this.meService.getAllProjects(take, skip, this.selectedOption);
-    this.userProjects$ = loadResult$.pipe(map((result) => result || []));
-    this.totalRecordsCount$ = loadResult$.pipe(map((result) => result.length || 0));
+    const loadResult$ = this.meService.getAllProjects(take, skip, this.selectedOption)
+      .subscribe((response: MyProjectDto[]) => {
+
+        // TODO: when the endpoint changes, change response to response.result
+        const projects: MyProjectDto[] = response || [];
+        
+        // TODO: change the response object type to the correct one after the endpoint is fixed
+        //  and change this operation to response.size or equivalent property
+        this.totalRecordsCount$.next(response.length)
+
+        this.userProjects$.next(projects)
+      });
   }
 
-  onSelectedOptionChange(event: { value: number }) {
-    this.loadData(this.itemsPerPage, 0);
+
+  // TODO: this will give us problems due to missing pagination.
+  reloadProjects(event?: { value: number }) {
+    // TODO: implement pagination
+    const take = 0;
+    this.loadData(this.itemsPerPage, take);
   }
 }
