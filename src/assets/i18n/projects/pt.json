@@ -45,5 +45,7 @@
   "TOTAL": "Total de respostas",
   "TOTAL_FILTERED": "Resultado do filtro",
   "CHOIR": "Respostas do Coro",
-  "ORCHESTRA": "Respostas da orquestra"
+  "ORCHESTRA": "Respostas da orquestra",
+  "IS_HIDDEN_FOR_PERFORMERS": "Está escondido para os artistas"
+
 }

@@ -2817,6 +2817,16 @@
             "defaultValue": null
           },
           {
+            "name": "isHiddenForPerformers",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "BooleanOperationFilterInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "projectAppointments",
             "description": null,
             "type": {
@@ -3043,6 +3053,16 @@
             "type": {
               "kind": "ENUM",
               "name": "SortEnumType",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "isHiddenForPerformers",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "BooleanOperationFilterInput",
               "ofType": null
             },
             "defaultValue": null
@@ -8354,6 +8374,22 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "isHiddenForPerformers",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": "null",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "offType": null
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
           },
           {
             "name": "projectAppointments",
