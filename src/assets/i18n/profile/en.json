@@ -63,7 +63,15 @@
     "STAFF_POV": "Staff point of view ",
     "MY_POV": "My point of view",
     "NO_COMMENT": "(no comment left so far)",
-    "NO_STATUS": "(no status yet)"
+    "NO_STATUS": "(no status yet)",
+    "IS_PART_OF_PROJECT": "is part of",
+    "WORK_IN_PROGRESS": "We are working on your participation-status and e-mail you, when something changes.",
+    "RESULT_IS_REFUSAL": "Sadly you are not participating",
+    "RESULT_IS_ALARM": "Please call the management!",
+    "RESULT_IS_ACCEPTANCE": "Yeah, you are in!",
+    "RESULT_IS_PENDING": "There is still a need for clarification. Please update participation status",
+    "RESULT_IS_CANDIDATE": "You are a candidate"
+
   },
   "my-appointments": {
     "PREDICTION":"Prediction ",

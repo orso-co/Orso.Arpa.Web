@@ -58,6 +58,14 @@
     "TYPE": "Taper",
     "URLS": "URLs",
     "MY_PROJECT_APPOINTMENTS": "Événements",
+    "IS_PART_OF_PROJECT": "fait partie de",
+    "WORK_IN_PROGRESS": "Nous travaillons sur votre statut de participation et vous enverrons un e-mail en cas de changement.",
+    "RESULT_IS_REFUSAL": "Dommage, tu n'es pas là.",
+    "RESULT_IS_ALARM": "Appelez la direction!",
+    "RESULT_IS_ACCEPTANCE": "Oui, vous en êtes!",
+    "RESULT_IS_PENDING": "Il y a encore besoin de clarification. Veuillez mettre à jour votre statut de participation",
+    "RESULT_IS_CANDIDATE": "Vous êtes candidat",
+
 
     "STAFF_POV": "Point de vue du personnel",
     "MY_POV": "Mon point de vue",

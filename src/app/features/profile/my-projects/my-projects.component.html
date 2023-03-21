@@ -1,25 +1,25 @@
-<div class="p-grid p-jc-center">
+<div class='p-grid p-jc-center'>
   <h1>{{ 'MY_PROJECTS' | translate }}</h1>
 </div>
 
 <p-message
-  *ngIf="(totalRecordsCount$ | async) === 0"
-  severity="info"
-  styleClass="mr-2"
+  *ngIf='(totalRecordsCount$ | async) === 0'
+  severity='info'
+  styleClass='mr-2'
   text="{{ 'profile.NO_PROJECTS' | translate }}"
 ></p-message>
 
-<div class="p-grid p-jc-center">
-  <div class="p-col-12 p-text-center">
+<div class='p-grid p-jc-center'>
+  <div class='p-col-12 p-text-center'>
     <p>{{ totalRecordsCount$ | async }} {{ 'RESULTS' | translate }}</p>
   </div>
-  <div class="p-col-12 p-text-center">
+  <div class='p-col-12 p-text-center'>
     <p-selectButton
-      (onChange)="reloadProjects($event)"
-      [(ngModel)]="selectedOption"
-      [options]="selectOptions"
-      optionLabel="name"
-      optionValue="id"
+      (onChange)='reloadProjects($event)'
+      [(ngModel)]='selectedOption'
+      [options]='selectOptions'
+      optionLabel='name'
+      optionValue='id'
     >
       <ng-template let-item>
         {{ item.name | translate }}
@@ -29,20 +29,20 @@
 </div>
 
 
-<div class="p-grid p-jc-center p-mt-4">
-  <div class="p-col-12 p-md-10 p-lg-12">
+<div class='p-grid p-jc-center p-mt-4'>
+  <div class='p-col-12 p-md-10 p-lg-12'>
     <p-table
-      (onLazyLoad)="reloadProjects($event)"
-      [lazy]="true"
-      [paginator]="true"
-      [rowsPerPageOptions]="[10, 25, 50]"
-      [rows]="itemsPerPage"
-      [totalRecords]="(totalRecordsCount$ | async) || 0"
-      [value]="(userProjects$ | async) || []"
-      tableStyleClass="arpa-table-list"
+      (onLazyLoad)='reloadProjects($event)'
+      [lazy]='true'
+      [paginator]='true'
+      [rowsPerPageOptions]='[10, 25, 50]'
+      [rows]='itemsPerPage'
+      [totalRecords]='(totalRecordsCount$ | async) || 0'
+      [value]='(userProjects$ | async) || []'
+      tableStyleClass='arpa-table-list'
     >
-      <ng-template let-myProject pTemplate="body">
-        <ng-container *ngTemplateOutlet="listElement; context: { $implicit: myProject }"></ng-container>
+      <ng-template let-myProject pTemplate='body'>
+        <ng-container *ngTemplateOutlet='listElement; context: { $implicit: myProject }'></ng-container>
       </ng-template>
     </p-table>
   </div>
@@ -51,124 +51,182 @@
 <ng-template #listElement let-myProject>
   <p-accordion>
     <p-accordionTab>
-      <ng-template pTemplate="header">
-        <div class="p-d-flex p-flex-column">
-          <div class="p-as-start p-d-flex p-ai-center">
-            <span class="project-type">{{myProject.project.type?.name}} </span>
-            <span *ngIf="myProject.project.genre?.name" class="project-type">&nbsp;| {{myProject.project.genre?.name}}</span>
+      <ng-template pTemplate='header'>
+        <div class='p-d-flex p-flex-column'>
+          <div class='p-as-start p-d-flex p-ai-center'>
+            <span class='project-type'>{{myProject.project.type?.name}} </span>
+            <span *ngIf='myProject.project.genre?.name'
+                  class='project-type'>&nbsp;| {{myProject.project.genre?.name}}</span>
           </div>
-          <div class="p-as-start p-d-flex p-ai-center">
-            <span class="project-title">{{ myProject.project.title }}</span>
+          <div class='p-as-start p-d-flex p-ai-center'>
+            <span class='project-title'>{{ myProject.project.title }}</span>
           </div>
-          <div class="p-as-start p-d-flex project-date">
-            <span *ngIf="myProject.project.startDate">{{ myProject.project.startDate | date: 'dd.MM.yy':'locale(de)' }}</span>
-            <span *ngIf="myProject.project.endDate"> - {{ myProject.project.endDate | date: 'dd.MM.yy':'locale(de)' }}</span>
-            <span *ngIf="myProject.project.parentId" class="project-type">&nbsp;| {{myProject.project.parentId}}</span>
+          <div class='p-as-start p-d-flex project-date'>
+            <span
+              *ngIf='myProject.project.startDate'>{{ myProject.project.startDate | date: 'dd.MM.yy':'locale(de)' }}</span>
+            <span
+              *ngIf='myProject.project.endDate'> - {{ myProject.project.endDate | date: 'dd.MM.yy':'locale(de)' }}</span>
+          </div>
+          <div class='p-as-start p-d-flex parentProject'>
+            <span *ngIf='myProject.project.parentId'
+                  class='project-type'> {{ 'my-projects.IS_PART_OF_PROJECT' | translate }} {{myProject.parentProject?.title}}</span>
           </div>
         </div>
-        <div *ngFor="let participation of myProject.participations" class="right-align">
-          <button *ngIf="participation.participationStatusInternal === 'CANDIDATE' && participation.participationStatusInner === 'ACCEPTANCE'" pButton type="button" icon="pi pi-ellipsis-h" class="p-button-success"></button>
-          <button *ngIf="participation.participationStatusInternal === 'REFUSAL' || participation.participationStatusInner === 'REFUSAL'" pButton type="button" icon="pi pi-check" class="p-button-danger"></button>
-          <button *ngIf="participation.participationStatusInternal === 'ACCEPTANCE'  && participation.participationStatusInner === 'ACCEPTANCE'" pButton type="button" icon="pi pi-check" class="p-button-success"></button>
-          <button *ngIf="participation.participationStatusInternal === 'PENDING'" pButton type="button" icon="pi pi-ellipsis-h" class="p-button-info"></button>
-          <button *ngIf="participation.participationStatusInternal === 'CANDIDATE' && participation.participationStatusInner === 'INTERESTED'" pButton type="button" icon="pi pi-ellipsis-h" class="p-button-info"></button>
-          <button *ngIf="participation.participationStatusInternal === 'ACCEPTANCE' && participation.participationStatusInner === 'INTERESTED'" pButton type="button" icon="pi pi-question" class="p-button-success"></button>
+        <div *ngFor='let participation of myProject.participations' class='right-align'>
+          <button
+            *ngIf="participation.participationStatusInternal === 'CANDIDATE' && participation.participationStatusInner === 'ACCEPTANCE'"
+            pButton type='button' icon='pi pi-ellipsis-h' class='p-button-info'
+            pTooltip="{{ 'my-projects.WORK_IN_PROGRESS' | translate }} ({{participation.musicianProfile.instrumentName}})"
+            tooltipPosition='left'></button>
+          <button
+            *ngIf="participation.participationStatusInternal === 'CANDIDATE' && participation.participationStatusInner === 'PENDING'"
+            pButton type='button' icon='pi pi-question' class='p-button-success'
+            pTooltip="{{ 'my-projects.RESULT_IS_PENDING' | translate }} ({{participation.musicianProfile.instrumentName}})"
+            tooltipPosition='left'></button>
+          <button
+            *ngIf="participation.participationStatusInternal === 'REFUSAL' && participation.participationStatusInner === 'REFUSAL'"
+            pButton type='button' icon='pi pi-check' class='p-button-danger'
+            pTooltip="{{ 'my-projects.RESULT_IS_REFUSAL' | translate }} ({{participation.musicianProfile.instrumentName}})"
+            tooltipPosition='left'></button>
+          <button
+            *ngIf="participation.participationStatusInternal === 'CANDIDATE' && participation.participationStatusInner === 'REFUSAL'"
+            pButton type='button' icon='pi pi-check' class='p-button-danger'
+            pTooltip="{{ 'my-projects.RESULT_IS_REFUSAL' | translate }} ({{participation.musicianProfile.instrumentName}})"
+            tooltipPosition='left'></button>
+          <button
+            *ngIf="participation.participationStatusInternal === 'ACCEPTANCE' && participation.participationStatusInner === 'REFUSAL'"
+            pButton type='button' icon='pi pi-exclamation-triangle' class='p-button-danger'
+            pTooltip="{{ 'my-projects.RESULT_IS_ALARM' | translate }} ({{participation.musicianProfile.instrumentName}})"
+            tooltipPosition='left'></button>
+          <button
+            *ngIf="participation.participationStatusInternal === 'ACCEPTANCE'  && participation.participationStatusInner === 'ACCEPTANCE'"
+            pButton type='button' icon='pi pi-check' class='p-button-success'
+            pTooltip="{{ 'my-projects.RESULT_IS_ACCEPTANCE' | translate }} ({{participation.musicianProfile.instrumentName}})"
+            tooltipPosition='left'></button>
+          <button *ngIf="participation.participationStatusInternal === 'PENDING'"
+                  pButton type='button' icon='pi pi-ellipsis-h' class='p-button-info'
+                  pTooltip="{{ 'my-projects.RESULT_IS_PENDING' | translate }} ({{participation.musicianProfile.instrumentName}})"
+                  tooltipPosition='left'></button>
+          <button
+            *ngIf="participation.participationStatusInternal === 'CANDIDATE' && participation.participationStatusInner === 'INTERESTED'"
+            pButton type='button' icon='pi pi-ellipsis-h' class='p-button-info'
+            pTooltip="{{ 'my-projects.RESULT_IS_CANDIDATE' | translate }} ({{participation.musicianProfile.instrumentName}})"
+            tooltipPosition='left'></button>
+          <button
+            *ngIf="participation.participationStatusInternal === 'ACCEPTANCE' && participation.participationStatusInner === 'INTERESTED'"
+            pButton type='button' icon='pi pi-question' class='p-button-success'
+            pTooltip="{{ 'my-projects.RESULT_IS_PENDING' | translate }} ({{participation.musicianProfile.instrumentName}})"
+            tooltipPosition='left'></button>
         </div>
 
-  <!--      <div *ngFor="let participation of myProject.participations" class="p-grid">-->
-  <!--        <span class="tag-width">-->
-  <!--          <p *ngIf="participation.participationStatusInner" class="tag-label">{{ 'my-projects.MY_POV' | translate }}</p>-->
-  <!--          <p-tag-->
-  <!--            *ngIf="participation.participationStatusInner"-->
-  <!--            [rounded]="true"-->
-  <!--            [value]="'projectParticipationStatusInner.' + participation.participationStatusInner | translate"-->
-  <!--            severity="warning"-->
-  <!--          ></p-tag>-->
-  <!--        </span>-->
-  <!--        <span>-->
-  <!--          <p *ngIf="participation.participationStatusInternal" class="tag-label">{{ 'my-projects.STAFF_POV' | translate }}</p>-->
-  <!--          <p-tag-->
-  <!--            *ngIf="participation.participationStatusInternal"-->
-  <!--            [rounded]="false"-->
-  <!--            [value]="'projectParticipationStatusInternal.' + participation.participationStatusInternal | translate"-->
-  <!--            severity="info"-->
-  <!--          ></p-tag>-->
-  <!--        </span>-->
-  <!--      </div>-->
+        <!--      <div *ngFor="let participation of myProject.participations" class="p-grid">-->
+        <!--        <span class="tag-width">-->
+        <!--          <p *ngIf="participation.participationStatusInner" class="tag-label">{{ 'my-projects.MY_POV' | translate }}</p>-->
+        <!--          <p-tag-->
+        <!--            *ngIf="participation.participationStatusInner"-->
+        <!--            [rounded]="true"-->
+        <!--            [value]="'projectParticipationStatusInner.' + participation.participationStatusInner | translate"-->
+        <!--            severity="warning"-->
+        <!--          ></p-tag>-->
+        <!--        </span>-->
+        <!--        <span>-->
+        <!--          <p *ngIf="participation.participationStatusInternal" class="tag-label">{{ 'my-projects.STAFF_POV' | translate }}</p>-->
+        <!--          <p-tag-->
+        <!--            *ngIf="participation.participationStatusInternal"-->
+        <!--            [rounded]="false"-->
+        <!--            [value]="'projectParticipationStatusInternal.' + participation.participationStatusInternal | translate"-->
+        <!--            severity="info"-->
+        <!--          ></p-tag>-->
+        <!--        </span>-->
+        <!--      </div>-->
       </ng-template>
 
-      <ng-template pTemplate="content">
+      <ng-template pTemplate='content'>
         <p-tabView>
           <p-tabPanel
             [headerStyle]="{ 'font-size': 'smaller', 'font-weight': 'lighter' }"
             header="{{ 'my-projects.APPLICATIONSTATUS' | translate }}"
-            leftIcon="pi pi-user-edit"
+            leftIcon='pi pi-user-edit'
           >
-            <div class="p-fluid p-mt-1 p-formgrid p-grid general-container">
-              <div *ngFor="let participation of myProject.participations" class="p-col-12">
-                <div class="p-fluid p-mt-3 p-formgrid p-grid comparison-container">
-                  <div *ngIf="participation.participationStatusInner; else noStatus" class="p-col-6 status-item">
+            <div class='p-fluid p-mt-1 p-formgrid p-grid general-container'>
+              <div *ngFor='let participation of myProject.participations' class='p-col-12'>
+                <div class='p-fluid p-mt-3 p-formgrid p-grid comparison-container'>
+                  <div *ngIf='participation.participationStatusInner; else noStatus' class='p-col-6 status-item'>
                     <label>{{ 'my-projects.MY_APPLICATIONSTATUS' | translate }}</label>
                     <span>{{ 'projectParticipationStatusInner.' + participation.participationStatusInner | translate }}</span>
                   </div>
-                  <div *ngIf="participation.participationStatusInternal; else noStatus" class="p-col-6 status-item">
+                  <div *ngIf='participation.participationStatusInternal; else noStatus' class='p-col-6 status-item'>
                     <label>{{ 'my-projects.RESPONSE_STATUS' | translate }}</label>
                     <span>{{ 'projectParticipationStatusInternal.' + participation.participationStatusInternal | translate }}</span>
                   </div>
-                  <div *ngIf="participation.commentByPerformerInner; else noCommentByMe" class="p-col-6 p-mt-2 content-item">
+                  <div *ngIf='participation.commentByPerformerInner; else noCommentByMe'
+                       class='p-col-6 p-mt-2 content-item'>
                     <label>{{ 'my-projects.MY_COMMENT' | translate }}</label>
                     <span>{{ participation.commentByPerformerInner }}</span>
                   </div>
-                  <div *ngIf="participation.commentByStaffInner; else noCommentByStaff" class="p-col-6 p-mt-2 content-item">
+                  <div *ngIf='participation.commentByStaffInner; else noCommentByStaff'
+                       class='p-col-6 p-mt-2 content-item'>
                     <label>{{ 'my-projects.COMMENT_STAFF' | translate }}</label>
                     <span>{{ participation.commentByPerformerInner }}</span>
                   </div>
                 </div>
-                  <div class="p-fluid p-mt-3 p-formgrid p-grid comparison-container">
-
-                    <div class="p-col-6">
-                      <p-button
-                        (click)="openDialog(myProject.project.id, participation)"
-                        label="{{ 'my-projects.CHANGE_APPLICATION' | translate }}"
-                        type="button"
-                      ></p-button>
-                    </div>
-                    <div class="p-col-6 status-item">
-                      <label>{{ 'my-projects.MY_PROFILE' | translate }}</label>
-                      <span> {{ participation.musicianProfile.instrumentName }}</span>
-                    </div>
-
+                <div class='p-fluid p-mt-3 p-formgrid p-grid comparison-container'>
+                  <div *ngIf="myProject.project.isCompleted === false" class='p-col-6'>
+                    <p-button
+                      (click)='openDialog(myProject.project.id, participation)'
+                      label="{{ 'my-projects.CHANGE_APPLICATION' | translate }}"
+                      type='button'
+                    ></p-button>
                   </div>
-                <hr />
+                  <div class='p-col-6 status-item'>
+                    <label>{{ 'my-projects.MY_PROFILE' | translate }}</label>
+                    <span> {{ participation.musicianProfile.instrumentName }}</span>
+                  </div>
 
                 </div>
+                <hr />
+
+              </div>
             </div>
           </p-tabPanel>
           <p-tabPanel
             [headerStyle]="{ 'font-size': 'smaller', 'font-weight': 'lighter' }"
             header="{{ 'my-projects.URLS' | translate }}"
-            leftIcon="pi pi-link">
-            <div *ngIf="(myProject.project.urls?.length || 0) > 0" class="p-col-12 content-item">
-              <label>{{ 'my-projects.URLS' | translate }}</label>
-              <ul>
-                <li *ngFor="let url of myProject.project.urls" class='li'>
-                  <span>
-                    <a [href]="url.href" target="_blank">{{ url.anchorText }}</a>
-                  </span>
+            leftIcon='pi pi-link'>
+            <div class='p-fluid p-mt-3 p-formgrid p-grid comparison-container'>
 
-                </li>
-              </ul>
+              <div *ngIf='(myProject.project.urls?.length || 0) > 0' class='p-col-6 content-item'>
+                <label>{{ 'my-projects.URLS' | translate }}</label>
+                <ul>
+                  <li *ngFor='let url of myProject.project.urls' class='li'>
+                  <span>
+                    <a [href]='url.href' target='_blank'>{{ url.anchorText }}</a>
+                  </span>
+                  </li>
+                </ul>
+              </div>
+              <div *ngIf='(myProject.parentProject?.urls?.length || 0) > 0' class='p-col-6 content-item'>
+                <label>{{myProject.parentProject.title}}</label>
+                <ul>
+                  <li *ngFor='let url of myProject.parentProject.urls' class='li'>
+                      <span>
+                      <a [href]='url.href' target='_blank'>{{ url.anchorText }}</a>
+                  </span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </p-tabPanel>
           <p-tabPanel
             [headerStyle]="{ 'font-size': 'smaller', 'font-weight': 'lighter' }"
             header="{{ 'my-projects.MY_PROJECT_APPOINTMENTS' | translate }}"
-            leftIcon="pi pi-calendar-times">
-            <p>Hier erscheint künftig eine Liste aller Projekttermine. Bis es soweit ist bitte so lange hier nachsehen:</p>
-            <a routerLink="appointments">Meine Termine</a>
+            leftIcon='pi pi-calendar-times'>
+            <p>Hier erscheint künftig eine Liste aller Projekttermine. Bis es soweit ist bitte so lange hier
+              nachsehen:</p>
+            <a routerLink='appointments'>Meine Termine</a>
             <arpa-table *ngIf='appointmentParticipations$ | async'
                         [columnFilter]='true'
-                        [values]="appointmentParticipations$"
+                        [values]='appointmentParticipations$'
                         [columns]='columns'
                         [showFilter]='true'
                         [showFirstLastIcon]='false'
@@ -182,22 +240,39 @@
           <p-tabPanel
             [headerStyle]="{ 'font-size': 'smaller', 'font-weight': 'lighter' }"
             header="{{ 'my-projects.PROJECTDETAILS' | translate }}"
-            leftIcon="pi pi-info-circle"
+            leftIcon='pi pi-info-circle'
           >
-            <div class="p-fluid p-mt-1 p-formgrid p-grid comparison-container">
-              <div *ngIf="myProject.project.genre?.name" class="p-col-3 content-item">
+            <div class='p-fluid p-mt-1 p-formgrid p-grid comparison-container'>
+              <div *ngIf='myProject.project.genre?.name' class='p-col-3 content-item'>
                 <label>{{ 'my-projects.TYPE' | translate }}</label>
                 <span>{{ myProject.project.type?.name || '' }}</span>
               </div>
-              <div *ngIf="myProject.project.status" class="p-col-3 content-item">
+              <div *ngIf='myProject.project.status' class='p-col-3 content-item'>
                 <label>{{ 'my-projects.STATUS' | translate }}</label>
                 <span>{{ myProject.project.status | translate }}</span>
               </div>
             </div>
-            <div class="p-fluid p-mt-1 p-formgrid p-grid comparison-container">
-              <div class="p-col-6 p-mt-1 content-item">
+            <div class='p-fluid p-mt-1 p-formgrid p-grid comparison-container'>
+              <div *ngIf='myProject.project.description' class='p-col-6 p-mt-1 content-item'>
                 <label>{{ 'my-projects.DESCRIPTION' | translate }}</label>
                 <span>{{ myProject.project.description }}</span>
+              </div>
+            </div>
+            <h5 *ngIf="myProject.parentProject?.title"> {{ 'my-projects.IS_PART_OF_PROJECT' | translate }} {{ myProject.parentProject?.title }}</h5>
+            <div class='p-fluid p-mt-1 p-formgrid p-grid comparison-container'>
+              <div *ngIf='myProject.parentProject?.genre?.name' class='p-col-3 content-item'>
+                <label>{{ 'my-projects.TYPE' | translate }}</label>
+                <span>{{ myProject.parentProject?.type?.name || '' }}</span>
+              </div>
+              <div *ngIf='myProject.parentProject?.status' class='p-col-3 content-item'>
+                <label>{{ 'my-projects.STATUS' | translate }}</label>
+                <span>{{ myProject.parentProject?.status | translate }}</span>
+              </div>
+            </div>
+            <div class='p-fluid p-mt-1 p-formgrid p-grid comparison-container'>
+              <div *ngIf="myProject.parentProject?.description" class='p-col-6 p-mt-1 content-item'>
+                <label>{{ 'my-projects.DESCRIPTION' | translate }}</label>
+                <span>{{ myProject.parentProject?.description }}</span>
               </div>
             </div>
           </p-tabPanel>
@@ -208,21 +283,21 @@
 </ng-template>
 
 <ng-template #noCommentByMe>
-  <div class="p-col-6 p-mt-2 content-item">
-  <label>{{ 'my-projects.MY_COMMENT' | translate }}</label>
-    <span class="placeholder">{{ 'my-projects.NO_COMMENT' | translate }}</span>
+  <div class='p-col-6 p-mt-2 content-item'>
+    <label>{{ 'my-projects.MY_COMMENT' | translate }}</label>
+    <span class='placeholder'>{{ 'my-projects.NO_COMMENT' | translate }}</span>
   </div>
 
 </ng-template>
 <ng-template #noCommentByStaff>
-  <div class="p-col-6 p-mt-2 content-item">
+  <div class='p-col-6 p-mt-2 content-item'>
     <label>{{ 'my-projects.COMMENT_STAFF' | translate }}</label>
     <span>{{ 'my-projects.NO_COMMENT' | translate }}</span>
   </div>
 </ng-template>
 
 <ng-template #noStatus>
-  <div class="p-col-6 p-mt-2 status-item">
+  <div class='p-col-6 p-mt-2 status-item'>
     <label>{{ 'my-projects.APPLICATIONSTATUS' | translate }}</label>
     <span>{{ 'my-projects.NO_STATUS' | translate }}</span>
   </div>

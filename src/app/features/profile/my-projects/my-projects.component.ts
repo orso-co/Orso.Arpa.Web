@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
-import { first, map } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 import { MeService, EnumService, NotificationsService } from '@arpa/services';
 import { MyProjectParticipationDialogComponent } from '../my-project-participation-dialog/my-project-participation-dialog.component';
 import { MyProjectParticipationDto, MyProjectDto,  MyAppointmentListDto } from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'arpa-profile-my-projects',
@@ -16,7 +16,6 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 export class MyProjectsComponent implements OnInit {
   userProjects$: BehaviorSubject<MyProjectDto[]> = new BehaviorSubject<MyProjectDto[]>([]);
   totalRecordsCount$: BehaviorSubject<number> = new BehaviorSubject(0);
-  
   itemsPerPage = 25;
   selectOptions = [
     { id: false, name: 'OPEN_PROJECTS' },
@@ -74,7 +73,7 @@ export class MyProjectsComponent implements OnInit {
 
         // TODO: when the endpoint changes, change response to response.result
         const projects: MyProjectDto[] = response || [];
-        
+
         // TODO: change the response object type to the correct one after the endpoint is fixed
         //  and change this operation to response.size or equivalent property
         this.totalRecordsCount$.next(response.length)

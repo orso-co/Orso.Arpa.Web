@@ -57,6 +57,14 @@
     "TYPE": "Tipo",
     "URLS": "URLs",
     "MY_PROJECT_APPOINTMENTS": "Eventos",
+    "IS_PART_OF_PROJECT": "faz parte de",
+    "WORK_IN_PROGRESS": "Estamos a trabalhar no seu estatuto de participação e a enviar-lhe um e-mail, quando algo muda.",
+    "RESULT_IS_REFUSAL": "Que pena, não estás lá",
+    "RESULT_IS_ALARM": "Por favor contacte a direcção!",
+    "RESULT_IS_ACCEPTANCE": "Sim, você está dentro!",
+    "RESULT_IS_PENDING": "Há ainda necessidade de esclarecimento. Por favor, actualizar o estado de participação",
+    "RESULT_IS_CANDIDATE": "Você é um candidato",
+
 
     "STAFF_POV": "Ponto de vista do pessoal",
     "MY_POV": "Meu ponto de vista",

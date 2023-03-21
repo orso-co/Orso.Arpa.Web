@@ -1,8 +1,11 @@
 .project-title {
-  font-size: normal;
+  font-size: large;
+  font-weight: bold;
 }
 .project-type {
   font-size: small;
+  opacity: 60%;
+
 }
 .project-date {
   text-transform: uppercase;
@@ -71,4 +74,10 @@
 .li {
   padding-bottom: 0.5rem;
   list-style-type: disc;
+}
+.parentProject {
+  font-weight: normal;
+  opacity: 90%;
+  font-size: small;
+
 }

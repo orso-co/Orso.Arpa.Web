@@ -44,6 +44,7 @@ import { ChipModule } from 'primeng/chip';
 import { MyAppointmentParticipationDialogComponent } from './my-appointment-participation-dialog/my-appointment-participation-dialog.component';
 import { ProjectsModule } from '../projects/projects.module';
 import { ParticipationDialogModule } from '../participation-dialog/participation-dialog.module';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import { ParticipationDialogModule } from '../participation-dialog/participation
     OverlayPanelModule,
     ProjectsModule,
     ParticipationDialogModule,
+    TooltipModule,
   ],
   providers: [ProfileService, ProfileResolver, LocalizedDatePipe],
   exports: [
