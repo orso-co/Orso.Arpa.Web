@@ -9,7 +9,6 @@
 ></p-message>
 <div class="p-grid p-jc-center">
   <div class="p-col-12 p-text-center">
-    <h1 #predictionAction>{{ 'profile.MY_PROJECTS' | translate }}</h1>
     <p>{{ (totalRecordsCount$ | async) || 0 }} {{ 'RESULTS' | translate }}</p>
   </div>
   <div class="p-col-12 p-text-center">
@@ -33,7 +32,6 @@
         <div class="p-as-start p-d-flex p-ai-center">
           <span class="project-type">{{myProject.project.type?.name}} </span>
           <span *ngIf="myProject.project.genre?.name" class="project-type">&nbsp;| {{myProject.project.genre?.name}}</span>
-
         </div>
         <div class="p-as-start p-d-flex p-ai-center">
           <span class="project-title">{{ myProject.project.title }}</span>
@@ -41,8 +39,8 @@
         <div class="p-as-start p-d-flex project-date">
           <span *ngIf="myProject.project.startDate">{{ myProject.project.startDate | date: 'dd.MM.yy':'locale(de)' }}</span>
           <span *ngIf="myProject.project.endDate"> - {{ myProject.project.endDate | date: 'dd.MM.yy':'locale(de)' }}</span>
+          <span *ngIf="myProject.project.parentId" class="project-type">&nbsp;| {{myProject.project.parentId}}</span>
         </div>
-
       </div>
       <div *ngFor="let participation of myProject.participations" class="right-align">
         <button *ngIf="participation.participationStatusInternal === 'CANDIDATE' && participation.participationStatusInner === 'ACCEPTANCE'" pButton type="button" icon="pi pi-ellipsis-h" class="p-button-success"></button>
@@ -51,8 +49,6 @@
         <button *ngIf="participation.participationStatusInternal === 'PENDING'" pButton type="button" icon="pi pi-ellipsis-h" class="p-button-info"></button>
         <button *ngIf="participation.participationStatusInternal === 'CANDIDATE' && participation.participationStatusInner === 'INTERESTED'" pButton type="button" icon="pi pi-ellipsis-h" class="p-button-info"></button>
         <button *ngIf="participation.participationStatusInternal === 'ACCEPTANCE' && participation.participationStatusInner === 'INTERESTED'" pButton type="button" icon="pi pi-question" class="p-button-success"></button>
-
-
       </div>
 
 <!--      <div *ngFor="let participation of myProject.participations" class="p-grid">-->
@@ -86,8 +82,6 @@
         >
           <div class="p-fluid p-mt-1 p-formgrid p-grid general-container">
             <div *ngFor="let participation of myProject.participations" class="p-col-12">
-
-
               <div class="p-fluid p-mt-3 p-formgrid p-grid comparison-container">
                 <div *ngIf="participation.participationStatusInner; else noStatus" class="p-col-6 status-item">
                   <label>{{ 'my-projects.MY_APPLICATIONSTATUS' | translate }}</label>
@@ -106,8 +100,8 @@
                   <span>{{ participation.commentByPerformerInner }}</span>
                 </div>
               </div>
-                <hr />
                 <div class="p-fluid p-mt-3 p-formgrid p-grid comparison-container">
+
                   <div class="p-col-6">
                     <p-button
                       (click)="openDialog(myProject.project.id, participation)"
@@ -115,14 +109,16 @@
                       type="button"
                     ></p-button>
                   </div>
-                  <div class="p-col-6 content-item">
+                  <div class="p-col-6 status-item">
                     <label>{{ 'my-projects.MY_PROFILE' | translate }}</label>
-                    <span> {{ participation.musicianProfile.instrumentName }} ({{ participation.musicianProfile.qualification }})</span>
+                    <span> {{ participation.musicianProfile.instrumentName }}</span>
                   </div>
+
                 </div>
+              <hr />
 
               </div>
-            </div>
+          </div>
         </p-tabPanel>
         <p-tabPanel
           [headerStyle]="{ 'font-size': 'smaller', 'font-weight': 'lighter' }"

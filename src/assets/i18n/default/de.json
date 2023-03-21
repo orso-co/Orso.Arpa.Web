@@ -102,6 +102,9 @@
   "YES": "Ja",
   "TARGET_GROUP": "Zielgruppe",
   "SECTION": "Register",
+  "OPEN_PROJECTS": "Offene Projekte",
+  "CLOSED_PROJECTS": "Abgeschlossene Projekte",
+  "ALL_PROJECTS": "Alle Projekte",
 
   "error": {
     "BAD_REQUEST": "Es ist ein Fehler aufgetreten",

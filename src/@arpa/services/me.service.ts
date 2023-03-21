@@ -1,4 +1,3 @@
-import { AppointmentParticipationDto } from './../models/appointmentParticipationDto';
 import {
   SetMyAppointmentParticipationPredictionDto,
   BankAccountModifyBodyDto,
@@ -19,7 +18,6 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { finalize, first, map, shareReplay, switchMap, tap } from 'rxjs/operators';
 import { ApiService, AuthService } from '@arpa/services';
-import { HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -81,12 +79,8 @@ export class MeService {
   getMyProjects(): Observable<MyProjectDto[]> {
     return this.apiService.get<MyProjectDto[]>(`${this.baseUrl}/projects`).pipe(shareReplay());
   }
-  getCompletedProjects(take: number | null, skip: number | null, passed: boolean = false): Observable<MyProjectDto[]> {
-    // set the value of `includecompleted` variable
-    const includecompleted = true;
-    // create a new HttpParams object and set the value of `includecompleted`
-    let params = new HttpParams().set('includecompleted', includecompleted.toString());
-    return this.apiService.get<MyProjectDto[]>(`${this.baseUrl}/projects?limit=${take}&offset=${skip}&passed=${passed}`, params ).pipe(shareReplay());
+  getAllProjects(take: number | null, skip: number | null, includecompleted: boolean = false): Observable<MyProjectDto[]> {
+    return this.apiService.get<MyProjectDto[]>(`${this.baseUrl}/projects?limit=${take}&offset=${skip}&includecompleted=${includecompleted}` ).pipe(shareReplay());
   }
 
   setAppointmentPrediction(

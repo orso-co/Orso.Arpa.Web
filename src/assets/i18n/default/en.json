@@ -97,6 +97,9 @@
   "PROJECT_PARTICIPATION_STATUS": "Participation Status",
   "TARGET_GROUP": "Target group",
   "SECTION": "Section",
+  "OPEN_PROJECTS": "Open Projects",
+  "CLOSED_PROJECTS": "Closed Projects",
+  "ALL_PROJECTS": "All Projects",
 
   "error": {
     "BAD_REQUEST": "An error occured",
