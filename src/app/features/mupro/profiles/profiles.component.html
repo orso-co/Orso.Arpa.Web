@@ -62,17 +62,19 @@
                     type='button'
                   ></button>
                   </div>
-                  <div class='p-d-inline-flex' style='text-align: center'>
-                    <p-button
-                      (click)='openInvitationDialog(profile.id)'
-                      *ngIf='!profile.deactivation'
-                      [label]="'INVITE' | translate"
-                      class='p-text-left p-ml-3'
-                      icon='pi pi-plus-circle'
-                      styleClass='p-button-sm'
-                      type='button'
-                    ></p-button>
-                  </div>
+<!--                  Due to refactoring the backend concerning the invitation process, the invitation button is currently disabled.-->
+<!--                  TODO: remove this whole invitation process after testing the new invitation process-->
+<!--                  <div class='p-d-inline-flex' style='text-align: center'>-->
+<!--                    <p-button-->
+<!--                      (click)='openInvitationDialog(profile.id)'-->
+<!--                      *ngIf='!profile.deactivation'-->
+<!--                      [label]="'INVITE' | translate"-->
+<!--                      class='p-text-left p-ml-3'-->
+<!--                      icon='pi pi-plus-circle'-->
+<!--                      styleClass='p-button-sm'-->
+<!--                      type='button'-->
+<!--                    ></p-button>-->
+<!--                  </div>-->
                   <p-badge
                     *ngIf='profile.deactivation'
                     severity='danger'
