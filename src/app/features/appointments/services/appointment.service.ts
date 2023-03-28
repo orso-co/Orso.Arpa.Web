@@ -1,4 +1,8 @@
-import { AppointmentParticipationPrediction, AppointmentParticipationResult } from '@arpa/models';
+import {
+  AppointmentModifyBodyDto,
+  AppointmentParticipationPrediction,
+  AppointmentParticipationResult,
+} from '@arpa/models';
 import { shareReplay } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -32,7 +36,7 @@ export class AppointmentService {
     return this.apiService.post<AppointmentDto>(this.baseUrl, appointment);
   }
 
-  update(appointment: AppointmentDto): Observable<any> {
+  update(appointment: AppointmentModifyBodyDto): Observable<any> {
     return this.apiService.put(`${this.baseUrl}/${appointment.id}`, appointment).pipe(shareReplay());
   }
 
