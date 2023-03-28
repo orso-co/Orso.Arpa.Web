@@ -68,7 +68,7 @@ import { TooltipModule } from 'primeng/tooltip';
     ReactiveFormsModule,
     SelectDialogModule,
     // Arpa Lib
-    TranslateModule.forChild(['profile']),
+    TranslateModule.forChild(['profile', 'projects']),
     MenuModule,
     AvatarModule,
     SplitViewModule,
@@ -96,9 +96,7 @@ import { TooltipModule } from 'primeng/tooltip';
     TooltipModule,
   ],
   providers: [ProfileService, ProfileResolver, LocalizedDatePipe],
-  exports: [
-    RibbonComponent,
-  ],
+  exports: [RibbonComponent],
 })
 export class ProfileModule {
   constructor(private translateService: TranslateService, private languageService: LanguageService) {

@@ -3,7 +3,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { first } from 'rxjs/operators';
 import { MeService, EnumService, NotificationsService } from '@arpa/services';
 import { MyProjectParticipationDialogComponent } from '../my-project-participation-dialog/my-project-participation-dialog.component';
-import { MyProjectParticipationDto, MyProjectDto,  MyAppointmentListDto } from '@arpa/models';
+import { MyProjectParticipationDto, MyProjectDto, MyAppointmentListDto } from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -23,13 +23,12 @@ export class MyProjectsComponent implements OnInit {
   ];
   selectedOption: boolean = false;
   appointmentParticipations$: Observable<any>;
-  columns: ColumnDefinition<MyAppointmentListDto>[] =[
+  columns: ColumnDefinition<MyAppointmentListDto>[] = [
     { label: 'APPOINTMENT', property: 'appointment.name', type: 'text' },
     { label: 'BEGIN', property: 'appointment.startTime', type: 'date' },
     { label: 'PREDICTION', property: 'appointmentParticipation.prediction', type: 'text' },
     { label: 'RESULT', property: 'appointmentParticipation.result', type: 'text' },
   ];
-
   constructor(
     private meService: MeService,
     private enumService: EnumService,
@@ -41,7 +40,6 @@ export class MyProjectsComponent implements OnInit {
   ngOnInit(): void {
     this.reloadProjects();
   }
-
 
   openDialog(projectId: string, participation: MyProjectParticipationDto) {
     const ref = this.dialogService.open(MyProjectParticipationDialogComponent, {
@@ -68,25 +66,15 @@ export class MyProjectsComponent implements OnInit {
   }
 
   loadData(take: number, skip: number): void {
-    const loadResult$ = this.meService.getAllProjects(take, skip, this.selectedOption)
-      .subscribe((response: MyProjectDto[]) => {
-
-        // TODO: when the endpoint changes, change response to response.result
-        const projects: MyProjectDto[] = response || [];
-
-        // TODO: change the response object type to the correct one after the endpoint is fixed
-        //  and change this operation to response.size or equivalent property
-        this.totalRecordsCount$.next(response.length)
-
-        this.userProjects$.next(projects)
-      });
+    const loadResult$ = this.meService.getAllProjects(take, skip, this.selectedOption).subscribe((response) => {
+      this.totalRecordsCount$.next(response.totalRecordsCount || 0);
+      this.userProjects$.next(response.userProjects || []);
+    });
   }
 
-
-  // TODO: this will give us problems due to missing pagination.
-  reloadProjects(event?: { value: number }) {
-    // TODO: implement pagination
-    const take = 0;
-    this.loadData(this.itemsPerPage, take);
+  reloadProjects(event?: { first: number; row: number }) {
+    const take = event?.row || this.itemsPerPage;
+    const skip = event?.first || 0;
+    this.loadData(take, skip);
   }
 }
