@@ -1,5 +1,6 @@
 import { AppointmentStatus } from './appointmentStatus';
 export interface AppointmentModifyBodyDto {
+  id: string;
   categoryId?: string;
   startTime: Date;
   endTime: Date;
