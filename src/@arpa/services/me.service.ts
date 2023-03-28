@@ -89,6 +89,7 @@ export class MeService {
   // }
   getAllProjects(pageIndex: number, pageSize: number, includecompleted: boolean = false): Observable<PaginatedResult<MyProjectDto>> {
     return this.apiService.get<PaginatedResult<MyProjectDto>>(`${this.baseUrl}/projects?pageIndex=${pageIndex}&pageSize=${pageSize}&includecompleted=${includecompleted}`)
+
       .pipe(shareReplay());
   }
 

@@ -113,4 +113,27 @@ export class MyProjectsComponent implements OnInit {
     this.loadData(pageSize, pageIndex);
   }
 
+=======
+  loadData(take: number, skip: number): void {
+    const loadResult$ = this.meService.getAllProjects(take, skip, this.selectedOption)
+      .subscribe((response: MyProjectDto[]) => {
+
+        // TODO: when the endpoint changes, change response to response.result
+        const projects: MyProjectDto[] = response || [];
+
+        // TODO: change the response object type to the correct one after the endpoint is fixed
+        //  and change this operation to response.size or equivalent property
+        this.totalRecordsCount$.next(response.length)
+
+        this.userProjects$.next(projects)
+      });
+  }
+
+
+  // TODO: this will give us problems due to missing pagination.
+  reloadProjects(event?: { value: number }) {
+    // TODO: implement pagination
+    const take = 0;
+    this.loadData(this.itemsPerPage, take);
+  }
 }
