@@ -67,26 +67,43 @@ export class MyProjectsComponent implements OnInit {
     });
   }
 
+  // loadData(take: number, skip: number): void {
+  //   const loadResult$ = this.meService.getAllProjects(take, skip, this.selectedOption)
+  //     .subscribe((response: MyProjectDto[]) => {
+  //
+  //       // TODO: when the endpoint changes, change response to response.result
+  //       const projects: MyProjectDto[] = response || [];
+  //
+  //       // TODO: change the response object type to the correct one after the endpoint is fixed
+  //       //  and change this operation to response.size or equivalent property
+  //       this.totalRecordsCount$.next(response.length)
+  //
+  //       this.userProjects$.next(projects)
+  //     });
+  // }
+
   loadData(take: number, skip: number): void {
     const loadResult$ = this.meService.getAllProjects(take, skip, this.selectedOption)
-      .subscribe((response: MyProjectDto[]) => {
-
-        // TODO: when the endpoint changes, change response to response.result
-        const projects: MyProjectDto[] = response || [];
-
-        // TODO: change the response object type to the correct one after the endpoint is fixed
-        //  and change this operation to response.size or equivalent property
-        this.totalRecordsCount$.next(response.length)
-
-        this.userProjects$.next(projects)
+      .subscribe((response: { items: MyProjectDto[], total: number }) => {
+        const { items, total } = response;
+        this.totalRecordsCount$.next(total);
+        this.userProjects$.next(items);
       });
   }
 
 
-  // TODO: this will give us problems due to missing pagination.
+
+  // // TODO: this will give us problems due to missing pagination.
+  // reloadProjects(event?: { value: number }) {
+  //   // TODO: implement pagination
+  //   const take = 0;
+  //   this.loadData(this.itemsPerPage, take);
+  // }
   reloadProjects(event?: { value: number }) {
-    // TODO: implement pagination
-    const take = 0;
-    this.loadData(this.itemsPerPage, take);
+    const take = event?.value || this.itemsPerPage;
+    const skip = (this.userProjects$.value.length / this.itemsPerPage) * this.itemsPerPage;
+
+    this.loadData(take, skip);
   }
+
 }
