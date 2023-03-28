@@ -19,6 +19,9 @@ import { Observable, of } from 'rxjs';
 import { finalize, first, map, shareReplay, switchMap, tap } from 'rxjs/operators';
 import { ApiService, AuthService } from '@arpa/services';
 
+export interface GetAllProjectsResponse {
+  userProjects: MyProjectDto[],
+  totalRecordsCount: number}
 @Injectable({
   providedIn: 'root',
 })
@@ -76,25 +79,13 @@ export class MeService {
       .pipe(shareReplay());
   }
 
-  // // TODO: this endpoint is returning an array.
-  // //  because of that, we are not able to know the amount of projects a user has, only the size of the array (which is limited by take)
-  // //  therefore, we need to update the output of this endpoint to a paginated output that includes the total number of items
-  // getAllProjects(take: number | null, skip: number | null, includecompleted: boolean = false): Observable<MyProjectDto[]> {
-  //   return this.apiService
-  //     .get<MyProjectDto[]>(`${this.baseUrl}/projects?limit=${take}&offset=${skip}&includecompleted=${includecompleted}` )
-  //     .pipe(shareReplay());
-  // }
-
-  getAllProjects(pageSize: number = 10, pageNumber: number = 1, includecompleted: boolean = false): Observable<{ items: MyProjectDto[], total: number }> {
+  getAllProjects(pageSize: number = 10, pageNumber: number = 1, includecompleted: boolean = false): Observable<GetAllProjectsResponse> {
     const skip = pageNumber * pageSize;
     return this.apiService
-      .get<MyProjectDto[]>(`${this.baseUrl}/projects?limit=${pageSize}&offset=${skip}&includecompleted=${includecompleted}`)
-      .pipe(
-        map((items: MyProjectDto[]) => ({ items, total: items.length })),
-        shareReplay()
+      .get<GetAllProjectsResponse>(`${this.baseUrl}/projects?limit=${pageSize}&offset=${skip}&includecompleted=${includecompleted}`)
+      .pipe(shareReplay()
       );
   }
-
 
   setAppointmentPrediction(
     appointmentId: string,
