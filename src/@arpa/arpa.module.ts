@@ -8,7 +8,6 @@ import {
   SkipSelf,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { LayoutModule } from './layout/layout.module';
 import { TranslateModule } from './translate';
 import { TranslateService } from '@ngx-translate/core';

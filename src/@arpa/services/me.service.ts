@@ -12,18 +12,20 @@ import {
   BankAccountDto,
   BankAccountCreateBodyDto,
   RoleNames,
-  MyProjectParticipationModifyBodyDto, MyAppointmentDto,
+  MyProjectParticipationModifyBodyDto, MyAppointmentDto
 } from '@arpa/models';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { finalize, first, map, shareReplay, switchMap, tap } from 'rxjs/operators';
 import { ApiService, AuthService } from '@arpa/services';
+import { PaginatedResult } from '../models/paginatedResult';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MeService {
   private baseUrl = '/me';
+
 
   constructor(private apiService: ApiService, private authService: AuthService) {}
 
@@ -76,14 +78,20 @@ export class MeService {
       .pipe(shareReplay());
   }
 
+
   // TODO: this endpoint is returning an array.
   //  because of that, we are not able to know the amount of projects a user has, only the size of the array (which is limited by take)
   //  therefore, we need to update the output of this endpoint to a paginated output that includes the total number of items
-  getAllProjects(take: number | null, skip: number | null, includecompleted: boolean = false): Observable<MyProjectDto[]> {
-    return this.apiService
-      .get<MyProjectDto[]>(`${this.baseUrl}/projects?limit=${take}&offset=${skip}&includecompleted=${includecompleted}` )
+  // getAllProjects(take: number | null, skip: number | null, includecompleted: boolean = false): Observable<MyProjectDto[]> {
+  //   return this.apiService
+  //     .get<MyProjectDto[]>(`${this.baseUrl}/projects?limit=${take}&offset=${skip}&includecompleted=${includecompleted}` )
+  //     .pipe(shareReplay());
+  // }
+  getAllProjects(pageIndex: number, pageSize: number, includecompleted: boolean = false): Observable<PaginatedResult<MyProjectDto>> {
+    return this.apiService.get<PaginatedResult<MyProjectDto>>(`${this.baseUrl}/projects?pageIndex=${pageIndex}&pageSize=${pageSize}&includecompleted=${includecompleted}`)
       .pipe(shareReplay());
   }
+
 
   setAppointmentPrediction(
     appointmentId: string,

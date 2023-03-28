@@ -7,6 +7,7 @@ import { MyProjectParticipationDto, MyProjectDto,  MyAppointmentListDto } from '
 import { TranslateService } from '@ngx-translate/core';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { PaginatedResult } from '../../../../@arpa/models/paginatedResult';
 
 @Component({
   selector: 'arpa-profile-my-projects',
@@ -67,26 +68,49 @@ export class MyProjectsComponent implements OnInit {
     });
   }
 
-  loadData(take: number, skip: number): void {
-    const loadResult$ = this.meService.getAllProjects(take, skip, this.selectedOption)
-      .subscribe((response: MyProjectDto[]) => {
+  // loadData(take: number, skip: number): void {
+  //   const loadResult$ = this.meService.getAllProjects(take, skip, this.selectedOption)
+  //     // .subscribe((response: MyProjectDto[]) => {
+  //     //
+  //     //   // TODO: when the endpoint changes, change response to response.result
+  //     //   const projects: MyProjectDto[] = response || [];
+  //     //
+  //     //   // TODO: change the response object type to the correct one after the endpoint is fixed
+  //     //   //  and change this operation to response.size or equivalent property
+  //     //   this.totalRecordsCount$.next(response.length);
+  //     //
+  //     //   this.userProjects$.next(projects)
+  //     // });
+  //     .subscribe((response: PaginatedResult<MyProjectDto>) => {
+  //       const projects: MyProjectDto[] = response.results || [];
+  //       this.totalRecordsCount$.next(response.totalCount);
+  //       this.userProjects$.next(projects);
+  //     });
+  //
+  // }
+  loadData(pageSize: number, pageIndex: number): void {
+    const skip = pageIndex * pageSize;
 
-        // TODO: when the endpoint changes, change response to response.result
-        const projects: MyProjectDto[] = response || [];
-
-        // TODO: change the response object type to the correct one after the endpoint is fixed
-        //  and change this operation to response.size or equivalent property
-        this.totalRecordsCount$.next(response.length)
-
-        this.userProjects$.next(projects)
+    const loadResult$ = this.meService.getAllProjects(pageSize, skip, this.selectedOption)
+      .subscribe((response: PaginatedResult<MyProjectDto>) => {
+        this.totalRecordsCount$.next(response.totalCount);
+        this.userProjects$.next(response.results);
       });
   }
 
 
-  // TODO: this will give us problems due to missing pagination.
+
+
+  // // TODO: this will give us problems due to missing pagination.
+  // reloadProjects(event?: { value: number }) {
+  //   // TODO: implement pagination
+  //   const take = 0;
+  //   this.loadData(this.itemsPerPage, take);
+  // }
   reloadProjects(event?: { value: number }) {
-    // TODO: implement pagination
-    const take = 0;
-    this.loadData(this.itemsPerPage, take);
+    const pageIndex = event?.value || 0;
+    const pageSize = this.itemsPerPage;
+    this.loadData(pageSize, pageIndex);
   }
+
 }

@@ -75,6 +75,7 @@ import { TooltipModule } from 'primeng/tooltip';
     SelectValueModule,
     FormFieldModule,
     TableModule,
+
     // PrimeNG Dependencies
     ButtonModule,
     DropdownModule,

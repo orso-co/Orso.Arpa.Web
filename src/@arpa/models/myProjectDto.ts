@@ -8,6 +8,7 @@ export interface MyProjectDto {
   project: ProjectDto;
   participations: MyProjectParticipationDto[];
   appointments: MyAppointmentListDto[];
+  totalRecordsCount: number;
 }
 
 export interface MyProjectParticipationDto {
