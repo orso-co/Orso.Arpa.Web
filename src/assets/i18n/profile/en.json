@@ -71,6 +71,8 @@
     "RESULT_IS_PENDING": "There is still a need for clarification",
     "RESULT_IS_REFUSAL": "Sadly you are not participating",
     "STAFF_POV": "Staff point of view ",
+    "SET_PARTICIPATION_STATUS": "Participation status set",
+    "SET_PARTICIPATION_STATUS_ERROR_422": "Your musicianprofile is deactivated during this project. Please reactivate it to participate.",
     "STATUS": "Status",
     "TYPE": "Type",
     "UPDATE_PARTICIPATION": "Update participation status",
