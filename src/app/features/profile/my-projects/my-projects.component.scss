@@ -5,7 +5,6 @@
 .project-type {
   font-size: small;
   opacity: 60%;
-
 }
 .project-date {
   text-transform: uppercase;
@@ -35,30 +34,29 @@
     padding: 0;
     list-style: none;
   }
-
 }
 .status-item {
-    display: flex;
-    flex-direction: column;
-    font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
 
-    > label {
-      font-size: x-small;
-      opacity: 60%;
-      font-weight: normal;
-      text-transform: uppercase;
-      padding-bottom: 0.3rem;
-    }
+  > label {
+    font-size: x-small;
+    opacity: 60%;
+    font-weight: normal;
+    text-transform: uppercase;
+    padding-bottom: 0.3rem;
+  }
   > span {
     font-size: large;
   }
 
-    ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
+}
 .tag-label {
   font-size: x-small;
   font-weight: lighter;
@@ -79,5 +77,11 @@
   font-weight: normal;
   opacity: 90%;
   font-size: small;
-
+}
+.status-hint {
+  font-weight: bolder;
+  opacity: 100%;
+  font-size: large;
+  font-style: italic;
+  lighting-color: var(--text-color-secondary);
 }

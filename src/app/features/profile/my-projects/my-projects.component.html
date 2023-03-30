@@ -71,85 +71,31 @@
         </div>
         <div *ngFor="let participation of myProject.participations" class="right-align">
           <button
-            *ngIf="participation.participationStatusInternal === 'CANDIDATE' && participation.participationStatusInner === 'ACCEPTANCE'"
             pButton
             type="button"
-            icon="pi pi-ellipsis-h"
-            class="p-button-info"
-            pTooltip="{{ 'my-projects.WORK_IN_PROGRESS' | translate }} ({{ participation.musicianProfile.instrumentName }})"
-            tooltipPosition="left"
-          ></button>
-          <button
-            *ngIf="participation.participationStatusInternal === 'CANDIDATE' && participation.participationStatusInner === 'PENDING'"
-            pButton
-            type="button"
-            icon="pi pi-question"
+            *ngIf="participation.participationStatusResult === 'ACCEPTANCE'"
+            icon="pi pi-heart"
             class="p-button-success"
-            pTooltip="{{ 'my-projects.RESULT_IS_PENDING' | translate }} ({{ participation.musicianProfile.instrumentName }})"
-            tooltipPosition="left"
+            label="{{ 'my-projects.RESULT_IS_ACCEPTANCE' | translate }}"
+            style="font-size: smaller"
           ></button>
           <button
-            *ngIf="participation.participationStatusInternal === 'REFUSAL' && participation.participationStatusInner === 'REFUSAL'"
             pButton
             type="button"
-            icon="pi pi-check"
-            class="p-button-danger"
-            pTooltip="{{ 'my-projects.RESULT_IS_REFUSAL' | translate }} ({{ participation.musicianProfile.instrumentName }})"
-            tooltipPosition="left"
+            *ngIf="participation.participationStatusResult === 'REFUSAL'"
+            icon="pi pi-info-circle"
+            class="p-button-info"
+            label="{{ 'my-projects.RESULT_IS_REFUSAL' | translate }}"
+            style="font-size: smaller"
           ></button>
           <button
-            *ngIf="participation.participationStatusInternal === 'CANDIDATE' && participation.participationStatusInner === 'REFUSAL'"
             pButton
             type="button"
-            icon="pi pi-check"
-            class="p-button-danger"
-            pTooltip="{{ 'my-projects.RESULT_IS_REFUSAL' | translate }} ({{ participation.musicianProfile.instrumentName }})"
-            tooltipPosition="left"
-          ></button>
-          <button
-            *ngIf="participation.participationStatusInternal === 'ACCEPTANCE' && participation.participationStatusInner === 'REFUSAL'"
-            pButton
-            type="button"
+            *ngIf="participation.participationStatusResult === 'PENDING'"
             icon="pi pi-exclamation-triangle"
-            class="p-button-danger"
-            pTooltip="{{ 'my-projects.RESULT_IS_ALARM' | translate }} ({{ participation.musicianProfile.instrumentName }})"
-            tooltipPosition="left"
-          ></button>
-          <button
-            *ngIf="participation.participationStatusInternal === 'ACCEPTANCE' && participation.participationStatusInner === 'ACCEPTANCE'"
-            pButton
-            type="button"
-            icon="pi pi-check"
-            class="p-button-success"
-            pTooltip="{{ 'my-projects.RESULT_IS_ACCEPTANCE' | translate }} ({{ participation.musicianProfile.instrumentName }})"
-            tooltipPosition="left"
-          ></button>
-          <button
-            *ngIf="participation.participationStatusInternal === 'PENDING'"
-            pButton
-            type="button"
-            icon="pi pi-ellipsis-h"
-            class="p-button-info"
-            pTooltip="{{ 'my-projects.RESULT_IS_PENDING' | translate }} ({{ participation.musicianProfile.instrumentName }})"
-            tooltipPosition="left"
-          ></button>
-          <button
-            *ngIf="participation.participationStatusInternal === 'CANDIDATE' && participation.participationStatusInner === 'INTERESTED'"
-            pButton
-            type="button"
-            icon="pi pi-ellipsis-h"
-            class="p-button-info"
-            pTooltip="{{ 'my-projects.RESULT_IS_CANDIDATE' | translate }} ({{ participation.musicianProfile.instrumentName }})"
-            tooltipPosition="left"
-          ></button>
-          <button
-            *ngIf="participation.participationStatusInternal === 'ACCEPTANCE' && participation.participationStatusInner === 'INTERESTED'"
-            pButton
-            type="button"
-            icon="pi pi-question"
-            class="p-button-success"
-            pTooltip="{{ 'my-projects.RESULT_IS_PENDING' | translate }} ({{ participation.musicianProfile.instrumentName }})"
-            tooltipPosition="left"
+            class="p-button-warning"
+            label="{{ 'my-projects.RESULT_IS_PENDING' | translate }}"
+            style="font-size: smaller"
           ></button>
         </div>
       </ng-template>
@@ -164,11 +110,11 @@
             <div class="p-fluid p-mt-1 p-formgrid p-grid general-container">
               <div *ngFor="let participation of myProject.participations" class="p-col-12">
                 <div class="p-fluid p-mt-3 p-formgrid p-grid comparison-container">
-                  <div *ngIf="participation.participationStatusInner; else noStatus" class="p-col-6 status-item">
+                  <div *ngIf="participation.participationStatusInner; else noStatusPerformer" class="p-col-6 status-item">
                     <label>{{ 'my-projects.MY_APPLICATIONSTATUS' | translate }}</label>
                     <span>{{ 'projectParticipationStatusInner.' + participation.participationStatusInner | translate }}</span>
                   </div>
-                  <div *ngIf="participation.participationStatusInternal; else noStatus" class="p-col-6 status-item">
+                  <div *ngIf="participation.participationStatusInternal; else noStatusStaff" class="p-col-6 status-item">
                     <label>{{ 'my-projects.RESPONSE_STATUS' | translate }}</label>
                     <span>{{ 'projectParticipationStatusInternal.' + participation.participationStatusInternal | translate }}</span>
                   </div>
@@ -185,7 +131,7 @@
                   <div *ngIf="myProject.project.isCompleted === false" class="p-col-6">
                     <p-button
                       (click)="openDialog(myProject.project.id, participation)"
-                      label="{{ 'my-projects.CHANGE_APPLICATION' | translate }}"
+                      label="{{ 'my-projects.UPDATE_PARTICIPATION' | translate }}"
                       type="button"
                     ></p-button>
                   </div>
@@ -307,9 +253,20 @@
   </div>
 </ng-template>
 
-<ng-template #noStatus>
+<ng-template #noStatusPerformer>
+  <div class="p-col-6 p-mt-2 status-hint">
+    <span>{{ 'my-projects.PLEASE_UPDATE_PARTICIPATION' | translate }}</span>
+  </div>
+</ng-template>
+<ng-template #noStatusStaff>
   <div class="p-col-6 p-mt-2 status-item">
-    <label>{{ 'my-projects.APPLICATIONSTATUS' | translate }}</label>
+    <label>{{ 'my-projects.RESPONSE_STATUS' | translate }}</label>
     <span>{{ 'my-projects.NO_STATUS' | translate }}</span>
+  </div>
+</ng-template>
+<ng-template #actionRequired>
+  <div class="p-col-6 p-mt-2">
+    <label>{{ 'my-projects.ACTION_REQUIRED' | translate }}</label>
+    <span>{{ 'my-projects.ACTION_REQUIRED' | translate }}</span>
   </div>
 </ng-template>
