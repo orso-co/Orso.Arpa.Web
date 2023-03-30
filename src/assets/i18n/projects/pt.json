@@ -28,6 +28,7 @@
   "ROLE_REMOVED": "função removida",
   "ROLES": "funções",
   "SAVECLOSE": "guardar e fechar",
+  "SET_PARTICIPATION_STATUS": "Estado de participação",
   "SHOW_PARTICIPANTS": "participantes do projecto",
   "START": "Início",
   "STATE": "Estado",
@@ -47,5 +48,4 @@
   "CHOIR": "Respostas do Coro",
   "ORCHESTRA": "Respostas da orquestra",
   "IS_HIDDEN_FOR_PERFORMERS": "Está escondido para os artistas"
-
 }

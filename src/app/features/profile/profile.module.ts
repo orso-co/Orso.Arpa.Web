@@ -68,7 +68,7 @@ import { TooltipModule } from 'primeng/tooltip';
     ReactiveFormsModule,
     SelectDialogModule,
     // Arpa Lib
-    TranslateModule.forChild(['profile', 'projects']),
+    TranslateModule.forChild(['profile']),
     MenuModule,
     AvatarModule,
     SplitViewModule,

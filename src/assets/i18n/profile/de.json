@@ -41,6 +41,7 @@
     "COMMENT_TEAM": "Kommentar Mitarbeiter",
     "CREATE_NEW_CONTACT": "Kontaktdaten hinzufügen"
   },
+
   "my-projects": {
     "ACTION_REQUIRED": "Handlungsbedarf",
     "ALL_SET": "Alles klar",
@@ -70,6 +71,8 @@
     "RESULT_IS_CANDIDATE": "Du bist Kandidat:in",
     "RESULT_IS_PENDING": "Es besteht noch Klärungsbedarf",
     "RESULT_IS_REFUSAL": "Schade, du bist leider nicht dabei",
+    "SET_PARTICIPATION_STATUS": "Teilnahmestatus gesetzt",
+    "SET_PARTICIPATION_STATUS_ERROR_422": "Dein Musikerprofil ist während dieses Projekts deaktiviert. Bitte reaktiviere es, um teilzunehmen.",
     "STAFF_POV": "Seitens KBB:",
     "STATUS": "Status",
     "TYPE": "Typ",

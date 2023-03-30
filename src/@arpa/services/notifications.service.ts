@@ -6,8 +6,7 @@ import { MessageService } from 'primeng/api';
   providedIn: 'root',
 })
 export class NotificationsService {
-  constructor(private injector: Injector, private translateService: TranslateService) {
-  }
+  constructor(private injector: Injector, private translateService: TranslateService) {}
 
   private get messageService(): MessageService {
     return this.injector.get(MessageService);
@@ -25,7 +24,7 @@ export class NotificationsService {
     this.add('warning', messageKey, namespace, sticky);
   }
 
-  public error(messageKey: string, namespace: string = '', sticky: boolean = false): void {
+  public error(messageKey: string, namespace: string = '', sticky: boolean = true): void {
     this.add('error', messageKey, namespace, sticky);
   }
 

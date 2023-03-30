@@ -57,10 +57,15 @@ export class MyProjectsComponent implements OnInit {
       if (result) {
         this.meService
           .setProjectParticipationStatus(projectId, { ...result, musicianProfileId: participation.musicianProfile?.id })
-          .subscribe(() => {
-            this.notificationsService.success('projects.SET_PARTICIPATION_STATUS');
-            this.reloadProjects();
-          });
+          .subscribe(
+            () => {
+              this.notificationsService.success('my-projects.SET_PARTICIPATION_STATUS', 'profile');
+              this.reloadProjects();
+            },
+            () => {
+              this.notificationsService.error('my-projects.SET_PARTICIPATION_STATUS_ERROR_422', 'profile');
+            }
+          );
       }
     });
   }
