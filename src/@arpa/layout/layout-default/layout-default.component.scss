@@ -1,6 +1,5 @@
 :host ::ng-deep {
   mat-sidenav-container {
-
     .mat-drawer-backdrop {
       height: 100%;
       position: fixed;
@@ -20,18 +19,18 @@
       top: 0;
 
       .p-menuitem-icon {
-        margin-left: .5rem;
+        margin-left: 0.5rem;
         opacity: 1;
       }
 
       .p-menuitem-text {
         opacity: 1;
-        transition: all .5s ease-in-out;
+        transition: all 0.5s ease-in-out;
       }
 
       .p-submenu-header {
         opacity: 0;
-        transition: all .5s ease-in-out;
+        transition: all 0.5s ease-in-out;
       }
 
       &.expanded {
@@ -52,8 +51,8 @@
       }
 
       .icon-pin {
-        opacity: .75;
-        transition: opacity .85s ease-in-out;
+        opacity: 0.85;
+        transition: opacity 0.85s ease-in-out;
         margin-left: auto;
 
         &:hover {
@@ -63,8 +62,8 @@
       }
 
       .icon-menu {
-        opacity: .75;
-        transition: opacity .85s ease-in-out;
+        opacity: 0.75;
+        transition: opacity 0.85s ease-in-out;
         margin-left: auto;
 
         &:hover {
@@ -73,12 +72,11 @@
         }
       }
 
-
       &.collapsed {
         width: 4rem;
 
         .p-menuitem-text {
-          // display: none;
+          display: none;
           opacity: 0;
         }
 
@@ -91,12 +89,12 @@
           }
 
           .p-submenu-header {
-            opacity: .5;
+            opacity: 0.5;
           }
         }
 
         .icon-pin {
-          opacity: .25;
+          opacity: 0.85;
 
           &:hover {
             opacity: 1;
@@ -104,7 +102,7 @@
           }
         }
         .icon-menu {
-          opacity: .25;
+          opacity: 0.55;
 
           &:hover {
             opacity: 1;
@@ -114,12 +112,12 @@
       }
 
       .mat-toolbar {
-        padding: .5rem;
+        padding: 0.5rem;
 
         .logo {
           display: block;
           height: 100%;
-          margin-right: .5rem;
+          margin-right: 0.5rem;
 
           img {
             height: 100%;
@@ -144,7 +142,7 @@
 
         span {
           display: block;
-          font-size: .75em;
+          font-size: 0.75em;
         }
       }
     }
@@ -186,8 +184,8 @@
         .logo {
           display: block;
           height: 100%;
-          margin-right: .5rem;
-          padding: .5rem;
+          margin-right: 0.5rem;
+          padding: 0.5rem;
 
           img {
             height: 100%;
@@ -196,7 +194,7 @@
         }
 
         button {
-          margin-left: -.5rem;
+          margin-left: -0.5rem;
         }
 
         &.mat-primary {
@@ -217,7 +215,6 @@
       }
 
       mat-nav-list {
-
       }
     }
   }

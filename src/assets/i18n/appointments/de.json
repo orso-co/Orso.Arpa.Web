@@ -5,6 +5,7 @@
   "APPOINTMENT_CREATED": "Termin angelegt",
   "APPOINTMENT_DELETED": "Termin gelöscht",
   "APPOINTMENT_UPDATED": "Termin aktualisiert",
+  "UPCOMING_APPOINTMENTS": "anstehende(r) Termin(e)",
   "ARE_YOU_SURE": "Sind Sie sicher, dass Sie den Termin inklusiver aller abhängigen Daten unwiderruflich löschen wollen?",
   "BASICDATA": "Basisdaten",
   "CATEGORY": "Kategorie",

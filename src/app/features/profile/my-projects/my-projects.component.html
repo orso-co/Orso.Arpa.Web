@@ -199,6 +199,9 @@
             leftIcon="pi pi-info-circle"
           >
             <div class="p-fluid p-mt-1 p-formgrid p-grid comparison-container">
+              <div *ngIf="myProject.project.isCompleted === true" class="p-col-3 content-item isCompleted">
+                <span>{{ 'my-projects.PROJECT_IS_COMPLETED' | translate }}</span>
+              </div>
               <div *ngIf="myProject.project.genre?.name" class="p-col-3 content-item">
                 <label>{{ 'my-projects.TYPE' | translate }}</label>
                 <span>{{ myProject.project.type?.name || '' }}</span>
@@ -255,11 +258,12 @@
 
 <ng-template #noStatusPerformer>
   <div class="p-col-6 p-mt-2 status-hint">
-    <span>{{ 'my-projects.PLEASE_UPDATE_PARTICIPATION' | translate }}</span>
+    <label>{{ 'my-projects.MY_APPLICATION' | translate }}</label>
+    <span>{{ 'my-projects.NO_STATUS' | translate }}</span>
   </div>
 </ng-template>
 <ng-template #noStatusStaff>
-  <div class="p-col-6 p-mt-2 status-item">
+  <div class="p-col-6 p-mt-2 status-hint">
     <label>{{ 'my-projects.RESPONSE_STATUS' | translate }}</label>
     <span>{{ 'my-projects.NO_STATUS' | translate }}</span>
   </div>

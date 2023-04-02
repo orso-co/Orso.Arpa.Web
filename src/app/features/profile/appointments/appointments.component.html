@@ -50,6 +50,8 @@
               >{{ appointment.startTime | date : 'H:mm' : 'locale(de)' }}-{{ appointment.endTime | date : 'H:mm' : 'locale(de)' }}</span
             >
           </div>
+          <p-button *ngIf="!appointment.prediction" icon="pi pi-question"></p-button>
+
           <div class="p-d-lg-none status-badge p-mt-3">
             <p-tag
               styleClass="tag"
@@ -71,7 +73,12 @@
               <span class="name"
                 ><span *ngIf="appointment.category?.name" class="category">{{ appointment.category?.name }} </span>"{{ appointment.name }}"
               </span>
+              <div *ngIf="!appointment.prediction" class="edit-participation">
+                <span>{{ 'my-appointments.EDIT_PREDICTION' | translate }}</span>
+              </div>
               <p-chip
+                icon="pi pi-check"
+                class="p-chip-info"
                 *ngIf="appointment.prediction"
                 [label]="
                   ('PARTICIPATION_PREDICTION' | translate) +
@@ -86,7 +93,7 @@
                 class="p-button-text"
                 *ngIf="appointment.commentByPerformerInner"
                 icon="pi pi-comment"
-                (click)="$event.stopPropagation(); op.toggle($event);"
+                (click)="$event.stopPropagation(); op.toggle($event)"
               ></button>
               <p-overlayPanel #op>
                 <ng-template pTemplate>

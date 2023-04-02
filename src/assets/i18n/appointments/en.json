@@ -5,6 +5,7 @@
   "APPOINTMENT_CREATED": "Appointment created",
   "APPOINTMENT_DELETED": "Appointment deleted",
   "APPOINTMENT_UPDATED": "Appointment updated",
+  "UPCOMING_APPOINTMENTS": "upcoming appointment(s)",
   "ARE_YOU_SURE": "Are you sure that you want to irrevocably delete this appointment including all dependent data?",
   "BASICDATA": "Basic data",
   "CATEGORY": "Category",
