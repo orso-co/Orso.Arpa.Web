@@ -1,4 +1,4 @@
-import { LocalizedDateModule } from './../../../@arpa/pipes/localized-date/localized-date.module';
+import { LocalizedDateModule } from '../../../@arpa/pipes/localized-date/localized-date.module';
 import { AccordionModule } from 'primeng/accordion';
 import { AppointmentsWidgetComponent } from './appointments-widget/appointments-widget.component';
 import { ArpaWidgetConfigDirective, DashboardComponent } from './dashboard.component';
@@ -14,13 +14,11 @@ import { CommonModule } from '@angular/common';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DropdownModule } from 'primeng/dropdown';
-import { FormFieldModule } from './../../../@arpa/components/form-field/form-field.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { GraphQlFeedComponent } from 'src/@arpa/components/graph-ql-feed/graph-ql-feed.component';
-import { GraphQlFeedModule } from './../../../@arpa/components/graph-ql-feed/graph-ql-feed.module';
+import { GraphQlFeedModule } from '../../../@arpa/components/graph-ql-feed/graph-ql-feed.module';
 import { IframeWidgetComponent } from './iframe-widget/iframe-widget.component';
 import { InputTextModule } from 'primeng/inputtext';
-import { LanguageService } from '../../../@arpa/services/language.service';
+import { LanguageService } from '@arpa/services';
 import { LayoutModule } from '@angular/cdk/layout';
 import { LoadingModule } from '../../../@arpa/components/loading/loading.module';
 import { MatButtonModule } from '@angular/material/button';
@@ -31,10 +29,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MessagesWidgetComponent } from './messages-widget/messages-widget.component';
 import { NgModule } from '@angular/core';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
-import { ProjectsRoutingModule } from './../projects/projects-routing.module';
+import { ProjectsRoutingModule } from '../projects/projects-routing.module';
 import { ProjectsWidgetComponent } from './projects-widget/projects-widget.component';
 import { reducers } from './state/state';
-import { SelectDialogModule } from './../profile/select-dialog/select-dialog.module';
+import { SelectDialogModule } from '../profile/select-dialog/select-dialog.module';
 import { SelectValueModule } from '../../../@arpa/pipes/select-value/select-value.module';
 import { SkeletonModule } from 'primeng/skeleton';
 import { StateBadgeModule } from '../../../@arpa/components/status-badge/state-badge.module';
@@ -80,7 +78,7 @@ import { AppointmentsRoutingModule } from '../appointments/appointments-routing.
     SelectDialogModule,
 
     // Arpa Lib
-    TranslateModule.forChild(['dashboard']),
+    TranslateModule.forChild(['dashboard', 'appointments']),
     AvatarModule,
     ChartModule,
     StateBadgeModule,
@@ -115,9 +113,7 @@ import { AppointmentsRoutingModule } from '../appointments/appointments-routing.
     ChipModule,
     MessageModule,
   ],
-  exports: [
-    ProjectsWidgetComponent,
-  ],
+  exports: [ProjectsWidgetComponent],
 })
 export class DashboardModule {
   constructor(private translateService: TranslateService, private languageService: LanguageService) {

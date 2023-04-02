@@ -115,11 +115,11 @@ export class LayoutDefaultComponent implements OnDestroy {
           translationToken: 'PERSONAL',
           children: [
             {
-              label: 'Meine Daten',
-              icon: 'pi pi-user',
-              roles: ['performer', 'staff', 'admin'],
-              routerLink: '/arpa/profile/user',
-              translationToken: 'MY_DATA',
+              label: 'Meine Termine',
+              icon: 'pi pi-calendar',
+              roles: ['performer', 'staff'],
+              routerLink: '/arpa/profile/appointments',
+              translationToken: 'MY_APPOINTMENTS',
             },
             {
               label: 'Meine Projekte',
@@ -128,19 +128,20 @@ export class LayoutDefaultComponent implements OnDestroy {
               routerLink: '/arpa/profile/my-projects',
               translationToken: 'MY_PROJECTS',
             },
-            {
-              label: 'Meine Termine',
-              icon: 'pi pi-check-square',
-              roles: ['performer', 'staff'],
-              routerLink: '/arpa/profile/appointments',
-              translationToken: 'MY_APPOINTMENTS',
-            },
+
             {
               label: 'Mein Musikprofil',
               icon: 'pi pi-user-edit',
               roles: ['performer'],
               routerLink: '/arpa/profile/musician',
               translationToken: 'MY_PROFILES',
+            },
+            {
+              label: 'Meine Daten',
+              icon: 'pi pi-user',
+              roles: ['performer', 'staff', 'admin'],
+              routerLink: '/arpa/profile/user',
+              translationToken: 'MY_DATA',
             },
             {
               label: 'Mein QR-Code',

@@ -1,7 +1,7 @@
 <form [formGroup]="form" class="p-mt-5">
   <div class="p-fluid p-grid p-formgrid">
     <div class="p-field p-col-12">
-      <arpa-form-field label="{{ 'my-projects.APPLICATIONSTATUS' | translate }}">
+      <arpa-form-field label="{{ 'my-projects.APPLICATIONSTATUS' | translate }}">
         <p-dropdown
           [autoDisplayFirst]="false"
           [options]="(statusOptions$ | async)!"
@@ -13,7 +13,7 @@
       </arpa-form-field>
     </div>
     <div class="p-field p-col-12">
-      <arpa-form-field label="{{ 'my-projects.MY_COMMENT' | translate }}">
+      <arpa-form-field label="{{ 'my-projects.MY_COMMENT' | translate }}">
         <textarea formControlName="commentByPerformerInner" id="commentByPerformerInner" pInputText rows="3"></textarea>
       </arpa-form-field>
     </div>

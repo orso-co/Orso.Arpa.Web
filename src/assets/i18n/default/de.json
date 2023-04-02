@@ -66,7 +66,7 @@
   "OFFLINE_QR_CODE": "Verwende deinen QR-Code um einzuchecken.",
   "OFFLINE_TITLE": "Du bist Offline!",
   "PARTICIPATION": "Tatsächliche Teilnahme",
-  "PARTICIPATION_PREDICTION": "Voraussichtliche Teilnahme",
+  "PARTICIPATION_PREDICTION": "Vorhersage",
   "PASSWORD": "Passwort",
   "PASSWORD_CONFIRM": "Passwort bestätigen",
   "PASSWORD_NORMAL": "ausreichend",
@@ -157,7 +157,6 @@
     "ACCEPTANCE": "Zusage",
     "REFUSAL": "Absage",
     "REHEARSALS_ONLY": "Nur Proben"
-
   },
   "projectParticipationStatusInternal": {
     "CANDIDATE": "Kandidat",

@@ -79,9 +79,26 @@
   font-size: small;
 }
 .status-hint {
+  display: flex;
+  flex-direction: column;
   font-weight: bolder;
   opacity: 100%;
   font-size: large;
   font-style: italic;
-  lighting-color: var(--text-color-secondary);
+  color: var(--primary-color);
+
+  > label {
+    font-size: x-small;
+    opacity: 60%;
+    font-weight: normal;
+    text-transform: uppercase;
+    padding-bottom: 0.3rem;
+    font-style: normal;
+  }
+  > span {
+    font-size: large;
+  }
+}
+.isCompleted {
+  font-weight: bold;
 }
