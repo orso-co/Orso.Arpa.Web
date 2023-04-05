@@ -12,30 +12,6 @@
       <h4 style="text-align: center">{{ 'projects.TOTAL' | translate }}: {{ filteredDataCount }} ({{ innerStatsValues }})</h4>
       <arpa-chart [values]="innerStatsValues" [labels]="innerStatsKeys" type="pie" [legend]="true"></arpa-chart>
     </div>
-
-    <!--    <div class="chart-subcontainer">-->
-    <!--      <h5 style="text-align: center">-->
-    <!--        {{ 'projects.CHOIR' | translate }} ({{ innerStatsValues }})-->
-    <!--      </h5>-->
-    <!--      <arpa-chart-->
-    <!--        [values]="innerStatsValues"-->
-    <!--        [labels]="innerStatsKeys"-->
-    <!--        type="doughnut"-->
-    <!--        [legend]="true"-->
-    <!--      ></arpa-chart>-->
-    <!--    </div>-->
-
-    <!--    <div class="chart-subcontainer">-->
-    <!--      <h5 style="text-align: center">-->
-    <!--        {{ 'projects.ORCHESTRA' | translate }} ({{ innerStatsValues }})-->
-    <!--      </h5>-->
-    <!--      <arpa-chart-->
-    <!--        [values]="innerStatsValues"-->
-    <!--        [labels]="innerStatsKeys"-->
-    <!--        type="doughnut"-->
-    <!--        [legend]="true"-->
-    <!--      ></arpa-chart>-->
-    <!--    </div>-->
   </div>
 
   <arpa-table *ngIf="ready" [columns]="columns" [values]="tableData" (rowClickEvents)="openParticipationDialog($event)"></arpa-table>

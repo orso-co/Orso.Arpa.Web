@@ -22,6 +22,7 @@
   "PARTICIPATION_STATUS": "Statut",
   "PARTICIPATION_STATUS_PERFORMER": "statut d'interprète",
   "PARTICIPATION_STATUS_STAFF": "statut du personnel",
+  "PARTICIPATION_STATUS_RESULT": "statut de résultat",
   "PROJECT_CREATED": "Projet creé avec succes",
   "PROJECT_UPDATED": "Projet modifié avec succes",
   "ROLE_ADDED": "Rôle ajouté",
@@ -48,5 +49,4 @@
   "CHOIR": "Réponses du chœur",
   "ORCHESTRA": "Réponses d'orchestre",
   "IS_HIDDEN_FOR_PERFORMERS": "Est caché pour les artistes-interprètes"
-
 }

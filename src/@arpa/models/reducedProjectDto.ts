@@ -4,4 +4,5 @@ export interface ReducedProjectDto {
   shortTitle?: string;
   description?: string;
   code?: string;
+  parentProjectId?: string;
 }

@@ -22,6 +22,7 @@
   "PARTICIPATION_STATUS": "Status",
   "PARTICIPATION_STATUS_PERFORMER": "Performer Status",
   "PARTICIPATION_STATUS_STAFF": "Staff Status",
+  "PARTICIPATION_STATUS_RESULT": "Participation result",
   "PROJECT_CREATED": "Project successfully created",
   "PROJECT_UPDATED": "Project successfully updated",
   "ROLE_ADDED": "Role added",

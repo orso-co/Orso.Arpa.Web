@@ -22,6 +22,7 @@
   "PARTICIPATION_STATUS": "Status",
   "PARTICIPATION_STATUS_PERFORMER": "Performer Status",
   "PARTICIPATION_STATUS_STAFF": "KBB Status",
+  "PARTICIPATION_STATUS_RESULT": "Teilnahmeergebnis",
   "PROJECT_CREATED": "Projekt erfolgreich angelegt",
   "PROJECT_UPDATED": "Projekt erfolgreich bearbeitet",
   "ROLE_ADDED": "Rolle hinzugefügt",

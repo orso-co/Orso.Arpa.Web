@@ -1,5 +1,5 @@
 import { TranslateService } from '@ngx-translate/core';
-import { AfterViewInit, ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { ColumnDefinition } from '../../../../../@arpa/components/table/table.component';
@@ -12,9 +12,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { NotificationsService, ProjectService, LoggerService } from '@arpa/services';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { OnInit } from '@angular/core';
-import {
-  ParticipationDialogComponent
-} from '../../../participation-dialog/participation-dialog.component';
+import { ParticipationDialogComponent } from '../../../participation-dialog/participation-dialog.component';
 
 @Component({
   selector: 'arpa-project-participants',
@@ -52,7 +50,18 @@ export class ProjectParticipantsComponent implements AfterViewInit, OnInit {
         { label: 'projectParticipationStatusInternal.PENDING', value: 'PENDING', severity: 'warning' },
         { label: 'projectParticipationStatusInternal.ACCEPTANCE', value: 'ACCEPTANCE', severity: 'success' },
         { label: 'projectParticipationStatusInternal.REFUSAL', value: 'REFUSAL', severity: 'danger' },
-      ]
+      ],
+    },
+    {
+      label: 'projects.PARTICIPATION_STATUS_RESULT',
+      property: 'participationStatusResult',
+      type: 'badge',
+      badgeStateMap: [
+        { label: 'projectParticipationStatusInternal.CANDIDATE', value: 'CANDIDATE', severity: 'info' },
+        { label: 'projectParticipationStatusInternal.PENDING', value: 'PENDING', severity: 'warning' },
+        { label: 'projectParticipationStatusInternal.ACCEPTANCE', value: 'ACCEPTANCE', severity: 'success' },
+        { label: 'projectParticipationStatusInternal.REFUSAL', value: 'REFUSAL', severity: 'danger' },
+      ],
     },
   ];
   tableData = new BehaviorSubject([]);
@@ -65,7 +74,6 @@ export class ProjectParticipantsComponent implements AfterViewInit, OnInit {
   private routeEventsSubscription: Subscription = Subscription.EMPTY;
 
   constructor(
-    private cdref: ChangeDetectorRef,
     private config: DynamicDialogConfig,
     private translate: TranslateService,
     private dialogService: DialogService,
@@ -74,7 +82,10 @@ export class ProjectParticipantsComponent implements AfterViewInit, OnInit {
     private route: ActivatedRoute,
     private router: Router,
 
-    private projectService: ProjectService) {this.projectId = this.config.data.project.id;}
+    private projectService: ProjectService
+  ) {
+    this.projectId = this.config.data.project.id;
+  }
 
   ngOnInit(): void {
     this.route.parent?.paramMap.subscribe((params) => {
@@ -107,7 +118,6 @@ export class ProjectParticipantsComponent implements AfterViewInit, OnInit {
             this.translate.instant(`projectParticipationStatusInner.${key}`)
           );
           this.ready = true;
-          this.cdref.detectChanges();
           this.filteredDataCount = this.tableData?.value?.length || 0;
         }
       },
@@ -126,6 +136,5 @@ export class ProjectParticipantsComponent implements AfterViewInit, OnInit {
     ref.onClose.pipe(first()).subscribe(() => {
       this.feedSource.refresh();
     });
-
   }
 }
