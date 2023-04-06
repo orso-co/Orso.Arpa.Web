@@ -64,7 +64,7 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
     },
   ];
 
-  tableData = new BehaviorSubject([]);
+  tableData = new BehaviorSubject<any[]>([]);
   totalReplies = 0;
   totalInvited = 0;
   innerStatsCount: Record<string, number> = {};
@@ -110,7 +110,7 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
           }
         });
 
-        this.tableData.next(participations);
+        this.tableData.next([... participations]);
         this.totalInvited = participations.length;
 
         this.innerStatsValues = Object.values(this.innerStatsCount);
