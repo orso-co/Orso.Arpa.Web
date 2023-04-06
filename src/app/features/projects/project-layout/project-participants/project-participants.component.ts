@@ -1,15 +1,14 @@
 import { TranslateService } from '@ngx-translate/core';
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, ViewChild } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { ColumnDefinition } from '../../../../../@arpa/components/table/table.component';
-import { GraphQlFeedComponent } from '../../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
 import { DocumentNode } from 'graphql';
 import { ProjectsQuery } from './projectparticipations.graphql';
 import { ProjectParticipationDto } from '@arpa/models';
-import { filter, first } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 import { DialogService } from 'primeng/dynamicdialog';
-import { NotificationsService, ProjectService, LoggerService } from '@arpa/services';
+import { ProjectService } from '@arpa/services';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { OnInit } from '@angular/core';
 import { ParticipationDialogComponent } from '../../../participation-dialog/participation-dialog.component';
@@ -19,13 +18,13 @@ import { ParticipationDialogComponent } from '../../../participation-dialog/part
   templateUrl: './project-participants.component.html',
   styleUrls: ['./project-participants.component.scss'],
 })
-export class ProjectParticipantsComponent implements AfterViewInit, OnInit {
-  @ViewChild('feedSource')
-  private feedSource: GraphQlFeedComponent;
+export class ProjectParticipantsComponent implements OnInit, OnDestroy {
+  private subscriptions: Subscription = Subscription.EMPTY;
 
   projectId: string;
-  filteredDataCount: number;
+
   ready = false;
+
   query: DocumentNode = ProjectsQuery;
   columns: ColumnDefinition<any>[] = [
     { label: 'projects.PARTICIPANTS', property: 'musicianProfile.person.displayName', type: 'text' },
@@ -64,67 +63,65 @@ export class ProjectParticipantsComponent implements AfterViewInit, OnInit {
       ],
     },
   ];
+
   tableData = new BehaviorSubject([]);
+  totalReplies = 0;
+  totalInvited = 0;
   innerStatsCount: Record<string, number> = {};
   innerStatsValues: number[] = [];
   innerStatsKeys: string[] = [];
   personId: string | undefined;
   project: any;
   participations: ProjectParticipationDto[] = [];
-  private routeEventsSubscription: Subscription = Subscription.EMPTY;
 
   constructor(
     private config: DynamicDialogConfig,
     private translate: TranslateService,
     private dialogService: DialogService,
-    private notificationsService: NotificationsService,
-    private logger: LoggerService,
-    private route: ActivatedRoute,
-    private router: Router,
-
     private projectService: ProjectService
   ) {
     this.projectId = this.config.data.project.id;
   }
 
   ngOnInit(): void {
-    this.route.parent?.paramMap.subscribe((params) => {
-      this.personId = params.get('personId') || undefined;
-      this.feedSource?.refresh();
-    });
-
-    this.routeEventsSubscription = this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe(() => {
-      this.feedSource.refresh();
-    });
+    this.reloadProjectDetails();
   }
-  ngAfterViewInit(): void {
-    this.feedSource.values.subscribe({
-      next: (result: Record<string, any>[]) => {
-        if (result.length) {
-          this.project = result[0] as any;
-          this.tableData.next(this.project.projectParticipations);
-          this.project.projectParticipations?.forEach((p: Record<string, any>) => {
-            if (p.participationStatusInner) {
-              if (this.innerStatsCount[p.participationStatusInner]) {
-                this.innerStatsCount[p.participationStatusInner]++;
-              } else {
-                this.innerStatsCount[p.participationStatusInner] = 1;
-              }
+
+  private reloadProjectDetails(): void {
+    const variables = { projectId: this.projectId };
+    const query = {
+      query: this.query,
+      variables,
+    };
+    this.projectService
+      .query(query)
+      .pipe(map((result: any) => result.data?.projects?.items?.[0]))
+      .subscribe((result: any) => {
+        this.project = result;
+        const participations = this.project?.projectParticipations || [];
+        participations.forEach((participation: Record<string, any>) => {
+          if (participation.participationStatusInner) {
+            if (this.innerStatsCount[participation.participationStatusInner]) {
+              this.innerStatsCount[participation.participationStatusInner] += 1;
+            } else {
+              this.innerStatsCount[participation.participationStatusInner] = 1;
             }
-          });
+            this.totalReplies += 1;
+          }
+        });
 
-          this.innerStatsValues = Object.values(this.innerStatsCount);
-          this.innerStatsKeys = Object.keys(this.innerStatsCount).map((key) =>
-            this.translate.instant(`projectParticipationStatusInner.${key}`)
-          );
-          this.ready = true;
-          this.filteredDataCount = this.tableData?.value?.length || 0;
-        }
-      },
-    });
+        this.tableData.next(participations);
+        this.totalInvited = participations.length;
+
+        this.innerStatsValues = Object.values(this.innerStatsCount);
+        this.innerStatsKeys = Object.keys(this.innerStatsCount).map((key) =>
+          this.translate.instant(`projectParticipationStatusInner.${key}`)
+        );
+        this.ready = true;
+      });
   }
+
   openParticipationDialog(row: any) {
-    const project = row.project;
     const ref = this.dialogService.open(ParticipationDialogComponent, {
       data: { project: this.project, personId: row.musicianProfile.person.id },
       header: this.translate.instant('projects.EDIT_PARTICIPATION'),
@@ -133,8 +130,13 @@ export class ProjectParticipantsComponent implements AfterViewInit, OnInit {
       width: window.innerWidth > 1000 ? '66%' : '100%',
     });
 
-    ref.onClose.pipe(first()).subscribe(() => {
-      this.feedSource.refresh();
+    const closeSubscription = ref.onClose.pipe(first()).subscribe(() => {
+      this.reloadProjectDetails();
     });
+    this.subscriptions.add(closeSubscription);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

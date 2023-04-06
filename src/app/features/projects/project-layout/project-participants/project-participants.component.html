@@ -9,13 +9,12 @@
 <ng-container *ngIf="ready; else loading">
   <div class="chart-container">
     <div class="chart-subcontainer">
-      <h4 style="text-align: center">{{ 'projects.TOTAL' | translate }}: {{ filteredDataCount }} ({{ innerStatsValues }})</h4>
+      <h4 style="text-align: center">
+        {{ 'projects.TOTAL' | translate }}: {{ totalReplies }} / {{ totalInvited }} ({{ innerStatsValues }})
+      </h4>
       <arpa-chart [values]="innerStatsValues" [labels]="innerStatsKeys" type="pie" [legend]="true"></arpa-chart>
     </div>
   </div>
 
-  <arpa-table *ngIf="ready" [columns]="columns" [values]="tableData" (rowClickEvents)="openParticipationDialog($event)"></arpa-table>
+  <arpa-table [columns]="columns" [values]="tableData" (rowClickEvents)="openParticipationDialog($event)"></arpa-table>
 </ng-container>
-
-<!-- Graphql feed controls and holds graphql api results. -->
-<arpa-graph-ql-feed #feedSource [query]="query" [variables]="{ projectId }"></arpa-graph-ql-feed>
