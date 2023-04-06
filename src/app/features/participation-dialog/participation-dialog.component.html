@@ -1,38 +1,32 @@
-<h3 class='title'>{{ getName() }} @ {{ projectTitle }} </h3>
+<h3 class="title">{{ getName() }} @ {{ projectTitle }}</h3>
+<div *ngFor="let child of children">
+  <h3>{{ 'projects:CHILDPROJECTS' | translate }} {{ child.title }}</h3>
+</div>
 <p-tabView>
-  <p-tabPanel *ngFor="let participation of participations"
-    [header]="participation.musicianProfile?.instrument?.name">
-    <div class='columns'>
+  <p-tabPanel *ngFor="let participation of participations" [header]="participation.musicianProfile?.instrument?.name">
+    <div class="columns">
       <div>
         <h4>{{ 'PROJECT_PARTICIPATION_STATUS' | translate }}:</h4>
-        <arpa-participation-edit
-          [participation]="participation"
-          [projectId]="projectId">
-        </arpa-participation-edit>
+        <arpa-participation-edit [participation]="participation" [projectId]="projectId"> </arpa-participation-edit>
       </div>
-      <div class='vertical'></div>
+      <div class="vertical"></div>
       <div>
         <h4>{{ 'APPOINTMENTS_PARTICIPATIONS_STATUS' | translate }}:</h4>
-        <arpa-appointment-participations
-          [participation]="participation"
-          [projectId]="projectId"
-          [musicianId]="musicianId">
+        <arpa-appointment-participations [participation]="participation" [projectId]="projectId" [musicianId]="musicianId">
         </arpa-appointment-participations>
       </div>
     </div>
-
-
   </p-tabPanel>
 </p-tabView>
 
-<div class='p-formgroup-inline p-jc-between'>
-  <div class='p-text-right'>
+<div class="p-formgroup-inline p-jc-between">
+  <div class="p-text-right">
     <button
-      (click)='cancel()'
+      (click)="cancel()"
       [label]="'CANCEL' | translate"
-      class='p-ml-3 p-button-outlined'
-      icon='pi pi-times'
-      iconPos='left'
+      class="p-ml-3 p-button-outlined"
+      icon="pi pi-times"
+      iconPos="left"
       pButton
     ></button>
   </div>

@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { Observable } from 'rxjs';
 import { ProjectDto } from '@arpa/models';
 import { VenueDto } from '@arpa/models';
 import { SelectItem } from 'primeng/api';
 import { map } from 'rxjs/operators';
+import { ReducedProjectDto } from '../../../../@arpa/models/reducedProjectDto';
 
 @Component({
   selector: 'arpa-project-layout',
@@ -26,6 +27,8 @@ export class ProjectLayoutComponent {
   );
   type: Observable<SelectItem[]> = this.config.data.type;
   genre: Observable<SelectItem[]> = this.config.data.genre;
+  children: Observable<ReducedProjectDto[]> = this.config.data.children;
+  parent: Observable<ReducedProjectDto[]> = this.config.data.parent;
   public index = 0;
 
   constructor(public config: DynamicDialogConfig) {}

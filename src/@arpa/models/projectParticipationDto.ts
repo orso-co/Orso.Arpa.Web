@@ -23,4 +23,5 @@ export interface ProjectParticipationDto {
   project?: ReducedProjectDto;
   parentProject?: ReducedProjectDto;
   person?: ReducedPersonDto;
+  children?: ReducedProjectDto[];
 }

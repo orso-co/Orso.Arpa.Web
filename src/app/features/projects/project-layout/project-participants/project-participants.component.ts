@@ -51,17 +51,21 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
         { label: 'projectParticipationStatusInternal.REFUSAL', value: 'REFUSAL', severity: 'danger' },
       ],
     },
-    {
-      label: 'projects.PARTICIPATION_STATUS_RESULT',
-      property: 'participationStatusResult',
-      type: 'badge',
-      badgeStateMap: [
-        { label: 'projectParticipationStatusInternal.CANDIDATE', value: 'CANDIDATE', severity: 'info' },
-        { label: 'projectParticipationStatusInternal.PENDING', value: 'PENDING', severity: 'warning' },
-        { label: 'projectParticipationStatusInternal.ACCEPTANCE', value: 'ACCEPTANCE', severity: 'success' },
-        { label: 'projectParticipationStatusInternal.REFUSAL', value: 'REFUSAL', severity: 'danger' },
-      ],
-    },
+
+    // TODO: figure out how to show more properties in the table. Wait for backend to provide StatusRESULT with graphql
+
+    // { label: 'MODIFIED_AT', property: 'projectParticipationsModifiedAt', type: 'date' },
+    // {
+    //   label: 'projects.PARTICIPATION_STATUS_RESULT',
+    //   property: 'participationStatusResult',
+    //   type: 'badge',
+    //   badgeStateMap: [
+    //     { label: 'projectParticipationStatusInternal.CANDIDATE', value: 'CANDIDATE', severity: 'info' },
+    //     { label: 'projectParticipationStatusInternal.PENDING', value: 'PENDING', severity: 'warning' },
+    //     { label: 'projectParticipationStatusInternal.ACCEPTANCE', value: 'ACCEPTANCE', severity: 'success' },
+    //     { label: 'projectParticipationStatusInternal.REFUSAL', value: 'REFUSAL', severity: 'danger' },
+    //   ],
+    // },
   ];
 
   tableData = new BehaviorSubject<any[]>([]);
@@ -110,7 +114,7 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
           }
         });
 
-        this.tableData.next([... participations]);
+        this.tableData.next([...participations]);
         this.totalInvited = participations.length;
 
         this.innerStatsValues = Object.values(this.innerStatsCount);

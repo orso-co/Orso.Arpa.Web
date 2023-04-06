@@ -1,21 +1,29 @@
-<h2 *ngIf="project">{{project.title}}</h2>
+<h2 *ngIf="project">{{ project.title }}</h2>
+<div *ngIf="project.children.length > 0">
+  <h5>{{ 'projects.CHILDPROJECTS' | translate }}:</h5>
+  <div *ngFor="let child of project.children">
+    <h4>{{ child.title }}</h4>
+  </div>
+</div>
+
 <p-tabView [(activeIndex)]="index">
-  <p-tabPanel *ngIf="project"
-              leftIcon="pi pi-users"
-              header="{{ 'projects.PARTICIPANTS' | translate }}"
-              tooltip="{{ 'projects.PARTICIPANTS_TOOLTIP' | translate }}">
-    <arpa-project-participants ></arpa-project-participants>
-  </p-tabPanel>
-  <p-tabPanel *ngIf="project"
-              leftIcon="pi pi-link"
-              header="{{ 'projects.URLS' | translate }}"
-              tooltip="{{ 'projects.URLS_TOOLTIP' | translate }}">
-    <arpa-project-urls [urls]="project.urls || []" [projectId]="project.id"></arpa-project-urls>
+  <p-tabPanel
+    *ngIf="project"
+    leftIcon="pi pi-users"
+    header="{{ 'projects.PARTICIPANTS' | translate }}"
+    tooltip="{{ 'projects.PARTICIPANTS_TOOLTIP' | translate }}"
+  >
+    <arpa-project-participants></arpa-project-participants>
   </p-tabPanel>
   <p-tabPanel
-    leftIcon="pi pi-cog"
-    header="{{ 'projects.BASICDATA' | translate }}"
-    tooltip="{{ 'projects.BASICDATA_TOOLTIP' | translate }}">
+    *ngIf="project"
+    leftIcon="pi pi-link"
+    header="{{ 'projects.URLS' | translate }}"
+    tooltip="{{ 'projects.URLS_TOOLTIP' | translate }}"
+  >
+    <arpa-project-urls [urls]="project.urls || []" [projectId]="project.id"></arpa-project-urls>
+  </p-tabPanel>
+  <p-tabPanel leftIcon="pi pi-cog" header="{{ 'projects.BASICDATA' | translate }}" tooltip="{{ 'projects.BASICDATA_TOOLTIP' | translate }}">
     <arpa-edit-project
       [project]="project"
       [venues]="(venues | async)!"
@@ -23,11 +31,7 @@
       [genre]="(genre | async)!"
     ></arpa-edit-project>
   </p-tabPanel>
-  <p-tabPanel *ngIf="project"
-    leftIcon="pi pi-calendar"
-              header="{{ 'APPOINTMENTS' | translate }}">
-<arpa-project-appointments
-  [projectId]="project.id"
-></arpa-project-appointments>
+  <p-tabPanel *ngIf="project" leftIcon="pi pi-calendar" header="{{ 'APPOINTMENTS' | translate }}">
+    <arpa-project-appointments [projectId]="project.id"></arpa-project-appointments>
   </p-tabPanel>
 </p-tabView>
