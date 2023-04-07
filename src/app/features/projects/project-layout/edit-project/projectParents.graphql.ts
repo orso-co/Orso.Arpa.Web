@@ -1,23 +1,10 @@
 import { gql } from 'apollo-angular';
 
 export const ParentProjectsQuery = gql`
-  query Projects(
-    $orderTitle: SortEnumType = DESC,
-    $orderShortTitle: SortEnumType = DESC,
-    $searchQuery: String = "") {
+  query Projects($orderTitle: SortEnumType = DESC, $orderShortTitle: SortEnumType = DESC, $searchQuery: String = "") {
     projects(
-      order: {title: $orderTitle, shortTitle: $orderShortTitle}
-      where:{
-        or: [{
-          title: {
-            contains: $searchQuery
-          }
-        },{
-          shortTitle: {
-            contains: $searchQuery
-          }
-        }]
-      }
+      order: { title: $orderTitle, shortTitle: $orderShortTitle }
+      where: { or: [{ title: { contains: $searchQuery } }, { shortTitle: { contains: $searchQuery } }] }
     ) {
       pageInfo {
         hasNextPage
@@ -28,6 +15,14 @@ export const ParentProjectsQuery = gql`
         id
         title
         shortTitle
+        children {
+          id
+          title
+        }
+        parent {
+          title
+        }
       }
     }
-  }`;
+  }
+`;

@@ -11,30 +11,25 @@ import { EditAppointmentComponent } from '../../../appointments/edit-appointment
 import { AppointmentService } from '../../../appointments/services/appointment.service';
 import { GraphQlFeedComponent } from '../../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
 
-
 @Component({
   selector: 'arpa-project-appointments',
   templateUrl: './project-appointments.component.html',
-  styleUrls: ['./project-appointments.component.scss']
+  styleUrls: ['./project-appointments.component.scss'],
 })
 export class ProjectAppointmentsComponent implements OnInit {
   @ViewChild('feedSource')
   private feedSource: GraphQlFeedComponent;
   @Input() projectId: string;
 
-
   columns: ColumnDefinition<AppointmentDto>[] = [
     { label: 'APPOINTMENT', property: 'appointment.name', type: 'text' },
     { label: 'SECTION', property: 'appointment.sections.name', type: 'badge', show: true },
     { label: 'START', property: 'appointment.startTime', type: 'date', show: true },
     { label: 'END', property: 'appointment.endTime', type: 'date', show: true },
-    { label: 'STATUS', property: 'appointment.status', type: 'badge', show: true},
-    { label: 'VENUE', property: 'appointment.venue.name', type: 'text', show: true},
-
-    // { label: 'CREATED_BY', property: 'appointment.createdBy', type: 'text', show: true},
-    // { label: 'CREATED_AT', property: 'appointment.createdAt', type: 'date', show: true}
-
-
+    { label: 'STATUS', property: 'appointment.status', type: 'badge', show: true },
+    { label: 'VENUE', property: 'appointment.venue.name', type: 'text', show: true },
+    { label: 'CREATED_BY', property: 'appointment.createdBy', type: 'text', show: true },
+    { label: 'CREATED_AT', property: 'appointment.createdAt', type: 'date', show: false },
   ];
   appointments = new BehaviorSubject([]);
 
@@ -44,18 +39,16 @@ export class ProjectAppointmentsComponent implements OnInit {
     private notificationsService: NotificationsService,
     private dialogService: DialogService,
     public translate: TranslateService,
-    public route: ActivatedRoute,
-  ) {
-  }
+    public route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     if (this.projectId) {
-      this.projectService.getAppointmentsForProject(this.projectId).subscribe(appointments => {
+      this.projectService.getAppointmentsForProject(this.projectId).subscribe((appointments) => {
         this.appointments.next(appointments || []);
       });
     }
   }
-
 
   openEditAppointment(row: any) {
     const appointment = row.appointment;
@@ -70,7 +63,5 @@ export class ProjectAppointmentsComponent implements OnInit {
     ref.onClose.pipe(first()).subscribe(() => {
       this.feedSource.refresh();
     });
-
   }
 }
-

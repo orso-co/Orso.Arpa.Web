@@ -1,66 +1,77 @@
-<h3 class='title'>{{instrumentName}}</h3>
-<form [formGroup]='form' class='p-mt-5'>
+<h3 class="title">{{ instrumentName }}</h3>
+<form [formGroup]="form" class="p-mt-5">
   <div>
-    <h4 class='status'>{{ 'mupro.STATUS_PERFORMER' | translate }}</h4>
+    <h4 class="status">{{ 'mupro.STATUS_PERFORMER' | translate }}</h4>
   </div>
-  <div class='p-grid p-formgrid p-fluid'>
-    <div class='p-col'>
-      <arpa-form-field label="{{ 'mupro.PARTICIPATION_STATUS_INNER' | translate }}" type='select'>
+  <div class="p-grid p-formgrid p-fluid">
+    <div *ngIf="!participation.project?.children; else projectStatusInner" class="p-col">
+      <arpa-form-field label="{{ 'mupro.PARTICIPATION_STATUS_INNER' | translate }}" type="select">
         <p-dropdown
-          [autoDisplayFirst]='false'
-          [options]='(participationStatusInnerOptions$ | async)!'
+          [autoDisplayFirst]="false"
+          [options]="(participationStatusInnerOptions$ | async)!"
           [placeholder]="'NOTHING_SELECTED' | translate"
-          [showClear]='true'
-          appendTo='body'
-          formControlName='participationStatusInner'
-          id='participationStatusInner'
+          [showClear]="true"
+          appendTo="body"
+          formControlName="participationStatusInner"
+          id="participationStatusInner"
         ></p-dropdown>
       </arpa-form-field>
     </div>
   </div>
-  <div *ngIf='commentByPerformerInner' class='p-field p-col12'>
-    <span class='comment'>{{ commentByPerformerInner }}</span>
-    <hr class='hr1'>
-
+  <div *ngIf="commentByPerformerInner" class="p-field p-col12">
+    <span class="comment">{{ commentByPerformerInner }}</span>
+    <hr class="hr1" />
   </div>
   <div>
-    <h4 class='status'>{{ 'mupro.STATUS_STAFF' | translate }}</h4>
+    <h4 class="status">{{ 'mupro.STATUS_STAFF' | translate }}</h4>
   </div>
-  <div class='p-grid p-formgrid p-fluid'>
-    <div class='p-col'>
-      <arpa-form-field label="{{ 'mupro.PARTICIPATION_STATUS_INTERNAL' | translate }}" type='select'>
+  <div class="p-grid p-formgrid p-fluid">
+    <div *ngIf="!participation.project?.children; else projectStatusInternal" class="p-col">
+      <arpa-form-field label="{{ 'mupro.PARTICIPATION_STATUS_INTERNAL' | translate }}" type="select">
         <p-dropdown
-          [autoDisplayFirst]='false'
-          [options]='(participationStatusInternalOptions$ | async)!'
+          [autoDisplayFirst]="false"
+          [options]="(participationStatusInternalOptions$ | async)!"
           [placeholder]="'NOTHING_SELECTED' | translate"
-          [showClear]='true'
-          appendTo='body'
-          formControlName='participationStatusInternal'
-          id='participationStatusInternal'
+          [showClear]="true"
+          appendTo="body"
+          formControlName="participationStatusInternal"
+          id="participationStatusInternal"
         ></p-dropdown>
       </arpa-form-field>
     </div>
   </div>
-  <div class='p-field p-col12'>
+  <div class="p-field p-col12">
     <arpa-form-field label="{{ 'mupro.PARTICIPATION_COMMENT_STAFF' | translate }}">
-      <textarea formControlName='commentByStaffInner' id='commentByStaffId' pInputText rows='5' style='width: 100%'></textarea>
+      <textarea formControlName="commentByStaffInner" id="commentByStaffId" pInputText rows="5" style="width: 100%"></textarea>
     </arpa-form-field>
   </div>
-  <div class='p-field p-col12'>
+  <div class="p-field p-col12">
     <arpa-form-field label="{{ 'mupro.PARTICIPATION_COMMENT_TEAM' | translate }}">
-      <textarea formControlName='commentTeam' id='commentTeam' pInputText rows='5' style='width: 100%'></textarea>
+      <textarea formControlName="commentTeam" id="commentTeam" pInputText rows="5" style="width: 100%"></textarea>
     </arpa-form-field>
   </div>
 
-  <div class='p-formgroup-inline p-jc-between'>
-    <div class='p-text-left'>
+  <div class="p-formgroup-inline p-jc-between">
+    <div class="p-text-left">
       <p-button
-        (click)='onSubmit()'
-        [disabled]='form.pristine || form.invalid'
+        (click)="onSubmit()"
+        [disabled]="form.pristine || form.invalid"
         [label]="'SAVE' | translate"
-        icon='pi pi-check'
-        iconPos='left'
+        icon="pi pi-check"
+        iconPos="left"
       ></p-button>
     </div>
   </div>
 </form>
+
+<ng-template #projectStatusInner>
+  <div class="p-col">
+    <h3>{{ participation.participationStatusInner }}</h3>
+  </div>
+</ng-template>
+
+<ng-template #projectStatusInternal>
+  <div class="p-col">
+    <h3>{{ participation.participationStatusInternal }}</h3>
+  </div>
+</ng-template>

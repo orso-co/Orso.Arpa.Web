@@ -12,15 +12,7 @@ export const ProjectsQuery = gql`
     projects(
       skip: $skip
       take: $take
-      order: {
-        endDate: $orderEndDate,
-        genre: {
-          selectValue: {
-            name: $orderGenreId
-          },
-        },
-        status: $orderStatus,
-      }
+      order: { endDate: $orderEndDate, genre: { selectValue: { name: $orderGenreId } }, status: $orderStatus }
       where: {
         or: [{ title: { contains: $searchQuery } }, { code: { contains: $searchQuery } }, { shortTitle: { contains: $searchQuery } }]
       }
@@ -51,6 +43,10 @@ export const ProjectsQuery = gql`
         shortTitle
         description
         code
+        children {
+          title
+          id
+        }
         parent {
           title
           id

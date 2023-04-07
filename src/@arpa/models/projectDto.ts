@@ -1,6 +1,7 @@
 import { ProjectStatus } from './projectStatus';
 import { SelectValueDto } from './selectValueDto';
 import { UrlDto } from './urlDto';
+import { ReducedProjectDto } from './reducedProjectDto';
 
 export interface ProjectDto {
   id: string;
@@ -21,4 +22,5 @@ export interface ProjectDto {
   parentId?: string;
   isCompleted?: boolean;
   parentProject?: string;
+  children: ReducedProjectDto[];
 }

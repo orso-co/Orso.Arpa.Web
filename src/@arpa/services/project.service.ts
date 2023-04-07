@@ -72,13 +72,16 @@ export class ProjectService {
   }
 
   public getAppointmentsForProject(projectId: string): Observable<any> {
-    return this.apollo.query({query: ProjectAppointments, variables: {projectId}})
-      .pipe(
-        first(),
-        map((result:any) => {
-          const appointments =  result.data.projects.items?.[0]?.projectAppointments;
-          return appointments ? cloneDeep(appointments) : [];
-        })
-      );
+    return this.apollo.query({ query: ProjectAppointments, variables: { projectId } }).pipe(
+      first(),
+      map((result: any) => {
+        const appointments = result.data.projects.items?.[0]?.projectAppointments;
+        return appointments ? cloneDeep(appointments) : [];
+      })
+    );
+  }
+
+  public query(query: { query: any; variables: any }): Observable<any> {
+    return this.apollo.query(query).pipe(first(), shareReplay());
   }
 }
