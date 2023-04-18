@@ -17,17 +17,17 @@ import { map } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../../../@arpa/services/auth.service';
+import { AuthService } from '@arpa/services';
 import { MenuItem } from 'primeng/api';
 import { WidgetComponent } from './widget/widget.component';
-import { LoadingService } from '../../../@arpa/services/loading.service';
+import { LoadingService } from '@arpa/services';
 import { dashboards, widgets } from './dashboard.config';
 
 interface CardLayout {
   columns: number;
-  chart: { cols: number, rows: number };
-  widget: { cols: number, rows: number };
-  table: { cols: number, rows: number };
+  chart: { cols: number; rows: number };
+  widget: { cols: number; rows: number };
+  table: { cols: number; rows: number };
 }
 
 /**
@@ -43,15 +43,13 @@ export class ArpaWidgetConfigDirective {
   @Input()
   collection: string;
 
-  constructor(public viewRef: ViewContainerRef) {
-  }
+  constructor(public viewRef: ViewContainerRef) {}
 }
 
 /**
  * An instance gets injected into each widget and is available to the projected component.
  */
 export class WidgetStateService {
-
   public loading: Observable<boolean>;
   public events: EventEmitter<any> = new EventEmitter();
 
@@ -70,7 +68,6 @@ export class WidgetStateService {
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
-
   routeRoleSubscription: Subscription;
   widgetRefsSubscription: Subscription;
   menuItems: Observable<MenuItem[]>;
@@ -92,7 +89,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
         widget: { cols: 2, rows: 4 },
         table: { cols: 4, rows: 6 },
       };
-    }),
+    })
   );
   @ViewChildren(ArpaWidgetConfigDirective, { read: ArpaWidgetConfigDirective }) private widgetRefs: QueryList<ArpaWidgetConfigDirective>;
 
@@ -104,17 +101,17 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     private cdRef: ChangeDetectorRef,
     private injector: Injector,
     private vcRef: ViewContainerRef,
-    private authService: AuthService) {
-  }
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
-    this.routeRoleSubscription = this.route.data.subscribe(data => {
+    this.routeRoleSubscription = this.route.data.subscribe((data) => {
       this.dashboardRole = data.dashboardRole.toLowerCase();
     });
 
     this.menuItems = this.authService.currentUser.pipe(
       map((token) => token!.roles),
-      map((roles) => roles.map((role) => ({ routerLink: [`/arpa/dashboard/${role}`], label: role.toUpperCase() }))),
+      map((roles) => roles.map((role) => ({ routerLink: [`/arpa/dashboard/${role}`], label: role.toUpperCase() })))
     );
   }
 
@@ -122,15 +119,13 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     // Initially render all widgets.
     this.processWidgetConfigs(this.widgetRefs.toArray());
     // Rerender on view changes.
-    this.widgetRefsSubscription = this.widgetRefs.changes.subscribe(
-      (next: QueryList<ArpaWidgetConfigDirective>) => {
-        this.processWidgetConfigs(next.toArray());
-      },
-    );
+    this.widgetRefsSubscription = this.widgetRefs.changes.subscribe((next: QueryList<ArpaWidgetConfigDirective>) => {
+      this.processWidgetConfigs(next.toArray());
+    });
   }
 
   getByType(type: string) {
-    return dashboards[this.dashboardRole] && dashboards[this.dashboardRole][type] || [];
+    return (dashboards[this.dashboardRole] && dashboards[this.dashboardRole][type]) || [];
   }
 
   getActiveItem(menuItems: MenuItem[]): MenuItem {
@@ -149,27 +144,28 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   private processWidgetConfigs(configs: ArpaWidgetConfigDirective[]) {
     configs.forEach((config) => {
       this.createWidget.apply(this, [
-          config.viewRef,
-          ...(Array.isArray(config.arpaWidgetConfig) ? config.arpaWidgetConfig : [config.arpaWidgetConfig]),
-        ] as never,
-      );
+        config.viewRef,
+        ...(Array.isArray(config.arpaWidgetConfig) ? config.arpaWidgetConfig : [config.arpaWidgetConfig]),
+      ] as never);
     });
   }
 
   private createWidget(targetRef: ViewContainerRef, type: string, config: Record<string, any> = {}) {
     let component = widgets[type];
     if (component) {
-
       let widgetComponentFactory = this.cfr.resolveComponentFactory(WidgetComponent);
 
       const ngContentFactory = this.cfr.resolveComponentFactory(component);
 
       const injector = Injector.create({
-        providers: [{
-          provide: WidgetStateService, useFactory: () => {
-            return new WidgetStateService(config, LoadingService.getInstance());
+        providers: [
+          {
+            provide: WidgetStateService,
+            useFactory: () => {
+              return new WidgetStateService(config, LoadingService.getInstance());
+            },
           },
-        }],
+        ],
         parent: this.injector,
       });
 

@@ -1,4 +1,9 @@
 <h3 class="title">{{ instrumentName }}</h3>
+<p class="modified">
+  {{ 'MODIFIED_AT' | translate }} {{ participation.modifiedAt | date : 'dd.MM.yyyy - hh:mm' : 'locale(de)' }} {{ 'BY' | translate }}
+  {{ participation.modifiedBy }}
+</p>
+
 <form [formGroup]="form" class="p-mt-5">
   <div>
     <h4 class="status">{{ 'mupro.STATUS_PERFORMER' | translate }}</h4>

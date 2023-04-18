@@ -17,9 +17,11 @@ export const ProjectsQuery = gql`
           invitationStatus
           participationStatusInner
           participationStatusInternal
+          participationStatusResult
           commentByStaffInner
           commentTeam
           modifiedAt
+          modifiedBy
           musicianProfile {
             id
             instrument {

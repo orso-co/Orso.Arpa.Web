@@ -2,13 +2,11 @@
   color: var(--primary-color);
   font-weight: normal;
   font-size: xx-large;
-
 }
 
 .status {
-  color: var(--text-color-primary);;
+  color: var(--text-color-primary);
   font-weight: normal;
-
 }
 
 .selectStatus {
@@ -26,4 +24,8 @@
   height: 2px;
   color: var(--blue-100);
 }
-
+.modified {
+  font-size: small;
+  font-style: italic;
+  color: var(--text-color-primary);
+}

@@ -14,6 +14,10 @@
       </h4>
       <arpa-chart [values]="innerStatsValues" [labels]="innerStatsKeys" type="pie" [legend]="true"></arpa-chart>
     </div>
+    <div class="chart-subcontainer">
+      <h4 style="text-align: center">{{ 'projects.TOTALRESULTS' | translate }}: {{ finalResultsValues }}</h4>
+      <arpa-chart [values]="finalResultsValues" [labels]="finalResultsKeys" type="pie" [legend]="true"></arpa-chart>
+    </div>
   </div>
 
   <arpa-table [columns]="columns" [values]="tableData" (rowClickEvents)="openParticipationDialog($event)"></arpa-table>

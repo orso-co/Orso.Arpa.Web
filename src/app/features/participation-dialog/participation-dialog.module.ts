@@ -18,6 +18,7 @@ import { FormFieldModule } from '../../../@arpa/components/form-field/form-field
 import { TabViewModule } from 'primeng/tabview';
 import { AppointmentParticipationsComponent } from './appointment-participations/appointment-participations.component';
 import { TableModule } from '../../../@arpa/components/table/table.module';
+import { LocalizedDateModule } from '../../../@arpa/pipes/localized-date/localized-date.module';
 
 @NgModule({
   imports: [
@@ -38,13 +39,9 @@ import { TableModule } from '../../../@arpa/components/table/table.module';
     FormFieldModule,
     TabViewModule,
     TableModule,
+    LocalizedDateModule,
   ],
-  declarations: [
-    ParticipationDialogComponent,
-    ParticipationEditComponent,
-    AppointmentParticipationsComponent
-  ],
+  declarations: [ParticipationDialogComponent, ParticipationEditComponent, AppointmentParticipationsComponent],
   exports: [ParticipationDialogComponent, AppointmentParticipationsComponent],
 })
-export class ParticipationDialogModule {
-}
+export class ParticipationDialogModule {}
