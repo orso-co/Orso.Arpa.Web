@@ -51,21 +51,20 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
         { label: 'projectParticipationStatusInternal.REFUSAL', value: 'REFUSAL', severity: 'danger' },
       ],
     },
-
-    // TODO: figure out how to show more properties in the table. Wait for backend to provide StatusRESULT with graphql
-
+    {
+      label: 'projects.PARTICIPATION_STATUS_RESULT',
+      property: 'participationStatusResult',
+      type: 'badge',
+      badgeStateMap: [
+        { label: 'projectParticipationStatusInternal.CANDIDATE', value: 'CANDIDATE', severity: 'info' },
+        { label: 'projectParticipationStatusInternal.PENDING', value: 'PENDING', severity: 'warning' },
+        { label: 'projectParticipationStatusInternal.ACCEPTANCE', value: 'ACCEPTANCE', severity: 'success' },
+        { label: 'projectParticipationStatusInternal.REFUSAL', value: 'REFUSAL', severity: 'danger' },
+      ],
+    },
+    //TODO: MODIFIED Properties are not shown in table, but seeing loaded in network tab
     // { label: 'MODIFIED_AT', property: 'projectParticipationsModifiedAt', type: 'date' },
-    // {
-    //   label: 'projects.PARTICIPATION_STATUS_RESULT',
-    //   property: 'participationStatusResult',
-    //   type: 'badge',
-    //   badgeStateMap: [
-    //     { label: 'projectParticipationStatusInternal.CANDIDATE', value: 'CANDIDATE', severity: 'info' },
-    //     { label: 'projectParticipationStatusInternal.PENDING', value: 'PENDING', severity: 'warning' },
-    //     { label: 'projectParticipationStatusInternal.ACCEPTANCE', value: 'ACCEPTANCE', severity: 'success' },
-    //     { label: 'projectParticipationStatusInternal.REFUSAL', value: 'REFUSAL', severity: 'danger' },
-    //   ],
-    // },
+    // { label: 'MODIFIED_BY', property: 'projectParticipationsModifiedBy', type: 'text' },
   ];
 
   tableData = new BehaviorSubject<any[]>([]);
@@ -74,6 +73,9 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
   innerStatsCount: Record<string, number> = {};
   innerStatsValues: number[] = [];
   innerStatsKeys: string[] = [];
+  finalResultsCount: Record<string, number> = {};
+  finalResultsValues: number[] = [];
+  finalResultsKeys: string[] = [];
   personId: string | undefined;
   project: any;
   participations: ProjectParticipationDto[] = [];
@@ -112,6 +114,8 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
             }
             this.totalReplies += 1;
           }
+          this.finalResultsCount[participation.participationStatusResult] =
+            (this.finalResultsCount[participation.participationStatusResult] || 0) + 1;
         });
 
         this.tableData.next([...participations]);
@@ -120,6 +124,10 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
         this.innerStatsValues = Object.values(this.innerStatsCount);
         this.innerStatsKeys = Object.keys(this.innerStatsCount).map((key) =>
           this.translate.instant(`projectParticipationStatusInner.${key}`)
+        );
+        this.finalResultsValues = Object.values(this.finalResultsCount);
+        this.finalResultsKeys = Object.keys(this.finalResultsCount).map((key) =>
+          this.translate.instant(`projectParticipationStatusInternal.${key}`)
         );
         this.ready = true;
       });
