@@ -48,9 +48,9 @@ export class MusicianInstrumentsComponent implements OnInit {
     private sectionService: SectionService,
     private enumService: EnumService
   ) {
-    this.availabilityOptions$ = this.selectValueService.get('MusicianProfileSection', 'InstrumentAvailability');
-    this.salaryOptions$ = this.resolveSelect('Salary');
-    this.qualificationOptions$ = this.resolveSelect('Qualification');
+    this.availabilityOptions$ = this.selectValueService.getMusicianProfileInstrumentsAvailability();
+    this.salaryOptions$ = this.selectValueService.getMusicianProfileSalaryOptions();
+    this.qualificationOptions$ = this.selectValueService.getMusicianProfileQualifications();
     this.inquiryStatusOptions$ = this.enumService.getMusicianProfileInquiryStatusSelectItems();
 
     this.config.data.profile.pipe(first()).subscribe((profile: MusicianProfileDto) => {
@@ -167,10 +167,6 @@ export class MusicianInstrumentsComponent implements OnInit {
         });
         this.notificationsService.success('DOUBLING_INSTRUMENT_UPDATED', 'musician-profile-dialog');
       });
-  }
-
-  private resolveSelect(property: string): Observable<SelectItem[]> {
-    return this.selectValueService.get('MusicianProfile', property);
   }
 
   private getFormGroup(data: DoublingInstrumentDto): FormListElement {

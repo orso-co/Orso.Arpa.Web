@@ -59,7 +59,7 @@ export class PersonListComponent implements OnInit {
     const ref = this.dialogService.open(PersonLayoutComponent, {
       data: {
         person: selection ? selection : null,
-        gender: this.selectValueService.get('Person', 'Gender'),
+        gender: this.selectValueService.getPersonGenders(),
       },
       header: selection ? this.translate.instant('persons.EDIT_PERSON') : this.translate.instant('persons.ADD_NEW_PERSON'),
       styleClass: 'form-modal',

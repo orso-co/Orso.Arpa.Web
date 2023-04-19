@@ -52,7 +52,7 @@ export class PersonBankdataComponent implements OnInit, OnDestroy {
       this.tableData.next(this._tableData);
       this.subscription = this.tableData.subscribe((d) => (this.person!.bankAccounts = d));
     }
-    this.statusOptions$ = this.selectValueService.get('BankAccount', 'Status');
+    this.statusOptions$ = this.selectValueService.getBankAccountStatuses();
   }
 
   onSubmit() {

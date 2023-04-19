@@ -38,7 +38,7 @@ export class MusicianDocumentsComponent implements OnInit {
     this.config.data.profile.pipe(first()).subscribe((profile: MusicianProfileDto) => {
       this.profile = profile;
     });
-    this.documentTypes = this.selectValueService.get('MusicianProfile', 'Documents');
+    this.documentTypes = this.selectValueService.getMusicianProfileDocumentTypes();
 
     this.documentList = combineLatest(this.documentTypes, this.documents).pipe(
       map(([types, documents]) => {

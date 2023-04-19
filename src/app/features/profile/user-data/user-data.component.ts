@@ -43,7 +43,7 @@ export class UserDataComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.genderSelectValue = this.selectValueService.get('Person', 'Gender');
+    this.genderSelectValue = this.selectValueService.getPersonGenders();
   }
 
   submit(): void {

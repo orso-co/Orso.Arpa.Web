@@ -60,8 +60,8 @@ export class ProjectListComponent {
       data: {
         project: selection ? selection : null,
         venues: this.venueService.load(),
-        type: this.selectValueService.get('Project', 'Type'),
-        genre: this.selectValueService.get('Project', 'Genre'),
+        type: this.selectValueService.getProjectTypes(),
+        genre: this.selectValueService.getProjectGenres(),
       },
       header: selection ? this.translate.instant('projects.EDIT_PROJECT') : this.translate.instant('projects.NEW_PROJECT'),
       styleClass: 'form-modal',

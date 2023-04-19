@@ -16,6 +16,62 @@ export class SelectValueService {
     this.baseUrl = '/tables';
   }
 
+  getAppointmentCategories(): Observable<SelectItem[]> {
+    return this.get('Appointment', 'Category');
+  }
+
+  getAppointmentExpectations(): Observable<SelectItem[]> {
+    return this.get('Appointment', 'Expectation');
+  }
+
+  getAppointmentSalaries(): Observable<SelectItem[]> {
+    return this.get('Appointment', 'Salary');
+  }
+
+  getAppointmentSalaryPatterns(): Observable<SelectItem[]> {
+    return this.get('Appointment', 'SalaryPattern');
+  }
+
+  getMusicianProfileDocumentTypes(): Observable<SelectItem[]> {
+    return this.get('MusicianProfile', 'Documents');
+  }
+
+  getMusicianProfileInstrumentsAvailability(): Observable<SelectItem[]> {
+    return this.get('MusicianProfileSection', 'InstrumentAvailability');
+  }
+
+  getMusicianProfileSalaryOptions(): Observable<SelectItem[]> {
+    return this.get('MusicianProfile', 'Salary');
+  }
+
+  getMusicianProfileQualifications(): Observable<SelectItem[]> {
+    return this.get('MusicianProfile', 'Qualification');
+  }
+
+  getEducationTypes(): Observable<SelectItem[]> {
+    return this.get('Education', 'Type');
+  }
+
+  getPersonGenders(): Observable<SelectItem[]> {
+    return this.get('Person', 'Gender');
+  }
+
+  getBankAccountStatuses(): Observable<SelectItem[]> {
+    return this.get('BankAccount', 'Status');
+  }
+
+  getContactDetailTypes(): Observable<SelectItem[]> {
+    return this.get('ContactDetail', 'Type');
+  }
+
+  getProjectTypes(): Observable<SelectItem[]> {
+    return this.get('Project', 'Type');
+  }
+
+  getProjectGenres(): Observable<SelectItem[]> {
+    return this.get('Project', 'Genre');
+  }
+
   get(tableName: string, propertyName: string): Observable<SelectItem[]> {
     if (this.cacheContains(tableName, propertyName)) {
       return of(this.getFromCache(tableName, propertyName));

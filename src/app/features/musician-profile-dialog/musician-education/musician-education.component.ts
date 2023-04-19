@@ -38,7 +38,7 @@ export class MusicianEducationComponent implements OnInit {
     this.config.data.profile.pipe(first()).subscribe((profile: MusicianProfileDto) => {
       this.profile = profile;
     });
-    this.educationTypes = this.selectValueService.get('Education', 'Type');
+    this.educationTypes = this.selectValueService.getEducationTypes();
   }
 
   ngOnInit(): void {

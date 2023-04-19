@@ -39,7 +39,7 @@ export class MusicianMainInstrumentComponent implements OnInit {
     private sectionsService: SectionService,
     private enumService: EnumService
   ) {
-    this.qualificationOptions$ = this.resolveSelect('Qualification');
+    this.qualificationOptions$ = this.selectValueService.getMusicianProfileQualifications();
     this.inquiryStatusOptions$ = this.enumService.getMusicianProfileInquiryStatusSelectItems();
     this.config.data.profile.pipe(first()).subscribe((profile: MyMusicianProfileDto) => {
       this.profile = profile;
@@ -111,10 +111,6 @@ export class MusicianMainInstrumentComponent implements OnInit {
       return;
     }
     this.ref.close();
-  }
-
-  private resolveSelect(property: string): Observable<SelectItem[]> {
-    return this.selectValueService.get('MusicianProfile', property);
   }
 
   private createOrUpdate(profile: MyMusicianProfileCreateDto | MyMusicianProfileModifyBodyDto): void {

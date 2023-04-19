@@ -12,9 +12,6 @@ export class ProjectGenreResolver implements Resolve<SelectItem[]> {
   constructor(private selectValueService: SelectValueService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<SelectItem[]> {
-    const tableName = 'Project';
-    const propertyName = 'Genre';
-
-    return this.selectValueService.get(tableName, propertyName);
+    return this.selectValueService.getProjectGenres();
   }
 }

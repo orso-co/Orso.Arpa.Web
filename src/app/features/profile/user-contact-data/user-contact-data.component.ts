@@ -56,7 +56,7 @@ export class UserContactDataComponent implements OnInit {
   ngOnInit() {
     this._tableData = this.contactDetails && this.contactDetails.length ? cloneDeep(this.contactDetails) : [];
     this.tableData.next(this._tableData);
-    this.typeOptions$ = this.selectValueService.get('ContactDetail', 'Type');
+    this.typeOptions$ = this.selectValueService.getContactDetailTypes();
   }
 
   onSubmit() {

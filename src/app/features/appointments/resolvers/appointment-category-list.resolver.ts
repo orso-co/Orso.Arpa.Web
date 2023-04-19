@@ -10,9 +10,6 @@ export class AppointmentCategoryListResolver implements Resolve<SelectItem[]> {
   constructor(private selectValueService: SelectValueService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<SelectItem[]> {
-    const tableName = 'Appointment';
-    const propertyName = 'Category';
-
-    return this.selectValueService.get(tableName, propertyName);
+    return this.selectValueService.getAppointmentCategories();
   }
 }

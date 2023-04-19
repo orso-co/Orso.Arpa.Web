@@ -53,7 +53,7 @@ export class MusicianDoublingInstrumentComponent implements OnInit {
 
     this.sections = this.config.data.sections;
 
-    this.availability = this.selectValueService.get('MusicianProfileSection', 'InstrumentAvailability');
+    this.availability = this.selectValueService.getMusicianProfileInstrumentsAvailability();
   }
 
   ngOnInit(): void {

@@ -61,7 +61,7 @@ export class PersonContactdataComponent implements OnInit, OnDestroy {
       this.tableData.next(this._tableData);
       this.subscription = this.tableData.subscribe((d) => (this.person!.contactDetails = d));
     }
-    this.typeOptions$ = this.selectValueService.get('ContactDetail', 'Type');
+    this.typeOptions$ = this.selectValueService.getContactDetailTypes();
   }
 
   onSubmit() {

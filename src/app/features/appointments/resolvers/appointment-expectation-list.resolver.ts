@@ -10,9 +10,6 @@ export class AppointmentExpectationListResolver implements Resolve<SelectItem[]>
   constructor(private selectValueService: SelectValueService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<SelectItem[]> {
-    const tableName = 'Appointment';
-    const propertyName = 'Expectation';
-
-    return this.selectValueService.get(tableName, propertyName);
+    return this.selectValueService.getAppointmentExpectations();
   }
 }

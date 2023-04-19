@@ -51,7 +51,7 @@ export class PersonBasedataComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.genderOptions$ = this.selectValueService.get('Person', 'Gender');
+    this.genderOptions$ = this.selectValueService.getPersonGenders();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
