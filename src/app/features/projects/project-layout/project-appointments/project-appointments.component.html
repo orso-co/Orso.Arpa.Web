@@ -1,12 +1,14 @@
-<arpa-table *ngIf='appointments | async'
-            [columnFilter]='true'
-            [values]="appointments"
-            [columns]='columns'
-            [showFilter]='false'
-            [showFirstLastIcon]='false'
-            [showPageLinks]='false'
-            [showPagination]='true'
-            selectionMode='single'
-            tableStyleClass='arpa-table-list'
+<h5>Total Records: {{ filteredAppointmentsCount }}</h5>
+<arpa-table
+  *ngIf="appointments | async"
+  [columnFilter]="true"
+  [values]="appointments"
+  [columns]="columns"
+  [showFilter]="true"
+  [showFirstLastIcon]="true"
+  [showPageLinks]="true"
+  [showPagination]="true"
+  (rowClickEvents)="openEditAppointment($event)"
+  selectionMode="single"
+  tableStyleClass="arpa-table-list"
 ></arpa-table>
-

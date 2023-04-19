@@ -20,15 +20,16 @@ export class ProjectAppointmentsComponent implements OnInit {
   @ViewChild('feedSource')
   private feedSource: GraphQlFeedComponent;
   @Input() projectId: string;
+  filteredAppointmentsCount: number;
 
   columns: ColumnDefinition<AppointmentDto>[] = [
     { label: 'APPOINTMENT', property: 'appointment.name', type: 'text' },
-    { label: 'SECTION', property: 'appointment.sections.name', type: 'badge', show: true },
     { label: 'START', property: 'appointment.startTime', type: 'date', show: true },
     { label: 'END', property: 'appointment.endTime', type: 'date', show: true },
-    { label: 'STATUS', property: 'appointment.status', type: 'badge', show: true },
+    { label: 'SECTION', property: 'appointment.sections.name', type: 'badge', show: true },
     { label: 'VENUE', property: 'appointment.venue.name', type: 'text', show: true },
-    { label: 'CREATED_BY', property: 'appointment.createdBy', type: 'text', show: true },
+    { label: 'STATUS', property: 'appointment.status', type: 'badge', show: true },
+    { label: 'CREATED_BY', property: 'appointment.createdBy', type: 'text', show: false },
     { label: 'CREATED_AT', property: 'appointment.createdAt', type: 'date', show: false },
   ];
   appointments = new BehaviorSubject([]);
