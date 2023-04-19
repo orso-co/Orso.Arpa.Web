@@ -9,7 +9,7 @@
     <h4 class="status">{{ 'mupro.STATUS_PERFORMER' | translate }}</h4>
   </div>
   <div class="p-grid p-formgrid p-fluid">
-    <div *ngIf="!participation.project?.children; else projectStatusInner" class="p-col">
+    <div *ngIf="!children?.length; else projectStatusResult" class="p-col">
       <arpa-form-field label="{{ 'mupro.PARTICIPATION_STATUS_INNER' | translate }}" type="select">
         <p-dropdown
           [autoDisplayFirst]="false"
@@ -31,7 +31,7 @@
     <h4 class="status">{{ 'mupro.STATUS_STAFF' | translate }}</h4>
   </div>
   <div class="p-grid p-formgrid p-fluid">
-    <div *ngIf="!participation.project?.children; else projectStatusInternal" class="p-col">
+    <div *ngIf="!children?.length; else projectStatusResult" class="p-col">
       <arpa-form-field label="{{ 'mupro.PARTICIPATION_STATUS_INTERNAL' | translate }}" type="select">
         <p-dropdown
           [autoDisplayFirst]="false"
@@ -69,14 +69,20 @@
   </div>
 </form>
 
-<ng-template #projectStatusInner>
-  <div class="p-col">
-    <h3>{{ participation.participationStatusInner }}</h3>
-  </div>
-</ng-template>
+<!--<ng-template #projectStatusInner>-->
+<!--  <div class="p-col">-->
+<!--    <h3>{{ participation.participationStatusInner }}</h3>-->
+<!--  </div>-->
+<!--</ng-template>-->
 
-<ng-template #projectStatusInternal>
+<!--<ng-template #projectStatusInternal>-->
+<!--  <div class="p-col">-->
+<!--    <h3>{{ participation.participationStatusInternal }}</h3>-->
+<!--  </div>-->
+<!--</ng-template>-->
+
+<ng-template #projectStatusResult>
   <div class="p-col">
-    <h3>{{ participation.participationStatusInternal }}</h3>
+    <h3>{{ participation.participationStatusResult }}</h3>
   </div>
 </ng-template>

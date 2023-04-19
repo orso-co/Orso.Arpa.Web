@@ -13,11 +13,19 @@ export const ProjectsQuery = gql`
       items {
         id
         title
+        children {
+          title
+          id
+        }
+        parent {
+          title
+          id
+        }
         projectParticipations {
-          invitationStatus
           participationStatusInner
           participationStatusInternal
           participationStatusResult
+          invitationStatus
           commentByStaffInner
           commentTeam
           modifiedAt
