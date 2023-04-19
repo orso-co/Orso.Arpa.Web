@@ -15,7 +15,6 @@ import { ColumnDefinition } from '../../../../@arpa/components/table/table.compo
   styleUrls: ['./musician-documents.component.scss'],
 })
 export class MusicianDocumentsComponent implements OnInit {
-
   public form: FormGroup;
 
   public profile: MusicianProfileDto;
@@ -28,27 +27,28 @@ export class MusicianDocumentsComponent implements OnInit {
   public documentList: Observable<any>;
   private _documents: any;
 
-  constructor(public config: DynamicDialogConfig,
-              private formBuilder: FormBuilder,
-              public ref: DynamicDialogRef,
-              private selectValueService: SelectValueService,
-              private musicianService: MusicianService,
-              private notificationsService: NotificationsService) {
-
+  constructor(
+    public config: DynamicDialogConfig,
+    private formBuilder: FormBuilder,
+    public ref: DynamicDialogRef,
+    private selectValueService: SelectValueService,
+    private musicianService: MusicianService,
+    private notificationsService: NotificationsService
+  ) {
     this.config.data.profile.pipe(first()).subscribe((profile: MusicianProfileDto) => {
       this.profile = profile;
     });
-    this.documentTypes = this.selectValueService.load('MusicianProfile', 'Documents')
-      .pipe(map(() => this.selectValueService.get('MusicianProfile', 'Documents')));
+    this.documentTypes = this.selectValueService.get('MusicianProfile', 'Documents');
 
-    this.documentList = combineLatest(this.documentTypes, this.documents)
-      .pipe(map(([types, documents]) => {
+    this.documentList = combineLatest(this.documentTypes, this.documents).pipe(
+      map(([types, documents]) => {
         const list: Array<any> = [];
-        documents.forEach(document => {
-          list.push(types.find(t => t.value === document));
+        documents.forEach((document) => {
+          list.push(types.find((t) => t.value === document));
         });
         return list;
-      }));
+      })
+    );
   }
 
   ngOnInit(): void {
@@ -56,12 +56,13 @@ export class MusicianDocumentsComponent implements OnInit {
       documentId: [null, [Validators.required]],
     });
 
-    this._documents = (this.profile.documents && this.profile.documents.length) ? this.profile.documents : [];
+    this._documents = this.profile.documents && this.profile.documents.length ? this.profile.documents : [];
     this.documents.next(this._documents);
   }
 
   add(): void {
-    this.musicianService.addDocument(this.profile.id, { ...this.form.value })
+    this.musicianService
+      .addDocument(this.profile.id, { ...this.form.value })
       .pipe(first())
       .subscribe(() => {
         this._documents.push(this.form.value.documentId);
@@ -71,7 +72,8 @@ export class MusicianDocumentsComponent implements OnInit {
   }
 
   remove(id: string): void {
-    this.musicianService.removeDocument(this.profile.id, id)
+    this.musicianService
+      .removeDocument(this.profile.id, id)
       .pipe(first())
       .subscribe(() => {
         this._documents = this._documents.filter((document: any) => document != id);

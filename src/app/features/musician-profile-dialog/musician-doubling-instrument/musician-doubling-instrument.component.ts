@@ -18,7 +18,6 @@ export interface FormList extends MyDoublingInstrumentDto {
   styleUrls: ['./musician-doubling-instrument.component.scss'],
 })
 export class MusicianDoublingInstrumentComponent implements OnInit {
-
   public form: FormGroup;
 
   public profile: MusicianProfileDto;
@@ -30,19 +29,20 @@ export class MusicianDoublingInstrumentComponent implements OnInit {
 
   public doublingInstruments: FormList[] = [];
 
-  constructor(public config: DynamicDialogConfig,
-              private formBuilder: FormBuilder,
-              public ref: DynamicDialogRef,
-              private selectValueService: SelectValueService,
-              private musicianService: MusicianService,
-              private notificationsService: NotificationsService) {
-
+  constructor(
+    public config: DynamicDialogConfig,
+    private formBuilder: FormBuilder,
+    public ref: DynamicDialogRef,
+    private selectValueService: SelectValueService,
+    private musicianService: MusicianService,
+    private notificationsService: NotificationsService
+  ) {
     this.instruments = new BehaviorSubject([] as DoublingInstrumentDto[]);
 
     this.config.data.profile.pipe(first()).subscribe((profile: MusicianProfileDto) => {
       this.profile = profile;
       if (profile.doublingInstruments?.length) {
-        profile.doublingInstruments.forEach(instrument => this.doublingInstruments.push(this.getFormGroup(instrument)));
+        profile.doublingInstruments.forEach((instrument) => this.doublingInstruments.push(this.getFormGroup(instrument)));
       }
 
       this.config.data.doublingInstruments.pipe(take(1)).subscribe((instruments: DoublingInstrumentDto[]) => {
@@ -53,8 +53,7 @@ export class MusicianDoublingInstrumentComponent implements OnInit {
 
     this.sections = this.config.data.sections;
 
-    this.availability = this.selectValueService.load('MusicianProfileSection', 'InstrumentAvailability')
-      .pipe(map(() => this.selectValueService.get('MusicianProfileSection', 'InstrumentAvailability')));
+    this.availability = this.selectValueService.get('MusicianProfileSection', 'InstrumentAvailability');
   }
 
   ngOnInit(): void {
@@ -67,7 +66,8 @@ export class MusicianDoublingInstrumentComponent implements OnInit {
   }
 
   add(): void {
-    this.musicianService.addDoublingInstrument(this.profile.id, { ...this.form.value })
+    this.musicianService
+      .addDoublingInstrument(this.profile.id, { ...this.form.value })
       .pipe(first())
       .subscribe((result) => {
         this.doublingInstruments.push(this.getFormGroup({ ...result }));
@@ -79,7 +79,8 @@ export class MusicianDoublingInstrumentComponent implements OnInit {
   update(item: FormList): void {
     const { formGroup, ...listData } = item;
     const { id, ...data } = formGroup.value;
-    this.musicianService.updateDoublingInstrument(this.profile.id, id, data, this.config.data.isMe)
+    this.musicianService
+      .updateDoublingInstrument(this.profile.id, id, data, this.config.data.isMe)
       .pipe(first())
       .subscribe(() => {
         this.doublingInstruments.forEach((item, i) => {
@@ -92,7 +93,8 @@ export class MusicianDoublingInstrumentComponent implements OnInit {
   }
 
   remove(instrument: any): void {
-    this.musicianService.removeDoublingInstrument(this.profile.id, instrument.id)
+    this.musicianService
+      .removeDoublingInstrument(this.profile.id, instrument.id)
       .pipe(first())
       .subscribe(() => {
         const index = this.doublingInstruments.indexOf(instrument);
@@ -121,11 +123,12 @@ export class MusicianDoublingInstrumentComponent implements OnInit {
   }
 
   private filterInstruments() {
-    this.instruments.next(this.availableInstruments.filter(({ id }) => {
-      return !this.doublingInstruments.some((instrument) => {
-        return instrument.instrumentId === id;
-      });
-    }));
+    this.instruments.next(
+      this.availableInstruments.filter(({ id }) => {
+        return !this.doublingInstruments.some((instrument) => {
+          return instrument.instrumentId === id;
+        });
+      })
+    );
   }
-
 }

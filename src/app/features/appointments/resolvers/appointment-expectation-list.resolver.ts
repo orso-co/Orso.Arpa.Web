@@ -7,17 +7,12 @@ import { SelectValueService } from '@arpa/services';
 
 @Injectable()
 export class AppointmentExpectationListResolver implements Resolve<SelectItem[]> {
-  constructor(private selectValueService: SelectValueService) {
-  }
+  constructor(private selectValueService: SelectValueService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<SelectItem[]> {
     const tableName = 'Appointment';
     const propertyName = 'Expectation';
 
-    if (this.selectValueService.loaded(tableName, propertyName)) {
-      return of(this.selectValueService.get(tableName, propertyName));
-    }
-
-    return this.selectValueService.load(tableName, propertyName).pipe(map(() => this.selectValueService.get(tableName, propertyName)));
+    return this.selectValueService.get(tableName, propertyName);
   }
 }

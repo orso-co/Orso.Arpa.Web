@@ -1,11 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {
-  MyMusicianProfileCreateDto,
-  MyMusicianProfileDto,
-  MyMusicianProfileModifyBodyDto,
-  SectionDto,
-} from '@arpa/models';
+import { MyMusicianProfileCreateDto, MyMusicianProfileDto, MyMusicianProfileModifyBodyDto, SectionDto } from '@arpa/models';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { SelectItem } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -119,32 +114,28 @@ export class MusicianMainInstrumentComponent implements OnInit {
   }
 
   private resolveSelect(property: string): Observable<SelectItem[]> {
-    return this.selectValueService
-      .load('MusicianProfile', property)
-      .pipe(map(() => this.selectValueService.get('MusicianProfile', property)));
+    return this.selectValueService.get('MusicianProfile', property);
   }
 
-  private createOrUpdate(
-    profile: MyMusicianProfileCreateDto | MyMusicianProfileModifyBodyDto
-  ): void {
+  private createOrUpdate(profile: MyMusicianProfileCreateDto | MyMusicianProfileModifyBodyDto): void {
     if (this.isNew) {
-        this.musicianService
-          .createProfileForMe(profile as MyMusicianProfileCreateDto)
-          .pipe(first())
-          .subscribe((result) => {
-            this.config.data.profile.next(result);
-            this.notificationsService.success('CREATED', 'musician-profile-dialog');
-            this.state = 'created';
-          });
+      this.musicianService
+        .createProfileForMe(profile as MyMusicianProfileCreateDto)
+        .pipe(first())
+        .subscribe((result) => {
+          this.config.data.profile.next(result);
+          this.notificationsService.success('CREATED', 'musician-profile-dialog');
+          this.state = 'created';
+        });
     } else {
-        this.musicianService
-          .updateMyProfile(this.profile.id!, profile as MyMusicianProfileModifyBodyDto)
-          .pipe(first())
-          .subscribe(() => {
-            this.config.data.profile.next(profile);
-            this.notificationsService.success('INSTRUMENT_UPDATED', 'musician-profile-dialog');
-            this.close();
-          });
+      this.musicianService
+        .updateMyProfile(this.profile.id!, profile as MyMusicianProfileModifyBodyDto)
+        .pipe(first())
+        .subscribe(() => {
+          this.config.data.profile.next(profile);
+          this.notificationsService.success('INSTRUMENT_UPDATED', 'musician-profile-dialog');
+          this.close();
+        });
     }
   }
 }

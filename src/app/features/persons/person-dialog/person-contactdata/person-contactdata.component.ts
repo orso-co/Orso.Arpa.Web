@@ -26,7 +26,7 @@ export class PersonContactdataComponent implements OnInit, OnDestroy {
     { label: '#', property: 'key', type: 'template', template: 'keyTemplate' },
     { label: 'persons.contact.VALUE', property: 'value', type: 'text' },
     { label: 'persons.contact.PREFERENCE', property: 'preference', type: 'rating', show: true },
-    { label: 'persons.contact.TYPE', property: 'typeId', type: 'state', stateTable: 'ContactDetail', stateProperty: 'Type'},
+    { label: 'persons.contact.TYPE', property: 'typeId', type: 'state', stateTable: 'ContactDetail', stateProperty: 'Type' },
     { label: 'persons.contact.COMMENT_INNER', property: 'commentInner', type: 'text', show: true },
     { label: 'persons.contact.COMMENT_TEAM', property: 'commentTeam', type: 'text', show: true },
   ];
@@ -42,7 +42,7 @@ export class PersonContactdataComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private contactService: ContactService,
     private notificationsService: NotificationsService,
-    private selectValueService: SelectValueService,
+    private selectValueService: SelectValueService
   ) {
     this.form = this.formBuilder.group({
       key: [null, [Validators.required]],
@@ -59,11 +59,9 @@ export class PersonContactdataComponent implements OnInit, OnDestroy {
       this.person.contactDetails = this.person.contactDetails || [];
       this._tableData = this.person.contactDetails;
       this.tableData.next(this._tableData);
-      this.subscription = this.tableData.subscribe(d => this.person!.contactDetails = d);
+      this.subscription = this.tableData.subscribe((d) => (this.person!.contactDetails = d));
     }
-    this.typeOptions$ = this.selectValueService
-      .load('ContactDetail', 'Type')
-      .pipe(map(() => this.selectValueService.get('ContactDetail', 'Type')));
+    this.typeOptions$ = this.selectValueService.get('ContactDetail', 'Type');
   }
 
   onSubmit() {
@@ -97,16 +95,15 @@ export class PersonContactdataComponent implements OnInit, OnDestroy {
   remove(contactDetails: ContactDetailDto): void {
     if (typeof contactDetails.id === 'string') {
       this.contactService
-        .deleteContactDetail(contactDetails.id, this.person?.id )
+        .deleteContactDetail(contactDetails.id, this.person?.id)
         .pipe(first())
         .subscribe(() => {
-          this._tableData = this._tableData.filter(e => e.id !== contactDetails.id);
+          this._tableData = this._tableData.filter((e) => e.id !== contactDetails.id);
           this.tableData.next(this._tableData);
           this.notificationsService.success('CONTACT_DETAIL_REMOVED', 'person-dialog');
         });
     }
   }
-
 
   update(contactDetails: ContactDetailDto) {
     this.form.reset({

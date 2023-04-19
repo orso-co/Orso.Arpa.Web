@@ -11,7 +11,7 @@ import { first, map } from 'rxjs/operators';
 @Component({
   selector: 'arpa-person-bankdata',
   templateUrl: './person-bankdata.component.html',
-  styleUrls: ['./person-bankdata.component.scss']
+  styleUrls: ['./person-bankdata.component.scss'],
 })
 export class PersonBankdataComponent implements OnInit, OnDestroy {
   public form: FormGroup;
@@ -22,28 +22,26 @@ export class PersonBankdataComponent implements OnInit, OnDestroy {
   public statusOptions$: Observable<SelectItem[]>;
 
   columns: ColumnDefinition<BankAccountDto>[] = [
-    { label: 'persons.bank.IBAN', property: 'iban', type: 'text'},
-    { label: 'persons.bank.BIC', property: 'bic', type: 'text'},
-    { label: 'persons.bank.ACCOUNT_OWNER', property: 'accountOwner', type: 'text'},
-    { label: 'persons.bank.STATUS', property: 'statusId', type: 'state', stateTable: 'BankAccount', stateProperty: 'State'},
-    { label: 'persons.bank.COMMENT_INNER', property: 'commentInner', type: 'text'},
-
+    { label: 'persons.bank.IBAN', property: 'iban', type: 'text' },
+    { label: 'persons.bank.BIC', property: 'bic', type: 'text' },
+    { label: 'persons.bank.ACCOUNT_OWNER', property: 'accountOwner', type: 'text' },
+    { label: 'persons.bank.STATUS', property: 'statusId', type: 'state', stateTable: 'BankAccount', stateProperty: 'State' },
+    { label: 'persons.bank.COMMENT_INNER', property: 'commentInner', type: 'text' },
   ];
   private subscription: Subscription;
   constructor(
     private formBuilder: FormBuilder,
     private bankService: BankAccountService,
     private notificationsService: NotificationsService,
-    private selectValueService: SelectValueService,
+    private selectValueService: SelectValueService
   ) {
     this.form = this.formBuilder.group({
       statusId: [null],
       commentInner: [null, [Validators.maxLength(500)]],
       id: [null],
-      iban:[null, [Validators.required]],
+      iban: [null, [Validators.required]],
       bic: [null],
       accountOwner: [null, [Validators.required]],
-
     });
   }
 
@@ -52,11 +50,9 @@ export class PersonBankdataComponent implements OnInit, OnDestroy {
       this.person.bankAccounts = this.person.bankAccounts || [];
       this._tableData = this.person.bankAccounts;
       this.tableData.next(this._tableData);
-      this.subscription = this.tableData.subscribe(d => this.person!.bankAccounts = d);
-  }
-  this.statusOptions$ = this.selectValueService
-    .load('BankAccount', 'Status')
-    .pipe(map(() => this.selectValueService.get('BankAccount', 'Status')));
+      this.subscription = this.tableData.subscribe((d) => (this.person!.bankAccounts = d));
+    }
+    this.statusOptions$ = this.selectValueService.get('BankAccount', 'Status');
   }
 
   onSubmit() {
@@ -90,10 +86,10 @@ export class PersonBankdataComponent implements OnInit, OnDestroy {
   remove(bankAccounts: BankAccountDto): void {
     if (typeof bankAccounts.id === 'string') {
       this.bankService
-        .deleteBankAccount(bankAccounts.id, this.person?.id )
+        .deleteBankAccount(bankAccounts.id, this.person?.id)
         .pipe(first())
         .subscribe(() => {
-          this._tableData = this._tableData.filter(e => e.id !== bankAccounts.id);
+          this._tableData = this._tableData.filter((e) => e.id !== bankAccounts.id);
           this.tableData.next(this._tableData);
           this.notificationsService.success('BANK_ACCOUNT_REMOVED', 'person-dialog');
         });
@@ -118,5 +114,4 @@ export class PersonBankdataComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
   }
-
 }
