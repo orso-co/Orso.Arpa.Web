@@ -72,6 +72,8 @@ export class ProjectListComponent {
         this.saveNewProject(project);
       } else if (selection && project) {
         this.updateProject(project, selection);
+      } else {
+        this.feedSource.isLoading.emit(false);
       }
     });
   }

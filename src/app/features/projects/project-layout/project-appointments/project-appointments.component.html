@@ -1,7 +1,7 @@
 <h5>Total Records: {{ filteredAppointmentsCount }}</h5>
 <arpa-table
   *ngIf="appointments | async"
-  [columnFilter]="true"
+  [columnFilter]="false"
   [values]="appointments"
   [columns]="columns"
   [showFilter]="true"
