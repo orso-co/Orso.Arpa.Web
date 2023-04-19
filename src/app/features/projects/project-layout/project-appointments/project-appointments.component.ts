@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ColumnDefinition } from '../../../../../@arpa/components/table/table.component';
-import { AppointmentDto } from '@arpa/models';
+import { AppointmentDto, AppointmentListDto } from '@arpa/models';
 import { NotificationsService, ProjectService } from '@arpa/services';
 import { DialogService } from 'primeng/dynamicdialog';
 import { TranslateService } from '@ngx-translate/core';
@@ -17,18 +17,17 @@ import { GraphQlFeedComponent } from '../../../../../@arpa/components/graph-ql-f
   styleUrls: ['./project-appointments.component.scss'],
 })
 export class ProjectAppointmentsComponent implements OnInit {
-  @ViewChild('feedSource')
-  private feedSource: GraphQlFeedComponent;
   @Input() projectId: string;
+  filteredAppointmentsCount: number;
 
   columns: ColumnDefinition<AppointmentDto>[] = [
     { label: 'APPOINTMENT', property: 'appointment.name', type: 'text' },
-    { label: 'SECTION', property: 'appointment.sections.name', type: 'badge', show: true },
     { label: 'START', property: 'appointment.startTime', type: 'date', show: true },
     { label: 'END', property: 'appointment.endTime', type: 'date', show: true },
-    { label: 'STATUS', property: 'appointment.status', type: 'badge', show: true },
+    { label: 'SECTION', property: 'appointment.sections.name', type: 'badge', show: true },
     { label: 'VENUE', property: 'appointment.venue.name', type: 'text', show: true },
-    { label: 'CREATED_BY', property: 'appointment.createdBy', type: 'text', show: true },
+    { label: 'STATUS', property: 'appointment.status', type: 'badge', show: true },
+    { label: 'CREATED_BY', property: 'appointment.createdBy', type: 'text', show: false },
     { label: 'CREATED_AT', property: 'appointment.createdAt', type: 'date', show: false },
   ];
   appointments = new BehaviorSubject([]);
@@ -43,6 +42,10 @@ export class ProjectAppointmentsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.reloadData();
+  }
+
+  reloadData(): void {
     if (this.projectId) {
       this.projectService.getAppointmentsForProject(this.projectId).subscribe((appointments) => {
         this.appointments.next(appointments || []);
@@ -51,9 +54,10 @@ export class ProjectAppointmentsComponent implements OnInit {
   }
 
   openEditAppointment(row: any) {
+    console.log({ row });
     const appointment = row.appointment;
     const ref = this.dialogService.open(EditAppointmentComponent, {
-      data: { appointment: this.appointments, appointmentId: row.project?.appointmentId },
+      data: { appointment, isAllDayEvent: this.isAllDayEvent(appointment) },
       header: this.translate.instant('appointments.EDIT_APPOINTMENT'),
       styleClass: 'form-modal',
       dismissableMask: true,
@@ -61,7 +65,22 @@ export class ProjectAppointmentsComponent implements OnInit {
     });
 
     ref.onClose.pipe(first()).subscribe(() => {
-      this.feedSource.refresh();
+      this.reloadData();
     });
+  }
+
+  private isAllDayEvent(appointment: AppointmentListDto | undefined): boolean {
+    if (appointment === undefined) {
+      return false;
+    }
+
+    let isAllDay = false;
+    const startT = new Date(appointment.startTime);
+    const endT = new Date(appointment.endTime);
+
+    if (endT.getHours() === 23 && endT.getMinutes() === 59 && startT.getHours() === 0) {
+      isAllDay = true;
+    }
+    return isAllDay;
   }
 }

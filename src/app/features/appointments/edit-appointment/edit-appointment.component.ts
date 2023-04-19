@@ -7,7 +7,7 @@ import {
   VenueDto,
   RoomDto,
   AppointmentParticipationPrediction,
-  AppointmentParticipationResult
+  AppointmentParticipationResult,
 } from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -15,9 +15,10 @@ import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MenuItem, SelectItem } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { sortBy, uniq } from 'lodash-es';
-import { NotificationsService } from '@arpa/services';
+import { EnumService, NotificationsService, ProjectService, SectionService, SelectValueService, VenueService } from '@arpa/services';
 import { AppointmentService } from '../services/appointment.service';
-import { first } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
+import { zip } from 'rxjs';
 
 class ParticipationTableItem {
   givenName: string;
@@ -59,30 +60,35 @@ export class EditAppointmentComponent implements OnInit {
   items: MenuItem[] = [];
   activeIndex = 0;
   formGroup: FormGroup;
+  ready = false;
 
   appointment: AppointmentDto = this.config.data.appointment;
-  sections: SectionsAllDto[] = this.config.data.sections;
-  projects: ProjectDto[] = this.config.data.projects;
-  venues: VenueDto[] = this.config.data.venues;
-  predictionOptions: SelectItem[] = this.config.data.predictionOptions;
-  resultOptions: SelectItem[] = this.config.data.resultOptions;
-  categoryOptions: SelectItem[] = this.config.data.categoryOptions;
-  statusOptions: SelectItem[] = this.config.data.statusOptions;
-  salaryPatternOptions: SelectItem[] = this.config.data.salaryPatternOptions;
-  salaryOptions: SelectItem[] = this.config.data.salaryOptions;
-  expectationOptions: SelectItem[] = this.config.data.expectationOptions;
   isAllDayEvent: boolean = this.config.data.isAllDayEvent;
 
-  participationTableItems: ParticipationTableItem[] = [];
+  // loaded in loadData()
+  sections: SectionsAllDto[];
+  projects: ProjectDto[];
+  venues: VenueDto[];
+  predictionOptions: SelectItem[];
+  resultOptions: SelectItem[];
+  salaryOptions: SelectItem[];
+  salaryPatternOptions: SelectItem[];
+  expectationOptions: SelectItem[];
+  categoryOptions: SelectItem[];
+  statusOptions: SelectItem[];
+
+  // transformed in code
+  rooms: RoomDto[] = [];
   projectOptions: ProjectDto[] = [];
   sectionOptions: SectionsAllDto[] = [];
   roomOptions: RoomDto[] = [];
-  rooms: RoomDto[] = [];
   venueOptions: SelectItem[] = [];
   sectionSelectItems: SelectItem[] = [];
+  qualificationOptions: SelectItem[] = [];
+
+  participationTableItems: ParticipationTableItem[] = [];
   columns: any[] = [];
   filteredDataCount: number;
-  qualificationOptions: SelectItem[] = [];
 
   constructor(
     public ref: DynamicDialogRef,
@@ -91,7 +97,12 @@ export class EditAppointmentComponent implements OnInit {
     private appointmentService: AppointmentService,
     private formBuilder: FormBuilder,
     private translate: TranslateService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private selectValueService: SelectValueService,
+    private enumService: EnumService,
+    private projectsService: ProjectService,
+    private venuesService: VenueService,
+    private sectionService: SectionService
   ) {}
 
   get isNew(): boolean {
@@ -100,36 +111,7 @@ export class EditAppointmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
-    this.fillForm();
-
-    this.venueOptions = this.venues?.map((v) => this.mapVenueToSelectItem(v));
-
-    if (this.appointment.participations) {
-      this.sectionSelectItems = sortBy(
-        uniq(
-          this.appointment.participations
-            .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles || [])
-            .reduce((a, b) => a.concat(b), [])
-            .map((mp: ReducedMusicianProfileDto) => mp?.instrumentName || '')
-        ).map((val) => ({ label: val, value: val })),
-        (selectItem) => selectItem.label
-      );
-
-      this.qualificationOptions = sortBy(
-        uniq(
-          this.appointment.participations
-            .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles || [])
-            .reduce((a, b) => a.concat(b), [])
-            .map((mp: ReducedMusicianProfileDto) => mp?.qualification || '')
-        ).map((val) => ({ label: val, value: val })),
-        (selectItem) => selectItem.label
-      );
-
-      this.mapParticipations();
-    }
-
-    this.setRooms(this.appointment.venueId);
-
+    this.loadData();
     this.columns = [
       { field: 'surname', header: this.translate.instant('SURNAME'), width: '20%' },
       { field: 'givenName', header: this.translate.instant('GIVENNAME'), width: '20%' },
@@ -140,6 +122,103 @@ export class EditAppointmentComponent implements OnInit {
     ];
 
     this.createStepperMenu();
+  }
+
+  private loadData() {
+    zip(
+      this.appointmentService.getById(this.appointment.id).pipe(
+        map((result) => {
+          this.appointment = result;
+        })
+      ),
+      this.enumService.getAppointmentStatusSelectItems().pipe(
+        map((result) => {
+          this.statusOptions = result;
+        })
+      ),
+      this.enumService.getAppointmentParticipationResultSelectItems().pipe(
+        map((result) => {
+          this.resultOptions = result;
+        })
+      ),
+      this.enumService.getAppointmentParticipationPredictionSelectItems().pipe(
+        map((result) => {
+          this.predictionOptions = result;
+        })
+      ),
+
+      this.sectionService.sectionsAll$.pipe(
+        map((result) => {
+          this.sections = result;
+        })
+      ),
+
+      this.projectsService.load().pipe(
+        map((result) => {
+          this.projects = result;
+        })
+      ),
+
+      this.venuesService.load().pipe(
+        map((result) => {
+          this.venues = result;
+        })
+      ),
+
+      this.selectValueService.getAppointmentSalaries().pipe(
+        map((result) => {
+          this.salaryOptions = result;
+        })
+      ),
+
+      this.selectValueService.getAppointmentSalaryPatterns().pipe(
+        map((result) => {
+          this.salaryPatternOptions = result;
+        })
+      ),
+
+      this.selectValueService.getAppointmentExpectations().pipe(
+        map((result) => {
+          this.expectationOptions = result;
+        })
+      ),
+
+      this.selectValueService.getAppointmentCategories().pipe(
+        map((result) => {
+          this.categoryOptions = result;
+        })
+      )
+    ).subscribe(() => {
+      this.fillForm();
+
+      if (this.appointment.participations) {
+        this.sectionSelectItems = sortBy(
+          uniq(
+            this.appointment.participations
+              .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles || [])
+              .reduce((a, b) => a.concat(b), [])
+              .map((mp: ReducedMusicianProfileDto) => mp?.instrumentName || '')
+          ).map((val) => ({ label: val, value: val })),
+          (selectItem) => selectItem.label
+        );
+
+        this.qualificationOptions = sortBy(
+          uniq(
+            this.appointment.participations
+              .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles || [])
+              .reduce((a, b) => a.concat(b), [])
+              .map((mp: ReducedMusicianProfileDto) => mp?.qualification || '')
+          ).map((val) => ({ label: val, value: val })),
+          (selectItem) => selectItem.label
+        );
+
+        this.mapParticipations();
+      }
+
+      this.venueOptions = this.venues?.map((v) => this.mapVenueToSelectItem(v));
+      this.setRooms(this.appointment.venueId);
+      this.ready = true;
+    });
   }
 
   onSubmit(continueToNextStep: boolean): void {
