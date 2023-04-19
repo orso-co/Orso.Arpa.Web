@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ColumnDefinition } from '../../../../../@arpa/components/table/table.component';
-import { AppointmentDto } from '@arpa/models';
+import { AppointmentDto, AppointmentListDto } from '@arpa/models';
 import { NotificationsService, ProjectService } from '@arpa/services';
 import { DialogService } from 'primeng/dynamicdialog';
 import { TranslateService } from '@ngx-translate/core';
@@ -57,7 +57,7 @@ export class ProjectAppointmentsComponent implements OnInit {
     console.log({ row });
     const appointment = row.appointment;
     const ref = this.dialogService.open(EditAppointmentComponent, {
-      data: { appointment, appointmentId: appointment.id },
+      data: { appointment, isAllDayEvent: this.isAllDayEvent(appointment) },
       header: this.translate.instant('appointments.EDIT_APPOINTMENT'),
       styleClass: 'form-modal',
       dismissableMask: true,
@@ -67,5 +67,20 @@ export class ProjectAppointmentsComponent implements OnInit {
     ref.onClose.pipe(first()).subscribe(() => {
       this.reloadData();
     });
+  }
+
+  private isAllDayEvent(appointment: AppointmentListDto | undefined): boolean {
+    if (appointment === undefined) {
+      return false;
+    }
+
+    let isAllDay = false;
+    const startT = new Date(appointment.startTime);
+    const endT = new Date(appointment.endTime);
+
+    if (endT.getHours() === 23 && endT.getMinutes() === 59 && startT.getHours() === 0) {
+      isAllDay = true;
+    }
+    return isAllDay;
   }
 }

@@ -65,20 +65,23 @@ export class EditAppointmentComponent implements OnInit {
   appointment: AppointmentDto = this.config.data.appointment;
   isAllDayEvent: boolean = this.config.data.isAllDayEvent;
 
-  sections: SectionsAllDto[] = this.config.data.sections;
-  projects: ProjectDto[] = this.config.data.projects;
-  venues: VenueDto[] = this.config.data.venues;
-  predictionOptions: SelectItem[] = this.config.data.predictionOptions;
-  resultOptions: SelectItem[] = this.config.data.resultOptions;
-  categoryOptions: SelectItem[] = this.config.data.categoryOptions;
-  statusOptions: SelectItem[] = this.config.data.statusOptions;
-  salaryPatternOptions: SelectItem[] = this.config.data.salaryPatternOptions;
-  salaryOptions: SelectItem[] = this.config.data.salaryOptions;
-  expectationOptions: SelectItem[] = this.config.data.expectationOptions;
+  // loaded in loadData()
+  sections: SectionsAllDto[];
+  projects: ProjectDto[];
+  venues: VenueDto[];
+  predictionOptions: SelectItem[];
+  resultOptions: SelectItem[];
+  salaryOptions: SelectItem[];
+  salaryPatternOptions: SelectItem[];
+  expectationOptions: SelectItem[];
+  categoryOptions: SelectItem[];
+  statusOptions: SelectItem[];
+
+  // transformed in code
+  rooms: RoomDto[] = [];
   projectOptions: ProjectDto[] = [];
   sectionOptions: SectionsAllDto[] = [];
   roomOptions: RoomDto[] = [];
-  rooms: RoomDto[] = [];
   venueOptions: SelectItem[] = [];
   sectionSelectItems: SelectItem[] = [];
   qualificationOptions: SelectItem[] = [];
@@ -125,7 +128,47 @@ export class EditAppointmentComponent implements OnInit {
         })
       ),
 
-      this.sectionService.sectionsAll$
+      this.sectionService.sectionsAll$.pipe(
+        map((result) => {
+          this.sections = result;
+        })
+      ),
+
+      this.projectsService.load().pipe(
+        map((result) => {
+          this.projects = result;
+        })
+      ),
+
+      this.venuesService.load().pipe(
+        map((result) => {
+          this.venues = result;
+        })
+      ),
+
+      this.selectValueService.getAppointmentSalaries().pipe(
+        map((result) => {
+          this.salaryOptions = result;
+        })
+      ),
+
+      this.selectValueService.getAppointmentSalaryPatterns().pipe(
+        map((result) => {
+          this.salaryPatternOptions = result;
+        })
+      ),
+
+      this.selectValueService.getAppointmentExpectations().pipe(
+        map((result) => {
+          this.expectationOptions = result;
+        })
+      ),
+
+      this.selectValueService.getAppointmentCategories().pipe(
+        map((result) => {
+          this.categoryOptions = result;
+        })
+      )
     ).subscribe(() => {
       this.fillForm();
 
