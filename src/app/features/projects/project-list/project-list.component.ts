@@ -24,20 +24,24 @@ export class ProjectListComponent {
 
   columns: ColumnDefinition<ProjectDto>[] = [
     { label: 'TITLE', property: 'title', type: 'text' },
-    { label: 'TYPE', property: 'typeId', type: 'state', stateTable: 'Project', stateProperty: 'Type', show: true},
+    { label: 'TYPE', property: 'typeId', type: 'state', stateTable: 'Project', stateProperty: 'Type', show: true },
     { label: 'GENRE', property: 'genreId', type: 'state', stateTable: 'Project', stateProperty: 'Genre', show: true },
-    { label: 'STATE', property: 'status', type: 'badge',
+    {
+      label: 'STATE',
+      property: 'status',
+      type: 'badge',
       badgeStateMap: [
-        { label: 'projectStatus.PENDING', value: 'PENDING', severity: 'info'},
-        { label: 'projectStatus.CONFIRMED', value: 'CONFIRMED', severity: 'success'},
-        { label: 'projectStatus.CANCELLED', value: 'CANCELLED', severity: 'warning'},
-        { label: 'projectStatus.POSTPONED', value: 'POSTPONED', severity: 'info'},
-        { label: 'projectStatus.ARCHIVED', value: 'ARCHIVED', severity: 'danger'},
-      ], show: true },
+        { label: 'projectStatus.PENDING', value: 'PENDING', severity: 'info' },
+        { label: 'projectStatus.CONFIRMED', value: 'CONFIRMED', severity: 'success' },
+        { label: 'projectStatus.CANCELLED', value: 'CANCELLED', severity: 'warning' },
+        { label: 'projectStatus.POSTPONED', value: 'POSTPONED', severity: 'info' },
+        { label: 'projectStatus.ARCHIVED', value: 'ARCHIVED', severity: 'danger' },
+      ],
+      show: true,
+    },
     { label: 'START', property: 'startDate', type: 'date' },
     { label: 'END', property: 'endDate', type: 'date' },
-    { label: '#', property: 'isCompleted', type: 'template', template: 'completed', cssClasses: ['start'] }
-
+    { label: '#', property: 'isCompleted', type: 'template', template: 'completed', cssClasses: ['start'] },
   ];
 
   @ViewChild('feedSource') private feedSource: GraphQlFeedComponent;
@@ -48,7 +52,7 @@ export class ProjectListComponent {
     private projectService: ProjectService,
     private notificationsService: NotificationsService,
     private selectValueService: SelectValueService,
-    private venueService: VenueService,
+    private venueService: VenueService
   ) {}
 
   public openProjectDetailDialog(selection: ProjectDto | null): void {
@@ -56,8 +60,8 @@ export class ProjectListComponent {
       data: {
         project: selection ? selection : null,
         venues: this.venueService.load(),
-        type: this.selectValueService.load('Project', 'Type').pipe(map(() => this.selectValueService.get('Project', 'Type'))),
-        genre: this.selectValueService.load('Project', 'Genre').pipe(map(() => this.selectValueService.get('Project', 'Genre'))),
+        type: this.selectValueService.getProjectTypes(),
+        genre: this.selectValueService.getProjectGenres(),
       },
       header: selection ? this.translate.instant('projects.EDIT_PROJECT') : this.translate.instant('projects.NEW_PROJECT'),
       styleClass: 'form-modal',
@@ -68,6 +72,8 @@ export class ProjectListComponent {
         this.saveNewProject(project);
       } else if (selection && project) {
         this.updateProject(project, selection);
+      } else {
+        this.feedSource.isLoading.emit(false);
       }
     });
   }

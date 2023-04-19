@@ -32,7 +32,6 @@ export interface ColumnDefinition<T extends Record<string, any>> {
   // Required for type "state" because it's dynamically resolved.
   stateTable?: string;
   stateProperty?: string;
-
 }
 
 /**
@@ -45,9 +44,7 @@ export class ArpaTableColumnDirective {
   @Input('arpaTableColumn')
   name: string;
 
-  constructor(
-    public template: TemplateRef<any>,
-    ) {}
+  constructor(public template: TemplateRef<any>) {}
 }
 
 @Component({
@@ -166,10 +163,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
   resolveState(table: string, property: string = 'State', id: string) {
     const key = `${table}|${property}`;
     if (!this.stateStreams[key]) {
-      this.stateStreams[key] = this.selectValueService.load(table, property).pipe(
-        map(() => this.selectValueService.get(table, property)),
-        share()
-      );
+      this.stateStreams[key] = this.selectValueService.get(table, property).pipe(share());
     }
     return this.stateStreams[key].pipe(
       map((items: SelectItem[]) => {

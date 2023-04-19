@@ -48,11 +48,9 @@ export class MusicianInstrumentsComponent implements OnInit {
     private sectionService: SectionService,
     private enumService: EnumService
   ) {
-    this.availabilityOptions$ = this.selectValueService
-      .load('MusicianProfileSection', 'InstrumentAvailability')
-      .pipe(map(() => this.selectValueService.get('MusicianProfileSection', 'InstrumentAvailability')));
-    this.salaryOptions$ = this.resolveSelect('Salary');
-    this.qualificationOptions$ = this.resolveSelect('Qualification');
+    this.availabilityOptions$ = this.selectValueService.getMusicianProfileInstrumentsAvailability();
+    this.salaryOptions$ = this.selectValueService.getMusicianProfileSalaryOptions();
+    this.qualificationOptions$ = this.selectValueService.getMusicianProfileQualifications();
     this.inquiryStatusOptions$ = this.enumService.getMusicianProfileInquiryStatusSelectItems();
 
     this.config.data.profile.pipe(first()).subscribe((profile: MusicianProfileDto) => {
@@ -87,14 +85,14 @@ export class MusicianInstrumentsComponent implements OnInit {
 
     if (this.profile$$) {
       if (!this.isNew) {
-       this.onChangeInstrumentId(this.profile$$.instrumentId!)
+        this.onChangeInstrumentId(this.profile$$.instrumentId!);
       }
       this.form.patchValue(this.profile$$);
-      this.form.controls.instrumentId.valueChanges.subscribe(instrumentId => this.onChangeInstrumentId(instrumentId));
+      this.form.controls.instrumentId.valueChanges.subscribe((instrumentId) => this.onChangeInstrumentId(instrumentId));
     }
   }
 
-  onChangeInstrumentId(instrumentId: string){
+  onChangeInstrumentId(instrumentId: string) {
     this.preferredPositionOptions$ = this.sectionService.getPositionsByInstrument(instrumentId!);
     this.form.controls.preferredPositionsTeamIds.setValue([]);
     this.form.controls.preferredPositionsInnerIds.setValue([]);
@@ -103,7 +101,7 @@ export class MusicianInstrumentsComponent implements OnInit {
       .pipe(
         map((sections) => sections.find((section) => section.id === instrumentId) as SectionDto),
         first(),
-        filter(section => !!section)
+        filter((section) => !!section)
       )
       .subscribe((section: SectionDto) => {
         this.instrumentName = section.name || '';
@@ -117,15 +115,14 @@ export class MusicianInstrumentsComponent implements OnInit {
         this.form.controls.preferredPartsTeam.setValue([]);
         this.form.controls.preferredPartsInner.setValue([]);
       });
-
   }
-onSubmit() {
-    if (this.isNew){
+  onSubmit() {
+    if (this.isNew) {
       this.create();
     } else {
       this.update();
     }
-}
+  }
 
   update() {
     this.musicianService
@@ -136,7 +133,7 @@ onSubmit() {
       .subscribe((updatedProfile) => {
         this.config.data.profile.next(updatedProfile);
         this.ref.close(updatedProfile);
-        this.notificationsService.success('UPDATED', 'musician-profile-dialog')
+        this.notificationsService.success('UPDATED', 'musician-profile-dialog');
       });
   }
   create() {
@@ -148,7 +145,7 @@ onSubmit() {
       .subscribe((createdProfile) => {
         this.config.data.profile.next(createdProfile);
         this.ref.close(createdProfile);
-        this.notificationsService.success('CREATED', 'musician-profile-dialog')
+        this.notificationsService.success('CREATED', 'musician-profile-dialog');
       });
   }
 
@@ -170,12 +167,6 @@ onSubmit() {
         });
         this.notificationsService.success('DOUBLING_INSTRUMENT_UPDATED', 'musician-profile-dialog');
       });
-  }
-
-  private resolveSelect(property: string): Observable<SelectItem[]> {
-    return this.selectValueService
-      .load('MusicianProfile', property)
-      .pipe(map(() => this.selectValueService.get('MusicianProfile', property)));
   }
 
   private getFormGroup(data: DoublingInstrumentDto): FormListElement {

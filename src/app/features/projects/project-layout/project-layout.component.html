@@ -1,5 +1,5 @@
 <h2 *ngIf="project">{{ project.title }}</h2>
-<div *ngIf="project.children.length > 0">
+<div *ngIf="project?.children?.length">
   <h5>{{ 'projects.CHILDPROJECTS' | translate }}:</h5>
   <div *ngFor="let child of project.children">
     <h4>{{ child.title }}</h4>

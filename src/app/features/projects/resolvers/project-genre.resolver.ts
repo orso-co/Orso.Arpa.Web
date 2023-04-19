@@ -9,17 +9,9 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class ProjectGenreResolver implements Resolve<SelectItem[]> {
-  constructor(private selectValueService: SelectValueService) {
-  }
+  constructor(private selectValueService: SelectValueService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<SelectItem[]> {
-    const tableName = 'Project';
-    const propertyName = 'Genre';
-
-    if (this.selectValueService.loaded(tableName, propertyName)) {
-      return of(this.selectValueService.get(tableName, propertyName));
-    }
-
-    return this.selectValueService.load(tableName, propertyName).pipe(map(() => this.selectValueService.get(tableName, propertyName)));
+    return this.selectValueService.getProjectGenres();
   }
 }

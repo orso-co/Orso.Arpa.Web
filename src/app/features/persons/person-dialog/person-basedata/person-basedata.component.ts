@@ -22,9 +22,9 @@ export class PersonBasedataComponent implements OnInit, OnChanges {
   public filteredPersons: ReducedPersonDto[] = [];
   showButton = 0;
   selectOptions = [
-    {id: false, name: 'persons.DONT_DELETE_PERSON'},
-    {id: true, name: 'persons.DELETE_PERSON_NOW'}
-  ]
+    { id: false, name: 'persons.DONT_DELETE_PERSON' },
+    { id: true, name: 'persons.DELETE_PERSON_NOW' },
+  ];
   selectedOption: boolean = false;
 
   constructor(
@@ -32,9 +32,8 @@ export class PersonBasedataComponent implements OnInit, OnChanges {
     private selectValueService: SelectValueService,
     private personService: PersonService,
     private notificationService: NotificationsService,
-    public ref: DynamicDialogRef,
-
-) {
+    public ref: DynamicDialogRef
+  ) {
     this.form = formBuilder.group({
       genderId: [null, [Validators.required]],
       givenName: [null, [Validators.required, Validators.maxLength(50)]],
@@ -52,7 +51,7 @@ export class PersonBasedataComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.genderOptions$ = this.selectValueService.load('Person', 'Gender').pipe(map(() => this.selectValueService.get('Person', 'Gender')));
+    this.genderOptions$ = this.selectValueService.getPersonGenders();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -73,13 +72,14 @@ export class PersonBasedataComponent implements OnInit, OnChanges {
     const value = { ...this.form.value, contactViaId: this.form.controls.contactVia.value?.id };
     delete value.contactVia;
     if (!this.person?.id) {
-      this.personService.create(this.form.value)
+      this.personService
+        .create(this.form.value)
         .pipe(first())
         .subscribe((person) => {
           this.notificationService.success('PERSON_CREATED', 'persons');
           this.personSaved.emit(person);
           this.form.markAsPristine();
-        })
+        });
     } else {
       this.personService
         .update(this.person!.id!, value)
@@ -90,16 +90,16 @@ export class PersonBasedataComponent implements OnInit, OnChanges {
         });
     }
   }
-  onSelectedOptionChange(event: {value: number}) {
-  }
+  onSelectedOptionChange(event: { value: number }) {}
 
   public deletePerson(): void {
-    if (this.person?.id){
-    this.personService.delete(this.person.id).subscribe(() => {
-      this.notificationService.success('persons.PERSON_DELETED');
-      this.ref.close(this.person?.id);
-    });
-  }}
+    if (this.person?.id) {
+      this.personService.delete(this.person.id).subscribe(() => {
+        this.notificationService.success('persons.PERSON_DELETED');
+        this.ref.close(this.person?.id);
+      });
+    }
+  }
 
   filterPersons(event: { query: string }) {
     this.personService
