@@ -123,6 +123,13 @@ pre {
   width: 100% !important;
 }
 
+.spinner-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+
 @import '~primeicons/primeicons.css';
 @import '~primeng/resources/primeng.min.css';
 @import 'assets/common/fonts/icomoon/style.css';

@@ -17,8 +17,6 @@ import { GraphQlFeedComponent } from '../../../../../@arpa/components/graph-ql-f
   styleUrls: ['./project-appointments.component.scss'],
 })
 export class ProjectAppointmentsComponent implements OnInit {
-  @ViewChild('feedSource')
-  private feedSource: GraphQlFeedComponent;
   @Input() projectId: string;
   filteredAppointmentsCount: number;
 
@@ -44,6 +42,10 @@ export class ProjectAppointmentsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.reloadData();
+  }
+
+  reloadData(): void {
     if (this.projectId) {
       this.projectService.getAppointmentsForProject(this.projectId).subscribe((appointments) => {
         this.appointments.next(appointments || []);
@@ -52,9 +54,10 @@ export class ProjectAppointmentsComponent implements OnInit {
   }
 
   openEditAppointment(row: any) {
+    console.log({ row });
     const appointment = row.appointment;
     const ref = this.dialogService.open(EditAppointmentComponent, {
-      data: { appointment: this.appointments, appointmentId: row.project?.appointmentId },
+      data: { appointment, appointmentId: appointment.id },
       header: this.translate.instant('appointments.EDIT_APPOINTMENT'),
       styleClass: 'form-modal',
       dismissableMask: true,
@@ -62,7 +65,7 @@ export class ProjectAppointmentsComponent implements OnInit {
     });
 
     ref.onClose.pipe(first()).subscribe(() => {
-      this.feedSource.refresh();
+      this.reloadData();
     });
   }
 }
