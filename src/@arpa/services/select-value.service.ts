@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, shareReplay, tap } from 'rxjs/operators';
 import { ApiService } from '@arpa/services';
 import { SelectValueDto } from '@arpa/models';
+import _ from 'lodash';
 
 @Injectable({
   providedIn: 'root',
@@ -93,7 +94,8 @@ export class SelectValueService {
   }
 
   private getFromCache(tableName: string, propertyName: string): SelectItem[] {
-    return [...(this.selectValues.get(this.getMapKey(tableName, propertyName)) || [])];
+    const values = this.selectValues.get(this.getMapKey(tableName, propertyName)) || [];
+    return _.cloneDeep(values);
   }
 
   private getMapKey(tableName: string, propertyName: string): string {
