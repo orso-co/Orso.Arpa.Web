@@ -29,9 +29,7 @@ export class RegisterPageComponent {
   ) {
     // this.siteKey = configService.getEnv('captcha').key;
 
-    this.genderSelectValue = this.selectValueService
-      .load('Person', 'Gender')
-      .pipe(map(() => this.selectValueService.get('Person', 'Gender')));
+    this.genderSelectValue = this.selectValueService.getPersonGenders();
 
     this.registerFormGroup = formBuilder.group({
       genderId: [null, [Validators.required]],

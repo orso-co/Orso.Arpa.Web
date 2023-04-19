@@ -56,9 +56,7 @@ export class UserContactDataComponent implements OnInit {
   ngOnInit() {
     this._tableData = this.contactDetails && this.contactDetails.length ? cloneDeep(this.contactDetails) : [];
     this.tableData.next(this._tableData);
-    this.typeOptions$ = this.selectValueService
-      .load('ContactDetail', 'Type')
-      .pipe(map(() => this.selectValueService.get('ContactDetail', 'Type')));
+    this.typeOptions$ = this.selectValueService.getContactDetailTypes();
   }
 
   onSubmit() {
@@ -88,7 +86,7 @@ export class UserContactDataComponent implements OnInit {
   }
 
   remove(contactDetail: ContactDetailDto): void {
-    if (typeof  contactDetail.id === 'string') {
+    if (typeof contactDetail.id === 'string') {
       this.meService
         .deleteContactDetail(contactDetail.id)
         .pipe(first())
@@ -98,7 +96,6 @@ export class UserContactDataComponent implements OnInit {
           this.notificationsService.success('CONTACT_DETAIL_REMOVED', 'contact');
         });
     }
-
   }
 
   update(contactDetail: ContactDetailDto) {

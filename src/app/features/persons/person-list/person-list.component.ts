@@ -12,11 +12,8 @@ import { GraphQlFeedComponent } from '../../../../@arpa/components/graph-ql-feed
 import { Observable, Subscription } from 'rxjs';
 import { PersonDto } from '@arpa/models';
 import { ActivatedRoute, NavigationExtras, NavigationStart, Router } from '@angular/router';
-import { filter, first,  map } from 'rxjs/operators';
+import { filter, first, map } from 'rxjs/operators';
 import { DocumentNode } from 'graphql';
-
-
-
 
 @Component({
   selector: 'arpa-person-list',
@@ -50,7 +47,7 @@ export class PersonListComponent implements OnInit {
     private personService: PersonService,
     private notificationsService: NotificationsService,
     private selectValueService: SelectValueService
-    ) {}
+  ) {}
 
   onRowClick(person: PersonDto) {
     this.router.navigate([{ outlets: { modal: ['detail', person.id] } }], {
@@ -62,7 +59,7 @@ export class PersonListComponent implements OnInit {
     const ref = this.dialogService.open(PersonLayoutComponent, {
       data: {
         person: selection ? selection : null,
-        gender: this.selectValueService.load('Person', 'Gender').pipe(map(() => this.selectValueService.get('Person', 'Gender'))),
+        gender: this.selectValueService.getPersonGenders(),
       },
       header: selection ? this.translate.instant('persons.EDIT_PERSON') : this.translate.instant('persons.ADD_NEW_PERSON'),
       styleClass: 'form-modal',
