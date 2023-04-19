@@ -6,5 +6,5 @@ export interface ReducedProjectDto {
   code?: string;
   parentProjectId?: string;
   parentProject?: { title: string; id: string };
-  children?: { title: string; id: string };
+  children?: { title: string; id: string }[];
 }
