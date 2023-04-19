@@ -105,6 +105,25 @@ export class EditAppointmentComponent implements OnInit {
     private sectionService: SectionService
   ) {}
 
+  get isNew(): boolean {
+    return !this.appointment.id;
+  }
+
+  ngOnInit(): void {
+    this.createForm();
+    this.loadData();
+    this.columns = [
+      { field: 'surname', header: this.translate.instant('SURNAME'), width: '20%' },
+      { field: 'givenName', header: this.translate.instant('GIVENNAME'), width: '20%' },
+      { field: 'prediction', header: this.translate.instant('appointments.PREDICTION'), width: '20%' },
+      { field: 'result', header: this.translate.instant('appointments.RESULTS'), width: '20%' },
+      { field: 'sections', header: this.translate.instant('appointments.SECTIONS'), width: '20%' },
+      // { field: 'qualification', header: this.translate.instant('appointments.QUALIFICATION'), width: '20%' },
+    ];
+
+    this.createStepperMenu();
+  }
+
   private loadData() {
     zip(
       this.appointmentService.getById(this.appointment.id).pipe(
@@ -200,25 +219,6 @@ export class EditAppointmentComponent implements OnInit {
       this.setRooms(this.appointment.venueId);
       this.ready = true;
     });
-  }
-
-  get isNew(): boolean {
-    return !this.appointment.id;
-  }
-
-  ngOnInit(): void {
-    this.createForm();
-    this.loadData();
-    this.columns = [
-      { field: 'surname', header: this.translate.instant('SURNAME'), width: '20%' },
-      { field: 'givenName', header: this.translate.instant('GIVENNAME'), width: '20%' },
-      { field: 'prediction', header: this.translate.instant('appointments.PREDICTION'), width: '20%' },
-      { field: 'result', header: this.translate.instant('appointments.RESULTS'), width: '20%' },
-      { field: 'sections', header: this.translate.instant('appointments.SECTIONS'), width: '20%' },
-      // { field: 'qualification', header: this.translate.instant('appointments.QUALIFICATION'), width: '20%' },
-    ];
-
-    this.createStepperMenu();
   }
 
   onSubmit(continueToNextStep: boolean): void {
