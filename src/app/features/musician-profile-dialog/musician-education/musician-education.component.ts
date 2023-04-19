@@ -15,7 +15,6 @@ import { ColumnDefinition } from '../../../../@arpa/components/table/table.compo
   styleUrls: ['./musician-education.component.scss'],
 })
 export class MusicianEducationComponent implements OnInit {
-
   public form: FormGroup;
 
   public profile: MusicianProfileDto;
@@ -28,19 +27,18 @@ export class MusicianEducationComponent implements OnInit {
   ];
   private _educations: Array<any>;
 
-  constructor(public config: DynamicDialogConfig,
-              private formBuilder: FormBuilder,
-              public ref: DynamicDialogRef,
-              private selectValueService: SelectValueService,
-              private musicianService: MusicianService,
-              private notificationsService: NotificationsService) {
-
+  constructor(
+    public config: DynamicDialogConfig,
+    private formBuilder: FormBuilder,
+    public ref: DynamicDialogRef,
+    private selectValueService: SelectValueService,
+    private musicianService: MusicianService,
+    private notificationsService: NotificationsService
+  ) {
     this.config.data.profile.pipe(first()).subscribe((profile: MusicianProfileDto) => {
       this.profile = profile;
     });
-    this.educationTypes = this.selectValueService.load('Education', 'Type')
-      .pipe(map(() => this.selectValueService.get('Education', 'Type')));
-
+    this.educationTypes = this.selectValueService.getEducationTypes();
   }
 
   ngOnInit(): void {
@@ -50,12 +48,13 @@ export class MusicianEducationComponent implements OnInit {
       typeId: [null, [Validators.required]],
       description: [null, [Validators.required]],
     });
-    this._educations = (this.profile.educations && this.profile.educations.length) ? this.profile.educations : [];
+    this._educations = this.profile.educations && this.profile.educations.length ? this.profile.educations : [];
     this.educations.next(this._educations);
   }
 
   add(): void {
-    this.musicianService.addEducation(this.profile.id, { ...this.form.value }, this.config.data.isMe)
+    this.musicianService
+      .addEducation(this.profile.id, { ...this.form.value }, this.config.data.isMe)
       .pipe(first())
       .subscribe((result) => {
         this._educations.push(result);
@@ -65,10 +64,11 @@ export class MusicianEducationComponent implements OnInit {
   }
 
   remove(education: EducationDto): void {
-    this.musicianService.removeEducation(education)
+    this.musicianService
+      .removeEducation(education)
       .pipe(first())
       .subscribe(() => {
-        this._educations = this._educations.filter(e => e.id != education.id);
+        this._educations = this._educations.filter((e) => e.id != education.id);
         this.educations.next(this._educations);
         this.notificationsService.success('EDUCATION_REMOVED', 'musician-profile-dialog');
       });
