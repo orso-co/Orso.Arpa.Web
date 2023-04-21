@@ -54,7 +54,6 @@ export class ProjectAppointmentsComponent implements OnInit {
   }
 
   openEditAppointment(row: any) {
-    console.log({ row });
     const appointment = row.appointment;
     const ref = this.dialogService.open(EditAppointmentComponent, {
       data: { appointment, isAllDayEvent: this.isAllDayEvent(appointment) },
