@@ -18,7 +18,7 @@ import { sortBy, uniq } from 'lodash-es';
 import { EnumService, NotificationsService, ProjectService, SectionService, SelectValueService, VenueService } from '@arpa/services';
 import { AppointmentService } from '../services/appointment.service';
 import { first, map } from 'rxjs/operators';
-import { zip } from 'rxjs';
+import { Observable, of, zip } from 'rxjs';
 
 class ParticipationTableItem {
   givenName: string;
@@ -125,9 +125,13 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   private loadData() {
+    let getAppointmentById: Observable<AppointmentDto> = of(this.appointment);
+    if (this.appointment.id) {
+      getAppointmentById = this.appointmentService.getById(this.appointment.id);
+    }
     zip(
-      this.appointmentService.getById(this.appointment.id).pipe(
-        map((result) => {
+      getAppointmentById.pipe(
+        map((result: AppointmentDto) => {
           this.appointment = result;
         })
       ),
