@@ -19,11 +19,12 @@ export class ParticipationDialogComponent implements OnInit {
   constructor(public config: DynamicDialogConfig, private ref: DynamicDialogRef) {}
 
   ngOnInit() {
-    this.children = this.config.data.project.children;
-    this.projectTitle = this.config.data.project.title;
-    this.projectId = this.config.data.project.id;
-    this.parentProject = this.config.data.project.parentProject?.title || '';
-    this.participations = this.config.data.project.projectParticipations.filter(
+    const project = this.config.data.project;
+    this.children = project.children ? project.children : [];
+    this.projectTitle = project.title;
+    this.projectId = project.id;
+    this.parentProject = project.parentProject?.title || '';
+    this.participations = project.projectParticipations.filter(
       (participation: any) => participation.musicianProfile.person.id === this.config.data.personId
     );
     if (this.participations?.length) {
