@@ -22,6 +22,7 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription = Subscription.EMPTY;
 
   projectId: string;
+  filteredDataCount: number;
 
   ready = false;
 
@@ -131,6 +132,9 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
         );
         this.ready = true;
       });
+  }
+  onTableFiltered(event: any): void {
+    this.filteredDataCount = event.filteredValue.length;
   }
 
   openParticipationDialog(row: any) {
