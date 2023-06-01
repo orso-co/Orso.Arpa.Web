@@ -29,6 +29,8 @@ export class PersonListComponent implements OnInit {
   columns: ColumnDefinition<PersonDto>[] = [
     { label: 'SURNAME', property: 'surname', type: 'text' },
     { label: 'GIVEN_NAME', property: 'givenName', type: 'text' },
+    { label: 'ABOUT_ME', property: 'aboutMe', type: 'text', show: true },
+    { label: 'BACKGROUND', property: 'personBackgroundTeam', type: 'text', show: true },
     { label: 'EXPERIENCE_LEVEL', property: 'experienceLevel', type: 'rating', show: true },
     { label: 'RELIABILITY', property: 'reliability', type: 'rating', show: true },
     { label: 'GENERAL_PREFERENCE', property: 'generalPreference', type: 'rating', show: true },
