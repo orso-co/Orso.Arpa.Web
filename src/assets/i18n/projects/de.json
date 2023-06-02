@@ -18,7 +18,8 @@
   "NOT_COMPLETED": "Laufend",
   "PAGE_TITLE": "Projekte",
   "PARENT": "Übergeordnetes Projekt",
-  "PARTICIPANTS": "Teilnehmer",
+  "PARTICIPANTS": "Teilnehmerstatus",
+  "PARTICIPANTS_ACCEPTED": "Bestätigte Zusagen",
   "PARTICIPATION_COMMENT": "Kommentar",
   "PARTICIPATION_MUPRO": "Musikerprofil",
   "PARTICIPATION_STATUS": "Status",
@@ -48,7 +49,6 @@
   "VENUE": "Ort",
   "TOTAL": "Gesamt Rückmeldungen",
   "CONFIRMED_RESULTS": "Bestätigte Rückmeldungen",
-
   "TOTAL_FILTERED": "Filterergebnis",
   "CHOIR": "Chor Rückmeldungen",
   "ORCHESTRA": "Orchester Rückmeldungen",
