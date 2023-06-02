@@ -32,6 +32,7 @@ import { ChartModule } from '../../../@arpa/components/chart/chart.module';
 import { ParticipationDialogModule } from '../participation-dialog/participation-dialog.module';
 import { ProjectAppointmentsComponent } from './project-layout/project-appointments/project-appointments.component';
 import { CheckboxModule } from 'primeng/checkbox';
+import { AcceptedParticipantsComponent } from './project-layout/accepted-participants/accepted-participants.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     ProjectLayoutComponent,
     ProjectUrlsComponent,
     ProjectAppointmentsComponent,
+    AcceptedParticipantsComponent,
   ],
   imports: [
     CommonModule,

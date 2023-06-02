@@ -15,5 +15,11 @@
   "PARTICIPATION_COMMENT_TEAM": "Kommentar nur KBB-intern",
   "PARTICIPANT": "Teilnehmer",
   "SET_PARTICIPATION_STATUS": "Teilnahmestatus gesetzt",
-  "GO_TO_PERSON": "Gehe zur Person"
+  "GO_TO_PERSON": "Gehe zur Person",
+  "AMATEUR": "Amateur",
+  "STUDENT": "Student",
+  "SEMI-PROFESSIONAL": "Semi-Professional",
+  "PROFESSIONAL": "Professional",
+  "UKNONWN": "Unbekannt",
+  "QUALIFICATION": "Qualifikation"
 }
