@@ -1,15 +1,18 @@
 <span>{{ pageTitle | translate }}</span>
-<div #nav class='nav'>
-  <ng-container *ngIf='userToken | async as token'>
-    <div *ngIf='(isHandset | async) !== true' class='user'>
-      <span class='user-profile-name'>{{ token.displayName }}</span>
-      <span class='user-profile-role'>{{ getRoleNames(token) }}</span>
+<div #nav class="nav">
+  <ng-container *ngIf="userToken | async as token">
+    <div *ngIf="(isHandset | async) !== true" class="user">
+      <span class="user-profile-name">{{ token.displayName }}</span>
+      <span class="user-profile-role">{{ getRoleNames(token) }}</span>
     </div>
-    <arpa-avatar (click)='userprofilemenu.toggle($event)' [image]='false' [size]='"large"'
-                 [user]='token'
+    <arpa-avatar
+      (click)="userprofilemenu.toggle($event)"
+      [image]="true"
+      [size]="'large'"
+      [user]="token"
+      [useCurrentUserAvatar]="true"
     ></arpa-avatar>
-    <arpa-menu #userprofilemenu [appendTo]='nav' [popup]='true' menuClass='topbar-menu' name='user'></arpa-menu>
+    <arpa-menu #userprofilemenu [appendTo]="nav" [popup]="true" menuClass="topbar-menu" name="user"></arpa-menu>
   </ng-container>
-  <arpa-theme-switcher class='themeswitcher'></arpa-theme-switcher>
-
+  <arpa-theme-switcher class="themeswitcher"></arpa-theme-switcher>
 </div>
