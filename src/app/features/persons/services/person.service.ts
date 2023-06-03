@@ -26,17 +26,16 @@ export class PersonService {
 
   public getPerson(id: string): Observable<PersonDto> {
     // return this.apiService.get<PersonDto>(`${this.baseUrl}/${id}`);
-    return this.apollo.query({query: PersonQuery, variables: {id}})
-      .pipe(
-        first(),
-        map((result:any) => {
-          const person =  result.data.persons.items?.[0];
-          return person ? cloneDeep(person) : {};
-        })
-      );
+    return this.apollo.query({ query: PersonQuery, variables: { id } }).pipe(
+      first(),
+      map((result: any) => {
+        const person = result.data.persons.items?.[0];
+        return person ? cloneDeep(person) : {};
+      })
+    );
   }
   public invitePersons(ids: string[]): Observable<PersonInviteResultDto> {
-    return this.apiService.post<PersonInviteResultDto>(`${this.baseUrl}/invite`, {personIds: ids}).pipe(shareReplay());
+    return this.apiService.post<PersonInviteResultDto>(`${this.baseUrl}/invite`, { personIds: ids }).pipe(shareReplay());
   }
 
   public create(person: PersonDto): Observable<PersonDto> {
@@ -51,6 +50,30 @@ export class PersonService {
     return this.apiService.delete(`${this.baseUrl}/${id}`).pipe(shareReplay());
   }
 
+  getProfilePicture(id: string): Observable<any> {
+    return this.apiService.get(
+      `${this.baseUrl}/${id}/profilepicture?width=100&height=100&rsampler=nearest&rmode=stretch`,
+      undefined,
+      undefined,
+      undefined,
+      'blob'
+    );
+  }
+
+  deleteProfilePicture(id: string): Observable<any> {
+    return this.apiService.delete(`${this.baseUrl}/${id}/profilepicture`);
+  }
+
+  public getProfilePictureUrl(id: string): string {
+    return `${this.apiService.baseUrl}${this.baseUrl}/${id}/profilepicture`;
+  }
+
+  public uploadProfilePicture(id: string, file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return this.apiService.postFormData(`${this.baseUrl}/${id}/profilepicture`, formData);
+  }
 
   public searchPerson(query: string): Observable<ReducedPersonDto[]> {
     return this.apollo

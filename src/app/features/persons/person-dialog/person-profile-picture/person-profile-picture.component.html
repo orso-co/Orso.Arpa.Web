@@ -1,0 +1,30 @@
+<div class="avatar-wrapper">
+  <div class="avatar">
+    <div class="picture-container">
+      <p-avatar *ngIf="imageUrl" [image]="imageUrl" shape="circle" styleClass="h-full w-full"></p-avatar>
+    </div>
+
+    <div class="controls">
+      <button
+        (click)="fileUpload.click()"
+        [label]="'persons.UPLOAD_AVATAR' | translate"
+        class="p-button-rounded p-button-text"
+        icon="pi pi-upload"
+        pButton
+        type="button"
+      ></button>
+
+      <button
+        (click)="onRemove()"
+        [label]="'persons.REMOVE_AVATAR' | translate"
+        class="p-button-rounded p-button-text p-button-icon-only"
+        icon="pi pi-trash"
+        pButton
+        [disabled]="!hasPicture"
+        type="button"
+      ></button>
+    </div>
+  </div>
+</div>
+
+<input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload />
