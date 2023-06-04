@@ -49,7 +49,7 @@ export class AvatarComponent implements OnInit, OnDestroy {
     this.imageUrl = 'assets/common/images/avatar.png';
     const potentialId = this.getPotentialPersonId();
     if (potentialId) {
-      this.personService.getProfilePicture(potentialId).subscribe(
+      this.personService.getProfilePicture(potentialId, 100).subscribe(
         (data) => {
           const reader = new FileReader();
           reader.onload = (e: any) => {

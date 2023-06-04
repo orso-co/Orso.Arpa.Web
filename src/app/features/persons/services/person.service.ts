@@ -50,9 +50,9 @@ export class PersonService {
     return this.apiService.delete(`${this.baseUrl}/${id}`).pipe(shareReplay());
   }
 
-  getProfilePicture(id: string): Observable<any> {
+  getProfilePicture(id: string, sizeInPixels: number): Observable<any> {
     return this.apiService.get(
-      `${this.baseUrl}/${id}/profilepicture?width=100&height=100&rsampler=nearest&rmode=stretch`,
+      `${this.baseUrl}/${id}/profilepicture?width=${sizeInPixels}&height=${sizeInPixels}&rsampler=nearest&rmode=stretch`,
       undefined,
       undefined,
       undefined,
