@@ -59,7 +59,7 @@ export class PersonProfilePictureComponent implements OnInit {
   }
 
   private reloadProfilePicture() {
-    this.personService.getProfilePicture(this.person.id).subscribe(
+    this.personService.getProfilePicture(this.person.id, 300).subscribe(
       (data) => {
         const reader = new FileReader();
         reader.onload = (e: any) => {
