@@ -15,6 +15,7 @@
   >
     <arpa-project-participants></arpa-project-participants>
   </p-tabPanel>
+
   <p-tabPanel
     *ngIf="project"
     leftIcon="pi pi-link"
@@ -23,6 +24,9 @@
   >
     <arpa-project-urls [urls]="project.urls || []" [projectId]="project.id"></arpa-project-urls>
   </p-tabPanel>
+  <p-tabPanel *ngIf="project" leftIcon="pi pi-calendar" header="{{ 'APPOINTMENTS' | translate }}">
+    <arpa-project-appointments [projectId]="project.id"></arpa-project-appointments>
+  </p-tabPanel>
   <p-tabPanel leftIcon="pi pi-cog" header="{{ 'projects.BASICDATA' | translate }}" tooltip="{{ 'projects.BASICDATA_TOOLTIP' | translate }}">
     <arpa-edit-project
       [project]="project"
@@ -30,8 +34,5 @@
       [type]="(type | async)!"
       [genre]="(genre | async)!"
     ></arpa-edit-project>
-  </p-tabPanel>
-  <p-tabPanel *ngIf="project" leftIcon="pi pi-calendar" header="{{ 'APPOINTMENTS' | translate }}">
-    <arpa-project-appointments [projectId]="project.id"></arpa-project-appointments>
   </p-tabPanel>
 </p-tabView>

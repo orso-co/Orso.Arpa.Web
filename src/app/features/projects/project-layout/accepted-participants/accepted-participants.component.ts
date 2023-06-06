@@ -1,24 +1,23 @@
 import { TranslateService } from '@ngx-translate/core';
-import { ChangeDetectorRef, Component, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { ColumnDefinition } from '../../../../../@arpa/components/table/table.component';
 import { DocumentNode } from 'graphql';
-import { ProjectsQuery } from './projectparticipations.graphql';
+import { AccepptedParticipantsQuery } from './accepted-participations.graphql';
 import { ProjectParticipationDto } from '@arpa/models';
 import { first, map } from 'rxjs/operators';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ProjectService } from '@arpa/services';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { OnInit } from '@angular/core';
 import { ParticipationDialogComponent } from '../../../participation-dialog/participation-dialog.component';
 
 @Component({
-  selector: 'arpa-project-participants',
-  templateUrl: './project-participants.component.html',
-  styleUrls: ['./project-participants.component.scss'],
+  selector: 'arpa-accepted-participants',
+  templateUrl: './accepted-participants.component.html',
+  styleUrls: ['./accepted-participants.component.scss'],
 })
-export class ProjectParticipantsComponent implements OnInit, OnDestroy {
+export class AcceptedParticipantsComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription = Subscription.EMPTY;
 
   projectId: string;
@@ -26,46 +25,22 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
 
   ready = false;
 
-  query: DocumentNode = ProjectsQuery;
+  query: DocumentNode = AccepptedParticipantsQuery;
   columns: ColumnDefinition<any>[] = [
     { label: 'projects.PARTICIPANTS', property: 'musicianProfile.person.displayName', type: 'text' },
     { label: 'projects.INSTRUMENT', property: 'musicianProfile.instrument.name', type: 'text' },
     {
-      label: 'projects.PARTICIPATION_STATUS_PERFORMER',
-      property: 'participationStatusInner',
+      label: 'mupro.QUALIFICATION',
+      property: 'musicianProfile.qualification.selectValue.name',
       type: 'badge',
       badgeStateMap: [
-        { label: 'projectParticipationStatusInner.INTERESTED', value: 'INTERESTED', severity: 'info' },
-        { label: 'projectParticipationStatusInner.PENDING', value: 'PENDING', severity: 'warning' },
-        { label: 'projectParticipationStatusInner.ACCEPTANCE', value: 'ACCEPTANCE', severity: 'success' },
-        { label: 'projectParticipationStatusInner.REFUSAL', value: 'REFUSAL', severity: 'danger' },
+        { label: 'mupro.AMATEUR', value: 'AMATEUR', severity: 'success' },
+        { label: 'mupro.STUDENT', value: 'STUDENT', severity: 'info' },
+        { label: 'mupro.SEMI-PROFESSIONAL', value: 'SEMI-PROFESSIONAL', severity: 'warning' },
+        { label: 'mupro.PROFESSIONAL', value: 'PROFESSIONAL', severity: 'warning' },
+        { label: 'mupro.UNKNOWN', value: 'UNKNOWN', severity: 'danger' },
       ],
     },
-    {
-      label: 'projects.PARTICIPATION_STATUS_STAFF',
-      property: 'participationStatusInternal',
-      type: 'badge',
-      badgeStateMap: [
-        { label: 'projectParticipationStatusInternal.CANDIDATE', value: 'CANDIDATE', severity: 'info' },
-        { label: 'projectParticipationStatusInternal.PENDING', value: 'PENDING', severity: 'warning' },
-        { label: 'projectParticipationStatusInternal.ACCEPTANCE', value: 'ACCEPTANCE', severity: 'success' },
-        { label: 'projectParticipationStatusInternal.REFUSAL', value: 'REFUSAL', severity: 'danger' },
-      ],
-    },
-    {
-      label: 'projects.PARTICIPATION_STATUS_RESULT',
-      property: 'participationStatusResult',
-      type: 'badge',
-      badgeStateMap: [
-        { label: 'projectParticipationStatusInternal.CANDIDATE', value: 'CANDIDATE', severity: 'info' },
-        { label: 'projectParticipationStatusInternal.PENDING', value: 'PENDING', severity: 'warning' },
-        { label: 'projectParticipationStatusInternal.ACCEPTANCE', value: 'ACCEPTANCE', severity: 'success' },
-        { label: 'projectParticipationStatusInternal.REFUSAL', value: 'REFUSAL', severity: 'danger' },
-      ],
-    },
-    //TODO: MODIFIED Properties are not shown in table, but seeing loaded in network tab
-    // { label: 'MODIFIED_AT', property: 'projectParticipationsModifiedAt', type: 'date' },
-    // { label: 'MODIFIED_BY', property: 'projectParticipationsModifiedBy', type: 'text' },
   ];
 
   tableData = new BehaviorSubject<any[]>([]);
@@ -80,6 +55,7 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
   personId: string | undefined;
   project: any;
   participations: ProjectParticipationDto[] = [];
+  instrumentFinalResults: Record<string, number> = {};
 
   constructor(
     private config: DynamicDialogConfig,
@@ -106,7 +82,10 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
       .subscribe((result: any) => {
         this.project = result;
         const participations = this.project?.projectParticipations || [];
-        participations.forEach((participation: Record<string, any>) => {
+        const filteredParticipations = participations.filter(
+          (participation: Record<string, any>) => participation.participationStatusResult === 'ACCEPTANCE'
+        );
+        filteredParticipations.forEach((participation: Record<string, any>) => {
           if (participation.participationStatusInner) {
             if (this.innerStatsCount[participation.participationStatusInner]) {
               this.innerStatsCount[participation.participationStatusInner] += 1;
@@ -119,8 +98,8 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
             (this.finalResultsCount[participation.participationStatusResult] || 0) + 1;
         });
 
-        this.tableData.next([...participations]);
-        this.totalInvited = participations.length;
+        this.tableData.next([...filteredParticipations]);
+        this.totalInvited = filteredParticipations.length;
 
         this.innerStatsValues = Object.values(this.innerStatsCount);
         this.innerStatsKeys = Object.keys(this.innerStatsCount).map((key) =>
@@ -131,6 +110,18 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
           this.translate.instant(`projectParticipationStatusInternal.${key}`)
         );
         this.ready = true;
+        this.instrumentFinalResults = {};
+        filteredParticipations.forEach((participation: Record<string, any>) => {
+          const musicianProfile = participation.musicianProfile;
+          if (musicianProfile && musicianProfile.instrument && musicianProfile.instrument.name) {
+            const instrumentName = musicianProfile.instrument.name;
+            if (this.instrumentFinalResults[instrumentName]) {
+              this.instrumentFinalResults[instrumentName]++;
+            } else {
+              this.instrumentFinalResults[instrumentName] = 1;
+            }
+          }
+        });
       });
   }
   onTableFiltered(event: any): void {

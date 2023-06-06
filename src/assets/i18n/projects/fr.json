@@ -19,6 +19,7 @@
   "PAGE_TITLE": "Projets",
   "PARENT": "Projet supérieur",
   "PARTICIPANTS": "Participants",
+  "PARTICIPANTS_ACCEPTED": "Participants acceptés",
   "PARTICIPATION_COMMENT": "Commentaire",
   "PARTICIPATION_MUPRO": "Profil de musicien",
   "PARTICIPATION_STATUS": "Statut",
@@ -48,6 +49,7 @@
   "VENUE": "Lieu",
   "TOTAL": "Total des réponses",
   "TOTAL_FILTERED": "Résultat du filtre",
+  "CONFIRMED_RESULTS": "Résultats confirmés",
   "CHOIR": "Réponses du chœur",
   "ORCHESTRA": "Réponses d'orchestre",
   "IS_HIDDEN_FOR_PERFORMERS": "Est caché pour les artistes-interprètes"

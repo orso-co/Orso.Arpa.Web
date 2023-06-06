@@ -2,45 +2,47 @@ import { gql } from 'apollo-angular';
 
 export const PersonsQuery = gql`
   query Persons(
-    $skip: Int,
-    $take: Int = 20,
-    $orderSurname: SortEnumType = ASC,
-    $orderGivenName: SortEnumType = ASC,
-    $orderAboutMe: SortEnumType = ASC,
-    $orderReliability: SortEnumType = ASC,
-    $orderGeneralPreference: SortEnumType = ASC,
-    $orderExperienceLevel: SortEnumType = ASC,
-    $orderCreatedAt: SortEnumType = ASC,
-    $orderCreatedBy: SortEnumType = ASC,
-    $orderModifiedAt: SortEnumType = ASC,
-    $orderModifiedBy: SortEnumType = ASC,
+    $skip: Int
+    $take: Int = 20
+    $orderSurname: SortEnumType = ASC
+    $orderGivenName: SortEnumType = ASC
+    $orderAboutMe: SortEnumType = ASC
+    $oderPersonBackgroundTeam: SortEnumType = ASC
+    $orderReliability: SortEnumType = ASC
+    $orderGeneralPreference: SortEnumType = ASC
+    $orderExperienceLevel: SortEnumType = ASC
+    $orderCreatedAt: SortEnumType = ASC
+    $orderCreatedBy: SortEnumType = ASC
+    $orderModifiedAt: SortEnumType = ASC
+    $orderModifiedBy: SortEnumType = ASC
     $searchQuery: String = ""
-  ){
+  ) {
     persons(
-      skip: $skip,
-      take: $take,
+      skip: $skip
+      take: $take
       order: {
-        surname: $orderSurname,
-        givenName: $orderGivenName,
-        aboutMe: $orderAboutMe,
-        reliability: $orderReliability,
-        generalPreference: $orderGeneralPreference,
-        experienceLevel: $orderExperienceLevel,
-        createdAt: $orderCreatedAt,
-        createdBy: $orderCreatedBy,
-        modifiedAt: $orderModifiedAt,
-        modifiedBy: $orderModifiedBy,
-      },
+        surname: $orderSurname
+        givenName: $orderGivenName
+        aboutMe: $orderAboutMe
+        personBackgroundTeam: $oderPersonBackgroundTeam
+        reliability: $orderReliability
+        generalPreference: $orderGeneralPreference
+        experienceLevel: $orderExperienceLevel
+        createdAt: $orderCreatedAt
+        createdBy: $orderCreatedBy
+        modifiedAt: $orderModifiedAt
+        modifiedBy: $orderModifiedBy
+      }
       where: {
         or: [
-          { givenName: { contains:$searchQuery}}
-          { surname: { contains:$searchQuery}}
+          { givenName: { contains: $searchQuery } }
+          { surname: { contains: $searchQuery } }
+          { personBackgroundTeam: { contains: $searchQuery } }
         ]
-
       }
     ) {
       pageInfo {
-        hasNextPage,
+        hasNextPage
         hasPreviousPage
       }
       totalCount
@@ -49,6 +51,7 @@ export const PersonsQuery = gql`
         givenName
         surname
         aboutMe
+        personBackgroundTeam
         reliability
         generalPreference
         experienceLevel
@@ -58,4 +61,5 @@ export const PersonsQuery = gql`
         modifiedBy
       }
     }
-  }`;
+  }
+`;

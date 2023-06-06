@@ -1,0 +1,27 @@
+<ng-template #loading>
+  <div class="spinner-container">
+    <div class="arpa-spinner">
+      <div class="spinner"></div>
+    </div>
+  </div>
+</ng-template>
+<div>
+  <div>
+    <h4 style="text-align: left">{{ 'projects.PARTICIPANTS_ACCEPTED' | translate }}: {{ finalResultsValues }}</h4>
+  </div>
+  <ng-container *ngFor="let instrument of instrumentFinalResults | keyvalue">
+    <p>{{ instrument.value }} x {{ instrument.key }}</p>
+  </ng-container>
+</div>
+
+<ng-container *ngIf="ready; else loading">
+  <arpa-table
+    [columns]="columns"
+    [values]="tableData"
+    (filterEvents)="onTableFiltered($event)"
+    (rowClickEvents)="openParticipationDialog($event)"
+  ></arpa-table>
+  <div>
+    <h4 style="text-align: left">{{ 'RESULTS' | translate }}: {{ filteredDataCount }}</h4>
+  </div>
+</ng-container>
