@@ -24,5 +24,6 @@
   "CONTACT_DETAIL_REMOVED": "Detalhes de contato excluídos",
   "BANK_ACCOUNT_REMOVED": "Dados bancários excluídos",
   "BANK_ACCOUNT_MODIFIED": "Dados bancários modificados",
-  "BANK_ACCOUNT_ADDED": "Dados bancários adicionados"
+  "BANK_ACCOUNT_ADDED": "Dados bancários adicionados",
+  "PROFILE_PICTURE": "Foto de perfil"
 }

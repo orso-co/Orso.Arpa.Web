@@ -14,7 +14,7 @@
   "DATEOFBIRTH": "Date of Birth",
   "DELETE_NOW": "Delete person now. This cannot be undone!",
   "DELETE_PERSON_NOW": "Delete person now? Are you sure?",
-  "DONT_DELETE_PERSON":"Don't delete person",
+  "DONT_DELETE_PERSON": "Don't delete person",
   "EMPTYMESSAGE": "Nothing selected",
   "EXPERIENCE_LEVEL": "Experience Level",
   "GENDER": "Gender",
@@ -31,12 +31,14 @@
   "RELIABILITY": "Reliability",
   "SECTION": "Section",
   "SURNAME": "Surname",
+  "UPLOAD_AVATAR": "Upload avatar",
+  "REMOVE_AVATAR": "Remove avatar",
 
   "contact": {
     "VALUE": "Value",
     "TYPE": "Type",
-    "COMMENT_INNER" :"Comment by User",
-    "COMMENT_TEAM" :"Comment by Staff",
+    "COMMENT_INNER": "Comment by User",
+    "COMMENT_TEAM": "Comment by Staff",
     "PREFERENCE": "Preference",
     "CREATE_NEW_CONTACT": "Add new contact details"
   },

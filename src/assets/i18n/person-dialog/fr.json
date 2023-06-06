@@ -24,6 +24,6 @@
   "CONTACT_DETAIL_REMOVED": "Coordonnées contactes supprimées",
   "BANK_ACCOUNT_REMOVED": "Coordonnées bancaires supprimées",
   "BANK_ACCOUNT_MODIFIED": "Coordonnées bancaires modifièes",
-  "BANK_ACCOUNT_ADDED": "Coordonnées bancaires ajoutées"
+  "BANK_ACCOUNT_ADDED": "Coordonnées bancaires ajoutées",
+  "PROFILE_PICTURE": "Photo de profil"
 }
-
