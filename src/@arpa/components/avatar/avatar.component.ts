@@ -25,6 +25,9 @@ export class AvatarComponent implements OnInit, OnDestroy {
   @Input()
   useCurrentUserAvatar = false;
 
+  @Input()
+  imageSize = 100;
+
   imageUrl: string;
 
   constructor(private authService: AuthService, private personService: PersonService) {}
@@ -49,7 +52,7 @@ export class AvatarComponent implements OnInit, OnDestroy {
     this.imageUrl = 'assets/common/images/avatar.png';
     const potentialId = this.getPotentialPersonId();
     if (potentialId) {
-      this.personService.getProfilePicture(potentialId, 100).subscribe(
+      this.personService.getProfilePicture(potentialId, this.imageSize).subscribe(
         (data) => {
           const reader = new FileReader();
           reader.onload = (e: any) => {
