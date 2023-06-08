@@ -30,7 +30,7 @@
 <!-- <input type="file" accept="image/*" class="file-input" (change)="onFileSelected($event)" #fileUpload /> -->
 
 <p-fileUpload
-  chooseLabel="Choose"
+  chooseLabel="{{ 'persons.CHOOSE_AVATAR' | translate }}"
   name="file"
   [url]="getUrl()"
   accept="image/*"

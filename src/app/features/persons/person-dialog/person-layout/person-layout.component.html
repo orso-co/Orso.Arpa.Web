@@ -16,7 +16,7 @@
   <p-tabPanel header="{{ 'person-dialog.PROFILES' | translate }}" leftIcon="pi pi-id-card" *ngIf="person?.id">
     <arpa-person-profiles [person]="person"></arpa-person-profiles>
   </p-tabPanel>
-  <p-tabPanel header="{{ 'person-dialog.PROFILE_PICTURE' | translate }}" leftIcon="pi pi-phone" *ngIf="person?.id">
+  <p-tabPanel header="{{ 'person-dialog.PROFILE_PICTURE' | translate }}" leftIcon="pi pi-image" *ngIf="person?.id">
     <arpa-person-profile-picture [person]="person" *ngIf="person?.id"></arpa-person-profile-picture>
   </p-tabPanel>
 </p-tabView>
