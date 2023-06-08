@@ -5,14 +5,14 @@
     </div>
 
     <div class="controls">
-      <button
+      <!-- <button
         (click)="fileUpload.click()"
         [label]="'persons.UPLOAD_AVATAR' | translate"
         class="p-button-rounded p-button-text"
         icon="pi pi-upload"
         pButton
         type="button"
-      ></button>
+      ></button> -->
 
       <button
         (click)="onRemove()"
@@ -27,4 +27,13 @@
   </div>
 </div>
 
-<input type="file" accept="image/*" class="file-input" (change)="onFileSelected($event)" #fileUpload />
+<!-- <input type="file" accept="image/*" class="file-input" (change)="onFileSelected($event)" #fileUpload /> -->
+
+<p-fileUpload
+  chooseLabel="Choose"
+  name="file"
+  [url]="getUrl()"
+  accept="image/*"
+  [maxFileSize]="5242880"
+  (onUpload)="onUploadSuccess()"
+></p-fileUpload>
