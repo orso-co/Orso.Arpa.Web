@@ -109,6 +109,11 @@
   "OPEN_PROJECTS": "Offene Projekte",
   "CLOSED_PROJECTS": "Abgeschlossene Projekte",
   "ALL_PROJECTS": "Alle Projekte",
+  "WOODWINDS": "Holzbläser",
+  "BRASS": "Blechbläser",
+  "STRINGS": "Streicher",
+  "PERCUSSION": "Schlagwerk",
+  "CHORUS": "Chor",
 
   "error": {
     "BAD_REQUEST": "Es ist ein Fehler aufgetreten",
