@@ -59,6 +59,13 @@ export class LayoutDefaultComponent implements OnDestroy {
           translationToken: 'GENERAL',
           children: [
             {
+              label: 'News',
+              icon: 'pi pi-bell',
+              routerLink: '/arpa/news',
+              roles: ['staff'],
+              translationToken: 'NEWS',
+            },
+            {
               label: 'Projekte',
               icon: 'pi pi-th-large',
               routerLink: '/arpa/projects',

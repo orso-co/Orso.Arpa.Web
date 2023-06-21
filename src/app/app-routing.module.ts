@@ -28,6 +28,19 @@ const routes: Routes = [
         },
       },
       {
+        path: 'news',
+        loadChildren: () => import('./features/news/news.module').then((m) => m.NewsModule),
+        data: {
+          roles: ['staff'],
+          title: 'NEWS',
+          menu: {
+            name: 'feature',
+            label: 'NEWS',
+            icon: 'pi pi-bell',
+          },
+        },
+      },
+      {
         path: 'projects',
         loadChildren: () => import('./features/projects/projects.module').then((m) => m.ProjectsModule),
         data: {
