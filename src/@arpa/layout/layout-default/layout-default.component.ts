@@ -1,4 +1,4 @@
-import { MenuService } from './../../components/menu/menu.service';
+import { MenuService } from '../../components/menu/menu.service';
 import { Component, ElementRef, OnDestroy, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -58,6 +58,13 @@ export class LayoutDefaultComponent implements OnDestroy {
           label: 'Allgemeines',
           translationToken: 'GENERAL',
           children: [
+            {
+              label: 'News',
+              icon: 'pi pi-bell',
+              routerLink: '/arpa/news',
+              roles: ['staff'],
+              translationToken: 'NEWS',
+            },
             {
               label: 'Projekte',
               icon: 'pi pi-th-large',
