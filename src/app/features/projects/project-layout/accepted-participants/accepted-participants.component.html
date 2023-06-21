@@ -9,19 +9,84 @@
   <div>
     <h4 style="text-align: left">{{ 'projects.PARTICIPANTS_ACCEPTED' | translate }}: {{ finalResultsValues }}</h4>
   </div>
-  <ng-container *ngFor="let instrument of instrumentFinalResults | keyvalue">
-    <p>{{ instrument.value }} x {{ instrument.key }}</p>
+  <div class="instruments-container">
+    <h5>{{ 'WOODWINDS' | translate }}</h5>
+    <ng-container *ngFor="let instrument of instrumentFinalResults | keyvalue">
+      <div
+        *ngIf="
+          instrument.key.includes('Flute') ||
+          instrument.key.includes('Oboe') ||
+          instrument.key.includes('Clarinet') ||
+          instrument.key.includes('Bassoon') ||
+          instrument.key.includes('Saxophone')
+        "
+      >
+        <p>{{ instrument.value }} x {{ instrument.key }}</p>
+      </div>
+    </ng-container>
+  </div>
+  <div class="instruments-container">
+    <h5>{{ 'BRASS' | translate }}</h5>
+    <ng-container *ngFor="let instrument of instrumentFinalResults | keyvalue">
+      <div
+        *ngIf="
+          instrument.key.includes('Horn') ||
+          instrument.key.includes('Trompet') ||
+          instrument.key.includes('Flugelhorn') ||
+          instrument.key.includes('Trombone') ||
+          instrument.key.includes('Euphonium') ||
+          instrument.key.includes('Tuba')
+        "
+      >
+        <p>{{ instrument.value }} x {{ instrument.key }}</p>
+      </div>
+    </ng-container>
+  </div>
+  <div class="instruments-container">
+    <h5>{{ 'PERCUSSION' | translate }}</h5>
+    <ng-container *ngFor="let instrument of instrumentFinalResults | keyvalue">
+      <div
+        *ngIf="
+          instrument.key.includes('Harp') ||
+          instrument.key.includes('Timpani') ||
+          instrument.key.includes('Mallets') ||
+          instrument.key.includes('Percussion') ||
+          instrument.key.includes('Drum Set') ||
+          instrument.key.includes('Guitar') ||
+          instrument.key.includes('Piano')
+        "
+      >
+        <p>{{ instrument.value }} x {{ instrument.key }}</p>
+      </div>
+    </ng-container>
+  </div>
+  <div class="instruments-container">
+    <h5>{{ 'CHORUS' | translate }}</h5>
+    <ng-container *ngFor="let instrument of instrumentFinalResults | keyvalue">
+      <div *ngIf="instrument.key === 'Soprano' || instrument.key === 'Alto' || instrument.key === 'Tenor' || instrument.key === 'Bass'">
+        <p>{{ instrument.value }} x {{ instrument.key }}</p>
+      </div>
+    </ng-container>
+  </div>
+  <div class="instruments-container">
+    <h5>{{ 'STRINGS' | translate }}</h5>
+    <ng-container *ngFor="let instrument of instrumentFinalResults | keyvalue">
+      <div *ngIf="instrument.key.includes('Viol') || instrument.key === 'Double Bass'">
+        <p>{{ instrument.value }} x {{ instrument.key }}</p>
+      </div>
+    </ng-container>
+  </div>
+</div>
+<div class="table-container">
+  <ng-container *ngIf="ready; else loading">
+    <arpa-table
+      [columns]="columns"
+      [values]="tableData"
+      (filterEvents)="onTableFiltered($event)"
+      (rowClickEvents)="openParticipationDialog($event)"
+    ></arpa-table>
+    <div>
+      <h4 style="text-align: left">{{ 'RESULTS' | translate }}: {{ filteredDataCount }}</h4>
+    </div>
   </ng-container>
 </div>
-
-<ng-container *ngIf="ready; else loading">
-  <arpa-table
-    [columns]="columns"
-    [values]="tableData"
-    (filterEvents)="onTableFiltered($event)"
-    (rowClickEvents)="openParticipationDialog($event)"
-  ></arpa-table>
-  <div>
-    <h4 style="text-align: left">{{ 'RESULTS' | translate }}: {{ filteredDataCount }}</h4>
-  </div>
-</ng-container>

@@ -6,7 +6,7 @@ import { ColumnDefinition } from '../../../../../@arpa/components/table/table.co
 import { DocumentNode } from 'graphql';
 import { AccepptedParticipantsQuery } from './accepted-participations.graphql';
 import { ProjectParticipationDto } from '@arpa/models';
-import { first, map } from 'rxjs/operators';
+import { filter, first, map } from 'rxjs/operators';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ProjectService } from '@arpa/services';
 import { OnInit } from '@angular/core';
@@ -146,4 +146,6 @@ export class AcceptedParticipantsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
+
+  protected readonly filter = filter;
 }

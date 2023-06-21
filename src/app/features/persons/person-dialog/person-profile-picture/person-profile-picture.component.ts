@@ -25,6 +25,19 @@ export class PersonProfilePictureComponent implements OnInit {
 
   getUrl() {
     return this.personService.getProfilePictureUrl(this.person.id);
+    
+  onFileSelected($event: any) {
+    if ($event.target.files.length) {
+      const file = $event.target.files[0];
+      this.personService.uploadProfilePicture(this.person.id, file).subscribe(
+        (response) => {
+          this.onUploadSuccess();
+        },
+        () => {
+          this.onUploadError();
+        }
+      );
+    }
   }
 
   onUploadSuccess() {
