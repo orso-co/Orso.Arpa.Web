@@ -6,18 +6,9 @@
 
     <div class="controls">
       <button
-        (click)="fileUpload.click()"
-        [label]="'persons.UPLOAD_AVATAR' | translate"
-        class="p-button-rounded p-button-text"
-        icon="pi pi-upload"
-        pButton
-        type="button"
-      ></button>
-
-      <button
         (click)="onRemove()"
         [label]="'persons.REMOVE_AVATAR' | translate"
-        class="p-button-rounded p-button-text p-button-icon-only"
+        class="p-button-rounded p-button-text"
         icon="pi pi-trash"
         pButton
         [disabled]="!hasPicture"
@@ -26,5 +17,11 @@
     </div>
   </div>
 </div>
-
-<input type="file" accept="image/*" class="file-input" (change)="onFileSelected($event)" #fileUpload />
+<p-fileUpload
+  chooseLabel="{{ 'persons.CHOOSE_AVATAR' | translate }}"
+  name="file"
+  [url]="getUrl()"
+  accept="image/*"
+  [maxFileSize]="5242880"
+  (onUpload)="onUploadSuccess()"
+></p-fileUpload>

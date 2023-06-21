@@ -23,6 +23,9 @@ export class PersonProfilePictureComponent implements OnInit {
     this.reloadProfilePicture();
   }
 
+  getUrl() {
+    return this.personService.getProfilePictureUrl(this.person.id);
+    
   onFileSelected($event: any) {
     if ($event.target.files.length) {
       const file = $event.target.files[0];
