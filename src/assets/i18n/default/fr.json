@@ -103,6 +103,11 @@
   "WEEK": "Semaine",
   "WELCOME": "Bienvenue sur ARPA 2.0",
   "YES": "Oui",
+  "WOODWINDS": "Bois",
+  "BRASS": "Cuivres",
+  "STRINGS": "Cordes",
+  "PERCUSSION": "Percussion",
+  "CHORUS": "Chœur",
 
   "error": {
     "BAD_REQUEST": "Une erreur s’est produite",

@@ -105,6 +105,11 @@
   "WEEK": "Week",
   "WELCOME": "Welcome to ARPA 2.0",
   "YES": "Yes",
+  "WOODWINDS": "Woodwinds",
+  "BRASS": "Brass",
+  "STRINGS": "Strings",
+  "PERCUSSION": "Percussion",
+  "CHORUS": "Chorus",
 
   "error": {
     "BAD_REQUEST": "An error occured",

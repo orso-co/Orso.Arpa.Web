@@ -103,6 +103,11 @@
   "WEEK": "Semana",
   "WELCOME": "Bem-vindo ao Arpa 2.0",
   "YES": "Sim",
+  "WOODWINDS": "Sopros",
+  "BRASS": "Metais",
+  "STRINGS": "Cordas",
+  "PERCUSSION": "Percussão",
+  "CHORUS": "Coro",
 
   "error": {
     "BAD_REQUEST": "Alguma coisa correu mal",
