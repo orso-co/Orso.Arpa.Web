@@ -4,6 +4,7 @@ export interface NewsDto {
   createdAt?: Date;
   modifiedBy?: string;
   modifiedAt?: Date;
+  newsTitle: string;
   newsText: string;
   url?: string;
   show?: boolean;

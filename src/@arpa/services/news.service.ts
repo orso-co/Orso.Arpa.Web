@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '@arpa/services';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import { NewsModifyBodyDto } from '../models/NewsModifyBodyDto';
-import { NewsCreateDto } from '../models/NewsCreateDto';
-import { NewsDto } from '../models/NewsDto';
+import { NewsModifyBodyDto } from '../models/newsModifyBodyDto';
+import { NewsCreateDto } from '../models/newsCreateDto';
+import { NewsDto } from '../models/newsDto';
 
 @Injectable({
   providedIn: 'root',
