@@ -22,7 +22,7 @@
   "MODIFIED_BY": "Geändert von",
   "PERSON_MODIFIED": "Personendaten geändert",
   "PERSON_CREATED": "Person erstellt",
-  "DONT_DELETE_PERSON":"Person nicht löschen",
+  "DONT_DELETE_PERSON": "Person nicht löschen",
   "DELETE_PERSON_NOW": "Diese Person soll gelöscht werden? Ganz sicher?",
   "DELETE_NOW": "Diese Person wird jetzt gelöscht. Dies kann nicht rückgängig gemacht werden!",
   "PERSONS": "Personen",
@@ -31,12 +31,15 @@
   "SECTION": "Register",
   "SURNAME": "Nachname",
   "PROFILES": "Profile",
+  "UPLOAD_AVATAR": "Profilbild hochladen",
+  "REMOVE_AVATAR": "Profilbild entfernen",
+  "CHOOSE_AVATAR": "Profilbild auswählen",
 
   "contact": {
     "VALUE": "Wert",
     "TYPE": "Typ",
-    "COMMENT_INNER" :"Kommentar Person",
-    "COMMENT_TEAM" :"Kommentar Team",
+    "COMMENT_INNER": "Kommentar Person",
+    "COMMENT_TEAM": "Kommentar Team",
     "PREFERENCE": "Präferenz",
     "CREATE_NEW_CONTACT": "Kontaktdaten hinzufügen:"
   },

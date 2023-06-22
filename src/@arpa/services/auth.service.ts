@@ -23,6 +23,7 @@ export interface IToken {
   username: string;
   roles: RoleNames[];
   displayName: string;
+  personId?: string;
 }
 
 export enum AuthEvents {
@@ -45,7 +46,7 @@ export class AuthService {
     private apiService: ApiService,
     private jwtService: JwtService,
     private roleService: RoleService,
-    private logger: LoggerService,
+    private logger: LoggerService
   ) {
     this.clientUriBase = `${window.location.origin}`;
   }
@@ -70,11 +71,15 @@ export class AuthService {
   }
 
   refreshToken() {
-    return this.apiService.post<TokenDto>('/Auth/refreshtoken', {
-      token: this.jwtService.getToken(),
-    }).pipe(tap((result: TokenDto) => {
-      this.jwtService.saveToken(result.token);
-    }));
+    return this.apiService
+      .post<TokenDto>('/Auth/refreshtoken', {
+        token: this.jwtService.getToken(),
+      })
+      .pipe(
+        tap((result: TokenDto) => {
+          this.jwtService.saveToken(result.token);
+        })
+      );
   }
 
   login(loginDto: LoginDto): Observable<IToken> {
@@ -88,25 +93,27 @@ export class AuthService {
         this.currentUserSubject.next(token);
         this.isAuthenticatedSubject.next(true);
         this.authEvents.emit(AuthEvents.LOGIN);
-      }),
+      })
     );
   }
 
   logout(): Observable<any> {
-    return this.apiService.post<any>(`/auth/logout`, {
-      token: this.jwtService.getToken(),
-    }).pipe(
-      catchError((error) => {
-        if (error) {
-          this.logger.error(error);
-        }
-        return of({});
-      }),
-      finalize(() => {
-        this.purgeAuth();
-        this.authEvents.emit(AuthEvents.LOGOUT);
-      }),
-    );
+    return this.apiService
+      .post<any>(`/auth/logout`, {
+        token: this.jwtService.getToken(),
+      })
+      .pipe(
+        catchError((error) => {
+          if (error) {
+            this.logger.error(error);
+          }
+          return of({});
+        }),
+        finalize(() => {
+          this.purgeAuth();
+          this.authEvents.emit(AuthEvents.LOGOUT);
+        })
+      );
   }
 
   register(userRegisterDto: UserRegisterDto): Observable<TokenDto> {
@@ -141,14 +148,16 @@ export class AuthService {
   public isUserInAtLeastOnRole(roles: RoleNames[]): Observable<boolean> {
     return this.currentUser.pipe(
       first(),
-      map((token) => (token ? intersection(token.roles, roles).length > 0 : false)),
+      map((token) => (token ? intersection(token.roles, roles).length > 0 : false))
     );
   }
 
   public getMaxRoleLevelOfCurrentUser(): Observable<number> {
-    return combineLatest([this.currentUser, this.roleService.getRoles()]).pipe(map(([token, roles]) => {
-      const userRoles = roles.filter(r => token?.roles.includes(r.roleName.toLowerCase() as RoleNames));
-      return Math.max(...userRoles.map(r => r.roleLevel));
-    }));
+    return combineLatest([this.currentUser, this.roleService.getRoles()]).pipe(
+      map(([token, roles]) => {
+        const userRoles = roles.filter((r) => token?.roles.includes(r.roleName.toLowerCase() as RoleNames));
+        return Math.max(...userRoles.map((r) => r.roleLevel));
+      })
+    );
   }
 }

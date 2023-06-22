@@ -31,6 +31,10 @@ import { PersonProfilesClientComponent } from './person-profiles/person-profiles
 import { ProfileModule } from '../../profile/profile.module';
 import { ChipModule } from 'primeng/chip';
 import { TagModule } from 'primeng/tag';
+import { PersonProfilePictureComponent } from './person-profile-picture/person-profile-picture.component';
+import { AvatarModule } from 'primeng/avatar';
+import { FileUploadModule } from 'primeng/fileupload';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,8 @@ import { TagModule } from 'primeng/tag';
     PersonProfilesComponent,
     PersonProfilesMusicianComponent,
     PersonProfilesMemberComponent,
-    PersonProfilesClientComponent
+    PersonProfilesClientComponent,
+    PersonProfilePictureComponent,
   ],
   imports: [
     CommonModule,
@@ -73,7 +78,9 @@ import { TagModule } from 'primeng/tag';
     ProfileModule,
     ChipModule,
     TagModule,
-
+    AvatarModule,
+    FileUploadModule,
+    MatIconModule,
   ],
 })
 export class PersonDialogModule {

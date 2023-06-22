@@ -1,21 +1,26 @@
-<div style='text-align: right'>
-  <p *ngIf = "person?.user; else noUser" class="userAccount"> {{ 'EXISTING_USER' | translate }}: {{person.user!.userName}} ({{person.user!.email}})</p>
+<div style="text-align: right">
+  <p *ngIf="person?.user; else noUser" class="userAccount">
+    {{ 'EXISTING_USER' | translate }}: {{ person.user!.userName }} ({{ person.user!.email }})
+  </p>
 </div>
 <p-tabView [(activeIndex)]="index">
-  <p-tabPanel header="{{ 'person-dialog.CONTACT_DATA' | translate }}" leftIcon="pi pi-phone" *ngIf='person?.id'>
+  <p-tabPanel header="{{ 'person-dialog.CONTACT_DATA' | translate }}" leftIcon="pi pi-phone" *ngIf="person?.id">
     <arpa-person-contactdata [person]="person"></arpa-person-contactdata>
   </p-tabPanel>
-  <p-tabPanel header="{{ 'person-dialog.BANK_DATA' | translate }}" leftIcon="pi pi-credit-card" *ngIf='person?.id'>
+  <p-tabPanel header="{{ 'person-dialog.BANK_DATA' | translate }}" leftIcon="pi pi-credit-card" *ngIf="person?.id">
     <arpa-person-bankdata [person]="person"></arpa-person-bankdata>
   </p-tabPanel>
   <p-tabPanel header="{{ 'person-dialog.BASE_DATA' | translate }}" leftIcon="pi pi-user">
     <arpa-person-basedata [person]="person" (personSaved)="personSaved($event)"></arpa-person-basedata>
   </p-tabPanel>
-  <p-tabPanel header="{{ 'person-dialog.PROFILES' | translate }}" leftIcon="pi pi-id-card" *ngIf='person?.id'>
+  <p-tabPanel header="{{ 'person-dialog.PROFILES' | translate }}" leftIcon="pi pi-id-card" *ngIf="person?.id">
     <arpa-person-profiles [person]="person"></arpa-person-profiles>
+  </p-tabPanel>
+  <p-tabPanel header="{{ 'person-dialog.PROFILE_PICTURE' | translate }}" leftIcon="pi pi-image" *ngIf="person?.id">
+    <arpa-person-profile-picture [person]="person" *ngIf="person?.id"></arpa-person-profile-picture>
   </p-tabPanel>
 </p-tabView>
 
 <ng-template #noUser>
-  <p-tag severity='warning'>{{ 'NO_USER_ACCOUNT' | translate }}</p-tag>
+  <p-tag severity="warning">{{ 'NO_USER_ACCOUNT' | translate }}</p-tag>
 </ng-template>

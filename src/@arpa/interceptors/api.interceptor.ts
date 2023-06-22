@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Observable, of, Subject, throwError } from 'rxjs';
+import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { EMPTY, Observable, of, Subject, throwError } from 'rxjs';
 import { JwtService } from '../services/jwt.service';
 import { Router } from '@angular/router';
 import { catchError, switchMap, tap } from 'rxjs/operators';
@@ -11,7 +11,6 @@ import { ConfigService } from '../services/config.service';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
-
   readonly apiUrlBase: string;
   readonly graphQlUrlBase: string;
   refreshTokenInProgress = false;
@@ -25,7 +24,7 @@ export class ApiInterceptor implements HttpInterceptor {
     private authService: AuthService,
     private jwtService: JwtService,
     private configService: ConfigService,
-    private translate: TranslateService,
+    private translate: TranslateService
   ) {
     this.apiUrlBase = this.getFullUri('api');
     this.graphQlUrlBase = this.getFullUri('graphql');
@@ -43,7 +42,7 @@ export class ApiInterceptor implements HttpInterceptor {
 
   refreshToken(): Observable<any> {
     if (this.refreshTokenInProgress) {
-      return new Observable(observer => {
+      return new Observable((observer) => {
         this.tokenRefreshed$.subscribe(() => {
           observer.next();
           observer.complete();
@@ -61,19 +60,25 @@ export class ApiInterceptor implements HttpInterceptor {
           this.refreshTokenInProgress = false;
           this.logout();
           return of(error);
-        }));
+        })
+      );
     }
   }
 
   handleResponseError(error: any, request?: HttpRequest<unknown>, next?: HttpHandler): Observable<any> {
+    // catch fake error responses
+    if (error.status === 200) {
+      return of(EMPTY);
+    }
+
     if (error.status === 400) {
       this.notificationsService.error('error.BAD_REQUEST');
     } else if (next && request && error.status === 401 && !error.url.endsWith('/login')) {
       return this.refreshToken().pipe(
         switchMap(() => {
           if (request) {
-            request = request.clone({ setHeaders: this.setAuthHeader(), withCredentials: true });
-            return next.handle(request);
+            const authenticatedRequest = this.authenticateRequest(request);
+            return next.handle(authenticatedRequest);
           }
           return of(error);
         }),
@@ -84,7 +89,8 @@ export class ApiInterceptor implements HttpInterceptor {
             this.logout();
           }
           return of(e);
-        }));
+        })
+      );
     } else if (error.status === 403 && !error.url.endsWith('/login')) {
       this.notificationsService.error('error.FORBIDDEN');
       this.authService.logout();
@@ -109,25 +115,21 @@ export class ApiInterceptor implements HttpInterceptor {
     return throwError(error);
   }
 
-  setAuthHeader() {
+  private authenticateRequest(request: HttpRequest<unknown>) {
     const token = this.jwtService.getToken();
-    const headersConfig: Record<string, string> = {
-      /* eslint-disable @typescript-eslint/naming-convention */
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-      'Accept-Language': this.translate.currentLang,
-    };
-    /* eslint-enable @typescript-eslint/naming-convention */
-    if (token) {
-      headersConfig.Authorization = `Bearer ${token}`;
-    }
-    return headersConfig;
+    return request.clone({
+      withCredentials: true,
+      headers: request.headers
+        .set('Authorization', `Bearer ${token}`)
+        .set('Accept', 'application/json')
+        .set('Accept-Language', this.translate.currentLang),
+    });
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (request.url.startsWith(this.apiUrlBase) || request.url.startsWith(this.graphQlUrlBase)) {
-      request = request.clone({ setHeaders: this.setAuthHeader(), withCredentials: true });
-      return next.handle(request).pipe(catchError((error: any) => this.handleResponseError(error, request, next)));
+      const authenticatedRequest = this.authenticateRequest(request);
+      return next.handle(authenticatedRequest).pipe(catchError((error: any) => this.handleResponseError(error, request, next)));
     } else {
       return next.handle(request.clone());
     }

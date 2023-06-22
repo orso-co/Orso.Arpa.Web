@@ -1,14 +1,20 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { MyUserProfileDto, PersonDto, UserDto } from '@arpa/models';
+import { AuthService } from '@arpa/services';
+import { Subscription } from 'rxjs';
+import { PersonService } from 'src/app/features/persons/services/person.service';
 
 @Component({
   selector: 'arpa-avatar',
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.scss'],
 })
-export class AvatarComponent {
+export class AvatarComponent implements OnInit, OnDestroy {
+  private subscription: Subscription;
+  private currentUserPersonId: string;
 
   @Input()
-  user: any;
+  user: UserDto | PersonDto | MyUserProfileDto | any;
 
   @Input()
   size = 'xxlarge';
@@ -16,17 +22,54 @@ export class AvatarComponent {
   @Input()
   image = false;
 
-  constructor() {
+  @Input()
+  useCurrentUserAvatar = false;
+
+  @Input()
+  imageSize = 100;
+
+  imageUrl: string;
+
+  constructor(private authService: AuthService, private personService: PersonService) {}
+
+  ngOnInit(): void {
+    if (this.useCurrentUserAvatar) {
+      this.subscription = this.authService.currentUser.subscribe((currentUser) => {
+        this.currentUserPersonId = currentUser.personId || '';
+        this.loadAvatar();
+      });
+    } else {
+      this.loadAvatar();
+    }
   }
 
   getColor() {
-    const str = this.user?.displayName ? this.user?.displayName :
-      (this.user?.givenName || '') + (this.user?.surname || '');
+    const str = this.user?.displayName ? this.user?.displayName : (this.user?.givenName || '') + (this.user?.surname || '');
     return `hsl(${this.hashStr(str) % 360}, 28%, 50%)`;
   }
 
-  getImage() {
-    return this.image ? 'assets/common/images/avatar.png' : '';
+  loadAvatar() {
+    this.imageUrl = 'assets/common/images/avatar.png';
+    const potentialId = this.getPotentialPersonId();
+    if (potentialId) {
+      this.personService.getProfilePicture(potentialId, this.imageSize).subscribe(
+        (data) => {
+          const reader = new FileReader();
+          reader.onload = (e: any) => {
+            const fileBase64 = e.target.result;
+            this.setUrl(data.type, fileBase64);
+          };
+          reader.readAsBinaryString(data);
+        },
+        () => {
+          // always fall back to no image to display; we should revisit this logic.
+          this.image = false;
+        }
+      );
+    } else {
+      // always fall back to no image to display; we should revisit this logic.
+      this.image = false;
+    }
   }
 
   getInitials(): string {
@@ -34,7 +77,7 @@ export class AvatarComponent {
       return `${this.user?.displayName
         .split(' ')
         .splice(0, 2)
-        .map((name: string) => name[0] ? name[0].toUpperCase() : '')
+        .map((name: string) => (name[0] ? name[0].toUpperCase() : ''))
         .join('')}`;
     } else {
       const [first] = this.user?.givenName || ' ';
@@ -52,4 +95,26 @@ export class AvatarComponent {
     return hash;
   }
 
+  private setUrl(dataType: string, fileBase64: string): void {
+    this.imageUrl = `data:${dataType};base64,${btoa(fileBase64)}`;
+  }
+
+  /**
+   * Because user is of type UserDto | PersonDto | MyUserProfileDto, it may not be possible
+   * to retrieve the person id, so we'll try our luck.
+   *
+   * A proper refactor must be done here.
+   */
+  private getPotentialPersonId(): string {
+    if (this.useCurrentUserAvatar) {
+      return this.currentUserPersonId;
+    }
+    return this.user?.person?.id || this.user?.id;
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 }

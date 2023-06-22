@@ -26,16 +26,19 @@
   "LEVEL_ASSESSMENT_TEAM": "nível (equipe)",
   "QUALIFICATION": "qualificação",
   "SECTION": "Seção",
-  "PROFILES": "Perfis",
+  "PROFILES": "Perfiles",
+  "UPLOAD_AVATAR": "Carregar avatar",
+  "REMOVE_AVATAR": "Remover avatar",
+  "CHOOSE_AVATAR": "Escolha um avatar",
 
   "contact": {
     "VALUE": "Valor",
     "TYPE": "Modelo",
-    "COMMENT_INNER" :"Comentarista ",
-    "COMMENT_TEAM" :"Pessoal de comentários",
+    "COMMENT_INNER": "Comentarista ",
+    "COMMENT_TEAM": "Pessoal de comentários",
     "PREFERENCE": "Preferência",
     "CREATE_NEW_CONTACT": "Criar novo contato"
-    },
+  },
 
   "bank": {
     "BIC": "BIC",
@@ -46,5 +49,5 @@
     "BANK_ACCOUNT_REMOVED": "Dados bancários removidos",
     "BANK_ACCOUNT_ADDED": "Dados bancários adicionados",
     "BANK_ACCOUNT_MODIFIED": "Dados bancários alterados"
-    }
+  }
 }
