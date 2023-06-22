@@ -12,8 +12,8 @@
     >
       <ng-template let-news pTemplate="item">
         <div class="p-flex-column">
-          <span class="p-text-bold">{{ news.newsText | uppercase }}</span>
-          <ng-container *ngIf="news.newsText"
+          <span class="p-text-bold">{{ news.newsTitle | uppercase }}</span>
+          <ng-container *ngIf="news.newsTitle"
             ><span>, {{ news.newsText }} {{ news.createdAt }}</span
             ><br /><span>({{ news.show }})</span></ng-container
           >
@@ -21,7 +21,7 @@
       </ng-template>
     </p-listbox>
   </div>
-  <div class="p-col-12 p-md-8">
+  <div class="p-col-8 p-md-8">
     <div class="p-formgroup-inline p-jc-between">
       <h2>{{ selectedNews ? ('EDIT_NEWS' | translate) : ('CREATE_NEWS' | translate) }}</h2>
       <button
@@ -34,26 +34,30 @@
         (click)="delete($event)"
       ></button>
     </div>
-
     <form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
       <div class="p-grid p-fluid p-formgrid">
-        <div class="p-col-12">
+        <div class="p-col-9">
+          <arpa-form-field label="NEWS_TITLE">
+            <input formControlName="newsTitle" id="newsTitle" pInputText type="text" />
+          </arpa-form-field>
+        </div>
+        <div class="p-col-9">
           <arpa-form-field label="NEWS_TEXT">
             <textarea formControlName="newsText" id="newsText" pInputText type="textarea"></textarea>
           </arpa-form-field>
         </div>
-        <div class="p-col-12">
+        <div class="p-col-9">
           <arpa-form-field label="URL">
             <input formControlName="url" id="url" pInputText type="text" />
           </arpa-form-field>
         </div>
-        <div class="p-col-6">
+        <div class="p-col-9">
           <label for="show" class="inputswitch">{{ 'PUBLISH_NEWS' | translate }}</label>
           <p-inputSwitch formControlName="show" id="show" [ngModel]="true"></p-inputSwitch>
         </div>
         <hr />
-        <div class="p-col-12">
-          <div class="p-formgroup-inline p-jc-between p-col-4">
+        <div class="p-col-9" style="padding-top: 20px">
+          <div class="p-formgroup-inline p-jc-between p-col-6">
             <p-button type="button" [label]="'CANCEL' | translate" (click)="resetForm()"></p-button>
             <p-button [disabled]="formGroup.invalid || formGroup.pristine" type="submit" [label]="'SAVE' | translate"></p-button>
           </div>
@@ -61,5 +65,5 @@
       </div>
     </form>
   </div>
-  <p-confirmPopup></p-confirmPopup>
 </div>
+<p-confirmPopup></p-confirmPopup>

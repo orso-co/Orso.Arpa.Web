@@ -16,15 +16,25 @@ import { ListboxModule } from 'primeng/listbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { RippleModule } from 'primeng/ripple';
+import { RouterModule } from '@angular/router';
+import { NewsService } from '../../../@arpa/services/news.service';
 
 @NgModule({
-  declarations: [NewsComponent],
   imports: [
-    NewsRoutingModule,
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: NewsComponent,
+        resolve: {
+          news: NewsService,
+        },
+      },
+    ]),
     // Arpa Lib
     TranslateModule.forChild(['news']),
-    GraphQlFeedModule,
     TableModule,
     // NG Prime Dependencies
     DropdownModule,
@@ -38,7 +48,8 @@ import { RippleModule } from 'primeng/ripple';
     InputSwitchModule,
     RippleModule,
   ],
-  exports: [NewsComponent],
+  declarations: [NewsComponent],
+  providers: [],
 })
 export class NewsModule {
   constructor(private translateService: TranslateService, private languageService: LanguageService) {

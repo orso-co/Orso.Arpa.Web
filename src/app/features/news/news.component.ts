@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { NewsDto } from '../../../@arpa/models/NewsDto';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first, map } from 'rxjs/operators';
 import { ConfirmationService } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
 import { NewsService } from '../../../@arpa/services/news.service';
 import { NotificationsService } from '@arpa/services';
+import { NewsDto } from '../../../@arpa/models/newsDto';
 
 @Component({
   selector: 'arpa-news',
@@ -27,18 +27,22 @@ export class NewsComponent implements OnInit {
     private translate: TranslateService
   ) {
     this.formGroup = formBuilder.group({
+      newsTitle: [null, [Validators.required, Validators.maxLength(200)]],
       newsText: [null, [Validators.required, Validators.maxLength(1000)]],
-      url: [null],
+      url: [null, [Validators.maxLength(1000)]],
       show: [null, [Validators.required, Validators.maxLength(1)]],
     });
   }
   ngOnInit() {
-    this.activatedRoute.data.pipe(
-      first(),
-      map((data) => data.news),
-      map((news) => news.map((news: NewsDto) => this.addLabelToNews(news)))
-    );
+    this.activatedRoute.data
+      .pipe(
+        first(),
+        map((data) => data.news),
+        map((news) => news.map((news: NewsDto) => this.addLabelToNews(news)))
+      )
+      .subscribe((news) => (this.news = news));
   }
+
   onSubmit() {
     if (this.formGroup.invalid) {
       return;
@@ -95,14 +99,9 @@ export class NewsComponent implements OnInit {
   onSelectionChange(event: { value: any }) {
     this.formGroup.patchValue({
       ...event.value,
-      address1: event.value.address?.address1,
-      address2: event.value.address?.address2,
-      zip: event.value.address?.zip,
-      city: event.value.address?.city,
-      country: event.value.address?.country,
-      urbanDistrict: event.value.address?.urbanDistrict,
-      state: event.value.address?.state,
-      addressCommentInner: event.value.address?.commentInner,
+      newsTitle: event.value.newsTitle?.newsTitle,
+      newsText: event.value.newsText?.newsText,
+      url: event.value.url?.url,
     });
   }
 
@@ -115,6 +114,6 @@ export class NewsComponent implements OnInit {
     if (!news) {
       return null;
     }
-    return { ...news, label: `${news.newsText}|${news.createdAt}|${news.createdBy}` };
+    return { ...news, label: `${news.newsTitle}` };
   }
 }
