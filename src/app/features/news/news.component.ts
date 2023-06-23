@@ -27,8 +27,8 @@ export class NewsComponent implements OnInit {
     private translate: TranslateService
   ) {
     this.formGroup = formBuilder.group({
-      newsTitle: [null, [Validators.required, Validators.maxLength(200)]],
-      newsText: [null, [Validators.required, Validators.maxLength(1000)]],
+      title: [null, [Validators.required, Validators.maxLength(200)]],
+      text: [null, [Validators.required, Validators.maxLength(1000)]],
       url: [null, [Validators.maxLength(1000)]],
       show: [null, [Validators.required, Validators.maxLength(1)]],
     });
@@ -99,8 +99,8 @@ export class NewsComponent implements OnInit {
   onSelectionChange(event: { value: any }) {
     this.formGroup.patchValue({
       ...event.value,
-      newsTitle: event.value.newsTitle?.newsTitle,
-      newsText: event.value.newsText?.newsText,
+      title: event.value.title?.title,
+      text: event.value.text?.text,
       url: event.value.url?.url,
     });
   }
@@ -114,6 +114,6 @@ export class NewsComponent implements OnInit {
     if (!news) {
       return null;
     }
-    return { ...news, label: `${news.newsTitle}` };
+    return { ...news, label: `${news.title}` };
   }
 }

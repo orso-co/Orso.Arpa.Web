@@ -1,5 +1,5 @@
 export interface NewsModifyBodyDto {
-  newsText: string;
+  text: string;
   url?: string;
   show?: boolean;
 }
