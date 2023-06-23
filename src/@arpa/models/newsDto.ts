@@ -5,7 +5,7 @@ export interface NewsDto {
   modifiedBy?: string;
   modifiedAt?: Date;
   title: string;
-  text: string;
+  content: string;
   url?: string;
   show?: boolean;
 }

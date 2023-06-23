@@ -7,7 +7,6 @@ import { ActivatedRoute } from '@angular/router';
 import { NewsService } from '../../../@arpa/services/news.service';
 import { NotificationsService } from '@arpa/services';
 import { NewsDto } from '../../../@arpa/models/newsDto';
-
 @Component({
   selector: 'arpa-news',
   templateUrl: './news.component.html',
@@ -17,6 +16,12 @@ export class NewsComponent implements OnInit {
   news: any[] = [];
   selectedNews: any | undefined;
   formGroup: FormGroup;
+
+  createdAt: Date | undefined;
+  createdBy: string | undefined;
+  modifiedAt: Date | undefined;
+  modifiedBy: string | undefined;
+  show: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -28,7 +33,7 @@ export class NewsComponent implements OnInit {
   ) {
     this.formGroup = formBuilder.group({
       title: [null, [Validators.required, Validators.maxLength(200)]],
-      text: [null, [Validators.required, Validators.maxLength(1000)]],
+      content: [null, [Validators.required, Validators.maxLength(1000)]],
       url: [null, [Validators.maxLength(1000)]],
       show: [null, [Validators.required, Validators.maxLength(1)]],
     });
@@ -41,6 +46,10 @@ export class NewsComponent implements OnInit {
         map((news) => news.map((news: NewsDto) => this.addLabelToNews(news)))
       )
       .subscribe((news) => (this.news = news));
+    this.createdAt = this.news[0]?.createdAt;
+    this.createdBy = this.news[0]?.createdBy;
+    this.modifiedAt = this.news[0]?.modifiedAt;
+    this.modifiedBy = this.news[0]?.modifiedBy;
   }
 
   onSubmit() {
@@ -74,7 +83,7 @@ export class NewsComponent implements OnInit {
   delete(event: any) {
     this.confirmationService.confirm({
       target: event.target || undefined,
-      message: this.translate.instant('news.ARE_YOU_SURE'),
+      message: this.translate.instant('news.DELETE_CONFIRM'),
       icon: 'pi pi-exclamation-triangle',
       acceptLabel: this.translate.instant('YES'),
       rejectLabel: this.translate.instant('NO'),
@@ -99,9 +108,6 @@ export class NewsComponent implements OnInit {
   onSelectionChange(event: { value: any }) {
     this.formGroup.patchValue({
       ...event.value,
-      title: event.value.title?.title,
-      text: event.value.text?.text,
-      url: event.value.url?.url,
     });
   }
 
@@ -114,6 +120,6 @@ export class NewsComponent implements OnInit {
     if (!news) {
       return null;
     }
-    return { ...news, label: `${news.title}` };
+    return { ...news, label: `${news.title}|${news.content}` };
   }
 }
