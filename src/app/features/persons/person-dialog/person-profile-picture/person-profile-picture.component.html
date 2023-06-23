@@ -1,0 +1,28 @@
+<div class="avatar-wrapper">
+  <div class="avatar">
+    <div class="picture-container">
+      <p-avatar *ngIf="imageUrl" [image]="imageUrl" shape="circle" styleClass="h-full w-full"></p-avatar>
+    </div>
+
+    <div class="controls">
+      <button
+        (click)="onRemove()"
+        [label]="'persons.REMOVE_AVATAR' | translate"
+        class="p-button-rounded p-button-text"
+        icon="pi pi-trash"
+        pButton
+        [disabled]="!hasPicture"
+        type="button"
+      ></button>
+    </div>
+  </div>
+</div>
+
+<p-fileUpload
+  chooseLabel="{{ 'persons.CHOOSE_AVATAR' | translate }}"
+  name="file"
+  [url]="getUrl()"
+  accept="image/*"
+  [maxFileSize]="5242880"
+  (onUpload)="onUploadSuccess()"
+></p-fileUpload>

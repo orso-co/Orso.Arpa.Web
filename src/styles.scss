@@ -130,6 +130,14 @@ pre {
   justify-content: center;
 }
 
+.h-full {
+  height: 100% !important;
+}
+
+.w-full {
+  width: 100% !important;
+}
+
 @import '~primeicons/primeicons.css';
 @import '~primeng/resources/primeng.min.css';
 @import 'assets/common/fonts/icomoon/style.css';

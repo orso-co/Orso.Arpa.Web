@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { THEME_NAME, ThemeSwitcherService } from '../theme-switcher/theme-switcher.service';
 
 export interface MenuItemArpa extends MenuItem {
   menu?: string;
@@ -17,13 +18,15 @@ export class MenuService {
   public currentUrl = new BehaviorSubject<string>('');
   private menuCollection: Record<string, Array<MenuItem>> = {};
   private menuEvents: Record<string, BehaviorSubject<Array<MenuItem>>> = {};
+  public darkMode: boolean = true;
 
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private themeService: ThemeSwitcherService) {
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       Object.keys(this.menuCollection).forEach((name) => {
         this.menuEvents[name].next(this.menuCollection[name].map((item) => this.translateLabels(item)));
       });
     });
+    this.darkMode = themeService.currentTheme === THEME_NAME.DARK;
   }
 
   /**
@@ -87,5 +90,10 @@ export class MenuService {
       }
     });
     return item as MenuItem;
+  }
+
+  toggleDarkMode() {
+    this.themeService.setTheme(this.darkMode ? THEME_NAME.LIGHT : THEME_NAME.DARK);
+    this.darkMode = !this.darkMode;
   }
 }

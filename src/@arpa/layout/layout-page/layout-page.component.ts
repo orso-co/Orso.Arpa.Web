@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { RouteTitleService } from '../../services/route-title.service';
+import { RouteTitleService } from '@arpa/services';
 
 @Component({
   selector: 'arpa-layout-page',
@@ -8,7 +8,6 @@ import { RouteTitleService } from '../../services/route-title.service';
   styleUrls: ['./layout-page.component.scss'],
 })
 export class LayoutPageComponent {
-
   pageTitle: Observable<string | any>;
 
   constructor(private titleService: RouteTitleService) {

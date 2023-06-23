@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { RouteTitleService } from '../../services/route-title.service';
-import { LanguageService } from '../../services/language.service';
+import { RouteTitleService } from '@arpa/services';
+import { LanguageService } from '@arpa/services';
 import { MenuItemArpa, MenuService } from '../../components/menu/menu.service';
 
 @Injectable({
@@ -33,12 +33,14 @@ export class TopbarService {
   private initialiseUserMenu(): Array<MenuItemArpa> {
     const userProfileItems: Array<MenuItemArpa> = [
       { label: 'LOGOUT', icon: 'pi pi-sign-out', routerLink: ['/logout'] },
-      { label: 'MY_PROFILE', icon: 'pi pi-user-edit', routerLink: ['/arpa/profile/user'] },
+      { label: 'MY_DATA', icon: 'pi pi-user-edit', routerLink: ['/arpa/profile/user'] },
       { separator: true },
       ...this.languageService.getLangs().map((lang) => ({
         label: this.languageService.getLanguageName(lang),
         command: () => this.updateLanguage(lang),
       })),
+      { separator: true },
+      { label: 'THEME_SWITCHER', icon: 'pi pi-desktop', command: () => this.menuService.toggleDarkMode() },
     ];
     return userProfileItems;
   }
