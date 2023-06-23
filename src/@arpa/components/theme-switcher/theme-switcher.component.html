@@ -1,3 +1,3 @@
-<div class='theme-switch'>
-  <p-inputSwitch (onChange)='changeTheme($event)' [(ngModel)]='darkMode'></p-inputSwitch>
+<div class="container">
+  <p-toggleButton (onChange)="changeTheme($event)" [(ngModel)]="darkMode" onIcon="pi pi-moon" offIcon="pi pi-sun"></p-toggleButton>
 </div>
