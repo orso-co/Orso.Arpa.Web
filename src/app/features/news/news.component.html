@@ -12,11 +12,16 @@
     >
       <ng-template let-news pTemplate="item">
         <div class="p-flex-column">
-          <span class="p-text-bold">{{ news.title | uppercase }}</span>
-          <ng-container *ngIf="news.title"
-            ><span> | {{ news.text }}</span
-            ><br /><span>({{ news.show }})</span></ng-container
-          >
+          <div class="date">
+            <ng-container> {{ createdAt | date : 'medium' }} | {{ createdBy }} </ng-container>
+          </div>
+          <ng-container *ngIf="news.show">
+            <i class="pi pi-eye p-mr-2"></i>
+          </ng-container>
+          <ng-container *ngIf="!news.show">
+            <i class="pi pi-eye-slash p-mr-2"></i>
+          </ng-container>
+          <span class="p-text-bold"> {{ news.title | uppercase }}</span>
         </div>
       </ng-template>
     </p-listbox>
@@ -30,6 +35,7 @@
         pRipple
         type="button"
         icon="pi pi-trash"
+        label="{{ 'DELETE_NEWS' | translate }}"
         class="p-button-rounded p-button-danger p-button-outlined"
         (click)="delete($event)"
       ></button>
@@ -37,23 +43,36 @@
     <form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
       <div class="p-grid p-fluid p-formgrid">
         <div class="p-col-9">
-          <arpa-form-field label="NEWS_TITLE">
+          <arpa-form-field label="TITLE">
             <input formControlName="title" id="title" pInputText type="text" />
           </arpa-form-field>
         </div>
         <div class="p-col-9">
-          <arpa-form-field label="NEWS_TEXT">
-            <textarea formControlName="text" id="text" pInputText type="textarea"></textarea>
+          <arpa-form-field label="CONTENT">
+            <textarea formControlName="content" id="content" pInputText type="textarea"></textarea>
           </arpa-form-field>
         </div>
         <div class="p-col-9">
           <arpa-form-field label="URL">
-            <input formControlName="url" id="url" pInputText type="text" />
+            <input formControlName="url" id="url" pInputText type="text" placeholder="https://" />
           </arpa-form-field>
         </div>
         <div class="p-col-9">
-          <label for="show" class="inputswitch">{{ 'PUBLISH_NEWS' | translate }}</label>
-          <p-inputSwitch formControlName="show" id="show" [ngModel]="true"></p-inputSwitch>
+          <p-toggleButton
+            formControlName="show"
+            id="show"
+            [ngModel]="true"
+            onIcon="pi pi-eye"
+            offIcon="pi pi-eye-slash"
+            onLabel="{{ 'SHOW' | translate }}"
+            offLabel="{{ 'HIDE' | translate }}"
+          ></p-toggleButton>
+        </div>
+        <div class="p-col-9">
+          <p>{{ 'news.CREATED_AT' | translate }} {{ createdAt | localizedDate }} {{ 'news.CREATED_BY' | translate }} {{ createdBy }}</p>
+          <p *ngIf="modifiedAt">
+            {{ 'news.MODIFIED_AT' | translate }} {{ modifiedAt | localizedDate }} {{ 'news.MODIFIED_BY' | translate }} {{ modifiedBy }}
+          </p>
         </div>
         <hr />
         <div class="p-col-9" style="padding-top: 20px">

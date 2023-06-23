@@ -1,6 +1,6 @@
 export interface NewsCreateDto {
   title: string;
-  text: string;
+  content: string;
   url: string;
   show: boolean;
 }

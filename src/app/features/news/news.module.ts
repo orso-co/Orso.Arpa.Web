@@ -4,11 +4,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from 'src/@arpa/translate/';
 import { TranslateService } from 'src/@arpa/translate';
-import { GraphQlFeedModule } from '../../../@arpa/components/graph-ql-feed/graph-ql-feed.module';
 import { LanguageService } from '@arpa/services';
 import { TableModule } from '../../../@arpa/components/table/table.module';
 import { NewsComponent } from './news.component';
-import { NewsRoutingModule } from './news-routing.module';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { FormFieldModule } from '../../../@arpa/components/form-field/form-field.module';
 import { InputTextModule } from 'primeng/inputtext';
@@ -18,6 +16,8 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { RippleModule } from 'primeng/ripple';
 import { RouterModule } from '@angular/router';
 import { NewsService } from '../../../@arpa/services/news.service';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import { LocalizedDateModule } from '../../../@arpa/pipes/localized-date/localized-date.module';
 
 @NgModule({
   imports: [
@@ -47,6 +47,8 @@ import { NewsService } from '../../../@arpa/services/news.service';
     FormsModule,
     InputSwitchModule,
     RippleModule,
+    ToggleButtonModule,
+    LocalizedDateModule,
   ],
   declarations: [NewsComponent],
   providers: [],
