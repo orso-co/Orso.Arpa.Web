@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '@arpa/services';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import { NewsModifyBodyDto } from '../models/newsModifyBodyDto';
-import { NewsCreateDto } from '../models/newsCreateDto';
-import { NewsDto } from '../models/newsDto';
+import { NewsModifyBodyDto } from '@arpa/models';
+import { NewsCreateDto } from '@arpa/models';
+import { NewsDto } from '@arpa/models';
 
 @Injectable({
   providedIn: 'root',
@@ -17,14 +17,14 @@ export class NewsService implements Resolve<NewsDto[]> {
     this.baseUrl = '/news';
   }
 
-  load(): Observable<NewsDto[]> {
-    return this.apiService.get<NewsDto[]>(this.baseUrl).pipe(shareReplay());
+  load(take: number = 25, skip: number = 0, includeHidden = true): Observable<NewsDto[]> {
+    return this.apiService
+      .get<NewsDto[]>(`${this.baseUrl}?limit=${take}&offset=${skip}&includeHidden=${includeHidden}`)
+      .pipe(shareReplay());
   }
-
   resolve(route: ActivatedRouteSnapshot): Observable<NewsDto[]> {
-    return this.load();
+    return this.load(25, 0, true);
   }
-
   create(dto: NewsCreateDto): Observable<NewsDto> {
     return this.apiService.post<NewsDto>(this.baseUrl, dto).pipe(shareReplay());
   }
