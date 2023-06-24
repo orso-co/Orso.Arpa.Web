@@ -18,7 +18,7 @@ export class ParticipationDialogComponent implements OnInit {
 
   getName() {
     if (this.participation && this.participation.person) {
-      return `${this.participation.person!.givenName} ${this.participation.person!.surname}`;
+      return `${this.participation.person.givenName} ${this.participation.person.surname}`;
     }
     return '';
   }

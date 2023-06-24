@@ -1,16 +1,13 @@
 import { TranslateService } from '@ngx-translate/core';
-import { ChangeDetectorRef, Component, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DialogService } from 'primeng/dynamicdialog';
 import { ColumnDefinition } from '../../../../../@arpa/components/table/table.component';
 import { DocumentNode } from 'graphql';
 import { ProjectsQuery } from './projectparticipations.graphql';
-import { ProjectParticipationDto } from '@arpa/models';
+import { ProjectDto, ProjectParticipationDto } from '@arpa/models';
 import { first, map } from 'rxjs/operators';
-import { DialogService } from 'primeng/dynamicdialog';
 import { ProjectService } from '@arpa/services';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { OnInit } from '@angular/core';
 import { ParticipationDialogComponent } from '../../../participation-dialog/participation-dialog.component';
 
 @Component({
@@ -27,7 +24,7 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
   ready = false;
 
   query: DocumentNode = ProjectsQuery;
-  columns: ColumnDefinition<any>[] = [
+  columns: ColumnDefinition<ProjectParticipationDto>[] = [
     { label: 'projects.PARTICIPANTS', property: 'musicianProfile.person.displayName', type: 'text' },
     { label: 'projects.INSTRUMENT', property: 'musicianProfile.instrument.name', type: 'text' },
     {
@@ -63,12 +60,11 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
         { label: 'projectParticipationStatusInternal.REFUSAL', value: 'REFUSAL', severity: 'danger' },
       ],
     },
-    //TODO: MODIFIED Properties are not shown in table, but seeing loaded in network tab
-    // { label: 'MODIFIED_AT', property: 'projectParticipationsModifiedAt', type: 'date' },
-    // { label: 'MODIFIED_BY', property: 'projectParticipationsModifiedBy', type: 'text' },
+    { label: 'MODIFIED_AT', property: 'modifiedAt', type: 'date' },
+    { label: 'MODIFIED_BY', property: 'modifiedBy', type: 'text' },
   ];
 
-  tableData = new BehaviorSubject<any[]>([]);
+  tableData = new BehaviorSubject<ProjectParticipationDto[]>([]);
   totalReplies = 0;
   totalInvited = 0;
   innerStatsCount: Record<string, number> = {};
@@ -139,7 +135,7 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
 
   openParticipationDialog(row: any) {
     const ref = this.dialogService.open(ParticipationDialogComponent, {
-      data: { project: this.project, personId: row.musicianProfile.person.id },
+      data: { projectParticipation: { ...row, project: this.project } },
       header: this.translate.instant('projects.EDIT_PARTICIPATION'),
       styleClass: 'form-modal',
       dismissableMask: true,
