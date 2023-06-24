@@ -1,27 +1,21 @@
-<div class='p-field p-col p-text-left' style='margin-left: 0'>
-  <button
-    (click)='openProjectDetailDialog(null)'
-    icon='pi pi-plus'
-    label=" {{ 'projects.NEW_PROJECT' | translate }}"
-    pButton
-  ></button>
+<div class="p-field p-col p-text-left" style="margin-left: 0">
+  <button (click)="openProjectDetailDialog(null)" icon="pi pi-plus" label=" {{ 'projects.NEW_PROJECT' | translate }}" pButton></button>
 </div>
 
-
 <!-- Graphql feed controls and holds graphql api results. -->
-<arpa-graph-ql-feed #feedSource [contentTemplate]='feed' [query]='query'></arpa-graph-ql-feed>
+<arpa-graph-ql-feed #feedSource [contentTemplate]="feed" [query]="query"></arpa-graph-ql-feed>
 
 <!-- The feed template is projected into the graph-ql-feed component. -->
 <ng-template #feed let-feed>
   <arpa-table
-    (lazyEvents)='feedSource.onLazy($event)'
-    (rowClickEvents)='onRowClick($event)'
-    [actionsTemplateRef]='actionsTemplate'
-    [columns]='columns'
-    [feed]='feed'
+    (lazyEvents)="feedSource.onLazy($event)"
+    (rowClickEvents)="onRowClick($event)"
+    [actionsTemplateRef]="actionsTemplate"
+    [columns]="columns"
+    [feed]="feed"
   >
-    <ng-template arpaTableColumn='completed' let-value>
-      <i *ngIf='value' class='pi pi-check'></i>
+    <ng-template arpaTableColumn="completed" let-value>
+      <i *ngIf="value" class="pi pi-check"></i>
     </ng-template>
   </arpa-table>
 </ng-template>
@@ -29,21 +23,23 @@
 <!-- The actions template is used in the arpa-table component and added to each row. -->
 <ng-template #actionsTemplate let-row>
   <button
-    (click)='$event.stopPropagation();'
-    [label]='"TOGGLE_MENU" | translate'
-    [matMenuTriggerFor]='menu'
-    class='p-button-rounded p-button-text p-button-icon-only'
-    icon='pi pi-users'
+    (click)="$event.stopPropagation()"
+    [label]="'TOGGLE_MENU' | translate"
+    [matMenuTriggerFor]="menu"
+    class="p-button-rounded p-button-text p-button-icon-only"
+    icon="pi pi-users"
     pButton
-    type='button'></button>
-  <mat-menu #menu='matMenu' xPosition='before'>
+    type="button"
+  ></button>
+  <mat-menu #menu="matMenu" xPosition="before">
     <button
-      (click)='openParticipationListDialog($event, row)'
-      [label]='"SHOW_PARTICIPANTS" | translate'
-      class='p-button-text'
-      icon='pi pi-users'
+      (click)="openParticipationListDialog($event, row)"
+      [label]="'SHOW_PARTICIPANTS' | translate"
+      class="p-button-text"
+      icon="pi pi-users"
       mat-menu-item
-      pButton></button>
+      pButton
+    ></button>
     <!--<button
       (click)='openParticipationDialog($event, row.id)'
       *ngIf='!row.isCompleted'
@@ -54,4 +50,3 @@
       pButton></button>-->
   </mat-menu>
 </ng-template>
-
