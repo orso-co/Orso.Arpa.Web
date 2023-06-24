@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { concatMap, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { SelectItem } from 'primeng/api';
-import { SectionDto } from '@arpa/models';
 import { MusicianProfileDto } from '@arpa/models';
 
 @Component({
@@ -14,17 +13,11 @@ import { MusicianProfileDto } from '@arpa/models';
 })
 export class ProjectParticipationComponent implements OnInit {
   public form: FormGroup;
-  public sections: Observable<SectionDto> = this.config.data.sections;
   public musicianProfiles: Observable<SelectItem[]> = this.config.data.musicianProfiles.pipe(
-    concatMap((profiles: MusicianProfileDto[]) =>
-      this.sections.pipe(
-        map((sections: any) =>
-          profiles.map((profile: MusicianProfileDto) => {
-            const find = sections.find((section: SectionDto) => section.id === profile.instrumentId);
-            return { label: find.name, value: profile.id } as SelectItem;
-          })
-        )
-      )
+    map((profiles: MusicianProfileDto[]) =>
+      profiles.map((profile: MusicianProfileDto) => {
+        return { label: profile.instrument?.name, value: profile.id } as SelectItem;
+      })
     )
   );
   public projectParticipation: Observable<any[]> = this.config.data.projectParticipation;

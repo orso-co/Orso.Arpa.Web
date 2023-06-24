@@ -5,6 +5,7 @@ import { EducationDto } from './educationDto';
 import { MusicianProfileDeactivationDto } from './musicianProfileDeactivationDto';
 import { RegionPreferenceDto } from './regionPreferenceDto';
 import { SelectValueDto } from './selectValueDto';
+import { SectionDto } from './sectionDto';
 
 export interface MusicianProfileDto {
   id?: string;
@@ -21,7 +22,7 @@ export interface MusicianProfileDto {
   backgroundTeam?: string;
   salaryComment?: string;
   personId?: string;
-  instrumentId?: string;
+  instrument?: SectionDto;
   qualificationId?: string;
   salaryId?: string;
   inquiryStatusInner?: MusicianProfileInquiryStatus;

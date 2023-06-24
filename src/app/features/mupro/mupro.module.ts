@@ -30,14 +30,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { AppointmentsComponent } from './appointments/appointments.component';
 
 @NgModule({
-  declarations: [
-    MuproComponent,
-    DetailsComponent,
-    ProfilesComponent,
-    ProjectsComponent,
-    InvitationDialogComponent,
-    AppointmentsComponent,
-  ],
+  declarations: [MuproComponent, DetailsComponent, ProfilesComponent, ProjectsComponent, InvitationDialogComponent, AppointmentsComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -65,7 +58,6 @@ import { AppointmentsComponent } from './appointments/appointments.component';
     DropdownModule,
     TabViewModule,
   ],
-  providers: [MuproService],
 })
 export class MuProModule {
   constructor(private translateService: TranslateService, private languageService: LanguageService) {
