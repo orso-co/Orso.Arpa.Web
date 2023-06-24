@@ -1,0 +1,93 @@
+<div class="p-grid">
+  <div class="p-col-12 p-md-4">
+    <p-listbox
+      [options]="news || []"
+      [(ngModel)]="selectedNews"
+      optionLabel="label"
+      [filter]="true"
+      [filterPlaceHolder]="'FILTER_PLACEHOLDER' | translate"
+      [emptyFilterMessage]="'EMPTY_FILTER_MESSAGE' | translate"
+      [emptyMessage]="'EMPTY_MESSAGE' | translate"
+      (onChange)="onSelectionChange($event)"
+    >
+      <ng-template let-newsItem pTemplate="item">
+        <div class="p-flex-column">
+          <div class="date">
+            <ng-container> {{ newsItem['createdAt'] | date : 'medium' }} | {{ newsItem['createdBy'] }} </ng-container>
+          </div>
+          <ng-container *ngIf="newsItem.show">
+            <i class="pi pi-eye p-mr-2 eye"></i>
+          </ng-container>
+          <ng-container *ngIf="!newsItem.show">
+            <i class="pi pi-eye-slash p-mr-2 eyeslash"></i>
+          </ng-container>
+          <span class="p-text-bold"> {{ newsItem.title | uppercase }}</span>
+        </div>
+      </ng-template>
+    </p-listbox>
+  </div>
+  <div class="p-col-8 p-md-8">
+    <div class="p-formgroup-inline p-jc-between">
+      <h2>{{ selectedNews ? ('EDIT_NEWS' | translate) : ('CREATE_NEWS' | translate) }}</h2>
+      <button
+        *ngIf="selectedNews"
+        pButton
+        pRipple
+        type="button"
+        icon="pi pi-trash"
+        label="{{ 'DELETE_NEWS' | translate }}"
+        class="p-button-rounded p-button-danger p-button-outlined"
+        (click)="delete($event)"
+      ></button>
+    </div>
+    <form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
+      <div class="p-grid p-fluid p-formgrid">
+        <div class="p-col-9">
+          <arpa-form-field label="TITLE">
+            <input formControlName="title" id="title" pInputText type="text" />
+          </arpa-form-field>
+        </div>
+        <div class="p-col-9">
+          <arpa-form-field label="CONTENT">
+            <textarea formControlName="content" id="content" pInputText type="textarea" class="textarea"></textarea>
+          </arpa-form-field>
+        </div>
+        <div class="p-col-9">
+          <arpa-form-field label="URL">
+            <input formControlName="url" id="url" pInputText type="text" aria-describedby="urlHelp" />
+            <small style="opacity: 50%" id="urlHelp" class="p-d-block p-mt-2">{{ 'URL_HELP' | translate }}</small>
+          </arpa-form-field>
+        </div>
+
+        <div class="p-col-9">
+          <p-toggleButton
+            formControlName="show"
+            id="show"
+            onIcon="pi pi-eye"
+            offIcon="pi pi-eye-slash"
+            onLabel="{{ 'SHOW' | translate }}"
+            offLabel="{{ 'HIDE' | translate }}"
+          ></p-toggleButton>
+        </div>
+        <div *ngIf="selectedNews" class="p-col-9">
+          <p>
+            {{ 'news.CREATED_AT' | translate }} {{ selectedNews.createdAt | localizedDate }} {{ 'news.CREATED_BY' | translate }}
+            {{ selectedNews.createdBy }}
+          </p>
+          <p *ngIf="selectedNews.modifiedAt">
+            {{ 'news.MODIFIED_AT' | translate }} {{ selectedNews.modifiedAt | localizedDate }} {{ 'news.MODIFIED_BY' | translate }}
+            {{ selectedNews.modifiedBy }}
+          </p>
+        </div>
+        <hr />
+        <div class="p-col-9" style="padding-top: 20px">
+          <div class="p-formgroup-inline p-jc-between p-col-6">
+            <p-button type="button" [label]="'CANCEL' | translate" (click)="resetForm()"></p-button>
+            <p-button [disabled]="formGroup.invalid || formGroup.pristine" type="submit" [label]="'SAVE' | translate"></p-button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<p-confirmPopup></p-confirmPopup>

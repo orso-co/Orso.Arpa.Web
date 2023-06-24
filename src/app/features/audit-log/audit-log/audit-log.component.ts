@@ -1,8 +1,8 @@
-import { AuditLogDto } from '../../../../@arpa/models/auditLogDto';
+import { AuditLogDto } from '@arpa/models';
 import { Component } from '@angular/core';
 import { AuditLogQuery } from './audit-log.graphql';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
-import { ProjectDto } from '../../../../@arpa/models/projectDto';
+import { ProjectDto } from '@arpa/models';
 import { DialogService } from 'primeng/dynamicdialog';
 import { AuditDialogComponent } from '../audit-dialog/audit-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
@@ -12,7 +12,6 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './audit-log.component.html',
   styleUrls: ['./audit-log.component.scss'],
 })
-
 export class AuditLogComponent {
   public query = AuditLogQuery;
 
@@ -22,7 +21,6 @@ export class AuditLogComponent {
     { label: 'CHANGED_AT', property: 'createdAt', type: 'date' },
     { label: 'CHANGED_BY', property: 'createdBy', type: 'text' },
     { label: 'CHANGED_COLUMNS', property: 'changedColumns', type: 'text' },
-
   ];
 
   constructor(private dialogService: DialogService, private translate: TranslateService) {}
