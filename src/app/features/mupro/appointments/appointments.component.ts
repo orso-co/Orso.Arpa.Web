@@ -1,80 +1,58 @@
-import {
-  ProjectDto,
-  AppointmentParticipationDto, AppointmentDto,
-} from '@arpa/models';
-import { TranslateService } from '@ngx-translate/core';
-import { DialogService } from 'primeng/dynamicdialog';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MusicianProfileAppointmentParticipationDto } from '@arpa/models';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
-import { DocumentNode } from 'graphql';
-import { AppointmentsQuery } from './appointments.graphql';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { GraphQlFeedComponent } from 'src/@arpa/components/graph-ql-feed/graph-ql-feed.component';
-import { filter, first } from 'rxjs/operators';
-import { ProjectService } from '@arpa/services';
-import {
-  ParticipationDialogComponent
-} from '../../participation-dialog/participation-dialog.component';
-
+import { ActivatedRoute } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 @Component({
   selector: 'arpa-mupro-appointments',
   templateUrl: './appointments.component.html',
   styleUrls: ['./appointments.component.scss'],
 })
 export class AppointmentsComponent implements OnInit, OnDestroy {
-  query: DocumentNode = AppointmentsQuery;
-  columns: ColumnDefinition<AppointmentParticipationDto>[] = [
-    { label: 'APPOINTMENT', property: 'name', type: 'text' },
-    { label: 'PREDICTION', property: 'appointmentParticipations.prediction', type: 'text', show: true},
-    { label: 'RESULT', property: 'appointmentParticipations.result', type: 'text', show: true},
-    { label: 'COMMENT_BY_PERFORMER', property: 'appointmentParticipations.commentByPerformerInner', type: 'text', show: true}
+  columns: ColumnDefinition<MusicianProfileAppointmentParticipationDto>[] = [
+    { label: 'APPOINTMENT', property: 'appointment.name', type: 'text' },
+    { label: 'PREDICTION', property: 'appointmentParticipation.prediction', type: 'text', show: true },
+    { label: 'RESULT', property: 'appointmentParticipation.result', type: 'text', show: true },
+    { label: 'COMMENT_BY_PERFORMER', property: 'appointmentParticipation.commentByPerformerInner', type: 'text', show: true },
   ];
 
-  personId: string | undefined;
-  appointments: AppointmentDto[] = [];
-  participations: AppointmentParticipationDto[] = [];
+  personId: string | null;
+  musicianProfileId: string | null;
+  musicianProfileAppointments$: Observable<MusicianProfileAppointmentParticipationDto[]>;
 
-  private routeEventsSubscription: Subscription = Subscription.EMPTY;
-  private routeSubscription: Subscription = Subscription.EMPTY;
-  @ViewChild('feedSource') private feedSource: GraphQlFeedComponent;
+  private paramSubscription: Subscription | undefined = Subscription.EMPTY;
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private dialogService: DialogService,
-    private projectService: ProjectService,
-    private translate: TranslateService,
-  ) {
-  }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.route.parent?.paramMap.subscribe((params) => {
-      this.personId = params.get('personId') || undefined;
-      this.feedSource?.refresh();
+    this.paramSubscription = this.route.parent?.paramMap.subscribe((params) => {
+      this.personId = params.get('personId');
+      this.musicianProfileId = params.get('musicianProfileId');
     });
 
-    this.routeEventsSubscription = this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe(() => {
-      this.feedSource.refresh();
-    });
+    this.musicianProfileAppointments$ = this.route.data.pipe<MusicianProfileAppointmentParticipationDto[]>(
+      map((data) => data.musicianProfileAppointments)
+    );
   }
 
   ngOnDestroy() {
-    this.routeSubscription.unsubscribe();
-    this.routeEventsSubscription.unsubscribe();
+    this.paramSubscription?.unsubscribe();
   }
 
-  openParticipationDialog(project: ProjectDto) {
-    const ref = this.dialogService.open(ParticipationDialogComponent, {
-      data: { project, personId: this.personId },
-      header: this.translate.instant('mupro.EDIT_PARTICIPATION'),
-      styleClass: 'form-modal',
-      dismissableMask: true,
-      width: window.innerWidth > 1000 ? '66%' : '100%',
-    });
+  // TODO: Hier muss erst mal ein passender Dialog her. Der aktuell angegebene ist für Project Participations
 
-    ref.onClose.pipe(first()).subscribe(() => {
-      this.feedSource.refresh();
-    });
-  }
+  // openParticipationDialog(musicianProfileAppointment: MusicianProfileAppointmentParticipationDto) {
+  //   const ref = this.dialogService.open(ParticipationDialogComponent, {
+  //     data: { participation: musicianProfileAppointment.appointmentParticipation, personId: this.personId },
+  //     header: this.translate.instant('mupro.EDIT_PARTICIPATION'),
+  //     styleClass: 'form-modal',
+  //     dismissableMask: true,
+  //     width: window.innerWidth > 1000 ? '66%' : '100%',
+  //   });
+
+  //   ref.onClose.pipe(first()).subscribe(() => {
+  //     this.muproService.getAppointmentParticipations(this.musicianProfileId!);
+  //   });
+  // }
 }

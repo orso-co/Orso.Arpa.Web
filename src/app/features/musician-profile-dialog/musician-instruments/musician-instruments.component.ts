@@ -85,7 +85,7 @@ export class MusicianInstrumentsComponent implements OnInit {
 
     if (this.profile$$) {
       if (!this.isNew) {
-        this.onChangeInstrumentId(this.profile$$.instrumentId!);
+        this.onChangeInstrumentId(this.profile$$.instrument?.id!);
       }
       this.form.patchValue(this.profile$$);
       this.form.controls.instrumentId.valueChanges.subscribe((instrumentId) => this.onChangeInstrumentId(instrumentId));

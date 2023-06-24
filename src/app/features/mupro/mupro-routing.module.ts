@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MuproComponent } from './mupro.component';
 import { ProfilesComponent } from './profiles/profiles.component';
-import { ProfileMusicianResolver } from './resolvers/profile-musician.resolver';
-import { SectionsResolver } from '../profile/resolvers/sections.resolver';
 import { ProjectsComponent } from './projects/projects.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
+import { MusicianProfileResolver } from './resolvers/musician-profile.resolver';
+import { ProjectParticipationListResolver } from './resolvers/project-participation-list.resolver';
+import { MusicianProfileAppointmentListResolver } from './resolvers/musician-profile-appointment-list.resolver';
 
 const routes: Routes = [
   {
@@ -13,12 +14,11 @@ const routes: Routes = [
     component: MuproComponent,
     children: [
       {
-        path: ':personId',
+        path: ':personId/:musicianProfileId',
         component: ProfilesComponent,
         runGuardsAndResolvers: 'always',
         resolve: {
-          profiles: ProfileMusicianResolver,
-          sections: SectionsResolver,
+          musicianProfile: MusicianProfileResolver,
         },
         children: [
           {
@@ -35,11 +35,17 @@ const routes: Routes = [
             path: 'projects',
             component: ProjectsComponent,
             runGuardsAndResolvers: 'always',
+            resolve: {
+              projectParticipations: ProjectParticipationListResolver,
+            },
           },
           {
             path: 'appointments',
             component: AppointmentsComponent,
             runGuardsAndResolvers: 'always',
+            resolve: {
+              musicianProfileAppointments: MusicianProfileAppointmentListResolver,
+            },
           },
         ],
       },
@@ -51,5 +57,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class MuProRoutingModule {
-}
+export class MuProRoutingModule {}

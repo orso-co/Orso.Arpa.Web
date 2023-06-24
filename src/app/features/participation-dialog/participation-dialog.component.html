@@ -1,19 +1,19 @@
-<h3 class="title">{{ getName() }} @ {{ projectTitle }}</h3>
-<h5 *ngIf="children && children.length > 0">{{ 'projects.CHILDPROJECTS' | translate }}:</h5>
-<div *ngFor="let child of children">
-  <h4>{{ child?.title }}</h4>
-</div>
+<h3 class="title">{{ getName() }} @ {{ participation.project?.title }}</h3>
 <p-tabView>
-  <p-tabPanel *ngFor="let participation of participations" [header]="participation.musicianProfile?.instrument?.name">
+  <p-tabPanel [header]="participation.musicianProfile?.instrument?.name">
     <div class="columns">
       <div>
         <h4>{{ 'PROJECT_PARTICIPATION_STATUS' | translate }}:</h4>
-        <arpa-participation-edit [participation]="participation" [projectId]="projectId" [children]="children"> </arpa-participation-edit>
+        <arpa-participation-edit [participation]="participation" [projectId]="participation.project!.id!"> </arpa-participation-edit>
       </div>
       <div class="vertical"></div>
       <div>
         <h4>{{ 'APPOINTMENTS_PARTICIPATIONS_STATUS' | translate }}:</h4>
-        <arpa-appointment-participations [participation]="participation" [projectId]="projectId" [musicianId]="musicianId">
+        <arpa-appointment-participations
+          [participation]="participation"
+          [projectId]="participation.project!.id!"
+          [musicianId]="participation.musicianProfile!.id!"
+        >
         </arpa-appointment-participations>
       </div>
     </div>

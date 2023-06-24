@@ -10,21 +10,18 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./mupro.component.scss'],
 })
 export class MuproComponent implements OnInit, OnDestroy {
-  person: any;
-  mupro: any;
-  routeData: any;
+  personId: string | null;
+  musicianProfileId: string | null;
 
   query: DocumentNode = MuproProfilesQuery;
   private routeParamsSubscription: Subscription | undefined;
 
-  constructor(public route: ActivatedRoute,
-              private router: Router,
-  ) {
-  }
+  constructor(public route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.routeParamsSubscription = this.route.firstChild?.paramMap.subscribe((params) => {
-      this.person = params.get('id');
+      this.personId = params.get('personId');
+      this.musicianProfileId = params.get('musicianProfileId');
     });
   }
 
@@ -35,8 +32,8 @@ export class MuproComponent implements OnInit, OnDestroy {
   }
 
   public select({ person, id }: any) {
-    this.person = person.id;
-    this.mupro = id;
-    this.router.navigate([person.id], { relativeTo: this.route });
+    this.personId = person.id;
+    this.musicianProfileId = id;
+    this.router.navigate([person.id, id], { relativeTo: this.route });
   }
 }

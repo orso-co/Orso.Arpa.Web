@@ -153,7 +153,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
   }
 
   get activeColumns() {
-    return this.columns.filter((column) => (column.show === undefined ? true : column.show));
+    return this.columns.filter((column) => column.show ?? true);
   }
 
   get hasFilterColumns() {
@@ -175,7 +175,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
 
   resolveValue(path: any, source: any) {
     const props = path.split('.');
-    return props.reduce((prev: Record<string, any>, current: string) => prev && prev[current], source);
+    return props.reduce((prev: Record<string, any>, current: string) => prev?.[current], source);
   }
 
   clear(table: any) {

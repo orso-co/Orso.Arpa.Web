@@ -1,7 +1,4 @@
-<p-tabMenu *ngIf='tabMenuItems.length > 0'
-           [activeItem]='getActiveItem(tabMenuItems)'
-           [model]='tabMenuItems'>
-</p-tabMenu>
-<div class='panel'>
+<p-tabMenu *ngIf="tabMenuItems.length > 0" [activeItem]="getActiveItem(tabMenuItems)" [model]="tabMenuItems"> </p-tabMenu>
+<div class="panel">
   <router-outlet></router-outlet>
 </div>

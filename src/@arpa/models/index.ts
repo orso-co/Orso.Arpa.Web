@@ -116,3 +116,4 @@ export * from './venueModifyBodyDto';
 export * from './newsDto';
 export * from './newsCreateDto';
 export * from './newsModifyBodyDto';
+export * from './musicianProfileAppointmentParticipationDto';

@@ -1,18 +1,13 @@
-import { ProjectParticipationDto, ProjectDto } from '@arpa/models';
+import { ProjectParticipationDto } from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
 import { DialogService } from 'primeng/dynamicdialog';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
-import { DocumentNode } from 'graphql';
-import { ProjectsQuery } from './projects.graphql';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { GraphQlFeedComponent } from 'src/@arpa/components/graph-ql-feed/graph-ql-feed.component';
-import { filter, first } from 'rxjs/operators';
-import { ProjectService } from '@arpa/services';
-import {
-  ParticipationDialogComponent
-} from '../../participation-dialog/participation-dialog.component';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
+import { first, map } from 'rxjs/operators';
+import { ParticipationDialogComponent } from '../../participation-dialog/participation-dialog.component';
+import { MuproService } from '../services/mupro.service';
 
 @Component({
   selector: 'arpa-mupro-projects',
@@ -20,50 +15,43 @@ import {
   styleUrls: ['./projects.component.scss'],
 })
 export class ProjectsComponent implements OnInit, OnDestroy {
-  query: DocumentNode = ProjectsQuery;
-  columns: ColumnDefinition<ProjectDto>[] = [
-    { label: 'PROJECT', property: 'title', type: 'text' },
-    { label: 'INVITATION_STATUS', property: 'projectParticipations.invitationStatus', type: 'text', show: true},
-    { label: 'PARTICIPATIONSTATUS_PERFORMER', property: 'projectParticipations.participationStatusInner', type: 'text', show: true, },
-    { label: 'PARTICIPATIONSTATUS_STAFF', property: 'projectParticipations.participationStatusInternal', type: 'text', show: true, },
-    { label: 'COMMENT_PERFORMER', property: 'projectParticipations.commentByPerformerInner', type: 'text', show: true },
+  columns: ColumnDefinition<ProjectParticipationDto>[] = [
+    { label: 'PROJECT', property: 'project.title', type: 'text' },
+    { label: 'INVITATION_STATUS', property: 'invitationStatus', type: 'text', show: true },
+    { label: 'PARTICIPATIONSTATUS_PERFORMER', property: 'participationStatusInner', type: 'text', show: true },
+    { label: 'PARTICIPATIONSTATUS_STAFF', property: 'participationStatusInternal', type: 'text', show: true },
+    { label: 'PARTICIPATIONSTATUS_RESULT', property: 'participationStatusResult', type: 'text', show: true },
+    { label: 'COMMENT_PERFORMER', property: 'commentByPerformerInner', type: 'text', show: true },
   ];
 
-  personId: string | undefined;
-  projects: ProjectDto[] = [];
-  participations: ProjectParticipationDto[] = [];
-  private routeEventsSubscription: Subscription = Subscription.EMPTY;
-  private routeSubscription: Subscription = Subscription.EMPTY;
-  @ViewChild('feedSource') private feedSource: GraphQlFeedComponent;
+  personId: string | null;
+  musicianProfileId: string | null;
+  projectParticipations$: Observable<ProjectParticipationDto[]>;
+  private paramSubscription: Subscription | undefined = Subscription.EMPTY;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private dialogService: DialogService,
-    private projectService: ProjectService,
     private translate: TranslateService,
-  ) {
-  }
+    private muproService: MuproService
+  ) {}
 
   ngOnInit(): void {
-    this.route.parent?.paramMap.subscribe((params) => {
-      this.personId = params.get('personId') || undefined;
-      this.feedSource?.refresh();
+    this.paramSubscription = this.route.parent?.paramMap.subscribe((params) => {
+      this.personId = params.get('personId');
+      this.musicianProfileId = params.get('musicianProfileId');
     });
 
-    this.routeEventsSubscription = this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe(() => {
-      this.feedSource.refresh();
-    });
+    this.projectParticipations$ = this.route.data.pipe<ProjectParticipationDto[]>(map((data) => data.projectParticipations));
   }
 
   ngOnDestroy() {
-    this.routeSubscription.unsubscribe();
-    this.routeEventsSubscription.unsubscribe();
+    this.paramSubscription?.unsubscribe();
   }
 
-  openParticipationDialog(project: ProjectDto) {
+  openParticipationDialog(projectParticipation: ProjectParticipationDto) {
     const ref = this.dialogService.open(ParticipationDialogComponent, {
-      data: { project, personId: this.personId },
+      data: { projectParticipation, personId: this.personId },
       header: this.translate.instant('mupro.EDIT_PARTICIPATION'),
       styleClass: 'form-modal',
       dismissableMask: true,
@@ -71,7 +59,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     });
 
     ref.onClose.pipe(first()).subscribe(() => {
-      this.feedSource.refresh();
+      this.projectParticipations$ = this.muproService.getProjectParticipations(this.musicianProfileId!);
     });
   }
 }

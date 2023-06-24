@@ -38,7 +38,6 @@ const routes: Routes = [
     component: MusicianComponent,
     resolve: {
       profiles: ProfileMusicianResolver,
-      sections: SectionsResolver,
     },
     runGuardsAndResolvers: 'always',
     children: [

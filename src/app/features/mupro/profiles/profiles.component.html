@@ -1,99 +1,75 @@
-<div class='p-grid profile'>
-  <div class='p-col-12 p-lg-6 p-lg-5'>
-    <div class='p-grid'>
-      <div class='p-col-12 p-lg-2' style='text-align: left'>
-        <arpa-avatar [image]='false' [user]='(person | async) || {}' size='xlarge' [routerLink]="[ '/arpa', 'persons', {outlets:  {modal: ['detail', personId] } }]" [pTooltip]="'GO_TO_PERSON' | translate"></arpa-avatar>
+<div class="p-grid profile">
+  <div class="p-col-12 p-lg-6 p-lg-5">
+    <div class="p-grid" *ngIf="person$ | async as person">
+      <div class="p-col-12 p-lg-2" style="text-align: left">
+        <arpa-avatar
+          [image]="false"
+          [user]="person"
+          size="xlarge"
+          [routerLink]="['/arpa', 'persons', { outlets: { modal: ['detail', personId] } }]"
+          [pTooltip]="'GO_TO_PERSON' | translate"
+        ></arpa-avatar>
       </div>
-      <div class='p-col-12 p-lg-8 details' style='text-align: left'>
+      <div class="p-col-12 p-lg-8 details" style="text-align: left">
         <div>
-          <div class='name'>
-            <h2 [routerLink]="[ '/arpa', 'persons', {outlets:  {modal: ['detail', personId] } }]" [pTooltip]="'GO_TO_PERSON' | translate"> {{ getName(person | async) }}</h2>
+          <div class="name">
+            <h2 [routerLink]="['/arpa', 'persons', { outlets: { modal: ['detail', personId] } }]" [pTooltip]="'GO_TO_PERSON' | translate">
+              {{ getName(person) }}
+            </h2>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class='profiles'>
-  <arpa-graph-ql-feed #feedSource [contentTemplate]='feed' [query]='query' [variables]='{personId}'>
-    <ng-template #feed let-feed>
-      <ul>
-        <ng-container *ngFor='let profile of $any((feed.values | async) || []); let i = index'>
-          <li *ngIf='activeIndex === i'>
-            <div class='profile'>
-              <div class='p-grid'>
-                <div class='p-col-12 section-detail'>
-                  <header>
-                    <h2 class='p-pr-3'>{{ profile.instrument.name }}</h2>
-                    <p-badge
-                      *ngIf='profile.isMainProfile'
-                      [value]="'MAIN_PROFILE' | translate"
-                    ></p-badge>
-                  </header>
-                  <div class='p-d-inline-flex'>
-                    <label>{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_INNER' | translate }}</label>
-                    <p-rating
-                      [(ngModel)]='profile.levelAssessmentInner'
-                      [cancel]='false'
-                      [disabled]='true'
-                      pTooltip="{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_PERFORMER' | translate }}"
-                      class='p-pl-3'
-                    ></p-rating>
-                  </div>
-                  <div class='p-d-inline-flex'>
-                  <label>{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_TEAM' | translate }}</label>
-                  <p-rating
-                    [(ngModel)]='profile.levelAssessmentTeam'
-                    [cancel]='false'
-                    [disabled]='true'
-                    pTooltip="{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_TEAM' | translate }}"
-                    class='p-pl-3'
-                  ></p-rating>
-                  </div>
+<div class="profiles">
+  <div class="profile" *ngIf="musicianProfile$ | async as musicianProfile">
+    <div class="p-grid">
+      <div class="p-col-12 section-detail">
+        <header>
+          <h2 class="p-pr-3">{{ musicianProfile.instrument?.name }}</h2>
+          <p-badge *ngIf="musicianProfile.isMainProfile" [value]="'MAIN_PROFILE' | translate"></p-badge>
+        </header>
+        <div class="p-d-inline-flex">
+          <label>{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_INNER' | translate }}</label>
+          <p-rating
+            [(ngModel)]="musicianProfile.levelAssessmentInner"
+            [cancel]="false"
+            [disabled]="true"
+            pTooltip="{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_PERFORMER' | translate }}"
+            class="p-pl-3"
+          ></p-rating>
+        </div>
+        <div class="p-d-inline-flex">
+          <label>{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_TEAM' | translate }}</label>
+          <p-rating
+            [(ngModel)]="musicianProfile.levelAssessmentTeam"
+            [cancel]="false"
+            [disabled]="true"
+            pTooltip="{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_TEAM' | translate }}"
+            class="p-pl-3"
+          ></p-rating>
+        </div>
 
-                  <div style='text-align: center'>
-                  <button
-                    [queryParams]='{ comboInstruments: true }'
-                    [routerLink]='[{ outlets: { modal: [personId, profile.id] } }]'
-                    class='p-button-rounded p-button-text'
-                    icon='pi pi-pencil'
-                    label="{{ 'EDIT' | translate }}"
-                    pButton
-                    type='button'
-                  ></button>
-                  </div>
-<!--                  Due to refactoring the backend concerning the invitation process, the invitation button is currently disabled.-->
-<!--                  TODO: remove this whole invitation process after testing the new invitation process-->
-<!--                  <div class='p-d-inline-flex' style='text-align: center'>-->
-<!--                    <p-button-->
-<!--                      (click)='openInvitationDialog(profile.id)'-->
-<!--                      *ngIf='!profile.deactivation'-->
-<!--                      [label]="'INVITE' | translate"-->
-<!--                      class='p-text-left p-ml-3'-->
-<!--                      icon='pi pi-plus-circle'-->
-<!--                      styleClass='p-button-sm'-->
-<!--                      type='button'-->
-<!--                    ></p-button>-->
-<!--                  </div>-->
-                  <p-badge
-                    *ngIf='profile.deactivation'
-                    severity='danger'
-                    value="{{ 'musician-profile-dialog.DEACTIVATED' | translate }}"
-                  ></p-badge>
-
-
-                </div>
-              </div>
-            </div>
-
-          </li>
-
-        </ng-container>
-      </ul>
-    </ng-template>
-  </arpa-graph-ql-feed>
-    <p-steps [activeIndex]='activeIndex' [model]='(profileNav | async) || []' [readonly]='false'
-           styleClass='dot-profile'></p-steps>
+        <div style="text-align: center">
+          <button
+            [queryParams]="{ comboInstruments: true }"
+            [routerLink]="[{ outlets: { modal: [personId, musicianProfile.id] } }]"
+            class="p-button-rounded p-button-text"
+            icon="pi pi-pencil"
+            label="{{ 'EDIT' | translate }}"
+            pButton
+            type="button"
+          ></button>
+        </div>
+        <p-badge
+          *ngIf="musicianProfile.deactivation"
+          severity="danger"
+          value="{{ 'musician-profile-dialog.DEACTIVATED' | translate }}"
+        ></p-badge>
+      </div>
+    </div>
+  </div>
 </div>
-<router-outlet name='modal'></router-outlet>
+<router-outlet name="modal"></router-outlet>
 <arpa-mupro-details></arpa-mupro-details>
