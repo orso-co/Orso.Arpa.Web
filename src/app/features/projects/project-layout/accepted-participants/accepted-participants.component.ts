@@ -130,7 +130,7 @@ export class AcceptedParticipantsComponent implements OnInit, OnDestroy {
 
   openParticipationDialog(row: any) {
     const ref = this.dialogService.open(ParticipationDialogComponent, {
-      data: { project: this.project, personId: row.musicianProfile.person.id },
+      data: { project: this.project, personId: row.musicianProfile.person!.id, muproId: row.musicianProfile.id },
       header: this.translate.instant('projects.EDIT_PARTICIPATION'),
       styleClass: 'form-modal',
       dismissableMask: true,
