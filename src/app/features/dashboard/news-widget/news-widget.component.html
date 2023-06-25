@@ -1,32 +1,37 @@
 <div class="p-grid p-jc-center p-mt-4">
   <div class="p-col-12 p-md-10 p-lg-12">
-    <p-virtualScroller (onLazyLoad)="loadData($event.rows, $event.first)" [lazy]="true" [rows]="8" [value]="(news$ | async) || []">
+    <p-virtualScroller
+      (onLazyLoad)="loadData($event)"
+      [lazy]="true"
+      [rows]="4"
+      [value]="(news$ | async) || []"
+      scrollHeight="300px"
+      [itemSize]="130"
+    >
       <ng-template let-newsItem pTemplate="item">
-        {{ newsItem.title }}
+        <p-card>
+          <ng-template pTemplate="header">
+            <div class="card-header">
+              <h4>{{ newsItem.title }}</h4>
+            </div>
+          </ng-template>
+          <div class="card-content" (click)="showOverlay($event, op, newsItem)">{{ newsItem.content }}</div>
+        </p-card>
+      </ng-template>
+      <ng-template let-product pTemplate="loadingItem">
+        <p-card>
+          <p-skeleton height="130px" [style]="{ 'margin-top': '10px' }"></p-skeleton>
+        </p-card>
       </ng-template>
     </p-virtualScroller>
   </div>
 </div>
-<ng-template #ListElement let-newsItem>
-  <p-accordion>
-    <p-accordionTab>
-      <ng-template pTemplate="header">
-        <div class="p-d-flex p-flex-column">
-          <span class="title">{{ newsItem.title }}</span>
-        </div>
-      </ng-template>
-      <ng-template pTemplate="content">
-        <div class="p-d-flex p-flex-column">
-          <div class="p-d-flex p-flex-column">
-            <span class="p-text-bold">{{ 'CONTENT' | translate }}</span>
-            <span>{{ newsItem.content }}</span>
-          </div>
-          <div class="p-d-flex p-flex-column">
-            <span class="p-text-bold">{{ 'URL' | translate }}</span>
-            <span>{{ newsItem.url }}</span>
-          </div>
-        </div>
-      </ng-template>
-    </p-accordionTab>
-  </p-accordion>
-</ng-template>
+
+<p-overlayPanel #op [dismissable]="true" [showCloseIcon]="true" [style]="{ width: '90vw' }">
+  <ng-template pTemplate>
+    <p>{{ selectedNewsItem?.content }}</p>
+    <p *ngIf="selectedNewsItem?.url">
+      <a [href]="selectedNewsItem!.url!" target="_blank">{{ selectedNewsItem!.url! }}</a>
+    </p>
+  </ng-template>
+</p-overlayPanel>

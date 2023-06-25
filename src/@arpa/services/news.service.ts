@@ -41,10 +41,8 @@ export class NewsService implements Resolve<NewsDto[]> {
   delete(id: string): Observable<any> {
     return this.apiService.delete(`${this.baseUrl}/${id}`).pipe(shareReplay());
   }
-  getAllNews(pageSize: number = 8, pageNumber: number = 1): Observable<GetAllNewsResponse> {
+  getAllNews(pageSize: number, pageNumber: number): Observable<NewsDto[]> {
     const skip = pageNumber * pageSize;
-    return this.apiService
-      .get<GetAllNewsResponse>(`${this.baseUrl}?limit=${pageSize}&offset=${skip}&includeHidden=false`)
-      .pipe(shareReplay());
+    return this.apiService.get<NewsDto[]>(`${this.baseUrl}?limit=${pageSize}&offset=${skip}&includeHidden=false`).pipe(shareReplay());
   }
 }
