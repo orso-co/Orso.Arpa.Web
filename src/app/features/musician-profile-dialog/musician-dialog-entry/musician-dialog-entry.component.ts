@@ -36,8 +36,8 @@ export class MusicianDialogEntryComponent {
     ]).pipe(
       map(([sections, profiles]) =>
         sections.filter(({ id }) => {
-          return !profiles.some(({ instrumentId }) =>
-            selection ? instrumentId === id && instrumentId !== selection.instrumentId : instrumentId === id
+          return !profiles.some(({ instrument }) =>
+            selection ? instrument!.id === id && instrument!.id !== selection.instrument!.id : instrument!.id === id
           );
         })
       )
@@ -50,7 +50,7 @@ export class MusicianDialogEntryComponent {
       map((value) => value as MusicianProfileDto),
       switchMap((currentProfile: MusicianProfileDto) => {
         if (currentProfile) {
-          return this.musicianService.getDoublingInstruments(currentProfile.instrumentId);
+          return this.musicianService.getDoublingInstruments(currentProfile.instrument?.id);
         } else {
           return of();
         }
@@ -72,7 +72,6 @@ export class MusicianDialogEntryComponent {
     });
 
     ref.onClose.pipe(first()).subscribe((profile: MusicianProfileDto) => {
-
       this.router.navigate([this.router.createUrlTree(['.'], { relativeTo: this.route }).root.children[PRIMARY_OUTLET].toString()], {
         state: { refresh: true },
       });

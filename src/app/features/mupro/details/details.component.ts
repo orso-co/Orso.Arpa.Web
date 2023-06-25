@@ -2,21 +2,18 @@ import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from '@arpa/services';
 import { ActivatedRoute, Router } from '@angular/router';
-
 @Component({
   selector: 'arpa-mupro-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent {
-
   tabMenuItems: Array<MenuItem>;
 
   constructor(authService: AuthService, private router: Router, private route: ActivatedRoute) {
     this.tabMenuItems = [
-      { label: 'PROJECTS', target: '.' },
-      { label: 'APPOINTMENTS', target: '.' },
-
+      { label: 'PROJECTS', routerLink: 'projects' },
+      { label: 'APPOINTMENTS', routerLink: 'appointments' },
     ];
   }
 
@@ -28,5 +25,4 @@ export class DetailsComponent {
     const foundItem = menuItems.find((i) => i.label?.toLowerCase() === child.snapshot.url[0].path);
     return foundItem ?? menuItems[0];
   }
-
 }

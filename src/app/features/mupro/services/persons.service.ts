@@ -9,7 +9,6 @@ import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto'
   providedIn: 'root',
 })
 export class PersonsService implements Resolve<PersonDto[] | PersonDto> {
-
   readonly baseUrl: string;
 
   constructor(private apiService: ApiService) {
@@ -24,8 +23,8 @@ export class PersonsService implements Resolve<PersonDto[] | PersonDto> {
     return this.apiService.get<PersonDto>(`${this.baseUrl}/${id}`);
   }
 
-  public getMusicianProfile(id: string): Observable<MusicianProfileDto> {
-    return this.apiService.get<MusicianProfileDto>(`${this.baseUrl}/${id}/profiles/musician`);
+  public getMusicianProfilesForPerson(id: string): Observable<MusicianProfileDto[]> {
+    return this.apiService.get<MusicianProfileDto[]>(`${this.baseUrl}/${id}/profiles/musician`);
   }
 
   public putMusicianProfile(id: string): Observable<MusicianProfileDto> {

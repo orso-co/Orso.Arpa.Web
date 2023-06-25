@@ -8,11 +8,12 @@ import {
   MyAppointmentListDto,
   MyProjectDto,
   MyProjectParticipationDto,
-  MusicianProfileDto,
   BankAccountDto,
   BankAccountCreateBodyDto,
   RoleNames,
-  MyProjectParticipationModifyBodyDto, MyAppointmentDto,
+  MyProjectParticipationModifyBodyDto,
+  MyAppointmentDto,
+  MyMusicianProfileDto,
 } from '@arpa/models';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
@@ -20,8 +21,9 @@ import { finalize, first, map, shareReplay, switchMap, tap } from 'rxjs/operator
 import { ApiService, AuthService } from '@arpa/services';
 
 export interface GetAllProjectsResponse {
-  userProjects: MyProjectDto[],
-  totalRecordsCount: number}
+  userProjects: MyProjectDto[];
+  totalRecordsCount: number;
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -74,37 +76,29 @@ export class MeService {
       .pipe(shareReplay());
   }
   getMyAppointmentsByProject(projectId: string): Observable<MyAppointmentDto> {
-    return this.apiService
-      .get<MyAppointmentDto>(`${this.baseUrl}/appointments?${projectId}`)
-      .pipe(shareReplay());
+    return this.apiService.get<MyAppointmentDto>(`${this.baseUrl}/appointments?${projectId}`).pipe(shareReplay());
   }
 
   getAllProjects(pageSize: number = 10, pageNumber: number = 1, includecompleted: boolean = false): Observable<GetAllProjectsResponse> {
     const skip = pageNumber * pageSize;
     return this.apiService
       .get<GetAllProjectsResponse>(`${this.baseUrl}/projects?limit=${pageSize}&offset=${skip}&includecompleted=${includecompleted}`)
-      .pipe(shareReplay()
-      );
+      .pipe(shareReplay());
   }
 
-  setAppointmentPrediction(
-    appointmentId: string,
-    dto: SetMyAppointmentParticipationPredictionDto
-  ): Observable<any> {
-    return this.apiService
-      .put(`${this.baseUrl}/appointments/${appointmentId}/participation/prediction`, dto)
-      .pipe(shareReplay());
+  setAppointmentPrediction(appointmentId: string, dto: SetMyAppointmentParticipationPredictionDto): Observable<any> {
+    return this.apiService.put(`${this.baseUrl}/appointments/${appointmentId}/participation/prediction`, dto).pipe(shareReplay());
   }
 
   setProjectParticipationStatus(projectId: string, dto: MyProjectParticipationModifyBodyDto): Observable<MyProjectParticipationDto> {
     return this.apiService.put<MyProjectParticipationDto>(`${this.baseUrl}/projects/${projectId}/participation/`, dto).pipe(shareReplay());
   }
 
-  getProfilesMusician<T>(id?: string): Observable<MusicianProfileDto | MusicianProfileDto[]> | T {
+  getProfilesMusician<T>(id?: string): Observable<MyMusicianProfileDto | MyMusicianProfileDto[]> | T {
     if (id) {
-      return this.apiService.get<MusicianProfileDto>(`${this.baseUrl}/profiles/musician/${id}`).pipe(shareReplay());
+      return this.apiService.get<MyMusicianProfileDto>(`${this.baseUrl}/profiles/musician/${id}`).pipe(shareReplay());
     } else {
-      return this.apiService.get<MusicianProfileDto[]>(`${this.baseUrl}/profiles/musician`).pipe(shareReplay());
+      return this.apiService.get<MyMusicianProfileDto[]>(`${this.baseUrl}/profiles/musician`).pipe(shareReplay());
     }
   }
 

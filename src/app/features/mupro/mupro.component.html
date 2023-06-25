@@ -2,7 +2,7 @@
   <ng-template #sideViewTemplate>
     <arpa-graph-ql-feed #feedSource [contentTemplate]="feed" [query]="query" [variables]="{ take: 50 }">
       <ng-template #feed let-feed>
-        <div [class.hasSelection]="person">
+        <div [class.hasSelection]="personId">
           <arpa-table
             (lazyEvents)="feedSource.onLazy($event)"
             (rowClickEvents)="select($event)"

@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { MusicianProfileDto } from '@arpa/models';
-import { SectionDto } from '@arpa/models';
+import { MyMusicianProfileDto } from '@arpa/models';
 
 @Component({
   selector: 'arpa-musician',
@@ -11,28 +10,16 @@ import { SectionDto } from '@arpa/models';
   styleUrls: ['./musician.component.scss'],
 })
 export class MusicianComponent {
-
-  public profiles: Observable<MusicianProfileDto[]>;
-  public deactivatedProfiles: Observable<MusicianProfileDto[]>;
-  public sections: Observable<SectionDto[]>;
+  public profiles: Observable<MyMusicianProfileDto[]>;
+  public deactivatedProfiles: Observable<MyMusicianProfileDto[]>;
 
   constructor(private route: ActivatedRoute) {
-    this.profiles = this.route.data.pipe<MusicianProfileDto[]>(
-      map((data) => data.profiles.filter(({ deactivation }: MusicianProfileDto) => deactivation === null)),
+    this.profiles = this.route.data.pipe<MyMusicianProfileDto[]>(
+      map((data) => data.profiles.filter(({ deactivation }: MyMusicianProfileDto) => deactivation === null))
     );
 
-    this.deactivatedProfiles = this.route.data.pipe<MusicianProfileDto[]>(
-      map((data) => data.profiles.filter(({ deactivation }: MusicianProfileDto) => deactivation !== null)),
-    );
-
-    this.sections = this.route.data.pipe<SectionDto[]>(map((data) => data.sections));
-  }
-
-  getSection(profile: MusicianProfileDto) {
-    return this.sections.pipe(
-      map((sections: SectionDto[]) => sections
-        .find(section => section.id === profile.instrumentId)?.name,
-      ),
+    this.deactivatedProfiles = this.route.data.pipe<MyMusicianProfileDto[]>(
+      map((data) => data.profiles.filter(({ deactivation }: MyMusicianProfileDto) => deactivation !== null))
     );
   }
 }

@@ -3,7 +3,14 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { EnumService, NotificationsService, ProjectService } from '@arpa/services';
-import { ReducedPersonDto, ProjectParticipationDto, ReducedMusicianProfileDto, ProjectDto } from '@arpa/models';
+import {
+  ReducedPersonDto,
+  ProjectParticipationDto,
+  ReducedMusicianProfileDto,
+  ProjectDto,
+  SetProjectParticipationBodyDto,
+  ProjectInvitationStatus,
+} from '@arpa/models';
 import { SelectItem } from 'primeng/api';
 import { first } from 'rxjs/operators';
 
@@ -68,21 +75,22 @@ export class ParticipationEditComponent implements OnInit {
       return;
     }
 
-    const projectParticipation = { ...this.participation, ...this.form.value };
-    if (projectParticipation) {
-      this.projectService
-        .setParticipation(this.projectId, projectParticipation)
-        .pipe(first())
-        .subscribe(
-          () => {
-            this.notificationsService.success('UPDATED_PROJECT_PARTICIPATION');
-          },
-          (error) => {
-            if (error.status === 422) {
-              this.notificationsService.error('projects.NO_PARTICIPATION_SET_PARENTPROJECT');
-            }
-          }
-        );
+    const projectParticipation: SetProjectParticipationBodyDto = { ...this.participation, ...this.form.value };
+    if (!projectParticipation.invitationStatus) {
+      projectParticipation.invitationStatus = ProjectInvitationStatus.CANDIDATE;
     }
+    this.projectService
+      .setParticipation(this.projectId, projectParticipation)
+      .pipe(first())
+      .subscribe(
+        () => {
+          this.notificationsService.success('UPDATED_PROJECT_PARTICIPATION');
+        },
+        (error) => {
+          if (error.status === 422) {
+            this.notificationsService.error('projects.NO_PARTICIPATION_SET_PARENTPROJECT');
+          }
+        }
+      );
   }
 }
