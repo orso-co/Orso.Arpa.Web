@@ -9,9 +9,9 @@ import { MusicianService } from '../services/musician.service';
 import {
   MusicianProfileModifyBodyDto,
   SectionDto,
-  MusicianProfileDto,
   DoublingInstrumentDto,
   MusicianProfileCreateBodyDto,
+  MyMusicianProfileDto,
 } from '@arpa/models';
 
 interface FormListElement extends DoublingInstrumentDto {
@@ -25,7 +25,7 @@ interface FormListElement extends DoublingInstrumentDto {
 })
 export class MusicianInstrumentsComponent implements OnInit {
   public form: FormGroup;
-  public profile$$: MusicianProfileDto | undefined = undefined;
+  public profile: MyMusicianProfileDto | undefined = undefined;
   public instrumentName: string;
   public sections$: Observable<SectionDto[]> = this.config.data.sections;
   public preferredParts: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
@@ -53,8 +53,8 @@ export class MusicianInstrumentsComponent implements OnInit {
     this.qualificationOptions$ = this.selectValueService.getMusicianProfileQualifications();
     this.inquiryStatusOptions$ = this.enumService.getMusicianProfileInquiryStatusSelectItems();
 
-    this.config.data.profile.pipe(first()).subscribe((profile: MusicianProfileDto) => {
-      this.profile$$ = profile;
+    this.config.data.profile.pipe(first()).subscribe((profile: MyMusicianProfileDto) => {
+      this.profile = profile;
       this.isNew = !profile.id;
       if (profile.doublingInstruments?.length) {
         profile.doublingInstruments.forEach((instrument) => this.doublingInstruments.push(this.getFormGroup(instrument)));
@@ -83,16 +83,17 @@ export class MusicianInstrumentsComponent implements OnInit {
       instrumentId: [null, [Validators.required]],
     });
 
-    if (this.profile$$) {
+    if (this.profile) {
       if (!this.isNew) {
-        this.onChangeInstrumentId(this.profile$$.instrument?.id!);
+        this.onChangeInstrumentId(this.profile.instrument?.id!);
       }
-      this.form.patchValue(this.profile$$);
+      this.form.patchValue({ ...this.profile, instrumentId: this.profile.instrument?.id });
       this.form.controls.instrumentId.valueChanges.subscribe((instrumentId) => this.onChangeInstrumentId(instrumentId));
     }
   }
 
   onChangeInstrumentId(instrumentId: string) {
+    debugger;
     this.preferredPositionOptions$ = this.sectionService.getPositionsByInstrument(instrumentId!);
     this.form.controls.preferredPositionsTeamIds.setValue([]);
     this.form.controls.preferredPositionsInnerIds.setValue([]);
@@ -126,7 +127,7 @@ export class MusicianInstrumentsComponent implements OnInit {
 
   update() {
     this.musicianService
-      .updatePersonProfile(this.profile$$?.id!, {
+      .updatePersonProfile(this.profile?.id!, {
         ...this.form.value,
       } as MusicianProfileModifyBodyDto)
       .pipe(first())
@@ -157,7 +158,7 @@ export class MusicianInstrumentsComponent implements OnInit {
     const { formGroup, ...listData } = item;
     const { id, ...data } = formGroup.value;
     this.musicianService
-      .updateDoublingInstrument(this.profile$$?.id, id, data, false)
+      .updateDoublingInstrument(this.profile?.id, id, data, false)
       .pipe(first())
       .subscribe(() => {
         this.doublingInstruments.forEach((item, i) => {

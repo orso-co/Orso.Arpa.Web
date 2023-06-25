@@ -1,38 +1,45 @@
-<p-tabView [(activeIndex)]='index'>
-  <p-tabPanel *ngIf='comboInstrumentView'
-              [header]="'musician-profile-dialog.INSTRUMENTS' | translate"
-              leftIcon='pi pi-th-large'>
+<p-tabView [(activeIndex)]="index">
+  <p-tabPanel *ngIf="comboInstrumentView" [header]="'musician-profile-dialog.INSTRUMENTS' | translate" leftIcon="pi pi-th-large">
     <arpa-musician-instruments></arpa-musician-instruments>
   </p-tabPanel>
-  <p-tabPanel *ngIf='!comboInstrumentView'
-              [header]="'musician-profile-dialog.MAIN_INSTRUMENT' | translate"
-              leftIcon='pi pi-map-marker'
-              [tooltip]="'musician-profile-dialog.MAIN_INSTRUMENT' | translate">
-    <arpa-musician-main-instrument (viewState)='viewStateEvents($event)'></arpa-musician-main-instrument>
+  <p-tabPanel
+    *ngIf="!comboInstrumentView"
+    [header]="'musician-profile-dialog.MAIN_INSTRUMENT' | translate"
+    leftIcon="pi pi-map-marker"
+    [tooltip]="'musician-profile-dialog.MAIN_INSTRUMENT' | translate"
+  >
+    <arpa-musician-main-instrument (viewState)="viewStateEvents($event)"></arpa-musician-main-instrument>
   </p-tabPanel>
-  <p-tabPanel *ngIf='((doublingInstruments | async) || []).length > 0 && !comboInstrumentView'
-              [header]="'musician-profile-dialog.DOUBLING_INSTRUMENT' | translate"
-              leftIcon='pi pi-th-large'
-              [tooltip]="'musician-profile-dialog.DOUBLING_INSTRUMENT' | translate">
+  <p-tabPanel
+    *ngIf="((doublingInstruments | async) || []).length > 0 && !comboInstrumentView"
+    [header]="'musician-profile-dialog.DOUBLING_INSTRUMENT' | translate"
+    leftIcon="pi pi-th-large"
+    [tooltip]="'musician-profile-dialog.DOUBLING_INSTRUMENT' | translate"
+  >
     <arpa-musician-doubling-instrument></arpa-musician-doubling-instrument>
   </p-tabPanel>
-  <p-tabPanel *ngIf='profile | async'
-              [header]="'musician-profile-dialog.EDUCATION' | translate"
-              leftIcon='pi pi-id-card'
-              [tooltip]="'musician-profile-dialog.EDUCATION' | translate">
+  <p-tabPanel
+    *ngIf="profile | async"
+    [header]="'musician-profile-dialog.EDUCATION' | translate"
+    leftIcon="pi pi-id-card"
+    [tooltip]="'musician-profile-dialog.EDUCATION' | translate"
+  >
     <arpa-musician-education></arpa-musician-education>
   </p-tabPanel>
-  <p-tabPanel *ngIf='profile | async'
-              [header]="'musician-profile-dialog.DOCUMENTS' | translate"
-              leftIcon='pi pi-copy'
-              [tooltip]="'musician-profile-dialog.DOCUMENTS' | translate">
+  <p-tabPanel
+    *ngIf="profile | async"
+    [header]="'musician-profile-dialog.DOCUMENTS' | translate"
+    leftIcon="pi pi-copy"
+    [tooltip]="'musician-profile-dialog.DOCUMENTS' | translate"
+  >
     <arpa-musician-documents></arpa-musician-documents>
   </p-tabPanel>
-  <p-tabPanel *ngIf='profile | async'
-              [header]="'musician-profile-dialog.DEACTIVATION' | translate"
-              leftIcon='pi pi-eye-slash'
-              [tooltip]="'musician-profile-dialog.DEACTIVATE' | translate">
+  <p-tabPanel
+    *ngIf="profile | async"
+    [header]="'musician-profile-dialog.DEACTIVATION' | translate"
+    leftIcon="pi pi-eye-slash"
+    [tooltip]="'musician-profile-dialog.DEACTIVATE' | translate"
+  >
     <arpa-musician-deactivation></arpa-musician-deactivation>
   </p-tabPanel>
 </p-tabView>
-
