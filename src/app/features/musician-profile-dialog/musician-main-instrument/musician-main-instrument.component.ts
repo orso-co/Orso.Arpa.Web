@@ -87,7 +87,7 @@ export class MusicianMainInstrumentComponent implements OnInit {
     });
 
     if (this.profile) {
-      this.form.patchValue(this.profile);
+      this.form.patchValue({ ...this.profile, instrumentId: this.profile.instrument?.id });
       this.form.controls.instrumentId.disable();
       if (this.profile.isMainProfile) {
         this.form.controls.isMainProfile.disable();
