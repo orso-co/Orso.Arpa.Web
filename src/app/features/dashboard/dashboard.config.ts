@@ -7,6 +7,7 @@ import { TasksWidgetComponent } from './tasks-widget/tasks-widget.component';
 import { ChartWidgetComponent } from './chart-widget/chart-widget.component';
 import { AppointmentsWidgetComponent } from './appointments-widget/appointments-widget.component';
 import { ChoirGridWidgetComponent } from './choir-grid-widget/choir-grid-widget.component';
+import { NewsWidgetComponent } from './news-widget/news-widget.component';
 
 export const widgets: Record<string, any> = {
   UserWidget: UserWidgetComponent,
@@ -18,13 +19,14 @@ export const widgets: Record<string, any> = {
   ChoirGridWidgetComponent: ChoirGridWidgetComponent,
   IframeWidget: IframeWidgetComponent,
   IframeWidgetProjectstats: IframeWidgetProjectstatsComponent,
+  NewsWidget: NewsWidgetComponent,
 };
 
 export const dashboards: Record<string, Record<string, any>> = {
   performer: {
     widgets: [
       [
-        'IframeWidget',
+        'NewsWidget',
         {
           title: 'NEWS',
         },
@@ -35,12 +37,6 @@ export const dashboards: Record<string, Record<string, any>> = {
           title: 'APPOINTMENTS',
         },
       ],
-      // ['ProjectsWidget', {
-      //   title: 'PROJECTS',
-      // }],
-      // ['IframeWidgetProjectstats', {
-      //   title: 'PROJECTSTATS',
-      // }]
     ],
   },
   staff: {
@@ -57,6 +53,12 @@ export const dashboards: Record<string, Record<string, any>> = {
       ],
     ],
     widgets: [
+      [
+        'NewsWidget',
+        {
+          title: 'NEWS',
+        },
+      ],
       [
         'AppointmentsWidget',
         {

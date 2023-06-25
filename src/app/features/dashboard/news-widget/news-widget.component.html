@@ -1,0 +1,43 @@
+<div class="p-grid p-jc-center p-mt-4">
+  <div class="p-col-12 p-md-10 p-lg-12">
+    <p-virtualScroller
+      (onLazyLoad)="loadData($event)"
+      [lazy]="true"
+      [rows]="4"
+      [value]="(news$ | async) || []"
+      scrollHeight="400px"
+      [itemSize]="130"
+    >
+      <ng-template let-newsItem pTemplate="item">
+        <p-card>
+          <ng-template pTemplate="header">
+            <div class="card-header">
+              <label class="createdAtBy">{{ newsItem.createdAt | localizedDate : 'medium' }} | {{ newsItem.createdBy }}</label>
+              <h4 class="title">{{ newsItem.title }}</h4>
+            </div>
+          </ng-template>
+          <div class="card-content" (click)="showOverlay($event, op, newsItem)">
+            <p class="content">{{ newsItem.content }}</p>
+            <p *ngIf="newsItem?.url">
+              <a class="urlsmall" [href]="newsItem!.url!" target="_blank">{{ newsItem!.url! }} </a>
+            </p>
+          </div>
+        </p-card>
+      </ng-template>
+      <ng-template let-product pTemplate="loadingItem">
+        <p-card>
+          <p-skeleton height="130px" [style]="{ 'margin-top': '10px' }"></p-skeleton>
+        </p-card>
+      </ng-template>
+    </p-virtualScroller>
+  </div>
+</div>
+
+<p-overlayPanel #op [dismissable]="true" [showCloseIcon]="true" [style]="{ width: '70vw' }">
+  <ng-template pTemplate>
+    <p style="white-space: pre-line">{{ selectedNewsItem?.content }}</p>
+    <p *ngIf="selectedNewsItem?.url">
+      <a class="url" [href]="selectedNewsItem!.url!" target="_blank">{{ selectedNewsItem!.url! }} </a>
+    </p>
+  </ng-template>
+</p-overlayPanel>

@@ -29,7 +29,7 @@ export class NewsComponent implements OnInit {
       title: [null, [Validators.required, Validators.maxLength(200)]],
       content: [null, [Validators.required, Validators.maxLength(1000)]],
       url: [null, [Validators.maxLength(1000)]],
-      show: [true, [Validators.required, Validators.maxLength(1)]],
+      show: [true, []],
     });
   }
   ngOnInit() {
@@ -107,7 +107,7 @@ export class NewsComponent implements OnInit {
   }
 
   resetForm() {
-    this.formGroup.reset({});
+    this.formGroup.reset({ title: null, url: null, content: null, show: true });
     this.selectedNews = undefined;
   }
 
