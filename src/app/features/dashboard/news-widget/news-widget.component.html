@@ -12,12 +12,15 @@
         <p-card>
           <ng-template pTemplate="header">
             <div class="card-header">
-              <label class="createdAtBy">{{ newsItem.createdAt | localizedDate : 'medium' }} | {{ selectedNewsItem?.createdBy }}</label>
+              <label class="createdAtBy">{{ newsItem.createdAt | localizedDate : 'medium' }} | {{ newsItem.createdBy }}</label>
               <h4 class="title">{{ newsItem.title }}</h4>
             </div>
           </ng-template>
           <div class="card-content" (click)="showOverlay($event, op, newsItem)">
             <p class="content">{{ newsItem.content }}</p>
+            <p *ngIf="newsItem?.url">
+              <a class="urlsmall" [href]="newsItem!.url!" target="_blank">{{ newsItem!.url! }} </a>
+            </p>
           </div>
         </p-card>
       </ng-template>
@@ -30,7 +33,7 @@
   </div>
 </div>
 
-<p-overlayPanel #op [dismissable]="true" [showCloseIcon]="true" [style]="{ width: '60vw' }">
+<p-overlayPanel #op [dismissable]="true" [showCloseIcon]="true" [style]="{ width: '70vw' }">
   <ng-template pTemplate>
     <p style="white-space: pre-line">{{ selectedNewsItem?.content }}</p>
     <p *ngIf="selectedNewsItem?.url">

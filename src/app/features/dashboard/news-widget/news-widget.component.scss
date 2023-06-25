@@ -1,8 +1,8 @@
 .card-content {
   cursor: pointer;
-  height: 47px;
+  height: 67px;
   overflow: hidden;
-  margin: -2rem 0;
+  margin: -2.5rem 0;
 }
 
 .card-header {
@@ -26,7 +26,12 @@
 .content {
   font-size: 0.9rem;
   font-weight: lighter;
+  margin-bottom: -1rem;
 }
 .url {
   color: var(--purple-300);
+}
+.urlsmall {
+  color: var(--purple-300);
+  font-size: 0.8rem;
 }
