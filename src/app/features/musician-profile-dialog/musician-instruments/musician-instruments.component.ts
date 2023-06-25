@@ -93,7 +93,6 @@ export class MusicianInstrumentsComponent implements OnInit {
   }
 
   onChangeInstrumentId(instrumentId: string) {
-    debugger;
     this.preferredPositionOptions$ = this.sectionService.getPositionsByInstrument(instrumentId!);
     this.form.controls.preferredPositionsTeamIds.setValue([]);
     this.form.controls.preferredPositionsInnerIds.setValue([]);
