@@ -50,6 +50,7 @@ import { ChipModule } from 'primeng/chip';
 import { MessageModule } from 'primeng/message';
 import { IframeWidgetProjectstatsComponent } from './iframe-widget-projectstats/iframe-widget-projectstats.component';
 import { AppointmentsRoutingModule } from '../appointments/appointments-routing.module';
+import { NewsWidgetComponent } from './news-widget/news-widget.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { AppointmentsRoutingModule } from '../appointments/appointments-routing.
     ChoirGridWidgetComponent,
     IframeWidgetComponent,
     IframeWidgetProjectstatsComponent,
+    NewsWidgetComponent,
   ],
   imports: [
     CommonModule,

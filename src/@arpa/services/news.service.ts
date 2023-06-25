@@ -7,6 +7,11 @@ import { NewsModifyBodyDto } from '@arpa/models';
 import { NewsCreateDto } from '@arpa/models';
 import { NewsDto } from '@arpa/models';
 
+export interface GetAllNewsResponse {
+  news: NewsDto[];
+  totalRecordsCount: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -35,5 +40,11 @@ export class NewsService implements Resolve<NewsDto[]> {
 
   delete(id: string): Observable<any> {
     return this.apiService.delete(`${this.baseUrl}/${id}`).pipe(shareReplay());
+  }
+  getAllNews(pageSize: number = 8, pageNumber: number = 1): Observable<GetAllNewsResponse> {
+    const skip = pageNumber * pageSize;
+    return this.apiService
+      .get<GetAllNewsResponse>(`${this.baseUrl}?limit=${pageSize}&offset=${skip}&includeHidden=false`)
+      .pipe(shareReplay());
   }
 }
