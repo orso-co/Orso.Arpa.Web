@@ -1,18 +1,10 @@
-<h3>{{ totalRecordsCount$ | async }} {{ 'NEWS' | translate }}</h3>
 <div class="p-grid p-jc-center p-mt-4">
   <div class="p-col-12 p-md-10 p-lg-12">
-    <p-table
-      (onLazyLoad)="loadData($event.rows, $event.first)"
-      [lazy]="true"
-      [rows]="8"
-      [totalRecords]="(totalRecordsCount$ | async) || 0"
-      [value]="(news$ | async) || []"
-      tableStyleClass="arpa-table-list"
-    >
-      <ng-template let-newsItem pTemplate="body">
-        <ng-container *ngTemplateOutlet="ListElement; context: { $implicit: newsItem }"></ng-container>
+    <p-virtualScroller (onLazyLoad)="loadData($event.rows, $event.first)" [lazy]="true" [rows]="8" [value]="(news$ | async) || []">
+      <ng-template let-newsItem pTemplate="item">
+        {{ newsItem.title }}
       </ng-template>
-    </p-table>
+    </p-virtualScroller>
   </div>
 </div>
 <ng-template #ListElement let-newsItem>

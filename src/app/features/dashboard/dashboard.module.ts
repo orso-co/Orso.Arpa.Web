@@ -51,6 +51,8 @@ import { MessageModule } from 'primeng/message';
 import { IframeWidgetProjectstatsComponent } from './iframe-widget-projectstats/iframe-widget-projectstats.component';
 import { AppointmentsRoutingModule } from '../appointments/appointments-routing.module';
 import { NewsWidgetComponent } from './news-widget/news-widget.component';
+import { DataViewModule } from 'primeng/dataview';
+import { VirtualScrollerModule } from 'primeng/virtualscroller';
 
 @NgModule({
   declarations: [
@@ -114,6 +116,8 @@ import { NewsWidgetComponent } from './news-widget/news-widget.component';
     LocalizedDateModule,
     ChipModule,
     MessageModule,
+    DataViewModule,
+    VirtualScrollerModule,
   ],
   exports: [ProjectsWidgetComponent],
 })

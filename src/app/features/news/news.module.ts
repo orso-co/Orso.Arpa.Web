@@ -18,7 +18,7 @@ import { RouterModule } from '@angular/router';
 import { NewsService } from '../../../@arpa/services/news.service';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { LocalizedDateModule } from '../../../@arpa/pipes/localized-date/localized-date.module';
-
+import { VirtualScrollerModule } from 'primeng/virtualscroller';
 @NgModule({
   imports: [
     CommonModule,
@@ -49,6 +49,7 @@ import { LocalizedDateModule } from '../../../@arpa/pipes/localized-date/localiz
     RippleModule,
     ToggleButtonModule,
     LocalizedDateModule,
+    VirtualScrollerModule,
   ],
   declarations: [NewsComponent],
   providers: [],
