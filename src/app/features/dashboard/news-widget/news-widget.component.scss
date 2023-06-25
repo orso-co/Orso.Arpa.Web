@@ -7,10 +7,26 @@
 
 .card-header {
   padding: 1rem;
-  height: 61px;
+  height: 66px;
   overflow: hidden;
 
   h4 {
     margin: 0;
   }
+}
+.createdAtBy {
+  font-size: 0.8rem;
+  font-weight: lighter;
+}
+.title {
+  font-size: 1.2rem;
+  font-weight: normal;
+  padding-top: 0.5rem;
+}
+.content {
+  font-size: 0.9rem;
+  font-weight: lighter;
+}
+.url {
+  color: var(--purple-300);
 }

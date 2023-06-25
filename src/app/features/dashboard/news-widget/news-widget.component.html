@@ -5,17 +5,20 @@
       [lazy]="true"
       [rows]="4"
       [value]="(news$ | async) || []"
-      scrollHeight="300px"
+      scrollHeight="400px"
       [itemSize]="130"
     >
       <ng-template let-newsItem pTemplate="item">
         <p-card>
           <ng-template pTemplate="header">
             <div class="card-header">
-              <h4>{{ newsItem.title }}</h4>
+              <label class="createdAtBy">{{ newsItem.createdAt | localizedDate : 'medium' }} | {{ selectedNewsItem?.createdBy }}</label>
+              <h4 class="title">{{ newsItem.title }}</h4>
             </div>
           </ng-template>
-          <div class="card-content" (click)="showOverlay($event, op, newsItem)">{{ newsItem.content }}</div>
+          <div class="card-content" (click)="showOverlay($event, op, newsItem)">
+            <p class="content">{{ newsItem.content }}</p>
+          </div>
         </p-card>
       </ng-template>
       <ng-template let-product pTemplate="loadingItem">
@@ -27,11 +30,11 @@
   </div>
 </div>
 
-<p-overlayPanel #op [dismissable]="true" [showCloseIcon]="true" [style]="{ width: '90vw' }">
+<p-overlayPanel #op [dismissable]="true" [showCloseIcon]="true" [style]="{ width: '60vw' }">
   <ng-template pTemplate>
-    <p>{{ selectedNewsItem?.content }}</p>
+    <p style="white-space: pre-line">{{ selectedNewsItem?.content }}</p>
     <p *ngIf="selectedNewsItem?.url">
-      <a [href]="selectedNewsItem!.url!" target="_blank">{{ selectedNewsItem!.url! }}</a>
+      <a class="url" [href]="selectedNewsItem!.url!" target="_blank">{{ selectedNewsItem!.url! }} </a>
     </p>
   </ng-template>
 </p-overlayPanel>
