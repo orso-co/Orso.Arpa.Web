@@ -18,11 +18,12 @@
           ></arpa-table>
           <ng-template #rowTemplate let-row>
             <td>
-              <arpa-avatar [image]="false" [user]="row.person" size="large" [skipLoadingPicture]="true"></arpa-avatar>
+              <arpa-avatar [image]="false" [user]="row.person" size="large"></arpa-avatar>
               <div class="details">
                 <div class="name">{{ row.person.givenName }} {{ row.person.surname }}</div>
                 <div class="profile">{{ row.instrument.name }}</div>
-                <div class="created" pTooltip="{{ 'MUPRO_CREATION_DATE' | translate }}">created {{ row.createdAt | date : 'yyyy-MM' }}</div>
+                <div class="created" [pTooltip]="'MUPRO_CREATION_DATE' | translate">created {{ row.createdAt | date : 'yyyy-MM' }}</div>
+
               </div>
             </td>
           </ng-template>

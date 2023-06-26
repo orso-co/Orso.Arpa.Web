@@ -27,5 +27,10 @@
 .modified {
   font-size: small;
   font-style: italic;
-  color: var(--text-color-primary);
+  color: var(--text-color-secondary);
+}
+.created {
+  font-size: small;
+  font-style: italic;
+  color: var(--text-color-secondary);
 }
