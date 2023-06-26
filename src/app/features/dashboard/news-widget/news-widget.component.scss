@@ -1,0 +1,37 @@
+.card-content {
+  cursor: pointer;
+  height: 58px;
+  overflow: hidden;
+  margin: -2.5rem 0;
+}
+
+.card-header {
+  padding: 1rem;
+  height: 66px;
+  overflow: hidden;
+
+  h4 {
+    margin: 0;
+  }
+}
+.createdAtBy {
+  font-size: 0.8rem;
+  font-weight: lighter;
+}
+.title {
+  font-size: 1.2rem;
+  font-weight: normal;
+  padding-top: 0.5rem;
+}
+.content {
+  font-size: 0.9rem;
+  font-weight: lighter;
+  margin-bottom: -1rem;
+}
+.url {
+  color: var(--purple-300);
+}
+.urlsmall {
+  color: var(--purple-300);
+  font-size: 0.8rem;
+}

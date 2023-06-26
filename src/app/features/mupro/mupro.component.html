@@ -23,6 +23,7 @@
                 <div class="name">{{ row.person.givenName }} {{ row.person.surname }}</div>
                 <div class="profile">{{ row.instrument.name }}</div>
                 <div class="created" [pTooltip]="'MUPRO_CREATION_DATE' | translate">created {{ row.createdAt | date : 'yyyy-MM' }}</div>
+
               </div>
             </td>
           </ng-template>

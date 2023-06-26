@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { MeService } from '@arpa/services';
-import { MyAppointmentDto, ProjectDto, RoomDto } from '@arpa/models';
+import { MyAppointmentDto, ProjectDto } from '@arpa/models';
 
 @Component({
   selector: 'arpa-appointments-widget',
@@ -13,7 +13,6 @@ export class AppointmentsWidgetComponent {
   userAppointments$: Observable<MyAppointmentDto[]> = of([]);
   totalRecordsCount$: Observable<number> = of(0);
   totalRecordsCountMissingPrediction$: Observable<number> = of(0);
-  itemsPerPage = 8;
 
   constructor(private meService: MeService, private cdRef: ChangeDetectorRef) {}
 
@@ -31,7 +30,7 @@ export class AppointmentsWidgetComponent {
     return projects.map((p) => p.title).join(', ');
   }
 
-  getRoomNames(rooms: RoomDto[]): string {
-    return rooms.map((r) => r.name).join(', ');
-  }
+  // getRoomNames(rooms: RoomDto[]): string {
+  //   return rooms.map((r) => r.name).join(', ');
+  // }
 }

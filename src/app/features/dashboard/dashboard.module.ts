@@ -50,6 +50,9 @@ import { ChipModule } from 'primeng/chip';
 import { MessageModule } from 'primeng/message';
 import { IframeWidgetProjectstatsComponent } from './iframe-widget-projectstats/iframe-widget-projectstats.component';
 import { AppointmentsRoutingModule } from '../appointments/appointments-routing.module';
+import { NewsWidgetComponent } from './news-widget/news-widget.component';
+import { DataViewModule } from 'primeng/dataview';
+import { VirtualScrollerModule } from 'primeng/virtualscroller';
 
 @NgModule({
   declarations: [
@@ -65,6 +68,7 @@ import { AppointmentsRoutingModule } from '../appointments/appointments-routing.
     ChoirGridWidgetComponent,
     IframeWidgetComponent,
     IframeWidgetProjectstatsComponent,
+    NewsWidgetComponent,
   ],
   imports: [
     CommonModule,
@@ -112,6 +116,8 @@ import { AppointmentsRoutingModule } from '../appointments/appointments-routing.
     LocalizedDateModule,
     ChipModule,
     MessageModule,
+    DataViewModule,
+    VirtualScrollerModule,
   ],
   exports: [ProjectsWidgetComponent],
 })
