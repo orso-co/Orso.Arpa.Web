@@ -1,14 +1,18 @@
-.title {
-  color: var(--primary-color);
+.performer {
+  color: var(--text-color-primary);
   font-weight: normal;
   font-size: xx-large;
-
+  margin-top: -1rem;
+}
+.project {
+  color: var(--text-color-secondary);
+  font-weight: heavy;
+  font-size: large;
 }
 
 .status {
-  color: var(--text-color-primary);;
+  color: var(--text-color-primary);
   font-weight: normal;
-
 }
 
 .selectStatus {
@@ -40,4 +44,3 @@
   left: 33%;
   padding-right: 10px;
 }
-

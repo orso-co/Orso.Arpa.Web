@@ -1,4 +1,7 @@
-<h3 class="title">{{ instrumentName }}</h3>
+<p class="created">
+  {{ 'CREATED_AT' | translate }} {{ participation.createdAt | date : 'dd.MM.yyyy - hh:mm' : 'locale(de)' }} {{ 'BY' | translate }}
+  {{ participation.createdBy }}
+</p>
 <p class="modified">
   {{ 'MODIFIED_AT' | translate }} {{ participation.modifiedAt | date : 'dd.MM.yyyy - hh:mm' : 'locale(de)' }} {{ 'BY' | translate }}
   {{ participation.modifiedBy }}

@@ -23,6 +23,13 @@ export class ParticipationDialogComponent implements OnInit {
     return '';
   }
 
+  getInstrument() {
+    if (this.participation && this.participation.musicianProfile?.instrumentName) {
+      return `${this.participation.musicianProfile!.instrumentName}`;
+    }
+    return '';
+  }
+
   cancel() {
     this.ref.close(null);
   }

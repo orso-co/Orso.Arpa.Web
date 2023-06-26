@@ -1,6 +1,7 @@
-<h3 class="title">{{ getName() }} @ {{ participation.project?.title }}</h3>
+<h3 class="performer">{{ getName() }}</h3>
+<h4 class="project">{{ participation.project?.title }}</h4>
 <p-tabView>
-  <p-tabPanel [header]="participation.musicianProfile?.instrument?.name">
+  <p-tabPanel [header]="getInstrument()">
     <div class="columns">
       <div>
         <h4>{{ 'PROJECT_PARTICIPATION_STATUS' | translate }}:</h4>
