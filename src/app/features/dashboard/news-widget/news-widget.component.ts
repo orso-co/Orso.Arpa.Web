@@ -13,11 +13,17 @@ export class NewsWidgetComponent {
   news$: Observable<NewsDto[]> = of([]);
   pageSize = 4;
   selectedNewsItem: NewsDto | undefined;
+  loadedNews: NewsDto[] = [];
 
   constructor(private newsService: NewsService) {}
 
   loadData(event: LazyLoadEvent): void {
-    this.news$ = this.newsService.getAllNews(this.pageSize, 0);
+    console.log('load data', event);
+    this.newsService.getAllNews(event.rows!, event.first!).subscribe((news) => {
+      this.loadedNews.splice(event.first!, event.rows!, ...news);
+      this.loadedNews = [...this.loadedNews];
+      console.log(this.loadedNews);
+    });
   }
 
   showOverlay(event: any, op: any, newsItem: NewsDto) {
