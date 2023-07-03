@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NewsService } from '../../../../@arpa/services/news.service';
-import { Observable, Subscription, of } from 'rxjs';
 import { NewsDto } from '@arpa/models';
 import { LazyLoadEvent } from 'primeng/api';
 
@@ -23,8 +22,17 @@ export class NewsWidgetComponent {
     });
   }
 
+  openUrl(event: Event, url: string): void {
+    event.stopPropagation();
+    window.open(url, '_blank');
+  }
   showOverlay(event: any, op: any, newsItem: NewsDto) {
-    this.selectedNewsItem = newsItem;
-    op.show(event, event.target);
+    if (this.selectedNewsItem) {
+      op.hide();
+      this.selectedNewsItem = undefined;
+    } else {
+      this.selectedNewsItem = newsItem;
+      op.show(event, event.target);
+    }
   }
 }
