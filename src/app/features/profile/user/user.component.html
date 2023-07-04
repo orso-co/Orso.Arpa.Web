@@ -23,10 +23,10 @@
     </p-tabPanel>
     <p-tabPanel
       leftIcon="pi pi-camera"
-      [header]="'profile.picture.PROFILE_PICTURE' | translate"
+      [header]="'profile.MY_PROFILE_PICTURE' | translate"
       [tooltip]="'profile.MY_PROFILE_PICTURE_TOOLTIP' | translate"
     >
-      <arpa-user-profile-picture></arpa-user-profile-picture>
+      <arpa-profile-picture [person]="person"></arpa-profile-picture>
     </p-tabPanel>
   </p-tabView>
 </div>

@@ -1,12 +1,9 @@
 import { gql } from 'apollo-angular';
 
 export const PersonQuery = gql`
-  query Person($id: UUID){
-    persons(
-      where: {id: { equals: $id }}
-    )  {
-      items
-      {
+  query Person($id: UUID) {
+    persons(where: { id: { equals: $id } }) {
+      items {
         id
         givenName
         surname
@@ -32,7 +29,7 @@ export const PersonQuery = gql`
           levelAssessmentInner
           levelAssessmentTeam
 
-          qualification{
+          qualification {
             id
             selectValue {
               name
@@ -47,7 +44,6 @@ export const PersonQuery = gql`
             id
             name
           }
-
         }
         contactDetails {
           id
@@ -55,16 +51,16 @@ export const PersonQuery = gql`
           value
           type {
             id
-            selectValue { name }
+            selectValue {
+              name
+            }
           }
           commentInner
           commentTeam
           preference
-
-
         }
 
-        bankAccounts{
+        bankAccounts {
           id
           iban
           bic
@@ -76,14 +72,13 @@ export const PersonQuery = gql`
           }
           commentInner
           accountOwner
-
         }
 
-        user{
+        user {
           userName
           email
         }
-
       }
     }
-  }`;
+  }
+`;

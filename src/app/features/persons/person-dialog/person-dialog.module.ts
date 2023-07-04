@@ -31,10 +31,10 @@ import { PersonProfilesClientComponent } from './person-profiles/person-profiles
 import { ProfileModule } from '../../profile/profile.module';
 import { ChipModule } from 'primeng/chip';
 import { TagModule } from 'primeng/tag';
-import { PersonProfilePictureComponent } from './person-profile-picture/person-profile-picture.component';
 import { AvatarModule } from 'primeng/avatar';
 import { FileUploadModule } from 'primeng/fileupload';
 import { MatIconModule } from '@angular/material/icon';
+import { ProfilePictureModule } from '@arpa/components';
 
 @NgModule({
   declarations: [
@@ -47,7 +47,6 @@ import { MatIconModule } from '@angular/material/icon';
     PersonProfilesMusicianComponent,
     PersonProfilesMemberComponent,
     PersonProfilesClientComponent,
-    PersonProfilePictureComponent,
   ],
   imports: [
     CommonModule,
@@ -55,6 +54,7 @@ import { MatIconModule } from '@angular/material/icon';
     FormsModule,
     ReactiveFormsModule,
     SelectDialogModule,
+    ProfilePictureModule,
 
     // Arpa Lib
     TranslateModule.forChild(['person-dialog', 'musician-profile-dialog']),

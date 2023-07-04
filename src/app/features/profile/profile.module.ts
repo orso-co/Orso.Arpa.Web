@@ -45,9 +45,9 @@ import { MyAppointmentParticipationDialogComponent } from './my-appointment-part
 import { ProjectsModule } from '../projects/projects.module';
 import { ParticipationDialogModule } from '../participation-dialog/participation-dialog.module';
 import { TooltipModule } from 'primeng/tooltip';
-import { UserProfilePictureComponent } from './user-profile-picture/user-profile-picture.component';
 import { FileUploadModule } from 'primeng/fileupload';
 import { AvatarModule as PrimeNGAvatarModule } from 'primeng/avatar';
+import { ProfilePictureModule } from '@arpa/components';
 
 @NgModule({
   declarations: [
@@ -63,7 +63,6 @@ import { AvatarModule as PrimeNGAvatarModule } from 'primeng/avatar';
     UserBankdataComponent,
     RibbonComponent,
     MyAppointmentParticipationDialogComponent,
-    UserProfilePictureComponent,
   ],
   imports: [
     CommonModule,
@@ -71,6 +70,7 @@ import { AvatarModule as PrimeNGAvatarModule } from 'primeng/avatar';
     FormsModule,
     ReactiveFormsModule,
     SelectDialogModule,
+    ProfilePictureModule,
     // Arpa Lib
     TranslateModule.forChild(['profile']),
     MenuModule,

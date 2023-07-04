@@ -2,11 +2,8 @@ import { Apollo, gql } from 'apollo-angular';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '@arpa/services';
-import { PersonDto } from '@arpa/models';
-import { ReducedPersonDto } from 'src/@arpa/models/reducedPersonDto';
+import { PersonDto, ReducedPersonDto, PersonModifyBodyDto, PersonInviteResultDto } from '@arpa/models';
 import { first, map, shareReplay } from 'rxjs/operators';
-import { PersonModifyBodyDto } from 'src/@arpa/models/personModifyBodyDto';
-import { PersonInviteResultDto } from 'src/@arpa/models/personInviteResultDto';
 import { PersonQuery } from './person.graphql';
 import { cloneDeep } from 'lodash-es';
 

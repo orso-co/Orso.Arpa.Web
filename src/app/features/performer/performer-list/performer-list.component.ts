@@ -1,7 +1,6 @@
 import { PersonInviteResultDto } from './../../../../@arpa/models/personInviteResultDto';
 import { OverlayPanel } from 'primeng/overlaypanel';
-import { NotificationsService } from 'src/@arpa/services/notifications.service';
-import { PersonService } from './../../persons/services/person.service';
+import { NotificationsService, PersonService } from '@arpa/services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
 import { Component, ViewChild } from '@angular/core';
@@ -13,7 +12,6 @@ import { MusicianProfileDto } from './../../../../@arpa/models/musicianProfileDt
 import { Observable } from 'rxjs';
 import { PerformerDto } from './../../../../@arpa/models/performerDto';
 import { PerformersQuery } from './performers.graphql';
-import { PersonDto } from '../../../../@arpa/models/personDto';
 import { SelectItem } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
 import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator';
@@ -30,12 +28,19 @@ export class PerformerListComponent {
   lastInvitation: PersonInviteResultDto;
 
   columns: ColumnDefinition<PerformerDto>[] = [
-    { label: 'INSTRUMENT', property: 'instrument.name', type: 'text', show: true},
+    { label: 'INSTRUMENT', property: 'instrument.name', type: 'text', show: true },
     { label: 'SURNAME', property: 'person.surname', type: 'text' },
     { label: 'GIVEN_NAME', property: 'person.givenName', type: 'text' },
-    { label: 'SECTION', property: 'instrumentId.section', type: 'text', show: false},
-    { label: 'QUALIFICATION', property: 'qualificationId', type: 'state', stateTable: 'MusicianProfile', stateProperty: 'Qualification', show: true},
-    { label: 'LEVEL_ASSESSMENT_TEAM', property: 'levelAssessmentTeam', type: 'rating', show: true},
+    { label: 'SECTION', property: 'instrumentId.section', type: 'text', show: false },
+    {
+      label: 'QUALIFICATION',
+      property: 'qualificationId',
+      type: 'state',
+      stateTable: 'MusicianProfile',
+      stateProperty: 'Qualification',
+      show: true,
+    },
+    { label: 'LEVEL_ASSESSMENT_TEAM', property: 'levelAssessmentTeam', type: 'rating', show: true },
     { label: 'EXPERIENCE_LEVEL', property: 'experienceLevel', type: 'rating', show: false },
     { label: 'RELIABILITY', property: 'reliability', type: 'rating', show: false },
     { label: 'GENERAL_PREFERENCE', property: 'generalPreference', type: 'rating', show: true },
@@ -43,7 +48,7 @@ export class PerformerListComponent {
     { label: 'CREATED_BY', property: 'createdBy', type: 'text', show: false },
     { label: 'MODIFIED_AT', property: 'createdAt', type: 'date', show: false },
     { label: 'MODIFIED_BY', property: 'modifiedBy', type: 'text', show: false },
-    { label: 'USER_CREATED_AT', property: 'person.user.createdAt', type: 'date', show: false }
+    { label: 'USER_CREATED_AT', property: 'person.user.createdAt', type: 'date', show: false },
   ];
   @ViewChild('feedSource') private feedSource: GraphQlFeedComponent;
 
@@ -54,7 +59,7 @@ export class PerformerListComponent {
     private dialogService: DialogService,
     private personService: PersonService,
     private notificationService: NotificationsService
-    ) {}
+  ) {}
 
   onRowClick(MusicianProfileDto: MusicianProfileDto) {
     this.dialogService.open(MusicianDialogEntryComponent, {
@@ -64,21 +69,16 @@ export class PerformerListComponent {
     });
   }
 
-  sendSingleInvite(id: string){
-    this.personService
-        .invitePersons([id])
-        .subscribe(() => {
-          this.notificationService.success('PERSON_INVITED');
-        });
+  sendSingleInvite(id: string) {
+    this.personService.invitePersons([id]).subscribe(() => {
+      this.notificationService.success('PERSON_INVITED');
+    });
   }
 
-
   sendInvitationToMultiplePersons(event: any, overlayPanel: OverlayPanel) {
-    this.personService
-      .invitePersons(this.feedSource.values.getValue().map(mupro => mupro.personId))
-      .subscribe((result) => {
-        this.lastInvitation = result;
-        overlayPanel.show(event)
-      });
+    this.personService.invitePersons(this.feedSource.values.getValue().map((mupro) => mupro.personId)).subscribe((result) => {
+      this.lastInvitation = result;
+      overlayPanel.show(event);
+    });
   }
 }
