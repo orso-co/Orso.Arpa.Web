@@ -23,15 +23,15 @@ export class PersonAddressesComponent implements OnInit, OnDestroy {
   public typeOptions$: Observable<SelectItem[]>;
 
   columns: ColumnDefinition<AddressDto>[] = [
-    { label: 'persons.address.ADDRESS1', property: 'address1', type: 'text' },
-    { label: 'persons.address.ADDRESS2', property: 'address2', type: 'text' },
-    { label: 'persons.address.ZIP', property: 'zip', type: 'text' },
-    { label: 'persons.address.CITY', property: 'city', type: 'text' },
-    { label: 'persons.address.COUNTRY', property: 'country', type: 'text' },
-    { label: 'persons.address.STATE', property: 'state', type: 'text' },
-    { label: 'persons.address.URBAN_DISTRICT', property: 'urbanDistrict', type: 'text' },
-    { label: 'persons.address.COMMENT_TEAM', property: 'commentInner', type: 'text' },
-    { label: 'persons.address.TYPE', property: 'type', type: 'state', stateTable: 'Address', stateProperty: 'Type' },
+    { label: 'ZIP', property: 'zip', type: 'text' },
+    { label: 'CITY', property: 'city', type: 'text' },
+    { label: 'ADDRESS1', property: 'address1', type: 'text' },
+    { label: 'ADDRESS2', property: 'address2', type: 'text', show: false },
+    { label: 'COUNTRY', property: 'country', type: 'text' },
+    { label: 'STATE', property: 'state', type: 'text' },
+    { label: 'URBAN_DISTRICT', property: 'urbanDistrict', type: 'text', show: false },
+    { label: 'COMMENT', property: 'commentInner', type: 'text', show: false },
+    { label: 'TYPE', property: 'typeId', type: 'state', stateTable: 'Address', stateProperty: 'Type' },
   ];
   private subscription: Subscription;
   constructor(
@@ -41,7 +41,6 @@ export class PersonAddressesComponent implements OnInit, OnDestroy {
     private selectValueService: SelectValueService
   ) {
     this.form = this.formBuilder.group({
-      personId: [null],
       address1: [null],
       address2: [null],
       zip: [null],
@@ -50,7 +49,7 @@ export class PersonAddressesComponent implements OnInit, OnDestroy {
       state: [null],
       urbanDistrict: [null],
       commentInner: [null],
-      typeId: [null],
+      typeId: [null, [Validators.required]],
       id: [null],
     });
   }

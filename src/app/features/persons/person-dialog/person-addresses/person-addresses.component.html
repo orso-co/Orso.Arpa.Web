@@ -23,7 +23,7 @@
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-my-5">
   <div class="p-grid p-fluid p-formgrid">
-    <div class="p-col-12 p-xl-6">
+    <div class="p-col-12 p-d-flex">
       <arpa-form-field label="TYPE" type="select">
         <p-dropdown
           [options]="(typeOptions$ | async) || []"
@@ -34,39 +34,40 @@
         ></p-dropdown>
       </arpa-form-field>
     </div>
-    <div class="p-col-12 p-xl-9">
+    <div class="p-col-6 p-xl-3">
       <arpa-form-field label="ADDRESS1">
         <input autocomplete="off" formControlName="address1" id="address1" pInputText type="text" />
       </arpa-form-field>
     </div>
-    <div class="p-col-12 p-xl-9">
+    <div class="p-col-6 p-xl-3">
       <arpa-form-field label="ADDRESS2">
         <input autocomplete="off" formControlName="address2" id="address2" pInputText type="text" />
       </arpa-form-field>
     </div>
-    <div class="p-col-12 p-xl-9">
+    <div class="p-col-2 p-xl-1">
       <arpa-form-field label="ZIP">
         <input autocomplete="off" formControlName="zip" id="zip" pInputText type="text" />
       </arpa-form-field>
     </div>
-    <div class="p-col-12 p-xl-9">
+    <div class="p-col-6 p-xl-3">
       <arpa-form-field label="CITY">
         <input autocomplete="off" formControlName="city" id="city" pInputText type="text" />
       </arpa-form-field>
     </div>
-    <div class="p-col-12 p-xl-9">
+
+    <div class="p-col-6 p-xl-3">
       <arpa-form-field label="URBAN_DISTRICT">
         <input autocomplete="off" formControlName="urbanDistrict" id="urbanDistrict" pInputText type="text" />
       </arpa-form-field>
     </div>
 
-    <div class="p-col-12 p-xl-9">
+    <div class="p-col-6 p-xl-3">
       <arpa-form-field label="STATE">
         <input autocomplete="off" formControlName="state" id="state" pInputText type="text" />
       </arpa-form-field>
     </div>
 
-    <div class="p-col-12 p-xl-9">
+    <div class="p-col-6 p-xl-3">
       <arpa-form-field label="COUNTRY">
         <input autocomplete="off" formControlName="country" id="country" pInputText type="text" />
       </arpa-form-field>
