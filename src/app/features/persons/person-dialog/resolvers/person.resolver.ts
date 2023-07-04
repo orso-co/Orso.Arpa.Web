@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MeService, PersonService } from '@arpa/services';
 import { PersonDto } from '@arpa/models';
@@ -7,7 +7,7 @@ import { PersonDto } from '@arpa/models';
 @Injectable({
   providedIn: 'root',
 })
-export class PersonResolver implements Resolve<PersonDto> {
+export class PersonResolver {
   constructor(private meService: MeService, private personService: PersonService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<PersonDto> {

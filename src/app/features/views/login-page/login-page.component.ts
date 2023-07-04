@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 import { AuthService } from '../../../../@arpa/services/auth.service';
@@ -11,28 +11,18 @@ import { AuthService } from '../../../../@arpa/services/auth.service';
   styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent {
-  loginFormGroup: FormGroup;
+  loginFormGroup: UntypedFormGroup;
   hide = true;
 
-  constructor(formBuilder: FormBuilder,
-              private router: Router,
-              private notificationsService: NotificationsService,
-              private authService: AuthService,
+  constructor(
+    formBuilder: UntypedFormBuilder,
+    private router: Router,
+    private notificationsService: NotificationsService,
+    private authService: AuthService
   ) {
     this.loginFormGroup = formBuilder.group({
-      usernameOrEmail: [null,
-        [
-          Validators.required,
-          Validators.minLength(1),
-        ],
-      ],
-      password: [
-        null,
-        [
-          Validators.required,
-          Validators.minLength(6),
-        ],
-      ],
+      usernameOrEmail: [null, [Validators.required, Validators.minLength(1)]],
+      password: [null, [Validators.required, Validators.minLength(6)]],
     });
   }
 
@@ -41,10 +31,10 @@ export class LoginPageComponent {
       .login(Object.assign({}, this.loginFormGroup.value))
       .pipe(first())
       .subscribe(
-        response => {
+        (response) => {
           this.router.navigate(['/arpa']);
         },
-        error => {
+        (error) => {
           if (error.status === 401) {
             this.notificationsService.error('USER_CREDENTIALS', 'views');
           } else if (error.status === 403) {
@@ -60,7 +50,8 @@ export class LoginPageComponent {
               });
             });
           }
-        });
+        }
+      );
   }
 
   goToRegister(): void {
@@ -77,7 +68,8 @@ export class LoginPageComponent {
   }
 
   forgotPassword(): void {
-    this.authService.forgotPassword(this.loginFormGroup.value.usernameOrEmail)
+    this.authService
+      .forgotPassword(this.loginFormGroup.value.usernameOrEmail)
       .pipe(first())
       .subscribe(() => {
         this.notificationsService.success('FORGOT_PASSWORD_SEND_MAIL_SUCCESS', 'views');

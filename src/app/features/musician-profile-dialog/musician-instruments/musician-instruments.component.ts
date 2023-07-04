@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { first, map, filter } from 'rxjs/operators';
 import { SelectItem } from 'primeng/api';
 import { SelectValueService, NotificationsService, SectionService, EnumService } from '@arpa/services';
@@ -15,7 +15,7 @@ import {
 } from '@arpa/models';
 
 interface FormListElement extends DoublingInstrumentDto {
-  formGroup: FormGroup;
+  formGroup: UntypedFormGroup;
 }
 
 @Component({
@@ -24,7 +24,7 @@ interface FormListElement extends DoublingInstrumentDto {
   styleUrls: ['./musician-instruments.component.scss'],
 })
 export class MusicianInstrumentsComponent implements OnInit {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public profile: MyMusicianProfileDto | undefined = undefined;
   public instrumentName: string;
   public sections$: Observable<SectionDto[]> = this.config.data.sections;
@@ -40,7 +40,7 @@ export class MusicianInstrumentsComponent implements OnInit {
 
   constructor(
     public config: DynamicDialogConfig,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public ref: DynamicDialogRef,
     private selectValueService: SelectValueService,
     private musicianService: MusicianService,

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { finalize, first, map } from 'rxjs/operators';
 import { SelectValueService, ConfigService, LoadingService, NotificationsService, AuthService } from '@arpa/services';
@@ -13,13 +13,13 @@ export class RegisterPageComponent {
   // @ViewChild('captchaRef') reCaptcha: RecaptchaComponent;
   validPassword: boolean = false;
   registerRequest: boolean = false;
-  registerFormGroup: FormGroup;
+  registerFormGroup: UntypedFormGroup;
   hide: boolean = true;
   // siteKey: string;
   genderSelectValue: any;
 
   constructor(
-    formBuilder: FormBuilder,
+    formBuilder: UntypedFormBuilder,
     private router: Router,
     private authService: AuthService,
     private notificationsService: NotificationsService,

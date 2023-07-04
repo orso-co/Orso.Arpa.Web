@@ -8,14 +8,11 @@ import { ConfigService } from './config.service';
   providedIn: 'root',
 })
 export class LanguageService {
-
   languageEvent: BehaviorSubject<string>;
 
   readonly localeMap: Record<string, string>;
 
-  constructor(private translate: TranslateService,
-              private ConfigService: ConfigService,
-              private primengConfig: PrimeNGConfig) {
+  constructor(private translate: TranslateService, private ConfigService: ConfigService, private primengConfig: PrimeNGConfig) {
     this.localeMap = ConfigService.getEnv('locale').locales;
 
     this.translate.addLangs(Object.keys(this.localeMap));
@@ -43,6 +40,6 @@ export class LanguageService {
 
   private getBrowserLang(): string {
     const browserLang = this.translate.getBrowserLang();
-    return browserLang.match(/en|de/) ? browserLang : this.ConfigService.getEnv('locale').default;
+    return browserLang!.match(/en|de/) ? browserLang : this.ConfigService.getEnv('locale').default;
   }
 }

@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { EnumService, NotificationsService, ProjectService } from '@arpa/services';
 import {
@@ -24,7 +24,7 @@ export class ParticipationEditComponent implements OnInit {
   @Input() projectId: string;
   @Input() children: ProjectDto[];
 
-  form: FormGroup;
+  form: UntypedFormGroup;
   public commentByPerformerInner: any;
   public projectTitle: string;
   public person: ReducedPersonDto | null;
@@ -33,7 +33,7 @@ export class ParticipationEditComponent implements OnInit {
   public instrumentName: ReducedMusicianProfileDto;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public config: DynamicDialogConfig,
     private enumService: EnumService,
     private projectService: ProjectService,

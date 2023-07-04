@@ -13,7 +13,7 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2015",
+    "target": "ES2022",
     "module": "es2020",
     "lib": ["es2018", "dom", "esnext.asynciterable"],
     "strictPropertyInitialization": false,
@@ -22,7 +22,8 @@
       "@arpa/models": ["src/@arpa/models/index.ts"],
       "@arpa/services": ["src/@arpa/services/index.ts"],
       "@arpa/components": ["src/@arpa/components/index.ts"]
-    }
+    },
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
