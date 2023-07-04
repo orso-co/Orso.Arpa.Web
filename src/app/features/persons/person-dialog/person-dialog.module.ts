@@ -35,6 +35,7 @@ import { PersonProfilePictureComponent } from './person-profile-picture/person-p
 import { AvatarModule } from 'primeng/avatar';
 import { FileUploadModule } from 'primeng/fileupload';
 import { MatIconModule } from '@angular/material/icon';
+import { PersonAddressesComponent } from './person-addresses/person-addresses.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { MatIconModule } from '@angular/material/icon';
     PersonProfilesMemberComponent,
     PersonProfilesClientComponent,
     PersonProfilePictureComponent,
+    PersonAddressesComponent,
   ],
   imports: [
     CommonModule,

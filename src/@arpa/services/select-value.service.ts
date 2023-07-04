@@ -65,6 +65,10 @@ export class SelectValueService {
     return this.get('ContactDetail', 'Type');
   }
 
+  getAddressTypes(): Observable<SelectItem[]> {
+    return this.get('Address', 'Type');
+  }
+
   getProjectTypes(): Observable<SelectItem[]> {
     return this.get('Project', 'Type');
   }

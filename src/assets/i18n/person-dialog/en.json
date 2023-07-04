@@ -27,5 +27,20 @@
   "PROFILES": "Profiles",
   "RELIABILITY": "Reliability",
   "SURNAME": "Surname",
-  "PROFILE_PICTURE": "Profile Picture"
+  "PROFILE_PICTURE": "Profile Picture",
+  "ADDRESS": "Address",
+  "TYPE": "Type",
+  "ADDRESS1": "Street",
+  "ADDRESS2": "Address addition",
+  "ZIP": "ZIP",
+  "CITY": "City",
+  "URBAN_DISTRICT": "Urban District",
+  "STATE": "State",
+  "COUNTRY": "Country",
+  "COMMENT": "Comment",
+  "CREATE_NEW_ADDRESS": "Add new address",
+  "ADDRESS_REMOVED": "Address removed",
+  "ADDRESS_ADDED": "Address added",
+  "ADDRESS_MODIFIED": "Address modified",
+  "DELETE_ADDRESS": "Delete address"
 }

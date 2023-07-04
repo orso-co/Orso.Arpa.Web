@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiService } from '../../../../../@arpa/services/api.service';
+import { ApiService } from '@arpa/services';
 import { shareReplay } from 'rxjs/operators';
-import { BankAccountDto } from 'src/@arpa/models/bankAccountDto';
-import { BankAccountCreateBodyDto } from '../../../../../@arpa/models/bankAccountCreateBodyDto';
-import { BankAccountModifyBodyDto } from '../../../../../@arpa/models/bankAccountModifyBodyDto';
-
+import { BankAccountCreateBodyDto, BankAccountDto, BankAccountModifyBodyDto } from '@arpa/models';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +17,7 @@ export class BankAccountService {
     return this.apiService.post<BankAccountDto>(`${this.baseUrl}/${personId}/bankaccounts`, dto).pipe(shareReplay());
   }
 
-  updateBankAccount(personId: string, id: string,  dto: BankAccountModifyBodyDto): Observable<any> {
+  updateBankAccount(personId: string, id: string, dto: BankAccountModifyBodyDto): Observable<any> {
     return this.apiService.put(`${this.baseUrl}/${personId}/bankaccounts/${id}`, dto).pipe(shareReplay());
   }
 

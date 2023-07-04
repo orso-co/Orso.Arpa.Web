@@ -43,6 +43,23 @@
     "PREFERENCE": "Präferenz",
     "CREATE_NEW_CONTACT": "Kontaktdaten hinzufügen:"
   },
+  "address": {
+    "ADDRESS1": "Straße",
+    "ADDRESS2": "Adresszusatz",
+    "ZIP": "PLZ",
+    "CITY": "Ort",
+    "COUNTRY": "Land",
+    "COMMENT_INNER": "Kommentar Person",
+    "COMMENT_TEAM": "Kommentar Team",
+    "URBAN_DISTRIC": "Stadtteil",
+    "CREATE_NEW_ADDRESS": "Adresse hinzufügen",
+    "ADDRESS_REMOVED": "Adresse gelöscht",
+    "ADDRESS_ADDED": "Adresse hinzugefügt",
+    "ADDRESS_MODIFIED": "Adresse geändert",
+    "ADDRESS": "Adresse",
+    "ADDRESS_TYPE_OTHER": "Sonstiges",
+    "STATE": "Bundesland"
+  },
   "bank": {
     "BIC": "BIC",
     "IBAN": "IBAN",
