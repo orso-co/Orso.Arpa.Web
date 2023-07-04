@@ -1,14 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { PersonService } from '../../persons/services/person.service';
 import { PersonDto } from '@arpa/models';
-import { NotificationsService } from '@arpa/services';
+import { Component, Input, OnInit } from '@angular/core';
+import { NotificationsService, PersonService } from '@arpa/services';
 
 @Component({
-  selector: 'arpa-user-profile-picture',
-  templateUrl: './user-profile-picture.component.html',
-  styleUrls: ['./user-profile-picture.component.scss'],
+  selector: 'arpa-profile-picture',
+  templateUrl: './profile-picture.component.html',
+  styleUrls: ['./profile-picture.component.scss'],
 })
-export class UserProfilePictureComponent implements OnInit {
+export class ProfilePictureComponent implements OnInit {
   private fallbackUrl = 'assets/common/images/avatar.png';
 
   @Input() person: PersonDto;
