@@ -10,6 +10,9 @@
   <p-tabPanel header="{{ 'person-dialog.BANK_DATA' | translate }}" leftIcon="pi pi-credit-card" *ngIf="person?.id">
     <arpa-person-bankdata [person]="person"></arpa-person-bankdata>
   </p-tabPanel>
+  <p-tabPanel header="{{ 'person-dialog.ADDRESS' | translate }}" leftIcon="pi pi-home" *ngIf="person?.id">
+    <arpa-person-addresses [person]="person"></arpa-person-addresses>
+  </p-tabPanel>
   <p-tabPanel header="{{ 'person-dialog.BASE_DATA' | translate }}" leftIcon="pi pi-user">
     <arpa-person-basedata [person]="person" (personSaved)="personSaved($event)"></arpa-person-basedata>
   </p-tabPanel>

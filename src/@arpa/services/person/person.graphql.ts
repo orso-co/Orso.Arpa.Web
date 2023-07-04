@@ -59,6 +59,23 @@ export const PersonQuery = gql`
           commentTeam
           preference
         }
+        addresses {
+          id
+          address1
+          address2
+          city
+          zip
+          country
+          state
+          urbanDistrict
+          type {
+            id
+            selectValue {
+              name
+            }
+          }
+          commentInner
+        }
 
         bankAccounts {
           id

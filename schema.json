@@ -11642,7 +11642,7 @@
             "defaultValue": null
           },
           {
-            "name": "comment",
+            "name": "commentInner",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -18718,7 +18718,7 @@
             "deprecationReason": null
           },
           {
-            "name": "comment",
+            "name": "commentInner",
             "description": null,
             "args": [],
             "type": {

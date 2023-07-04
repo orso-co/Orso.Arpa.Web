@@ -2,11 +2,11 @@ import { BadgeModule } from 'primeng/badge';
 import { SelectValueModule } from '../../../../@arpa/pipes/select-value/select-value.module';
 import { SelectDialogModule } from '../../profile/select-dialog/select-dialog.module';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import { TableModule } from '../../../../@arpa/components/table/table.module';
+import { TableModule } from '@arpa/components';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
-import { FormFieldModule } from '../../../../@arpa/components/form-field/form-field.module';
+import { FormFieldModule } from '@arpa/components';
 import { ButtonModule } from 'primeng/button';
 import { PersonDialogEntryComponent } from './person-dialog-entry/person-dialog-entry.component';
 import { PersonLayoutComponent } from './person-layout/person-layout.component';
@@ -34,6 +34,7 @@ import { TagModule } from 'primeng/tag';
 import { AvatarModule } from 'primeng/avatar';
 import { FileUploadModule } from 'primeng/fileupload';
 import { MatIconModule } from '@angular/material/icon';
+import { PersonAddressesComponent } from './person-addresses/person-addresses.component';
 import { ProfilePictureModule } from '@arpa/components';
 
 @NgModule({
@@ -47,6 +48,7 @@ import { ProfilePictureModule } from '@arpa/components';
     PersonProfilesMusicianComponent,
     PersonProfilesMemberComponent,
     PersonProfilesClientComponent,
+    PersonAddressesComponent,
   ],
   imports: [
     CommonModule,

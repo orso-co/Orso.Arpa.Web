@@ -26,5 +26,20 @@
   "BANK_ACCOUNT_MODIFIED": "Coordonnées bancaires modifièes",
   "BANK_ACCOUNT_ADDED": "Coordonnées bancaires ajoutées",
   "PROFILE_PICTURE": "Photo de profil",
-  "PROFILES": "Profils"
+  "PROFILES": "Profils",
+  "ADDRESS": "Adresse",
+  "TYPE": "Type",
+  "ADDRESS1": "Rue",
+  "ADDRESS2": "Complément d'adresse",
+  "ZIP": "Code postal",
+  "CITY": "Ville",
+  "URBAN_DISTRICT": "Quartier",
+  "STATE": "État",
+  "COUNTRY": "Pays",
+  "COMMENT": "Commentaire",
+  "CREATE_NEW_ADDRESS": "Créer une nouvelle adresse",
+  "ADDRESS_REMOVED": "Adresse supprimée",
+  "ADDRESS_ADDED": "Adresse ajoutée",
+  "ADDRESS_MODIFIED": "Adresse modifiée",
+  "DELETE_ADDRESS": "Supprimer l'adresse"
 }
