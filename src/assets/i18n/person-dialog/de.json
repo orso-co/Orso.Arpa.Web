@@ -27,5 +27,20 @@
   "PROFILES": "Profile",
   "RELIABILITY": "Zuverlässigkeit",
   "SURNAME": "Nachname",
-  "PROFILE_PICTURE": "Profilbild"
+  "PROFILE_PICTURE": "Profilbild",
+  "ADDRESS": "Adresse",
+  "TYPE": "Adresstyp",
+  "ADDRESS1": "Straße",
+  "ADDRESS2": "Adresszusatz",
+  "ZIP": "PLZ",
+  "CITY": "Ort",
+  "URBAN_DISTRICT": "Stadtteil",
+  "STATE": "Bundesland",
+  "COUNTRY": "Land",
+  "COMMENT": "Kommentar",
+  "CREATE_NEW_ADDRESS": "Adresse hinzufügen",
+  "DELETE_ADDRESS": "Addresse löschen",
+  "ADDRESS_REMOVED": "Adresse gelöscht",
+  "ADDRESS_ADDED": "Adresse hinzugefügt",
+  "ADDRESS_MODIFIED": "Adresse geändert"
 }

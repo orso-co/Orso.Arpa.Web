@@ -1,0 +1,104 @@
+<arpa-table
+  *ngIf="person?.addresses?.length"
+  [actionsTemplateRef]="actionsTemplate"
+  [columns]="columns"
+  [data]="tableData"
+  [showFilter]="false"
+  [showPagination]="false"
+  [columnFilter]="false"
+  (rowClickEvents)="update($event)"
+>
+</arpa-table>
+<ng-template #actionsTemplate let-row>
+  <button
+    (click)="remove(row)"
+    [label]="'DELETE' | translate"
+    class="p-button-rounded p-button-text p-button-icon-only"
+    icon="pi pi-trash"
+    pButton
+    type="button"
+  ></button>
+</ng-template>
+<h5>{{ 'CREATE_NEW_ADDRESS' | translate }}</h5>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-my-5">
+  <div class="p-grid p-fluid p-formgrid">
+    <div class="p-col-12 p-xl-6">
+      <arpa-form-field label="TYPE" type="select">
+        <p-dropdown
+          [options]="(typeOptions$ | async) || []"
+          [placeholder]="'NOTHING_SELECTED' | translate"
+          formControlName="typeId"
+          optionLabel="label"
+          optionValue="value"
+        ></p-dropdown>
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-9">
+      <arpa-form-field label="ADDRESS1">
+        <input autocomplete="off" formControlName="address1" id="address1" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-9">
+      <arpa-form-field label="ADDRESS2">
+        <input autocomplete="off" formControlName="address2" id="address2" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-9">
+      <arpa-form-field label="ZIP">
+        <input autocomplete="off" formControlName="zip" id="zip" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-9">
+      <arpa-form-field label="CITY">
+        <input autocomplete="off" formControlName="city" id="city" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-9">
+      <arpa-form-field label="URBAN_DISTRICT">
+        <input autocomplete="off" formControlName="urbanDistrict" id="urbanDistrict" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+
+    <div class="p-col-12 p-xl-9">
+      <arpa-form-field label="STATE">
+        <input autocomplete="off" formControlName="state" id="state" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+
+    <div class="p-col-12 p-xl-9">
+      <arpa-form-field label="COUNTRY">
+        <input autocomplete="off" formControlName="country" id="country" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+
+    <div class="p-col-12">
+      <arpa-form-field label="COMMENT">
+        <textarea autocomplete="off" formControlName="commentInner" id="commentInner" pInputText type="text"></textarea>
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class="p-formgroup-inline p-jc-between">
+    <div class="p-text-left">
+      <button
+        [disabled]="form.pristine || form.invalid"
+        [label]="'SAVE' | translate"
+        icon="pi pi-check"
+        iconPos="right"
+        pButton
+        type="submit"
+      ></button>
+    </div>
+    <div class="p-text-right">
+      <button
+        [label]="'CANCEL' | translate"
+        icon="pi pi-times"
+        iconPos="right"
+        pButton
+        type="button"
+        (click)="onCancel()"
+        class="p-button-outlined"
+      ></button>
+    </div>
+  </div>
+</form>
