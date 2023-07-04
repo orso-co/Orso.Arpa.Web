@@ -7,7 +7,7 @@
     <div class="controls">
       <button
         (click)="onRemove()"
-        [label]="'persons.REMOVE_AVATAR' | translate"
+        [label]="'profile.REMOVE_AVATAR' | translate"
         class="p-button-rounded p-button-text"
         icon="pi pi-trash"
         pButton
@@ -19,7 +19,7 @@
 </div>
 
 <p-fileUpload
-  chooseLabel="{{ 'persons.CHOOSE_AVATAR' | translate }}"
+  chooseLabel="{{ 'profile.CHOOSE_AVATAR' | translate }}"
   name="file"
   [url]="getUrl()"
   accept="image/*"

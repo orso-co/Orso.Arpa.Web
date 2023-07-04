@@ -1,14 +1,13 @@
 import { PersonDto } from '@arpa/models';
 import { Component, Input, OnInit } from '@angular/core';
-import { PersonService } from '../../services/person.service';
-import { NotificationsService } from '@arpa/services';
+import { NotificationsService, PersonService } from '@arpa/services';
 
 @Component({
-  selector: 'arpa-person-profile-picture',
-  templateUrl: './person-profile-picture.component.html',
-  styleUrls: ['./person-profile-picture.component.scss'],
+  selector: 'arpa-profile-picture',
+  templateUrl: './profile-picture.component.html',
+  styleUrls: ['./profile-picture.component.scss'],
 })
-export class PersonProfilePictureComponent implements OnInit {
+export class ProfilePictureComponent implements OnInit {
   private fallbackUrl = 'assets/common/images/avatar.png';
 
   @Input() person: PersonDto;
@@ -28,19 +27,23 @@ export class PersonProfilePictureComponent implements OnInit {
   }
 
   onUploadSuccess() {
-    this.notificationsService.success('PERSON_MODIFIED', 'persons');
+    this.notificationsService.success('PROFILE_PICTURE_CHANGED', 'profile');
+    this.reloadProfilePicture();
+  }
+  onDeletionSuccess() {
+    this.notificationsService.success('PROFILE_PICTURE_REMOVED', 'profile');
     this.reloadProfilePicture();
   }
 
   onUploadError() {
-    this.notificationsService.error('USER_PROFILE_UPDATE_ERROR', 'persons', false);
+    this.notificationsService.error('PROFILE_PICTURE_UPLOAD_ERROR', 'profile', false);
     this.reloadProfilePicture();
   }
 
   onRemove() {
     this.personService.deleteProfilePicture(this.person.id).subscribe(
       (succ) => {
-        this.onUploadSuccess();
+        this.onDeletionSuccess();
       },
       () => {
         this.onUploadError();

@@ -15,16 +15,13 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom",
-      "esnext.asynciterable"
-    ],
+    "lib": ["es2018", "dom", "esnext.asynciterable"],
     "strictPropertyInitialization": false,
     "allowSyntheticDefaultImports": true,
     "paths": {
       "@arpa/models": ["src/@arpa/models/index.ts"],
-      "@arpa/services": ["src/@arpa/services/index.ts"]
+      "@arpa/services": ["src/@arpa/services/index.ts"],
+      "@arpa/components": ["src/@arpa/components/index.ts"]
     }
   },
   "angularCompilerOptions": {

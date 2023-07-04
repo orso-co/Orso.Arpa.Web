@@ -1,7 +1,5 @@
-import { NotificationsService, SelectValueService } from '@arpa/services';
-import { PersonService } from '../../services/person.service';
-import { ReducedPersonDto } from '@arpa/models';
-import { PersonDto } from '../../../../../@arpa/models/personDto';
+import { NotificationsService, SelectValueService, PersonService } from '@arpa/services';
+import { ReducedPersonDto, PersonDto } from '@arpa/models';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/api';

@@ -2,18 +2,14 @@ import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from 'src/@arpa/translate/';
-import { TranslateService } from 'src/@arpa/translate';
+import { TranslateModule, TranslateService } from 'src/@arpa/translate/';
 import { PersonsRoutingModule } from './persons-routing.module';
 import { PersonListComponent } from './person-list/person-list.component';
-import { GraphQlFeedModule } from '../../../@arpa/components/graph-ql-feed/graph-ql-feed.module';
 import { LanguageService } from '@arpa/services';
-import { TableModule } from '../../../@arpa/components/table/table.module';
+import { ProfilePictureModule, GraphQlFeedModule, TableModule } from '@arpa/components';
 
 @NgModule({
-  declarations: [
-    PersonListComponent,
-  ],
+  declarations: [PersonListComponent],
   imports: [
     PersonsRoutingModule,
     CommonModule,
@@ -24,15 +20,13 @@ import { TableModule } from '../../../@arpa/components/table/table.module';
     // NG Prime Dependencies
     DropdownModule,
     ButtonModule,
+    ProfilePictureModule,
   ],
-  exports: [
-    PersonListComponent,
-  ],
-
+  exports: [PersonListComponent],
 })
 export class PersonsModule {
   constructor(private translateService: TranslateService, private languageService: LanguageService) {
-    languageService.languageEvent.subscribe(lang => {
+    languageService.languageEvent.subscribe((lang) => {
       /**
        * Reset lang for lazy module.
        * Fixes: https://github.com/ngx-translate/core/issues/1193

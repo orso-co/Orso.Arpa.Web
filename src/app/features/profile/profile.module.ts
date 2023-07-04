@@ -45,6 +45,9 @@ import { MyAppointmentParticipationDialogComponent } from './my-appointment-part
 import { ProjectsModule } from '../projects/projects.module';
 import { ParticipationDialogModule } from '../participation-dialog/participation-dialog.module';
 import { TooltipModule } from 'primeng/tooltip';
+import { FileUploadModule } from 'primeng/fileupload';
+import { AvatarModule as PrimeNGAvatarModule } from 'primeng/avatar';
+import { ProfilePictureModule } from '@arpa/components';
 
 @NgModule({
   declarations: [
@@ -67,6 +70,7 @@ import { TooltipModule } from 'primeng/tooltip';
     FormsModule,
     ReactiveFormsModule,
     SelectDialogModule,
+    ProfilePictureModule,
     // Arpa Lib
     TranslateModule.forChild(['profile']),
     MenuModule,
@@ -94,6 +98,9 @@ import { TooltipModule } from 'primeng/tooltip';
     ProjectsModule,
     ParticipationDialogModule,
     TooltipModule,
+    AvatarModule,
+    FileUploadModule,
+    PrimeNGAvatarModule,
   ],
   providers: [ProfileService, ProfileResolver, LocalizedDatePipe],
   exports: [RibbonComponent],

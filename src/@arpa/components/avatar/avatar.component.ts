@@ -1,8 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MyUserProfileDto, PersonDto, UserDto } from '@arpa/models';
-import { AuthService } from '@arpa/services';
+import { AuthService, PersonService } from '@arpa/services';
 import { Subscription } from 'rxjs';
-import { PersonService } from 'src/app/features/persons/services/person.service';
 
 @Component({
   selector: 'arpa-avatar',
@@ -112,7 +111,7 @@ export class AvatarComponent implements OnInit, OnDestroy {
     if (this.useCurrentUserAvatar) {
       return this.currentUserPersonId;
     }
-    return this.user?.person?.id || this.user?.id;
+    return this.user.personId || this.user?.person?.id || this.user?.id;
   }
 
   ngOnDestroy(): void {

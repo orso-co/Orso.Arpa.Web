@@ -1,5 +1,4 @@
-import { SelectValueService, NotificationsService } from '@arpa/services';
-import { PersonService } from '../services/person.service';
+import { SelectValueService, NotificationsService, PersonService } from '@arpa/services';
 import { PersonLayoutComponent } from '../person-dialog/person-layout/person-layout.component';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SelectItem } from 'primeng/api';
