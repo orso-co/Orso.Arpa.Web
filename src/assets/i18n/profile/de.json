@@ -99,5 +99,11 @@
     "POLL_MISSING": "Bitte an der Terminumfrage teilnehmen!",
     "AWAITING_POLL": "Terminumfrage läuft noch",
     "AMBIGUOUS": "Unklar, ob Termin stattfindet"
+  },
+  "picture": {
+    "PROFILE_PICTURE": "Profilbild",
+    "UPLOAD_AVATAR": "Profilbild hochladen",
+    "REMOVE_AVATAR": "Profilbild entfernen",
+    "CHOOSE_AVATAR": "Profilbild auswählen"
   }
 }

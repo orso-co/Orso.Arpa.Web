@@ -45,6 +45,9 @@ import { MyAppointmentParticipationDialogComponent } from './my-appointment-part
 import { ProjectsModule } from '../projects/projects.module';
 import { ParticipationDialogModule } from '../participation-dialog/participation-dialog.module';
 import { TooltipModule } from 'primeng/tooltip';
+import { UserProfilePictureComponent } from './user-profile-picture/user-profile-picture.component';
+import { FileUploadModule } from 'primeng/fileupload';
+import { AvatarModule as PrimeNGAvatarModule } from 'primeng/avatar';
 
 @NgModule({
   declarations: [
@@ -60,6 +63,7 @@ import { TooltipModule } from 'primeng/tooltip';
     UserBankdataComponent,
     RibbonComponent,
     MyAppointmentParticipationDialogComponent,
+    UserProfilePictureComponent,
   ],
   imports: [
     CommonModule,
@@ -94,6 +98,9 @@ import { TooltipModule } from 'primeng/tooltip';
     ProjectsModule,
     ParticipationDialogModule,
     TooltipModule,
+    AvatarModule,
+    FileUploadModule,
+    PrimeNGAvatarModule,
   ],
   providers: [ProfileService, ProfileResolver, LocalizedDatePipe],
   exports: [RibbonComponent],
