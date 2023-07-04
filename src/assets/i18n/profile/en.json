@@ -25,6 +25,7 @@
   "MY_CONTACT_DATA": "My Contact Data",
   "MY_CONTACT_DATA_TOOLTIP": "Provide your phonenumbers, Email-adresses and URLs",
   "MY_BANK_DATA": "My Bank Data",
+  "MY_PROFILE_PICTURE": "My Profile Picture",
   "BIRTHPLACE": "Birthplace",
   "BIRTHNAME": "Birthname",
   "DATEOFBIRTH": "Date of birth",
@@ -32,6 +33,9 @@
   "MY_DATA_TOOLTIP": "Edit your name, about me, etc.",
   "FUTURE_APPOINTMENTS": "Future appointments",
   "PAST_APPOINTMENTS": "Passed appointments",
+  "UPLOAD_AVATAR": "Upload avatar",
+  "REMOVE_AVATAR": "Remove avatar",
+  "CHOOSE_AVATAR": "Choose avatar",
   "contact": {
     "NOTHING_SELECTED": "Nothing selected",
     "TYPE": "Type",

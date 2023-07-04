@@ -25,12 +25,16 @@
   "MY_CONTACT_DATA": "Kontaktdaten",
   "MY_CONTACT_DATA_TOOLTIP": "Hier kannst du Telefonnummern, Emailadressen und Links angeben",
   "MY_BANK_DATA": "Bankdaten",
+  "MY_PROFILE_PICTURE": "Profilbild",
   "BIRTHPLACE": "Geburtsort",
   "BIRTHNAME": "Geburtsname",
   "DATEOFBIRTH": "Geburtsdatum",
   "MY_DATA_TOOLTIP": "Hier kannst du deine Stammdaten ändern",
   "FUTURE_APPOINTMENTS": "Zukünftige Termine",
   "PAST_APPOINTMENTS": "Vergangene Termine",
+  "UPLOAD_AVATAR": "Profilbild hochladen",
+  "REMOVE_AVATAR": "Profilbild entfernen",
+  "CHOOSE_AVATAR": "Profilbild auswählen",
   "contact": {
     "NOTHING_SELECTED": "Nichts ausgewählt",
     "TYPE": "Typ",
@@ -99,11 +103,5 @@
     "POLL_MISSING": "Bitte an der Terminumfrage teilnehmen!",
     "AWAITING_POLL": "Terminumfrage läuft noch",
     "AMBIGUOUS": "Unklar, ob Termin stattfindet"
-  },
-  "picture": {
-    "PROFILE_PICTURE": "Profilbild",
-    "UPLOAD_AVATAR": "Profilbild hochladen",
-    "REMOVE_AVATAR": "Profilbild entfernen",
-    "CHOOSE_AVATAR": "Profilbild auswählen"
   }
 }
