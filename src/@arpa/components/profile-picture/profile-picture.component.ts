@@ -27,19 +27,23 @@ export class ProfilePictureComponent implements OnInit {
   }
 
   onUploadSuccess() {
-    this.notificationsService.success('PERSON_MODIFIED', 'persons');
+    this.notificationsService.success('PROFILE_PICTURE_CHANGED', 'profile');
+    this.reloadProfilePicture();
+  }
+  onDeletionSuccess() {
+    this.notificationsService.success('PROFILE_PICTURE_REMOVED', 'profile');
     this.reloadProfilePicture();
   }
 
   onUploadError() {
-    this.notificationsService.error('USER_PROFILE_UPDATE_ERROR', 'persons', false);
+    this.notificationsService.error('PROFILE_PICTURE_UPLOAD_ERROR', 'profile', false);
     this.reloadProfilePicture();
   }
 
   onRemove() {
     this.personService.deleteProfilePicture(this.person.id).subscribe(
       (succ) => {
-        this.onUploadSuccess();
+        this.onDeletionSuccess();
       },
       () => {
         this.onUploadError();
