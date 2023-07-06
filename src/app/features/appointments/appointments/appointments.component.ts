@@ -68,9 +68,13 @@ export class AppointmentsComponent {
       this.categoryOptions = data.categories || [];
     });
     this.sectionsSubscription = this.sectionService.sectionsAll$.subscribe((sections) => (this.sections = sections || []));
-    this.statusSubscription = this.enumService.getAppointmentStatusSelectItems().subscribe(items => this.statusOptions = items || []);
-    this.resultSubscription = this.enumService.getAppointmentParticipationResultSelectItems().subscribe(items => this.resultOptions = items || []);
-    this.predictionSubscription = this.enumService.getAppointmentParticipationPredictionSelectItems().subscribe(items => this.predictionOptions = items || []);
+    this.statusSubscription = this.enumService.getAppointmentStatusSelectItems().subscribe((items) => (this.statusOptions = items || []));
+    this.resultSubscription = this.enumService
+      .getAppointmentParticipationResultSelectItems()
+      .subscribe((items) => (this.resultOptions = items || []));
+    this.predictionSubscription = this.enumService
+      .getAppointmentParticipationPredictionSelectItems()
+      .subscribe((items) => (this.predictionOptions = items || []));
     this.langChangeListener = this.translate.onLangChange.subscribe(() => this.setOptions());
     this.setOptions();
   }
@@ -98,16 +102,26 @@ export class AppointmentsComponent {
     if (isAllDay && endAdjusted.getHours() !== 0) {
       endAdjusted.setDate(endAdjusted.getDate() + 1);
     }
+    const venue = this.getVenueById(appointment.venueId);
+    const venueName = venue ? venue.name : '';
 
     return {
       id: appointment.id,
-      //end: new Date(appointment.endTime),
       end: endAdjusted,
       start: new Date(appointment.startTime),
-      title: appointment.name,
+      title: `${appointment.name} - ${venueName}`,
       allDay: isAllDay,
       classNames: [appointment.status || ''],
     };
+  }
+
+  getVenueById(venueId: string | undefined): VenueDto | undefined {
+    if (!venueId) {
+      return undefined;
+    }
+
+    const venue = this.venues.find((v) => v.id === venueId);
+    return venue ? venue : undefined;
   }
 
   isAllDayEvent(appointment: AppointmentListDto | undefined): boolean {
