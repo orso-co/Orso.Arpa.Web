@@ -16,7 +16,7 @@ export class NewsWidgetComponent {
   constructor(private newsService: NewsService) {}
 
   loadData(event: LazyLoadEvent): void {
-    this.newsService.getAllNews(event.rows!, event.first!).subscribe((news) => {
+    this.newsService.getAllNews(event.rows!, Math.max(event.first!, 0)).subscribe((news) => {
       this.loadedNews.splice(event.first!, event.rows!, ...news);
       this.loadedNews = [...this.loadedNews];
     });
