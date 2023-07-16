@@ -53,6 +53,7 @@ import { AppointmentsRoutingModule } from '../appointments/appointments-routing.
 import { NewsWidgetComponent } from './news-widget/news-widget.component';
 import { DataViewModule } from 'primeng/dataview';
 import { VirtualScrollerModule } from 'primeng/virtualscroller';
+import { ProfileModule } from '../profile/profile.module';
 
 @NgModule({
   declarations: [
@@ -118,6 +119,7 @@ import { VirtualScrollerModule } from 'primeng/virtualscroller';
     MessageModule,
     DataViewModule,
     VirtualScrollerModule,
+    ProfileModule,
   ],
   exports: [ProjectsWidgetComponent],
 })

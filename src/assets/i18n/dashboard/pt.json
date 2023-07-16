@@ -1,24 +1,34 @@
 {
-"ACTIVE": "activo",
-"ASSIGN_ROLES": "Atribuir funções",
-"CANCELLED": "cancelado" ,
-"DELETE_USER": "Apagar utilizador",
-"DONE": "feito",
-"NOT_CONFIRMED": "não confirmado",
-"PAGE_TITLE": "Painel de controlo",
-"PENDING": "pendente",
-"PROCEED": "Tem a certeza que pretende eliminar permanentemente este utilizador?",
-"REGISTERED_SINCE": "Inscrito desde",
-"REGISTERED": "registado",
-"REGISTRATION_DATE": "inscrição",
-"STATE": "estado",
-"USER_DELETED": "O utilizador foi eliminado",
-"USER_MANAGEMENT": "gestão de utilizadores",
-"USER_ROLES_SET": "A atribuição de funções foi salva",
-"USERS": "utilizadores",
-"NEWS": "Notícia",
-"PROJECTSTATS": "Estatísticas do projeto",
-"GO_TO_MY_APPOINTMENTS": "Acesse \"meus eventos\""
+  "ACTIVE": "activo",
+  "ASSIGN_ROLES": "Atribuir funções",
+  "CANCELLED": "cancelado",
+  "DELETE_USER": "Apagar utilizador",
+  "DONE": "feito",
+  "NOT_CONFIRMED": "não confirmado",
+  "PAGE_TITLE": "Painel de controlo",
+  "PENDING": "pendente",
+  "PROCEED": "Tem a certeza que pretende eliminar permanentemente este utilizador?",
+  "REGISTERED_SINCE": "Inscrito desde",
+  "REGISTERED": "registado",
+  "REGISTRATION_DATE": "inscrição",
+  "STATE": "estado",
+  "USER_DELETED": "O utilizador foi eliminado",
+  "USER_MANAGEMENT": "gestão de utilizadores",
+  "USER_ROLES_SET": "A atribuição de funções foi salva",
+  "USERS": "utilizadores",
+  "NEWS": "Notícia",
+  "PROJECTSTATS": "Estatísticas do projeto",
+  "GO_TO_MY_APPOINTMENTS": "Acesse \"meus eventos\"",
+  "VENUE_NOT_CONFIRMED": "Local não confirmado",
 
-
+  "my-appointments": {
+    "PREDICTION": "Previsão",
+    "MY_COMMENT": "Meu comentário",
+    "EDIT_PREDICTION": "Editar previsão"
+  },
+  "appointmentRibbon": {
+    "POLL_MISSING": "Sem pesquisa",
+    "AWAITING_POLL": "Aguardando pesquisa",
+    "AMBIGUOUS": "Ambíguo"
+  }
 }

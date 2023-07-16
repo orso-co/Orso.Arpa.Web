@@ -1,56 +1,86 @@
-.date {
-  text-align: left;
-  width: 7.0rem;
-  border-right: 1px solid rgba(#fff, 0.25);
-  padding-right: 1rem;
-
-  .day {
-    font-size: 2em;
-    font-weight: 600;
-    display: block;
+.date-container {
+  @media (min-width: 768px) {
+    border-right: 1px solid rgba(#fff, 0.25);
   }
 
-  .day-name {
-    display: block;
-    font-size: 0.7em;
-    font-weight: 200;
-    padding-bottom: 0.3rem;
+  .status-badge {
+    @media (min-width: 768px) {
+      padding: 0.5rem 1rem 0 0;
+      width: 7rem;
+    }
   }
-  .month-name {
-    display: block;
-    font-size: 1.2em;
-    font-weight: 300;
-  }
-  .year {
-    display: block;
-    font-size: 0.7em;
-    font-weight: 100;
-  }
-  .time {
-    display: block;
-    opacity: .85;
-    font-size: .85em;
-    padding-bottom: 0.5rem;
 
-  }
-  .status {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 700;
-    font-style: italic;
-    opacity: 0.7;
-    letter-spacing: 0.1rem;
+  .date {
+    align-self: normal;
+    border-bottom: 1px solid rgba(#fff, 0.25);
+    padding: 0 0 0 0;
+    width: inherit;
+    flex-direction: row;
+    display: flex;
+
+    @media (max-width: 767px) {
+      .day,
+      .day-name,
+      .month-name,
+      .year,
+      .time {
+        margin-right: 0.3rem;
+        color: var(--primary-color);
+        font-weight: 600;
+      }
+
+      .day:after {
+        content: '.';
+      }
+
+      .day-name:after {
+        content: ',';
+      }
+    }
+
+    @media (min-width: 768px) {
+      text-align: left;
+      width: 5rem;
+      padding: 0.5rem 1rem 0 0;
+      border-bottom: none;
+      flex-direction: column;
+
+      .day {
+        font-size: 2em;
+        font-weight: 600;
+      }
+
+      .day-name {
+        font-size: 0.8rem;
+        font-weight: 200;
+        padding-bottom: 0.3rem;
+      }
+      .month-name {
+        font-size: 1.2em;
+        font-weight: 300;
+      }
+      .year {
+        font-size: 0.7em;
+        font-weight: 100;
+      }
+      .time {
+        opacity: 0.85;
+        font-size: 1em;
+        padding-bottom: 0.5rem;
+      }
+    }
   }
 }
 
 .details {
-  flex-grow: 1;
-  line-height: 1.5em;
+  flex: 1;
+  height: 100%;
 
   .name {
     display: block;
-    font-weight: 600;
     line-height: 2em;
+    font-size: 1rem;
+    font-weight: 600;
 
     .p-badge {
       display: inline;
@@ -62,24 +92,25 @@
       margin-right: 1rem;
     }
   }
+  .project-title {
+    display: block;
+    opacity: 0.4;
+    font-style: italic;
+    font-size: 0.8rem;
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: -0.5rem;
+  }
+
+  .label {
+    font-size: small;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+    opacity: 0.7;
+  }
 }
 
-.projects {
-  display: block;
-  opacity: .60;
-  font-size: 0.8em;
-}
-.publicDetails {
-  font-size: 0.9em;
-  font-weight: 30;
-  color: dodgerblue;
-  font-style: italic;
-}
-
-.headlineinfo {
-  font-size: 1.0em;
-  opacity: 0.50;
-}
 .venue {
   flex-grow: 1;
   line-height: 1.5em;
@@ -88,3 +119,18 @@
   font-weight: 300;
 }
 
+.venue-container {
+  background-color: var(--surface-d);
+  border-radius: 3px;
+}
+
+.p-chip-info {
+  margin-top: 1.5rem !important;
+  font-size: 0.7rem !important;
+}
+
+.list-item {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
