@@ -1,5 +1,5 @@
 import { TranslateService } from '@ngx-translate/core';
-import { MyAppointmentParticipationDialogComponent } from './../my-appointment-participation-dialog/my-appointment-participation-dialog.component';
+import { MyAppointmentParticipationDialogComponent } from '../my-appointment-participation-dialog/my-appointment-participation-dialog.component';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Component } from '@angular/core';
 import { Observable, of } from 'rxjs';
@@ -67,7 +67,7 @@ export class AppointmentsComponent {
           .pipe(first())
           .subscribe(() => {
             myAppointmentDto.prediction = result.prediction;
-            myAppointmentDto.commentByPerformerInner = result.commentByPerformerInner
+            myAppointmentDto.commentByPerformerInner = result.commentByPerformerInner;
             this.notificationsService.success('profile.PREDICTION_SET');
           });
       }
