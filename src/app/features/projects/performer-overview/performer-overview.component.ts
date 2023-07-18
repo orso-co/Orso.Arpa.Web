@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { DocumentNode } from 'graphql';
-import { ArpaTableColumnDirective, ColumnDefinition } from '../../../../@arpa/components/table/table.component';
+import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
 import { ProjectParticipationDto } from '@arpa/models';
 import { DialogService, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { TranslateService } from '@ngx-translate/core';
@@ -10,6 +10,7 @@ import { first, map } from 'rxjs/operators';
 import { ParticipationDialogComponent } from '../../participation-dialog/participation-dialog.component';
 import { PerformersQuery } from './performers.graphql';
 import { Table } from 'primeng/table';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'arpa-performer-overview',
@@ -68,9 +69,6 @@ export class PerformerOverviewComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.reloadProjectDetails();
   }
-  exportCSV() {
-    this.table.exportCSV({ title: 'Performers Overview', exportColumns: this.columns });
-  }
 
   private reloadProjectDetails(): void {
     const variables = { projectId: this.projectId };
@@ -95,11 +93,11 @@ export class PerformerOverviewComponent implements OnInit, OnDestroy {
         projectAppointments.forEach((appointmentWrapper: Record<string, any>) => {
           const appointment = appointmentWrapper.appointment;
 
-          const startTime = new Date(appointment.startTime).toDateString();
+          const startTime = formatDate(new Date(appointment.startTime), 'dd.MM.yy HH:mm', 'en');
           this.columns = [
             ...this.columns,
             {
-              label: `${appointment.name} ${startTime}`,
+              label: `${startTime}`,
               property: `${appointment.id}`,
               type: 'text',
             },
@@ -108,7 +106,7 @@ export class PerformerOverviewComponent implements OnInit, OnDestroy {
           appointmentIds.push(appointment.id);
           const participation = (appointment.appointmentParticipations || [])?.[0];
 
-          const key = `${participation.personId}_${appointment.id}`;
+          const key = `${participation?.personId}_${appointment.id}`;
           participationByPersonAndAppointment[key] = participation?.prediction || '--';
         });
 

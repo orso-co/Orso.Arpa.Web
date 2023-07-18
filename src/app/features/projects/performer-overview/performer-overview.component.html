@@ -1,13 +1,10 @@
 <arpa-table
-  #dt
   [columns]="columns"
   [values]="tableData"
   (filterEvents)="onTableFiltered($event)"
   (rowClickEvents)="openParticipationDialog($event)"
-></arpa-table>
+>
+</arpa-table>
 <div *ngIf="filteredDataCount > 0">
   <h4 style="text-align: left">{{ 'RESULTS' | translate }}: {{ filteredDataCount }}</h4>
-</div>
-<div style="text-align: right">
-  <button pButton type="button" label="Export" icon="pi pi-file-o" (click)="exportCSV()"></button>
 </div>
