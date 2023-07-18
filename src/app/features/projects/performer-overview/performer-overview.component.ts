@@ -1,7 +1,7 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { DocumentNode } from 'graphql';
-import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
+import { ArpaTableColumnDirective, ColumnDefinition } from '../../../../@arpa/components/table/table.component';
 import { ProjectParticipationDto } from '@arpa/models';
 import { DialogService, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,6 +9,7 @@ import { ProjectService } from '@arpa/services';
 import { first, map } from 'rxjs/operators';
 import { ParticipationDialogComponent } from '../../participation-dialog/participation-dialog.component';
 import { PerformersQuery } from './performers.graphql';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'arpa-performer-overview',
@@ -16,6 +17,7 @@ import { PerformersQuery } from './performers.graphql';
   styleUrls: ['./performer-overview.component.scss'],
 })
 export class PerformerOverviewComponent implements OnInit, OnDestroy {
+  @ViewChild('dt') table: Table;
   private subscriptions: Subscription = Subscription.EMPTY;
 
   projectId: string;
@@ -66,6 +68,9 @@ export class PerformerOverviewComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.reloadProjectDetails();
   }
+  exportCSV() {
+    this.table.exportCSV({ title: 'Performers Overview', exportColumns: this.columns });
+  }
 
   private reloadProjectDetails(): void {
     const variables = { projectId: this.projectId };
@@ -103,15 +108,46 @@ export class PerformerOverviewComponent implements OnInit, OnDestroy {
         this.finalResultsKeys = Object.keys(this.finalResultsCount).map((key) =>
           this.translate.instant(`projectParticipationStatusInternal.${key}`)
         );
-        // added via chatgpt to dynamically add columns for each appointment:
-        const numAppointments = this.project?.projectParticipations[0]?.appointmentParticipations?.length || 0;
-        for (let i = 0; i < numAppointments; i++) {
-          this.columns.push({
-            label: `Appointment ${i + 1}`,
-            property: `appointmentParticipations[${i}].appointment.name`,
-            type: 'text',
-          });
-        }
+
+        const projectAppointments = this.project?.projectAppointments || [];
+        const appointmentParticipations: {
+          name: string;
+          startTime: string;
+          id: string;
+          participation: {
+            id: string;
+            prediction: string;
+          };
+        }[] = projectAppointments.map((appointmentwrapper: Record<string, any>) => {
+          const appointmentParticipation: {
+            name: string;
+            startTime: string;
+            id: string;
+            participation: {
+              id: string;
+              prediction: string;
+            };
+          } = {} as any;
+          const appointment = appointmentwrapper.appointment;
+          appointmentParticipation.name = appointment.name;
+          appointmentParticipation.startTime = appointment.startTime;
+          appointmentParticipation.id = appointment.id;
+          const participation = (appointment.appointmentParticipations || [])?.[0];
+          appointmentParticipation.participation = participation;
+          return appointmentParticipation;
+        });
+        appointmentParticipations.forEach((appointment) => {
+          this.columns = [
+            ...this.columns,
+            {
+              label: `${appointment.name} ${appointment.startTime}`,
+              property: `appointmentParticipations[0].appointment.name`,
+              type: 'text',
+            },
+          ];
+          console.log('appointment', appointment, this.project);
+        });
+
         this.ready = true;
         this.cdr.detectChanges();
       });

@@ -43,9 +43,11 @@ export const PerformersQuery = gql`
           appointment {
             id
             name
+            startTime
             appointmentParticipations {
               id
               prediction
+              personId
             }
           }
         }
