@@ -1,0 +1,10 @@
+<arpa-table
+  [columns]="columns"
+  [values]="tableData"
+  (filterEvents)="onTableFiltered($event)"
+  (rowClickEvents)="openParticipationDialog($event)"
+>
+</arpa-table>
+<div *ngIf="filteredDataCount > 0">
+  <h4 style="text-align: left">{{ 'RESULTS' | translate }}: {{ filteredDataCount }}</h4>
+</div>

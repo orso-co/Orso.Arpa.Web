@@ -52,5 +52,6 @@
   "CONFIRMED_RESULTS": "Résultats confirmés",
   "CHOIR": "Réponses du chœur",
   "ORCHESTRA": "Réponses d'orchestre",
-  "IS_HIDDEN_FOR_PERFORMERS": "Est caché pour les artistes-interprètes"
+  "IS_HIDDEN_FOR_PERFORMERS": "Est caché pour les artistes-interprètes",
+  "PERFORMER_OVERVIEW": "Vue d'ensemble des artistes-interprètes"
 }

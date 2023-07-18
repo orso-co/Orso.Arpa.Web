@@ -17,9 +17,9 @@ import { CalendarModule } from 'primeng/calendar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
 import { LanguageService } from '@arpa/services';
-import { GraphQlFeedModule } from '../../../@arpa/components/graph-ql-feed/graph-ql-feed.module';
-import { TableModule } from '../../../@arpa/components/table/table.module';
-import { FormFieldModule } from '../../../@arpa/components/form-field/form-field.module';
+import { GraphQlFeedModule } from '@arpa/components';
+import { TableModule } from '@arpa/components';
+import { FormFieldModule } from '@arpa/components';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -28,11 +28,13 @@ import { TabViewModule } from 'primeng/tabview';
 import { TagModule } from 'primeng/tag';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
-import { ChartModule } from '../../../@arpa/components/chart/chart.module';
+import { ChartModule } from '@arpa/components';
 import { ParticipationDialogModule } from '../participation-dialog/participation-dialog.module';
 import { ProjectAppointmentsComponent } from './project-layout/project-appointments/project-appointments.component';
 import { CheckboxModule } from 'primeng/checkbox';
 import { AcceptedParticipantsComponent } from './project-layout/accepted-participants/accepted-participants.component';
+import { OverviewLayoutComponent } from './overview-layout/overview-layout.component';
+import { PerformerOverviewComponent } from './performer-overview/performer-overview.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { AcceptedParticipantsComponent } from './project-layout/accepted-partici
     ProjectUrlsComponent,
     ProjectAppointmentsComponent,
     AcceptedParticipantsComponent,
+    OverviewLayoutComponent,
+    PerformerOverviewComponent,
   ],
   imports: [
     CommonModule,
