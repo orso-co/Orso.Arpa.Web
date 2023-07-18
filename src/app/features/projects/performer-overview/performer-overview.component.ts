@@ -83,75 +83,80 @@ export class PerformerOverviewComponent implements OnInit, OnDestroy {
       .pipe(map((result: any) => result.data?.projects?.items?.[0]))
       .subscribe((result: any) => {
         this.project = result;
-        const participations = this.project?.projectParticipations || [];
-        participations.forEach((participation: Record<string, any>) => {
-          if (participation.participationStatusInner) {
-            if (this.innerStatsCount[participation.participationStatusInner]) {
-              this.innerStatsCount[participation.participationStatusInner] += 1;
-            } else {
-              this.innerStatsCount[participation.participationStatusInner] = 1;
-            }
-            this.totalReplies += 1;
-          }
-          this.finalResultsCount[participation.participationStatusResult] =
-            (this.finalResultsCount[participation.participationStatusResult] || 0) + 1;
-        });
 
-        this.tableData.next([...participations]);
-        this.totalInvited = participations.length;
-
-        this.innerStatsValues = Object.values(this.innerStatsCount);
-        this.innerStatsKeys = Object.keys(this.innerStatsCount).map((key) =>
-          this.translate.instant(`projectParticipationStatusInner.${key}`)
-        );
-        this.finalResultsValues = Object.values(this.finalResultsCount);
-        this.finalResultsKeys = Object.keys(this.finalResultsCount).map((key) =>
-          this.translate.instant(`projectParticipationStatusInternal.${key}`)
-        );
-
+        const participations = [...(this.project?.projectParticipations || [])];
         const projectAppointments = this.project?.projectAppointments || [];
-        const appointmentParticipations: {
-          name: string;
-          startTime: string;
-          id: string;
-          participation: {
-            id: string;
-            prediction: string;
-          };
-        }[] = projectAppointments.map((appointmentwrapper: Record<string, any>) => {
-          const appointmentParticipation: {
-            name: string;
-            startTime: string;
-            id: string;
-            participation: {
-              id: string;
-              prediction: string;
-            };
-          } = {} as any;
-          const appointment = appointmentwrapper.appointment;
-          appointmentParticipation.name = appointment.name;
-          appointmentParticipation.startTime = appointment.startTime;
-          appointmentParticipation.id = appointment.id;
-          const participation = (appointment.appointmentParticipations || [])?.[0];
-          appointmentParticipation.participation = participation;
-          return appointmentParticipation;
-        });
-        appointmentParticipations.forEach((appointment) => {
+
+        this.updateInnerStats(participations);
+
+        const participationByPersonAndAppointment: { [personIdAndAppointmentId: string]: any } = {};
+        const appointmentIds: string[] = [];
+
+        projectAppointments.forEach((appointmentWrapper: Record<string, any>) => {
+          const appointment = appointmentWrapper.appointment;
+
+          const startTime = new Date(appointment.startTime).toDateString();
           this.columns = [
             ...this.columns,
             {
-              label: `${appointment.name} ${appointment.startTime}`,
-              property: `appointmentParticipations[0].appointment.name`,
+              label: `${appointment.name} ${startTime}`,
+              property: `${appointment.id}`,
               type: 'text',
             },
           ];
-          console.log('appointment', appointment, this.project);
+
+          appointmentIds.push(appointment.id);
+          const participation = (appointment.appointmentParticipations || [])?.[0];
+
+          const key = `${participation.personId}_${appointment.id}`;
+          participationByPersonAndAppointment[key] = participation?.prediction || '--';
         });
+
+        const tableData = participations.map((participation: any) => {
+          // clone participation into participationClone
+          const participationClone = { ...participation };
+          const personId = participationClone?.musicianProfile?.person?.id;
+
+          appointmentIds.forEach((appointmentId) => {
+            participationClone[appointmentId] = {};
+
+            const key = `${personId}_${appointmentId}`;
+            const value = participationByPersonAndAppointment[key] || '--';
+            participationClone[appointmentId] = value;
+          });
+          return participationClone;
+        });
+
+        this.tableData.next([...tableData]);
+        this.totalInvited = tableData.length;
 
         this.ready = true;
         this.cdr.detectChanges();
       });
   }
+
+  private updateInnerStats(participations: any[]): void {
+    participations.forEach((participation: Record<string, any>) => {
+      if (participation.participationStatusInner) {
+        if (this.innerStatsCount[participation.participationStatusInner]) {
+          this.innerStatsCount[participation.participationStatusInner] += 1;
+        } else {
+          this.innerStatsCount[participation.participationStatusInner] = 1;
+        }
+        this.totalReplies += 1;
+      }
+      this.finalResultsCount[participation.participationStatusResult] =
+        (this.finalResultsCount[participation.participationStatusResult] || 0) + 1;
+    });
+
+    this.innerStatsValues = Object.values(this.innerStatsCount);
+    this.innerStatsKeys = Object.keys(this.innerStatsCount).map((key) => this.translate.instant(`projectParticipationStatusInner.${key}`));
+    this.finalResultsValues = Object.values(this.finalResultsCount);
+    this.finalResultsKeys = Object.keys(this.finalResultsCount).map((key) =>
+      this.translate.instant(`projectParticipationStatusInternal.${key}`)
+    );
+  }
+
   onTableFiltered(event: any): void {
     this.filteredDataCount = event.filteredValue.length;
   }
