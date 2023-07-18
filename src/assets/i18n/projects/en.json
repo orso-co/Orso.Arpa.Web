@@ -52,5 +52,6 @@
   "TOTAL_FILTERED": "Filtered Records",
   "CHOIR": "Choir Responses",
   "ORCHESTRA": "Orchestra Responses",
-  "IS_HIDDEN_FOR_PERFORMERS": "Is hidden for performers"
+  "IS_HIDDEN_FOR_PERFORMERS": "Is hidden for performers",
+  "PERFORMER_OVERVIEW": "Performers appointments overview"
 }

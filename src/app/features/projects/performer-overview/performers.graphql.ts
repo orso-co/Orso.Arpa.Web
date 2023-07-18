@@ -3,13 +3,6 @@ import { gql } from 'apollo-angular';
 export const PerformersQuery = gql`
   query Projects($projectId: UUID) {
     projects(where: { id: { equals: $projectId } }) {
-      pageInfo {
-        hasNextPage
-        hasPreviousPage
-      }
-
-      totalCount
-
       items {
         id
         title
@@ -22,8 +15,6 @@ export const PerformersQuery = gql`
           id
         }
         projectParticipations {
-          participationStatusInner
-          participationStatusInternal
           participationStatusResult
           invitationStatus
           commentByStaffInner
@@ -47,7 +38,9 @@ export const PerformersQuery = gql`
               displayName
             }
           }
-          appointments {
+        }
+        projectAppointments {
+          appointment {
             id
             name
             appointmentParticipations {

@@ -52,5 +52,6 @@
   "TOTAL_FILTERED": "Filterergebnis",
   "CHOIR": "Chor Rückmeldungen",
   "ORCHESTRA": "Orchester Rückmeldungen",
-  "IS_HIDDEN_FOR_PERFORMERS": "Für Mitwirkende unsichtbar"
+  "IS_HIDDEN_FOR_PERFORMERS": "Für Mitwirkende unsichtbar",
+  "PERFORMER_OVERVIEW": "Terminstatus aller Mitwirkenden"
 }

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { DocumentNode } from 'graphql';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
@@ -57,6 +57,7 @@ export class PerformerOverviewComponent implements OnInit, OnDestroy {
     private config: DynamicDialogConfig,
     private translate: TranslateService,
     private dialogService: DialogService,
+    private cdr: ChangeDetectorRef,
     private projectService: ProjectService
   ) {
     this.projectId = this.config.data.project.id;
@@ -102,15 +103,17 @@ export class PerformerOverviewComponent implements OnInit, OnDestroy {
         this.finalResultsKeys = Object.keys(this.finalResultsCount).map((key) =>
           this.translate.instant(`projectParticipationStatusInternal.${key}`)
         );
-        const numAppointments = this.project?.projectParticipations[0]?.appointmentParticipations.length || 0;
+        // added via chatgpt to dynamically add columns for each appointment:
+        const numAppointments = this.project?.projectParticipations[0]?.appointmentParticipations?.length || 0;
         for (let i = 0; i < numAppointments; i++) {
           this.columns.push({
             label: `Appointment ${i + 1}`,
-            property: `appointmentParticipations[${i}].appointment.title`,
+            property: `appointmentParticipations[${i}].appointment.name`,
             type: 'text',
           });
         }
         this.ready = true;
+        this.cdr.detectChanges();
       });
   }
   onTableFiltered(event: any): void {
