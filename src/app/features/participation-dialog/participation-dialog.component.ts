@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ProjectParticipationDto } from '@arpa/models';
+import { MuproService } from '../mupro/services/mupro.service';
 
 @Component({
   selector: 'arpa-participation-dialog',
@@ -10,10 +11,15 @@ import { ProjectParticipationDto } from '@arpa/models';
 export class ParticipationDialogComponent implements OnInit {
   participation: ProjectParticipationDto;
 
-  constructor(public config: DynamicDialogConfig, private ref: DynamicDialogRef) {}
+  constructor(private config: DynamicDialogConfig, private ref: DynamicDialogRef, private muproService: MuproService) {}
 
   ngOnInit() {
-    this.participation = this.config.data.projectParticipation;
+    const configData = this.config.data.projectParticipation;
+    const projectId = configData.project!.id || '';
+    const muproId = configData.musicianProfile!.id || '';
+    this.muproService.getParticipationInProject(muproId, projectId).subscribe((response) => {
+      this.participation = response;
+    });
   }
 
   getName() {

@@ -14,11 +14,12 @@ import { InputTextModule } from 'primeng/inputtext';
 import { BadgeModule } from 'primeng/badge';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { StepsModule } from 'primeng/steps';
-import { FormFieldModule } from '../../../@arpa/components/form-field/form-field.module';
+import { FormFieldModule } from '@arpa/components';
 import { TabViewModule } from 'primeng/tabview';
 import { AppointmentParticipationsComponent } from './appointment-participations/appointment-participations.component';
-import { TableModule } from '../../../@arpa/components/table/table.module';
+import { TableModule } from '@arpa/components';
 import { LocalizedDateModule } from '../../../@arpa/pipes/localized-date/localized-date.module';
+import { LoadingModule } from '@arpa/components';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { LocalizedDateModule } from '../../../@arpa/pipes/localized-date/localiz
     TabViewModule,
     TableModule,
     LocalizedDateModule,
+    LoadingModule,
   ],
   declarations: [ParticipationDialogComponent, ParticipationEditComponent, AppointmentParticipationsComponent],
   exports: [ParticipationDialogComponent, AppointmentParticipationsComponent],

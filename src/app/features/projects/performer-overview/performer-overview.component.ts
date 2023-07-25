@@ -93,7 +93,7 @@ export class PerformerOverviewComponent implements OnInit, OnDestroy {
         projectAppointments.forEach((appointmentWrapper: Record<string, any>) => {
           const appointment = appointmentWrapper.appointment;
 
-          const startTime = formatDate(new Date(appointment.startTime), 'dd.MM.yy HH:mm', 'en');
+          const startTime = formatDate(new Date(appointment.startTime), 'dd.MM.yy HH:mm', 'de-DE');
           this.columns = [
             ...this.columns,
             {
@@ -104,10 +104,10 @@ export class PerformerOverviewComponent implements OnInit, OnDestroy {
           ];
 
           appointmentIds.push(appointment.id);
-          const participation = (appointment.appointmentParticipations || [])?.[0];
-
-          const key = `${participation?.personId}_${appointment.id}`;
-          participationByPersonAndAppointment[key] = participation?.prediction || '--';
+          (appointment.appointmentParticipations || []).forEach((participation: any) => {
+            const key = `${participation?.personId}_${appointment.id}`;
+            participationByPersonAndAppointment[key] = participation?.prediction || '--';
+          });
         });
 
         const tableData = participations.map((participation: any) => {
