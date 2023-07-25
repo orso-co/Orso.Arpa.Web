@@ -1,25 +1,34 @@
 {
-    "ACTIVE": "Actif",
-    "ASSIGN_ROLES": "Assigner les rôles",
-    "CANCELLED": "Annulé",
-    "DELETE_USER": "Supprimer l'utilisateur",
-    "DONE": "Fini",
-    "NOT_CONFIRMED": "Non-confirmé",
-    "PAGE_TITLE": "Tableau de bord",
-    "PENDING": "Attendant",
-    "PROCEED": "Êtes-vous sûr de vouloir supprimer définitivement cet utilisateur ?",
-    "REGISTERED": "Inscrit",
-    "REGISTERED_SINCE": "Inscrit depuis",
-    "REGISTRATION_DATE": "Date d'inscription",
-    "STATE": "Statut",
-    "USERS": "Utilisateurs",
-    "USER_DELETED": "L'utilisateur a été supprimé",
-    "USER_MANAGEMENT": "Administration d'utilisateurs",
-    "USER_ROLES_SET": "L'attribution des rôles a été sauvegardée",
-    "NEWS": "Nouvelles",
-    "PROJECTSTATS": "Statistiques du projet",
-    "GO_TO_MY_APPOINTMENTS": "Allez dans \"mes dates\""
+  "ACTIVE": "Actif",
+  "ASSIGN_ROLES": "Assigner les rôles",
+  "CANCELLED": "Annulé",
+  "DELETE_USER": "Supprimer l'utilisateur",
+  "DONE": "Fini",
+  "NOT_CONFIRMED": "Non-confirmé",
+  "PAGE_TITLE": "Tableau de bord",
+  "PENDING": "Attendant",
+  "PROCEED": "Êtes-vous sûr de vouloir supprimer définitivement cet utilisateur ?",
+  "REGISTERED": "Inscrit",
+  "REGISTERED_SINCE": "Inscrit depuis",
+  "REGISTRATION_DATE": "Date d'inscription",
+  "STATE": "Statut",
+  "USERS": "Utilisateurs",
+  "USER_DELETED": "L'utilisateur a été supprimé",
+  "USER_MANAGEMENT": "Administration d'utilisateurs",
+  "USER_ROLES_SET": "L'attribution des rôles a été sauvegardée",
+  "NEWS": "Nouvelles",
+  "PROJECTSTATS": "Statistiques du projet",
+  "GO_TO_MY_APPOINTMENTS": "Allez dans \"mes dates\"",
+  "VENUE_NOT_CONFIRMED": "Lieu non confirmé",
 
-
+  "my-appointments": {
+    "PREDICTION": "Prédiction",
+    "MY_COMMENT": "Mon commentaire",
+    "EDIT_PREDICTION": "Modifier la prédiction"
+  },
+  "appointmentRibbon": {
+    "POLL_MISSING": "Sondage manquant",
+    "AWAITING_POLL": "En attente de sondage",
+    "AMBIGUOUS": "Date ambiguë"
+  }
 }
-
