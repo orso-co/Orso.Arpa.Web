@@ -1,26 +1,31 @@
-<h3 class="performer">{{ getName() }}</h3>
-<h4 class="project">{{ participation.project?.title }}</h4>
-<p-tabView>
-  <p-tabPanel [header]="getInstrument()">
+<ng-container *ngIf="!participation; else loaded">
+  <arpa-loading></arpa-loading>
+</ng-container>
 
-    <div class="columns">
-      <div>
-        <h4>{{ 'PROJECT_PARTICIPATION_STATUS' | translate }}:</h4>
-        <arpa-participation-edit [participation]="participation" [projectId]="participation.project!.id!"> </arpa-participation-edit>
+<ng-template #loaded>
+  <h3 class="performer">{{ getName() }}</h3>
+  <h4 class="project">{{ participation.project?.title }}</h4>
+  <p-tabView>
+    <p-tabPanel [header]="getInstrument()">
+      <div class="columns">
+        <div>
+          <h4>{{ 'PROJECT_PARTICIPATION_STATUS' | translate }}:</h4>
+          <arpa-participation-edit [participation]="participation" [projectId]="participation.project!.id!"> </arpa-participation-edit>
+        </div>
+        <div class="vertical"></div>
+        <div>
+          <h4>{{ 'APPOINTMENTS_PARTICIPATIONS_STATUS' | translate }}:</h4>
+          <arpa-appointment-participations
+            [participation]="participation"
+            [projectId]="participation.project!.id!"
+            [musicianId]="participation.musicianProfile!.id!"
+          >
+          </arpa-appointment-participations>
+        </div>
       </div>
-      <div class="vertical"></div>
-      <div>
-        <h4>{{ 'APPOINTMENTS_PARTICIPATIONS_STATUS' | translate }}:</h4>
-        <arpa-appointment-participations
-          [participation]="participation"
-          [projectId]="participation.project!.id!"
-          [musicianId]="participation.musicianProfile!.id!"
-        >
-        </arpa-appointment-participations>
-      </div>
-    </div>
-  </p-tabPanel>
-</p-tabView>
+    </p-tabPanel>
+  </p-tabView>
+</ng-template>
 
 <div class="p-formgroup-inline p-jc-between">
   <div class="p-text-right">
