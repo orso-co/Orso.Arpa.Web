@@ -6,28 +6,30 @@
     }
 
     .AMBIGUOUS {
-      background-color: yellow;
+      background-color: darkorange;
+      color: black;
     }
     .CONFIRMED {
-      background-color: green;
+      background-color: lightgreen;
+      color: black;
     }
     .SCHEDULED {
-      background-color: orangered;
+      background-color: cornflowerblue;
+      color: black;
     }
     .AWAITING_POLL {
-      background-color: red;
+      background-color: palevioletred;
+      color: black;
     }
     .REFUSED {
       background-color: lightgrey;
+      color: black;
     }
   }
 
-    @media screen and (max-width: 50em) {
-      .fc-toolbar {
-        flex-direction: column;
-      }
+  @media screen and (max-width: 50em) {
+    .fc-toolbar {
+      flex-direction: column;
     }
   }
-
-
-
+}

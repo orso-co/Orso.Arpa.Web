@@ -1,4 +1,4 @@
-import { AppointmentStatus } from '@arpa/models';
+import { AppointmentDto, AppointmentListDto, AppointmentStatus, DateRange, ProjectDto, SectionDto, VenueDto } from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
@@ -6,13 +6,13 @@ import { SelectItem } from 'primeng/api';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import listPlugin from '@fullcalendar/list';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Observable, Subscription } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 import { AppointmentService } from '../services/appointment.service';
-import { SectionService, NotificationsService, EnumService } from '@arpa/services';
+import { EnumService, NotificationsService, SectionService } from '@arpa/services';
 import { EditAppointmentComponent } from '../edit-appointment/edit-appointment.component';
-import { ProjectDto, VenueDto, AppointmentDto, SectionDto, DateRange, AppointmentListDto } from '@arpa/models';
 import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator';
 
 export interface CalendarEvent {
@@ -22,6 +22,7 @@ export interface CalendarEvent {
   end: Date;
   title: string;
   classNames: string[];
+  venueId?: string;
 }
 
 @Component({
@@ -112,6 +113,7 @@ export class AppointmentsComponent {
       title: `${appointment.name} - ${venueName}`,
       allDay: isAllDay,
       classNames: [appointment.status || ''],
+      venueId: appointment.venueId,
     };
   }
 
@@ -167,6 +169,8 @@ export class AppointmentsComponent {
 
   getRange(viewName: string): DateRange {
     switch (viewName) {
+      case 'listMonth':
+        return DateRange.MONTH;
       case 'dayGridMonth':
         return DateRange.MONTH;
       case 'timeGridWeek':
@@ -230,7 +234,7 @@ export class AppointmentsComponent {
   private setOptions(): void {
     this.fullCalendarOptions$ = this.translate.get('NEW').pipe(
       map((translation) => ({
-        plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+        plugins: [dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin],
         calendarWeekends: true,
         defaultView: 'dayGridMonth',
         defaultDate: new Date(),
@@ -247,6 +251,14 @@ export class AppointmentsComponent {
         eventClick: (e: any) => {
           this.openEditDialog(e.event.id);
         },
+        eventContent: (arg: any) => {
+          const event: CalendarEvent = arg.event.extendedProps;
+          const venue = this.getVenueById(event.venueId);
+          const venueName = venue ? venue.name : '';
+          return {
+            html: `<b>${arg.event.title}</b><br/>${venueName}<br/>`,
+          };
+        },
         customButtons: {
           btnAddAppointment: {
             text: translation,
@@ -256,8 +268,8 @@ export class AppointmentsComponent {
           },
         },
         header: {
-          left: 'dayGridMonth,timeGridWeek,timeGridDay, prevYear,prev,next,nextYear, today',
-          center: 'title',
+          left: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth, title',
+          center: 'today,prevYear,prev,next,nextYear',
           right: 'btnAddAppointment',
         },
         editable: true,
