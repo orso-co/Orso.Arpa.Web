@@ -2,7 +2,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService } from 'primeng/api';
 import { VenueService, NotificationsService } from '@arpa/services';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { first, map } from 'rxjs/operators';
 import { VenueDto } from 'src/@arpa/models/venueDto';
@@ -15,11 +15,11 @@ import { VenueDto } from 'src/@arpa/models/venueDto';
 export class VenuesComponent implements OnInit {
   venues: any[] = [];
   selectedVenue: any | undefined;
-  formGroup: FormGroup;
+  formGroup: UntypedFormGroup;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    formBuilder: FormBuilder,
+    formBuilder: UntypedFormBuilder,
     private venueService: VenueService,
     private notificationService: NotificationsService,
     private confirmationService: ConfirmationService,

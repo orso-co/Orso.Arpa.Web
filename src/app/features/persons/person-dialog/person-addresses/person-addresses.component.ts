@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { AddressDto, PersonDto } from '@arpa/models';
 import { ColumnDefinition } from '../../../../../@arpa/components/table/table.component';
 import { AddressService } from '../services/address.service';
@@ -14,7 +14,7 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./person-addresses.component.scss'],
 })
 export class PersonAddressesComponent implements OnInit, OnDestroy {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   tableData: BehaviorSubject<any> = new BehaviorSubject([]);
   private _tableData: Array<any>;
 
@@ -35,7 +35,7 @@ export class PersonAddressesComponent implements OnInit, OnDestroy {
   ];
   private subscription: Subscription;
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private addressService: AddressService,
     private notificationsService: NotificationsService,
     private selectValueService: SelectValueService

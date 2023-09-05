@@ -1,7 +1,7 @@
 import { SelectValueService, NotificationsService } from '@arpa/services';
 import { ContactDetailDto, ContactDetailKey, PersonDto } from '@arpa/models';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ColumnDefinition } from 'src/@arpa/components/table/table.component';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { first, map } from 'rxjs/operators';
@@ -14,7 +14,7 @@ import { ContactService } from '../services/contact.service';
   styleUrls: ['./person-contactdata.component.scss'],
 })
 export class PersonContactdataComponent implements OnInit, OnDestroy {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   tableData: BehaviorSubject<any> = new BehaviorSubject([]);
   private _tableData: Array<any>;
   @Input() person: PersonDto | null;
@@ -39,7 +39,7 @@ export class PersonContactdataComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private contactService: ContactService,
     private notificationsService: NotificationsService,
     private selectValueService: SelectValueService

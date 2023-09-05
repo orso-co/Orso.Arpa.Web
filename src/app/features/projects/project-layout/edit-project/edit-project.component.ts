@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
@@ -29,11 +29,11 @@ export class EditProjectComponent implements OnInit {
     { label: this.translate.instant('NO'), value: false },
   ];
 
-  form: FormGroup;
+  form: UntypedFormGroup;
   parentProjectList = new BehaviorSubject([]);
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public ref: DynamicDialogRef,
     private translate: TranslateService,
     private enumService: EnumService
@@ -60,8 +60,6 @@ export class EditProjectComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-
-
     if (!this.isNew) {
       this.form.patchValue({
         ...this.project,

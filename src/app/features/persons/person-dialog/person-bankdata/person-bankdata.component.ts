@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { SelectItem } from 'primeng/api';
 import { ColumnDefinition } from '../../../../../@arpa/components/table/table.component';
@@ -14,7 +14,7 @@ import { first, map } from 'rxjs/operators';
   styleUrls: ['./person-bankdata.component.scss'],
 })
 export class PersonBankdataComponent implements OnInit, OnDestroy {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   tableData: BehaviorSubject<any> = new BehaviorSubject([]);
   private _tableData: Array<any>;
   @Input() person: PersonDto | null;
@@ -30,7 +30,7 @@ export class PersonBankdataComponent implements OnInit, OnDestroy {
   ];
   private subscription: Subscription;
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private bankService: BankAccountService,
     private notificationsService: NotificationsService,
     private selectValueService: SelectValueService

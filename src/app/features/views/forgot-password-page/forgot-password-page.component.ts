@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AuthService } from '../../../../@arpa/services/auth.service';
@@ -14,11 +14,11 @@ import { ConfigService } from '../../../../@arpa/services/config.service';
 })
 export class ForgotPasswordPageComponent {
   forgotPasswordRequest = false;
-  forgotPasswordFormGroup: FormGroup;
+  forgotPasswordFormGroup: UntypedFormGroup;
   hide = true;
 
   constructor(
-    formBuilder: FormBuilder,
+    formBuilder: UntypedFormBuilder,
     private authService: AuthService,
     private configService: ConfigService,
     private notificationsService: NotificationsService,

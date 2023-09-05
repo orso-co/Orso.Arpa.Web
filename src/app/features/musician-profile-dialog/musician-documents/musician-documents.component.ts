@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { first, map } from 'rxjs/operators';
 import { SelectValueService, NotificationsService } from '@arpa/services';
 import { MusicianProfileDto } from '@arpa/models';
@@ -15,7 +15,7 @@ import { ColumnDefinition } from '../../../../@arpa/components/table/table.compo
   styleUrls: ['./musician-documents.component.scss'],
 })
 export class MusicianDocumentsComponent implements OnInit {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
 
   public profile: MusicianProfileDto;
 
@@ -29,7 +29,7 @@ export class MusicianDocumentsComponent implements OnInit {
 
   constructor(
     public config: DynamicDialogConfig,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public ref: DynamicDialogRef,
     private selectValueService: SelectValueService,
     private musicianService: MusicianService,

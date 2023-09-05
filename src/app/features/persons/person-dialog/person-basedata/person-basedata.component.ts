@@ -1,7 +1,7 @@
 import { NotificationsService, SelectValueService, PersonService } from '@arpa/services';
 import { ReducedPersonDto, PersonDto } from '@arpa/models';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 import { first, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -15,7 +15,7 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 export class PersonBasedataComponent implements OnInit, OnChanges {
   @Input() person: PersonDto | null;
   @Output() personSaved: EventEmitter<any> = new EventEmitter();
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public genderOptions$: Observable<SelectItem[]>;
   public filteredPersons: ReducedPersonDto[] = [];
   showButton = 0;
@@ -26,7 +26,7 @@ export class PersonBasedataComponent implements OnInit, OnChanges {
   selectedOption: boolean = false;
 
   constructor(
-    formBuilder: FormBuilder,
+    formBuilder: UntypedFormBuilder,
     private selectValueService: SelectValueService,
     private personService: PersonService,
     private notificationService: NotificationsService,

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { first, map } from 'rxjs/operators';
 import { ConfirmationService } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
@@ -15,11 +15,11 @@ import { NewsDto } from '@arpa/models';
 export class NewsComponent implements OnInit {
   news: NewsDto[] = [];
   selectedNews: NewsDto | undefined;
-  formGroup: FormGroup;
+  formGroup: UntypedFormGroup;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    formBuilder: FormBuilder,
+    formBuilder: UntypedFormBuilder,
     private newsService: NewsService,
     private notificationService: NotificationsService,
     private confirmationService: ConfirmationService,

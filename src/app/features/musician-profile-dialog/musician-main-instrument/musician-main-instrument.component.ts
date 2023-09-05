@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MyMusicianProfileCreateDto, MyMusicianProfileDto, MyMusicianProfileModifyBodyDto, SectionDto } from '@arpa/models';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { SelectItem } from 'primeng/api';
@@ -17,7 +17,7 @@ export class MusicianMainInstrumentComponent implements OnInit {
   @Output()
   viewState = new EventEmitter<number>();
 
-  public form: FormGroup;
+  public form: UntypedFormGroup;
 
   public profile: MyMusicianProfileDto;
   public sections: Observable<SectionDto[]> = this.config.data.sections;
@@ -31,7 +31,7 @@ export class MusicianMainInstrumentComponent implements OnInit {
 
   constructor(
     public config: DynamicDialogConfig,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public ref: DynamicDialogRef,
     private selectValueService: SelectValueService,
     private musicianService: MusicianService,

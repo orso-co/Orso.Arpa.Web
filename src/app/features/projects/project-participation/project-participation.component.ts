@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SelectItem } from 'primeng/api';
@@ -12,7 +12,7 @@ import { MusicianProfileDto } from '@arpa/models';
   styleUrls: ['./project-participation.component.scss'],
 })
 export class ProjectParticipationComponent implements OnInit {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public musicianProfiles: Observable<SelectItem[]> = this.config.data.musicianProfiles.pipe(
     map((profiles: MusicianProfileDto[]) =>
       profiles.map((profile: MusicianProfileDto) => {
@@ -22,7 +22,7 @@ export class ProjectParticipationComponent implements OnInit {
   );
   public projectParticipation: Observable<any[]> = this.config.data.projectParticipation;
 
-  constructor(private config: DynamicDialogConfig, private formBuilder: FormBuilder, public ref: DynamicDialogRef) {}
+  constructor(private config: DynamicDialogConfig, private formBuilder: UntypedFormBuilder, public ref: DynamicDialogRef) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({

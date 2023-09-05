@@ -1,6 +1,6 @@
 import { MyProjectParticipationDto } from '@arpa/models';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { SelectItem } from 'primeng/api';
 import { Observable } from 'rxjs';
@@ -11,15 +11,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./my-project-participation-dialog.component.scss'],
 })
 export class MyProjectParticipationDialogComponent implements OnInit {
-  form: FormGroup;
+  form: UntypedFormGroup;
   participation: MyProjectParticipationDto = this.config.data.participation;
   statusOptions$: Observable<SelectItem[]> = this.config.data.statusOptions$;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    public config: DynamicDialogConfig,
-    public ref: DynamicDialogRef,
-  ) {}
+  constructor(private formBuilder: UntypedFormBuilder, public config: DynamicDialogConfig, public ref: DynamicDialogRef) {}
 
   ngOnInit() {
     this.form = this.formBuilder.group({
