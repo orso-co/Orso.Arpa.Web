@@ -51,7 +51,7 @@
     "pwa": "^1.9.7",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.13.1"
   },
   "devDependencies": {
     "@angular-builders/custom-webpack": "^13.0.0",
