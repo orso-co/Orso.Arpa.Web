@@ -2,7 +2,7 @@ import { shareReplay } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '@arpa/services';
-import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
+import { ActivatedRouteSnapshot } from '@angular/router';
 import { NewsModifyBodyDto } from '@arpa/models';
 import { NewsCreateDto } from '@arpa/models';
 import { NewsDto } from '@arpa/models';
@@ -15,7 +15,7 @@ export interface GetAllNewsResponse {
 @Injectable({
   providedIn: 'root',
 })
-export class NewsService implements Resolve<NewsDto[]> {
+export class NewsService {
   private baseUrl: string;
 
   constructor(private apiService: ApiService) {

@@ -3,12 +3,12 @@ import { shareReplay } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '@arpa/services';
-import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
+import { ActivatedRouteSnapshot } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
-export class VenueService implements Resolve<VenueDto[]> {
+export class VenueService {
   private baseUrl: string;
 
   constructor(private apiService: ApiService) {

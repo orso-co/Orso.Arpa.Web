@@ -1,14 +1,14 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../../../@arpa/services/api.service';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { UserDto } from '../../../../@arpa/models/userDto';
 import { SetRoleDto } from '../../../../@arpa/models/setRoleDto';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService implements Resolve<UserDto[] | UserDto> {
+export class UserService {
   baseUrl: string;
 
   constructor(private apiService: ApiService) {
