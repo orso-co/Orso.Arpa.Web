@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutDefaultComponent } from './layout-default/layout-default.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
+import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';
 import { LayoutModule as AngularLayoutModule } from '@angular/cdk/layout';
 import { RouterModule } from '@angular/router';
 import { LayoutPageComponent } from './layout-page/layout-page.component';
@@ -18,14 +18,8 @@ import { LogoComponent } from './logo/logo.component';
 import { LoadingModule } from '../components/loading/loading.module';
 import { TranslateModule } from '../translate';
 
-
 @NgModule({
-  declarations: [
-    LayoutDefaultComponent,
-    LayoutPageComponent,
-    TopbarComponent,
-    LogoComponent,
-  ],
+  declarations: [LayoutDefaultComponent, LayoutPageComponent, TopbarComponent, LogoComponent],
   imports: [
     CommonModule,
     AngularLayoutModule,
@@ -42,10 +36,6 @@ import { TranslateModule } from '../translate';
     ThemeSwitcherModule,
     LoadingModule,
   ],
-  exports: [
-    LayoutPageComponent,
-    LogoComponent,
-  ],
+  exports: [LayoutPageComponent, LogoComponent],
 })
-export class LayoutModule {
-}
+export class LayoutModule {}
