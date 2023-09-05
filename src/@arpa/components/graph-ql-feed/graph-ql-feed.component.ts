@@ -52,27 +52,10 @@ export class GraphQlFeedComponent implements OnInit, OnDestroy, OnChanges {
       },
       notifyOnNetworkStatusChange: true,
       useInitialLoading: true,
+      returnPartialData: false,
     });
 
-    this.feedSubscription = this.feedQuery.valueChanges.subscribe(({ data, loading }) => {
-      this.isLoading.emit(loading);
-      if (Array.isArray(data)) {
-        this.values.next(data);
-      } else if (data) {
-        const type = Object.keys(data)[0];
-        if (type && data[type]) {
-          this.hasNextPage = data[type].pageInfo?.hasNextPage;
-          this.hasPreviousPage = data[type].pageInfo?.hasPreviousPage;
-          this.values.next(data[type].items || []);
-          this.totalCount.next(data[type].totalCount || 0);
-        } else {
-          this.hasNextPage = false;
-          this.hasPreviousPage = false;
-          this.values.next([]);
-          this.totalCount.next(0);
-        }
-      }
-    });
+    this.feedSubscription = this.feedQuery.valueChanges.subscribe((queryResult) => this.onDataFetch(queryResult));
   }
 
   refresh() {
@@ -80,12 +63,14 @@ export class GraphQlFeedComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   onFilter({ filter }: any): any {
-    return this.feedQuery.fetchMore({
-      variables: {
-        ...this.variables,
-        searchQuery: filter || '',
-      },
-    });
+    return this.feedQuery
+      .fetchMore({
+        variables: {
+          ...this.variables,
+          searchQuery: filter || '',
+        },
+      })
+      .then(this.onDataFetch.bind(this));
   }
 
   onLazy({ first, rows, globalFilter, multiSortMeta }: any): any {
@@ -110,14 +95,37 @@ export class GraphQlFeedComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   private moveCursor(take: number, skip: number = 0, searchQuery: string = '', order = {}) {
-    return this.feedQuery.fetchMore({
-      variables: {
-        ...this.variables,
-        ...order,
-        searchQuery,
-        take,
-        skip,
-      },
-    });
+    return this.feedQuery
+      .fetchMore({
+        variables: {
+          ...this.variables,
+          ...order,
+          searchQuery,
+          take,
+          skip,
+        },
+      })
+      .then(this.onDataFetch.bind(this));
+  }
+
+  private onDataFetch(queryResult: any) {
+    const { loading, data, error, errors } = queryResult;
+    this.isLoading.emit(loading);
+    if (Array.isArray(data)) {
+      this.values.next(data);
+    } else if (data) {
+      const type = Object.keys(data)[0];
+      if (type && data[type]) {
+        this.hasNextPage = data[type].pageInfo?.hasNextPage;
+        this.hasPreviousPage = data[type].pageInfo?.hasPreviousPage;
+        this.values.next(data[type].items || []);
+        this.totalCount.next(data[type].totalCount || 0);
+      } else {
+        this.hasNextPage = false;
+        this.hasPreviousPage = false;
+        this.values.next([]);
+        this.totalCount.next(0);
+      }
+    }
   }
 }
