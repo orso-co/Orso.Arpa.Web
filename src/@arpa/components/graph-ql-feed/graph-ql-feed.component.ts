@@ -1,22 +1,12 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  Output,
-  SimpleChanges,
-  TemplateRef,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, TemplateRef } from '@angular/core';
 import { Apollo, QueryRef } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 import { BehaviorSubject, Subscription } from 'rxjs';
 
 export interface FeedScope {
-  isLoading: EventEmitter<boolean>,
-  totalCount: BehaviorSubject<number>,
-  values: BehaviorSubject<any[]>,
+  isLoading: EventEmitter<boolean>;
+  totalCount: BehaviorSubject<number>;
+  values: BehaviorSubject<any[]>;
 }
 
 @Component({
@@ -25,7 +15,6 @@ export interface FeedScope {
   styleUrls: ['./graph-ql-feed.component.scss'],
 })
 export class GraphQlFeedComponent implements OnInit, OnDestroy, OnChanges {
-
   @Input()
   query: DocumentNode;
 
@@ -96,12 +85,6 @@ export class GraphQlFeedComponent implements OnInit, OnDestroy, OnChanges {
         ...this.variables,
         searchQuery: filter || '',
       },
-      updateQuery: (prev, { fetchMoreResult }) => {
-        if (!fetchMoreResult) {
-          return prev;
-        }
-        return fetchMoreResult;
-      },
     });
   }
 
@@ -134,12 +117,6 @@ export class GraphQlFeedComponent implements OnInit, OnDestroy, OnChanges {
         searchQuery,
         take,
         skip,
-      },
-      updateQuery: (prev, { fetchMoreResult }) => {
-        if (!fetchMoreResult) {
-          return prev;
-        }
-        return fetchMoreResult;
       },
     });
   }
