@@ -17,6 +17,8 @@
   "USER_MANAGEMENT": "Administration d'utilisateurs",
   "USER_ROLES_SET": "L'attribution des rôles a été sauvegardée",
   "NEWS": "Nouvelles",
+  "BIRTHDAYS": "Anniversaires",
+  "BIRTHDAYS_DESCRIPTION": "Les personnes suivantes ont leur anniversaire aujourd'hui, hourra !",
   "PROJECTSTATS": "Statistiques du projet",
   "GO_TO_MY_APPOINTMENTS": "Allez dans \"mes dates\"",
   "VENUE_NOT_CONFIRMED": "Lieu non confirmé",

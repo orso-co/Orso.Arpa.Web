@@ -20,6 +20,8 @@
   "DESCRIPTION": "Beschreibung",
   "GOTO_PROJECT": "Gehe zu Projekt",
   "NEWS": "Nachrichten",
+  "BIRTHDAYS": "Geburtstage",
+  "BIRTHDAYS_DESCRIPTION": "Die folgenden Personen haben heute Geburtstag, hurra!",
   "PROJECTSTATS": "Projektstatistik",
   "GO_TO_MY_APPOINTMENTS": "Gehe zu 'Meine Termine'",
   "VENUE_NOT_CONFIRMED": "Ort noch nicht bestätigt",
