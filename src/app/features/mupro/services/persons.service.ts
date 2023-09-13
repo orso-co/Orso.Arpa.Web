@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { PersonDto } from '../../../../@arpa/models/personDto';
 import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
+import { ReducedPersonDto } from '@arpa/models';
+import { HttpParams } from '@angular/common/http';
+import { shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +20,11 @@ export class PersonsService implements Resolve<PersonDto[] | PersonDto> {
 
   public getPersons(): Observable<PersonDto[]> {
     return this.apiService.get<PersonDto[]>(this.baseUrl);
+  }
+
+  public getBirthdayChildren(): Observable<ReducedPersonDto[]> {
+    const params = new HttpParams().set('birthday', new Date().toISOString());
+    return this.apiService.get<ReducedPersonDto[]>(`${this.baseUrl}/reduced`, params).pipe(shareReplay());
   }
 
   public getPerson(id: string): Observable<PersonDto> {

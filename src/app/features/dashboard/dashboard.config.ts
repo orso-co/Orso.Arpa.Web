@@ -8,6 +8,7 @@ import { ChartWidgetComponent } from './chart-widget/chart-widget.component';
 import { AppointmentsWidgetComponent } from './appointments-widget/appointments-widget.component';
 import { ChoirGridWidgetComponent } from './choir-grid-widget/choir-grid-widget.component';
 import { NewsWidgetComponent } from './news-widget/news-widget.component';
+import { BirthdayWidgetComponent } from './birthday-widget/birthday-widget/birthday-widget.component';
 
 export const widgets: Record<string, any> = {
   UserWidget: UserWidgetComponent,
@@ -20,6 +21,7 @@ export const widgets: Record<string, any> = {
   IframeWidget: IframeWidgetComponent,
   IframeWidgetProjectstats: IframeWidgetProjectstatsComponent,
   NewsWidget: NewsWidgetComponent,
+  BirthdayWidget: BirthdayWidgetComponent,
 };
 
 export const dashboards: Record<string, Record<string, any>> = {
@@ -57,6 +59,12 @@ export const dashboards: Record<string, Record<string, any>> = {
         'NewsWidget',
         {
           title: 'NEWS',
+        },
+      ],
+      [
+        'BirthdayWidget',
+        {
+          title: 'BIRTHDAYS',
         },
       ],
       [
