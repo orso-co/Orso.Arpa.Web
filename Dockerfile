@@ -1,5 +1,5 @@
 # Legobausatz in der Ecke
-FROM node:16.13.0-alpine AS builder
+FROM node:18-alpine AS builder
 
 USER node
 WORKDIR /home/node
@@ -7,7 +7,7 @@ WORKDIR /home/node
 ADD --chown=node:node ./package.json .
 ADD --chown=node:node ./package-lock.json .
 
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 ADD --chown=node:node . .
 
