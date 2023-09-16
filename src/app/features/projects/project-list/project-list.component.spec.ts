@@ -6,28 +6,23 @@ import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ProjectService } from '@arpa/services';
 
 describe('ProjectListComponent', () => {
   let component: ProjectListComponent;
   let fixture: ComponentFixture<ProjectListComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          RouterTestingModule,
-          TranslateMockModule,
-          HttpClientTestingModule,
-        ],
-        declarations: [ProjectListComponent],
-        providers: [
-          { provide: DialogService, useValue: {} },
-          { provide: ActivatedRoute, useValue: { data: of({}) } },
-        ],
-      }).compileComponents();
-    }),
-  );
-
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule, TranslateMockModule, HttpClientTestingModule],
+      declarations: [ProjectListComponent],
+      providers: [
+        { provide: DialogService, useValue: {} },
+        { provide: ActivatedRoute, useValue: { data: of({}) } },
+        { provide: ProjectService, useValue: {} },
+      ],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProjectListComponent);
