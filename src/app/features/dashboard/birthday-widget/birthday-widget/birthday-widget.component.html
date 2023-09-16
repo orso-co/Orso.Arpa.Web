@@ -1,0 +1,6 @@
+<h4>{{ 'BIRTHDAYS_DESCRIPTION' | translate }}</h4>
+<ul>
+  <li *ngFor="let person of birthdayChildren$ | async" style="list-style-type: none">
+    <p-button [label]="person.displayName ?? ''" styleClass="p-button-link" (onClick)="openPersonDialog(person.id!)"></p-button>
+  </li>
+</ul>
