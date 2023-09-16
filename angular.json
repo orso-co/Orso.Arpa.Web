@@ -26,12 +26,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/manifest.webmanifest",
-              "src/web.config"
-            ],
+            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest", "src/web.config"],
             "styles": [
               "src/styles.scss",
               {
@@ -45,9 +40,7 @@
                 "inject": false
               }
             ],
-            "scripts": [
-              "node_modules/@fullcalendar/core/locales-all.min.js"
-            ],
+            "scripts": ["node_modules/@fullcalendar/core/locales-all.min.js"],
             "serviceWorker": false,
             "ngswConfigPath": "ngsw-config.json",
             "allowedCommonJsDependencies": [
@@ -138,33 +131,22 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/manifest.webmanifest",
-              "src/web.config"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest", "src/web.config"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       }
     }
   },
-  "defaultProject": "Orso-Arpa-Web",
   "cli": {
     "analytics": false,
-    "defaultCollection": "@ngrx/schematics"
+    "schematicCollections": ["@ngrx/schematics"]
   }
 }

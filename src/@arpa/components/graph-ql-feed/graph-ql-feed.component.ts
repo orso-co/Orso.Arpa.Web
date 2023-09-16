@@ -1,22 +1,12 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  Output,
-  SimpleChanges,
-  TemplateRef,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, TemplateRef } from '@angular/core';
 import { Apollo, QueryRef } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 import { BehaviorSubject, Subscription } from 'rxjs';
 
 export interface FeedScope {
-  isLoading: EventEmitter<boolean>,
-  totalCount: BehaviorSubject<number>,
-  values: BehaviorSubject<any[]>,
+  isLoading: EventEmitter<boolean>;
+  totalCount: BehaviorSubject<number>;
+  values: BehaviorSubject<any[]>;
 }
 
 @Component({
@@ -25,7 +15,6 @@ export interface FeedScope {
   styleUrls: ['./graph-ql-feed.component.scss'],
 })
 export class GraphQlFeedComponent implements OnInit, OnDestroy, OnChanges {
-
   @Input()
   query: DocumentNode;
 
@@ -63,27 +52,10 @@ export class GraphQlFeedComponent implements OnInit, OnDestroy, OnChanges {
       },
       notifyOnNetworkStatusChange: true,
       useInitialLoading: true,
+      returnPartialData: false,
     });
 
-    this.feedSubscription = this.feedQuery.valueChanges.subscribe(({ data, loading }) => {
-      this.isLoading.emit(loading);
-      if (Array.isArray(data)) {
-        this.values.next(data);
-      } else if (data) {
-        const type = Object.keys(data)[0];
-        if (type && data[type]) {
-          this.hasNextPage = data[type].pageInfo?.hasNextPage;
-          this.hasPreviousPage = data[type].pageInfo?.hasPreviousPage;
-          this.values.next(data[type].items || []);
-          this.totalCount.next(data[type].totalCount || 0);
-        } else {
-          this.hasNextPage = false;
-          this.hasPreviousPage = false;
-          this.values.next([]);
-          this.totalCount.next(0);
-        }
-      }
-    });
+    this.feedSubscription = this.feedQuery.valueChanges.subscribe((queryResult) => this.onDataFetch(queryResult));
   }
 
   refresh() {
@@ -91,18 +63,14 @@ export class GraphQlFeedComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   onFilter({ filter }: any): any {
-    return this.feedQuery.fetchMore({
-      variables: {
-        ...this.variables,
-        searchQuery: filter || '',
-      },
-      updateQuery: (prev, { fetchMoreResult }) => {
-        if (!fetchMoreResult) {
-          return prev;
-        }
-        return fetchMoreResult;
-      },
-    });
+    return this.feedQuery
+      .fetchMore({
+        variables: {
+          ...this.variables,
+          searchQuery: filter || '',
+        },
+      })
+      .then(this.onDataFetch.bind(this));
   }
 
   onLazy({ first, rows, globalFilter, multiSortMeta }: any): any {
@@ -127,20 +95,37 @@ export class GraphQlFeedComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   private moveCursor(take: number, skip: number = 0, searchQuery: string = '', order = {}) {
-    return this.feedQuery.fetchMore({
-      variables: {
-        ...this.variables,
-        ...order,
-        searchQuery,
-        take,
-        skip,
-      },
-      updateQuery: (prev, { fetchMoreResult }) => {
-        if (!fetchMoreResult) {
-          return prev;
-        }
-        return fetchMoreResult;
-      },
-    });
+    return this.feedQuery
+      .fetchMore({
+        variables: {
+          ...this.variables,
+          ...order,
+          searchQuery,
+          take,
+          skip,
+        },
+      })
+      .then(this.onDataFetch.bind(this));
+  }
+
+  private onDataFetch(queryResult: any) {
+    const { loading, data, error, errors } = queryResult;
+    this.isLoading.emit(loading);
+    if (Array.isArray(data)) {
+      this.values.next(data);
+    } else if (data) {
+      const type = Object.keys(data)[0];
+      if (type && data[type]) {
+        this.hasNextPage = data[type].pageInfo?.hasNextPage;
+        this.hasPreviousPage = data[type].pageInfo?.hasPreviousPage;
+        this.values.next(data[type].items || []);
+        this.totalCount.next(data[type].totalCount || 0);
+      } else {
+        this.hasNextPage = false;
+        this.hasPreviousPage = false;
+        this.values.next([]);
+        this.totalCount.next(0);
+      }
+    }
   }
 }

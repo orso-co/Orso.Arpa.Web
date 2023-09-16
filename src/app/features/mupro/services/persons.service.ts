@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../../../@arpa/services/api.service';
 import { Observable } from 'rxjs';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { PersonDto } from '../../../../@arpa/models/personDto';
 import { MusicianProfileDto } from '../../../../@arpa/models/musicianProfileDto';
 import { ReducedPersonDto } from '@arpa/models';
@@ -11,7 +11,7 @@ import { shareReplay } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class PersonsService implements Resolve<PersonDto[] | PersonDto> {
+export class PersonsService {
   readonly baseUrl: string;
 
   constructor(private apiService: ApiService) {

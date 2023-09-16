@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ProjectDto } from '../../../../@arpa/models/projectDto';
 
@@ -11,9 +11,9 @@ import { ProjectDto } from '../../../../@arpa/models/projectDto';
 export class InvitationDialogComponent {
   projects: ProjectDto[] = this.config.data.projects;
   musicianProfileId: string = this.config.data.musicianProfileId;
-  form: FormGroup;
+  form: UntypedFormGroup;
 
-  constructor(public config: DynamicDialogConfig, formBuilder: FormBuilder, private ref: DynamicDialogRef) {
+  constructor(public config: DynamicDialogConfig, formBuilder: UntypedFormBuilder, private ref: DynamicDialogRef) {
     this.form = formBuilder.group({
       projects: [[], [Validators.required]],
     });

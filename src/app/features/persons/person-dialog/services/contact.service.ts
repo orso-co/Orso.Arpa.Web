@@ -1,4 +1,3 @@
-import { Apollo } from 'apollo-angular';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '../../../../../@arpa/services/api.service';
@@ -13,7 +12,7 @@ import { ContactDetailDto } from 'src/@arpa/models/contactDetailDto';
 export class ContactService {
   readonly baseUrl: string;
 
-  constructor(private apiService: ApiService, private apollo: Apollo) {
+  constructor(private apiService: ApiService) {
     this.baseUrl = '/persons';
   }
   addContactDetail(personId: string, dto: ContactDetailCreateBodyDto): Observable<ContactDetailDto> {

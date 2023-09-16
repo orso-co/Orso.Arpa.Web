@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from '@arpa/services';
@@ -7,7 +7,7 @@ import { AuthService } from '@arpa/services';
 @Injectable({
   providedIn: 'root',
 })
-export class DashboardRoleGuard implements CanActivate {
+export class DashboardRoleGuard {
   constructor(private router: Router, private authService: AuthService) {}
 
   canActivate(

@@ -2,7 +2,7 @@ import { OverlayPanel } from 'primeng/overlaypanel';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ColumnDefinition } from '../../../../../@arpa/components/table/table.component';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { UrlDto, RoleDto, UrlRoleDto } from '@arpa/models';
 import { ProjectService, NotificationsService, RoleService } from '@arpa/services';
 import { first, map } from 'rxjs/operators';
@@ -17,7 +17,7 @@ export class ProjectUrlsComponent implements OnInit {
   @Input() urls: UrlDto[];
   @Input() projectId: string;
 
-  form: FormGroup;
+  form: UntypedFormGroup;
   tableData: BehaviorSubject<any> = new BehaviorSubject([]);
   private _tableData: Array<any>;
   roles$: Observable<RoleDto[]>;
@@ -30,7 +30,7 @@ export class ProjectUrlsComponent implements OnInit {
   ];
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private projectService: ProjectService,
     private notificationsService: NotificationsService,
     private roleService: RoleService

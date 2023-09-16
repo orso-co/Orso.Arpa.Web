@@ -6,7 +6,7 @@ name: Frontend PR Check
 on:
   # Triggers the workflow on push or pull request events but only for the develop branch
   pull_request:
-    branches: [ develop ]
+    branches: [develop]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -20,7 +20,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.10.x]
+        node-version: [18.17.x]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -30,7 +30,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install
+      - run: npm install --legacy-peer-deps
       - run: npm run build:prod
       - run: npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
       - run: npm run lint

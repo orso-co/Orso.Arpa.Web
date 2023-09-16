@@ -10,7 +10,7 @@ import {
   AppointmentParticipationResult,
 } from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MenuItem, SelectItem } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -59,7 +59,7 @@ class ParticipationTableItem {
 export class EditAppointmentComponent implements OnInit {
   items: MenuItem[] = [];
   activeIndex = 0;
-  formGroup: FormGroup;
+  formGroup: UntypedFormGroup;
   ready = false;
 
   appointment: AppointmentDto = this.config.data.appointment;
@@ -95,7 +95,7 @@ export class EditAppointmentComponent implements OnInit {
     public config: DynamicDialogConfig,
     private notificationsService: NotificationsService,
     private appointmentService: AppointmentService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private translate: TranslateService,
     private confirmationService: ConfirmationService,
     private selectValueService: SelectValueService,

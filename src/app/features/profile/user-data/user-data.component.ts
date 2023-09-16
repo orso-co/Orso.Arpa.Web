@@ -1,6 +1,6 @@
 import { PersonDto } from '@arpa/models';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { first, map } from 'rxjs/operators';
 import { NotificationsService, MeService, SelectValueService } from '@arpa/services';
 
@@ -10,14 +10,14 @@ import { NotificationsService, MeService, SelectValueService } from '@arpa/servi
   styleUrls: ['./user-data.component.scss'],
 })
 export class UserDataComponent implements OnInit, OnChanges {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   genderSelectValue: any;
   @Input() email: string;
   @Input() displayName: string;
   @Input() person: PersonDto;
 
   constructor(
-    formBuilder: FormBuilder,
+    formBuilder: UntypedFormBuilder,
     private selectValueService: SelectValueService,
     private meService: MeService,
     private notificationsService: NotificationsService

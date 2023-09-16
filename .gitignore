@@ -23,15 +23,9 @@ chrome-profiler-events*.json
 *.sublime-workspace
 
 # IDE - VSCode
-.vscode/*
-.vs/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
-c:azurite
-c:azuritedebug.log
+.vscode
+.vs
+.history
 
 # misc
 /.angular/cache
@@ -50,3 +44,8 @@ Thumbs.db
 
 .angular
 Folder.DotSettings.user
+
+# azurite
+c:azuritedebug
+c:azurite
+c:azuritedebug.log

@@ -24,6 +24,7 @@ const routes: Routes = [
           {
             path: '',
             redirectTo: 'projects',
+            pathMatch: 'full',
           },
           {
             path: '',

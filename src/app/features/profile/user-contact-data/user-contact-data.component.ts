@@ -1,7 +1,7 @@
 import { SelectValueService, MeService } from '@arpa/services';
 import { ContactDetailDto, ContactDetailKey } from '@arpa/models';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { NotificationsService } from 'src/@arpa/services/notifications.service';
 import { ColumnDefinition } from 'src/@arpa/components/table/table.component';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -15,7 +15,7 @@ import { SelectItem } from 'primeng/api';
   styleUrls: ['./user-contact-data.component.scss'],
 })
 export class UserContactDataComponent implements OnInit {
-  form: FormGroup;
+  form: UntypedFormGroup;
   tableData: BehaviorSubject<any> = new BehaviorSubject([]);
   private _tableData: Array<any>;
   @Input() contactDetails: ContactDetailDto[] = [];
@@ -38,7 +38,7 @@ export class UserContactDataComponent implements OnInit {
   ];
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private meService: MeService,
     private notificationsService: NotificationsService,
     private selectValueService: SelectValueService
