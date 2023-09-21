@@ -40,7 +40,9 @@ export class PersonProfilesMusicianComponent implements OnInit {
   }
 
   onRowClick(mupros: MusicianProfileDto) {
-    this.router.navigate(['/arpa', 'mupro', this.person!.id!, mupros!.id!, 'projects']).then(() => this.ref.close(true));
+    const paths = ['/arpa', 'mupro', this.person!.id!, mupros!.id!, 'projects'];
+    const url = paths.join('/');
+    window.open(url, '_blank');
   }
 
   createNewMuPro() {
