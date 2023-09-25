@@ -11,68 +11,63 @@
   </div>
   <div class="instruments-container">
     <h5>{{ 'WOODWINDS' | translate }}</h5>
-    <ng-container *ngFor="let instrument of instrumentFinalResults | keyvalue">
+    <ng-container *ngFor="let key of sortedInstrumentKeys">
       <div
         *ngIf="
-          instrument.key.includes('Flute') ||
-          instrument.key.includes('Oboe') ||
-          instrument.key.includes('Clarinet') ||
-          instrument.key.includes('Bassoon') ||
-          instrument.key.includes('Saxophone')
+          key.includes('Flute') || key.includes('Oboe') || key.includes('Clarinet') || key.includes('Bassoon') || key.includes('Saxophone')
         "
       >
-        <p>{{ instrument.value }} x {{ instrument.key }}</p>
+        <p>{{ instrumentFinalResults[key] }} x {{ key }}</p>
       </div>
     </ng-container>
   </div>
   <div class="instruments-container">
     <h5>{{ 'BRASS' | translate }}</h5>
-    <ng-container *ngFor="let instrument of instrumentFinalResults | keyvalue">
+    <ng-container *ngFor="let key of sortedInstrumentKeys">
       <div
         *ngIf="
-          instrument.key.includes('Horn') ||
-          instrument.key.includes('Trompet') ||
-          instrument.key.includes('Flugelhorn') ||
-          instrument.key.includes('Trombone') ||
-          instrument.key.includes('Euphonium') ||
-          instrument.key.includes('Tuba')
+          key.includes('Horn') ||
+          key.includes('Trumpet') ||
+          key.includes('Flugelhorn') ||
+          key.includes('Trombone') ||
+          key.includes('Euphonium') ||
+          key.includes('Tuba')
         "
       >
-        <p>{{ instrument.value }} x {{ instrument.key }}</p>
+        <p>{{ instrumentFinalResults[key] }} x {{ key }}</p>
       </div>
     </ng-container>
   </div>
   <div class="instruments-container">
     <h5>{{ 'PERCUSSION' | translate }}</h5>
-    <ng-container *ngFor="let instrument of instrumentFinalResults | keyvalue">
+    <ng-container *ngFor="let key of sortedInstrumentKeys">
       <div
         *ngIf="
-          instrument.key.includes('Harp') ||
-          instrument.key.includes('Timpani') ||
-          instrument.key.includes('Mallets') ||
-          instrument.key.includes('Percussion') ||
-          instrument.key.includes('Drum Set') ||
-          instrument.key.includes('Guitar') ||
-          instrument.key.includes('Piano')
+          key.includes('Harp') ||
+          key.includes('Mallets') ||
+          key.includes('Percussion') ||
+          key.includes('Drum Set') ||
+          key.includes('Guitar') ||
+          key.includes('Piano')
         "
       >
-        <p>{{ instrument.value }} x {{ instrument.key }}</p>
+        <p>{{ instrumentFinalResults[key] }} x {{ key }}</p>
       </div>
     </ng-container>
   </div>
   <div class="instruments-container">
     <h5>{{ 'CHORUS' | translate }}</h5>
-    <ng-container *ngFor="let instrument of instrumentFinalResults | keyvalue">
-      <div *ngIf="instrument.key === 'Soprano' || instrument.key === 'Alto' || instrument.key === 'Tenor' || instrument.key === 'Bass'">
-        <p>{{ instrument.value }} x {{ instrument.key }}</p>
+    <ng-container *ngFor="let key of sortedInstrumentKeys">
+      <div *ngIf="key === 'Soprano' || key === 'Alto' || key === 'Tenor' || key === 'Bass'">
+        <p>{{ instrumentFinalResults[key] }} x {{ key }}</p>
       </div>
     </ng-container>
   </div>
   <div class="instruments-container">
     <h5>{{ 'STRINGS' | translate }}</h5>
-    <ng-container *ngFor="let instrument of instrumentFinalResults | keyvalue">
-      <div *ngIf="instrument.key.includes('Viol') || instrument.key === 'Double Bass'">
-        <p>{{ instrument.value }} x {{ instrument.key }}</p>
+    <ng-container *ngFor="let key of sortedInstrumentKeys">
+      <div *ngIf="key === 'Violin' || key === 'Viola' || key === 'Violoncello' || key === 'Double Bass'">
+        <p>{{ instrumentFinalResults[key] }} x {{ key }}</p>
       </div>
     </ng-container>
   </div>

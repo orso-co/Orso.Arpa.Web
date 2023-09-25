@@ -69,6 +69,7 @@ export class AcceptedParticipantsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.reloadProjectDetails();
   }
+  sortedInstrumentKeys: string[] = [];
 
   private reloadProjectDetails(): void {
     const variables = { projectId: this.projectId };
@@ -110,11 +111,23 @@ export class AcceptedParticipantsComponent implements OnInit, OnDestroy {
           this.translate.instant(`projectParticipationStatusInternal.${key}`)
         );
         this.ready = true;
+        // Function to map each instrument to its general category
+        const mapToGeneralCategory = (instrument: string) => {
+          if (instrument.includes('Flute')) return 'Flute';
+          if (instrument.includes('Oboe')) return 'Oboe';
+          if (instrument.includes('English Horn')) return 'Oboe';
+          if (instrument.includes('Bassoon')) return 'Bassoon';
+          if (instrument.includes('Clarinet')) return 'Clarinet';
+          if (instrument.includes('Saxophone')) return 'Saxophone';
+          if (instrument.includes('Trombone')) return 'Trombone';
+          // Add more mappings here as needed
+          return instrument;
+        };
         this.instrumentFinalResults = {};
         filteredParticipations.forEach((participation: Record<string, any>) => {
           const musicianProfile = participation.musicianProfile;
           if (musicianProfile && musicianProfile.instrument && musicianProfile.instrument.name) {
-            const instrumentName = musicianProfile.instrument.name;
+            const instrumentName = mapToGeneralCategory(musicianProfile.instrument.name);
             if (this.instrumentFinalResults[instrumentName]) {
               this.instrumentFinalResults[instrumentName]++;
             } else {
@@ -122,8 +135,43 @@ export class AcceptedParticipantsComponent implements OnInit, OnDestroy {
             }
           }
         });
+        // Define your custom order here
+        const customOrder = [
+          'Flute',
+          'Oboe',
+          'Clarinet',
+          'Saxophone',
+          'Bassoon',
+          'Horn',
+          'Trumpet',
+          'Flugelhorn',
+          'Trombone',
+          'Euphonium',
+          'Tuba',
+          'Timpani',
+          'Mallets',
+          'Percussion',
+          'Drum Set',
+          'Guitar',
+          'Harp',
+          'Piano',
+          'Soprano',
+          'Alto',
+          'Tenor',
+          'Bass',
+          'Violin',
+          'Viola',
+          'Violoncello',
+          'Double Bass',
+        ];
+
+        // Sort the keys based on the custom order
+        this.sortedInstrumentKeys = Object.keys(this.instrumentFinalResults).sort((a, b) => {
+          return customOrder.indexOf(a) - customOrder.indexOf(b);
+        });
       });
   }
+
   onTableFiltered(event: any): void {
     this.filteredDataCount = event.filteredValue.length;
   }
