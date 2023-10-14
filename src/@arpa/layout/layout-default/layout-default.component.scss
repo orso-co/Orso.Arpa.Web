@@ -61,17 +61,6 @@
         }
       }
 
-      .icon-menu {
-        opacity: 0.75;
-        transition: opacity 0.85s ease-in-out;
-        margin-left: auto;
-
-        &:hover {
-          opacity: 1;
-          cursor: pointer;
-        }
-      }
-
       &.collapsed {
         width: 4rem;
 
@@ -95,14 +84,6 @@
 
         .icon-pin {
           opacity: 0.85;
-
-          &:hover {
-            opacity: 1;
-            cursor: pointer;
-          }
-        }
-        .icon-menu {
-          opacity: 0.55;
 
           &:hover {
             opacity: 1;
@@ -215,6 +196,19 @@
       }
 
       mat-nav-list {
+      }
+
+      .icon-menu {
+        font-size: x-large;
+        color: var(--text-color);
+        opacity: 0.75;
+        transition: opacity 0.85s ease-in-out;
+        margin-left: auto;
+
+        &:hover {
+          opacity: 1;
+          cursor: pointer;
+        }
       }
     }
   }
