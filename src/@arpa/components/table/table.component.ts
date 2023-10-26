@@ -11,6 +11,7 @@ import {
   Output,
   QueryList,
   TemplateRef,
+  ViewChild,
 } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { PrimeTemplate, SelectItem } from 'primeng/api';
@@ -53,6 +54,8 @@ export class ArpaTableColumnDirective {
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
+  @ViewChild('dt') table: any;
+
   @Input()
   showFilter: boolean = true;
 
@@ -228,6 +231,20 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
     this.filterEventSubscription.unsubscribe();
     if (this.loadingEventSubscription) {
       this.loadingEventSubscription.unsubscribe();
+    }
+  }
+
+  protected readonly length = length;
+  public exportCSV() {
+    console.log(this.table.value);
+    try {
+      if (this.table && this.table.value && this.table.value.length > 0) {
+        this.table.exportCSV();
+      } else {
+        console.warn('No data available for export.');
+      }
+    } catch (error) {
+      console.error('Fehler beim Exportieren der CSV:', error);
     }
   }
 }
