@@ -7,7 +7,6 @@
   .p-datatable-header {
     padding-left: 0;
     padding-right: 0;
-
   }
 
   td.start {
@@ -17,7 +16,6 @@
       color: var(--green-500);
     }
   }
-
 }
 
 .filter {
@@ -26,7 +24,7 @@
   align-items: center;
 
   .search {
-    width:100%;
+    width: 100%;
     position: relative;
 
     & > span {
@@ -45,7 +43,7 @@
       cursor: pointer;
       position: absolute;
       top: 50%;
-      right: .5rem;
+      right: 0.5rem;
       margin-top: -0.5rem;
     }
   }
@@ -56,13 +54,13 @@
 
   .column-filter {
     margin-left: auto;
-
-
   }
 }
 .badge {
   background-color: black;
   text-align: center;
-
 }
-
+.download-button {
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
+}

@@ -22,26 +22,45 @@
   [showPageLinks]="showPageLinks"
   [styleClass]="(isMobile | async) ? 'mobile' : ''"
   [tableStyleClass]="tableStyleClass"
-  [tableStyle]="{width: 'max-content'}"
+  [tableStyle]="{ width: 'max-content' }"
   [totalRecords]="feed ? (feed.totalCount | async) || 0 : 0"
   [value]="(data | async) || []"
+  [columns]="exportColumns"
   sortMode="multiple"
   columnResizeMode="expand"
 >
   <ng-template pTemplate="caption">
     <div *ngIf="showFilter" class="filter">
       <div class="search">
-        <span class="p-input-icon-left">
-          <i class="pi pi-search"></i>
-          <input
-            #searchInput
-            (input)="table.filterGlobal($event.target.value, 'contains')"
-            [placeholder]="'SEARCH' | translate"
-            pInputText
-            type="text"
-          />
-        </span>
-        <i (click)="searchInput.value = ''; clear(table)" *ngIf="hasFilters" class="pi pi-times"></i>
+        <div style="display: flex; align-items: center; position: relative">
+          <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input
+              #searchInput
+              (input)="table.filterGlobal($event.target.value, 'contains')"
+              [placeholder]="'SEARCH' | translate"
+              pInputText
+              type="text"
+            />
+          </span>
+          <!-- Position pi-times absolut innerhalb des Containers -->
+          <i
+            (click)="searchInput.value = ''; clear(table)"
+            *ngIf="hasFilters"
+            class="pi pi-times"
+            style="position: absolute; right: 50px; cursor: pointer"
+          ></i>
+          <!-- Download-Button -->
+          <button
+            class="download-button"
+            type="button"
+            pButton
+            icon="pi pi-download"
+            (click)="table.exportCSV()"
+            label="csv"
+            style="margin-left: auto"
+          ></button>
+        </div>
       </div>
 
       <!-- Show column filter -->
@@ -65,12 +84,9 @@
       </div>
     </div>
     <div *ngIf="feed">
-      <h4>
-        {{ feed.totalCount | async }} {{ 'RESULTS' | translate }}
-      </h4>
+      <h4>{{ feed.totalCount | async }} {{ 'RESULTS' | translate }}</h4>
     </div>
   </ng-template>
-
   <ng-template pTemplate="header">
     <tr>
       <!-- Render all header columns by type -->
@@ -106,14 +122,14 @@
           </th>
         </ng-container>
         <ng-container *ngIf="column.type === 'badge'">
-          <th pResizableColumn style='width: 50px' [classList]="column.cssClasses" [pSortableColumn]="column.property">
+          <th pResizableColumn style="width: 50px" [classList]="column.cssClasses" [pSortableColumn]="column.property">
             <div class="p-d-flex p-jc-between p-ai-center">
               {{ column.label | translate }}
             </div>
           </th>
         </ng-container>
         <ng-container *ngIf="column.type === 'state'">
-          <th pResizableColumn style='width: 50px' [classList]="column.cssClasses" [pSortableColumn]="column.property">
+          <th pResizableColumn style="width: 50px" [classList]="column.cssClasses" [pSortableColumn]="column.property">
             <div class="p-d-flex p-jc-between p-ai-center p-text-center">
               {{ column.label | translate }}
             </div>
@@ -135,7 +151,6 @@
     </tr>
   </ng-template>
   <ng-template let-expanded="expanded" let-row pTemplate="body">
-
     <!-- Render all rows by column definition -->
     <tr (click)="rowClickEvents.emit(row)" *ngIf="row" [class.hasHover]="rowClickEvents" [pSelectableRow]="row">
       <ng-container *ngIf="!rowTemplateRef">
@@ -154,10 +169,10 @@
             </td>
           </ng-container>
           <ng-container *ngIf="column.type === 'state'">
-            <td [classList]="column.cssClasses" >
-                <arpa-state-badge
-                                     [stateMap]="column.badgeStateMap"
-                                     [value]="resolveState(column.stateTable || '', column.stateProperty, resolveValue(column.property, row)) | async"
+            <td [classList]="column.cssClasses">
+              <arpa-state-badge
+                [stateMap]="column.badgeStateMap"
+                [value]="resolveState(column.stateTable || '', column.stateProperty, resolveValue(column.property, row)) | async"
               ></arpa-state-badge>
             </td>
           </ng-container>
@@ -166,9 +181,9 @@
               {{ resolveValue(column.property, row) }}
             </td>
           </ng-container>
-          <ng-container *ngIf="column.type === 'date'" >
-            <td  [classList]="column.cssClasses">
-              {{ resolveValue(column.property, row) | date: 'dd.MM.YYYY - HH:mm': 'locale(de)'  }}
+          <ng-container *ngIf="column.type === 'date'">
+            <td [classList]="column.cssClasses">
+              {{ resolveValue(column.property, row) | date : 'dd.MM.YYYY - HH:mm' : 'locale(de)' }}
             </td>
           </ng-container>
           <ng-container *ngIf="column.type === 'rating'">
