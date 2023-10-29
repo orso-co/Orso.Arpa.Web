@@ -1,4 +1,5 @@
 import {
+  AppointmentCreateDto,
   AppointmentModifyBodyDto,
   AppointmentParticipationPrediction,
   AppointmentParticipationResult,
@@ -32,7 +33,7 @@ export class AppointmentService {
     return this.apiService.get<AppointmentDto>(`${this.baseUrl}/${id}`).pipe(shareReplay());
   }
 
-  create(appointment: AppointmentDto): Observable<AppointmentDto> {
+  create(appointment: AppointmentCreateDto): Observable<AppointmentDto> {
     return this.apiService.post<AppointmentDto>(this.baseUrl, appointment);
   }
 
@@ -81,6 +82,8 @@ export class AppointmentService {
   }
 
   setPrediction(personId: string, appointmentId: string, prediction: AppointmentParticipationPrediction): Observable<any> {
-    return this.apiService.put(`${this.baseUrl}/${appointmentId}/participations/${personId}/prediction`, { prediction }).pipe(shareReplay());
+    return this.apiService
+      .put(`${this.baseUrl}/${appointmentId}/participations/${personId}/prediction`, { prediction })
+      .pipe(shareReplay());
   }
 }
