@@ -11,7 +11,6 @@ import {
   Output,
   QueryList,
   TemplateRef,
-  ViewChild,
 } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { PrimeTemplate, SelectItem } from 'primeng/api';
@@ -54,8 +53,6 @@ export class ArpaTableColumnDirective {
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
-  @ViewChild('table') table: any;
-
   @Input()
   showFilter: boolean = true;
 
@@ -66,7 +63,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
   rows: number = 20;
 
   @Input()
-  rowsPerPage: undefined | any | number[] = [20, 50, 100, 200];
+  rowsPerPage: number[] = [20, 50, 100, 200];
 
   @Input()
   showPagination: boolean = true;
@@ -147,11 +144,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
   private loadingEventSubscription: Subscription;
   private filterEventSubscription: Subscription;
 
-  constructor(
-    private breakpointObserver: BreakpointObserver,
-    private cdRef: ChangeDetectorRef,
-    private selectValueService: SelectValueService
-  ) {
+  constructor(breakpointObserver: BreakpointObserver, private cdRef: ChangeDetectorRef, private selectValueService: SelectValueService) {
     this.isMobile = breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Small]).pipe(map(({ matches }) => matches));
   }
 
@@ -234,17 +227,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
     }
   }
 
-  protected readonly length = length;
-  public exportCSV() {
-    console.log(this.table.value);
-    try {
-      if (this.table && this.table.value && this.table.value.length > 0) {
-        this.table.exportCSV();
-      } else {
-        console.warn('No data available for export.');
-      }
-    } catch (error) {
-      console.error('Fehler beim Exportieren der CSV:', error);
-    }
+  get exportColumns() {
+    return this.columns.map((col) => ({ field: col.property, header: col.label }));
   }
 }

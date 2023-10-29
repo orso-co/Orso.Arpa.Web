@@ -25,6 +25,7 @@
   [tableStyle]="{ width: 'max-content' }"
   [totalRecords]="feed ? (feed.totalCount | async) || 0 : 0"
   [value]="(data | async) || []"
+  [columns]="exportColumns"
   sortMode="multiple"
   columnResizeMode="expand"
 >
@@ -55,7 +56,7 @@
             type="button"
             pButton
             icon="pi pi-download"
-            (click)="exportCSV()"
+            (click)="table.exportCSV()"
             label="csv"
             style="margin-left: auto"
           ></button>
@@ -86,7 +87,6 @@
       <h4>{{ feed.totalCount | async }} {{ 'RESULTS' | translate }}</h4>
     </div>
   </ng-template>
-
   <ng-template pTemplate="header">
     <tr>
       <!-- Render all header columns by type -->
