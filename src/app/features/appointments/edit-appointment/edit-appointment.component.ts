@@ -234,7 +234,23 @@ export class EditAppointmentComponent implements OnInit {
     if (this.isNew) {
       this.createAppointment({ ...this.appointment, ...this.formGroup.value }, continueToNextStep);
     } else {
-      this.updateAppointment({ id: this.appointment.id, ...this.formGroup.value }, continueToNextStep);
+      this.updateAppointment(
+        {
+          id: this.appointment.id,
+          categoryId: this.appointment.categoryId,
+          startTime: this.appointment.startTime,
+          endTime: this.appointment.endTime,
+          name: this.appointment.name,
+          publicDetails: this.appointment.publicDetails,
+          internalDetails: this.appointment.internalDetails,
+          status: this.appointment.status,
+          salaryId: this.appointment.salaryId,
+          salaryPatternId: this.appointment.salaryPatternId,
+          expecationId: this.appointment.expectationId,
+          ...this.formGroup.value,
+        },
+        continueToNextStep
+      );
     }
   }
 
