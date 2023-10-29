@@ -54,7 +54,7 @@ export class ArpaTableColumnDirective {
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
-  @ViewChild('dt') table: any;
+  @ViewChild('table') table: any;
 
   @Input()
   showFilter: boolean = true;

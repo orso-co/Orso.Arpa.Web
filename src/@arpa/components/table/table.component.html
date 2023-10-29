@@ -1,6 +1,5 @@
 <p-table
   #table
-  #dt
   (onFilter)="filterEvents.emit($event)"
   (onLazyLoad)="lazyEvents.emit($event)"
   (onPage)="paginationEvents.emit($event)"
