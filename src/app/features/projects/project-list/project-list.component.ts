@@ -1,6 +1,6 @@
 import { ProjectLayoutComponent } from '../project-layout/project-layout.component';
 import { Component, ViewChild } from '@angular/core';
-import { first, map } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 import { DialogService } from 'primeng/dynamicdialog';
 import { TranslateService } from '@ngx-translate/core';
 import { ProjectService, NotificationsService, SelectValueService, VenueService } from '@arpa/services';

@@ -63,7 +63,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
   rows: number = 20;
 
   @Input()
-  rowsPerPage: undefined | any | number[] = [20, 50, 100, 200];
+  rowsPerPage: number[] = [20, 50, 100, 200];
 
   @Input()
   showPagination: boolean = true;
@@ -144,11 +144,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
   private loadingEventSubscription: Subscription;
   private filterEventSubscription: Subscription;
 
-  constructor(
-    private breakpointObserver: BreakpointObserver,
-    private cdRef: ChangeDetectorRef,
-    private selectValueService: SelectValueService
-  ) {
+  constructor(breakpointObserver: BreakpointObserver, private cdRef: ChangeDetectorRef, private selectValueService: SelectValueService) {
     this.isMobile = breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Small]).pipe(map(({ matches }) => matches));
   }
 
@@ -229,5 +225,9 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
     if (this.loadingEventSubscription) {
       this.loadingEventSubscription.unsubscribe();
     }
+  }
+
+  get exportColumns() {
+    return this.columns.map((col) => ({ field: col.property, header: col.label }));
   }
 }
