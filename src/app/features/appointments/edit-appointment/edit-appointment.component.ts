@@ -533,21 +533,21 @@ export class EditAppointmentComponent implements OnInit {
     this.items = [
       {
         label: this.translate.instant('appointments.BASICDATA'),
-        command: (event: any) => {
+        command: () => {
           this.activeIndex = 0;
         },
       },
       {
         label: this.translate.instant('appointments.ADDITIONALDATA'),
         disabled: this.isNew,
-        command: (event: any) => {
+        command: () => {
           this.activeIndex = 1;
         },
       },
       {
         label: this.translate.instant('appointments.RESULTS'),
         disabled: this.isNew,
-        command: (event: any) => {
+        command: () => {
           this.activeIndex = 2;
         },
       },
