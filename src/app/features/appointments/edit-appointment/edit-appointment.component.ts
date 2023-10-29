@@ -8,6 +8,8 @@ import {
   RoomDto,
   AppointmentParticipationPrediction,
   AppointmentParticipationResult,
+  AppointmentModifyBodyDto,
+  AppointmentCreateDto,
 } from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
@@ -232,7 +234,7 @@ export class EditAppointmentComponent implements OnInit {
     if (this.isNew) {
       this.createAppointment({ ...this.appointment, ...this.formGroup.value }, continueToNextStep);
     } else {
-      this.updateAppointment({ ...this.appointment, ...this.formGroup.value }, continueToNextStep);
+      this.updateAppointment({ id: this.appointment.id, ...this.formGroup.value }, continueToNextStep);
     }
   }
 
@@ -240,14 +242,14 @@ export class EditAppointmentComponent implements OnInit {
     return { label: `${venue?.address?.city} ${venue?.address?.urbanDistrict} | ${venue?.name}`, value: venue?.id };
   }
 
-  updateAppointment(appointment: AppointmentDto, continueToNextStep: boolean): void {
+  updateAppointment(appointment: AppointmentModifyBodyDto, continueToNextStep: boolean): void {
     this.appointmentService
       .update(appointment)
       .pipe(first())
       .subscribe(() => {
         this.notificationsService.success('appointments.APPOINTMENT_UPDATED');
         if (continueToNextStep) {
-          this.appointment = appointment;
+          this.appointment = { ...this.appointment, ...appointment };
           this.fillForm();
           this.activeIndex = 1;
         } else {
@@ -256,7 +258,7 @@ export class EditAppointmentComponent implements OnInit {
       });
   }
 
-  createAppointment(appointment: AppointmentDto, continueToNextStep: boolean): void {
+  createAppointment(appointment: AppointmentCreateDto, continueToNextStep: boolean): void {
     this.appointmentService
       .create(appointment)
       .pipe(first())
