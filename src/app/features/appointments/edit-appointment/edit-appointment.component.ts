@@ -8,6 +8,8 @@ import {
   RoomDto,
   AppointmentParticipationPrediction,
   AppointmentParticipationResult,
+  AppointmentModifyBodyDto,
+  AppointmentCreateDto,
 } from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
@@ -232,7 +234,23 @@ export class EditAppointmentComponent implements OnInit {
     if (this.isNew) {
       this.createAppointment({ ...this.appointment, ...this.formGroup.value }, continueToNextStep);
     } else {
-      this.updateAppointment({ ...this.appointment, ...this.formGroup.value }, continueToNextStep);
+      this.updateAppointment(
+        {
+          id: this.appointment.id,
+          categoryId: this.appointment.categoryId,
+          startTime: this.appointment.startTime,
+          endTime: this.appointment.endTime,
+          name: this.appointment.name,
+          publicDetails: this.appointment.publicDetails,
+          internalDetails: this.appointment.internalDetails,
+          status: this.appointment.status,
+          salaryId: this.appointment.salaryId,
+          salaryPatternId: this.appointment.salaryPatternId,
+          expecationId: this.appointment.expectationId,
+          ...this.formGroup.value,
+        },
+        continueToNextStep
+      );
     }
   }
 
@@ -240,14 +258,14 @@ export class EditAppointmentComponent implements OnInit {
     return { label: `${venue?.address?.city} ${venue?.address?.urbanDistrict} | ${venue?.name}`, value: venue?.id };
   }
 
-  updateAppointment(appointment: AppointmentDto, continueToNextStep: boolean): void {
+  updateAppointment(appointment: AppointmentModifyBodyDto, continueToNextStep: boolean): void {
     this.appointmentService
       .update(appointment)
       .pipe(first())
       .subscribe(() => {
         this.notificationsService.success('appointments.APPOINTMENT_UPDATED');
         if (continueToNextStep) {
-          this.appointment = appointment;
+          this.appointment = { ...this.appointment, ...appointment };
           this.fillForm();
           this.activeIndex = 1;
         } else {
@@ -256,7 +274,7 @@ export class EditAppointmentComponent implements OnInit {
       });
   }
 
-  createAppointment(appointment: AppointmentDto, continueToNextStep: boolean): void {
+  createAppointment(appointment: AppointmentCreateDto, continueToNextStep: boolean): void {
     this.appointmentService
       .create(appointment)
       .pipe(first())
@@ -515,21 +533,21 @@ export class EditAppointmentComponent implements OnInit {
     this.items = [
       {
         label: this.translate.instant('appointments.BASICDATA'),
-        command: (event: any) => {
+        command: () => {
           this.activeIndex = 0;
         },
       },
       {
         label: this.translate.instant('appointments.ADDITIONALDATA'),
         disabled: this.isNew,
-        command: (event: any) => {
+        command: () => {
           this.activeIndex = 1;
         },
       },
       {
         label: this.translate.instant('appointments.RESULTS'),
         disabled: this.isNew,
-        command: (event: any) => {
+        command: () => {
           this.activeIndex = 2;
         },
       },
