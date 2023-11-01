@@ -51,52 +51,54 @@
   <p-accordion>
     <p-accordionTab>
       <ng-template pTemplate="header">
-        <div class="p-d-flex p-flex-column">
-          <div class="p-as-start p-d-flex p-ai-center">
-            <span class="project-type">{{ myProject.project.type?.name }} </span>
-            <span *ngIf="myProject.project.genre?.name" class="project-type">&nbsp;| {{ myProject.project.genre?.name }}</span>
+        <div class="p-d-flex p-flex-column p-flex-md-row">
+          <div class="p-d-flex p-flex-column">
+            <div class="p-as-start p-d-flex p-ai-center">
+              <span class="project-type">{{ myProject.project.type?.name }} </span>
+              <span *ngIf="myProject.project.genre?.name" class="project-type">&nbsp;| {{ myProject.project.genre?.name }}</span>
+            </div>
+            <div class="p-as-start p-d-flex p-ai-center">
+              <span class="project-title">{{ myProject.project.title }}</span>
+            </div>
+            <div class="p-as-start p-d-flex project-date">
+              <span *ngIf="myProject.project.startDate">{{ myProject.project.startDate | date : 'dd.MM.yy' : 'locale(de)' }}</span>
+              <span *ngIf="myProject.project.endDate"> - {{ myProject.project.endDate | date : 'dd.MM.yy' : 'locale(de)' }}</span>
+            </div>
+            <div class="p-as-start p-d-flex parentProject">
+              <span *ngIf="myProject.project.parentId" class="project-type">
+                {{ 'my-projects.IS_PART_OF_PROJECT' | translate }} {{ myProject.parentProject?.title }}</span
+              >
+            </div>
           </div>
-          <div class="p-as-start p-d-flex p-ai-center">
-            <span class="project-title">{{ myProject.project.title }}</span>
+          <div *ngFor="let participation of myProject.participations" class="right-align">
+            <button
+              pButton
+              type="button"
+              *ngIf="participation.participationStatusResult === 'ACCEPTANCE'"
+              icon="pi pi-heart"
+              class="p-button-success"
+              label="{{ 'my-projects.RESULT_IS_ACCEPTANCE' | translate }}"
+              style="font-size: smaller"
+            ></button>
+            <button
+              pButton
+              type="button"
+              *ngIf="participation.participationStatusResult === 'REFUSAL'"
+              icon="pi pi-info-circle"
+              class="p-button-info"
+              label="{{ 'my-projects.RESULT_IS_REFUSAL' | translate }}"
+              style="font-size: smaller"
+            ></button>
+            <button
+              pButton
+              type="button"
+              *ngIf="participation.participationStatusResult === 'PENDING'"
+              icon="pi pi-exclamation-triangle"
+              class="p-button-warning"
+              label="{{ 'my-projects.RESULT_IS_PENDING' | translate }}"
+              style="font-size: smaller"
+            ></button>
           </div>
-          <div class="p-as-start p-d-flex project-date">
-            <span *ngIf="myProject.project.startDate">{{ myProject.project.startDate | date : 'dd.MM.yy' : 'locale(de)' }}</span>
-            <span *ngIf="myProject.project.endDate"> - {{ myProject.project.endDate | date : 'dd.MM.yy' : 'locale(de)' }}</span>
-          </div>
-          <div class="p-as-start p-d-flex parentProject">
-            <span *ngIf="myProject.project.parentId" class="project-type">
-              {{ 'my-projects.IS_PART_OF_PROJECT' | translate }} {{ myProject.parentProject?.title }}</span
-            >
-          </div>
-        </div>
-        <div *ngFor="let participation of myProject.participations" class="right-align">
-          <button
-            pButton
-            type="button"
-            *ngIf="participation.participationStatusResult === 'ACCEPTANCE'"
-            icon="pi pi-heart"
-            class="p-button-success"
-            label="{{ 'my-projects.RESULT_IS_ACCEPTANCE' | translate }}"
-            style="font-size: smaller"
-          ></button>
-          <button
-            pButton
-            type="button"
-            *ngIf="participation.participationStatusResult === 'REFUSAL'"
-            icon="pi pi-info-circle"
-            class="p-button-info"
-            label="{{ 'my-projects.RESULT_IS_REFUSAL' | translate }}"
-            style="font-size: smaller"
-          ></button>
-          <button
-            pButton
-            type="button"
-            *ngIf="participation.participationStatusResult === 'PENDING'"
-            icon="pi pi-exclamation-triangle"
-            class="p-button-warning"
-            label="{{ 'my-projects.RESULT_IS_PENDING' | translate }}"
-            style="font-size: smaller"
-          ></button>
         </div>
       </ng-template>
 
