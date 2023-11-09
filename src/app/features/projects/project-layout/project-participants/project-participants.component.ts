@@ -5,7 +5,7 @@ import { DynamicDialogConfig, DialogService } from 'primeng/dynamicdialog';
 import { ColumnDefinition } from '../../../../../@arpa/components/table/table.component';
 import { DocumentNode } from 'graphql';
 import { ProjectsQuery } from './projectparticipations.graphql';
-import { ProjectDto, ProjectParticipationDto } from '@arpa/models';
+import { ProjectParticipationDto } from '@arpa/models';
 import { first, map } from 'rxjs/operators';
 import { ProjectService } from '@arpa/services';
 import { ParticipationDialogComponent } from '../../../participation-dialog/participation-dialog.component';
@@ -27,6 +27,18 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
   columns: ColumnDefinition<ProjectParticipationDto>[] = [
     { label: 'projects.PARTICIPANTS', property: 'musicianProfile.person.displayName', type: 'text' },
     { label: 'projects.INSTRUMENT', property: 'musicianProfile.instrument.name', type: 'text' },
+    { label: 'projects.EMAIL', property: 'musicianProfile.person.user.normalizedEmail', type: 'text' },
+    {
+      label: 'projects.PARTICIPATION_STATUS_INVITATION',
+      property: 'invitationStatus',
+      type: 'badge',
+      badgeStateMap: [
+        { label: 'projectInvitationStatus.PENDING', value: 'PENDING', severity: 'warning' },
+        { label: 'projectInvitationStatus.SENT', value: 'SENT', severity: 'info' },
+        { label: 'projectInvitationStatus.ACCEPTED', value: 'ACCEPTED', severity: 'success' },
+        { label: 'projectInvitationStatus.DECLINED', value: 'DECLINED', severity: 'danger' },
+      ],
+    },
     {
       label: 'projects.PARTICIPATION_STATUS_PERFORMER',
       property: 'participationStatusInner',

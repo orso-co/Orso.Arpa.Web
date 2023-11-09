@@ -45,6 +45,10 @@ export const ProjectsQuery = gql`
               surname
               givenName
               displayName
+              user {
+                id
+                normalizedEmail
+              }
             }
           }
         }

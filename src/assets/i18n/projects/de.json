@@ -53,5 +53,7 @@
   "CHOIR": "Chor Rückmeldungen",
   "ORCHESTRA": "Orchester Rückmeldungen",
   "IS_HIDDEN_FOR_PERFORMERS": "Für Mitwirkende unsichtbar",
-  "PERFORMER_OVERVIEW": "Terminstatus aller Mitwirkenden"
+  "PERFORMER_OVERVIEW": "Terminstatus aller Mitwirkenden",
+  "EMAIL": "E-Mail",
+  "PARTICIPATION_STATUS_INVITATION": "Einladungsstatus"
 }

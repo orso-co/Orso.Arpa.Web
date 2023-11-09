@@ -53,5 +53,7 @@
   "CHOIR": "Choir Responses",
   "ORCHESTRA": "Orchestra Responses",
   "IS_HIDDEN_FOR_PERFORMERS": "Is hidden for performers",
-  "PERFORMER_OVERVIEW": "Performers appointments overview"
+  "PERFORMER_OVERVIEW": "Performers appointments overview",
+  "EMAIL": "Email",
+  "PARTICIPATION_STATUS_INVITATION": "Invite Status"
 }
