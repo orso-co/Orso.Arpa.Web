@@ -45,6 +45,9 @@ export const AccepptedParticipantsQuery = gql`
               surname
               givenName
               displayName
+              user {
+                normalizedEmail
+              }
             }
           }
         }

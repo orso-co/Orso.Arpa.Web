@@ -53,5 +53,7 @@
   "ORCHESTRA": "Respostas da orquestra",
   "IS_HIDDEN_FOR_PERFORMERS": "Está escondido para os artistas",
   "CONFIRMED_RESULTS": "Resultados confirmados",
-  "PERFORMER_OVERVIEW": "Visão geral do artista"
+  "PERFORMER_OVERVIEW": "Visão geral do artista",
+  "EMAIL": "E-mail",
+  "PARTICIPATION_STATUS_INVITATION": "Status de convite"
 }
