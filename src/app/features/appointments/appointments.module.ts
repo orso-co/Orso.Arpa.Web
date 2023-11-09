@@ -12,7 +12,7 @@ import { AppointmentsComponent } from './appointments/appointments.component';
 import { EditAppointmentComponent } from './edit-appointment/edit-appointment.component';
 import { FullCalendarModule } from 'primeng/fullcalendar';
 import { TranslateService } from '@ngx-translate/core';
-import { LanguageService } from '../../../@arpa/services/language.service';
+import { LanguageService } from '@arpa/services';
 import { TranslateModule } from '../../../@arpa/translate';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DropdownModule } from 'primeng/dropdown';
@@ -26,6 +26,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { RippleModule } from 'primeng/ripple';
 
 @NgModule({
   declarations: [AppointmentsComponent, EditAppointmentComponent],
@@ -50,6 +51,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     InputTextModule,
     InputNumberModule,
     OverlayPanelModule,
+    RippleModule,
   ],
   providers: [
     AppointmentCategoryListResolver,

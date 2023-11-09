@@ -13,7 +13,7 @@ import {
 } from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConfirmationService, MenuItem, SelectItem } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { sortBy, uniq } from 'lodash-es';
@@ -21,6 +21,7 @@ import { EnumService, NotificationsService, ProjectService, SectionService, Sele
 import { AppointmentService } from '../services/appointment.service';
 import { first, map } from 'rxjs/operators';
 import { Observable, of, zip } from 'rxjs';
+import { Table } from 'primeng/table';
 
 class ParticipationTableItem {
   givenName: string;
@@ -59,6 +60,7 @@ class ParticipationTableItem {
   styleUrls: ['./edit-appointment.component.scss'],
 })
 export class EditAppointmentComponent implements OnInit {
+  @ViewChild('participationTable') table: Table;
   items: MenuItem[] = [];
   activeIndex = 0;
   formGroup: UntypedFormGroup;
@@ -559,5 +561,8 @@ export class EditAppointmentComponent implements OnInit {
       this.notificationsService.success('appointments.APPOINTMENT_DELETED');
       this.ref.close(this.appointment.id);
     });
+  }
+  exportCSV() {
+    this.table.exportCSV();
   }
 }
