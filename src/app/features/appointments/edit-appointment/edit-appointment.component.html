@@ -129,7 +129,7 @@
               appendTo="body"
               formControlName="expectationId"
               id="expectation"
-              placeholer="Select expectation"
+              placeholder="Select expectation"
             ></p-dropdown>
           </div>
 
@@ -420,8 +420,20 @@
               <td [attr.colspan]="columns.length">{{ 'appointments.NORECORDS' | translate }}</td>
             </tr>
           </ng-template>
-          <ng-template pTemplate="summary"> {{ filteredDataCount }} {{ 'appointments.RESULTS' | translate }} </ng-template>
+          <ng-template pTemplate="summary" style="margin-bottom: 1rem">
+            {{ filteredDataCount }} {{ 'appointments.RESULTS' | translate }}
+          </ng-template>
         </p-table>
+        <div style="text-align: left">
+          <button
+            class="download-button"
+            type="button"
+            pButton
+            icon="pi pi-download"
+            (click)="table.exportCSV()"
+            label="Download CSV"
+          ></button>
+        </div>
       </div>
     </ng-container>
   </div>

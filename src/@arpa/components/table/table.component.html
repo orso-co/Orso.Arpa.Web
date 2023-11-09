@@ -50,16 +50,6 @@
             class="pi pi-times"
             style="position: absolute; right: 50px; cursor: pointer"
           ></i>
-          <!-- Download-Button -->
-          <button
-            class="download-button"
-            type="button"
-            pButton
-            icon="pi pi-download"
-            (click)="table.exportCSV()"
-            label="csv"
-            style="margin-left: auto"
-          ></button>
         </div>
       </div>
 
@@ -218,3 +208,15 @@
     </tr>
   </ng-template>
 </p-table>
+<!-- Download-Button -->
+<div style="text-align: left">
+  <button
+    class="download-button"
+    type="button"
+    pButton
+    icon="pi pi-download"
+    (click)="table.exportCSV()"
+    label="Download CSV"
+    style="margin-left: auto"
+  ></button>
+</div>
