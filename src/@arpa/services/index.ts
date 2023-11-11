@@ -16,3 +16,4 @@ export * from './section.service';
 export * from './select-value.service';
 export * from './venue.service';
 export * from './person';
+export * from './club.service';

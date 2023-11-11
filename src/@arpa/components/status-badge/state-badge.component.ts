@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 export interface StateItem {
-  label: string,
-  severity: string,
-  value: string,
+  label: string;
+  severity: string;
+  value: string;
 }
 
 @Component({
@@ -12,23 +12,19 @@ export interface StateItem {
   styleUrls: ['./state-badge.component.scss'],
 })
 export class StateBadgeComponent implements OnInit {
-
   @Input()
   value: string;
 
   @Input()
   stateMap: StateItem[] | undefined;
 
-  constructor() {
-  }
-
   get label(): string {
     return this.getStateItem().label;
-  };
+  }
 
   get severity(): string {
     return this.getStateItem().severity;
-  };
+  }
 
   ngOnInit() {
     if (!this.stateMap) {
@@ -64,7 +60,7 @@ export class StateBadgeComponent implements OnInit {
           value: 'archived',
         },
         {
-          label:'CONFIRMED',
+          label: 'CONFIRMED',
           severity: 'success',
           value: 'confirmed',
         },
@@ -104,21 +100,22 @@ export class StateBadgeComponent implements OnInit {
           value: 'scheduled',
         },
         {
-          label:'REHEARSALS_ONLY',
+          label: 'REHEARSALS_ONLY',
           severity: 'info',
-          value: 'rehearsals_only'
-        }
+          value: 'rehearsals_only',
+        },
       ];
     }
   }
 
   private getStateItem(): StateItem {
-    const state = this.stateMap ? this.stateMap.find(item => item.value === this.value) : undefined;
-    return state || {
-      label: this.value,
-      severity: 'default',
-      value: 'default',
-    };
+    const state = this.stateMap ? this.stateMap.find((item) => item.value === this.value) : undefined;
+    return (
+      state ?? {
+        label: this.value,
+        severity: 'default',
+        value: 'default',
+      }
+    );
   }
-
 }

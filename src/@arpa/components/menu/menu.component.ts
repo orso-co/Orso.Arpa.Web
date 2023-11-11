@@ -57,7 +57,7 @@ export class MenuComponent implements OnInit {
           )
         )
         .subscribe((v: MenuItemArpa[]) => {
-          this.menuItems = v.map((p) => ({ ...p, items: p.children || undefined }));
+          this.menuItems = v.map((p) => ({ ...p, items: p.children ?? undefined }));
         });
     });
   }

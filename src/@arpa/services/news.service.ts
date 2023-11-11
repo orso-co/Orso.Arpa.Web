@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '@arpa/services';
 import { ActivatedRouteSnapshot } from '@angular/router';
-import { NewsModifyBodyDto } from '@arpa/models';
-import { NewsCreateDto } from '@arpa/models';
-import { NewsDto } from '@arpa/models';
+import { NewsModifyBodyDto, NewsCreateDto, NewsDto } from '@arpa/models';
 
 export interface GetAllNewsResponse {
   news: NewsDto[];

@@ -1,78 +1,86 @@
-<form (ngSubmit)='submit()' [formGroup]='registerFormGroup' autocomplete='off' class='p-jc-center'>
-  <div class='p-fluid'>
-    <arpa-form-field label='GENDER' type='select'>
+<form (ngSubmit)="submit()" [formGroup]="registerFormGroup" autocomplete="off" class="p-jc-center">
+  <div class="p-fluid">
+    <arpa-form-field label="GENDER" type="select">
       <p-dropdown
-        [options]='(genderSelectValue | async) || []'
-        [placeholder]='"NOTHING_SELECTED" | translate'
-        formControlName='genderId'
-        optionLabel='label'
-        optionValue='value'
+        [options]="(genderSelectValue | async) || []"
+        [placeholder]="'NOTHING_SELECTED' | translate"
+        formControlName="genderId"
+        optionLabel="label"
+        optionValue="value"
       ></p-dropdown>
     </arpa-form-field>
 
-    <arpa-form-field label='GIVENNAME'>
-      <input (ngModelChange)='onChange()' autocomplete='given-name' formControlName='givenName' pInputText type='text'>
+    <arpa-form-field label="GIVENNAME">
+      <input (ngModelChange)="onChange()" autocomplete="given-name" formControlName="givenName" pInputText type="text" />
     </arpa-form-field>
 
-    <arpa-form-field label='SURNAME'>
-      <input (ngModelChange)='onChange()' autocomplete='family-name' formControlName='surname' pInputText type='text'>
+    <arpa-form-field label="SURNAME">
+      <input (ngModelChange)="onChange()" autocomplete="family-name" formControlName="surname" pInputText type="text" />
     </arpa-form-field>
 
-    <arpa-form-field [customError]='"INVALID_EMAIL"' label='EMAILADDRESS'>
-      <input (ngModelChange)='onChange()' autocomplete='email' formControlName='email' pInputText type='text'>
+    <arpa-form-field customError="INVALID_EMAIL" label="EMAILADDRESS">
+      <input (ngModelChange)="onChange()" autocomplete="email" formControlName="email" pInputText type="text" />
     </arpa-form-field>
 
-    <arpa-form-field label='USERNAME'>
-      <input (ngModelChange)='onChange()' autocomplete='off' formControlName='userName' pInputText type='text'>
-    </arpa-form-field>
-    <p class='usernameInfo'>
-      <i class='pi pi-info-circle'></i>{{ 'USERNAME_INFO' | translate }}
-    </p>
-
-    <arpa-form-field label='PASSWORD'>
-      <p-password (blur)='reValidate(registerFormGroup.controls["password"])'
-                  [feedback]='false'
-                  [toggleMask]='true'
-                  autocomplete='off'
-                  formControlName='password'></p-password>
+    <arpa-form-field label="USERNAME">
+      <input (ngModelChange)="onChange()" autocomplete="off" formControlName="userName" pInputText type="text" />
       <ng-template #footerTemplate>
-        <p class='passwordInfo'>
-          <i class='pi pi-info-circle'></i>{{ 'PASSWORD_INFO' | translate }}
-        </p>
-        <arpa-password-strength (valid)='setPasswordState($event)'
-                                [control]="registerFormGroup.controls['password']"></arpa-password-strength>
-
+        <p class="usernameInfo"><i class="pi pi-info-circle"></i>{{ 'USERNAME_INFO' | translate }}</p>
       </ng-template>
     </arpa-form-field>
 
-    <arpa-form-field *ngIf='registerFormGroup.get("password")?.valid && validPassword' [customError]='"NOT_EQUAL"'
-                     label='PASSWORD_CONFIRM'>
-      <p-password [feedback]='false' [toggleMask]='false' autocomplete='off'
-                  formControlName='confirmPassword'></p-password>
+    <arpa-form-field label="PASSWORD">
+      <p-password
+        (blur)="reValidate(registerFormGroup.controls['password'])"
+        [feedback]="false"
+        [toggleMask]="true"
+        autocomplete="off"
+        formControlName="password"
+      ></p-password>
+      <ng-template #footerTemplate>
+        <p class="passwordInfo"><i class="pi pi-info-circle"></i>{{ 'PASSWORD_INFO' | translate }}</p>
+        <arpa-password-strength
+          (valid)="setPasswordState($event)"
+          [control]="registerFormGroup.controls['password']"
+        ></arpa-password-strength>
+      </ng-template>
     </arpa-form-field>
 
-    <arpa-form-field type='checkbox'>
-      <p-checkbox [value]='true' formControlName='privacyPolicy'></p-checkbox>
-      <label for='privacyPolicy'>
-        <a [routerLink]="['/privacy']" style='color:currentColor;' target='new window'
-           title="{{ 'views.PRIVACY_POLICY' | translate }}">
+    <arpa-form-field *ngIf="registerFormGroup.get('password')?.valid && validPassword" [customError]="'NOT_EQUAL'" label="PASSWORD_CONFIRM">
+      <p-password [feedback]="false" [toggleMask]="false" autocomplete="off" formControlName="confirmPassword"></p-password>
+    </arpa-form-field>
+
+    <arpa-form-field type="checkbox">
+      <p-checkbox [binary]="true" formControlName="isNew"></p-checkbox>
+      <label for="isNew">
+        {{ 'views.IS_NEW_TO_ORSO' | translate : { club: clubName$ | async } }}
+      </label>
+    </arpa-form-field>
+
+    <arpa-form-field label="views.ABOUT_ME" [labelValues]="{ club: clubName$ | async }" *ngIf="showAboutMe">
+      <textarea formControlName="aboutMe" pInputText type="text" rows="5"></textarea>
+    </arpa-form-field>
+
+    <arpa-form-field type="checkbox">
+      <p-checkbox [value]="true" formControlName="privacyPolicy"></p-checkbox>
+      <label for="privacyPolicy">
+        <a [routerLink]="['/privacy']" style="color: currentColor" target="new window" title="{{ 'views.PRIVACY_POLICY' | translate }}">
           {{ 'views.PRIVACY_POLICY_CONSENT' | translate }}
         </a>
       </label>
     </arpa-form-field>
   </div>
 
-  <div class='p-formgroup-inline'>
-    <div class='p-field'>
-      <p-button (click)='goToLogin()'
-                *ngIf='!registerRequest'
-                label="{{ 'CANCEL' | translate }}">
-      </p-button>
+  <div class="p-formgroup-inline">
+    <div class="p-field">
+      <p-button (click)="goToLogin()" *ngIf="!registerRequest" label="{{ 'CANCEL' | translate }}"> </p-button>
     </div>
-    <div class='p-field'>
+    <div class="p-field">
       <p-button
-        [disabled]='registerFormGroup.invalid || registerFormGroup.pristine || registerRequest'
-        label="{{ 'REGISTER' | translate }}" type='submit'>
+        [disabled]="registerFormGroup.invalid || registerFormGroup.pristine || registerRequest"
+        label="{{ 'REGISTER' | translate }}"
+        type="submit"
+      >
       </p-button>
     </div>
   </div>
@@ -86,4 +94,3 @@
     size='invisible'
   ></re-captcha> -->
 </form>
-

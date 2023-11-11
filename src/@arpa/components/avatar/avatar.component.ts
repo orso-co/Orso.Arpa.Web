@@ -37,7 +37,7 @@ export class AvatarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     if (this.useCurrentUserAvatar) {
       this.subscription = this.authService.currentUser.subscribe((currentUser) => {
-        this.currentUserPersonId = currentUser.personId || '';
+        this.currentUserPersonId = currentUser.personId ?? '';
         this.loadAvatar();
       });
     } else {

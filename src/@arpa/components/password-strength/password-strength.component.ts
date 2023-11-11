@@ -9,7 +9,6 @@ import { ConfigService } from '../../services/config.service';
   styleUrls: ['./password-strength.component.scss'],
 })
 export class PasswordStrengthComponent implements OnInit, OnDestroy {
-
   @Input() control: AbstractControl;
   @Output() valid = new EventEmitter<boolean>();
   public bar0: string;
@@ -20,9 +19,7 @@ export class PasswordStrengthComponent implements OnInit, OnDestroy {
   private validationPatternStrong: RegExp;
   private controlSubscription: Subscription;
 
-  constructor(
-    private configService: ConfigService,
-  ) {
+  constructor(private configService: ConfigService) {
     this.validationPattern = new RegExp(configService.getEnv('validation').password);
     this.validationPatternStrong = new RegExp(configService.getEnv('validation').passwordStrong);
   }
@@ -40,16 +37,16 @@ export class PasswordStrengthComponent implements OnInit, OnDestroy {
     let idx = 0;
 
     if (6 <= value.length && value.length <= 32) {
-      if (value.match(/(?=.*\d)/)) {
+      if (RegExp(/(?=.*\d)/).exec(value)) {
         idx++;
       }
-      if (value.match(/(?=.*[a-z])/)) {
+      if (RegExp(/(?=.*[a-z])/).exec(value)) {
         idx++;
       }
-      if (value.match(/(?=.*[A-Z])/)) {
+      if (RegExp(/(?=.*[A-Z])/).exec(value)) {
         idx++;
       }
-      if (value.match(/(?=.*[^a-zA-Z0-9])/)) {
+      if (RegExp(/(?=.*[^a-zA-Z0-9])/).exec(value)) {
         idx++;
       }
       if (idx > 3 && value.length > 11) {
@@ -80,5 +77,4 @@ export class PasswordStrengthComponent implements OnInit, OnDestroy {
       this[`bar${_n}`] = strength;
     }
   }
-
 }

@@ -32,6 +32,7 @@ export class FormFieldComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @Input() showErrors: boolean = true;
   @Input() label: string;
+  @Input() labelValues: any = {};
   @Input() type: string = 'input';
   @Input() customError: string;
   @ContentChild(FormControlName) formControl: FormControlName;
@@ -56,7 +57,7 @@ export class FormFieldComponent implements OnInit, AfterViewInit, OnDestroy {
 
   get isRequired(): boolean {
     const validator = !this.formControl?.control?.validator ? null : this.formControl.control.validator!({} as AbstractControl);
-    return validator && validator.required;
+    return validator?.required;
   }
 
   get errorMessage(): string | void {
