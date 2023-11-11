@@ -1,4 +1,5 @@
 {
+  "ABOUT_ME": "Tell us something about yourself and why you want to join {{club}}",
   "ACCOUNT_ACTIVATION": "Account Activation",
   "CHANGE_PASSWORD": "Change password",
   "EMAIL_CONFIRM_SUCCESS": "Thank you for confirming your email address",
@@ -6,6 +7,7 @@
   "ERROR": "Oh, something went wrong!",
   "FORGOT_PASSWORD": "Send new password",
   "FORGOT_PASSWORD_SEND_MAIL_SUCCESS": "A link to assign a new password has been sent to your e-mail address.",
+  "IS_NEW_TO_ORSO": "I am new at {{club}}",
   "LOGGED_OUT": "See you again soon on ARPA!",
   "LOGIN": "Login",
   "LOGOUT": "Logout",

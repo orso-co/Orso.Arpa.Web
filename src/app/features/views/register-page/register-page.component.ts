@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { finalize, first, map } from 'rxjs/operators';
-import { SelectValueService, ConfigService, LoadingService, NotificationsService, AuthService } from '@arpa/services';
-
+import { SelectValueService, ConfigService, LoadingService, NotificationsService, AuthService, ClubService } from '@arpa/services';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'arpa-register-page',
   templateUrl: './register-page.component.html',
@@ -17,6 +17,8 @@ export class RegisterPageComponent {
   hide: boolean = true;
   // siteKey: string;
   genderSelectValue: any;
+  showAboutMe = false;
+  clubName$: Observable<string>;
 
   constructor(
     formBuilder: UntypedFormBuilder,
@@ -25,11 +27,13 @@ export class RegisterPageComponent {
     private notificationsService: NotificationsService,
     private loadingService: LoadingService,
     private selectValueService: SelectValueService,
-    private configService: ConfigService
+    configService: ConfigService,
+    clubService: ClubService
   ) {
     // this.siteKey = configService.getEnv('captcha').key;
 
     this.genderSelectValue = this.selectValueService.getPersonGenders();
+    this.clubName$ = clubService.getClubData().pipe(map((club) => club?.name ?? ''));
 
     this.registerFormGroup = formBuilder.group({
       genderId: [null, [Validators.required]],
@@ -40,6 +44,18 @@ export class RegisterPageComponent {
       password: [null, [Validators.required, Validators.pattern(configService.getEnv('validation').password)]],
       confirmPassword: [null, [Validators.required, this.comparePasswords]],
       privacyPolicy: [null, [Validators.required]],
+      isNew: [false],
+      aboutMe: [null],
+    });
+
+    this.registerFormGroup.get('isNew')?.valueChanges.subscribe((val) => {
+      if (val) {
+        this.registerFormGroup.controls['aboutMe'].setValidators([Validators.required]);
+      } else {
+        this.registerFormGroup.controls['aboutMe'].clearValidators();
+      }
+      this.showAboutMe = val;
+      this.registerFormGroup.controls['aboutMe'].updateValueAndValidity();
     });
   }
 
@@ -72,7 +88,7 @@ export class RegisterPageComponent {
 
   submit(): void {
     this.authService
-      .register(Object.assign({}, this.registerFormGroup.value))
+      .register({ ...this.registerFormGroup.value })
       .pipe(
         first(),
         finalize(() => {

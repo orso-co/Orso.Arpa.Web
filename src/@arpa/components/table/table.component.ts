@@ -156,7 +156,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
     return this.columns.filter((column) => column.show !== undefined).length > 0;
   }
 
-  resolveState(table: string, property: string = 'State', id: string) {
+  resolveState(table: string, id: string, property: string = 'State') {
     const key = `${table}|${property}`;
     if (!this.stateStreams[key]) {
       this.stateStreams[key] = this.selectValueService.get(table, property).pipe(share());
@@ -193,7 +193,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
     }
     if (this.filterFields.length === 0) {
       this.columns.forEach((def) => {
-        this.filterFields.push(def.property as string);
+        this.filterFields.push(def.property);
       });
     }
   }
@@ -204,10 +204,8 @@ export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
 
   ngAfterContentInit(): void {
     this.templates.forEach((item) => {
-      switch (item.getType()) {
-        case 'actions':
-          this.actionsTemplateRef = item.template;
-          break;
+      if (item.getType() === 'actions') {
+        this.actionsTemplateRef = item.template;
       }
     });
     this.columnTemplateRefs.forEach((item) => {

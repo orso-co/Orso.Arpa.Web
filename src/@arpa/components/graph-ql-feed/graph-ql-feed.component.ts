@@ -109,7 +109,7 @@ export class GraphQlFeedComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   private onDataFetch(queryResult: any) {
-    const { loading, data, error, errors } = queryResult;
+    const { loading, data } = queryResult;
     this.isLoading.emit(loading);
     if (Array.isArray(data)) {
       this.values.next(data);

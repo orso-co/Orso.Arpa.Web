@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { first } from 'rxjs/operators';
 import { MeService, EnumService, NotificationsService } from '@arpa/services';
@@ -13,7 +13,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   templateUrl: './my-projects.component.html',
   styleUrls: ['./my-projects.component.scss'],
 })
-export class MyProjectsComponent implements OnInit {
+export class MyProjectsComponent {
   userProjects$: BehaviorSubject<MyProjectDto[]> = new BehaviorSubject<MyProjectDto[]>([]);
   totalRecordsCount$: BehaviorSubject<number> = new BehaviorSubject(0);
   itemsPerPage = 25;
@@ -36,10 +36,6 @@ export class MyProjectsComponent implements OnInit {
     private dialogService: DialogService,
     private translate: TranslateService
   ) {}
-
-  ngOnInit(): void {
-    this.reloadProjects();
-  }
 
   openDialog(projectId: string, participation: MyProjectParticipationDto) {
     const ref = this.dialogService.open(MyProjectParticipationDialogComponent, {
@@ -71,15 +67,15 @@ export class MyProjectsComponent implements OnInit {
   }
 
   loadData(take: number, skip: number): void {
-    const loadResult$ = this.meService.getAllProjects(take, skip, this.selectedOption).subscribe((response) => {
+    this.meService.getAllProjects(take, skip, this.selectedOption).subscribe((response) => {
       this.totalRecordsCount$.next(response.totalRecordsCount || 0);
       this.userProjects$.next(response.userProjects || []);
     });
   }
 
   reloadProjects(event?: { first: number; row: number }) {
-    const take = event?.row || this.itemsPerPage;
-    const skip = event?.first || 0;
+    const take = event?.row ?? this.itemsPerPage;
+    const skip = event?.first ?? 0;
     this.loadData(take, skip);
   }
 }
