@@ -23,7 +23,6 @@ import { WidgetComponent } from './widget/widget.component';
 import { LoadingService } from '@arpa/services';
 import { dashboards, widgets } from './dashboard.config';
 import { MeService } from '@arpa/services';
-import { MyMusicianProfileDto } from '@arpa/models';
 
 interface CardLayout {
   columns: number;
@@ -95,7 +94,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   );
   @ViewChildren(ArpaWidgetConfigDirective, { read: ArpaWidgetConfigDirective }) private widgetRefs: QueryList<ArpaWidgetConfigDirective>;
 
-  hasMusicianProfile: boolean = false;
+  hasMusicianProfile$: Observable<boolean>;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -119,17 +118,15 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
       map((roles) => roles.map((role) => ({ routerLink: [`/arpa/dashboard/${role}`], label: role.toUpperCase() })))
     );
 
-    this.meService.getProfilesMusician().subscribe((profile: MyMusicianProfileDto | MyMusicianProfileDto[]) => {
-      let musicianProfile: MyMusicianProfileDto | null;
-
-      if (Array.isArray(profile)) {
-        musicianProfile = profile.length > 0 ? profile[0] : null;
-      } else {
-        musicianProfile = profile;
-      }
-
-      this.hasMusicianProfile = musicianProfile !== null && musicianProfile.id != null;
-    });
+    this.hasMusicianProfile$ = this.meService.getProfilesMusician().pipe(
+      map((profile) => {
+        if (Array.isArray(profile)) {
+          return profile.length === 0;
+        } else {
+          return !profile || profile.id == null;
+        }
+      })
+    );
   }
 
   ngAfterViewInit() {
