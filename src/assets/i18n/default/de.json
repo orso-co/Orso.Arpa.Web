@@ -129,6 +129,9 @@
   "norole": {
     "BE_PATIENT": "Wir bitten um ein wenig Geduld, bis du von unserem Team freigeschaltet wurdest. Du wirst per E-Mail benachrichtigt."
   },
+  "nomupro": {
+    "MUPRO_FIRST": "Bitte richte zuerst dein(e) Musikerprofil(e) ein, damit dir passende Projekte und Termine angezeigt werden können."
+  },
   "appointmentParticipationPrediction": {
     "YES": "Ja",
     "NO": "Nein",

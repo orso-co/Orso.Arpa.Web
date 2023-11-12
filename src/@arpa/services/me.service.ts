@@ -94,7 +94,7 @@ export class MeService {
     return this.apiService.put<MyProjectParticipationDto>(`${this.baseUrl}/projects/${projectId}/participation/`, dto).pipe(shareReplay());
   }
 
-  getProfilesMusician<T>(id?: string): Observable<MyMusicianProfileDto | MyMusicianProfileDto[]> | T {
+  getProfilesMusician(id?: string): Observable<MyMusicianProfileDto | MyMusicianProfileDto[]> {
     if (id) {
       return this.apiService.get<MyMusicianProfileDto>(`${this.baseUrl}/profiles/musician/${id}`).pipe(shareReplay());
     } else {

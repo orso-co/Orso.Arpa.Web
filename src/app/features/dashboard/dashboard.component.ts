@@ -22,6 +22,7 @@ import { MenuItem } from 'primeng/api';
 import { WidgetComponent } from './widget/widget.component';
 import { LoadingService } from '@arpa/services';
 import { dashboards, widgets } from './dashboard.config';
+import { MeService } from '@arpa/services';
 
 interface CardLayout {
   columns: number;
@@ -93,6 +94,8 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   );
   @ViewChildren(ArpaWidgetConfigDirective, { read: ArpaWidgetConfigDirective }) private widgetRefs: QueryList<ArpaWidgetConfigDirective>;
 
+  hasMusicianProfile$: Observable<boolean>;
+
   constructor(
     private breakpointObserver: BreakpointObserver,
     private route: ActivatedRoute,
@@ -101,7 +104,8 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     private cdRef: ChangeDetectorRef,
     private injector: Injector,
     private vcRef: ViewContainerRef,
-    private authService: AuthService
+    private authService: AuthService,
+    private meService: MeService
   ) {}
 
   ngOnInit() {
@@ -112,6 +116,16 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     this.menuItems = this.authService.currentUser.pipe(
       map((token) => token!.roles),
       map((roles) => roles.map((role) => ({ routerLink: [`/arpa/dashboard/${role}`], label: role.toUpperCase() })))
+    );
+
+    this.hasMusicianProfile$ = this.meService.getProfilesMusician().pipe(
+      map((profile) => {
+        if (Array.isArray(profile)) {
+          return profile.length === 0;
+        } else {
+          return !profile || profile.id == null;
+        }
+      })
     );
   }
 
