@@ -125,6 +125,9 @@
   "norole": {
     "BE_PATIENT": "We ask for a little patience until your account has been activated by our team. You will be notified by email."
   },
+  "nomupro": {
+    "MUPRO_FIRST": "Please create a musician profile first, so that we can show you the right projects and appointments."
+  },
   "appointmentParticipationPrediction": {
     "YES": "Yes",
     "NO": "No",

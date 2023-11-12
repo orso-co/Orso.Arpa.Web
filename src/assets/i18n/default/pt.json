@@ -123,6 +123,9 @@
   "norole": {
     "BE_PATIENT": "Por favor, aguarda até que a nossa equipa active o teu registo. Receberás um e-mail quando o registo estiver activo."
   },
+  "nomupro": {
+    "MUPRO_FIRST": "Por favor, crie primeiro um perfil de músico, para que possamos mostrar-lhe os projetos e compromissos certos."
+  },
   "appointmentParticipationPrediction": {
     "YES": "Sim",
     "NO": "Não",

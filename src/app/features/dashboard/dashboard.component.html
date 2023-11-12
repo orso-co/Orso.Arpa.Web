@@ -1,36 +1,47 @@
-<ng-container *ngIf='menuItems | async as menuItems'>
-  <p-tabMenu *ngIf='menuItems.length > 1' [activeItem]='getActiveItem(menuItems)' [model]='menuItems'></p-tabMenu>
+<ng-container *ngIf="menuItems | async as menuItems">
+  <p-tabMenu *ngIf="menuItems.length > 1" [activeItem]="getActiveItem(menuItems)" [model]="menuItems"></p-tabMenu>
 </ng-container>
-<div class='grid-container'>
-  <ng-container *ngIf='getByType("charts").length'>
-    <mat-grid-list cols='{{ ( widgetLayout | async )?.columns }}' rowHeight='100px'>
+<ng-container *ngIf="!hasMusicianProfile">
+  <p-message severity="info" [text]="'nomupro.MUPRO_FIRST' | translate"></p-message>
+</ng-container>
+<div class="grid-container">
+  <ng-container *ngIf="getByType('charts').length">
+    <mat-grid-list cols="{{ (widgetLayout | async)?.columns }}" rowHeight="100px">
       <!--Charts-->
-      <mat-grid-tile *ngFor='let i of getByType("charts")' [colspan]='( widgetLayout | async )?.chart.cols'
-                     [rowspan]='( widgetLayout | async )?.chart.rows'>
-        <ng-template [arpaWidgetConfig]='i' collection='charts'></ng-template>
+      <mat-grid-tile
+        *ngFor="let i of getByType('charts')"
+        [colspan]="(widgetLayout | async)?.chart.cols"
+        [rowspan]="(widgetLayout | async)?.chart.rows"
+      >
+        <ng-template [arpaWidgetConfig]="i" collection="charts"></ng-template>
       </mat-grid-tile>
     </mat-grid-list>
   </ng-container>
-  <ng-container *ngIf='getByType("widgets").length'>
-    <mat-grid-list cols='{{ ( widgetLayout | async )?.columns }}' rowHeight='200px'>
+  <ng-container *ngIf="getByType('widgets').length">
+    <mat-grid-list cols="{{ (widgetLayout | async)?.columns }}" rowHeight="200px">
       <!--Default Widgets-->
-      <mat-grid-tile *ngFor='let i of getByType("widgets")' [colspan]='( widgetLayout | async )?.widget.cols'
-                     [rowspan]='( widgetLayout | async )?.widget.rows'>
-        <ng-template [arpaWidgetConfig]='i' collection='widgets'></ng-template>
+      <mat-grid-tile
+        *ngFor="let i of getByType('widgets')"
+        [colspan]="(widgetLayout | async)?.widget.cols"
+        [rowspan]="(widgetLayout | async)?.widget.rows"
+      >
+        <ng-template [arpaWidgetConfig]="i" collection="widgets"></ng-template>
       </mat-grid-tile>
     </mat-grid-list>
   </ng-container>
-  <ng-container *ngIf='getByType("tables").length'>
-    <mat-grid-list cols='{{ ( widgetLayout | async )?.columns }}' rowHeight='200px'>
+  <ng-container *ngIf="getByType('tables').length">
+    <mat-grid-list cols="{{ (widgetLayout | async)?.columns }}" rowHeight="200px">
       <!--Table-->
-      <mat-grid-tile *ngFor='let i of getByType("tables")'
-                     [colspan]='( widgetLayout | async )?.table.cols'
-                     [rowspan]='( widgetLayout | async )?.table.rows'>
-        <ng-template [arpaWidgetConfig]='i' collection='tables'></ng-template>
+      <mat-grid-tile
+        *ngFor="let i of getByType('tables')"
+        [colspan]="(widgetLayout | async)?.table.cols"
+        [rowspan]="(widgetLayout | async)?.table.rows"
+      >
+        <ng-template [arpaWidgetConfig]="i" collection="tables"></ng-template>
       </mat-grid-tile>
     </mat-grid-list>
   </ng-container>
 </div>
 <ng-container *ngIf="dashboardRole === 'without'">
-  <p-message severity="info" [text]="'Willkommen bei ARPA 2.0! Du wurdest vom ORSO Team noch nicht freigeschaltet. Bitte hab noch etwas Geduld. Du wirst per E-Mail informiert, sobald deine Inhalte für dich zur Verfügung stehen.' | translate"></p-message>
+  <p-message severity="info" [text]="'norole.BE_PATIENT' | translate"></p-message>
 </ng-container>
