@@ -1,6 +1,8 @@
 {
   "ACTIVE": "active",
   "ASSIGN_ROLES": "Assign roles",
+  "AWAITING_ROLE_ASSIGNMENT": "awaiting role assignment",
+  "AWAITING_EMAIL_CONFIRMATION": "awaiting e-mail confirmation",
   "CANCELLED": "cancelled",
   "DELETE_USER": "Delete user",
   "DONE": "done",

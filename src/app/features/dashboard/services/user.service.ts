@@ -2,8 +2,10 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../../../@arpa/services/api.service';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { UserDto } from '../../../../@arpa/models/userDto';
+import { UserDto, UserStatus } from '../../../../@arpa/models/userDto';
 import { SetRoleDto } from '../../../../@arpa/models/setRoleDto';
+import { HttpParams } from '@angular/common/http';
+import { shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +17,13 @@ export class UserService {
     this.baseUrl = '/users';
   }
 
-  public getUsers(reportProgress: boolean = false): Observable<UserDto[]> {
-    return this.apiService.get<UserDto[]>(this.baseUrl, undefined, reportProgress);
+  public getUsers(reportProgress: boolean = false, status?: UserStatus): Observable<UserDto[]> {
+    let params = undefined;
+    if (status) {
+      params = new HttpParams().set('userStatus', status.replace(/_/g, '')); // backend does not accept snake case for query paramter
+    }
+
+    return this.apiService.get<UserDto[]>(this.baseUrl, params, reportProgress).pipe(shareReplay());
   }
 
   public getUser(id: string): Observable<UserDto> {
