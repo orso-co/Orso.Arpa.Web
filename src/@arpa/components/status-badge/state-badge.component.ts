@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { UserStatus } from '@arpa/models';
 
 export interface StateItem {
   label: string;
@@ -32,12 +33,12 @@ export class StateBadgeComponent implements OnInit {
         {
           label: 'ACTIVE',
           severity: 'success',
-          value: 'active',
+          value: UserStatus.ACTIVE,
         },
         {
-          label: 'PENDING',
+          label: UserStatus.AWAITING_EMAIL_CONFIRMATION,
           severity: 'info',
-          value: 'pending',
+          value: UserStatus.AWAITING_EMAIL_CONFIRMATION,
         },
         {
           label: 'POSTPONED',
@@ -65,9 +66,9 @@ export class StateBadgeComponent implements OnInit {
           value: 'confirmed',
         },
         {
-          label: 'NOT_CONFIRMED',
+          label: UserStatus.AWAITING_ROLE_ASSIGNMENT,
           severity: 'warning',
-          value: 'not_confirmed',
+          value: UserStatus.AWAITING_ROLE_ASSIGNMENT,
         },
         {
           label: 'CONCERT',

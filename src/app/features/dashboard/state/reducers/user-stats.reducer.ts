@@ -4,14 +4,14 @@ import { loadUserStats, resetUserStats, updateUserStats } from '../actions/user-
 export interface UserStatsState {
   registered: number;
   active: number;
-  pending: number;
-  notConfirmed: number;
+  awaitingEmailConfirmation: number;
+  awaitingRoleAssignment: number;
 }
 
 export const initialState: UserStatsState = {
   active: 0,
-  notConfirmed: 0,
-  pending: 0,
+  awaitingEmailConfirmation: 0,
+  awaitingRoleAssignment: 0,
   registered: 0,
 };
 
@@ -26,6 +26,5 @@ export const userStatsReducer = createReducer(
       ...stats,
     };
   }),
-  on(resetUserStats, (): UserStatsState => initialState),
+  on(resetUserStats, (): UserStatsState => initialState)
 );
-

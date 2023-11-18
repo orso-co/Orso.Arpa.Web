@@ -1,6 +1,8 @@
 {
   "ACTIVE": "aktiv",
   "ASSIGN_ROLES": "Rollen zuweisen",
+  "AWAITING_ROLE_ASSIGNMENT": "Wartet auf Rollenzuweisung",
+  "AWAITING_EMAIL_CONFIRMATION": "Wartet auf Bestätigung der E-Mail-Adresse",
   "CANCELLED": "abgebrochen",
   "DELETE_USER": "User löschen",
   "DONE": "abgeschlossen",

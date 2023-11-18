@@ -85,18 +85,6 @@ export const dashboards: Record<string, Record<string, any>> = {
     // }]],
   },
   admin: {
-    charts: [
-      [
-        'ChartWidget',
-        {
-          title: 'USERS',
-          store: 'userStats',
-          props: ['active', 'pending', 'notConfirmed', 'registered'],
-          labels: ['ACTIVE', 'PENDING', 'NOT_CONFIRMED', 'REGISTERED'],
-          type: 'doughnut',
-        },
-      ],
-    ],
     tables: [
       [
         'UserWidget',

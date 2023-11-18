@@ -1,24 +1,17 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { WidgetStateService } from '../dashboard.component';
-import { UserDto } from '../../../../@arpa/models/userDto';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { ConfirmationService } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
-import { NotificationsService } from '../../../../@arpa/services/notifications.service';
-import { SetRoleDto } from '../../../../@arpa/models/setRoleDto';
+import { SetRoleDto, UserDto, UserStatus } from '@arpa/models';
 import { Store } from '@ngrx/store';
 import { updateUserStats } from '../state/actions/user-stats.actions';
 import { WidgetEvents } from '../widget/widget.component';
 import { UserService } from '../services/user.service';
-import { AuthService } from '../../../../@arpa/services/auth.service';
-import { RoleService } from '../../../../@arpa/services/role.service';
-
-interface UserWithStateDto extends UserDto {
-  state: string;
-}
+import { RoleService, AuthService, NotificationsService } from '@arpa/services';
 
 @Component({
   selector: 'arpa-user-widget',
@@ -26,22 +19,22 @@ interface UserWithStateDto extends UserDto {
   styleUrls: ['./user-widget.component.scss'],
 })
 export class UserWidgetComponent implements OnDestroy {
-
-  public users: Observable<UserWithStateDto[]>;
-  public isMobile: Observable<boolean>;
+  public users$: Observable<UserDto[]>;
+  public isMobile$: Observable<boolean>;
   public selectedUser: UserDto;
   public selectedUserRoles: string[];
-  public roles: Observable<any>;
-  public maxRoleLevel: Observable<number>;
+  public roles$: Observable<any>;
+  public maxRoleLevel$: Observable<number>;
+  public selectedUserStatus: UserStatus | undefined = UserStatus.AWAITING_ROLE_ASSIGNMENT;
   public stateOptions = [
-    { label: 'success', value: 'active' },
-    { label: 'info', value: 'pending' },
-    { label: 'warning', value: 'not_confirmed' },
+    { label: 'success', value: UserStatus.ACTIVE },
+    { label: 'info', value: UserStatus.AWAITING_EMAIL_CONFIRMATION },
+    { label: 'warning', value: UserStatus.AWAITING_ROLE_ASSIGNMENT },
   ];
   private widgetEvents: Subscription;
 
   constructor(
-    private breakpointObserver: BreakpointObserver,
+    breakpointObserver: BreakpointObserver,
     private widgetStateService: WidgetStateService,
     private confirmationService: ConfirmationService,
     private translateService: TranslateService,
@@ -49,16 +42,17 @@ export class UserWidgetComponent implements OnDestroy {
     private authService: AuthService,
     private roleService: RoleService,
     private userService: UserService,
-    private store: Store) {
-    this.widgetEvents = this.widgetStateService.events.subscribe(event => {
+    private store: Store
+  ) {
+    this.widgetEvents = this.widgetStateService.events.subscribe((event) => {
       if (event === WidgetEvents.RELOAD) {
         this.getUsers();
       }
     });
     this.getUsers();
-    this.maxRoleLevel = this.authService.getMaxRoleLevelOfCurrentUser();
-    this.roles = this.roleService.getRoles();
-    this.isMobile = breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Small]).pipe(map(({ matches }) => matches));
+    this.maxRoleLevel$ = this.authService.getMaxRoleLevelOfCurrentUser();
+    this.roles$ = this.roleService.getRoles();
+    this.isMobile$ = breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Small]).pipe(map(({ matches }) => matches));
   }
 
   edit(event: Event, user: UserDto, panelRef: OverlayPanel) {
@@ -97,52 +91,27 @@ export class UserWidgetComponent implements OnDestroy {
     this.widgetEvents.unsubscribe();
   }
 
-  private state(user: UserDto): string {
-    if (user.emailConfirmed && user.roleNames?.length) {
-      return 'active';
-    } else if (user.emailConfirmed && !user.roleNames?.length) {
-      return 'pending';
-    } else {
-      return 'not_confirmed';
-    }
-  }
-
-  private getUsers() {
-    this.users = this.widgetStateService.showLoaderUntilCompleted(this.userService.getUsers()).pipe(
-      map((users: UserDto[]) => {
-        users.forEach((user: any) => {
-          user.state = this.state(user);
-        });
-        return this.updateStats(users) as UserWithStateDto[];
-      }),
+  public getUsers() {
+    this.users$ = this.widgetStateService.showLoaderUntilCompleted(
+      this.userService.getUsers(false, this.selectedUserStatus).pipe(tap((users) => this.updateStats(users)))
     );
   }
 
   private updateStats(users: UserDto[]): UserDto[] {
-    let active = 0;
-    let notConfirmed = 0;
-    let pending = 0;
+    const active = users.filter((u) => u.status === UserStatus.ACTIVE).length;
+    const awaitingEmailConfirmation = users.filter((u) => u.status === UserStatus.AWAITING_EMAIL_CONFIRMATION).length;
+    const awaitingRoleAssignment = users.filter((u) => u.status === UserStatus.AWAITING_ROLE_ASSIGNMENT).length;
     const registered = users.length;
-    users.forEach(user => {
-      if (user.emailConfirmed && user.roleNames?.length) {
-        active = active + 1;
-      } else if (user.emailConfirmed && !user.roleNames?.length) {
-        pending = pending + 1;
-      } else {
-        notConfirmed = notConfirmed + 1;
-      }
-    });
-    this.store.dispatch(updateUserStats({ stats: { active, notConfirmed, pending, registered } }));
+    this.store.dispatch(updateUserStats({ stats: { active, awaitingEmailConfirmation, awaitingRoleAssignment, registered } }));
     return users;
   }
 
   private deleteSelectedUser(user: UserDto): void {
     if (user!.userName) {
-      this.widgetStateService.showLoaderUntilCompleted(this.userService.deleteUser(user!.userName))
-        .subscribe(() => {
-          this.getUsers();
-          this.notificationsService.success('dashboard.USER_DELETED');
-        });
+      this.widgetStateService.showLoaderUntilCompleted(this.userService.deleteUser(user!.userName)).subscribe(() => {
+        this.getUsers();
+        this.notificationsService.success('dashboard.USER_DELETED');
+      });
     }
   }
 }
