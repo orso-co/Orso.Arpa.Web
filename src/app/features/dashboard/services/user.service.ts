@@ -1,9 +1,8 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { ApiService } from '../../../../@arpa/services/api.service';
+import { ApiService } from '@arpa/services';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { UserDto, UserStatus } from '../../../../@arpa/models/userDto';
-import { SetRoleDto } from '../../../../@arpa/models/setRoleDto';
+import { SetRoleDto, UserDto, UserStatus } from '@arpa/models';
 import { HttpParams } from '@angular/common/http';
 import { shareReplay } from 'rxjs/operators';
 

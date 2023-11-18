@@ -1,20 +1,17 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { WidgetStateService } from '../dashboard.component';
-import { UserDto, UserStatus } from '../../../../@arpa/models/userDto';
 import { map, tap } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { ConfirmationService } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
-import { NotificationsService } from '../../../../@arpa/services/notifications.service';
-import { SetRoleDto } from '../../../../@arpa/models/setRoleDto';
+import { SetRoleDto, UserDto, UserStatus } from '@arpa/models';
 import { Store } from '@ngrx/store';
 import { updateUserStats } from '../state/actions/user-stats.actions';
 import { WidgetEvents } from '../widget/widget.component';
 import { UserService } from '../services/user.service';
-import { AuthService } from '../../../../@arpa/services/auth.service';
-import { RoleService } from '../../../../@arpa/services/role.service';
+import { RoleService, AuthService, NotificationsService } from '@arpa/services';
 
 @Component({
   selector: 'arpa-user-widget',
