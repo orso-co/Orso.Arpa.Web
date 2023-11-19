@@ -6,7 +6,7 @@
   "EMAIL_CONFIRMATION": "Bestätigung der E-Mailadresse",
   "ERROR": "Da ist etwas schiefgelaufen",
   "FORGOT_PASSWORD": "Passwort vergessen",
-  "FORGOT_PASSWORD_SEND_MAIL_SUCCESS": "Ein Link zum Vergeben eines neuen Passworts wurde an deine E-Mail-Adresse gesendet.",
+  "FORGOT_PASSWORD_SEND_MAIL_SUCCESS": "Ein Link zum Vergeben eines neuen Passworts wurde an deine E-Mail-Adresse gesendet, sofern uns die eingegebene Mailadresse/der eingegebene Username bekannt ist.",
   "IS_NEW_TO_ORSO": "Ich bin neu bei {{club}}",
   "LOGGED_OUT": "Bis zum nächsten Mal bei ARPA",
   "LOGIN": "Einloggen",
