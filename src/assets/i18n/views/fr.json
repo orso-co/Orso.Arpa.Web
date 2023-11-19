@@ -6,7 +6,7 @@
   "EMAIL_CONFIRMATION": "Confirmation de l'émail",
   "ERROR": "Quelque chose a mal tourné",
   "FORGOT_PASSWORD": "Mot de passe oublié",
-  "FORGOT_PASSWORD_SEND_MAIL_SUCCESS": "Un lien pour réinitialiser ton mot de passe a été envoyé à ton adresse e-mail.",
+  "FORGOT_PASSWORD_SEND_MAIL_SUCCESS": "Un lien pour créer un nouveau mot de passe a été envoyé à ton adresse e-mail, dans la mesure où nous connaissons l'adresse e-mail/le nom d'utilisateur que tu as saisi.",
   "IS_NEW_TO_ORSO": "Je suis nouveau (nouvelle) chez {{club}}.",
   "LOGGED_OUT": "À bientôt sur ARPA",
   "LOGIN": "Se connecter",

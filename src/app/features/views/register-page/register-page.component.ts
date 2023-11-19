@@ -2,7 +2,15 @@ import { Component } from '@angular/core';
 import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { finalize, first, map } from 'rxjs/operators';
-import { SelectValueService, ConfigService, LoadingService, NotificationsService, AuthService, ClubService } from '@arpa/services';
+import {
+  SelectValueService,
+  ConfigService,
+  LoadingService,
+  NotificationsService,
+  AuthService,
+  ClubService,
+  FormErrorService,
+} from '@arpa/services';
 import { Observable } from 'rxjs';
 @Component({
   selector: 'arpa-register-page',
@@ -28,7 +36,8 @@ export class RegisterPageComponent {
     private loadingService: LoadingService,
     private selectValueService: SelectValueService,
     configService: ConfigService,
-    clubService: ClubService
+    clubService: ClubService,
+    private formErrorService: FormErrorService
   ) {
     // this.siteKey = configService.getEnv('captcha').key;
 
@@ -102,16 +111,7 @@ export class RegisterPageComponent {
         },
         (error) => {
           if (error.status < 500 && error.errors) {
-            Object.keys(error.errors).forEach((prop) => {
-              const formProp = prop[0].toLowerCase() + prop.slice(1);
-              const formControl = this.registerFormGroup.get(formProp);
-              if (formControl) {
-                formControl.setErrors({
-                  resultError: error.errors[prop],
-                });
-                formControl.markAsTouched();
-              }
-            });
+            this.formErrorService.handleError(this.registerFormGroup, error);
           } else {
             this.router.navigate(['regError']);
           }

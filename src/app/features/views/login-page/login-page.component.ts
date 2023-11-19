@@ -4,6 +4,7 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { first } from 'rxjs/operators';
 import { NotificationsService } from '../../../../@arpa/services/notifications.service';
 import { AuthService } from '../../../../@arpa/services/auth.service';
+import { FormErrorService } from '@arpa/services';
 
 @Component({
   selector: 'arpa-login-page',
@@ -18,7 +19,8 @@ export class LoginPageComponent {
     formBuilder: UntypedFormBuilder,
     private router: Router,
     private notificationsService: NotificationsService,
-    private authService: AuthService
+    private authService: AuthService,
+    private formErrorService: FormErrorService
   ) {
     this.loginFormGroup = formBuilder.group({
       usernameOrEmail: [null, [Validators.required, Validators.minLength(1)]],
@@ -28,7 +30,7 @@ export class LoginPageComponent {
 
   submit(): void {
     this.authService
-      .login(Object.assign({}, this.loginFormGroup.value))
+      .login({ ...this.loginFormGroup.value })
       .pipe(first())
       .subscribe(
         (response) => {
@@ -71,8 +73,13 @@ export class LoginPageComponent {
     this.authService
       .forgotPassword(this.loginFormGroup.value.usernameOrEmail)
       .pipe(first())
-      .subscribe(() => {
-        this.notificationsService.success('FORGOT_PASSWORD_SEND_MAIL_SUCCESS', 'views');
-      });
+      .subscribe(
+        () => {
+          this.notificationsService.success('FORGOT_PASSWORD_SEND_MAIL_SUCCESS', 'views');
+        },
+        (error) => {
+          this.formErrorService.handleError(this.loginFormGroup, error);
+        }
+      );
   }
 }
