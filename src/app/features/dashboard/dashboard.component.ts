@@ -13,7 +13,7 @@ import {
   ViewChildren,
   ViewContainerRef,
 } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -115,18 +115,24 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.menuItems = this.authService.currentUser.pipe(
       map((token) => token!.roles),
-      map((roles) => roles.map((role) => ({ routerLink: [`/arpa/dashboard/${role}`], label: role.toUpperCase() })))
+      map((roles: string[]) => roles.map((role) => ({ routerLink: [`/arpa/dashboard/${role}`], label: role.toUpperCase() })))
     );
-
-    this.hasMusicianProfile$ = this.meService.getProfilesMusician().pipe(
-      map((profile) => {
-        if (Array.isArray(profile)) {
-          return profile.length === 0;
-        } else {
-          return !profile || profile.id == null;
-        }
-      })
-    );
+    this.authService.currentUser
+      .pipe(
+        map((token) => token!.roles),
+        filter((roles: string[]) => roles.includes('Performer'))
+      )
+      .subscribe(() => {
+        this.hasMusicianProfile$ = this.meService.getProfilesMusician().pipe(
+          map((profile) => {
+            if (Array.isArray(profile)) {
+              return profile.length === 0;
+            } else {
+              return !profile || profile.id == null;
+            }
+          })
+        );
+      });
   }
 
   ngAfterViewInit() {
