@@ -33,12 +33,12 @@ export class ApiService {
     return this.http.put<T>(`${this.baseUrl}${path}`, body, { reportProgress }).pipe(catchError(this.formatErrors));
   }
 
-  post<T>(path: string, body: any = {}, reportProgress: boolean = true): Observable<T> {
-    return this.http.post<T>(`${this.baseUrl}${path}`, body, { reportProgress }).pipe(catchError(this.formatErrors));
+  post<T>(path: string, body: any = {}, params: HttpParams = new HttpParams(), reportProgress: boolean = true): Observable<T> {
+    return this.http.post<T>(`${this.baseUrl}${path}`, body, { params, reportProgress }).pipe(catchError(this.formatErrors));
   }
 
-  delete<T>(path: string, reportProgress: boolean = true): Observable<T> {
-    return this.http.delete<T>(`${this.baseUrl}${path}`, { reportProgress }).pipe(catchError(this.formatErrors));
+  delete<T>(path: string, params: HttpParams = new HttpParams(), reportProgress: boolean = true): Observable<T> {
+    return this.http.delete<T>(`${this.baseUrl}${path}`, { params, reportProgress }).pipe(catchError(this.formatErrors));
   }
 
   postFormData<T>(path: string, body: any = {}, reportProgress: boolean = true): Observable<T> {

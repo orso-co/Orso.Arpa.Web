@@ -51,23 +51,27 @@ export class AppointmentService {
   }
 
   addRoom(id: string, roomId: string): Observable<any> {
-    return this.apiService.post(`${this.baseUrl}/${id}/rooms/${roomId}`, {}).pipe(shareReplay());
+    return this.apiService.post(`${this.baseUrl}/${id}/rooms/${roomId}`).pipe(shareReplay());
   }
 
   removeSection(id: string, sectionId: string): Observable<AppointmentDto> {
-    return this.apiService.delete<AppointmentDto>(`${this.baseUrl}/${id}/sections/${sectionId}`).pipe(shareReplay());
+    const params = new HttpParams().set('includeParticipations', false);
+    return this.apiService.delete<AppointmentDto>(`${this.baseUrl}/${id}/sections/${sectionId}`, params).pipe(shareReplay());
   }
 
   addSection(id: string, sectionId: string): Observable<AppointmentDto> {
-    return this.apiService.post<AppointmentDto>(`${this.baseUrl}/${id}/sections/${sectionId}`, {}).pipe(shareReplay());
+    const params = new HttpParams().set('includeParticipations', false);
+    return this.apiService.post<AppointmentDto>(`${this.baseUrl}/${id}/sections/${sectionId}`, params).pipe(shareReplay());
   }
 
   removeProject(id: string, projectId: string): Observable<AppointmentDto> {
-    return this.apiService.delete<AppointmentDto>(`${this.baseUrl}/${id}/projects/${projectId}`).pipe(shareReplay());
+    const params = new HttpParams().set('includeParticipations', false);
+    return this.apiService.delete<AppointmentDto>(`${this.baseUrl}/${id}/projects/${projectId}`, params).pipe(shareReplay());
   }
 
   addProject(id: string, projectId: string): Observable<AppointmentDto> {
-    return this.apiService.post<AppointmentDto>(`${this.baseUrl}/${id}/projects/${projectId}`, {}).pipe(shareReplay());
+    const params = new HttpParams().set('includeParticipations', false);
+    return this.apiService.post<AppointmentDto>(`${this.baseUrl}/${id}/projects/${projectId}`, params).pipe(shareReplay());
   }
 
   setVenue(id: string, venueId: string | null): Observable<any> {

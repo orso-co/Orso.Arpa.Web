@@ -30,7 +30,7 @@ export class UserService {
   }
 
   public deleteUser(username: string, reportProgress: boolean = false): Observable<any> {
-    return this.apiService.delete(`${this.baseUrl}/${username}`, reportProgress);
+    return this.apiService.delete(`${this.baseUrl}/${username}`, undefined, reportProgress);
   }
 
   public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<UserDto[] | UserDto> {

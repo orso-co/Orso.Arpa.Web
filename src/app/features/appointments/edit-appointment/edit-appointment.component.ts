@@ -409,7 +409,7 @@ export class EditAppointmentComponent implements OnInit {
       .pipe(first())
       .subscribe((result) => {
         this.appointment = result;
-        this.mapParticipations();
+        this.areParticipationsAlreadyLoaded = false;
         this.notificationsService.success('appointments.SECTION_REMOVED');
       });
   }
@@ -417,7 +417,7 @@ export class EditAppointmentComponent implements OnInit {
   addSection(sectionId: string): void {
     this.appointmentService.addSection(this.appointment.id, sectionId).subscribe((result) => {
       this.appointment = result;
-      this.mapParticipations();
+      this.areParticipationsAlreadyLoaded = false;
       this.notificationsService.success('appointments.SECTION_ADDED');
     });
   }
@@ -428,7 +428,7 @@ export class EditAppointmentComponent implements OnInit {
       .pipe(first())
       .subscribe((result) => {
         this.appointment = result;
-        this.mapParticipations();
+        this.areParticipationsAlreadyLoaded = false;
         this.notificationsService.success('appointments.PROJECT_REMOVED');
       });
   }
@@ -439,7 +439,7 @@ export class EditAppointmentComponent implements OnInit {
       .pipe(first())
       .subscribe((result) => {
         this.appointment = result;
-        this.mapParticipations();
+        this.areParticipationsAlreadyLoaded = false;
         this.notificationsService.success('appointments.PROJECT_ADDED');
       });
   }
