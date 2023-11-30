@@ -19,7 +19,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { sortBy, uniq } from 'lodash-es';
 import { EnumService, NotificationsService, ProjectService, SectionService, SelectValueService, VenueService } from '@arpa/services';
 import { AppointmentService } from '../services/appointment.service';
-import { first, map } from 'rxjs/operators';
+import { first, map, tap } from 'rxjs/operators';
 import { Observable, of, zip } from 'rxjs';
 import { Table } from 'primeng/table';
 
@@ -66,8 +66,9 @@ export class EditAppointmentComponent implements OnInit {
   formGroup: UntypedFormGroup;
   ready = false;
 
-  appointment: AppointmentDto = this.config.data.appointment;
-  isAllDayEvent: boolean = this.config.data.isAllDayEvent;
+  appointment: AppointmentDto;
+  areParticipationsAlreadyLoaded = false;
+  isAllDayEvent: boolean;
 
   // loaded in loadData()
   sections: SectionsAllDto[];
@@ -124,104 +125,90 @@ export class EditAppointmentComponent implements OnInit {
       { field: 'sections', header: this.translate.instant('appointments.SECTIONS'), width: '20%' },
       // { field: 'qualification', header: this.translate.instant('appointments.QUALIFICATION'), width: '20%' },
     ];
-
     this.createStepperMenu();
   }
 
   private loadData() {
-    let getAppointmentById: Observable<AppointmentDto> = of(this.appointment);
-    if (this.appointment.id) {
-      getAppointmentById = this.appointmentService.getById(this.appointment.id);
-    }
+    console.log(this.config.data);
+    this.appointment = this.config.data.appointment;
+    this.isAllDayEvent = this.config.data.isAllDayEvent;
+    const sections$ = this.config.data.sections ? of(this.config.data.sections) : this.sectionService.sectionsAll$;
+    const projects$ = this.config.data.projects ? of(this.config.data.projects) : this.projectsService.load();
+    const venues$ = this.config.data.venues ? of(this.config.data.venues) : this.venuesService.load();
+    const salaries$ = this.config.data.salaryOptions
+      ? of(this.config.data.salaryOptions)
+      : this.selectValueService.getAppointmentSalaries();
+    const salaryPatterns$ = this.config.data.salaryPatternOptions
+      ? of(this.config.data.salaryPatternOptions)
+      : this.selectValueService.getAppointmentSalaryPatterns();
+    const expectations$ = this.config.data.expectationOptions
+      ? of(this.config.data.expectationOptions)
+      : this.selectValueService.getAppointmentExpectations();
+    const categories$ = this.config.data.categoryOptions
+      ? of(this.config.data.categoryOptions)
+      : this.selectValueService.getAppointmentCategories();
+    const results$ = this.config.data.resultOptions
+      ? of(this.config.data.resultOptions)
+      : this.enumService.getAppointmentParticipationResultSelectItems();
+    const predictions$ = this.config.data.predictionOptions
+      ? of(this.config.data.predictionOptions)
+      : this.enumService.getAppointmentParticipationPredictionSelectItems();
+    const status$ = this.config.data.statusOptions
+      ? of(this.config.data.statusOptions)
+      : this.enumService.getAppointmentStatusSelectItems();
     zip(
-      getAppointmentById.pipe(
-        map((result: AppointmentDto) => {
-          this.appointment = result;
-        })
-      ),
-      this.enumService.getAppointmentStatusSelectItems().pipe(
+      status$.pipe(
         map((result) => {
           this.statusOptions = result;
         })
       ),
-      this.enumService.getAppointmentParticipationResultSelectItems().pipe(
+      results$.pipe(
         map((result) => {
           this.resultOptions = result;
         })
       ),
-      this.enumService.getAppointmentParticipationPredictionSelectItems().pipe(
+      predictions$.pipe(
         map((result) => {
           this.predictionOptions = result;
         })
       ),
-
-      this.sectionService.sectionsAll$.pipe(
+      sections$.pipe(
         map((result) => {
           this.sections = result;
         })
       ),
-
-      this.projectsService.load().pipe(
+      projects$.pipe(
         map((result) => {
           this.projects = result;
         })
       ),
-
-      this.venuesService.load().pipe(
+      venues$.pipe(
         map((result) => {
           this.venues = result;
         })
       ),
-
-      this.selectValueService.getAppointmentSalaries().pipe(
+      salaries$.pipe(
         map((result) => {
           this.salaryOptions = result;
         })
       ),
-
-      this.selectValueService.getAppointmentSalaryPatterns().pipe(
+      salaryPatterns$.pipe(
         map((result) => {
           this.salaryPatternOptions = result;
         })
       ),
-
-      this.selectValueService.getAppointmentExpectations().pipe(
+      expectations$.pipe(
         map((result) => {
           this.expectationOptions = result;
         })
       ),
-
-      this.selectValueService.getAppointmentCategories().pipe(
+      categories$.pipe(
         map((result) => {
           this.categoryOptions = result;
         })
       )
     ).subscribe(() => {
       this.fillForm();
-
-      if (this.appointment.participations) {
-        this.sectionSelectItems = sortBy(
-          uniq(
-            this.appointment.participations
-              .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles || [])
-              .reduce((a, b) => a.concat(b), [])
-              .map((mp: ReducedMusicianProfileDto) => mp?.instrumentName || '')
-          ).map((val) => ({ label: val, value: val })),
-          (selectItem) => selectItem.label
-        );
-
-        this.qualificationOptions = sortBy(
-          uniq(
-            this.appointment.participations
-              .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles || [])
-              .reduce((a, b) => a.concat(b), [])
-              .map((mp: ReducedMusicianProfileDto) => mp?.qualification || '')
-          ).map((val) => ({ label: val, value: val })),
-          (selectItem) => selectItem.label
-        );
-
-        this.mapParticipations();
-      }
 
       this.venueOptions = this.venues?.map((v) => this.mapVenueToSelectItem(v));
       this.setRooms(this.appointment.venueId);
@@ -253,6 +240,38 @@ export class EditAppointmentComponent implements OnInit {
         },
         continueToNextStep
       );
+    }
+  }
+
+  onActiveIndexChange(event: number) {
+    if (event === 2 && !this.areParticipationsAlreadyLoaded) {
+      this.appointmentService.getById(this.appointment.id, true).subscribe((appointment) => {
+        this.appointment = appointment;
+        this.areParticipationsAlreadyLoaded = true;
+        if (this.appointment.participations) {
+          this.sectionSelectItems = sortBy(
+            uniq(
+              this.appointment.participations
+                .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles ?? [])
+                .reduce((a, b) => a.concat(b), [])
+                .map((mp: ReducedMusicianProfileDto) => mp?.instrumentName ?? '')
+            ).map((val) => ({ label: val, value: val })),
+            (selectItem) => selectItem.label
+          );
+
+          this.qualificationOptions = sortBy(
+            uniq(
+              this.appointment.participations
+                .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles ?? [])
+                .reduce((a, b) => a.concat(b), [])
+                .map((mp: ReducedMusicianProfileDto) => mp?.qualification ?? '')
+            ).map((val) => ({ label: val, value: val })),
+            (selectItem) => selectItem.label
+          );
+
+          this.mapParticipations();
+        }
+      });
     }
   }
 
@@ -508,11 +527,11 @@ export class EditAppointmentComponent implements OnInit {
     this.appointment.participations.forEach((element: AppointmentParticipationListItemDto) => {
       this.participationTableItems.push(
         new ParticipationTableItem(
-          element.person?.id || '',
-          element.person?.givenName || '',
-          element.person?.surname || '',
-          this.getSectionNames(element.musicianProfiles || []),
-          element.musicianProfiles?.map((mp: any) => mp.qualification).join(', ') || '',
+          element.person?.id ?? '',
+          element.person?.givenName ?? '',
+          element.person?.surname ?? '',
+          this.getSectionNames(element.musicianProfiles ?? []),
+          element.musicianProfiles?.map((mp: any) => mp.qualification).join(', ') ?? '',
           element.participation?.prediction,
           element.participation?.result,
           element.participation?.commentByPerformerInner

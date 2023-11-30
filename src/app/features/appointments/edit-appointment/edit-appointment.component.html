@@ -10,7 +10,7 @@
   <h3 style="text-align: center" class="appointment-title">
     {{ appointment.name }} - {{ appointment.startTime | date : 'dd.MM.yy' : 'locale(de)' }}
   </h3>
-  <p-steps [(activeIndex)]="activeIndex" [model]="items" [readonly]="false"></p-steps>
+  <p-steps [(activeIndex)]="activeIndex" [model]="items" [readonly]="false" (activeIndexChange)="onActiveIndexChange($event)"></p-steps>
   <div [ngSwitch]="activeIndex">
     <ng-container *ngSwitchCase="0">
       <form (submit)="onSubmit(false)" [formGroup]="formGroup" class="p-mt-5">

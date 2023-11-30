@@ -1,4 +1,4 @@
-import { AppointmentStatus } from '@arpa/models';
+import { AppointmentStatus, ProjectDto, VenueDto, AppointmentDto, SectionDto, DateRange, AppointmentListDto } from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
@@ -12,7 +12,6 @@ import { first, map } from 'rxjs/operators';
 import { AppointmentService } from '../services/appointment.service';
 import { SectionService, NotificationsService, EnumService } from '@arpa/services';
 import { EditAppointmentComponent } from '../edit-appointment/edit-appointment.component';
-import { ProjectDto, VenueDto, AppointmentDto, SectionDto, DateRange, AppointmentListDto } from '@arpa/models';
 import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator';
 
 export interface CalendarEvent {
@@ -68,9 +67,13 @@ export class AppointmentsComponent {
       this.categoryOptions = data.categories || [];
     });
     this.sectionsSubscription = this.sectionService.sectionsAll$.subscribe((sections) => (this.sections = sections || []));
-    this.statusSubscription = this.enumService.getAppointmentStatusSelectItems().subscribe(items => this.statusOptions = items || []);
-    this.resultSubscription = this.enumService.getAppointmentParticipationResultSelectItems().subscribe(items => this.resultOptions = items || []);
-    this.predictionSubscription = this.enumService.getAppointmentParticipationPredictionSelectItems().subscribe(items => this.predictionOptions = items || []);
+    this.statusSubscription = this.enumService.getAppointmentStatusSelectItems().subscribe((items) => (this.statusOptions = items || []));
+    this.resultSubscription = this.enumService
+      .getAppointmentParticipationResultSelectItems()
+      .subscribe((items) => (this.resultOptions = items || []));
+    this.predictionSubscription = this.enumService
+      .getAppointmentParticipationPredictionSelectItems()
+      .subscribe((items) => (this.predictionOptions = items || []));
     this.langChangeListener = this.translate.onLangChange.subscribe(() => this.setOptions());
     this.setOptions();
   }
@@ -262,7 +265,7 @@ export class AppointmentsComponent {
   }
 
   private openEditDialog(appointmentId: string): void {
-    this.appointmentService.getById(appointmentId).subscribe((appointment) => {
+    this.appointmentService.getById(appointmentId, false).subscribe((appointment) => {
       const ref = this.dialogService.open(EditAppointmentComponent, {
         data: {
           appointment,
