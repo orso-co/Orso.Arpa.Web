@@ -3,15 +3,15 @@ import {
   AppointmentModifyBodyDto,
   AppointmentParticipationPrediction,
   AppointmentParticipationResult,
+  DateRange,
+  AppointmentDto,
+  AppointmentListDto,
 } from '@arpa/models';
 import { shareReplay } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '@arpa/services';
-import { AppointmentDto } from '@arpa/models';
-import { DateRange } from '@arpa/models';
-import { AppointmentListDto } from 'src/@arpa/models/appointmentListDto';
 
 @Injectable({
   providedIn: 'root',
@@ -29,8 +29,9 @@ export class AppointmentService {
     return this.apiService.get<AppointmentListDto[]>(this.baseUrl, params).pipe(shareReplay());
   }
 
-  getById(id: string): Observable<AppointmentDto> {
-    return this.apiService.get<AppointmentDto>(`${this.baseUrl}/${id}`).pipe(shareReplay());
+  getById(id: string, includeParticipations: boolean): Observable<AppointmentDto> {
+    const params = new HttpParams().set('includeParticipations', includeParticipations);
+    return this.apiService.get<AppointmentDto>(`${this.baseUrl}/${id}`, params).pipe(shareReplay());
   }
 
   create(appointment: AppointmentCreateDto): Observable<AppointmentDto> {
