@@ -19,8 +19,8 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { sortBy, uniq } from 'lodash-es';
 import { EnumService, NotificationsService, ProjectService, SectionService, SelectValueService, VenueService } from '@arpa/services';
 import { AppointmentService } from '../services/appointment.service';
-import { first, map, tap } from 'rxjs/operators';
-import { Observable, of, zip } from 'rxjs';
+import { first, map } from 'rxjs/operators';
+import { of, zip } from 'rxjs';
 import { Table } from 'primeng/table';
 
 class ParticipationTableItem {
@@ -245,33 +245,38 @@ export class EditAppointmentComponent implements OnInit {
 
   onActiveIndexChange(event: number) {
     if (event === 2 && !this.areParticipationsAlreadyLoaded) {
-      this.appointmentService.getById(this.appointment.id, true).subscribe((appointment) => {
-        this.appointment = appointment;
-        this.areParticipationsAlreadyLoaded = true;
-        if (this.appointment.participations) {
-          this.sectionSelectItems = sortBy(
-            uniq(
-              this.appointment.participations
-                .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles ?? [])
-                .reduce((a, b) => a.concat(b), [])
-                .map((mp: ReducedMusicianProfileDto) => mp?.instrumentName ?? '')
-            ).map((val) => ({ label: val, value: val })),
-            (selectItem) => selectItem.label
-          );
+      this.ready = false;
+      this.appointmentService.getById(this.appointment.id, true).subscribe(
+        (appointment) => {
+          this.appointment = appointment;
+          this.areParticipationsAlreadyLoaded = true;
+          if (this.appointment.participations) {
+            this.sectionSelectItems = sortBy(
+              uniq(
+                this.appointment.participations
+                  .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles ?? [])
+                  .reduce((a, b) => a.concat(b), [])
+                  .map((mp: ReducedMusicianProfileDto) => mp?.instrumentName ?? '')
+              ).map((val) => ({ label: val, value: val })),
+              (selectItem) => selectItem.label
+            );
 
-          this.qualificationOptions = sortBy(
-            uniq(
-              this.appointment.participations
-                .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles ?? [])
-                .reduce((a, b) => a.concat(b), [])
-                .map((mp: ReducedMusicianProfileDto) => mp?.qualification ?? '')
-            ).map((val) => ({ label: val, value: val })),
-            (selectItem) => selectItem.label
-          );
+            this.qualificationOptions = sortBy(
+              uniq(
+                this.appointment.participations
+                  .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles ?? [])
+                  .reduce((a, b) => a.concat(b), [])
+                  .map((mp: ReducedMusicianProfileDto) => mp?.qualification ?? '')
+              ).map((val) => ({ label: val, value: val })),
+              (selectItem) => selectItem.label
+            );
 
-          this.mapParticipations();
-        }
-      });
+            this.mapParticipations();
+            this.ready = true;
+          }
+        },
+        () => (this.ready = true)
+      );
     }
   }
 
