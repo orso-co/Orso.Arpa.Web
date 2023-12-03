@@ -7,7 +7,16 @@ export const PersonQuery = gql`
         id
         givenName
         surname
+        birthName
+        dateOfBirth
+        birthplace
         aboutMe
+        contactVia {
+          id
+          givenName
+          surname
+          displayName
+        }
         personBackgroundTeam
         reliability
         generalPreference

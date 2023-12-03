@@ -3,7 +3,6 @@ import { PersonLayoutComponent } from '../person-layout/person-layout.component'
 import { Component } from '@angular/core';
 import { ActivatedRoute, PRIMARY_OUTLET, Router } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
-import { TranslateService } from '@ngx-translate/core';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -11,19 +10,13 @@ import { first } from 'rxjs/operators';
   template: '',
 })
 export class PersonDialogEntryComponent {
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private dialogService: DialogService,
-    private translate: TranslateService
-  ) {
+  constructor(private router: Router, private route: ActivatedRoute, private dialogService: DialogService) {
     this.route.data.pipe(first()).subscribe((data) => {
-      this.openDialog(data && data.person);
+      this.openDialog(data?.person);
     });
   }
 
   public openDialog(selection?: PersonDto) {
-
     const ref = this.dialogService.open(PersonLayoutComponent, {
       data: {
         person: selection,

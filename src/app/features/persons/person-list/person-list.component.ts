@@ -1,4 +1,4 @@
-import { SelectValueService, NotificationsService, PersonService } from '@arpa/services';
+import { SelectValueService } from '@arpa/services';
 import { PersonLayoutComponent } from '../person-dialog/person-layout/person-layout.component';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SelectItem } from 'primeng/api';
@@ -45,8 +45,6 @@ export class PersonListComponent implements OnInit {
     public translate: TranslateService,
     private router: Router,
     private route: ActivatedRoute,
-    private personService: PersonService,
-    private notificationsService: NotificationsService,
     private selectValueService: SelectValueService
   ) {}
 
@@ -59,14 +57,14 @@ export class PersonListComponent implements OnInit {
   public openPersonDetailDialog(selection: PersonDto | null): void {
     const ref = this.dialogService.open(PersonLayoutComponent, {
       data: {
-        person: selection ? selection : null,
+        person: selection ?? null,
         gender: this.selectValueService.getPersonGenders(),
       },
       header: selection ? this.translate.instant('persons.EDIT_PERSON') : this.translate.instant('persons.ADD_NEW_PERSON'),
       styleClass: 'form-modal',
       dismissableMask: true,
     });
-    ref.onClose.pipe(first()).subscribe((person: PersonDto) => {
+    ref.onClose.pipe(first()).subscribe(() => {
       this.feedSource.refresh();
     });
   }
@@ -78,7 +76,7 @@ export class PersonListComponent implements OnInit {
         map(() => this.router.getCurrentNavigation()?.extras as NavigationExtras)
       )
       .subscribe(({ state }) => {
-        if (state && state.refresh) {
+        if (state?.refresh) {
           this.feedSource.refresh();
         }
       });
