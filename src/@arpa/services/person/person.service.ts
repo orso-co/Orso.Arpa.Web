@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '@arpa/services';
 import { PersonDto, ReducedPersonDto, PersonModifyBodyDto, PersonInviteResultDto } from '@arpa/models';
-import { first, map, shareReplay } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 import { PersonQuery } from './person.graphql';
 import { cloneDeep } from 'lodash-es';
 
@@ -23,8 +23,8 @@ export class PersonService {
 
   public getPerson(id: string): Observable<PersonDto> {
     // return this.apiService.get<PersonDto>(`${this.baseUrl}/${id}`);
-    return this.apollo.query({ query: PersonQuery, variables: { id } }).pipe(
-      first(),
+    return this.apollo.query({ query: PersonQuery, variables: { id }, fetchPolicy: 'no-cache' }).pipe(
+      shareReplay(),
       map((result: any) => {
         const person = result.data.persons.items?.[0];
         return person ? cloneDeep(person) : {};

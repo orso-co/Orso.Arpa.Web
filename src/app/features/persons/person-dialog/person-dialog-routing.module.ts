@@ -14,9 +14,6 @@ const routes: Routes = [
   {
     path: '',
     component: PersonDialogEntryComponent,
-    resolve: {
-      person: PersonResolver,
-    },
   },
 ];
 
