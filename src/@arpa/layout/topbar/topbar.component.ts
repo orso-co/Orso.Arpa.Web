@@ -4,7 +4,7 @@ import { TopbarService } from './topbar.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, map, shareReplay } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { AuthService, IToken } from '../../services/auth.service';
+import { AuthService, IToken } from '@arpa/services';
 import { Unsubscribe } from '../../decorators/unsubscribe.decorator';
 
 @Component({
@@ -14,7 +14,6 @@ import { Unsubscribe } from '../../decorators/unsubscribe.decorator';
 })
 @Unsubscribe()
 export class TopbarComponent {
-
   userToken: Observable<IToken | null>;
   langChangeListener: Subscription;
   titleSubscription: Subscription;
@@ -22,26 +21,31 @@ export class TopbarComponent {
   pageTitle: string;
   sideBarDisplay: boolean;
 
-  isHandset: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay(),
-    );
+  isHandset: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+    map((result) => result.matches),
+    shareReplay()
+  );
 
-  constructor(private breakpointObserver: BreakpointObserver, private router: Router, private topBarService: TopbarService, private authService: AuthService) {
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private router: Router,
+    private topBarService: TopbarService,
+    private authService: AuthService
+  ) {
     this.userToken = this.authService.currentUser;
     this.pageTitle = 'WELCOME';
     this.titleSubscription = topBarService.title.subscribe((title) => {
       this.pageTitle = title;
     });
-    this.routerSubscription = this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd),
-    ).subscribe(() => {
+    this.routerSubscription = this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
       this.sideBarDisplay = false;
     });
   }
 
   getRoleNames(token: IToken): string {
     return token.roles.map((role) => role.charAt(0).toUpperCase() + role.slice(1)).join(', ');
+  }
+  sendEmail() {
+    window.location.href = 'mailto:support@arpa.orso.co';
   }
 }
