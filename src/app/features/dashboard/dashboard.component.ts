@@ -13,7 +13,7 @@ import {
   ViewChildren,
   ViewContainerRef,
 } from '@angular/core';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, switchMap } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -109,21 +109,30 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.subscribeToDashboardRole();
+    this.createMenuItems();
+    this.checkIfUserHasMusicianProfile();
+  }
+
+  subscribeToDashboardRole() {
     this.routeRoleSubscription = this.route.data.subscribe((data) => {
       this.dashboardRole = data.dashboardRole.toLowerCase();
     });
+  }
 
+  createMenuItems() {
     this.menuItems = this.authService.currentUser.pipe(
       map((token) => token!.roles),
       map((roles: string[]) => roles.map((role) => ({ routerLink: [`/arpa/dashboard/${role}`], label: role.toUpperCase() })))
     );
-    this.authService.currentUser
-      .pipe(
-        map((token) => token!.roles),
-        filter((roles: string[]) => roles.includes('Performer'))
-      )
-      .subscribe(() => {
-        this.hasMusicianProfile$ = this.meService.getProfilesMusician().pipe(
+  }
+
+  checkIfUserHasMusicianProfile() {
+    this.hasMusicianProfile$ = this.authService.currentUser.pipe(
+      map((token) => token!.roles),
+      filter((roles: string[]) => roles.includes('Performer')),
+      switchMap(() =>
+        this.meService.getProfilesMusician().pipe(
           map((profile) => {
             if (Array.isArray(profile)) {
               return profile.length === 0;
@@ -131,8 +140,9 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
               return !profile || profile.id == null;
             }
           })
-        );
-      });
+        )
+      )
+    );
   }
 
   ngAfterViewInit() {
