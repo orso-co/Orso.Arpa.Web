@@ -9,14 +9,16 @@ import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-l
 import { LayoutModule as AngularLayoutModule } from '@angular/cdk/layout';
 import { RouterModule } from '@angular/router';
 import { LayoutPageComponent } from './layout-page/layout-page.component';
-import { LangSwitchModule } from '../components/lang-switch/lang-switch.module';
+import { LangSwitchModule } from '@arpa/components';
 import { TopbarComponent } from './topbar/topbar.component';
-import { MenuModule } from '../components/menu/menu.module';
-import { AvatarModule } from '../components/avatar/avatar.module';
-import { ThemeSwitcherModule } from '../components/theme-switcher/theme-switcher.module';
+import { MenuModule } from '@arpa/components';
+import { AvatarModule } from '@arpa/components';
+import { ThemeSwitcherModule } from '@arpa/components';
 import { LogoComponent } from './logo/logo.component';
-import { LoadingModule } from '../components/loading/loading.module';
+import { LoadingModule } from '@arpa/components';
 import { TranslateModule } from '../translate';
+import { ButtonModule } from 'primeng/button';
+import { ChipModule } from 'primeng/chip';
 
 @NgModule({
   declarations: [LayoutDefaultComponent, LayoutPageComponent, TopbarComponent, LogoComponent],
@@ -35,6 +37,8 @@ import { TranslateModule } from '../translate';
     AvatarModule,
     ThemeSwitcherModule,
     LoadingModule,
+    ButtonModule,
+    ChipModule,
   ],
   exports: [LayoutPageComponent, LogoComponent],
 })
