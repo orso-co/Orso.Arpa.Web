@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { MusicianInstrumentsComponent } from '../../../../musician-profile-dialog/musician-instruments/musician-instruments.component';
 
 @Component({
-  selector: 'arpa-person-profiles-musician',
+  selector: 'arpa-person-profiles-musicianprofile',
   templateUrl: './person-profiles-musician.component.html',
   styleUrls: ['./person-profiles-musician.component.scss'],
 })

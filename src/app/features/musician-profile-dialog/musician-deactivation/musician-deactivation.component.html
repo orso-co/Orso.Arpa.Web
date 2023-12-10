@@ -1,55 +1,55 @@
-<form (submit)='$event.preventDefault()' [formGroup]='form'>
-  <div class='p-fluid p-formgrid p-grid'>
-    <div class='p-col'>
-      <arpa-form-field label='musician-profile-dialog.DEACTIVATION_DATE'>
+<form (submit)="$event.preventDefault()" [formGroup]="form">
+  <div class="p-fluid p-formgrid p-grid">
+    <div class="p-col">
+      <arpa-form-field label="musicianprofile-dialog.DEACTIVATION_DATE">
         <p-calendar
-          [minDate]='minDate'
-          [showWeek]='true'
-          dateFormat='dd MM yy'
-          formControlName='deactivationStart'
-          id='deactivationStart'
-          [showIcon]='true'
-          [showOnFocus]='false'
+          [minDate]="minDate"
+          [showWeek]="true"
+          dateFormat="dd MM yy"
+          formControlName="deactivationStart"
+          id="deactivationStart"
+          [showIcon]="true"
+          [showOnFocus]="false"
           appendTo="body"
         ></p-calendar>
       </arpa-form-field>
     </div>
   </div>
-  <div class='p-fluid p-formgrid p-grid'>
-    <div class='p-col'>
-      <arpa-form-field label='musician-profile-dialog.PURPOSE'>
-        <textarea formControlName='purpose' id='purpose' pInputText type='text'></textarea>
+  <div class="p-fluid p-formgrid p-grid">
+    <div class="p-col">
+      <arpa-form-field label="musicianprofile-dialog.PURPOSE">
+        <textarea formControlName="purpose" id="purpose" pInputText type="text"></textarea>
       </arpa-form-field>
     </div>
   </div>
-  <div class='p-d-flex p-jc-center'>
-    <div class='p-d-flex p-jc-centerl'>
+  <div class="p-d-flex p-jc-center">
+    <div class="p-d-flex p-jc-centerl">
       <button
-        (click)='activate()'
-        *ngIf='profile.deactivation'
-        [label]="'musician-profile-dialog.ACTIVATE' | translate"
-        icon='pi pi-check'
-        iconPos='left'
+        (click)="activate()"
+        *ngIf="profile.deactivation"
+        [label]="'musicianprofile-dialog.ACTIVATE' | translate"
+        icon="pi pi-check"
+        iconPos="left"
         pButton
-        type='button'
+        type="button"
       ></button>
     </div>
-    <div class='p-d-flex p-jc-center'>
+    <div class="p-d-flex p-jc-center">
       <button
-        (click)='deactivate()'
-        [disabled]='form.pristine || form.invalid'
-        [label]="'musician-profile-dialog.DEACTIVATE' | translate"
-        class='p-button-danger'
-        icon='pi pi-times'
-        iconPos='left'
+        (click)="deactivate()"
+        [disabled]="form.pristine || form.invalid"
+        [label]="'musicianprofile-dialog.DEACTIVATE' | translate"
+        class="p-button-danger"
+        icon="pi pi-times"
+        iconPos="left"
         pButton
-        type='button'
+        type="button"
       ></button>
     </div>
+  </div>
+  <div>
+    <div class="p-d-flex p-jc-center">
+      <p>{{ 'musicianprofile-dialog.NO_DEACTIVATION_POSSIBLE' | translate }}</p>
     </div>
-    <div>
-      <div class='p-d-flex p-jc-center'>
-      <p>{{ 'musician-profile-dialog.NO_DEACTIVATION_POSSIBLE' | translate }}</p>
-      </div>
-    </div>
+  </div>
 </form>

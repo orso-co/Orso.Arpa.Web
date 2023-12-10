@@ -2,12 +2,12 @@
   <form [formGroup]="form">
     <div class="p-grid p-formgrid">
       <div class="p-fluid p-col-12 p-lg-6">
-        <arpa-form-field label="musician-profile-dialog.TIMESPAN">
+        <arpa-form-field label="musicianprofile-dialog.TIMESPAN">
           <input autocomplete="off" formControlName="timeSpan" pInputText type="text" />
         </arpa-form-field>
       </div>
       <div class="p-fluid p-col-12 p-lg-6">
-        <arpa-form-field label="musician-profile-dialog.EDUCATION_TYPE" type="select">
+        <arpa-form-field label="musicianprofile-dialog.EDUCATION_TYPE" type="select">
           <p-dropdown
             [options]="(educationTypes | async) || []"
             [placeholder]="'NOTHING_SELECTED' | translate"
@@ -18,12 +18,12 @@
         </arpa-form-field>
       </div>
       <div class="p-fluid p-col-12">
-        <arpa-form-field label="musician-profile-dialog.EDUCATION_INSTITUTION">
+        <arpa-form-field label="musicianprofile-dialog.EDUCATION_INSTITUTION">
           <input autocomplete="off" formControlName="institution" pInputText type="text" />
         </arpa-form-field>
       </div>
       <div class="p-fluid p-col-12">
-        <arpa-form-field label="musician-profile-dialog.EDUCATION_DESCRIPTION">
+        <arpa-form-field label="musicianprofile-dialog.EDUCATION_DESCRIPTION">
           <textarea formControlName="description" id="description" pInputText type="text"></textarea>
         </arpa-form-field>
       </div>
@@ -48,7 +48,7 @@
 <ng-template #actionsTemplate let-row>
   <button
     (click)="remove(row)"
-    [label]="'musician-profile-dialog.DELETE' | translate"
+    [label]="'musicianprofile-dialog.DELETE' | translate"
     class="p-button-rounded p-button-text p-button-icon-only"
     icon="pi pi-trash"
     pButton

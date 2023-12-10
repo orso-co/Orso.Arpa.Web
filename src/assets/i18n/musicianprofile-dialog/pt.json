@@ -1,6 +1,6 @@
 {
   "ACTIVATE": "activar",
-  "ACTIVATED": "perfil activado" ,
+  "ACTIVATED": "perfil activado",
   "ADD_PROFILE": "adicionar",
   "COMMENT": "comentário",
   "CREATE": "criar",
@@ -8,12 +8,13 @@
   "CREATED": "perfil criado",
   "DEACTIVATE": "desactivar",
   "DEACTIVATED": "desactivado",
-  "DEACTIVATION_DATE": "data de desactivação" ,
+  "DEACTIVATION:": "desactivação",
+  "DEACTIVATION_DATE": "data de desactivação",
   "DOCUMENT_ADDED": "Carregamento de documento",
-  "DOCUMENT_REMOVED": "Documento removido" ,
+  "DOCUMENT_REMOVED": "Documento removido",
   "DOCUMENT_TYPE": "Documento",
   "DOCUMENTS": "Documentos",
-  "DOUBLING_INSTRUMENT_ADDED": "instrumento adicional inserido" ,
+  "DOUBLING_INSTRUMENT_ADDED": "instrumento adicional inserido",
   "DOUBLING_INSTRUMENT_REMOVED": "instrumento adicional removido",
   "DOUBLING_INSTRUMENT_UPDATED": "actualização do instrumento adicional",
   "DOUBLING_INSTRUMENT": "instrumento adicional",
@@ -29,7 +30,7 @@
   "INSTRUMENT_AVAILABILITY": "disponibilidade de instrumentos",
   "INSTRUMENT_UPDATED": "actualização de instrumentos",
   "INSTRUMENT": "Instrumento",
-  "INSTRUMENTS": "Instrumentos" ,
+  "INSTRUMENTS": "Instrumentos",
   "LEVEL_ASSESSMENT": "Avaliação",
   "LEVEL_ASSESSMENT_PERFORMER": "Auto-avaliação",
   "MAIN_INSTRUMENT": "instrumento principal",
@@ -60,5 +61,6 @@
   "LEVEL_ASSESSMENT_TEAM": "Avaliação de nível pela equipe",
   "LEVEL_ASSESSMENT_INNER": "Avaliação de nível por performer",
   "BACKGROUND_TEAM": "fundo",
-  "BACKGROUND_INNER": "fundo"
+  "BACKGROUND_INNER": "fundo",
+  "NO_DEACTIVATION_POSSIBLE": "Não é possível desativar o perfil"
 }

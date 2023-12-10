@@ -8,7 +8,7 @@ import { SelectItem } from 'primeng/api';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'arpa-appointments-widget',
+  selector: 'arpa-my-appointments-widget',
   templateUrl: './appointments-widget.component.html',
   styleUrls: ['./appointments-widget.component.scss'],
 })

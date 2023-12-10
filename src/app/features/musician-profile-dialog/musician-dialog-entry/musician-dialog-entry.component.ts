@@ -10,7 +10,7 @@ import { BehaviorSubject, combineLatest, of } from 'rxjs';
 import { MusicianService } from '../services/musician.service';
 
 @Component({
-  selector: 'arpa-musician-dialog-entry',
+  selector: 'arpa-musicianprofile-dialog-entry',
   template: '',
 })
 export class MusicianDialogEntryComponent {

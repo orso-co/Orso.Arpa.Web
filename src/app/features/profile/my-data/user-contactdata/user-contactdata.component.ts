@@ -2,19 +2,19 @@ import { SelectValueService, MeService } from '@arpa/services';
 import { ContactDetailDto, ContactDetailKey } from '@arpa/models';
 import { Component, Input, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { NotificationsService } from 'src/@arpa/services/notifications.service';
-import { ColumnDefinition } from 'src/@arpa/components/table/table.component';
+import { NotificationsService } from '@arpa/services';
+import { ColumnDefinition } from '../../../../../@arpa/components/table/table.component';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { cloneDeep } from 'lodash-es';
-import { first, map } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 import { SelectItem } from 'primeng/api';
 
 @Component({
-  selector: 'arpa-user-contact-data',
-  templateUrl: './user-contact-data.component.html',
-  styleUrls: ['./user-contact-data.component.scss'],
+  selector: 'arpa-user-layout-contact-data',
+  templateUrl: './user-contactdata.component.html',
+  styleUrls: ['./user-contactdata.component.scss'],
 })
-export class UserContactDataComponent implements OnInit {
+export class UserContactdataComponent implements OnInit {
   form: UntypedFormGroup;
   tableData: BehaviorSubject<any> = new BehaviorSubject([]);
   private _tableData: Array<any>;

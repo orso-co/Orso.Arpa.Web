@@ -57,7 +57,7 @@ import { PersonAddressesComponent } from './person-addresses/person-addresses.co
     ProfilePictureModule,
 
     // Arpa Lib
-    TranslateModule.forChild(['person-dialog', 'musician-profile-dialog']),
+    TranslateModule.forChild(['person-dialog', 'musicianprofile-dialog']),
     MenuModule,
     FormFieldModule,
     TableModule,

@@ -4,7 +4,7 @@ import { MusicianProfileDto, MyDoublingInstrumentDto, DoublingInstrumentDto } fr
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { SelectValueService, NotificationsService } from '@arpa/services';
 import { MusicianService } from '../services/musician.service';
-import { first, map, take } from 'rxjs/operators';
+import { first, take } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { SelectItem } from 'primeng/api';
 
@@ -13,7 +13,7 @@ export interface FormList extends MyDoublingInstrumentDto {
 }
 
 @Component({
-  selector: 'arpa-musician-doubling-instrument',
+  selector: 'arpa-musicianprofile-doubling-instrument',
   templateUrl: './musician-doubling-instrument.component.html',
   styleUrls: ['./musician-doubling-instrument.component.scss'],
 })
@@ -72,7 +72,7 @@ export class MusicianDoublingInstrumentComponent implements OnInit {
       .subscribe((result) => {
         this.doublingInstruments.push(this.getFormGroup({ ...result }));
         this.filterInstruments();
-        this.notificationsService.success('DOUBLING_INSTRUMENT_ADDED', 'musician-profile-dialog');
+        this.notificationsService.success('DOUBLING_INSTRUMENT_ADDED', 'musicianprofile-dialog');
       });
   }
 
@@ -88,7 +88,7 @@ export class MusicianDoublingInstrumentComponent implements OnInit {
             this.doublingInstruments[i] = this.getFormGroup({ ...listData, ...formGroup.value });
           }
         });
-        this.notificationsService.success('DOUBLING_INSTRUMENT_UPDATED', 'musician-profile-dialog');
+        this.notificationsService.success('DOUBLING_INSTRUMENT_UPDATED', 'musicianprofile-dialog');
       });
   }
 
@@ -102,7 +102,7 @@ export class MusicianDoublingInstrumentComponent implements OnInit {
           this.doublingInstruments.splice(index, 1);
         }
         this.filterInstruments();
-        this.notificationsService.success('DOUBLING_INSTRUMENT_REMOVED', 'musician-profile-dialog');
+        this.notificationsService.success('DOUBLING_INSTRUMENT_REMOVED', 'musicianprofile-dialog');
       });
   }
 

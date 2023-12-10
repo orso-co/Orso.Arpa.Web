@@ -1,4 +1,4 @@
-import { PersonInviteResultDto } from './../../../../@arpa/models/personInviteResultDto';
+import { PersonInviteResultDto } from '@arpa/models';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { NotificationsService, PersonService } from '@arpa/services';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,10 +7,10 @@ import { Component, ViewChild } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { DocumentNode } from 'graphql';
 import { GraphQlFeedComponent } from '../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
-import { MusicianDialogEntryComponent } from './../../musician-profile-dialog/musician-dialog-entry/musician-dialog-entry.component';
-import { MusicianProfileDto } from './../../../../@arpa/models/musicianProfileDto';
+import { MusicianDialogEntryComponent } from '../../musician-profile-dialog/musician-dialog-entry/musician-dialog-entry.component';
+import { MusicianProfileDto } from '@arpa/models';
 import { Observable } from 'rxjs';
-import { PerformerDto } from './../../../../@arpa/models/performerDto';
+import { PerformerDto } from '@arpa/models';
 import { PerformersQuery } from './performers.graphql';
 import { SelectItem } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
@@ -48,7 +48,7 @@ export class PerformerListComponent {
     { label: 'CREATED_BY', property: 'createdBy', type: 'text', show: false },
     { label: 'MODIFIED_AT', property: 'createdAt', type: 'date', show: false },
     { label: 'MODIFIED_BY', property: 'modifiedBy', type: 'text', show: false },
-    { label: 'USER_CREATED_AT', property: 'person.user.createdAt', type: 'date', show: false },
+    { label: 'USER_CREATED_AT', property: 'person.user-layout.createdAt', type: 'date', show: false },
   ];
   @ViewChild('feedSource') private feedSource: GraphQlFeedComponent;
 

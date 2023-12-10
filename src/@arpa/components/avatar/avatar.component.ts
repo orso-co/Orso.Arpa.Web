@@ -102,7 +102,7 @@ export class AvatarComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Because user is of type UserDto | PersonDto | MyUserProfileDto, it may not be possible
+   * Because user-layout is of type UserDto | PersonDto | MyUserProfileDto, it may not be possible
    * to retrieve the person id, so we'll try our luck.
    *
    * A proper refactor must be done here.
