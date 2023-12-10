@@ -52,6 +52,7 @@
 
   "address": {
     "CITY": "City",
+    "URBAN_DISTRICT": "Urban district",
     "COUNTRY": "Country",
     "ZIP": "ZIP",
     "ADDRESS1": "Street",
