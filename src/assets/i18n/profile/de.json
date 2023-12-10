@@ -53,6 +53,7 @@
 
   "address": {
     "CITY": "Stadt",
+    "URBAN_DISTRICT": "Stadtteil",
     "COUNTRY": "Land",
     "ZIP": "Postleitzahl",
     "ADDRESS1": "Straße und Hausnummer",
