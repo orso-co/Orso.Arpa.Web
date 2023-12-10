@@ -48,7 +48,7 @@ export class PerformerListComponent {
     { label: 'CREATED_BY', property: 'createdBy', type: 'text', show: false },
     { label: 'MODIFIED_AT', property: 'createdAt', type: 'date', show: false },
     { label: 'MODIFIED_BY', property: 'modifiedBy', type: 'text', show: false },
-    { label: 'USER_CREATED_AT', property: 'person.user-layout.createdAt', type: 'date', show: false },
+    { label: 'USER_CREATED_AT', property: 'person.user.createdAt', type: 'date', show: false },
   ];
   @ViewChild('feedSource') private feedSource: GraphQlFeedComponent;
 
