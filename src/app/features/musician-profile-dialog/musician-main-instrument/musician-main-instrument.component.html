@@ -2,7 +2,7 @@
   <form (submit)="$event.preventDefault()" [formGroup]="form">
     <div class="p-grid p-formgrid">
       <div class="p-fluid p-col-12">
-        <arpa-form-field label="musician-profile-dialog.INSTRUMENT" type="select">
+        <arpa-form-field label="musicianprofile-dialog.INSTRUMENT" type="select">
           <p-dropdown
             [filter]="true"
             [options]="(sections | async) || []"
@@ -14,12 +14,12 @@
         </arpa-form-field>
       </div>
       <div class="p-fluid p-col-12">
-        <arpa-form-field label="musician-profile-dialog.LEVEL_ASSESSMENT" type="rating">
+        <arpa-form-field label="musicianprofile-dialog.LEVEL_ASSESSMENT" type="rating">
           <p-rating [cancel]="false" [stars]="5" formControlName="levelAssessmentInner"></p-rating>
         </arpa-form-field>
       </div>
       <div *ngIf="preferredParts | async" class="p-fluid p-col-12">
-        <arpa-form-field label="musician-profile-dialog.PREFERRED_PARTS" type="select">
+        <arpa-form-field label="musicianprofile-dialog.PREFERRED_PARTS" type="select">
           <p-multiSelect
             [options]="(preferredParts | async) || []"
             [placeholder]="'NOTHING_SELECTED' | translate"
@@ -31,7 +31,7 @@
         </arpa-form-field>
       </div>
       <div class="p-fluid p-col-12">
-        <arpa-form-field label="musician-profile-dialog.INQUIRY_STATUS" type="select">
+        <arpa-form-field label="musicianprofile-dialog.INQUIRY_STATUS" type="select">
           <p-dropdown
             [options]="(inquiryStatusOptions$ | async) || []"
             [placeholder]="'NOTHING_SELECTED' | translate"
@@ -42,7 +42,7 @@
         </arpa-form-field>
       </div>
       <div class="p-fluid p-col-12" *ngIf="preferredPositions | async">
-        <arpa-form-field label="musician-profile-dialog.PREFERRED_POSITIONS" type="select">
+        <arpa-form-field label="musicianprofile-dialog.PREFERRED_POSITIONS" type="select">
           <p-multiSelect
             [options]="(preferredPositions | async) || []"
             [placeholder]="'NOTHING_SELECTED' | translate"
@@ -54,7 +54,7 @@
         </arpa-form-field>
       </div>
       <div class="p-fluid p-col-12">
-        <arpa-form-field label="musician-profile-dialog.MAIN_PROFILE" type="checkbox">
+        <arpa-form-field label="musicianprofile-dialog.MAIN_PROFILE" type="checkbox">
           <p-checkbox [binary]="true" formControlName="isMainProfile" name="isMainProfile"></p-checkbox>
         </arpa-form-field>
       </div>
@@ -73,7 +73,7 @@
         <button
           (click)="onSubmit()"
           [disabled]="form.pristine || form.invalid"
-          [label]="(isNew ? 'musician-profile-dialog.CREATE' : 'SAVE') | translate"
+          [label]="(isNew ? 'musicianprofile-dialog.CREATE' : 'SAVE') | translate"
           icon="pi pi-check"
           iconPos="left"
           pButton
@@ -85,7 +85,7 @@
 </ng-container>
 <ng-container *ngIf="state === 'created'">
   <div class="p-field p-col p-text-center">
-    <h1>{{ 'musician-profile-dialog.SUCCESSFUL_CREATED' | translate }}</h1>
+    <h1>{{ 'musicianprofile-dialog.SUCCESSFUL_CREATED' | translate }}</h1>
   </div>
   <div class="p-field p-col p-text-center">
     <button (click)="close()" [label]="'CLOSE' | translate" icon="pi pi-check" iconPos="left" pButton type="button"></button>

@@ -8,10 +8,10 @@ import { BankAccountDto } from '@arpa/models';
 
 @Component({
   selector: 'arpa-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss'],
+  templateUrl: './my-data.component.html',
+  styleUrls: ['./my-data.component.scss'],
 })
-export class UserComponent implements OnInit, OnDestroy {
+export class MyDataComponent implements OnInit, OnDestroy {
   private personSubscription: Subscription = Subscription.EMPTY;
   public index = 0;
   displayName: string;

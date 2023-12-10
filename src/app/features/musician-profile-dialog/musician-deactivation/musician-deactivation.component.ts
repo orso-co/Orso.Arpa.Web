@@ -7,7 +7,7 @@ import { MusicianService } from '../services/musician.service';
 import { NotificationsService } from '@arpa/services';
 
 @Component({
-  selector: 'arpa-musician-deactivation',
+  selector: 'arpa-musicianprofile-deactivation',
   templateUrl: './musician-deactivation.component.html',
   styleUrls: ['./musician-deactivation.component.scss'],
 })
@@ -51,7 +51,7 @@ export class MusicianDeactivationComponent implements OnInit {
       .activateProfile(this.profile.id)
       .pipe(first())
       .subscribe(() => {
-        this.notificationsService.success('ACTIVATED', 'musician-profile-dialog');
+        this.notificationsService.success('ACTIVATED', 'musicianprofile-dialog');
         this.ref.close();
       });
   }
@@ -64,7 +64,7 @@ export class MusicianDeactivationComponent implements OnInit {
       .deactivateProfile(this.profile.id, { ...this.form.value })
       .pipe(first())
       .subscribe((result) => {
-        this.notificationsService.success('DEACTIVATED', 'musician-profile-dialog');
+        this.notificationsService.success('DEACTIVATED', 'musicianprofile-dialog');
         this.ref.close();
       });
   }

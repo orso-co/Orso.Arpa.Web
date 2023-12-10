@@ -31,22 +31,22 @@
           <p-badge *ngIf="musicianProfile.isMainProfile" [value]="'MAIN_PROFILE' | translate"></p-badge>
         </header>
         <div class="p-d-inline-flex">
-          <label>{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_INNER' | translate }}</label>
+          <label>{{ 'musicianprofile-dialog.LEVEL_ASSESSMENT_INNER' | translate }}</label>
           <p-rating
             [(ngModel)]="musicianProfile.levelAssessmentInner"
             [cancel]="false"
             [disabled]="true"
-            pTooltip="{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_PERFORMER' | translate }}"
+            pTooltip="{{ 'musicianprofile-dialog.LEVEL_ASSESSMENT_PERFORMER' | translate }}"
             class="p-pl-3"
           ></p-rating>
         </div>
         <div class="p-d-inline-flex">
-          <label>{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_TEAM' | translate }}</label>
+          <label>{{ 'musicianprofile-dialog.LEVEL_ASSESSMENT_TEAM' | translate }}</label>
           <p-rating
             [(ngModel)]="musicianProfile.levelAssessmentTeam"
             [cancel]="false"
             [disabled]="true"
-            pTooltip="{{ 'musician-profile-dialog.LEVEL_ASSESSMENT_TEAM' | translate }}"
+            pTooltip="{{ 'musicianprofile-dialog.LEVEL_ASSESSMENT_TEAM' | translate }}"
             class="p-pl-3"
           ></p-rating>
         </div>
@@ -65,7 +65,7 @@
         <p-badge
           *ngIf="musicianProfile.deactivation"
           severity="danger"
-          value="{{ 'musician-profile-dialog.DEACTIVATED' | translate }}"
+          value="{{ 'musicianprofile-dialog.DEACTIVATED' | translate }}"
         ></p-badge>
       </div>
     </div>
