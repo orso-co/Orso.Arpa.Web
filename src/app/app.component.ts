@@ -71,7 +71,7 @@ export class AppComponent implements OnInit, OnDestroy {
         // Remove sensible data on logout.
         this.meService.cleanStorage();
       } else if (event === AuthEvents.LOGIN) {
-        // Make sure an applicable user-layout has a ready to use QRCode.
+        // Make sure an applicable user has a ready to use QRCode.
         // This observable is completed by default. No need to unsubscribe.
         this.meService.getMyQrCode().subscribe();
       }

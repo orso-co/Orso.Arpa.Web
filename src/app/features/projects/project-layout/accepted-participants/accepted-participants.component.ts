@@ -29,7 +29,7 @@ export class AcceptedParticipantsComponent implements OnInit, OnDestroy {
   columns: ColumnDefinition<any>[] = [
     { label: 'projects.PARTICIPANTS', property: 'musicianProfile.person.displayName', type: 'text' },
     { label: 'projects.INSTRUMENT', property: 'musicianProfile.instrument.name', type: 'text' },
-    { label: 'projects.EMAIL', property: 'musicianProfile.person.user-layout.normalizedEmail', type: 'text' },
+    { label: 'projects.EMAIL', property: 'musicianProfile.person.user.normalizedEmail', type: 'text' },
     {
       label: 'mupro.QUALIFICATION',
       property: 'musicianProfile.qualification.selectValue.name',
