@@ -125,7 +125,7 @@ export class LayoutDefaultComponent implements OnDestroy {
               label: 'Meine Daten',
               icon: 'pi pi-user-edit',
               roles: ['performer', 'staff', 'admin'],
-              routerLink: '/arpa/profile/user',
+              routerLink: '/arpa/profile/my-data',
               translationToken: 'MY_DATA',
             },
             {
@@ -139,15 +139,22 @@ export class LayoutDefaultComponent implements OnDestroy {
               label: 'Meine Termine',
               icon: 'pi pi-calendar',
               roles: ['performer', 'staff'],
-              routerLink: '/arpa/profile/appointments',
+              routerLink: '/arpa/profile/my-appointments',
               translationToken: 'MY_APPOINTMENTS',
             },
             {
               label: 'Meine Profile',
               icon: 'pi pi-user-edit',
               roles: ['performer'],
-              routerLink: '/arpa/profile/musician',
+              routerLink: '/arpa/profile/musicianprofile',
               translationToken: 'MY_PROFILES',
+            },
+            {
+              label: 'Hilfe',
+              icon: 'pi pi-send',
+              roles: ['performer'],
+              translationToken: 'SUPPORT',
+              command: () => this.sendEmail(),
             },
           ],
         },
@@ -162,5 +169,8 @@ export class LayoutDefaultComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.routerEventSubscription.unsubscribe();
+  }
+  sendEmail() {
+    window.location.href = 'mailto:support@arpa.orso.co';
   }
 }

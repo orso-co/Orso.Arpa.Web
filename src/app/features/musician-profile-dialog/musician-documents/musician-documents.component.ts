@@ -10,7 +10,7 @@ import { SelectItem } from 'primeng/api';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
 
 @Component({
-  selector: 'arpa-musician-documents',
+  selector: 'arpa-musicianprofile-documents',
   templateUrl: './musician-documents.component.html',
   styleUrls: ['./musician-documents.component.scss'],
 })
@@ -21,9 +21,7 @@ export class MusicianDocumentsComponent implements OnInit {
 
   public documentTypes: Observable<SelectItem[]>;
   public documents: BehaviorSubject<[]> = new BehaviorSubject([]);
-  columns: ColumnDefinition<any>[] = [
-    { label: 'musician-profile-dialog.DOCUMENT_TYPE', property: 'label', type: 'text', hideFilter: true },
-  ];
+  columns: ColumnDefinition<any>[] = [{ label: 'musicianprofile-dialog.DOCUMENT_TYPE', property: 'label', type: 'text', hideFilter: true }];
   public documentList: Observable<any>;
   private _documents: any;
 
@@ -67,7 +65,7 @@ export class MusicianDocumentsComponent implements OnInit {
       .subscribe(() => {
         this._documents.push(this.form.value.documentId);
         this.documents.next(this._documents);
-        this.notificationsService.success('DOCUMENT_ADDED', 'musician-profile-dialog');
+        this.notificationsService.success('DOCUMENT_ADDED', 'musicianprofile-dialog');
       });
   }
 
@@ -78,7 +76,7 @@ export class MusicianDocumentsComponent implements OnInit {
       .subscribe(() => {
         this._documents = this._documents.filter((document: any) => document != id);
         this.documents.next(this._documents);
-        this.notificationsService.success('DOCUMENT_REMOVED', 'musician-profile-dialog');
+        this.notificationsService.success('DOCUMENT_REMOVED', 'musicianprofile-dialog');
       });
   }
 }

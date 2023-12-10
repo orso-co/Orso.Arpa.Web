@@ -1,43 +1,44 @@
 {
   "ADDITIONAL_PROFILES": "Prefis adicionais",
+  "BIRTHNAME": "Nome de nascença",
+  "BIRTHPLACE": "Local de nascimento",
+  "CHOOSE_AVATAR": "Escolher avatar",
+  "DATEOFBIRTH": "Data de nascimento",
   "DEACTIVATED_PROFILES": "Prefis desactivados",
+  "FUTURE_APPOINTMENTS": "Eventos futuros",
   "MAIN_PROFILE": "Perfil principal",
   "MUSICIAN_PROFILES": "Perfis de músicos",
   "MY_APPOINTMENTS": "Os meus eventos",
+  "MY_BANK_DATA": "Os meus dados bancários",
+  "MY_CONTACT_DATA": "Os meus detalhes de contacto",
+  "MY_CONTACT_DATA_TOOLTIP": "Adiciona números de telefone, endereços de e-mail e URLs",
   "MY_DATA": "Dados básicos",
-  "MY_PROFILES": "Os meus perfis",
+  "MY_DATA_TOOLTIP": "Altera as tuas informações gerais",
   "MY_MUSICIANPROFILE": "O meu perfil de músico",
+  "MY_PROFILES": "Os meus perfis",
+  "MY_PROFILE_PICTURE": "Foto de perfil",
   "MY_PROJECTS": "Os meus projetos",
-  "NO_PROJECTS": "Infelizmente, não temos de momento projectos relevantes para ti. Por favor, volta mais tarde.",
   "MY_QR_CODE": "O meu código QR",
   "MY_QR_CODE_DESCRIPTION": "este é o teu código QR pessoal e pode ser usado para verificar eventos",
   "MY_QR_CODE_INFO": "o código QR estará disponível em modo offline",
+  "NO_PROJECTS": "Infelizmente, não temos de momento projectos relevantes para ti. Por favor, volta mais tarde.",
   "PAGE_TITLE": "Perfil",
+  "PAST_APPOINTMENTS": "Eventos passados",
   "PREDICTION": "Previsão de participação",
   "PREDICTION_SET": "Previsão de participação submetida",
+  "PROFILE_PICTURE_CHANGED": "Foto de perfil alterada",
+  "PROFILE_PICTURE_REMOVED": "Foto de perfil removida",
+  "PROFILE_PICTURE_UPLOAD_ERROR": "Foto de perfil não carregada",
+  "REMOVE_AVATAR": "Remover avatar",
   "SEND_QR_CODE": "Enviar código QR por e-mail",
   "SEND_QR_CODE_SUCCESS": "Enviar código QR",
   "UPCOMING": "Próximas datas",
+  "UPLOAD_AVATAR": "Carregar avatar",
   "USER_PROFILE": "Prefil do utilizador",
   "USER_PROFILE_DATA": "O meu perfil",
   "USER_PROFILE_UPDATED": "Actualização de perfil",
   "USER_PROFILE_UPDATE_ERROR": "Não foi possível actualizar o perfil",
-  "MY_CONTACT_DATA": "Os meus detalhes de contacto",
-  "MY_CONTACT_DATA_TOOLTIP": "Adiciona números de telefone, endereços de e-mail e URLs",
-  "MY_BANK_DATA": "Os meus dados bancários",
-  "MY_PROFILE_PICTURE": "Foto de perfil",
-  "BIRTHPLACE": "Local de nascimento",
-  "BIRTHNAME": "Nome de nascença",
-  "DATEOFBIRTH": "Data de nascimento",
-  "MY_DATA_TOOLTIP": "Altera as tuas informações gerais",
-  "FUTURE_APPOINTMENTS": "Eventos futuros",
-  "PAST_APPOINTMENTS": "Eventos passados",
-  "PROFILE_PICTURE_CHANGED": "Foto de perfil alterada",
-  "PROFILE_PICTURE_REMOVED": "Foto de perfil removida",
-  "PROFILE_PICTURE_UPLOAD_ERROR": "Foto de perfil não carregada",
-  "UPLOAD_AVATAR": "Carregar avatar",
-  "REMOVE_AVATAR": "Remover avatar",
-  "CHOOSE_AVATAR": "Escolher avatar",
+
   "contact": {
     "NOTHING_SELECTED": "Nada selecionado",
     "TYPE": "Tipo",
@@ -47,6 +48,24 @@
     "COMMENT": "Comentário",
     "COMMENT_TEAM": "Comentário da equipe"
   },
+
+  "address": {
+    "CITY": "Cidade",
+    "COUNTRY": "País",
+    "ZIP": "Código postal",
+    "ADDRESS1": "Rue 1",
+    "ADDRESS2": "Rue 2",
+    "COMMENT_INNER": "Comentário",
+    "STATE": "Estado",
+    "CREATE_NEW_ADDRESS": "Criar novo endereço",
+    "ADDRESS_TYPE": "Tipo de endereço",
+    "DELETE_ADDRESS": "Apagar endereço",
+    "EDIT_ADDRESS": "Editar endereço",
+    "ADDRESS_UPDATED": "Endereço actualizado",
+    "ADDRESS_CREATED": "Endereço criado",
+    "ADDRESS_DELETED": "Endereço apagado"
+  },
+
   "my-projects": {
     "ACTION_REQUIRED": "Acção necessária",
     "ALL_SET": "Tudo pronto",
@@ -85,11 +104,13 @@
     "URLS": "URLs",
     "WORK_IN_PROGRESS": "Estamos a trabalhar no seu estatuto de participação e a enviar-lhe um e-mail, quando algo muda."
   },
+
   "my-appointments": {
     "PREDICTION": "Previsão",
     "MY_COMMENT": "Meu comentário",
     "EDIT_PREDICTION": "Editar previsão"
   },
+
   "bank": {
     "ACCOUNT_OWNER": "Titular da conta",
     "IBAN": "IBAN",
@@ -97,6 +118,7 @@
     "COMMENT_INNER": "Comentário",
     "STATUS": "Status"
   },
+
   "appointmentRibbon": {
     "POLL_MISSING": "Por favor, participe da enquete!",
     "AWAITING_POLL": "A enquete de nomeação ainda está em andamento",

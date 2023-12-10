@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ColumnDefinition } from '../../../../../@arpa/components/table/table.component';
@@ -9,10 +9,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { first } from 'rxjs/operators';
 import { EditAppointmentComponent } from '../../../appointments/edit-appointment/edit-appointment.component';
 import { AppointmentService } from '../../../appointments/services/appointment.service';
-import { GraphQlFeedComponent } from '../../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
 
 @Component({
-  selector: 'arpa-project-appointments',
+  selector: 'arpa-project-my-appointments',
   templateUrl: './project-appointments.component.html',
   styleUrls: ['./project-appointments.component.scss'],
 })
@@ -57,7 +56,7 @@ export class ProjectAppointmentsComponent implements OnInit {
     const appointment = row.appointment;
     const ref = this.dialogService.open(EditAppointmentComponent, {
       data: { appointment, isAllDayEvent: this.isAllDayEvent(appointment) },
-      header: this.translate.instant('appointments.EDIT_APPOINTMENT'),
+      header: this.translate.instant('my-appointments.EDIT_APPOINTMENT'),
       styleClass: 'form-modal',
       dismissableMask: true,
       width: window.innerWidth > 1000 ? '66%' : '100%',

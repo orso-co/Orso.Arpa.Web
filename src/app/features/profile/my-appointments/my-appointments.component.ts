@@ -9,11 +9,11 @@ import { AppointmentParticipationPrediction, AppointmentStatus, MyAppointmentDto
 import { SelectItem } from 'primeng/api';
 
 @Component({
-  selector: 'arpa-profile-appointments',
-  templateUrl: './appointments.component.html',
-  styleUrls: ['./appointments.component.scss'],
+  selector: 'arpa-profile-my-appointments',
+  templateUrl: './my-appointments.component.html',
+  styleUrls: ['./my-appointments.component.scss'],
 })
-export class AppointmentsComponent {
+export class MyAppointmentsComponent {
   userAppointments$: Observable<MyAppointmentDto[]> = of([]);
   totalRecordsCount$: Observable<number> = of(0);
   itemsPerPage = 25;
@@ -54,7 +54,7 @@ export class AppointmentsComponent {
         participation: { prediction: myAppointmentDto.prediction, commentByPerformerInner: myAppointmentDto.commentByPerformerInner },
         statusOptions$: this.predictions$,
       },
-      header: this.translate.instant('profile.my-appointments.EDIT_PREDICTION'),
+      header: this.translate.instant('profile.my-my-appointments.EDIT_PREDICTION'),
       styleClass: 'form-modal',
       dismissableMask: true,
       width: window.innerWidth > 350 ? '350px' : '100%',

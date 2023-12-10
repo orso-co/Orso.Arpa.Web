@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { first } from 'rxjs/operators';
 import { MeService, EnumService, NotificationsService } from '@arpa/services';
-import { MyProjectParticipationDialogComponent } from '../my-project-participation-dialog/my-project-participation-dialog.component';
+import { MyProjectParticipationDialogComponent } from './my-project-participation-dialog/my-project-participation-dialog.component';
 import { MyProjectParticipationDto, MyProjectDto, MyAppointmentListDto } from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';

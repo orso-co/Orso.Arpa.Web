@@ -1,15 +1,15 @@
 import { PersonDto } from '@arpa/models';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { first, map } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 import { NotificationsService, MeService, SelectValueService } from '@arpa/services';
 
 @Component({
-  selector: 'arpa-user-data',
-  templateUrl: './user-data.component.html',
-  styleUrls: ['./user-data.component.scss'],
+  selector: 'arpa-user-basedata',
+  templateUrl: './user-basedata.component.html',
+  styleUrls: ['./user-basedata.component.scss'],
 })
-export class UserDataComponent implements OnInit, OnChanges {
+export class UserBasedataComponent implements OnInit, OnChanges {
   public form: UntypedFormGroup;
   genderSelectValue: any;
   @Input() email: string;

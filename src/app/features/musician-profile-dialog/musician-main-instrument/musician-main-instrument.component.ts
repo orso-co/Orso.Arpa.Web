@@ -9,7 +9,7 @@ import { first, map, tap } from 'rxjs/operators';
 import { MusicianService } from '../services/musician.service';
 
 @Component({
-  selector: 'arpa-musician-main-instrument',
+  selector: 'arpa-musicianprofile-main-instrument',
   templateUrl: './musician-main-instrument.component.html',
   styleUrls: ['./musician-main-instrument.component.scss'],
 })
@@ -120,7 +120,7 @@ export class MusicianMainInstrumentComponent implements OnInit {
         .pipe(first())
         .subscribe((result) => {
           this.config.data.profile.next(result);
-          this.notificationsService.success('CREATED', 'musician-profile-dialog');
+          this.notificationsService.success('CREATED', 'musicianprofile-dialog');
           this.state = 'created';
         });
     } else {
@@ -129,7 +129,7 @@ export class MusicianMainInstrumentComponent implements OnInit {
         .pipe(first())
         .subscribe(() => {
           this.config.data.profile.next(profile);
-          this.notificationsService.success('INSTRUMENT_UPDATED', 'musician-profile-dialog');
+          this.notificationsService.success('INSTRUMENT_UPDATED', 'musicianprofile-dialog');
           this.close();
         });
     }

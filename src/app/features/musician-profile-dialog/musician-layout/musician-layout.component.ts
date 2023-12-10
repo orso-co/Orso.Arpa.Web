@@ -11,20 +11,17 @@ export enum ViewState {
 }
 
 @Component({
-  selector: 'arpa-musician-layout',
+  selector: 'arpa-musicianprofile-layout',
   templateUrl: './musician-layout.component.html',
   styleUrls: ['./musician-layout.component.scss'],
 })
 export class MusicianLayoutComponent {
-
   public comboInstrumentView: boolean = this.config.data.comboInstrumentView;
   public index = 0;
   public profile: Observable<MusicianProfileDto> = this.config.data.profile;
   public doublingInstruments: Observable<DoublingInstrumentDto[]> = this.config.data.doublingInstruments;
 
-  constructor(public config: DynamicDialogConfig) {
-
-  }
+  constructor(public config: DynamicDialogConfig) {}
 
   viewStateEvents(event: any) {
     this.index = event.state || 0;

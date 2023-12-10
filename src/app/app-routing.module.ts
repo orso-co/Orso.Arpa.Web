@@ -152,7 +152,7 @@ const routes: Routes = [
         },
       },
       {
-        path: 'my-data',
+        path: 'profile/my-data',
         loadChildren: () => import('./features/profile/profile.module').then((mod) => mod.ProfileModule),
         data: {
           roles: ['performer', 'staff', 'admin'],
@@ -160,7 +160,7 @@ const routes: Routes = [
           menu: {
             name: 'feature',
             label: 'MY_DATA',
-            icon: 'pi pi-user',
+            icon: 'pi pi-user-edit',
           },
         },
       },
