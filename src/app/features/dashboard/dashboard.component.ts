@@ -13,7 +13,7 @@ import {
   ViewChildren,
   ViewContainerRef,
 } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { filter, map, switchMap } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -24,6 +24,10 @@ import { LoadingService } from '@arpa/services';
 import { dashboards, widgets } from './dashboard.config';
 import { MeService } from '@arpa/services';
 
+/**
+ * Represents a card layout that defines the number of columns and the dimensions of various card types.
+ * @interface
+ */
 interface CardLayout {
   columns: number;
   chart: { cols: number; rows: number };
@@ -33,6 +37,18 @@ interface CardLayout {
 
 /**
  * Template directive which holds a widget configuration.
+ *
+ * @directive
+ * @usageNotes
+ * This directive can be applied to a HTML element using the selector '[arpaWidgetConfig]'.
+ *
+ * @input arpaWidgetConfig - The widget configuration.
+ * @input collection - The collection name.
+ *
+ * @constructor
+ * Creates an instance of ArpaWidgetConfigDirective.
+ *
+ * @param viewRef - The reference to the ViewContainerRef.
  */
 @Directive({
   selector: '[arpaWidgetConfig]',
@@ -48,7 +64,8 @@ export class ArpaWidgetConfigDirective {
 }
 
 /**
- * An instance gets injected into each widget and is available to the projected component.
+ * Widget State Service provides functionality for managing the state of a widget.
+ * This service is injected into each widget and is available to the projected component.
  */
 export class WidgetStateService {
   public loading: Observable<boolean>;
@@ -63,6 +80,12 @@ export class WidgetStateService {
   }
 }
 
+/**
+ * Represents the DashboardComponent class.
+ * This component displays the dashboard for a specific role.
+ * It contains menu items, widget layout, and functionality to create and render widgets.
+ * @Component
+ */
 @Component({
   selector: 'arpa-dashboard',
   templateUrl: './dashboard.component.html',
@@ -109,23 +132,39 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.subscribeToDashboardRole();
+    this.createMenuItems();
+    this.checkIfUserHasMusicianProfile();
+  }
+
+  subscribeToDashboardRole() {
     this.routeRoleSubscription = this.route.data.subscribe((data) => {
       this.dashboardRole = data.dashboardRole.toLowerCase();
     });
+  }
 
+  createMenuItems() {
     this.menuItems = this.authService.currentUser.pipe(
       map((token) => token!.roles),
-      map((roles) => roles.map((role) => ({ routerLink: [`/arpa/dashboard/${role}`], label: role.toUpperCase() })))
+      map((roles: string[]) => roles.map((role) => ({ routerLink: [`/arpa/dashboard/${role}`], label: role.toUpperCase() })))
     );
+  }
 
-    this.hasMusicianProfile$ = this.meService.getProfilesMusician().pipe(
-      map((profile) => {
-        if (Array.isArray(profile)) {
-          return profile.length === 0;
-        } else {
-          return !profile || profile.id == null;
-        }
-      })
+  checkIfUserHasMusicianProfile() {
+    this.hasMusicianProfile$ = this.authService.currentUser.pipe(
+      map((token) => token!.roles),
+      filter((roles: string[]) => roles.includes('Performer')),
+      switchMap(() =>
+        this.meService.getProfilesMusician().pipe(
+          map((profile) => {
+            if (Array.isArray(profile)) {
+              return profile.length === 0;
+            } else {
+              return !profile || profile.id == null;
+            }
+          })
+        )
+      )
     );
   }
 
