@@ -54,6 +54,11 @@ export class ProfilePictureComponent implements OnInit {
   private reloadProfilePicture() {
     this.personService.getProfilePicture(this.person.id, 300).subscribe(
       (data) => {
+        if (!data) {
+          this.imageUrl = this.fallbackUrl;
+          this.hasPicture = false;
+          return;
+        }
         const reader = new FileReader();
         reader.onload = (e: any) => {
           const fileBase64 = e.target.result;
