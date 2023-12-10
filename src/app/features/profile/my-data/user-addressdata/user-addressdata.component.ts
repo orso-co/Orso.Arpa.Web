@@ -62,7 +62,7 @@ export class UserAddressdataComponent implements OnInit {
           const index = this._tableData.findIndex((el) => el.id === id);
           this._tableData[index] = { ...this._tableData[index], commentInner, address1, address2, city, state, zip, country, typeId };
           this.tableData.next(this._tableData);
-          this.notificationsService.success('ADDRESS_UPDATED', 'address');
+          this.notificationsService.success('ADDRESS_UPDATED', 'profile.address');
           this.form.reset({});
         });
     } else {
@@ -72,7 +72,7 @@ export class UserAddressdataComponent implements OnInit {
         .subscribe((result) => {
           this._tableData.push(result);
           this.tableData.next(this._tableData);
-          this.notificationsService.success('ADDRESS_CREATED', 'address');
+          this.notificationsService.success('ADDRESS_CREATED', 'profile.address');
           this.form.reset({});
         });
     }
@@ -83,7 +83,7 @@ export class UserAddressdataComponent implements OnInit {
       .pipe(first())
       .subscribe(() => {
         this.tableData.next(this._tableData.filter((e) => e.id != address.id));
-        this.notificationsService.success('ADDRESS_DELETED', 'address');
+        this.notificationsService.success('ADDRESS_DELETED', 'profile.address');
       });
   }
 
