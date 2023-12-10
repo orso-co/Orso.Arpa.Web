@@ -51,6 +51,7 @@
 
   "address": {
     "CITY": "Cidade",
+    "URBAN_DISTRICT": "Distrito urbano",
     "COUNTRY": "País",
     "ZIP": "Código postal",
     "ADDRESS1": "Rue 1",

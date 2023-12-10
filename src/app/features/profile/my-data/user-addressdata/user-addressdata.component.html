@@ -22,6 +22,11 @@
       </arpa-form-field>
     </div>
     <div class="p-col-12 p-xl-9">
+      <arpa-form-field label="profile.address.URBAN_DISTRICT">
+        <input formControlName="urbanDistrict" id="urbanDistrict" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-9">
       <arpa-form-field label="profile.address.STATE">
         <input formControlName="state" id="state" pInputText type="text" />
       </arpa-form-field>
@@ -41,7 +46,7 @@
         <p-dropdown
           [options]="(typeOptions$ | async) || []"
           [placeholder]="'NOTHING_SELECTED' | translate"
-          formControlName="addressType"
+          formControlName="typeId"
           optionLabel="label"
           optionValue="value"
         ></p-dropdown>

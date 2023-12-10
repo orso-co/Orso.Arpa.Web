@@ -27,6 +27,7 @@ export class UserAddressdataComponent implements OnInit {
     { label: 'profile.address.ZIP', property: 'zip', type: 'text' },
     { label: 'profile.address.COUNTRY', property: 'country', type: 'text' },
     { label: 'profile.address.STATE', property: 'state', type: 'text' },
+    { label: 'profile.address.COMMENT_INNER', property: 'commentInner', type: 'text' },
   ];
   constructor(
     private formBuilder: UntypedFormBuilder,
@@ -36,12 +37,13 @@ export class UserAddressdataComponent implements OnInit {
   ) {
     this.form = this.formBuilder.group({
       id: [null],
-      address1: [null, [Validators.required]],
-      address2: [null],
-      city: [null, [Validators.required]],
-      zip: [null, [Validators.required]],
-      country: [null, [Validators.required]],
-      state: [null, [Validators.required]],
+      address1: [null, [Validators.maxLength(100)]],
+      address2: [null, [Validators.maxLength(100)]],
+      city: [null, [Validators.maxLength(100), Validators.required]],
+      urbanDistrict: [null, [Validators.maxLength(100)]],
+      zip: [null, [Validators.maxLength(20), Validators.required]],
+      country: [null, [Validators.maxLength(100), Validators.required]],
+      state: [null, [Validators.maxLength(100)]],
       addressType: [null],
       commentInner: [null, [Validators.maxLength(500)]],
       typeId: [null],
@@ -53,21 +55,32 @@ export class UserAddressdataComponent implements OnInit {
     this.typeOptions$ = this.selectValueService.getAddressTypes();
   }
   onSubmit() {
-    const { id, address1, address2, city, country, state, zip, commentInner, typeId } = this.form.getRawValue();
+    const { id, address1, address2, city, urbanDistrict, country, state, zip, commentInner, typeId } = this.form.getRawValue();
     if (id) {
       this.meService
-        .updateAddress(id, this.person?.id, { address1, address2, city, state, zip, country, commentInner, typeId })
+        .updateAddress(id, this.person?.id, { address1, address2, city, urbanDistrict, state, zip, country, commentInner, typeId })
         .pipe(first())
         .subscribe((_) => {
           const index = this._tableData.findIndex((el) => el.id === id);
-          this._tableData[index] = { ...this._tableData[index], commentInner, address1, address2, city, state, zip, country, typeId };
+          this._tableData[index] = {
+            ...this._tableData[index],
+            commentInner,
+            address1,
+            address2,
+            city,
+            urbanDistrict,
+            state,
+            zip,
+            country,
+            typeId,
+          };
           this.tableData.next(this._tableData);
           this.notificationsService.success('ADDRESS_UPDATED', 'profile.address');
           this.form.reset({});
         });
     } else {
       this.meService
-        .addAddress(this.person?.id, { address1, address2, city, state, zip, country, typeId, commentInner })
+        .addAddress(this.person?.id, { address1, address2, city, urbanDistrict, state, zip, country, typeId, commentInner })
         .pipe(first())
         .subscribe((result) => {
           this._tableData.push(result);
@@ -96,7 +109,9 @@ export class UserAddressdataComponent implements OnInit {
       zip: address.zip,
       country: address.country,
       state: address.state,
-      typeId: address.type,
+      typeId: address.type?.id,
+      commentInner: address.commentInner,
+      urbanDistrict: address.urbanDistrict,
     });
   }
 
