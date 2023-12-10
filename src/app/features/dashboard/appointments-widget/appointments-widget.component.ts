@@ -14,8 +14,7 @@ import { Router } from '@angular/router';
 })
 export class AppointmentsWidgetComponent {
   userAppointments$: Observable<MyAppointmentDto[]> = of([]);
-  // totalRecordsCount$: Observable<number> = of(0);
-  totalRecordsCountMissingPrediction$: Observable<number> = of(0);
+  // totalRecordsCountMissingPrediction$: Observable<number> = of(0);
   predictions$: Observable<SelectItem[]>;
 
   constructor(
@@ -32,9 +31,9 @@ export class AppointmentsWidgetComponent {
     const loadResult$ = this.meService.getMyAppointments(take, skip);
     this.userAppointments$ = loadResult$.pipe(map((result) => result?.userAppointments || []));
     // this.totalRecordsCount$ = loadResult$.pipe(map((result) => result?.totalRecordsCount || 0));
-    this.totalRecordsCountMissingPrediction$ = loadResult$.pipe(
-      map((result) => result?.userAppointments?.filter((appointment) => !!appointment && !appointment.prediction).length ?? 0)
-    );
+    // this.totalRecordsCountMissingPrediction$ = loadResult$.pipe(
+    //   map((result) => result?.userAppointments?.filter((appointment) => !!appointment && !appointment.prediction).length ??  0)
+    // );
     this.cdRef.detectChanges();
   }
 
