@@ -1,44 +1,45 @@
 {
+  "ABOUT_ME": "About me",
   "ADDITIONAL_PROFILES": "Additional Profiles",
+  "BIRTHNAME": "Birthname",
+  "BIRTHPLACE": "Birthplace",
+  "CHOOSE_AVATAR": "Choose avatar",
+  "DATEOFBIRTH": "Date of birth",
   "DEACTIVATED_PROFILES": "Deactivated Profiles",
+  "FUTURE_APPOINTMENTS": "Future appointments",
   "MAIN_PROFILE": "Main Profile",
   "MUSICIAN_PROFILES": "Musician Profiles",
-  "MY_DATA": "My Basic Data",
   "MY_APPOINTMENTS": "My Appointments",
+  "MY_BANK_DATA": "My Bank Data",
+  "MY_CONTACT_DATA": "My Contact Data",
+  "MY_CONTACT_DATA_TOOLTIP": "Provide your phonenumbers, Email-adresses and URLs",
+  "MY_DATA": "My Basic Data",
+  "MY_DATA_TOOLTIP": "Edit your name, about me, etc.",
   "MY_MUSICIANPROFILE": "My Musicianprofile",
   "MY_PROFILES": "My Profiles",
+  "MY_PROFILE_PICTURE": "My Profile Picture",
   "MY_PROJECTS": "My Projects",
-  "NO_PROJECTS": "Unfortunately, there are currently no relevant projects for you. Please come back later.",
   "MY_QR_CODE": "My QR-Code",
   "MY_QR_CODE_DESCRIPTION": "This is your personal QR-Code and can be used to checkin on events.",
   "MY_QR_CODE_INFO": "The QR-Code will be available in offline mode.",
+  "NO_PROJECTS": "Unfortunately, there are currently no relevant projects for you. Please come back later.",
   "PAGE_TITLE": "Profile",
+  "PAST_APPOINTMENTS": "Passed appointments",
   "PREDICTION": "Appointment Prediction",
   "PREDICTION_SET": "Appointment participation prediction successfully set",
+  "PROFILE_PICTURE_CHANGED": "Profile picture changed",
+  "PROFILE_PICTURE_REMOVED": "Profile picture removed",
+  "PROFILE_PICTURE_UPLOAD_ERROR": "Profile picture upload failed",
+  "REMOVE_AVATAR": "Remove avatar",
   "SEND_QR_CODE": "Send QR-CODE by email",
   "SEND_QR_CODE_SUCCESS": "QR-CODE send",
   "UPCOMING": "Upcoming",
+  "UPLOAD_AVATAR": "Upload avatar",
   "USER_PROFILE": "User Profile",
   "USER_PROFILE_DATA": "My Profile",
   "USER_PROFILE_UPDATED": "Profile updated",
   "USER_PROFILE_UPDATE_ERROR": "Could not update profile",
-  "MY_CONTACT_DATA": "My Contact Data",
-  "MY_CONTACT_DATA_TOOLTIP": "Provide your phonenumbers, Email-adresses and URLs",
-  "MY_BANK_DATA": "My Bank Data",
-  "MY_PROFILE_PICTURE": "My Profile Picture",
-  "BIRTHPLACE": "Birthplace",
-  "BIRTHNAME": "Birthname",
-  "DATEOFBIRTH": "Date of birth",
-  "ABOUT_ME": "About me",
-  "MY_DATA_TOOLTIP": "Edit your name, about me, etc.",
-  "FUTURE_APPOINTMENTS": "Future appointments",
-  "PAST_APPOINTMENTS": "Passed appointments",
-  "PROFILE_PICTURE_CHANGED": "Profile picture changed",
-  "PROFILE_PICTURE_REMOVED": "Profile picture removed",
-  "PROFILE_PICTURE_UPLOAD_ERROR": "Profile picture upload failed",
-  "UPLOAD_AVATAR": "Upload avatar",
-  "REMOVE_AVATAR": "Remove avatar",
-  "CHOOSE_AVATAR": "Choose avatar",
+
   "contact": {
     "NOTHING_SELECTED": "Nothing selected",
     "TYPE": "Type",
@@ -48,6 +49,24 @@
     "COMMENT": "Comment",
     "COMMENT_TEAM": "Comment by staff"
   },
+
+  "address": {
+    "CITY": "City",
+    "COUNTRY": "Country",
+    "ZIP": "ZIP",
+    "ADDRESS1": "Street",
+    "ADDRESS2": "Street 2",
+    "COMMENT_INNER": "Comment",
+    "STATE": "State",
+    "CREATE_NEW_ADDRESS": "Create new address",
+    "ADDRESS_TYPE": "Address type",
+    "DELETE_ADDRESS": "Delete address",
+    "EDIT_ADDRESS": "Edit address",
+    "ADDRESS_UPDATED": "Address updated",
+    "ADDRESS_CREATED": "Address created",
+    "ADDRESS_DELETED": "Address deleted"
+  },
+
   "my-projects": {
     "ACTION_REQUIRED": "Action required",
     "ALL_SET": "All set",
@@ -88,11 +107,13 @@
     "URLS": "Links",
     "WORK_IN_PROGRESS": "We are working on your participation-status and e-mail you, when something changes."
   },
+
   "my-appointments": {
     "PREDICTION": "Prediction ",
     "MY_COMMENT": "My Comment",
     "EDIT_PREDICTION": "Edit Prediction"
   },
+
   "bank": {
     "ACCOUNT_OWNER": "Account Owner",
     "IBAN": "IBAN",
@@ -100,6 +121,7 @@
     "COMMENT_INNER": "Comment",
     "STATUS": "Status"
   },
+
   "appointmentRibbon": {
     "POLL_MISSING": "Please take part in the poll!",
     "AWAITING_POLL": "The poll is still running",

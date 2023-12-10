@@ -12,21 +12,21 @@
       <arpa-profile-picture [person]="person"></arpa-profile-picture>
     </p-tabPanel>
     <p-tabPanel leftIcon="pi pi-user" [header]="'profile.MY_DATA' | translate" [tooltip]="'profile.MY_DATA_TOOLTIP' | translate">
-      <arpa-user-layout-basedata [email]="email" [person]="person" [displayName]="displayName"></arpa-user-layout-basedata>
+      <arpa-user-basedata [email]="email" [person]="person" [displayName]="displayName"></arpa-user-basedata>
     </p-tabPanel>
     <p-tabPanel
       leftIcon="pi pi-home"
       [header]="'profile.MY_ADDRESS_DATA' | translate"
       [tooltip]="'profile.MY_ADDRESS_DATA_TOOLTIP' | translate"
     >
-      <arpa-user-addressdata></arpa-user-addressdata>
+      <arpa-user-addressdata [person]="person" [addresses]="person.addresses || []"></arpa-user-addressdata>
     </p-tabPanel>
     <p-tabPanel
       leftIcon="pi pi-phone"
       [header]="'profile.MY_CONTACT_DATA' | translate"
       [tooltip]="'profile.MY_CONTACT_DATA_TOOLTIP' | translate"
     >
-      <arpa-user-layout-contact-data [contactDetails]="person.contactDetails || []"></arpa-user-layout-contact-data>
+      <arpa-user-contact-data [contactDetails]="person.contactDetails || []"></arpa-user-contact-data>
     </p-tabPanel>
 
     <p-tabPanel
@@ -34,7 +34,7 @@
       [header]="'profile.MY_BANK_DATA' | translate"
       [tooltip]="'profile.MY_BANK_DATA_TOOLTIP' | translate"
     >
-      <arpa-user-layout-bankdata [bankAccounts]="person.bankAccounts || []" [person]="person"></arpa-user-layout-bankdata>
+      <arpa-user-bankdata [bankAccounts]="person.bankAccounts || []" [person]="person"></arpa-user-bankdata>
     </p-tabPanel>
   </p-tabView>
 </div>

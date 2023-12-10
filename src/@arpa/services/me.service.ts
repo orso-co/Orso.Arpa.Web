@@ -140,8 +140,8 @@ export class MeService {
   addAddress(personId: any, dto: AddressCreateBodyDto): Observable<AddressDto> {
     return this.apiService.post<AddressDto>(`/persons/${personId}/addresses`, dto).pipe(shareReplay());
   }
-  updateAddress(id: string, dto: AddressModifyBodyDto): Observable<any> {
-    return this.apiService.put(`/persons/${this.baseUrl}/addresses/${id}`, dto).pipe(shareReplay());
+  updateAddress(id: string, personId: any, dto: AddressModifyBodyDto): Observable<any> {
+    return this.apiService.put(`/persons/${personId}/addresses/${id}`, dto).pipe(shareReplay());
   }
 
   deleteAddress(id: string | undefined, personId: any): Observable<any> {
