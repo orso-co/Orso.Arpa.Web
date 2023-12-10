@@ -1,0 +1,90 @@
+<arpa-table [actionsTemplateRef]="actionsTemplate" [columns]="columns" [data]="tableData" [showFilter]="false" [showPagination]="false">
+</arpa-table>
+
+<hr />
+<h5>{{ 'profile.address.CREATE_NEW_ADDRESS' | translate }}</h5>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-my-5">
+  <div class="p-grid p-fluid p-formgrid">
+    <div class="p-col-12 p-xl-9">
+      <arpa-form-field label="profile.address.ADDRESS1">
+        <input formControlName="address1" id="address1" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-9">
+      <arpa-form-field label="profile.address.ADDRESS2">
+        <input formControlName="address2" id="address2" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-9">
+      <arpa-form-field label="profile.address.CITY">
+        <input formControlName="city" id="city" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-9">
+      <arpa-form-field label="profile.address.STATE">
+        <input formControlName="state" id="state" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-9">
+      <arpa-form-field label="profile.address.ZIP">
+        <input formControlName="zip" id="zip" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-9">
+      <arpa-form-field label="profile.address.COUNTRY">
+        <input formControlName="country" id="country" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-9">
+      <arpa-form-field label="profile.address.ADDRESS_TYPE" type="select">
+        <p-dropdown
+          [options]="(typeOptions$ | async) || []"
+          [placeholder]="'NOTHING_SELECTED' | translate"
+          formControlName="addressType"
+          optionLabel="label"
+          optionValue="value"
+        ></p-dropdown>
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-9">
+      <arpa-form-field label="profile.address.COMMENT_INNER">
+        <input formControlName="commentInner" id="commentInner" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class="p-formgroup-inline p-jc-between">
+    <div class="p-text-left">
+      <button
+        [disabled]="form.pristine || form.invalid"
+        [label]="'SAVE' | translate"
+        icon="pi pi-check"
+        iconPos="right"
+        pButton
+        type="submit"
+      ></button>
+    </div>
+    <div class="p-text-right">
+      <button
+        [label]="'CANCEL' | translate"
+        icon="pi pi-times"
+        iconPos="right"
+        pButton
+        type="button"
+        (click)="onCancel()"
+        class="p-button-outlined"
+      ></button>
+    </div>
+  </div>
+</form>
+
+<ng-template #actionsTemplate let-row>
+  <button
+    (click)="remove(row)"
+    [label]="'person-dialog.DELETE' | translate"
+    class="p-button-rounded p-button-danger p-button-outlined p-button-text"
+    icon="pi pi-trash"
+    pButton
+    type="button"
+  ></button>
+</ng-template>

@@ -5,11 +5,11 @@ import { Observable } from 'rxjs';
 import { MyMusicianProfileDto } from '@arpa/models';
 
 @Component({
-  selector: 'arpa-musician',
-  templateUrl: './musician.component.html',
-  styleUrls: ['./musician.component.scss'],
+  selector: 'arpa-musicianprofile',
+  templateUrl: './musicianprofile.component.html',
+  styleUrls: ['./musicianprofile.component.scss'],
 })
-export class MusicianComponent {
+export class MusicianprofileComponent {
   public profiles: Observable<MyMusicianProfileDto[]>;
   public deactivatedProfiles: Observable<MyMusicianProfileDto[]>;
 

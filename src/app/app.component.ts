@@ -4,7 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { filter, map, shareReplay } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { fromEvent, merge, Observable, of, Subscription } from 'rxjs';
-import { AuthEvents, AuthService } from '../@arpa/services/auth.service';
+import { AuthEvents, AuthService } from '@arpa/services';
 import { MeService, LoadingService, ConfigService, RouteTitleService } from '@arpa/services';
 
 @Component({
@@ -71,7 +71,7 @@ export class AppComponent implements OnInit, OnDestroy {
         // Remove sensible data on logout.
         this.meService.cleanStorage();
       } else if (event === AuthEvents.LOGIN) {
-        // Make sure an applicable user has a ready to use QRCode.
+        // Make sure an applicable user-layout has a ready to use QRCode.
         // This observable is completed by default. No need to unsubscribe.
         this.meService.getMyQrCode().subscribe();
       }

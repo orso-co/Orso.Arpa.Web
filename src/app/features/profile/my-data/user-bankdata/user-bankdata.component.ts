@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
-import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
+import { ColumnDefinition } from '../../../../../@arpa/components/table/table.component';
 import { BankAccountDto, PersonDto } from '@arpa/models';
 import { NotificationsService, MeService } from '@arpa/services';
 import { first } from 'rxjs/operators';
 import { cloneDeep } from 'lodash-es';
 
 @Component({
-  selector: 'arpa-user-bankdata',
+  selector: 'arpa-user-layout-bankdata',
   templateUrl: './user-bankdata.component.html',
   styleUrls: ['./user-bankdata.component.scss'],
 })

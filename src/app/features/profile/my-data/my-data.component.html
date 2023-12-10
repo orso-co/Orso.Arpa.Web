@@ -1,0 +1,40 @@
+<div class="p-grid p-jc-center">
+  <h1>{{ 'MY_DATA' | translate }}</h1>
+</div>
+
+<div class="user-container">
+  <p-tabView [(activeIndex)]="index">
+    <p-tabPanel
+      leftIcon="pi pi-camera"
+      [header]="'profile.MY_PROFILE_PICTURE' | translate"
+      [tooltip]="'profile.MY_PROFILE_PICTURE_TOOLTIP' | translate"
+    >
+      <arpa-profile-picture [person]="person"></arpa-profile-picture>
+    </p-tabPanel>
+    <p-tabPanel leftIcon="pi pi-user" [header]="'profile.MY_DATA' | translate" [tooltip]="'profile.MY_DATA_TOOLTIP' | translate">
+      <arpa-user-layout-basedata [email]="email" [person]="person" [displayName]="displayName"></arpa-user-layout-basedata>
+    </p-tabPanel>
+    <p-tabPanel
+      leftIcon="pi pi-home"
+      [header]="'profile.MY_ADDRESS_DATA' | translate"
+      [tooltip]="'profile.MY_ADDRESS_DATA_TOOLTIP' | translate"
+    >
+      <arpa-user-addressdata></arpa-user-addressdata>
+    </p-tabPanel>
+    <p-tabPanel
+      leftIcon="pi pi-phone"
+      [header]="'profile.MY_CONTACT_DATA' | translate"
+      [tooltip]="'profile.MY_CONTACT_DATA_TOOLTIP' | translate"
+    >
+      <arpa-user-layout-contact-data [contactDetails]="person.contactDetails || []"></arpa-user-layout-contact-data>
+    </p-tabPanel>
+
+    <p-tabPanel
+      leftIcon="pi pi-credit-card"
+      [header]="'profile.MY_BANK_DATA' | translate"
+      [tooltip]="'profile.MY_BANK_DATA_TOOLTIP' | translate"
+    >
+      <arpa-user-layout-bankdata [bankAccounts]="person.bankAccounts || []" [person]="person"></arpa-user-layout-bankdata>
+    </p-tabPanel>
+  </p-tabView>
+</div>

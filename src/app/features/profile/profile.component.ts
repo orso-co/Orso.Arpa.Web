@@ -2,19 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from './profile.service';
 import { Observable, Subscription } from 'rxjs';
-import { MyUserProfileDto } from '../../../@arpa/models/myUserProfileDto';
+import { MyUserProfileDto } from '@arpa/models';
 import { Unsubscribe } from '../../../@arpa/decorators/unsubscribe.decorator';
 import { map, switchMap } from 'rxjs/operators';
-import { AuthService } from '../../../@arpa/services/auth.service';
+import { AuthService } from '@arpa/services';
 
 @Component({
-  selector: 'arpa-appointments',
+  selector: 'arpa-my-appointments',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
 @Unsubscribe()
 export class ProfileComponent implements OnInit {
-
   public selection: boolean;
   public profile: Observable<MyUserProfileDto>;
   private menuEventSubscription: Subscription;
@@ -23,7 +22,7 @@ export class ProfileComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService,
-    private profileService: ProfileService,
+    private profileService: ProfileService
   ) {
     this.menuEventSubscription = profileService.menuEvents.subscribe(() => {
       this.selection = true;
@@ -31,12 +30,16 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.profile = this.authService.currentUser.pipe(switchMap(token => {
-      return this.route.data.pipe(map(({ profile }) => {
-        profile.displayName = token.displayName;
-        return profile as MyUserProfileDto;
-      }));
-    }));
+    this.profile = this.authService.currentUser.pipe(
+      switchMap((token) => {
+        return this.route.data.pipe(
+          map(({ profile }) => {
+            profile.displayName = token.displayName;
+            return profile as MyUserProfileDto;
+          })
+        );
+      })
+    );
   }
 
   return(event: Event) {
