@@ -18,9 +18,6 @@
           </ng-template>
           <div class="card-content" (click)="showOverlay($event, op, newsItem)">
             <p class="content">{{ newsItem.content }}</p>
-            <!--            <p *ngIf="newsItem?.url">-->
-            <!--              <a class="urlsmall" [href]="newsItem!.url!" target="_blank">{{ newsItem!.url! }} </a>-->
-            <!--            </p>-->
           </div>
           <ng-container *ngIf="newsItem.url"> </ng-container>
         </p-card>

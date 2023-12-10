@@ -3,7 +3,7 @@
     <p-table
       (onLazyLoad)="loadData($event.rows, $event.first)"
       [lazy]="true"
-      [rows]="5"
+      [rows]="3"
       [value]="(userAppointments$ | async) || []"
       (click)="onRowClick($event)"
       tableStyleClass="arpa-table-list"
@@ -65,7 +65,7 @@
                 <p-chip
                   icon="pi pi-check"
                   class="p-chip-info"
-                  *ngIf="appointment.prediction"
+                  *ngIf="appointment.prediction; else noPrediction"
                   [label]="
                     ('PARTICIPATION_PREDICTION' | translate) +
                     ': ' +
@@ -92,3 +92,9 @@
     <span>{{ 'VENUE_NOT_CONFIRMED' | translate }}</span>
   </div>
 </ng-template>
+<ng-template #noPrediction>
+  <div class="p-col-3 p-lg-6">
+    <span class="no-prediction">{{ 'appointments.NO_PREDICTION' | translate }}</span>
+  </div>
+</ng-template>
+```
