@@ -149,6 +149,13 @@ export class LayoutDefaultComponent implements OnDestroy {
               routerLink: '/arpa/profile/musicianprofile',
               translationToken: 'MY_PROFILES',
             },
+            {
+              label: 'Hilfe',
+              icon: 'pi pi-send',
+              roles: ['performer'],
+              translationToken: 'SUPPORT',
+              command: () => this.sendEmail(),
+            },
           ],
         },
       ]);
@@ -162,5 +169,8 @@ export class LayoutDefaultComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.routerEventSubscription.unsubscribe();
+  }
+  sendEmail() {
+    window.location.href = 'mailto:support@arpa.orso.co';
   }
 }

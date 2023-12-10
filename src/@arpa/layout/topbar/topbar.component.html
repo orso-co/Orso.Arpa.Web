@@ -1,14 +1,5 @@
 <span>{{ pageTitle | translate }}</span>
 <div #nav class="nav">
-  <p-button
-    styleClass="p-button-rounded p-button-text"
-    (click)="sendEmail()"
-    [label]="'SUPPORT' | translate"
-    size="small"
-    icon="pi pi-send"
-  ></p-button>
-</div>
-<div #nav class="nav">
   <ng-container *ngIf="userToken | async as token">
     <div *ngIf="(isHandset | async) !== true" class="user">
       <span class="user-profile-name">{{ token.displayName }}</span>

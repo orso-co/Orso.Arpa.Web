@@ -45,7 +45,4 @@ export class TopbarComponent {
   getRoleNames(token: IToken): string {
     return token.roles.map((role) => role.charAt(0).toUpperCase() + role.slice(1)).join(', ');
   }
-  sendEmail() {
-    window.location.href = 'mailto:support@arpa.orso.co';
-  }
 }
