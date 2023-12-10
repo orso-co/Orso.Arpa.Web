@@ -10,7 +10,7 @@ import { first } from 'rxjs/operators';
 import { SelectItem } from 'primeng/api';
 
 @Component({
-  selector: 'arpa-user-layout-contact-data',
+  selector: 'arpa-user-contact-data',
   templateUrl: './user-contactdata.component.html',
   styleUrls: ['./user-contactdata.component.scss'],
 })

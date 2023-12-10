@@ -152,7 +152,7 @@ const routes: Routes = [
         },
       },
       {
-        path: 'profile/my-data/user-layout',
+        path: 'profile/my-data',
         loadChildren: () => import('./features/profile/profile.module').then((mod) => mod.ProfileModule),
         data: {
           roles: ['performer', 'staff', 'admin'],

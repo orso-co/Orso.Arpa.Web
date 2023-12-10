@@ -69,6 +69,6 @@ export class AppointmentsWidgetComponent {
     return 'primary';
   }
   onRowClick(event: any): void {
-    this.router.navigate(['/arpa/profile/appointments']);
+    this.router.navigate(['/arpa/profile/my-appointments']);
   }
 }

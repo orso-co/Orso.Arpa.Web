@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 import { BankAccountDto } from '@arpa/models';
 
 @Component({
-  selector: 'arpa-user-layout',
+  selector: 'arpa-user',
   templateUrl: './my-data.component.html',
   styleUrls: ['./my-data.component.scss'],
 })

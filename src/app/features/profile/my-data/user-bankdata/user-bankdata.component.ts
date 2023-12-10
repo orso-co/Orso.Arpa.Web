@@ -8,7 +8,7 @@ import { first } from 'rxjs/operators';
 import { cloneDeep } from 'lodash-es';
 
 @Component({
-  selector: 'arpa-user-layout-bankdata',
+  selector: 'arpa-user-bankdata',
   templateUrl: './user-bankdata.component.html',
   styleUrls: ['./user-bankdata.component.scss'],
 })
