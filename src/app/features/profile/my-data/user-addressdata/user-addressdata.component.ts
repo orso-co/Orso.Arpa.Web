@@ -23,13 +23,10 @@ export class UserAddressdataComponent implements OnInit {
 
   columns: ColumnDefinition<AddressDto>[] = [
     { label: 'profile.address.ADDRESS1', property: 'address1', type: 'text' },
-    { label: 'profile.address.ADDRESS2', property: 'address2', type: 'text' },
     { label: 'profile.address.CITY', property: 'city', type: 'text' },
     { label: 'profile.address.ZIP', property: 'zip', type: 'text' },
     { label: 'profile.address.COUNTRY', property: 'country', type: 'text' },
     { label: 'profile.address.STATE', property: 'state', type: 'text' },
-    { label: 'profile.address.ADDRESS_TYPE', property: 'addressType', type: 'state', stateTable: 'Address', stateProperty: 'Type' },
-    { label: 'profile.address.COMMENT_INNER', property: 'commentInner', type: 'text', show: true },
   ];
   constructor(
     private formBuilder: UntypedFormBuilder,
@@ -59,7 +56,7 @@ export class UserAddressdataComponent implements OnInit {
     const { id, address1, address2, city, country, state, zip, commentInner, typeId } = this.form.getRawValue();
     if (id) {
       this.meService
-        .updateAddress(id, { address1, address2, city, state, zip, country, commentInner, typeId })
+        .updateAddress(id, this.person?.id, { address1, address2, city, state, zip, country, commentInner, typeId })
         .pipe(first())
         .subscribe((_) => {
           const index = this._tableData.findIndex((el) => el.id === id);
@@ -93,11 +90,12 @@ export class UserAddressdataComponent implements OnInit {
   update(address: AddressDto) {
     this.form.reset({
       id: address.id,
-      adress1: address.address1,
-      adress2: address.address2,
+      address1: address.address1,
+      address2: address.address2,
       city: address.city,
       zip: address.zip,
       country: address.country,
+      state: address.state,
       typeId: address.type,
     });
   }

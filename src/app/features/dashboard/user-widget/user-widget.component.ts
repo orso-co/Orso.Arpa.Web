@@ -14,7 +14,7 @@ import { UserService } from '../services/user.service';
 import { RoleService, AuthService, NotificationsService } from '@arpa/services';
 
 @Component({
-  selector: 'arpa-user-layout-widget',
+  selector: 'arpa-user-widget',
   templateUrl: './user-widget.component.html',
   styleUrls: ['./user-widget.component.scss'],
 })

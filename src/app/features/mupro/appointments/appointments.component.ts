@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 @Component({
-  selector: 'arpa-mupro-my-appointments',
+  selector: 'arpa-mupro-appointments',
   templateUrl: './appointments.component.html',
   styleUrls: ['./appointments.component.scss'],
 })

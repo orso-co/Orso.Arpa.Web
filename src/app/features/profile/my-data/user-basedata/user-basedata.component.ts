@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators';
 import { NotificationsService, MeService, SelectValueService } from '@arpa/services';
 
 @Component({
-  selector: 'arpa-user-layout-basedata',
+  selector: 'arpa-user-basedata',
   templateUrl: './user-basedata.component.html',
   styleUrls: ['./user-basedata.component.scss'],
 })
