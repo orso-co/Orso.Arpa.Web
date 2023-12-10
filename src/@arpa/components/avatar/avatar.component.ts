@@ -56,6 +56,10 @@ export class AvatarComponent implements OnInit, OnDestroy {
     if (potentialId && !this.skipLoadingPicture) {
       this.personService.getProfilePicture(potentialId, this.imageSize).subscribe(
         (data) => {
+          if (!data) {
+            this.image = false;
+            return;
+          }
           const reader = new FileReader();
           reader.onload = (e: any) => {
             const fileBase64 = e.target.result;
