@@ -25,6 +25,7 @@
   "MY_CONTACT_DATA": "Kontaktdaten",
   "MY_CONTACT_DATA_TOOLTIP": "Hier kannst du Telefonnummern, Emailadressen und Links angeben",
   "MY_BANK_DATA": "Bankdaten",
+  "MY_ADDRESS_DATA": "Adressdaten",
   "MY_PROFILE_PICTURE": "Profilbild",
   "BIRTHPLACE": "Geburtsort",
   "BIRTHNAME": "Geburtsname",
@@ -47,6 +48,19 @@
     "COMMENT": "Kommentar",
     "COMMENT_TEAM": "Kommentar Mitarbeiter",
     "CREATE_NEW_CONTACT": "Kontaktdaten hinzufügen"
+  },
+  "address": {
+    "CITY": "Stadt",
+    "COUNTRY": "Land",
+    "ZIP": "Postleitzahl",
+    "ADDRESS1": "Adresszeile 1",
+    "ADDRESS2": "Adresszeile 2",
+    "COMMENT_INNER": "Kommentar",
+    "COMMENT": "Kommentar",
+    "COMMENT_TEAM": "Kommentar Mitarbeiter",
+    "STATE": "Bundesland",
+    "CREATE_NEW_ADDRESS": "Adresse hinzufügen",
+    "ADDRESS_TYPE": "Adresstyp"
   },
 
   "my-projects": {

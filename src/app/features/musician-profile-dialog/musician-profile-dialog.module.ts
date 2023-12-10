@@ -15,7 +15,7 @@ import { SectionPipe } from './pipes/section.pipe';
 import { TranslateModule } from '../../../@arpa/translate';
 import { SelectValueModule } from '../../../@arpa/pipes/select-value/select-value.module';
 import { CheckboxModule } from 'primeng/checkbox';
-import { FormFieldModule } from '../../../@arpa/components/form-field/form-field.module';
+import { FormFieldModule } from '@arpa/components';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -29,7 +29,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '@arpa/services';
-import { TableModule } from '../../../@arpa/components/table/table.module';
+import { TableModule } from '@arpa/components';
 import { BadgeModule } from 'primeng/badge';
 
 @NgModule({
@@ -51,7 +51,7 @@ import { BadgeModule } from 'primeng/badge';
     ReactiveFormsModule,
     MusicianProfileDialogRoutingModule,
     // Arpa Lib
-    TranslateModule.forChild(['musician-profile-dialog']),
+    TranslateModule.forChild(['musicianprofile-dialog']),
     SelectValueModule,
     FormFieldModule,
     TableModule,
@@ -73,7 +73,7 @@ import { BadgeModule } from 'primeng/badge';
 })
 export class MusicianProfileDialogModule {
   constructor(private translateService: TranslateService, private languageService: LanguageService) {
-    languageService.languageEvent.subscribe(lang => {
+    languageService.languageEvent.subscribe((lang) => {
       /**
        * Reset lang for lazy module.
        * Fixes: https://github.com/ngx-translate/core/issues/1193

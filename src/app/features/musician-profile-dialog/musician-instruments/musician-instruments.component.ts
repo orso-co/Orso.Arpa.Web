@@ -19,7 +19,7 @@ interface FormListElement extends DoublingInstrumentDto {
 }
 
 @Component({
-  selector: 'arpa-musician-instruments',
+  selector: 'arpa-musicianprofile-instruments',
   templateUrl: './musician-instruments.component.html',
   styleUrls: ['./musician-instruments.component.scss'],
 })
@@ -133,7 +133,7 @@ export class MusicianInstrumentsComponent implements OnInit {
       .subscribe((updatedProfile) => {
         this.config.data.profile.next(updatedProfile);
         this.ref.close(updatedProfile);
-        this.notificationsService.success('UPDATED', 'musician-profile-dialog');
+        this.notificationsService.success('UPDATED', 'musicianprofile-dialog');
       });
   }
   create() {
@@ -145,7 +145,7 @@ export class MusicianInstrumentsComponent implements OnInit {
       .subscribe((createdProfile) => {
         this.config.data.profile.next(createdProfile);
         this.ref.close(createdProfile);
-        this.notificationsService.success('CREATED', 'musician-profile-dialog');
+        this.notificationsService.success('CREATED', 'musicianprofile-dialog');
       });
   }
 
@@ -165,7 +165,7 @@ export class MusicianInstrumentsComponent implements OnInit {
             this.doublingInstruments[i] = this.getFormGroup({ ...listData, ...formGroup.value });
           }
         });
-        this.notificationsService.success('DOUBLING_INSTRUMENT_UPDATED', 'musician-profile-dialog');
+        this.notificationsService.success('DOUBLING_INSTRUMENT_UPDATED', 'musicianprofile-dialog');
       });
   }
 

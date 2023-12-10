@@ -8,6 +8,7 @@
   "CREATE_NEW_MUPRO": "Créer un nouveau profil de musicien",
   "DEACTIVATE": "Désactiver",
   "DEACTIVATED": "Désactivée",
+  "DEACTIVATION": "Désactivation",
   "DEACTIVATION_DATE": "Date de désactivation",
   "DOCUMENTS": "Documents",
   "DOCUMENT_ADDED": "Document ajouté",
@@ -59,5 +60,6 @@
   "LEVEL_ASSESSMENT_TEAM": "Évaluation du niveau par le personnel",
   "LEVEL_ASSESSMENT_INNER": "Évaluation du niveau par interprète",
   "BACKGROUND_TEAM": "Contexte",
-  "BACKGROUND_INNER": "Contexte"
+  "BACKGROUND_INNER": "Contexte",
+  "NO_DEACTIVATION_POSSIBLE": "Aucune désactivation possible"
 }

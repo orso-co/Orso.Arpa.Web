@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { first, map } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 import { SelectValueService, NotificationsService } from '@arpa/services';
 import { MusicianProfileDto, EducationDto } from '@arpa/models';
 import { MusicianService } from '../services/musician.service';
@@ -10,7 +10,7 @@ import { SelectItem } from 'primeng/api';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
 
 @Component({
-  selector: 'arpa-musician-education',
+  selector: 'arpa-musicianprofile-education',
   templateUrl: './musician-education.component.html',
   styleUrls: ['./musician-education.component.scss'],
 })
@@ -22,8 +22,8 @@ export class MusicianEducationComponent implements OnInit {
   public educationTypes: Observable<SelectItem[]>;
   public educations: BehaviorSubject<any> = new BehaviorSubject([]);
   columns: ColumnDefinition<EducationDto>[] = [
-    { label: 'musician-profile-dialog.TIMESPAN', property: 'timeSpan', type: 'text', hideFilter: true },
-    { label: 'musician-profile-dialog.EDUCATION_INSTITUTION', property: 'institution', type: 'text', hideFilter: true },
+    { label: 'musicianprofile-dialog.TIMESPAN', property: 'timeSpan', type: 'text', hideFilter: true },
+    { label: 'musicianprofile-dialog.EDUCATION_INSTITUTION', property: 'institution', type: 'text', hideFilter: true },
   ];
   private _educations: Array<any>;
 
@@ -59,7 +59,7 @@ export class MusicianEducationComponent implements OnInit {
       .subscribe((result) => {
         this._educations.push(result);
         this.educations.next(this._educations);
-        this.notificationsService.success('EDUCATION_ADDED', 'musician-profile-dialog');
+        this.notificationsService.success('EDUCATION_ADDED', 'musicianprofile-dialog');
       });
   }
 
@@ -70,7 +70,7 @@ export class MusicianEducationComponent implements OnInit {
       .subscribe(() => {
         this._educations = this._educations.filter((e) => e.id != education.id);
         this.educations.next(this._educations);
-        this.notificationsService.success('EDUCATION_REMOVED', 'musician-profile-dialog');
+        this.notificationsService.success('EDUCATION_REMOVED', 'musicianprofile-dialog');
       });
   }
 }

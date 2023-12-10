@@ -27,7 +27,7 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
   columns: ColumnDefinition<ProjectParticipationDto>[] = [
     { label: 'projects.PARTICIPANTS', property: 'musicianProfile.person.displayName', type: 'text' },
     { label: 'projects.INSTRUMENT', property: 'musicianProfile.instrument.name', type: 'text' },
-    { label: 'projects.EMAIL', property: 'musicianProfile.person.user.normalizedEmail', type: 'text' },
+    { label: 'projects.EMAIL', property: 'musicianProfile.person.user-layout.normalizedEmail', type: 'text' },
     {
       label: 'projects.PARTICIPATION_STATUS_INVITATION',
       property: 'invitationStatus',

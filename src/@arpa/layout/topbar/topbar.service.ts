@@ -33,7 +33,7 @@ export class TopbarService {
   private initialiseUserMenu(): Array<MenuItemArpa> {
     const userProfileItems: Array<MenuItemArpa> = [
       { label: 'LOGOUT', icon: 'pi pi-sign-out', routerLink: ['/logout'] },
-      { label: 'MY_DATA', icon: 'pi pi-user-edit', routerLink: ['/arpa/profile/user'] },
+      { label: 'MY_DATA', icon: 'pi pi-user-layout-edit', routerLink: ['/arpa/profile/user-layout'] },
       { separator: true },
       ...this.languageService.getLangs().map((lang) => ({
         label: this.languageService.getLanguageName(lang),
