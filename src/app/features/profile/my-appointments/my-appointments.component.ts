@@ -54,7 +54,7 @@ export class MyAppointmentsComponent {
         participation: { prediction: myAppointmentDto.prediction, commentByPerformerInner: myAppointmentDto.commentByPerformerInner },
         statusOptions$: this.predictions$,
       },
-      header: this.translate.instant('profile.my-my-appointments.EDIT_PREDICTION'),
+      header: this.translate.instant('profile.my-appointments.EDIT_PREDICTION'),
       styleClass: 'form-modal',
       dismissableMask: true,
       width: window.innerWidth > 350 ? '350px' : '100%',
