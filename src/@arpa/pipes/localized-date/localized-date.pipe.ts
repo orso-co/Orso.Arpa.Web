@@ -9,19 +9,16 @@ import { TranslateService } from '@ngx-translate/core';
  */
 @Pipe({
   name: 'localizedDate',
-  pure: false
+  pure: false,
 })
 export class LocalizedDatePipe implements PipeTransform {
-
   constructor(private translateService: TranslateService, private datePipe: DatePipe) {}
 
-  transform(value: any, pattern: string = 'mediumDate', timezone: string = 'de'): any {
+  transform(value: any, pattern: string = 'mediumDate', timezone?: string): any {
     try {
       return this.datePipe.transform(value, pattern, timezone, this.translateService.currentLang);
     } catch (e) {
       return this.datePipe.transform(value, pattern, timezone, 'en-GB');
     }
   }
-
 }
-
