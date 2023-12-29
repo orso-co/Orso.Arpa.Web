@@ -21,7 +21,7 @@ import {
 export class MusicianService {
   private baseUrl = '/profiles/musicians';
   private baseUrlPersons = '/persons';
-  private baseUrlMe = '/me/profiles/musicianprofile';
+  private baseUrlMe = '/me/profiles/musician';
 
   constructor(private apiService: ApiService) {}
 
