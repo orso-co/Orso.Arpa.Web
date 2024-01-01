@@ -129,7 +129,6 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   private loadData() {
-    console.log(this.config.data);
     this.appointment = this.config.data.appointment;
     this.isAllDayEvent = this.config.data.isAllDayEvent;
     const sections$ = this.config.data.sections ? of(this.config.data.sections) : this.sectionService.sectionsAll$;
