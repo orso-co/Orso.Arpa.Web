@@ -61,7 +61,7 @@ export class AppointmentService {
 
   addSection(id: string, sectionId: string): Observable<AppointmentDto> {
     const params = new HttpParams().set('includeParticipations', false);
-    return this.apiService.post<AppointmentDto>(`${this.baseUrl}/${id}/sections/${sectionId}`, params).pipe(shareReplay());
+    return this.apiService.post<AppointmentDto>(`${this.baseUrl}/${id}/sections/${sectionId}`, {}, params).pipe(shareReplay());
   }
 
   removeProject(id: string, projectId: string): Observable<AppointmentDto> {
@@ -71,7 +71,7 @@ export class AppointmentService {
 
   addProject(id: string, projectId: string): Observable<AppointmentDto> {
     const params = new HttpParams().set('includeParticipations', false);
-    return this.apiService.post<AppointmentDto>(`${this.baseUrl}/${id}/projects/${projectId}`, params).pipe(shareReplay());
+    return this.apiService.post<AppointmentDto>(`${this.baseUrl}/${id}/projects/${projectId}`, {}, params).pipe(shareReplay());
   }
 
   setVenue(id: string, venueId: string | null): Observable<any> {
@@ -94,6 +94,6 @@ export class AppointmentService {
 
   sendNotification(appointmentId: string, forceSending = false) {
     const params = new HttpParams().set('forceSending', forceSending);
-    return this.apiService.post(`${this.baseUrl}/${appointmentId}/notification`, params).pipe(shareReplay());
+    return this.apiService.post(`${this.baseUrl}/${appointmentId}/notification`, {}, params).pipe(shareReplay());
   }
 }
