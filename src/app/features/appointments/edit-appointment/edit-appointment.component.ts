@@ -603,7 +603,6 @@ export class EditAppointmentComponent implements OnInit {
           this.notificationsService.success('appointments.NOTIFICATION_SENT');
         },
         (error: any) => {
-          console.log(error);
           if (error.errors?.ForceSending && !force) {
             this.showNotificationConfirmation(error.errors.ForceSending[0], event);
           }
