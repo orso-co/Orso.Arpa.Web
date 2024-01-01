@@ -91,4 +91,9 @@ export class AppointmentService {
       .put(`${this.baseUrl}/${appointmentId}/participations/${personId}/prediction`, { prediction })
       .pipe(shareReplay());
   }
+
+  sendNotification(appointmentId: string, forceSending = false) {
+    const params = new HttpParams().set('forceSending', forceSending);
+    return this.apiService.post(`${this.baseUrl}/${appointmentId}/notification`, params).pipe(shareReplay());
+  }
 }

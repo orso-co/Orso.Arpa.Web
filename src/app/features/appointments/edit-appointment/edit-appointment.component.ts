@@ -129,7 +129,6 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   private loadData() {
-    console.log(this.config.data);
     this.appointment = this.config.data.appointment;
     this.isAllDayEvent = this.config.data.isAllDayEvent;
     const sections$ = this.config.data.sections ? of(this.config.data.sections) : this.sectionService.sectionsAll$;
@@ -588,5 +587,43 @@ export class EditAppointmentComponent implements OnInit {
   }
   exportCSV() {
     this.table.exportCSV();
+  }
+
+  public onSendNotification(event: Event) {
+    this.sendNotification(false, event);
+  }
+
+  private sendNotification(force: boolean, event?: Event) {
+    this.appointmentService
+      .sendNotification(this.appointment.id, force)
+      .pipe(first())
+      .subscribe(
+        () => {
+          this.notificationsService.success('appointments.NOTIFICATION_SENT');
+        },
+        (error: any) => {
+          if (error.errors?.ForceSending && !force) {
+            this.showNotificationConfirmation(error.errors.ForceSending[0], event);
+          }
+          if (error.errors?.AppointmentId) {
+            this.notificationsService.error(error.errors.AppointmentId[0]);
+          } else {
+            this.notificationsService.error(error!.title);
+          }
+        }
+      );
+  }
+
+  private showNotificationConfirmation(confirmationMessage: string, event?: Event) {
+    this.confirmationService.confirm({
+      target: event?.target || undefined,
+      message: confirmationMessage,
+      icon: 'pi pi-exclamation-triangle',
+      acceptLabel: this.translate.instant('YES'),
+      rejectLabel: this.translate.instant('NO'),
+      accept: () => {
+        this.sendNotification(true);
+      },
+    });
   }
 }

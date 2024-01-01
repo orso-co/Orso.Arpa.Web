@@ -177,6 +177,16 @@
                 class="p-mr-3"
               ></button>
               <button
+                [label]="'appointments.SEND_NOTIFICATION' | translate"
+                [pTooltip]="'appointments.SEND_NOTIFICATION_TOOLTIP' | translate"
+                *ngIf="!isNew && formGroup.pristine"
+                (click)="onSendNotification($event)"
+                pButton
+                class="p-button-outlined p-button-secondary p-mr-3"
+                type="button"
+                icon="pi pi-envelope"
+              ></button>
+              <button
                 (click)="onSubmit(true)"
                 [disabled]="formGroup.pristine || formGroup.invalid"
                 [label]="'appointments.SAVECONTINUE' | translate"
