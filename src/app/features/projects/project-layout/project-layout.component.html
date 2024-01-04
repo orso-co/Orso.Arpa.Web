@@ -30,9 +30,8 @@
   <p-tabPanel leftIcon="pi pi-cog" header="{{ 'projects.BASICDATA' | translate }}" tooltip="{{ 'projects.BASICDATA_TOOLTIP' | translate }}">
     <arpa-edit-project
       [project]="project"
-      [venues]="(venues | async)!"
-      [type]="(type | async)!"
-      [genre]="(genre | async)!"
+      [typeOptions]="(typeOptions$ | async)!"
+      [genreOptions]="(genreOptions$ | async)!"
     ></arpa-edit-project>
   </p-tabPanel>
 </p-tabView>

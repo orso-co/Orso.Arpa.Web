@@ -2,7 +2,7 @@
   <div class="p-fluid p-grid p-formgrid">
     <div class="p-field p-col-12 p-md-6">
       <arpa-form-field label="projects.TITLE">
-        <input formControlName="title" id="title" maxlength="100" pInputText type="text"/>
+        <input formControlName="title" id="title" maxlength="100" pInputText type="text" />
       </arpa-form-field>
     </div>
     <div class="p-field p-col-12 p-md-3">
@@ -22,7 +22,7 @@
     </div>
     <div class="p-field p-col-12 p-md-3">
       <arpa-form-field label="projects.CODE">
-        <input formControlName="code" id="code" maxlength="15" pInputText type="text"  />
+        <input formControlName="code" id="code" maxlength="15" pInputText type="text" />
       </arpa-form-field>
     </div>
     <div class="p-field p-col-12 p-md-6">
@@ -33,12 +33,12 @@
             (onFilter)="parentProjects.onFilter($event)"
             [autoDisplayFirst]="false"
             [filter]="true"
-            [options]="(transformFeedResult(feed) | async) || []"
+            [options]="(mapFeedResultToSelectItem(feed) | async) || []"
             [showClear]="true"
             appendTo="body"
             filterBy="label"
             formControlName="parentId"
-            id="parent"
+            id="parentId"
           ></p-dropdown>
         </arpa-form-field>
       </ng-template>
@@ -47,11 +47,11 @@
       <arpa-form-field label="projects.TYPE" type="select">
         <p-dropdown
           [autoDisplayFirst]="false"
-          [options]="type || []"
+          [options]="typeOptions || []"
           [showClear]="true"
           appendTo="body"
           formControlName="typeId"
-          id="type"
+          id="typeId"
         ></p-dropdown>
       </arpa-form-field>
     </div>
@@ -59,11 +59,11 @@
       <arpa-form-field label="projects.GENRE" type="select">
         <p-dropdown
           [autoDisplayFirst]="false"
-          [options]="genre || []"
+          [options]="genreOptions || []"
           [showClear]="true"
           appendTo="body"
           formControlName="genreId"
-          id="genre"
+          id="genreId"
         ></p-dropdown>
       </arpa-form-field>
     </div>
@@ -85,7 +85,7 @@
         ></p-dropdown>
       </arpa-form-field>
     </div>
-    <div class="p-field p-col-12 p-md-2" >
+    <div class="p-field p-col-12 p-md-2">
       <arpa-form-field label="projects.COMPLETED" type="select">
         <p-dropdown
           [autoDisplayFirst]="false"
@@ -100,12 +100,7 @@
     </div>
     <div class="p-field p-col-12 p-md-6">
       <arpa-form-field label="projects.IS_HIDDEN_FOR_PERFORMERS" type="checkbox" style="text-align: right">
-        <p-checkbox
-          ngDefaultControl
-          [binary]="true"
-          formControlName="isHiddenForPerformers"
-          id="isHiddenForPerformers"
-        ></p-checkbox>
+        <p-checkbox ngDefaultControl [binary]="true" formControlName="isHiddenForPerformers" id="isHiddenForPerformers"></p-checkbox>
       </arpa-form-field>
     </div>
   </div>
