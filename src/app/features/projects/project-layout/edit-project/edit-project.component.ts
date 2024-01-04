@@ -6,9 +6,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { map } from 'rxjs/operators';
 import { ProjectDto } from '@arpa/models';
-import { ParentProjectsQuery } from './projectParents.graphql';
+import { ParentProjectsQuery, ParentProjectsQueryResponse } from './projectParents.graphql';
 import { FeedScope } from '../../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
 import { EnumService } from '@arpa/services';
+import { ProjectsQueryResponse } from '../../project-list/projects.graphql';
 
 @Component({
   selector: 'arpa-edit-project',
@@ -17,10 +18,9 @@ import { EnumService } from '@arpa/services';
 })
 export class EditProjectComponent implements OnInit {
   parentProjectsQuery = ParentProjectsQuery;
-  @Input() project: ProjectDto;
-  @Input() venues: SelectItem[];
-  @Input() type: SelectItem[];
-  @Input() genre: SelectItem[];
+  @Input() project: ProjectsQueryResponse;
+  @Input() typeOptions: SelectItem[];
+  @Input() genreOptions: SelectItem[];
   projectStatusOptions$: Observable<SelectItem[]>;
 
   // Info: In this component "translate.instant" is used. This will not update the translations on language change
@@ -69,9 +69,9 @@ export class EditProjectComponent implements OnInit {
     }
   }
 
-  public transformFeedResult(feed: FeedScope): Observable<SelectItem[]> {
+  public mapFeedResultToSelectItem(feed: FeedScope): Observable<SelectItem[]> {
     return feed.values.pipe(
-      map((projects) =>
+      map((projects: ParentProjectsQueryResponse[]) =>
         projects
           .filter(({ id }) => (!this.project ? true : id !== this.project.id))
           .map((project) => ({ label: project.title, value: project.id } as SelectItem))
@@ -83,7 +83,7 @@ export class EditProjectComponent implements OnInit {
     if (this.form.invalid || this.form.pristine) {
       return;
     }
-    this.ref.close({ ...this.project, ...this.form.value } as ProjectDto);
+    this.ref.close({ ...this.form.value } as ProjectDto);
   }
 
   public cancel(): void {

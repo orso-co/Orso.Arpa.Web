@@ -10,9 +10,9 @@ export interface ProjectDto {
   modifiedBy?: string;
   modifiedAt?: Date;
   title: string;
-  shortTitle?: string;
+  shortTitle: string;
   description?: string;
-  code?: string;
+  code: string;
   type?: SelectValueDto;
   genre?: SelectValueDto;
   startDate?: Date;
@@ -20,7 +20,6 @@ export interface ProjectDto {
   urls?: Array<UrlDto>;
   status?: ProjectStatus;
   parentId?: string;
-  isCompleted?: boolean;
-  parentProject?: string;
-  children: ReducedProjectDto[];
+  isCompleted: boolean;
+  isHiddenToPerformers: boolean;
 }

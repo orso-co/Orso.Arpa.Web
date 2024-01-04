@@ -7,6 +7,7 @@ import { UrlDto, RoleDto, UrlRoleDto } from '@arpa/models';
 import { ProjectService, NotificationsService, RoleService } from '@arpa/services';
 import { first, map } from 'rxjs/operators';
 import { cloneDeep } from 'lodash-es';
+import { ProjectsQueryUrlResponse } from '../../project-list/projects.graphql';
 
 @Component({
   selector: 'arpa-project-urls',
@@ -14,7 +15,7 @@ import { cloneDeep } from 'lodash-es';
   styleUrls: ['./project-urls.component.scss'],
 })
 export class ProjectUrlsComponent implements OnInit {
-  @Input() urls: UrlDto[];
+  @Input() urls: ProjectsQueryUrlResponse[];
   @Input() projectId: string;
 
   form: UntypedFormGroup;

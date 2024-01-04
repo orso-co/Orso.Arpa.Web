@@ -1,6 +1,50 @@
 import { gql } from 'apollo-angular';
 
-export const ProjectsQuery = gql`
+export interface ProjectParticipationsQueryResponse {
+  id: string;
+  title: string;
+  children: {
+    title: string;
+    id: string;
+  }[];
+  parent: {
+    title: string;
+    id: string;
+  };
+  projectParticipations: {
+    participationStatusInner: string;
+    participationStatusInternal: string;
+    participationStatusResult: string;
+    invitationStatus: string;
+    commentByStaffInner: string;
+    commentTeam: string;
+    modifiedAt: Date;
+    modifiedBy: string;
+    musicianProfile: {
+      id: string;
+      instrument: {
+        name: string;
+      };
+      qualification: {
+        selectValue: {
+          name: string;
+        };
+      };
+      person: {
+        id: string;
+        surname: string;
+        givenName: string;
+        displayName: string;
+        user: {
+          id: string;
+          normalizedEmail: string;
+        };
+      };
+    };
+  }[];
+}
+
+export const ProjectParticipationsQuery = gql`
   query Projects($projectId: UUID) {
     projects(where: { id: { equals: $projectId } }) {
       pageInfo {

@@ -1,4 +1,43 @@
+import { ProjectStatus } from '@arpa/models';
 import { gql } from 'apollo-angular';
+
+export interface ProjectsQueryResponse {
+  id: string;
+  title: string;
+  startDate?: Date;
+  endDate?: Date;
+  status: ProjectStatus;
+  isCompleted: boolean;
+  isHiddenForPerformers: boolean;
+  genreId?: string;
+  genre?: {
+    selectValue: {
+      name: string;
+    };
+  };
+  typeId?: string;
+  parentId?: string;
+  shortTitle: string;
+  description?: string;
+  code: string;
+  children: { title: string; id: string }[];
+  parent?: { title: string; id: string };
+  urls: ProjectsQueryUrlResponse[];
+}
+
+export interface ProjectsQueryUrlResponse {
+  id: string;
+  href: string;
+  anchorText?: string;
+  urlRoles: {
+    id: string;
+    role: {
+      id: string;
+      roleName: string;
+      roleLevel: number;
+    };
+  };
+}
 
 export const ProjectsQuery = gql`
   query Projects(

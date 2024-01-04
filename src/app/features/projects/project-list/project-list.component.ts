@@ -6,11 +6,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { ProjectService, NotificationsService, SelectValueService, VenueService } from '@arpa/services';
 import { Table } from 'primeng/table';
 import { ProjectParticipantsComponent } from '../project-layout/project-participants/project-participants.component';
-import { ProjectDto } from '@arpa/models';
+import { ProjectCreateDto, ProjectModifyBodyDto } from '@arpa/models';
 import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator';
 import { DocumentNode } from 'graphql';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
-import { ProjectsQuery } from './projects.graphql';
+import { ProjectsQuery, ProjectsQueryResponse } from './projects.graphql';
 import { GraphQlFeedComponent } from '../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
 
 @Component({
@@ -22,7 +22,7 @@ import { GraphQlFeedComponent } from '../../../../@arpa/components/graph-ql-feed
 export class ProjectListComponent {
   query: DocumentNode = ProjectsQuery;
 
-  columns: ColumnDefinition<ProjectDto>[] = [
+  columns: ColumnDefinition<ProjectsQueryResponse>[] = [
     { label: 'TITLE', property: 'title', type: 'text' },
     { label: 'TYPE', property: 'typeId', type: 'state', stateTable: 'Project', stateProperty: 'Type', show: true },
     { label: 'GENRE', property: 'genreId', type: 'state', stateTable: 'Project', stateProperty: 'Genre', show: true },
@@ -55,7 +55,7 @@ export class ProjectListComponent {
     private venueService: VenueService
   ) {}
 
-  public openProjectDetailDialog(selection: ProjectDto | null): void {
+  public openProjectDetailDialog(selection: ProjectsQueryResponse | null): void {
     const ref = this.dialogService.open(ProjectLayoutComponent, {
       data: {
         project: selection ? selection : null,
@@ -67,11 +67,11 @@ export class ProjectListComponent {
       styleClass: 'form-modal',
       dismissableMask: true,
     });
-    ref.onClose.pipe(first()).subscribe((project: ProjectDto) => {
+    ref.onClose.pipe(first()).subscribe((project: ProjectCreateDto | ProjectModifyBodyDto) => {
       if (!selection && project) {
         this.saveNewProject(project);
       } else if (selection && project) {
-        this.updateProject(project, selection);
+        this.updateProject(selection.id, project);
       } else {
         this.feedSource.isLoading.emit(false);
       }
@@ -105,7 +105,7 @@ export class ProjectListComponent {
   //   });
   // }
 
-  public openParticipationListDialog(event: Event, project: ProjectDto) {
+  public openParticipationListDialog(event: Event, project: ProjectsQueryResponse) {
     event.stopPropagation();
     this.dialogService.open(ProjectParticipantsComponent, {
       data: {
@@ -121,19 +121,19 @@ export class ProjectListComponent {
     ref.clear();
   }
 
-  onRowClick(event: ProjectDto) {
+  onRowClick(event: ProjectsQueryResponse) {
     this.openProjectDetailDialog(event);
   }
 
-  private saveNewProject(project: ProjectDto): void {
+  private saveNewProject(project: ProjectCreateDto): void {
     this.projectService.create(project).subscribe((result) => {
       this.feedSource.refresh();
       this.notificationsService.success('projects.PROJECT_CREATED');
     });
   }
 
-  private updateProject(project: ProjectDto, oldProject: ProjectDto): void {
-    this.projectService.update(project).subscribe(() => {
+  private updateProject(id: string, project: ProjectModifyBodyDto): void {
+    this.projectService.update(id, project).subscribe(() => {
       this.feedSource.refresh();
       this.notificationsService.success('projects.PROJECT_UPDATED');
     });
