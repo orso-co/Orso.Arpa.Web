@@ -1,5 +1,5 @@
 <div class="p-grid">
-  <div class="p-col-12 p-md-4">
+  <div class="p-col-12 p-lg-4">
     <p-listbox
       [options]="venues || []"
       [(ngModel)]="selectedVenue"
@@ -13,13 +13,15 @@
       <ng-template let-venue pTemplate="item">
         <div class="p-flex-column">
           <span class="p-text-bold">{{ venue.name | uppercase }}</span
-          ><ng-container *ngIf="venue.address"><span>, {{ venue.address.zip }} {{ venue.address.city }}</span
-            ><br /><span>({{ venue.address.country }})</span></ng-container>
+          ><ng-container *ngIf="venue.address"
+            ><span>, {{ venue.address.zip }} {{ venue.address.city }}</span
+            ><br /><span>({{ venue.address.country }})</span></ng-container
+          >
         </div>
       </ng-template></p-listbox
     >
   </div>
-  <div class="p-col-12 p-md-8">
+  <div class="p-col-12 p-lg-8">
     <div class="p-formgroup-inline p-jc-between">
       <h2>{{ selectedVenue ? ('EDIT_VENUE' | translate) : ('CREATE_VENUE' | translate) }}</h2>
       <button
