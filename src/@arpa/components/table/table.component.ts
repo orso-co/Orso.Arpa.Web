@@ -23,7 +23,7 @@ import { SelectValueService } from '@arpa/services';
 export interface ColumnDefinition<T extends Record<string, any>> {
   label: string;
   property: string | Extract<keyof T, string>;
-  type: 'text' | 'date' | 'image' | 'badge' | 'state' | 'progress' | 'checkbox' | 'button' | 'template' | 'rating' | 'number';
+  type: 'text' | 'date' | 'image' | 'badge' | 'state' | 'progress' | 'checkbox' | 'button' | 'template' | 'rating' | 'number' | 'avatar';
   show?: boolean;
   cssClasses?: string[];
   template?: string;

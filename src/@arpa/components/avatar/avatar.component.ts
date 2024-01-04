@@ -115,7 +115,7 @@ export class AvatarComponent implements OnInit, OnDestroy {
     if (this.useCurrentUserAvatar) {
       return this.currentUserPersonId;
     }
-    return this.user.personId || this.user?.person?.id;
+    return this.user.personId || this.user?.person?.id || this.user?.id;
   }
 
   ngOnDestroy(): void {

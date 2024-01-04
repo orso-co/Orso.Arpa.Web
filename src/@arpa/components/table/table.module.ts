@@ -12,6 +12,7 @@ import { MatLegacyMenuModule as MatMenuModule } from '@angular/material/legacy-m
 import { MatLegacyCheckboxModule as MatCheckboxModule } from '@angular/material/legacy-checkbox';
 import { StateBadgeModule } from '../status-badge/state-badge.module';
 import { RatingModule } from 'primeng/rating';
+import { AvatarModule } from '../avatar/avatar.module';
 
 @NgModule({
   declarations: [TableComponent, ArpaTableColumnDirective],
@@ -27,6 +28,7 @@ import { RatingModule } from 'primeng/rating';
     MatMenuModule,
     MatCheckboxModule,
     RatingModule,
+    AvatarModule,
   ],
   exports: [NgTableModule, TableComponent, ArpaTableColumnDirective],
 })
