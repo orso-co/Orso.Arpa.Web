@@ -5,6 +5,8 @@ import {
   UrlCreateBodyDto,
   ProjectDto,
   ProjectParticipationDto,
+  ProjectModifyBodyDto,
+  ProjectCreateDto,
 } from '@arpa/models';
 import { first, map, shareReplay } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
@@ -35,12 +37,12 @@ export class ProjectService {
     return this.apiService.get<ProjectDto[]>(this.baseUrl).pipe(shareReplay());
   }
 
-  public create(project: ProjectDto): Observable<ProjectDto> {
+  public create(project: ProjectCreateDto): Observable<ProjectDto> {
     return this.apiService.post<ProjectDto>(this.baseUrl, project);
   }
 
-  public update(project: ProjectDto): Observable<any> {
-    return this.apiService.put(`${this.baseUrl}/${project.id}`, project).pipe(shareReplay());
+  public update(id: string, project: ProjectModifyBodyDto): Observable<any> {
+    return this.apiService.put(`${this.baseUrl}/${id}`, project).pipe(shareReplay());
   }
 
   public getParticipations(id: string): Observable<ProjectParticipationDto[]> {

@@ -9,6 +9,7 @@ import { ProjectDto } from '@arpa/models';
 import { ParentProjectsQuery } from './projectParents.graphql';
 import { FeedScope } from '../../../../../@arpa/components/graph-ql-feed/graph-ql-feed.component';
 import { EnumService } from '@arpa/services';
+import { ProjectsQueryResponse } from '../../project-list/projects.graphql';
 
 @Component({
   selector: 'arpa-edit-project',
@@ -17,7 +18,7 @@ import { EnumService } from '@arpa/services';
 })
 export class EditProjectComponent implements OnInit {
   parentProjectsQuery = ParentProjectsQuery;
-  @Input() project: ProjectDto;
+  @Input() project: ProjectsQueryResponse;
   @Input() venues: SelectItem[];
   @Input() type: SelectItem[];
   @Input() genre: SelectItem[];
@@ -83,7 +84,7 @@ export class EditProjectComponent implements OnInit {
     if (this.form.invalid || this.form.pristine) {
       return;
     }
-    this.ref.close({ ...this.project, ...this.form.value } as ProjectDto);
+    this.ref.close({ ...this.form.value } as ProjectDto);
   }
 
   public cancel(): void {

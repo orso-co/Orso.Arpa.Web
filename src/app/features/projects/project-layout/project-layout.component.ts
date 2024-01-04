@@ -6,6 +6,7 @@ import { VenueDto } from '@arpa/models';
 import { SelectItem } from 'primeng/api';
 import { map } from 'rxjs/operators';
 import { ReducedProjectDto } from '../../../../@arpa/models/reducedProjectDto';
+import { ProjectsQueryResponse } from '../project-list/projects.graphql';
 
 @Component({
   selector: 'arpa-project-layout',
@@ -13,7 +14,7 @@ import { ReducedProjectDto } from '../../../../@arpa/models/reducedProjectDto';
   styleUrls: ['./project-layout.component.scss'],
 })
 export class ProjectLayoutComponent {
-  project: ProjectDto = this.config.data.project;
+  project: ProjectsQueryResponse = this.config.data.project;
   venues: Observable<SelectItem[]> = this.config.data.venues.pipe(
     map((venues: VenueDto[]) =>
       venues.map(
@@ -27,8 +28,6 @@ export class ProjectLayoutComponent {
   );
   type: Observable<SelectItem[]> = this.config.data.type;
   genre: Observable<SelectItem[]> = this.config.data.genre;
-  children: Observable<ReducedProjectDto[]> = this.config.data.children;
-  parent: Observable<ReducedProjectDto[]> = this.config.data.parent;
   public index = 0;
 
   constructor(public config: DynamicDialogConfig) {}

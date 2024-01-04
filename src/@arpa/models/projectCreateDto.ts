@@ -11,5 +11,6 @@ export interface ProjectCreateDto {
   endDate?: Date;
   status?: ProjectStatus;
   parentId?: string;
-  isCompleted?: boolean;
+  isCompleted: boolean;
+  isHiddenToPerformers: boolean;
 }
