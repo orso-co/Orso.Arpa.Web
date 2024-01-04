@@ -26,6 +26,7 @@ export class PersonListComponent implements OnInit {
   private routeEventsSubscription: Subscription = Subscription.EMPTY;
 
   columns: ColumnDefinition<PersonDto>[] = [
+    { label: '', property: '', type: 'avatar' },
     { label: 'SURNAME', property: 'surname', type: 'text' },
     { label: 'GIVEN_NAME', property: 'givenName', type: 'text' },
     { label: 'ABOUT_ME', property: 'aboutMe', type: 'text', show: true },

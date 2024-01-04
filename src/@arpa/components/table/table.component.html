@@ -132,8 +132,10 @@
             </div>
           </th>
         </ng-container>
+        <ng-container *ngIf="column.type === 'avatar'">
+          <th pResizableColumn [classList]="column.cssClasses"></th>
+        </ng-container>
       </ng-container>
-
       <!-- Render an additional column if an action template was provided -->
       <ng-container *ngIf="actionsTemplateRef">
         <th class="end"></th>
@@ -179,6 +181,11 @@
           <ng-container *ngIf="column.type === 'rating'">
             <td [classList]="column.cssClasses">
               <p-rating [cancel]="false" [stars]="5" [readonly]="true" [ngModel]="resolveValue(column.property, row)"></p-rating>
+            </td>
+          </ng-container>
+          <ng-container *ngIf="column.type === 'avatar'">
+            <td [classList]="column.cssClasses">
+              <arpa-avatar [user]="row" [image]="true" size="small"></arpa-avatar>
             </td>
           </ng-container>
         </ng-container>
