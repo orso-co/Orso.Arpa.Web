@@ -125,6 +125,9 @@ export class VenuesComponent implements OnInit {
     if (!venue) {
       return null;
     }
-    return { ...venue, label: `${venue.name}|${venue.address?.zip}|${venue.address?.city}|${venue.address?.country}` };
+    return {
+      ...venue,
+      label: `${venue.name}|${venue.address?.zip}|${venue.address?.city}|${venue.address?.country}|${venue.address?.urbanDistrict}`,
+    };
   }
 }
