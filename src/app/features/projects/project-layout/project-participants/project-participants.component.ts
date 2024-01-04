@@ -4,8 +4,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { DynamicDialogConfig, DialogService } from 'primeng/dynamicdialog';
 import { ColumnDefinition } from '../../../../../@arpa/components/table/table.component';
 import { DocumentNode } from 'graphql';
-import { ProjectsQuery } from './projectparticipations.graphql';
-import { ProjectParticipationDto } from '@arpa/models';
+import { ProjectParticipationsQuery, ProjectParticipationsQueryResponse } from './projectparticipations.graphql';
 import { first, map } from 'rxjs/operators';
 import { ProjectService } from '@arpa/services';
 import { ParticipationDialogComponent } from '../../../participation-dialog/participation-dialog.component';
@@ -23,8 +22,8 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
 
   ready = false;
 
-  query: DocumentNode = ProjectsQuery;
-  columns: ColumnDefinition<ProjectParticipationDto>[] = [
+  query: DocumentNode = ProjectParticipationsQuery;
+  columns: ColumnDefinition<ProjectParticipationsQueryResponse>[] = [
     { label: 'projects.PARTICIPANTS', property: 'musicianProfile.person.displayName', type: 'text' },
     { label: 'projects.INSTRUMENT', property: 'musicianProfile.instrument.name', type: 'text' },
     { label: 'projects.EMAIL', property: 'musicianProfile.person.user.normalizedEmail', type: 'text' },
@@ -76,7 +75,7 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
     { label: 'MODIFIED_BY', property: 'modifiedBy', type: 'text' },
   ];
 
-  tableData = new BehaviorSubject<ProjectParticipationDto[]>([]);
+  tableData = new BehaviorSubject<ProjectParticipationsQueryResponse[]>([]);
   totalReplies = 0;
   totalInvited = 0;
   innerStatsCount: Record<string, number> = {};
@@ -87,7 +86,7 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
   finalResultsKeys: string[] = [];
   personId: string | undefined;
   project: any;
-  participations: ProjectParticipationDto[] = [];
+  participations: ProjectParticipationsQueryResponse[] = [];
 
   constructor(
     private config: DynamicDialogConfig,
