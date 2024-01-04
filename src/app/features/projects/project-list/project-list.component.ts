@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ProjectService, NotificationsService, SelectValueService, VenueService } from '@arpa/services';
 import { Table } from 'primeng/table';
 import { ProjectParticipantsComponent } from '../project-layout/project-participants/project-participants.component';
-import { ProjectCreateDto, ProjectDto, ProjectModifyBodyDto } from '@arpa/models';
+import { ProjectCreateDto, ProjectModifyBodyDto } from '@arpa/models';
 import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator';
 import { DocumentNode } from 'graphql';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
