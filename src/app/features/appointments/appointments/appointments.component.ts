@@ -104,12 +104,11 @@ export class AppointmentsComponent {
 
     return {
       id: appointment.id,
-      //end: new Date(appointment.endTime),
       end: endAdjusted,
       start: new Date(appointment.startTime),
-      title: appointment.name,
+      title: appointment.city ? `${appointment.city}: ${appointment.name}` : appointment.name,
       allDay: isAllDay,
-      classNames: [appointment.status || ''],
+      classNames: [appointment.status ?? ''],
     };
   }
 
