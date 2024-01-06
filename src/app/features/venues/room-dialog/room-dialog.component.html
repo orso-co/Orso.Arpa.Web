@@ -1,0 +1,47 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
+  <div class="p-grid p-fluid p-formgrid">
+    <div class="p-col-12">
+      <arpa-form-field label="venues.ROOM_NAME">
+        <input formControlName="name" id="name" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-6">
+      <arpa-form-field label="venues.BUILDING">
+        <input formControlName="building" id="building" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-6">
+      <arpa-form-field label="venues.FLOOR">
+        <input formControlName="floor" id="floor" pInputText type="text" />
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-6">
+      <arpa-form-field label="venues.CEILING_HEIGHT" type="select">
+        <p-dropdown
+          [options]="(ceilingHeightTypes$ | async) || []"
+          [placeholder]="'NOTHING_SELECTED' | translate"
+          formControlName="ceilingHeight"
+          optionLabel="label"
+          optionValue="value"
+          appendTo="body"
+        ></p-dropdown>
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-6">
+      <arpa-form-field label="venues.CAPACITY" type="select">
+        <p-dropdown
+          [options]="(capacityTypes$ | async) || []"
+          [placeholder]="'NOTHING_SELECTED' | translate"
+          formControlName="capacityId"
+          optionLabel="label"
+          optionValue="value"
+          appendTo="body"
+        ></p-dropdown>
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class="p-formgroup-inline p-jc-between">
+    <p-button type="button" [label]="'CANCEL' | translate" (click)="cancel()"></p-button>
+    <p-button [disabled]="formGroup.invalid || formGroup.pristine" type="submit" [label]="'SAVE' | translate"></p-button>
+  </div>
+</form>

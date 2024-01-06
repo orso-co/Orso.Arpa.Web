@@ -11,6 +11,9 @@ import { TranslateModule } from '../../../@arpa/translate';
 
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { RoomDialogComponent } from './room-dialog/room-dialog.component';
+import { DataViewModule } from 'primeng/dataview';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   imports: [
@@ -32,8 +35,10 @@ import { InputTextModule } from 'primeng/inputtext';
     ConfirmPopupModule,
     TranslateModule.forChild(['venues']),
     FormFieldModule,
+    DataViewModule,
+    DropdownModule,
   ],
-  declarations: [VenuesComponent],
+  declarations: [VenuesComponent, RoomDialogComponent],
   providers: [],
 })
 export class VenuesModule {}

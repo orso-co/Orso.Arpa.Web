@@ -180,6 +180,11 @@
     "POSTPONED": "Reporté",
     "ARCHIVED": "Archivé"
   },
+  "ceilingHeight": {
+    "LOW": "Bas",
+    "MEDIUM_HIGH": "Moyennement Haut",
+    "HIGH": "Haut"
+  },
   "primeng": {
     "accept": "Oui",
     "addRule": "Ajouter la règle",

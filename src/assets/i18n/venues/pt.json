@@ -18,5 +18,17 @@
   "VENUE_UPDATED": "Local atualizado",
   "ARE_YOU_SURE": "Tem certeza?",
   "VENUE_DELETED": "Local excluído",
-  "VENUE_CREATED": "Local criado"
+  "VENUE_CREATED": "Local criado",
+
+  "EDIT_ROOM": "Editar sala",
+  "DELETE_ROOM": "Apagar Sala",
+  "ROOMS": "Quartos",
+  "BUILDING": "Edifício",
+  "FLOOR": "Piso",
+  "CEILING_HEIGHT": "Altura do teto",
+  "CAPACITY": "Capacidade",
+  "ROOM_NAME": "Nome do quarto",
+  "ROOM_CREATED": "Quarto criado",
+  "ROOM_UPDATED": "Quarto atualizado",
+  "ROOM_DELETED": "Quarto eliminado"
 }

@@ -15,8 +15,20 @@
   "EMPTY_MESSAGE": "No Result found",
   "EDIT_VENUE": "Edit Venue",
   "VENUES": "Venues",
-  "VENUE_UPDATED":"Venue updated",
+  "VENUE_UPDATED": "Venue updated",
   "ARE_YOU_SURE": "Are you sure?",
   "VENUE_DELETED": "Venue deleted",
-  "VENUE_CREATED": "Venue created"
+  "VENUE_CREATED": "Venue created",
+
+  "EDIT_ROOM": "Edit Room",
+  "DELETE_ROOM": "Delete Room",
+  "ROOMS": "Rooms",
+  "BUILDING": "Building",
+  "FLOOR": "Floor",
+  "CEILING_HEIGHT": "Ceiling Height",
+  "CAPACITY": "Capacity",
+  "ROOM_NAME": "Room Name",
+  "ROOM_CREATED": "Room created",
+  "ROOM_UPDATED": "Room updated",
+  "ROOM_DELETED": "Room deleted"
 }

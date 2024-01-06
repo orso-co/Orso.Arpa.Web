@@ -77,6 +77,14 @@ export class SelectValueService {
     return this.get('Project', 'Genre');
   }
 
+  getRoomEquipmentTypes(): Observable<SelectItem[]> {
+    return this.get('RoomEquipment', 'Equipment');
+  }
+
+  getRoomCapacityTypes(): Observable<SelectItem[]> {
+    return this.get('Room', 'Capacity');
+  }
+
   get(tableName: string, propertyName: string): Observable<SelectItem[]> {
     if (this.cacheContains(tableName, propertyName)) {
       return of(this.getFromCache(tableName, propertyName));

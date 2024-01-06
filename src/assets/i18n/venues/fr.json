@@ -15,8 +15,20 @@
   "EMPTY_MESSAGE": "Aucun résultat trouvé",
   "EDIT_VENUE": "Modifier le lieu",
   "VENUES": "Lieux",
-  "VENUE_UPDATED":"Lieu mis à jour",
+  "VENUE_UPDATED": "Lieu mis à jour",
   "ARE_YOU_SURE": "Êtes-vous sûr?",
   "VENUE_DELETED": "Lieu supprimé",
-  "VENUE_CREATED": "Lieu créé"
+  "VENUE_CREATED": "Lieu créé",
+
+  "EDIT_ROOM": "Modifier la salle",
+  "DELETE_ROOM": "Supprimer la salle",
+  "ROOMS": "Pièces",
+  "BUILDING": "Bâtiment",
+  "FLOOR": "Plancher",
+  "CEILING_HEIGHT": "Hauteur du plafond",
+  "CAPACITY": "Capacité",
+  "ROOM_NAME": "Nom de la pièce",
+  "ROOM_CREATED": "Salle créée",
+  "ROOM_UPDATED": "Salle mise à jour",
+  "ROOM_DELETED": " Salle supprimée"
 }

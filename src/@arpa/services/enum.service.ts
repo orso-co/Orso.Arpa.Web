@@ -7,6 +7,7 @@ import {
   ProjectParticipationStatusInner,
   ProjectParticipationStatusInternal,
   ProjectStatus,
+  CeilingHeight,
 } from '@arpa/models';
 import { Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
@@ -96,5 +97,12 @@ export class EnumService {
     return this.translate
       .stream(values.map((val) => `projectStatus.${val}`))
       .pipe(map((translatedValues) => values.map((val) => ({ label: translatedValues[`projectStatus.${val}`] || val, value: val }))));
+  }
+
+  getCeilingHeightSelectItems(): Observable<SelectItem[]> {
+    const values = Object.values(CeilingHeight);
+    return this.translate
+      .stream(values.map((val) => `ceilingHeight.${val}`))
+      .pipe(map((translatedValues) => values.map((val) => ({ label: translatedValues[`ceilingHeight.${val}`] || val, value: val }))));
   }
 }

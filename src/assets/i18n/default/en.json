@@ -182,6 +182,11 @@
     "POSTPONED": "Postponed",
     "ARCHIVED": "Archived"
   },
+  "ceilingHeight": {
+    "LOW": "Low",
+    "MEDIUM_HIGH": "Medium High",
+    "HIGH": "High"
+  },
   "primeng": {
     "accept": "Yes",
     "addRule": "Add Rule",

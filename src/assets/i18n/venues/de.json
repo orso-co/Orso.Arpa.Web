@@ -15,8 +15,20 @@
   "EMPTY_MESSAGE": "Die Suche ergab kein Ergebnis",
   "EDIT_VENUE": "Veranstaltungsort bearbeiten",
   "VENUES": "Veranstaltungsorte",
-  "VENUE_UPDATED":"Veranstaltungsort aktualisiert",
+  "VENUE_UPDATED": "Veranstaltungsort aktualisiert",
   "ARE_YOU_SURE": "Bist du sicher?",
   "VENUE_DELETED": "Veranstaltungsort gelöscht",
-  "VENUE_CREATED": "Veranstaltungsort erstellt"
+  "VENUE_CREATED": "Veranstaltungsort erstellt",
+
+  "EDIT_ROOM": "Raum bearbeiten",
+  "DELETE_ROOM": "Raum löschen",
+  "ROOMS": "Räume",
+  "BUILDING": "Gebäude",
+  "FLOOR": "Etage",
+  "CEILING_HEIGHT": "Deckenhöhe",
+  "CAPACITY": "Kapazität",
+  "ROOM_NAME": "Raumbezeichnung",
+  "ROOM_CREATED": "Raum erstellt",
+  "ROOM_UPDATED": "Raum aktualisiert",
+  "ROOM_DELETED": "Raum gelöscht"
 }
