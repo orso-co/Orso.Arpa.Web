@@ -3,6 +3,7 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { RoomDto, RoomEquipmentCreateBodyDto, RoomEquipmentDto, RoomEquipmentModifyBodyDto } from '@arpa/models';
 import { NotificationsService, RoomEquipmentService, RoomService, SelectValueService } from '@arpa/services';
 import { TranslateService } from '@ngx-translate/core';
+import { eq } from 'lodash-es';
 import { ConfirmationService, SelectItem } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { first, switchMap } from 'rxjs/operators';
@@ -71,7 +72,7 @@ export class RoomDialogEquipmentComponent implements OnInit {
         .update(this.selectedEquipment.id, value)
         .pipe(switchMap(() => this.roomEquipmentService.loadById(this.selectedEquipment!.id)))
         .subscribe((equipment) => {
-          const index = this.room.availableEquipment.findIndex((room) => room.id == equipment.id) ?? -1;
+          const index = this.room.availableEquipment.findIndex((e) => e.id == equipment.id) ?? -1;
           if (~index) {
             this.room.availableEquipment[index] = equipment;
             this.roomUpdated.emit(this.room);
@@ -89,7 +90,7 @@ export class RoomDialogEquipmentComponent implements OnInit {
     this.onSelectedEquipmentChange(undefined);
   }
 
-  confirmRoomEquipmentDeletion(event: Event, room: RoomDto) {
+  confirmRoomEquipmentDeletion(event: Event, equipment: RoomEquipmentDto) {
     this.confirmationService.confirm({
       target: event.target ?? undefined,
       message: this.translate.instant('venues.ARE_YOU_SURE'),
@@ -97,18 +98,18 @@ export class RoomDialogEquipmentComponent implements OnInit {
       acceptLabel: this.translate.instant('YES'),
       rejectLabel: this.translate.instant('NO'),
       accept: () => {
-        this.deleteRoomEquipment(room);
+        this.deleteRoomEquipment(equipment);
       },
     });
   }
 
-  deleteRoomEquipment(room: RoomDto) {
+  deleteRoomEquipment(equipment: RoomEquipmentDto) {
     this.roomEquipmentService
-      .delete(room.id)
+      .delete(equipment.id)
       .pipe(first())
       .subscribe(() => {
         this.notificationService.success('ROOM_EQUIPMENT_DELETED', 'venues');
-        const index = this.room.availableEquipment.findIndex((r) => r.id === room.id);
+        const index = this.room.availableEquipment.findIndex((r) => r.id === equipment.id);
         this.room.availableEquipment.splice(index, 1);
         this.roomUpdated.emit(this.room);
       });

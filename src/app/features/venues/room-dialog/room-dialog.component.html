@@ -12,6 +12,6 @@
     <arpa-room-dialog-equipment [room]="room" (roomUpdated)="onRoomCreatedOrUpdated($event)"></arpa-room-dialog-equipment>
   </ng-container>
   <ng-container *ngSwitchCase="2">
-    <arpa-room-dialog-section></arpa-room-dialog-section>
+    <arpa-room-dialog-section [room]="room" (roomUpdated)="onRoomCreatedOrUpdated($event)"></arpa-room-dialog-section>
   </ng-container>
 </div>

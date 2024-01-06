@@ -8,7 +8,7 @@ export interface RoomDto extends BaseDto {
   ceilingHeight?: CeilingHeight;
   capacity?: SelectValueDto;
   availableEquipment: RoomEquipmentDto[];
-  availableInstruments: RoomEquipmentDto[];
+  availableInstruments: RoomSectionDto[];
   sizeInSquareMeters?: number;
 }
 

@@ -41,5 +41,10 @@
   "EDIT_ROOM_EQUIPMENT": "Editar equipamento da sala",
   "DELETE_ROOM_EQUIPMENT": "Eliminar equipamento da sala",
   "BASIC_DATA": "Dados básicos",
-  "ROOM_EQUIPMENT_DELETED": "Equipamento de sala eliminado"
+  "ROOM_EQUIPMENT_DELETED": "Equipamento de sala eliminado",
+
+  "INSTRUMENT": "Instrumento",
+  "EDIT_ROOM_SECTION": "Editar instrumento",
+  "DELETE_ROOM_SECTION": "Apagar instrumento",
+  "ROOM_SECTION_DELETED": "Instrumento eliminado"
 }

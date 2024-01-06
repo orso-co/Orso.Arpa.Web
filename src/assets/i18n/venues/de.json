@@ -41,5 +41,10 @@
   "EDIT_ROOM_EQUIPMENT": "Raumausstattung bearbeiten",
   "DELETE_ROOM_EQUIPMENT": "Raumausstattung löschen",
   "BASIC_DATA": "Grunddaten",
-  "ROOM_EQUIPMENT_DELETED": "Raumausstattung gelöscht"
+  "ROOM_EQUIPMENT_DELETED": "Raumausstattung gelöscht",
+
+  "INSTRUMENT": "Instrument",
+  "EDIT_ROOM_SECTION": "Instrument bearbeiten",
+  "DELETE_ROOM_SECTION": "Instrument löschen",
+  "ROOM_SECTION_DELETED": "Instrument gelöscht"
 }
