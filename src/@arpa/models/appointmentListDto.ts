@@ -5,7 +5,7 @@ export interface AppointmentListDto {
   startTime: Date;
   endTime: Date;
   name: string;
-  venueName?: string;
+  city?: string;
   status?: AppointmentStatus;
   sections: Array<SectionsAllDto>;
 }

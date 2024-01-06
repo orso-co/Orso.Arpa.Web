@@ -106,7 +106,7 @@ export class AppointmentsComponent {
       id: appointment.id,
       end: endAdjusted,
       start: new Date(appointment.startTime),
-      title: appointment.venueName ? `${appointment.venueName}: ${appointment.name}` : appointment.name,
+      title: appointment.city ? `${appointment.city}: ${appointment.name}` : appointment.name,
       allDay: isAllDay,
       classNames: [appointment.status ?? ''],
     };
