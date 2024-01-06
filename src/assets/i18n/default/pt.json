@@ -180,6 +180,11 @@
     "POSTPONED": "Postergado",
     "ARCHIVED": "Arquivado"
   },
+  "ceilingHeight": {
+    "LOW": "Baixo",
+    "MEDIUM_HIGH": "Médio-alto",
+    "HIGH": "Alto"
+  },
   "primeng": {
     "accept": "Sim",
     "addRule": "Adicionar regra",

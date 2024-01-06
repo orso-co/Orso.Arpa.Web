@@ -1,15 +1,11 @@
 import { AddressDto } from './addressDto';
+import { BaseDto } from './baseDto';
 import { RoomDto } from './roomDto';
 
-export interface VenueDto {
-  id?: string;
-  createdBy?: string;
-  createdAt?: Date;
-  modifiedBy?: string;
-  modifiedAt?: Date;
+export interface VenueDto extends BaseDto {
   name?: string;
   description?: string;
   addressId?: string;
   address?: AddressDto;
-  rooms?: Array<RoomDto>;
+  rooms: Array<RoomDto>;
 }

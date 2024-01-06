@@ -8,7 +8,7 @@
       [filterPlaceHolder]="'FILTER_PLACEHOLDER' | translate"
       [emptyFilterMessage]="'EMPTY_FILTER_MESSAGE' | translate"
       [emptyMessage]="'EMPTY_MESSAGE' | translate"
-      (onChange)="onSelectionChange($event)"
+      (onChange)="onVenueSelectionChange($event)"
     >
       <ng-template let-venue pTemplate="item">
         <div class="p-flex-column">
@@ -22,7 +22,7 @@
     >
   </div>
   <div class="p-col-12 p-lg-8">
-    <div class="p-formgroup-inline p-jc-between">
+    <div class="p-formgroup-inline p-jc-between venue-header">
       <h2>{{ selectedVenue ? ('EDIT_VENUE' | translate) : ('CREATE_VENUE' | translate) }}</h2>
       <button
         *ngIf="selectedVenue"
@@ -31,10 +31,10 @@
         type="button"
         icon="pi pi-trash"
         class="p-button-rounded p-button-danger p-button-outlined"
-        (click)="delete($event)"
+        (click)="confirmVenueDeletion($event)"
       ></button>
     </div>
-    <form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
+    <form (ngSubmit)="onSubmit()" [formGroup]="formGroup" class="venue-form">
       <div class="p-grid p-fluid p-formgrid">
         <div class="p-col-12">
           <arpa-form-field label="NAME">
@@ -92,6 +92,71 @@
         <p-button [disabled]="formGroup.invalid || formGroup.pristine" type="submit" [label]="'SAVE' | translate"></p-button>
       </div>
     </form>
+    <div class="p-formgroup-inline p-jc-between venue-header" *ngIf="selectedVenue">
+      <h2>{{ 'ROOMS' | translate }}</h2>
+      <button
+        pButton
+        pRipple
+        type="button"
+        icon="pi pi-plus"
+        class="p-button-rounded p-button-primary p-button-outlined"
+        (click)="addRoom()"
+      ></button>
+    </div>
+    <p-dataView
+      *ngIf="selectedVenue && selectedVenue.rooms && selectedVenue.rooms.length > 0"
+      [value]="selectedVenue.rooms"
+      filterBy="name"
+    >
+      <ng-template let-room pTemplate="listItem">
+        <div class="p-col-12">
+          <div class="room-list-item">
+            <div class="room-list-detail">
+              <div class="room-name">{{ room.name }}</div>
+              <div class="room-description" *ngIf="room.building || room.floor">
+                <span *ngIf="room.building">{{ room.building }}</span>
+                <span *ngIf="room.floor">, {{ room.floor }}</span>
+              </div>
+              <div class="p-d-flex p-ai-center">
+                <p-chip
+                  *ngIf="room.sizeInSquareMeters"
+                  [label]="room.sizeInSquareMeters + ' m²'"
+                  icon="pi pi-map"
+                  styleClass="p-mr-2"
+                ></p-chip>
+                <p-chip
+                  *ngIf="room.ceilingHeight"
+                  [label]="'ceilingHeight.' + room.ceilingHeight | translate"
+                  icon="pi pi-arrow-up"
+                  styleClass="p-mr-2"
+                ></p-chip>
+                <p-chip *ngIf="room.capacity" [label]="room.capacity.name" icon="pi pi-users" styleClass="p-mr-2"></p-chip>
+              </div>
+            </div>
+            <div class="room-list-action">
+              <button
+                pButton
+                pRipple
+                type="button"
+                class="p-button-outlined"
+                icon="pi pi-pencil"
+                [label]="'EDIT_ROOM' | translate"
+                (click)="editRoom(room)"
+              ></button>
+              <button
+                pButton
+                pRipple
+                type="button"
+                class="p-button-danger p-button-text"
+                icon="pi pi-trash"
+                [label]="'DELETE_ROOM' | translate"
+                (click)="confirmRoomDeletion($event, room)"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </p-dataView>
   </div>
 </div>
 <p-confirmPopup></p-confirmPopup>

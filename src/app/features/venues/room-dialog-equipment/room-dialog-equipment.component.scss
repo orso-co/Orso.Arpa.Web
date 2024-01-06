@@ -1,4 +1,4 @@
-.venue-header {
+.room-equipment-header {
   padding-top: 1rem;
   padding-bottom: 1rem;
 
@@ -10,32 +10,31 @@
   }
 }
 
-.venue-form {
+.room-equipment-form {
   margin-bottom: 2rem;
 }
 
 :host ::ng-deep {
-  .room-name {
+  .room-equipment-name {
     font-size: 1.2rem;
     font-weight: 600;
-    text-transform: uppercase;
   }
 
-  .room-description {
+  .room-equipment-description {
     margin: 0 0 1rem 0;
   }
 
-  .room-list-item {
+  .room-equipment-list-item {
     display: flex;
     align-items: center;
     padding: 1rem;
     width: 100%;
 
-    .room-list-detail {
+    .room-equipment-list-detail {
       flex: 1 1 0;
     }
 
-    .room-list-action {
+    .room-equipment-list-action {
       display: flex;
       flex-direction: column;
     }
@@ -47,7 +46,7 @@
 }
 
 @media screen and (max-width: 576px) {
-  :host ::ng-deep .room-list-item {
+  :host ::ng-deep .room-equipment-list-item {
     flex-direction: column;
     align-items: center;
 
@@ -56,11 +55,11 @@
       margin: 2rem 0;
     }
 
-    .room-list-detail {
+    .room-equipment-list-detail {
       text-align: center;
     }
 
-    .room-list-action {
+    .room-equipment-list-action {
       display: flex;
       flex-direction: column;
       margin-top: 2rem;

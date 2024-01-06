@@ -1,11 +1,13 @@
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService } from 'primeng/api';
-import { VenueService, NotificationsService } from '@arpa/services';
+import { VenueService, NotificationsService, RoomService } from '@arpa/services';
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { first, map } from 'rxjs/operators';
-import { VenueDto } from 'src/@arpa/models/venueDto';
+import { RoomDto, VenueDto } from '@arpa/models';
+import { DialogService } from 'primeng/dynamicdialog';
+import { RoomDialogComponent } from './room-dialog/room-dialog.component';
 
 @Component({
   selector: 'arpa-venues',
@@ -13,8 +15,8 @@ import { VenueDto } from 'src/@arpa/models/venueDto';
   styleUrls: ['./venues.component.scss'],
 })
 export class VenuesComponent implements OnInit {
-  venues: any[] = [];
-  selectedVenue: any | undefined;
+  venues: VenueDto[] = [];
+  selectedVenue: VenueDto | undefined;
   formGroup: UntypedFormGroup;
 
   constructor(
@@ -23,7 +25,9 @@ export class VenuesComponent implements OnInit {
     private venueService: VenueService,
     private notificationService: NotificationsService,
     private confirmationService: ConfirmationService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private dialogService: DialogService,
+    private roomService: RoomService
   ) {
     this.formGroup = formBuilder.group({
       name: [null, [Validators.required, Validators.maxLength(50)]],
@@ -55,7 +59,7 @@ export class VenuesComponent implements OnInit {
     }
     const value = { ...this.formGroup.value };
     if (this.selectedVenue) {
-      const id = this.selectedVenue.id!;
+      const id = this.selectedVenue.id;
       this.venueService
         .update(id, value)
         .pipe(first())
@@ -77,7 +81,7 @@ export class VenuesComponent implements OnInit {
     }
   }
 
-  delete(event: any) {
+  confirmVenueDeletion(event: any) {
     this.confirmationService.confirm({
       target: event.target || undefined,
       message: this.translate.instant('venues.ARE_YOU_SURE'),
@@ -91,18 +95,21 @@ export class VenuesComponent implements OnInit {
   }
 
   deleteVenue() {
+    if (!this.selectedVenue) {
+      return;
+    }
     this.venueService
-      .delete(this.selectedVenue.id)
+      .delete(this.selectedVenue?.id ?? '')
       .pipe(first())
       .subscribe(() => {
         this.notificationService.success('VENUE_DELETED', 'venues');
-        const index = this.venues.findIndex((venue) => venue.id === this.selectedVenue.id);
+        const index = this.venues.findIndex((venue) => venue.id === this.selectedVenue!.id);
         this.venues.splice(index, 1);
         this.resetForm();
       });
   }
 
-  onSelectionChange(event: { value: any }) {
+  onVenueSelectionChange(event: { value: any }) {
     this.formGroup.patchValue({
       ...event.value,
       address1: event.value.address?.address1,
@@ -129,5 +136,79 @@ export class VenuesComponent implements OnInit {
       ...venue,
       label: `${venue.name}|${venue.address?.zip}|${venue.address?.city}|${venue.address?.country}|${venue.address?.urbanDistrict}`,
     };
+  }
+
+  confirmRoomDeletion(event: Event, room: RoomDto) {
+    this.confirmationService.confirm({
+      target: event.target ?? undefined,
+      message: this.translate.instant('venues.ARE_YOU_SURE'),
+      icon: 'pi pi-exclamation-triangle',
+      acceptLabel: this.translate.instant('YES'),
+      rejectLabel: this.translate.instant('NO'),
+      accept: () => {
+        this.deleteRoom(room);
+      },
+    });
+  }
+
+  deleteRoom(room: RoomDto) {
+    this.roomService
+      .delete(room.id)
+      .pipe(first())
+      .subscribe(() => {
+        this.notificationService.success('ROOM_DELETED', 'venues');
+        if (!this.selectedVenue?.rooms) {
+          return;
+        }
+        const index = this.selectedVenue.rooms.findIndex((r) => r.id === room.id);
+        this.selectedVenue.rooms.splice(index, 1);
+      });
+  }
+
+  editRoom(room: RoomDto) {
+    const ref = this.dialogService.open(RoomDialogComponent, {
+      data: {
+        room,
+        venueId: this.selectedVenue?.id,
+      },
+      header: this.translate.instant('venues.EDIT_ROOM'),
+      styleClass: 'form-modal',
+      dismissableMask: true,
+    });
+
+    ref.onClose.pipe(first()).subscribe((modifiedRoom?: RoomDto) => {
+      if (!modifiedRoom) {
+        return;
+      }
+      this.notificationService.success('ROOM_UPDATED', 'venues');
+      const index = this.selectedVenue!.rooms?.findIndex((room) => room.id == modifiedRoom.id) ?? -1;
+
+      if (~index && this.selectedVenue?.rooms) {
+        this.selectedVenue.rooms[index] = modifiedRoom;
+        this.selectedVenue.rooms = [...this.selectedVenue.rooms]; // force change detection
+      }
+    });
+  }
+
+  addRoom() {
+    const ref = this.dialogService.open(RoomDialogComponent, {
+      data: {
+        room: undefined,
+        venueId: this.selectedVenue?.id,
+      },
+      header: this.translate.instant('venues.CREATE_ROOM'),
+      styleClass: 'form-modal',
+      dismissableMask: true,
+    });
+
+    ref.onClose.pipe(first()).subscribe((createdRoom?: RoomDto) => {
+      if (!createdRoom) {
+        return;
+      }
+      this.notificationService.success('ROOM_CREATED', 'venues');
+      if (this.selectedVenue?.rooms) {
+        this.selectedVenue.rooms.push(createdRoom);
+      }
+    });
   }
 }

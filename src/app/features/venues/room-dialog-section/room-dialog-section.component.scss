@@ -1,4 +1,4 @@
-.venue-header {
+.room-section-header {
   padding-top: 1rem;
   padding-bottom: 1rem;
 
@@ -10,32 +10,31 @@
   }
 }
 
-.venue-form {
+.room-section-form {
   margin-bottom: 2rem;
 }
 
 :host ::ng-deep {
-  .room-name {
+  .room-section-name {
     font-size: 1.2rem;
     font-weight: 600;
-    text-transform: uppercase;
   }
 
-  .room-description {
+  .room-section-description {
     margin: 0 0 1rem 0;
   }
 
-  .room-list-item {
+  .room-section-list-item {
     display: flex;
     align-items: center;
     padding: 1rem;
     width: 100%;
 
-    .room-list-detail {
+    .room-section-list-detail {
       flex: 1 1 0;
     }
 
-    .room-list-action {
+    .room-section-list-action {
       display: flex;
       flex-direction: column;
     }
@@ -47,7 +46,7 @@
 }
 
 @media screen and (max-width: 576px) {
-  :host ::ng-deep .room-list-item {
+  :host ::ng-deep .room-section-list-item {
     flex-direction: column;
     align-items: center;
 
@@ -56,11 +55,11 @@
       margin: 2rem 0;
     }
 
-    .room-list-detail {
+    .room-section-list-detail {
       text-align: center;
     }
 
-    .room-list-action {
+    .room-section-list-action {
       display: flex;
       flex-direction: column;
       margin-top: 2rem;

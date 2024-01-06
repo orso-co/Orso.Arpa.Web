@@ -1,0 +1,78 @@
+<div class="p-formgroup-inline p-jc-between room-equipment-header">
+  <h2>{{ 'venues.ROOM_EQUIPMENT' | translate }}</h2>
+  <button
+    pButton
+    pRipple
+    type="button"
+    icon="pi pi-plus"
+    class="p-button-rounded p-button-primary p-button-outlined"
+    (click)="addRoomEquipment()"
+  ></button>
+</div>
+<form (ngSubmit)="onSubmit()" [formGroup]="formGroup" class="room-equipment-form">
+  <div class="p-grid p-fluid p-formgrid">
+    <div class="p-col-12 p-xl-6">
+      <arpa-form-field label="venues.QUANTITY">
+        <p-inputNumber inputId="quantity" formControlName="quantity"> </p-inputNumber>
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-6">
+      <arpa-form-field label="venues.EQUIPMENT" type="select">
+        <p-dropdown
+          [options]="(equipmentTypes$ | async) || []"
+          [placeholder]="'NOTHING_SELECTED' | translate"
+          formControlName="equipmentId"
+          optionLabel="label"
+          optionValue="value"
+          appendTo="body"
+        ></p-dropdown>
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12">
+      <arpa-form-field label="venues.DESCRIPTION">
+        <textarea pInputText type="text" formControlName="description" id="description"></textarea>
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class="p-formgroup-inline p-jc-between">
+    <p-button type="button" [label]="'venues.RESET_FORM' | translate" (click)="onCancel()" [disabled]="formGroup.pristine"></p-button>
+    <p-button [disabled]="formGroup.invalid || formGroup.pristine" type="submit" [label]="'SAVE' | translate"></p-button>
+  </div>
+</form>
+
+<p-dataView *ngIf="room.availableEquipment.length > 0" [value]="room.availableEquipment">
+  <ng-template let-equipment pTemplate="listItem">
+    <div class="p-col-12">
+      <div class="room-equipment-list-item">
+        <div class="room-equipment-list-detail">
+          <div class="room-equipment-name">
+            <span *ngIf="equipment.quantity">{{ equipment.quantity }}x&nbsp;</span>{{ equipment.name | uppercase }}
+          </div>
+          <div class="room-equipment-description" *ngIf="equipment.description">
+            {{ equipment.description }}
+          </div>
+        </div>
+        <div class="room-equipment-list-action">
+          <button
+            pButton
+            pRipple
+            type="button"
+            class="p-button-outlined"
+            icon="pi pi-pencil"
+            [label]="'venues.EDIT_ROOM_EQUIPMENT' | translate"
+            (click)="editRoomEquipment(equipment)"
+          ></button>
+          <button
+            pButton
+            pRipple
+            type="button"
+            class="p-button-danger p-button-text"
+            icon="pi pi-trash"
+            [label]="'venues.DELETE_ROOM_EQUIPMENT' | translate"
+            (click)="confirmRoomEquipmentDeletion($event, equipment)"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-dataView>

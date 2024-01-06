@@ -18,5 +18,33 @@
   "VENUE_UPDATED": "Local atualizado",
   "ARE_YOU_SURE": "Tem certeza?",
   "VENUE_DELETED": "Local excluído",
-  "VENUE_CREATED": "Local criado"
+  "VENUE_CREATED": "Local criado",
+
+  "EDIT_ROOM": "Editar sala",
+  "DELETE_ROOM": "Apagar Sala",
+  "ROOMS": "Quartos",
+  "BUILDING": "Edifício",
+  "FLOOR": "Piso",
+  "CEILING_HEIGHT": "Altura do teto",
+  "CAPACITY": "Capacidade",
+  "ROOM_NAME": "Nome do quarto",
+  "ROOM_CREATED": "Quarto criado",
+  "ROOM_UPDATED": "Quarto atualizado",
+  "ROOM_DELETED": "Quarto eliminado",
+  "SIZE": "Dimensão em metros quadrados",
+
+  "ROOM_EQUIPMENT": "Equipamento da sala",
+  "ROOM_SECTIONS": "Instrumentos disponíveis",
+  "EQUIPMENT": "Equipamento",
+  "QUANTITY": "Quantidade",
+  "RESET_FORM": "Formulário de reposição",
+  "EDIT_ROOM_EQUIPMENT": "Editar equipamento da sala",
+  "DELETE_ROOM_EQUIPMENT": "Eliminar equipamento da sala",
+  "BASIC_DATA": "Dados básicos",
+  "ROOM_EQUIPMENT_DELETED": "Equipamento de sala eliminado",
+
+  "INSTRUMENT": "Instrumento",
+  "EDIT_ROOM_SECTION": "Editar instrumento",
+  "DELETE_ROOM_SECTION": "Apagar instrumento",
+  "ROOM_SECTION_DELETED": "Instrumento eliminado"
 }

@@ -1,0 +1,17 @@
+<p-steps [(activeIndex)]="activeIndex" [model]="steps" [readonly]="false"></p-steps>
+<div [ngSwitch]="activeIndex" class="room-dialog-stepper-content">
+  <ng-container *ngSwitchCase="0">
+    <arpa-room-dialog-basic-data
+      [room]="room"
+      [venueId]="venueId"
+      (roomCreatedOrUpdated)="onRoomCreatedOrUpdated($event)"
+      (cancel)="onCancel()"
+    ></arpa-room-dialog-basic-data>
+  </ng-container>
+  <ng-container *ngSwitchCase="1">
+    <arpa-room-dialog-equipment [room]="room" (roomUpdated)="onRoomCreatedOrUpdated($event)"></arpa-room-dialog-equipment>
+  </ng-container>
+  <ng-container *ngSwitchCase="2">
+    <arpa-room-dialog-section [room]="room" (roomUpdated)="onRoomCreatedOrUpdated($event)"></arpa-room-dialog-section>
+  </ng-container>
+</div>

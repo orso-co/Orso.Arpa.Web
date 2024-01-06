@@ -18,3 +18,6 @@ export * from './venue.service';
 export * from './person';
 export * from './club.service';
 export * from './form-error.service';
+export * from './room.service';
+export * from './room-equipment.service';
+export * from './room-section.service';

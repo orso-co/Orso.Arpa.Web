@@ -1,0 +1,78 @@
+<div class="p-formgroup-inline p-jc-between room-section-header">
+  <h2>{{ 'venues.ROOM_SECTIONS' | translate }}</h2>
+  <button
+    pButton
+    pRipple
+    type="button"
+    icon="pi pi-plus"
+    class="p-button-rounded p-button-primary p-button-outlined"
+    (click)="addRoomSection()"
+  ></button>
+</div>
+<form (ngSubmit)="onSubmit()" [formGroup]="formGroup" class="room-section-form">
+  <div class="p-grid p-fluid p-formgrid">
+    <div class="p-col-12 p-xl-6">
+      <arpa-form-field label="venues.QUANTITY">
+        <p-inputNumber inputId="quantity" formControlName="quantity"> </p-inputNumber>
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-6">
+      <arpa-form-field label="venues.INSTRUMENT" type="select">
+        <p-dropdown
+          [options]="(sectionOptions$ | async) || []"
+          [placeholder]="'NOTHING_SELECTED' | translate"
+          formControlName="instrumentId"
+          optionLabel="label"
+          optionValue="value"
+          appendTo="body"
+        ></p-dropdown>
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12">
+      <arpa-form-field label="venues.DESCRIPTION">
+        <textarea pInputText type="text" formControlName="description" id="description"></textarea>
+      </arpa-form-field>
+    </div>
+  </div>
+  <div class="p-formgroup-inline p-jc-between">
+    <p-button type="button" [label]="'venues.RESET_FORM' | translate" (click)="onCancel()" [disabled]="formGroup.pristine"></p-button>
+    <p-button [disabled]="formGroup.invalid || formGroup.pristine" type="submit" [label]="'SAVE' | translate"></p-button>
+  </div>
+</form>
+
+<p-dataView *ngIf="room.availableInstruments.length > 0" [value]="room.availableInstruments">
+  <ng-template let-instrument pTemplate="listItem">
+    <div class="p-col-12">
+      <div class="room-section-list-item">
+        <div class="room-section-list-detail">
+          <div class="room-section-name">
+            <span *ngIf="instrument.quantity">{{ instrument.quantity }}x&nbsp;</span>{{ instrument.name | uppercase }}
+          </div>
+          <div class="room-section-description" *ngIf="instrument.description">
+            {{ instrument.description }}
+          </div>
+        </div>
+        <div class="room-section-list-action">
+          <button
+            pButton
+            pRipple
+            type="button"
+            class="p-button-outlined"
+            icon="pi pi-pencil"
+            [label]="'venues.EDIT_ROOM_SECTION' | translate"
+            (click)="editRoomSection(instrument)"
+          ></button>
+          <button
+            pButton
+            pRipple
+            type="button"
+            class="p-button-danger p-button-text"
+            icon="pi pi-trash"
+            [label]="'venues.DELETE_ROOM_SECTION' | translate"
+            (click)="confirmRoomSectionDeletion($event, instrument)"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-dataView>
