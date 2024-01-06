@@ -30,5 +30,6 @@
   "ROOM_NAME": "Nome do quarto",
   "ROOM_CREATED": "Quarto criado",
   "ROOM_UPDATED": "Quarto atualizado",
-  "ROOM_DELETED": "Quarto eliminado"
+  "ROOM_DELETED": "Quarto eliminado",
+  "SIZE": "Dimensão em metros quadrados"
 }

@@ -34,6 +34,7 @@ export class RoomDialogComponent implements OnInit {
       floor: [null, [Validators.maxLength(50)]],
       ceilingHeight: [null, []],
       capacityId: [null, []],
+      sizeInSquareMeters: [null, [Validators.min(0)]],
     });
   }
 
@@ -49,6 +50,7 @@ export class RoomDialogComponent implements OnInit {
         floor: this.room.floor,
         ceilingHeight: this.room.ceilingHeight,
         capacityId: this.room.capacity?.id,
+        sizeInSquareMeters: this.room.sizeInSquareMeters,
       });
     }
   }

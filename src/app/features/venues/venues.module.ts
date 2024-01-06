@@ -14,6 +14,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RoomDialogComponent } from './room-dialog/room-dialog.component';
 import { DataViewModule } from 'primeng/dataview';
 import { DropdownModule } from 'primeng/dropdown';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { DropdownModule } from 'primeng/dropdown';
     FormFieldModule,
     DataViewModule,
     DropdownModule,
+    InputNumberModule,
   ],
   declarations: [VenuesComponent, RoomDialogComponent],
   providers: [],

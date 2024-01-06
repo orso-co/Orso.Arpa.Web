@@ -30,5 +30,6 @@
   "ROOM_NAME": "Raumbezeichnung",
   "ROOM_CREATED": "Raum erstellt",
   "ROOM_UPDATED": "Raum aktualisiert",
-  "ROOM_DELETED": "Raum gelöscht"
+  "ROOM_DELETED": "Raum gelöscht",
+  "SIZE": "Größe in Quadratmetern"
 }

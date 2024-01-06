@@ -30,5 +30,6 @@
   "ROOM_NAME": "Room Name",
   "ROOM_CREATED": "Room created",
   "ROOM_UPDATED": "Room updated",
-  "ROOM_DELETED": "Room deleted"
+  "ROOM_DELETED": "Room deleted",
+  "SIZE": "Size in square meters"
 }

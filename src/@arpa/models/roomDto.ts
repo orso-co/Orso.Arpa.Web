@@ -9,6 +9,7 @@ export interface RoomDto extends BaseDto {
   capacity?: SelectValueDto;
   availableEquipment: RoomEquipmentDto[];
   availableInstruments: RoomEquipmentDto[];
+  sizeInSquareMeters?: number;
 }
 
 export enum CeilingHeight {
@@ -37,6 +38,7 @@ export interface RoomCreateBodyDto {
   floor?: string;
   ceilingHeight?: CeilingHeight;
   capacityId?: string;
+  sizeInSquareMeters?: number;
 }
 
 export interface RoomModifyBodyDto {
@@ -45,6 +47,7 @@ export interface RoomModifyBodyDto {
   floor?: string;
   ceilingHeight?: CeilingHeight;
   capacityId?: string;
+  sizeInSquareMeters?: number;
 }
 
 export interface RoomEquipmentCreateBodyDto {

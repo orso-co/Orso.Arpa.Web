@@ -30,5 +30,6 @@
   "ROOM_NAME": "Nom de la pièce",
   "ROOM_CREATED": "Salle créée",
   "ROOM_UPDATED": "Salle mise à jour",
-  "ROOM_DELETED": " Salle supprimée"
+  "ROOM_DELETED": " Salle supprimée",
+  "SIZE": "Taille en mètres carrés"
 }
