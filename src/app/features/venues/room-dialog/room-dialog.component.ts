@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { RoomCreateBodyDto, RoomDto, RoomModifyBodyDto } from '@arpa/models';
 import { EnumService, SelectValueService, RoomService, VenueService } from '@arpa/services';
-import { SelectItem } from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
+import { MenuItem, SelectItem } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -15,62 +16,54 @@ import { switchMap } from 'rxjs/operators';
 export class RoomDialogComponent implements OnInit {
   room: RoomDto;
   venueId: string;
-  formGroup: UntypedFormGroup;
-  ceilingHeightTypes$: Observable<SelectItem[]>;
-  capacityTypes$: Observable<SelectItem[]>;
+
+  steps: MenuItem[] = [];
+  activeIndex = 0;
 
   constructor(
     private config: DynamicDialogConfig,
     private ref: DynamicDialogRef,
-    formBuilder: UntypedFormBuilder,
-    private enumService: EnumService,
-    private selectValueService: SelectValueService,
     private roomService: RoomService,
-    private venueService: VenueService
-  ) {
-    this.formGroup = formBuilder.group({
-      name: [null, [Validators.required, Validators.maxLength(50)]],
-      building: [null, [Validators.maxLength(50)]],
-      floor: [null, [Validators.maxLength(50)]],
-      ceilingHeight: [null, []],
-      capacityId: [null, []],
-      sizeInSquareMeters: [null, [Validators.min(0)]],
-    });
-  }
+    private venueService: VenueService,
+    private translate: TranslateService
+  ) {}
 
   ngOnInit() {
-    this.ceilingHeightTypes$ = this.enumService.getCeilingHeightSelectItems();
-    this.capacityTypes$ = this.selectValueService.getRoomCapacityTypes();
     this.room = this.config.data.room;
     this.venueId = this.config.data.venueId;
-    if (this.room) {
-      this.formGroup.patchValue({
-        name: this.room.name,
-        building: this.room.building,
-        floor: this.room.floor,
-        ceilingHeight: this.room.ceilingHeight,
-        capacityId: this.room.capacity?.id,
-        sizeInSquareMeters: this.room.sizeInSquareMeters,
-      });
-    }
+    this.createStepperMenu(this.room);
   }
 
-  onSubmit() {
-    if (this.formGroup.invalid) {
-      return;
-    }
-    const value = { ...this.formGroup.value } as RoomCreateBodyDto | RoomModifyBodyDto;
-    if (this.room) {
-      this.roomService
-        .update(this.room.id, value)
-        .pipe(switchMap(() => this.roomService.loadById(this.room.id)))
-        .subscribe((room) => this.ref.close(room));
-    } else {
-      this.venueService.addRoom(this.venueId, value).subscribe((room) => this.ref.close(room));
-    }
+  private createStepperMenu(room: RoomDto): void {
+    this.steps = [
+      {
+        label: this.translate.instant('venues.BASIC_DATA'),
+        command: () => {
+          this.activeIndex = 0;
+        },
+      },
+      {
+        label: this.translate.instant('venues.ROOM_EQUIPMENT'),
+        disabled: !room,
+        command: () => {
+          this.activeIndex = 1;
+        },
+      },
+      {
+        label: this.translate.instant('venues.ROOM_SECTIONS'),
+        disabled: !room,
+        command: () => {
+          this.activeIndex = 2;
+        },
+      },
+    ];
   }
 
   cancel() {
     this.ref.close(null);
+  }
+
+  onRoomCreatedOrUpdated(room: RoomDto) {
+    this.ref.close(room);
   }
 }

@@ -15,6 +15,10 @@ import { RoomDialogComponent } from './room-dialog/room-dialog.component';
 import { DataViewModule } from 'primeng/dataview';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { StepsModule } from 'primeng/steps';
+import { RoomDialogBasicDataComponent } from './room-dialog-basic-data/room-dialog-basic-data.component';
+import { RoomDialogEquipmentComponent } from './room-dialog-equipment/room-dialog-equipment.component';
+import { RoomDialogSectionComponent } from './room-dialog-section/room-dialog-section.component';
 
 @NgModule({
   imports: [
@@ -39,8 +43,15 @@ import { InputNumberModule } from 'primeng/inputnumber';
     DataViewModule,
     DropdownModule,
     InputNumberModule,
+    StepsModule,
   ],
-  declarations: [VenuesComponent, RoomDialogComponent],
+  declarations: [
+    VenuesComponent,
+    RoomDialogComponent,
+    RoomDialogBasicDataComponent,
+    RoomDialogEquipmentComponent,
+    RoomDialogSectionComponent,
+  ],
   providers: [],
 })
 export class VenuesModule {}
