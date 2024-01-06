@@ -117,6 +117,21 @@
                 <span *ngIf="room.building">{{ room.building }}</span>
                 <span *ngIf="room.floor">, {{ room.floor }}</span>
               </div>
+              <div class="p-d-flex p-ai-center">
+                <p-chip
+                  *ngIf="room.sizeInSquareMeters"
+                  [label]="room.sizeInSquareMeters + ' m²'"
+                  icon="pi pi-map"
+                  styleClass="p-mr-2"
+                ></p-chip>
+                <p-chip
+                  *ngIf="room.ceilingHeight"
+                  [label]="'ceilingHeight.' + room.ceilingHeight | translate"
+                  icon="pi pi-arrow-up"
+                  styleClass="p-mr-2"
+                ></p-chip>
+                <p-chip *ngIf="room.capacity" [label]="room.capacity.name" icon="pi pi-users" styleClass="p-mr-2"></p-chip>
+              </div>
             </div>
             <div class="room-list-action">
               <button

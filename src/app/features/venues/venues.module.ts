@@ -20,6 +20,7 @@ import { RoomDialogBasicDataComponent } from './room-dialog-basic-data/room-dial
 import { RoomDialogEquipmentComponent } from './room-dialog-equipment/room-dialog-equipment.component';
 import { RoomDialogSectionComponent } from './room-dialog-section/room-dialog-section.component';
 import { PanelModule } from 'primeng/panel';
+import { ChipModule } from 'primeng/chip';
 
 @NgModule({
   imports: [
@@ -46,6 +47,7 @@ import { PanelModule } from 'primeng/panel';
     InputNumberModule,
     StepsModule,
     PanelModule,
+    ChipModule,
   ],
   declarations: [
     VenuesComponent,
