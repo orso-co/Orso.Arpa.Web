@@ -12,6 +12,11 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="formGroup" class="room-equipment-form">
   <div class="p-grid p-fluid p-formgrid">
     <div class="p-col-12 p-xl-6">
+      <arpa-form-field label="venues.QUANTITY">
+        <p-inputNumber inputId="quantity" formControlName="quantity"> </p-inputNumber>
+      </arpa-form-field>
+    </div>
+    <div class="p-col-12 p-xl-6">
       <arpa-form-field label="venues.EQUIPMENT" type="select">
         <p-dropdown
           [options]="(equipmentTypes$ | async) || []"
@@ -26,11 +31,6 @@
     <div class="p-col-12">
       <arpa-form-field label="venues.DESCRIPTION">
         <textarea pInputText type="text" formControlName="description" id="description"></textarea>
-      </arpa-form-field>
-    </div>
-    <div class="p-col-12">
-      <arpa-form-field label="venues.QUANTITY">
-        <p-inputNumber inputId="quantity" formControlName="quantity"> </p-inputNumber>
       </arpa-form-field>
     </div>
   </div>
