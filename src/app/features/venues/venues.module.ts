@@ -19,6 +19,7 @@ import { StepsModule } from 'primeng/steps';
 import { RoomDialogBasicDataComponent } from './room-dialog-basic-data/room-dialog-basic-data.component';
 import { RoomDialogEquipmentComponent } from './room-dialog-equipment/room-dialog-equipment.component';
 import { RoomDialogSectionComponent } from './room-dialog-section/room-dialog-section.component';
+import { PanelModule } from 'primeng/panel';
 
 @NgModule({
   imports: [
@@ -44,6 +45,7 @@ import { RoomDialogSectionComponent } from './room-dialog-section/room-dialog-se
     DropdownModule,
     InputNumberModule,
     StepsModule,
+    PanelModule,
   ],
   declarations: [
     VenuesComponent,

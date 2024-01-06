@@ -31,5 +31,15 @@
   "ROOM_CREATED": "Room created",
   "ROOM_UPDATED": "Room updated",
   "ROOM_DELETED": "Room deleted",
-  "SIZE": "Size in square meters"
+  "SIZE": "Size in square meters",
+
+  "ROOM_EQUIPMENT": "Room Equipment",
+  "ROOM_SECTIONS": "Available Instruments",
+  "EQUIPMENT": "Equipment",
+  "QUANTITY": "Quantity",
+  "RESET_FORM": "Reset Form",
+  "EDIT_ROOM_EQUIPMENT": "Edit Room Equipment",
+  "DELETE_ROOM_EQUIPMENT": "Delete Room Equipment",
+  "BASIC_DATA": "Basic Data",
+  "ROOM_EQUIPMENT_DELETED": "Room Equipment deleted"
 }

@@ -14,8 +14,8 @@ export class RoomEquipmentService {
     this.baseUrl = '/roomequipments';
   }
 
-  loadById(id: string): Observable<RoomEquipmentDto[]> {
-    return this.apiService.get<RoomEquipmentDto[]>(`${this.baseUrl}/${id}`).pipe(shareReplay());
+  loadById(id: string): Observable<RoomEquipmentDto> {
+    return this.apiService.get<RoomEquipmentDto>(`${this.baseUrl}/${id}`).pipe(shareReplay());
   }
 
   update(id: string, dto: RoomEquipmentModifyBodyDto): Observable<any> {

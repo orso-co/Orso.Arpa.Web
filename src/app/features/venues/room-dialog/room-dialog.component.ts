@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { RoomCreateBodyDto, RoomDto, RoomModifyBodyDto } from '@arpa/models';
-import { EnumService, SelectValueService, RoomService, VenueService } from '@arpa/services';
+import { RoomDto } from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
-import { MenuItem, SelectItem } from 'primeng/api';
+import { MenuItem } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'arpa-room-dialog',
@@ -20,13 +16,7 @@ export class RoomDialogComponent implements OnInit {
   steps: MenuItem[] = [];
   activeIndex = 0;
 
-  constructor(
-    private config: DynamicDialogConfig,
-    private ref: DynamicDialogRef,
-    private roomService: RoomService,
-    private venueService: VenueService,
-    private translate: TranslateService
-  ) {}
+  constructor(private config: DynamicDialogConfig, private ref: DynamicDialogRef, private translate: TranslateService) {}
 
   ngOnInit() {
     this.room = this.config.data.room;
@@ -59,7 +49,7 @@ export class RoomDialogComponent implements OnInit {
     ];
   }
 
-  cancel() {
+  onCancel() {
     this.ref.close(null);
   }
 

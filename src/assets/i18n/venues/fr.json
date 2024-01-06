@@ -31,5 +31,15 @@
   "ROOM_CREATED": "Salle créée",
   "ROOM_UPDATED": "Salle mise à jour",
   "ROOM_DELETED": " Salle supprimée",
-  "SIZE": "Taille en mètres carrés"
+  "SIZE": "Taille en mètres carrés",
+
+  "ROOM_EQUIPMENT": "Equipement de la pièce",
+  "ROOM_SECTIONS": "Instruments disponibles",
+  "EQUIPMENT": "Equipement",
+  "QUANTITY": "Quantité",
+  "RESET_FORM": "Réinitialiser le formulaire",
+  "EDIT_ROOM_EQUIPMENT": "Modifier l'équipement de la salle",
+  "DELETE_ROOM_EQUIPMENT": "Supprimer l'équipement de la salle",
+  "BASIC_DATA": "Données de base",
+  "ROOM_EQUIPMENT_DELETED": "Équipement de salle supprimé"
 }

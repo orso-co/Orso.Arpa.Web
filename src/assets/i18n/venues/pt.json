@@ -31,5 +31,15 @@
   "ROOM_CREATED": "Quarto criado",
   "ROOM_UPDATED": "Quarto atualizado",
   "ROOM_DELETED": "Quarto eliminado",
-  "SIZE": "Dimensão em metros quadrados"
+  "SIZE": "Dimensão em metros quadrados",
+
+  "ROOM_EQUIPMENT": "Equipamento da sala",
+  "ROOM_SECTIONS": "Instrumentos disponíveis",
+  "EQUIPMENT": "Equipamento",
+  "QUANTITY": "Quantidade",
+  "RESET_FORM": "Formulário de reposição",
+  "EDIT_ROOM_EQUIPMENT": "Editar equipamento da sala",
+  "DELETE_ROOM_EQUIPMENT": "Eliminar equipamento da sala",
+  "BASIC_DATA": "Dados básicos",
+  "ROOM_EQUIPMENT_DELETED": "Equipamento de sala eliminado"
 }

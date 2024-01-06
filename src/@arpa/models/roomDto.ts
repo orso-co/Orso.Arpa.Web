@@ -23,6 +23,7 @@ export interface RoomEquipmentDto {
   name: string;
   quantity?: number;
   description?: string;
+  equipmentId: string;
 }
 
 export interface RoomSectionDto {
@@ -30,6 +31,7 @@ export interface RoomSectionDto {
   name: string;
   quantity?: number;
   description?: string;
+  instrumentId: string;
 }
 
 export interface RoomCreateBodyDto {
