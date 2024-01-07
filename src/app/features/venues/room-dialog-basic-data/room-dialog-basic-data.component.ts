@@ -50,7 +50,7 @@ export class RoomDialogBasicDataComponent implements OnInit, OnChanges {
     if (changes.venueId) {
       this.venueId = changes.venueId.currentValue;
     }
-    if (changes.room) {
+    if (changes?.room?.currentValue) {
       this.room = changes.room.currentValue;
       this.formGroup.patchValue({
         name: this.room.name,
