@@ -604,11 +604,12 @@ export class EditAppointmentComponent implements OnInit {
         (error: any) => {
           if (error.errors?.ForceSending && !force) {
             this.showNotificationConfirmation(error.errors.ForceSending[0], event);
+            return;
           }
           if (error.errors?.AppointmentId) {
             this.notificationsService.error(error.errors.AppointmentId[0]);
           } else {
-            this.notificationsService.error(error!.title);
+            this.notificationsService.error(error.title);
           }
         }
       );
