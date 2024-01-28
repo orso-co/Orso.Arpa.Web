@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { first } from 'rxjs/operators';
-import { MeService, EnumService, NotificationsService } from '@arpa/services';
+import { MeService, EnumService, NotificationsService, ProjectService } from '@arpa/services';
 import { MyProjectParticipationDialogComponent } from './my-project-participation-dialog/my-project-participation-dialog.component';
-import { MyProjectParticipationDto, MyProjectDto, MyAppointmentListDto } from '@arpa/models';
+import { MyProjectParticipationDto, MyProjectDto, AppointmentListDto } from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -22,19 +22,32 @@ export class MyProjectsComponent {
     { id: true, name: 'ALL_PROJECTS' },
   ];
   selectedOption: boolean = false;
-  appointmentParticipations$: Observable<any>;
-  columns: ColumnDefinition<MyAppointmentListDto>[] = [
-    { label: 'APPOINTMENT', property: 'appointment.name', type: 'text' },
-    { label: 'BEGIN', property: 'appointment.startTime', type: 'date' },
-    { label: 'PREDICTION', property: 'appointmentParticipation.prediction', type: 'text' },
-    { label: 'RESULT', property: 'appointmentParticipation.result', type: 'text' },
+  appointments$: Observable<AppointmentListDto[]>;
+  columns: ColumnDefinition<AppointmentListDto>[] = [
+    { label: 'APPOINTMENT', property: 'name', type: 'text' },
+    { label: 'BEGIN', property: 'startTime', type: 'date' },
+    { label: 'END', property: 'endTime', type: 'date' },
+    { label: 'CITY', property: 'city', type: 'text' },
+    {
+      label: 'STATUS',
+      property: 'status',
+      type: 'badge',
+      badgeStateMap: [
+        { label: 'appointmentStatus.CONFIRMED', value: 'CONFIRMED', severity: 'success' },
+        { label: 'appointmentStatus.SCHEDULED', value: 'SCHEDULED', severity: 'info' },
+        { label: 'appointmentStatus.AMBIGUOUS', value: 'AMBIGUOUS', severity: 'warning' },
+        { label: 'appointmentStatus.AWAITING_POLL', value: 'AWAITING_POLL', severity: 'warning' },
+      ],
+    },
+    { label: 'CATEGORY', property: 'category', type: 'text' },
   ];
   constructor(
     private meService: MeService,
     private enumService: EnumService,
     private notificationsService: NotificationsService,
     private dialogService: DialogService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private projectService: ProjectService
   ) {}
 
   openDialog(projectId: string, participation: MyProjectParticipationDto) {
@@ -77,5 +90,11 @@ export class MyProjectsComponent {
     const take = event?.row ?? this.itemsPerPage;
     const skip = event?.first ?? 0;
     this.loadData(take, skip);
+  }
+
+  handleTabChange(event: { index: number }, projectId: string) {
+    if (event.index === 2) {
+      this.appointments$ = this.projectService.getAppointmentsById(projectId);
+    }
   }
 }

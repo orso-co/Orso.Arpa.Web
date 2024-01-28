@@ -7,6 +7,7 @@ import {
   ProjectParticipationDto,
   ProjectModifyBodyDto,
   ProjectCreateDto,
+  AppointmentListDto,
 } from '@arpa/models';
 import { first, map, shareReplay } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
@@ -71,6 +72,10 @@ export class ProjectService {
 
   public removeRoleFromUrl(urlId: string, roleId: string): Observable<any> {
     return this.apiService.delete(`/urls/${urlId}/roles/${roleId}`).pipe(shareReplay());
+  }
+
+  public getAppointmentsById(projectId: string): Observable<AppointmentListDto[]> {
+    return this.apiService.get<AppointmentListDto[]>(`${this.baseUrl}/${projectId}/appointments`).pipe(shareReplay());
   }
 
   public getAppointmentsForProject(projectId: string): Observable<any> {
