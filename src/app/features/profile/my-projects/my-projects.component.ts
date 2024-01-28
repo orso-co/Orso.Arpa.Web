@@ -3,10 +3,10 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { first } from 'rxjs/operators';
 import { MeService, EnumService, NotificationsService, ProjectService } from '@arpa/services';
 import { MyProjectParticipationDialogComponent } from './my-project-participation-dialog/my-project-participation-dialog.component';
-import { MyProjectParticipationDto, MyProjectDto, MyAppointmentListDto, AppointmentListDto } from '@arpa/models';
+import { MyProjectParticipationDto, MyProjectDto, AppointmentListDto } from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'arpa-profile-my-projects',
@@ -34,9 +34,9 @@ export class MyProjectsComponent {
       type: 'badge',
       badgeStateMap: [
         { label: 'appointmentStatus.CONFIRMED', value: 'CONFIRMED', severity: 'success' },
-        { label: 'projectStatus.SCHEDULED', value: 'CANCELLED', severity: 'info' },
-        { label: 'projectStatus.AMBIGUOUS', value: 'POSTPONED', severity: 'warning' },
-        { label: 'projectStatus.AWAITING_POLL', value: 'ARCHIVED', severity: 'warning' },
+        { label: 'appointmentStatus.SCHEDULED', value: 'SCHEDULED', severity: 'info' },
+        { label: 'appointmentStatus.AMBIGUOUS', value: 'AMBIGUOUS', severity: 'warning' },
+        { label: 'appointmentStatus.AWAITING_POLL', value: 'AWAITING_POLL', severity: 'warning' },
       ],
     },
     { label: 'CATEGORY', property: 'category', type: 'text' },
