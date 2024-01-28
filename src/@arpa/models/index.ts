@@ -118,3 +118,4 @@ export * from './newsCreateDto';
 export * from './newsModifyBodyDto';
 export * from './musicianProfileAppointmentParticipationDto';
 export * from './clubDto';
+export * from './projectParticipationStatusResult';

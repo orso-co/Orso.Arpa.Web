@@ -180,6 +180,11 @@
     "ACCEPTANCE": "Zusage",
     "REFUSAL": "Absage"
   },
+  "projectParticipationStatusResult": {
+    "PENDING": "Noch in der Schwebe",
+    "ACCEPTANCE": "Wie schön, Du bist dabei!",
+    "REFUSAL": "Schade, du bist leider nicht dabei"
+  },
   "projectStatus": {
     "PENDING": "Ausstehend",
     "CONFIRMED": "Bestätigt",

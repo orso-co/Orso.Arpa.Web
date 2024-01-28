@@ -3,7 +3,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { first } from 'rxjs/operators';
 import { MeService, EnumService, NotificationsService, ProjectService } from '@arpa/services';
 import { MyProjectParticipationDialogComponent } from './my-project-participation-dialog/my-project-participation-dialog.component';
-import { MyProjectParticipationDto, MyProjectDto, AppointmentListDto } from '@arpa/models';
+import { MyProjectParticipationDto, MyProjectDto, AppointmentListDto, ProjectParticipationStatusResult } from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -41,6 +41,17 @@ export class MyProjectsComponent {
     },
     { label: 'CATEGORY', property: 'category', type: 'text' },
   ];
+  resultStatusConfig = new Map([
+    [
+      ProjectParticipationStatusResult.ACCEPTANCE,
+      { label: 'projectParticipationStatusResult.ACCEPTANCE', severity: 'success', icon: 'pi pi-heart' },
+    ],
+    [
+      ProjectParticipationStatusResult.REFUSAL,
+      { label: 'projectParticipationStatusResult.REFUSAL', severity: 'info', icon: 'pi pi-info-circle' },
+    ],
+  ]);
+
   constructor(
     private meService: MeService,
     private enumService: EnumService,

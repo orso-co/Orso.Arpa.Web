@@ -70,34 +70,12 @@
               >
             </div>
           </div>
-          <div *ngFor="let participation of myProject.participations" class="right-align">
-            <button
-              pButton
-              type="button"
-              *ngIf="participation.participationStatusResult === 'ACCEPTANCE'"
-              icon="pi pi-heart"
-              class="p-button-success"
-              label="{{ 'my-projects.RESULT_IS_ACCEPTANCE' | translate }}"
-              style="font-size: smaller"
-            ></button>
-            <button
-              pButton
-              type="button"
-              *ngIf="participation.participationStatusResult === 'REFUSAL'"
-              icon="pi pi-info-circle"
-              class="p-button-info"
-              label="{{ 'my-projects.RESULT_IS_REFUSAL' | translate }}"
-              style="font-size: smaller"
-            ></button>
-            <button
-              pButton
-              type="button"
-              *ngIf="participation.participationStatusResult === 'PENDING'"
-              icon="pi pi-exclamation-triangle"
-              class="p-button-warning"
-              label="{{ 'my-projects.RESULT_IS_PENDING' | translate }}"
-              style="font-size: smaller"
-            ></button>
+          <div *ngIf="myProject.participations.length === 1" class="right-align">
+            <p-tag
+              *ngIf="resultStatusConfig.has(myProject.participations[0].participationStatusResult)"
+              [value]="resultStatusConfig.get(myProject.participations[0].participationStatusResult)!.label | translate"
+              [icon]="resultStatusConfig.get(myProject.participations[0].participationStatusResult)!.icon"
+            ></p-tag>
           </div>
         </div>
       </ng-template>
@@ -112,6 +90,13 @@
             <div class="p-fluid p-mt-1 p-formgrid p-grid general-container">
               <div *ngFor="let participation of myProject.participations" class="p-col-12">
                 <div class="p-fluid p-mt-3 p-formgrid p-grid comparison-container">
+                  <div *ngIf="myProject.participations.length > 1" class="p-col-12 text-align-right">
+                    <p-tag
+                      *ngIf="resultStatusConfig.has(participation.participationStatusResult)"
+                      [value]="resultStatusConfig.get(participation.participationStatusResult)!.label | translate"
+                      [icon]="resultStatusConfig.get(participation.participationStatusResult)!.icon"
+                    ></p-tag>
+                  </div>
                   <div *ngIf="participation.participationStatusInner; else noStatusPerformer" class="p-col-6 status-item">
                     <label>{{ 'my-projects.MY_APPLICATIONSTATUS' | translate }}</label>
                     <span>{{ 'projectParticipationStatusInner.' + participation.participationStatusInner | translate }}</span>
