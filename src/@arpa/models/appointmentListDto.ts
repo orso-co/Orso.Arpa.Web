@@ -1,5 +1,5 @@
 import { AppointmentStatus } from './appointmentStatus';
-import { SectionsAllDto } from './sectionsAllDto';
+
 export interface AppointmentListDto {
   id: string;
   startTime: Date;
@@ -7,5 +7,5 @@ export interface AppointmentListDto {
   name: string;
   city?: string;
   status?: AppointmentStatus;
-  sections: Array<SectionsAllDto>;
+  category?: string;
 }

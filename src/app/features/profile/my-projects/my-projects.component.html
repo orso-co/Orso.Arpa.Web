@@ -103,7 +103,7 @@
       </ng-template>
 
       <ng-template pTemplate="content">
-        <p-tabView>
+        <p-tabView (onChange)="handleTabChange($event, myProject.project.id)">
           <p-tabPanel
             [headerStyle]="{ 'font-size': 'smaller', 'font-weight': 'lighter' }"
             header="{{ 'my-projects.APPLICATIONSTATUS' | translate }}"
@@ -179,12 +179,10 @@
             header="{{ 'my-projects.MY_PROJECT_APPOINTMENTS' | translate }}"
             leftIcon="pi pi-calendar-times"
           >
-            <p>Hier erscheint künftig eine Liste aller Projekttermine. Bis es soweit ist bitte so lange hier nachsehen:</p>
-            <a routerLink="appointments">Meine Termine</a>
             <arpa-table
-              *ngIf="appointmentParticipations$ | async"
+              *ngIf="appointments$ | async"
               [columnFilter]="true"
-              [values]="appointmentParticipations$"
+              [values]="appointments$"
               [columns]="columns"
               [showFilter]="true"
               [showFirstLastIcon]="false"
