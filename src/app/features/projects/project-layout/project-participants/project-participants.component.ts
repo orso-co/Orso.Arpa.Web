@@ -43,7 +43,7 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
       property: 'participationStatusInner',
       type: 'badge',
       badgeStateMap: [
-        { label: 'projectParticipationStatusInner.INTERESTED', value: 'INTERESTED', severity: 'info' },
+        { label: 'projectParticipationStatusInner.INTERESTED', value: 'INTERESTED', severity: 'warning' },
         { label: 'projectParticipationStatusInner.PENDING', value: 'PENDING', severity: 'warning' },
         { label: 'projectParticipationStatusInner.ACCEPTANCE', value: 'ACCEPTANCE', severity: 'success' },
         { label: 'projectParticipationStatusInner.REFUSAL', value: 'REFUSAL', severity: 'danger' },

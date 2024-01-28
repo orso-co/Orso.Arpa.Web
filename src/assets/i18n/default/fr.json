@@ -162,7 +162,7 @@
     "UNCLEAR": "Pas clair"
   },
   "projectParticipationStatusInner": {
-    "INTERESTED": "Intéressé",
+    "INTERESTED": "Encore incertain",
     "PENDING": "En attente",
     "ACCEPTANCE": "Acceptation",
     "REFUSAL": "Refus",

@@ -164,7 +164,7 @@
     "UNCLEAR": "Unclear"
   },
   "projectParticipationStatusInner": {
-    "INTERESTED": "Interested",
+    "INTERESTED": "Still uncertain",
     "PENDING": "Pending",
     "ACCEPTANCE": "Acceptance",
     "REFUSAL": "Refusal",
