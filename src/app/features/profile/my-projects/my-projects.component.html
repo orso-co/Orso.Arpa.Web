@@ -48,7 +48,7 @@
 </div>
 
 <ng-template #listElement let-myProject>
-  <p-accordion>
+  <p-accordion class="my-project-accordion">
     <p-accordionTab>
       <ng-template pTemplate="header">
         <div class="p-d-flex p-flex-column p-flex-md-row">
@@ -88,10 +88,10 @@
             header="{{ 'my-projects.APPLICATIONSTATUS' | translate }}"
             leftIcon="pi pi-user-edit"
           >
-            <div class="p-fluid p-mt-1 p-formgrid p-grid general-container">
+            <div class="p-fluid p-mt-1 p-grid general-container">
               <div *ngFor="let participation of myProject.participations" class="p-col-12">
-                <div class="p-fluid p-mt-3 p-formgrid p-grid comparison-container">
-                  <div *ngIf="myProject.participations.length > 1" class="p-col-12 text-align-right">
+                <div class="p-fluid p-grid comparison-container">
+                  <div *ngIf="myProject.participations.length > 1" class="p-col-12 p-mt-1 text-align-right">
                     <p-tag
                       *ngIf="resultStatusConfig.has(participation.participationStatusResult)"
                       [value]="resultStatusConfig.get(participation.participationStatusResult)!.label | translate"
@@ -99,32 +99,30 @@
                       [severity]="resultStatusConfig.get(participation.participationStatusResult)!.severity"
                     ></p-tag>
                   </div>
-                  <div *ngIf="participation.participationStatusInner; else noStatusPerformer" class="p-col-6 status-item">
+                  <div *ngIf="participation.participationStatusInner; else noStatusPerformer" class="p-col-12 p-md-6 p-mt-1 status-item">
                     <label>{{ 'my-projects.MY_APPLICATIONSTATUS' | translate }}</label>
                     <span>{{ 'projectParticipationStatusInner.' + participation.participationStatusInner | translate }}</span>
                   </div>
-                  <div *ngIf="participation.participationStatusInternal; else noStatusStaff" class="p-col-6 status-item">
+                  <div *ngIf="participation.participationStatusInternal; else noStatusStaff" class="p-col-12 p-md-6 p-mt-1 status-item">
                     <label>{{ 'my-projects.RESPONSE_STATUS' | translate }}</label>
                     <span>{{ 'projectParticipationStatusInternal.' + participation.participationStatusInternal | translate }}</span>
                   </div>
-                  <div *ngIf="participation.commentByPerformerInner; else noCommentByMe" class="p-col-6 p-mt-2 content-item">
+                  <div *ngIf="participation.commentByPerformerInner; else noCommentByMe" class="p-col-12 p-md-6 p-mt-1 content-item">
                     <label>{{ 'my-projects.MY_COMMENT' | translate }}</label>
                     <span>{{ participation.commentByPerformerInner }}</span>
                   </div>
-                  <div *ngIf="participation.commentByStaffInner; else noCommentByStaff" class="p-col-6 p-mt-2 content-item">
+                  <div *ngIf="participation.commentByStaffInner; else noCommentByStaff" class="p-col-12 p-md-6 p-mt-1 content-item">
                     <label>{{ 'my-projects.COMMENT_STAFF' | translate }}</label>
                     <span>{{ participation.commentByPerformerInner }}</span>
                   </div>
-                </div>
-                <div class="p-fluid p-mt-3 p-formgrid p-grid comparison-container">
-                  <div *ngIf="myProject.project.isCompleted === false" class="p-col-6">
+                  <div *ngIf="myProject.project.isCompleted === false" class="p-col-12 p-md-6 p-mt-1">
                     <p-button
                       (click)="openDialog(myProject.project.id, participation)"
                       label="{{ 'my-projects.UPDATE_PARTICIPATION' | translate }}"
                       type="button"
                     ></p-button>
                   </div>
-                  <div class="p-col-6 status-item">
+                  <div class="p-col-12 p-md-6 status-item p-mt-1">
                     <label>{{ 'my-projects.MY_PROFILE' | translate }}</label>
                     <span> {{ participation.musicianProfile.instrumentName }}</span>
                   </div>
@@ -231,32 +229,32 @@
 </ng-template>
 
 <ng-template #noCommentByMe>
-  <div class="p-col-6 p-mt-2 content-item">
+  <div class="p-col-12 p-md-6 p-mt-1 content-item">
     <label>{{ 'my-projects.MY_COMMENT' | translate }}</label>
     <span class="placeholder">{{ 'my-projects.NO_COMMENT' | translate }}</span>
   </div>
 </ng-template>
 <ng-template #noCommentByStaff>
-  <div class="p-col-6 p-mt-2 content-item">
+  <div class="p-col-12 p-md-6 p-mt-1 content-item">
     <label>{{ 'my-projects.COMMENT_STAFF' | translate }}</label>
     <span>{{ 'my-projects.NO_COMMENT' | translate }}</span>
   </div>
 </ng-template>
 
 <ng-template #noStatusPerformer>
-  <div class="p-col-6 p-mt-2 status-hint">
+  <div class="p-col-12 p-md-6 p-mt-1 status-hint">
     <label>{{ 'my-projects.MY_APPLICATION' | translate }}</label>
     <span>{{ 'my-projects.NO_STATUS' | translate }}</span>
   </div>
 </ng-template>
 <ng-template #noStatusStaff>
-  <div class="p-col-6 p-mt-2 status-hint">
+  <div class="p-col-12 p-md-6 p-mt-1 status-hint">
     <label>{{ 'my-projects.RESPONSE_STATUS' | translate }}</label>
     <span>{{ 'my-projects.NO_STATUS' | translate }}</span>
   </div>
 </ng-template>
 <ng-template #actionRequired>
-  <div class="p-col-6 p-mt-2">
+  <div class="p-col-12 p-md-6 p-mt-1">
     <label>{{ 'my-projects.ACTION_REQUIRED' | translate }}</label>
     <span>{{ 'my-projects.ACTION_REQUIRED' | translate }}</span>
   </div>

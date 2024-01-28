@@ -2,10 +2,12 @@
   font-size: large;
   font-weight: bold;
 }
+
 .project-type {
   font-size: small;
   opacity: 60%;
 }
+
 .project-date {
   text-transform: uppercase;
   font-weight: normal;
@@ -24,6 +26,7 @@
     text-transform: uppercase;
     padding-bottom: 0.3rem;
   }
+
   > span {
     font-size: small;
     opacity: 90%;
@@ -35,6 +38,7 @@
     list-style: none;
   }
 }
+
 .status-item {
   display: flex;
   flex-direction: column;
@@ -47,6 +51,7 @@
     text-transform: uppercase;
     padding-bottom: 0.3rem;
   }
+
   > span {
     font-size: large;
   }
@@ -57,13 +62,16 @@
     list-style: none;
   }
 }
+
 .tag-label {
   font-size: x-small;
   font-weight: lighter;
 }
+
 .tag-width {
   width: 6rem;
 }
+
 .tab-header {
   font-size: smaller;
   font-weight: lighter;
@@ -73,11 +81,13 @@
   padding-bottom: 0.5rem;
   list-style-type: disc;
 }
+
 .parentProject {
   font-weight: normal;
   opacity: 90%;
   font-size: small;
 }
+
 .status-hint {
   display: flex;
   flex-direction: column;
@@ -95,10 +105,18 @@
     padding-bottom: 0.3rem;
     font-style: normal;
   }
+
   > span {
     font-size: large;
   }
 }
+
 .isCompleted {
   font-weight: bold;
+}
+
+:host ::ng-deep {
+  .my-project-accordion .p-accordion .p-accordion-header .p-accordion-header-link .p-d-flex {
+    align-items: start;
+  }
 }
