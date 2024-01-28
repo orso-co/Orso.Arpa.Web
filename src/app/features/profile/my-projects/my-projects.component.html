@@ -180,9 +180,9 @@
             leftIcon="pi pi-calendar-times"
           >
             <arpa-table
-              *ngIf="appointments$ | async"
+              *ngIf="appointmentMap.has(myProject.project.id)"
               [columnFilter]="true"
-              [values]="appointments$"
+              [values]="appointmentMap.get(myProject.project.id)!"
               [columns]="columns"
               [showFilter]="true"
               [showFirstLastIcon]="false"

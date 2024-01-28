@@ -22,7 +22,7 @@ export class MyProjectsComponent {
     { id: true, name: 'ALL_PROJECTS' },
   ];
   selectedOption: boolean = false;
-  appointments$: Observable<AppointmentListDto[]>;
+  appointmentMap: Map<string, Observable<AppointmentListDto[]>> = new Map();
   columns: ColumnDefinition<AppointmentListDto>[] = [
     { label: 'APPOINTMENT', property: 'name', type: 'text' },
     { label: 'BEGIN', property: 'startTime', type: 'date' },
@@ -93,8 +93,8 @@ export class MyProjectsComponent {
   }
 
   handleTabChange(event: { index: number }, projectId: string) {
-    if (event.index === 2) {
-      this.appointments$ = this.projectService.getAppointmentsById(projectId);
+    if (event.index === 2 && !this.appointmentMap.has(projectId)) {
+      this.appointmentMap.set(projectId, this.projectService.getAppointmentsById(projectId));
     }
   }
 }
