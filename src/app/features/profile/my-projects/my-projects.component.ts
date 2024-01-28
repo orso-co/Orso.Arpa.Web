@@ -3,7 +3,13 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { first } from 'rxjs/operators';
 import { MeService, EnumService, NotificationsService, ProjectService } from '@arpa/services';
 import { MyProjectParticipationDialogComponent } from './my-project-participation-dialog/my-project-participation-dialog.component';
-import { MyProjectParticipationDto, MyProjectDto, AppointmentListDto, ProjectParticipationStatusResult } from '@arpa/models';
+import {
+  MyProjectParticipationDto,
+  MyProjectDto,
+  AppointmentListDto,
+  ProjectParticipationStatusResult,
+  ProjectParticipationStatusInner,
+} from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
 import { ColumnDefinition } from '../../../../@arpa/components/table/table.component';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -60,6 +66,15 @@ export class MyProjectsComponent {
     private translate: TranslateService,
     private projectService: ProjectService
   ) {}
+
+  showWarningTag(participation: MyProjectParticipationDto): boolean {
+    return (
+      participation.participationStatusResult === ProjectParticipationStatusResult.PENDING &&
+      (participation.participationStatusInner === ProjectParticipationStatusInner.INTERESTED ||
+        participation.participationStatusInner === ProjectParticipationStatusInner.PENDING ||
+        !participation.participationStatusInner)
+    );
+  }
 
   openDialog(projectId: string, participation: MyProjectParticipationDto) {
     const ref = this.dialogService.open(MyProjectParticipationDialogComponent, {

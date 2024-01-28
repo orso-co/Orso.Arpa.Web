@@ -77,6 +77,12 @@
               [icon]="resultStatusConfig.get(myProject.participations[0].participationStatusResult)!.icon"
               [severity]="resultStatusConfig.get(myProject.participations[0].participationStatusResult)!.severity"
             ></p-tag>
+            <p-tag
+              *ngIf="showWarningTag(myProject.participations[0])"
+              [value]="'projectParticipationStatusResult.PENDING' | translate"
+              icon="pi pi-exclamation-triangle"
+              severity="danger"
+            ></p-tag>
           </div>
         </div>
       </ng-template>
@@ -97,6 +103,12 @@
                       [value]="resultStatusConfig.get(participation.participationStatusResult)!.label | translate"
                       [icon]="resultStatusConfig.get(participation.participationStatusResult)!.icon"
                       [severity]="resultStatusConfig.get(participation.participationStatusResult)!.severity"
+                    ></p-tag>
+                    <p-tag
+                      *ngIf="showWarningTag(participation)"
+                      [value]="'projectParticipationStatusResult.PENDING' | translate"
+                      icon="pi pi-exclamation-triangle"
+                      severity="danger"
                     ></p-tag>
                   </div>
                   <div *ngIf="participation.participationStatusInner; else noStatusPerformer" class="p-col-12 p-md-6 p-mt-1 status-item">

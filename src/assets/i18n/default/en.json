@@ -176,6 +176,10 @@
     "ACCEPTANCE": "Accteptance",
     "REFUSAL": "Refusal"
   },
+  "projectParticipationStatusResult": {
+    "ACCEPTANCE": "Yeah, you are in!",
+    "REFUSAL": "Sadly you are not participating"
+  },
   "projectStatus": {
     "PENDING": "Pending",
     "CONFIRMED": "Confirmed",
