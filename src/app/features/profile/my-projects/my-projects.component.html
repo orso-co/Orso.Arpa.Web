@@ -75,6 +75,7 @@
               *ngIf="resultStatusConfig.has(myProject.participations[0].participationStatusResult)"
               [value]="resultStatusConfig.get(myProject.participations[0].participationStatusResult)!.label | translate"
               [icon]="resultStatusConfig.get(myProject.participations[0].participationStatusResult)!.icon"
+              [severity]="resultStatusConfig.get(myProject.participations[0].participationStatusResult)!.severity"
             ></p-tag>
           </div>
         </div>
@@ -95,6 +96,7 @@
                       *ngIf="resultStatusConfig.has(participation.participationStatusResult)"
                       [value]="resultStatusConfig.get(participation.participationStatusResult)!.label | translate"
                       [icon]="resultStatusConfig.get(participation.participationStatusResult)!.icon"
+                      [severity]="resultStatusConfig.get(participation.participationStatusResult)!.severity"
                     ></p-tag>
                   </div>
                   <div *ngIf="participation.participationStatusInner; else noStatusPerformer" class="p-col-6 status-item">
