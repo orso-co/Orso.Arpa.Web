@@ -5,8 +5,7 @@ import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 interface PerformerWidgetLine {
-  label: string;
-  description?: string;
+  translationPrefix: string;
   isFullfilled$: Observable<boolean>;
   anchorLabel: string;
   anchorUrl: string;
@@ -20,31 +19,26 @@ interface PerformerWidgetLine {
 export class PerformerWidgetComponent {
   lines: PerformerWidgetLine[] = [
     {
-      label: 'Persönliche Daten vervollständigen',
-      description: 'Für die Verwaltung des Chors und Orchesters und die Planung von Terminen benötigen wir einige Informationen von dir.',
-      anchorLabel: 'Meine Daten',
+      translationPrefix: 'COMPLETE_PERSONAL_DATA',
+      anchorLabel: 'MY_DATA',
       anchorUrl: '/arpa/profile/my-data',
       isFullfilled$: this.isPersonalDataComplete(),
     },
     {
-      label: 'Musikerprofile anlegen',
-      description:
-        'Damit wir dich als Mitwirkende*n einplanen können, benötigen wir Informationen zu den Instrumenten, die du spielst bzw. den Stimmen, die du singst.',
-      anchorLabel: 'Mein Musikerprofil',
+      translationPrefix: 'COMPLETE_MUSICIANPROFILE',
+      anchorLabel: 'MY_MUSICIANPROFILE',
       anchorUrl: '/arpa/profile/musicianprofile',
       isFullfilled$: this.isMusicianProfileComplete(),
     },
     {
-      label: 'Für Projekte anmelden',
-      description: 'Um an Projektterminen teilnehmen zu können, musst du dich zuerst für das jeweilige Projekt anmelden.',
-      anchorLabel: 'Meine Projekte',
+      translationPrefix: 'COMPLETE_PROJECTS',
+      anchorLabel: 'MY_PROJECTS',
       anchorUrl: '/arpa/profile/my-projects',
       isFullfilled$: of(false),
     },
     {
-      label: 'Für Termine anmelden',
-      description: 'Für die Planung unserer Proben und Auftritte ist es wichtig, dass du dich für die Termine anmeldest.',
-      anchorLabel: 'Meine Termine',
+      translationPrefix: 'COMPLETE_APPOINTMENTS',
+      anchorLabel: 'MY_APPOINTMENTS',
       anchorUrl: '/arpa/profile/my-appointments',
       isFullfilled$: of(false),
     },

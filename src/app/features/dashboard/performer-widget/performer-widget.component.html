@@ -8,9 +8,9 @@
           ></i>
           <div class="performer-widget-line-text">
             <div class="performer-widget-label">
-              {{ line.label | translate }}
+              {{ line.translationPrefix + '_LABEL' | translate }}
             </div>
-            <div *ngIf="line.description" class="performer-widget-description">{{ line.description | translate }}</div>
+            <div class="performer-widget-description">{{ line.translationPrefix + '_DESCRIPTION' | translate }}</div>
           </div>
         </div>
         <div class="performer-widget-line-action">

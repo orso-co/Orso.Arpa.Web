@@ -2,6 +2,7 @@
   "ABOUT_ME": "Über mich",
   "ADD": "Hinzufügen",
   "ADMIN": "Administrator",
+  "ALL_PROJECTS": "Alle Projekte",
   "APPOINTMENT": "Termin",
   "APPOINTMENTS": "Termine",
   "APPOINTMENTS_PARTICIPATIONS_STATUS": "Terminstatus",
@@ -15,6 +16,7 @@
   "CITY": "Stadt",
   "CLEAR": "Zurücksetzen",
   "CLOSE": "Schliessen",
+  "CLOSED_PROJECTS": "Abgeschlossene Projekte",
   "CONTACTDATA": "Kontaktdaten",
   "CONTACTS": "Kontakte",
   "CREATE": "Erstellen",
@@ -112,8 +114,6 @@
   "TARGET_GROUP": "Zielgruppe",
   "SECTION": "Register",
   "OPEN_PROJECTS": "Offene Projekte",
-  "CLOSED_PROJECTS": "Abgeschlossene Projekte",
-  "ALL_PROJECTS": "Alle Projekte",
   "WOODWINDS": "Holzbläser",
   "BRASS": "Blechbläser",
   "STRINGS": "Streicher",
@@ -183,8 +183,7 @@
   },
   "projectParticipationStatusResult": {
     "ACCEPTANCE": "Wie schön, Du bist dabei!",
-    "REFUSAL": "Schade, du bist leider nicht dabei",
-    "PENDING": "Bitte zu- oder absagen!"
+    "REFUSAL": "Schade, du bist leider nicht dabei"
   },
   "projectStatus": {
     "PENDING": "Ausstehend",

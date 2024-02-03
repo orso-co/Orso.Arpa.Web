@@ -34,9 +34,9 @@ export const environment = {
     default: 'de',
     locales: {
       de: 'Deutsch',
-      en: 'Englisch',
-      fr: 'Französisch',
-      pt: 'Portugiesisch',
+      en: 'English',
+      fr: 'Français',
+      pt: 'Português',
     },
   },
 };
