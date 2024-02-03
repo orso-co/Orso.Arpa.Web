@@ -55,6 +55,7 @@ import { DataViewModule } from 'primeng/dataview';
 import { VirtualScrollerModule } from 'primeng/virtualscroller';
 import { ProfileModule } from '../profile/profile.module';
 import { BirthdayWidgetComponent } from './birthday-widget/birthday-widget/birthday-widget.component';
+import { PerformerWidgetComponent } from './performer-widget/performer-widget.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { BirthdayWidgetComponent } from './birthday-widget/birthday-widget/birth
     IframeWidgetProjectstatsComponent,
     NewsWidgetComponent,
     BirthdayWidgetComponent,
+    PerformerWidgetComponent,
   ],
   imports: [
     CommonModule,

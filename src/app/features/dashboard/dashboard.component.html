@@ -1,9 +1,6 @@
 <ng-container *ngIf="menuItems | async as menuItems">
   <p-tabMenu *ngIf="menuItems.length > 1" [activeItem]="getActiveItem(menuItems)" [model]="menuItems"></p-tabMenu>
 </ng-container>
-<ng-container *ngIf="hasMusicianProfile$ | async">
-  <p-message severity="info" [text]="'nomupro.MUPRO_FIRST' | translate"></p-message>
-</ng-container>
 <div class="grid-container">
   <ng-container *ngIf="getByType('charts').length">
     <mat-grid-list cols="{{ (widgetLayout | async)?.columns }}" rowHeight="100px">

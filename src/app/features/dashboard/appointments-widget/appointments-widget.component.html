@@ -1,99 +1,25 @@
-<div class="p-grid p-jc-center p-mt-4">
-  <div class="p-col-12 p-md-10 p-lg-12">
-    <p-table
-      (onLazyLoad)="loadData($event.rows, $event.first)"
-      [lazy]="true"
-      [rows]="3"
-      [value]="(userAppointments$ | async) || []"
-      (click)="onRowClick($event)"
-      tableStyleClass="arpa-table-list"
-    >
-      <ng-template let-appointment pTemplate="body">
-        <ng-container *ngTemplateOutlet="listElement; context: { $implicit: appointment }"></ng-container>
-      </ng-template>
-    </p-table>
-  </div>
-</div>
-
-<ng-template #listElement let-appointment>
-  <td class="list-item">
-    <div class="p-d-flex p-jc-between p-flex-column p-flex-md-row full-width">
-      <div class="p-mr-md-4 p-d-flex p-flex-column date-container">
-        <div class="date">
-          <span class="year p-order-3 p-md-order-3">{{ appointment.startTime | localizedDate : 'YYYY' }}</span>
-          <span class="month-name p-order-2 p-md-order-2">{{ appointment.startTime | localizedDate : 'MMMM' }}</span>
-          <span class="day p-order-1 p-md-order-1">{{ appointment.startTime | date : 'dd' : 'locale(de)' }}</span>
-          <span class="day-name p-order-0 p-md-order-0">{{ appointment.startTime | localizedDate : 'EEEE' }}</span>
-          <span class="time p-order-4">{{ appointment.startTime | date : 'H:mm' : 'locale(de)' }}</span>
-        </div>
-
-        <div class="p-d-lg-none status-badge p-mt-3">
-          <p-tag
-            styleClass="tag"
-            *ngIf="showRibbon(appointment.status)"
-            [value]="getRibbonContentKey(appointment.status, appointment.prediction) | translate"
-            [severity]="getRibbonSeverity(appointment.status, appointment.prediction)"
-          ></p-tag>
-        </div>
-      </div>
-      <div class="p-mr-2 details">
-        <arpa-ribbon
-          *ngIf="showRibbon(appointment.status)"
-          [contentKey]="getRibbonContentKey(appointment.status, appointment.prediction)"
-          [severity]="getRibbonSeverity(appointment.status, appointment.prediction)"
-          class="p-d-none p-d-lg-block"
-        ></arpa-ribbon>
-        <div class="p-grid">
-          <div class="p-col-12">
-            <span class="name">{{ appointment.name }} </span>
-            <div class="p-col-8 p-lg-4 project-title">
-              <ng-container *ngIf="appointment.projects.length > 0">
-                <span>{{ getProjectNames(appointment.projects) }}</span>
-              </ng-container>
+<p-dataView [value]="(appointments$ | async) ?? []">
+  <ng-template let-appointment pTemplate="listItem">
+    <div class="p-col-12">
+      <div class="appointment-widget-line">
+        <div class="appointment-widget-line-detail">
+          <div class="appointment-widget-line-text">
+            <span>
+              {{ appointment.startTime | localizedDate : 'dd.MM.yyyy HH:mm' }} - {{ appointment.endTime | localizedDate : 'HH:mm' }}
+            </span>
+            <div class="appointment-widget-label">
+              <span *ngIf="appointment.category" class="appointment-widget-category">{{ appointment.category | uppercase }}&nbsp;</span>
+              <span>{{ appointment.name }}</span>
             </div>
-            <div class="p-d-flex p-flex-row" style="justify-content: space-between">
-              <div class="p-col-12 p-lg-6 venue-container" *ngIf="appointment.venue; else noVenue">
-                <div class="p-d-flex p-flex-row">
-                  <div class="p-d-flex p-flex-column">
-                    <span>{{ appointment.venue.name }}</span>
-                    <span>{{ appointment.venue.address.address1 }}</span>
-                    <span>{{ appointment.venue.address.zip }} {{ appointment.venue.address.city }}</span>
-                  </div>
-                </div>
-              </div>
-              <div class="p-d-flex-p-flex-row">
-                <p-chip
-                  icon="pi pi-check"
-                  class="p-chip-info"
-                  *ngIf="appointment.prediction; else noPrediction"
-                  [label]="
-                    ('PARTICIPATION_PREDICTION' | translate) +
-                    ': ' +
-                    ('appointmentParticipationPrediction.' + appointment.prediction | translate)
-                  "
-                ></p-chip>
-              </div>
+            <div *ngIf="appointment.city" class="appointment-widget-city">
+              <i class="pi pi-map-marker p-mr-1"></i>{{ appointment.city | translate }}
             </div>
           </div>
-          <div class="p-col-12 p-lg-6">
-            <ng-container *ngIf="appointment.result">
-              <span class="label">{{ 'PARTICIPATION' | translate }}</span
-              ><br />
-              <span>{{ 'appointmentParticipationResult.' + appointment.result | translate }}</span>
-            </ng-container>
-          </div>
+        </div>
+        <div class="appointment-widget-status">
+          <p-tag [value]="'appointmentStatus.' + appointment.status | translate"></p-tag>
         </div>
       </div>
     </div>
-  </td>
-</ng-template>
-<ng-template #noVenue>
-  <div class="p-col-3 p-lg-6 venue-container">
-    <span>{{ 'VENUE_NOT_CONFIRMED' | translate }}</span>
-  </div>
-</ng-template>
-<ng-template #noPrediction>
-  <div class="p-col-3 p-lg-6">
-    <span class="no-prediction">{{ 'appointments.NO_PREDICTION' | translate }}</span>
-  </div>
-</ng-template>
+  </ng-template>
+</p-dataView>

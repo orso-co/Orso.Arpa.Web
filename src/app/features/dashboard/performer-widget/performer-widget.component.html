@@ -1,0 +1,29 @@
+<p-dataView [value]="lines">
+  <ng-template let-line pTemplate="listItem">
+    <div class="p-col-12">
+      <div class="performer-widget-line">
+        <div class="performer-widget-line-detail">
+          <i
+            [class]="'pi ' + ((line.isFullfilled$ | async) ? 'pi-check-circle success' : 'pi-circle-off') + ' performer-widget-line-icon'"
+          ></i>
+          <div class="performer-widget-line-text">
+            <div class="performer-widget-label">
+              {{ line.translationPrefix + '_LABEL' | translate }}
+            </div>
+            <div class="performer-widget-description">{{ line.translationPrefix + '_DESCRIPTION' | translate }}</div>
+          </div>
+        </div>
+        <div class="performer-widget-line-action">
+          <button
+            pButton
+            pRipple
+            class="p-button-text"
+            icon="pi pi-arrow-right"
+            [label]="line.anchorLabel | translate"
+            (click)="navigateTo(line.anchorUrl)"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-dataView>

@@ -21,3 +21,4 @@ export * from './form-error.service';
 export * from './room.service';
 export * from './room-equipment.service';
 export * from './room-section.service';
+export * from './appointment.service';
