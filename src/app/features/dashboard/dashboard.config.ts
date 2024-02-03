@@ -41,12 +41,6 @@ export const dashboards: Record<string, Record<string, any>> = {
           title: 'PERFORMER',
         },
       ],
-      [
-        'AppointmentsWidget',
-        {
-          title: 'APPOINTMENTS',
-        },
-      ],
     ],
   },
   staff: {
@@ -70,15 +64,15 @@ export const dashboards: Record<string, Record<string, any>> = {
         },
       ],
       [
-        'BirthdayWidget',
+        'AppointmentsWidget',
         {
-          title: 'BIRTHDAYS',
+          title: 'TODAYS_APPOINTMENTS',
         },
       ],
       [
-        'AppointmentsWidget',
+        'BirthdayWidget',
         {
-          title: 'APPOINTMENTS',
+          title: 'BIRTHDAYS',
         },
       ],
       [

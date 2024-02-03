@@ -5,7 +5,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AppointmentsComponent } from './appointments.component';
 import { of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { AppointmentService } from '../services/appointment.service';
+import { AppointmentService } from '../../../../@arpa/services/appointment.service';
 import { NotificationsMockService } from '../../../../testing/notifications.mock.service';
 import { LoadingService } from '@arpa/services';
 import { SectionService } from '@arpa/services';
@@ -26,11 +26,7 @@ describe('AppointmentsComponent', () => {
         { provide: SectionService, useValue: { sectionsAll$: of([]) } },
         { provide: ActivatedRoute, useValue: { data: of({}) } },
       ],
-      imports: [
-        RouterTestingModule,
-        HttpClientTestingModule,
-        TranslateMockModule,
-      ],
+      imports: [RouterTestingModule, HttpClientTestingModule, TranslateMockModule],
     }).compileComponents();
   }));
 

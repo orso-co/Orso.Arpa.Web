@@ -8,7 +8,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { TranslateService } from '@ngx-translate/core';
 import { first } from 'rxjs/operators';
 import { EditAppointmentComponent } from '../../../appointments/edit-appointment/edit-appointment.component';
-import { AppointmentService } from '../../../appointments/services/appointment.service';
+import { AppointmentService } from '../../../../../@arpa/services/appointment.service';
 
 @Component({
   selector: 'arpa-project-my-appointments',

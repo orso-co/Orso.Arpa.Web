@@ -18,7 +18,7 @@ import { ConfirmationService, MenuItem, SelectItem } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { sortBy, uniq } from 'lodash-es';
 import { EnumService, NotificationsService, ProjectService, SectionService, SelectValueService, VenueService } from '@arpa/services';
-import { AppointmentService } from '../services/appointment.service';
+import { AppointmentService } from '../../../../@arpa/services/appointment.service';
 import { first, map } from 'rxjs/operators';
 import { of, zip } from 'rxjs';
 import { Table } from 'primeng/table';
