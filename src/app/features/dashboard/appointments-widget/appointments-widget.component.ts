@@ -3,7 +3,6 @@ import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { EnumService, MeService } from '@arpa/services';
 import { AppointmentParticipationPrediction, AppointmentStatus, MyAppointmentDto, ProjectDto } from '@arpa/models';
-import { TranslateService } from '@ngx-translate/core';
 import { SelectItem } from 'primeng/api';
 import { Router } from '@angular/router';
 
@@ -17,13 +16,7 @@ export class AppointmentsWidgetComponent {
   // totalRecordsCountMissingPrediction$: Observable<number> = of(0);
   predictions$: Observable<SelectItem[]>;
 
-  constructor(
-    private router: Router,
-    private meService: MeService,
-    private cdRef: ChangeDetectorRef,
-    private translate: TranslateService,
-    private enumService: EnumService
-  ) {
+  constructor(private router: Router, private meService: MeService, private cdRef: ChangeDetectorRef, private enumService: EnumService) {
     this.predictions$ = this.enumService.getAppointmentParticipationPredictionSelectItems();
   }
 

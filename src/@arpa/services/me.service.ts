@@ -101,8 +101,12 @@ export class MeService {
     if (id) {
       return this.apiService.get<MyMusicianProfileDto>(`${this.baseUrl}/profiles/musician/${id}`).pipe(shareReplay());
     } else {
-      return this.apiService.get<MyMusicianProfileDto[]>(`${this.baseUrl}/profiles/musician`).pipe(shareReplay());
+      return this.getMyMusicianProfiles();
     }
+  }
+
+  getMyMusicianProfiles(): Observable<MyMusicianProfileDto[]> {
+    return this.apiService.get<MyMusicianProfileDto[]>(`${this.baseUrl}/profiles/musician`).pipe(shareReplay());
   }
 
   putProjectParticipation<T>(id: string, projectId: string, data: MyProjectParticipationModifyBodyDto) {

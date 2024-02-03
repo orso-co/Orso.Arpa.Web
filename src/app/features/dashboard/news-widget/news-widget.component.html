@@ -1,4 +1,4 @@
-<div class="p-grid p-jc-center p-mt-4">
+<div class="p-grid p-jc-center">
   <div class="p-col-12 p-md-10 p-lg-12">
     <p-virtualScroller (onLazyLoad)="loadData($event)" [lazy]="true" [rows]="4" [value]="loadedNews" scrollHeight="384px" [itemSize]="96">
       <ng-template let-newsItem pTemplate="item">

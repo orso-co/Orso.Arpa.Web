@@ -1,0 +1,49 @@
+:host ::ng-deep {
+  .performer-widget-label {
+    font-size: 1.3rem;
+    font-weight: 700;
+    display: flex;
+  }
+
+  .performer-widget-description {
+    margin: 0 0 1rem 0;
+  }
+
+  .performer-widget-line {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    width: 100%;
+
+    .performer-widget-line-detail {
+      flex: 1 1 0;
+      display: flex;
+
+      .performer-widget-line-icon {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+
+        &.success {
+          color: var(--green-600);
+        }
+      }
+
+      .performer-widget-line-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .performer-widget-line {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .performer-widget-line-action {
+      align-self: flex-end;
+    }
+  }
+}

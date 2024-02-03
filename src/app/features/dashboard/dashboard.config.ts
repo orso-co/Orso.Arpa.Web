@@ -9,6 +9,7 @@ import { AppointmentsWidgetComponent } from './appointments-widget/appointments-
 import { ChoirGridWidgetComponent } from './choir-grid-widget/choir-grid-widget.component';
 import { NewsWidgetComponent } from './news-widget/news-widget.component';
 import { BirthdayWidgetComponent } from './birthday-widget/birthday-widget/birthday-widget.component';
+import { PerformerWidgetComponent } from './performer-widget/performer-widget.component';
 
 export const widgets: Record<string, any> = {
   UserWidget: UserWidgetComponent,
@@ -22,6 +23,7 @@ export const widgets: Record<string, any> = {
   IframeWidgetProjectstats: IframeWidgetProjectstatsComponent,
   NewsWidget: NewsWidgetComponent,
   BirthdayWidget: BirthdayWidgetComponent,
+  PerformerWidget: PerformerWidgetComponent,
 };
 
 export const dashboards: Record<string, Record<string, any>> = {
@@ -31,6 +33,12 @@ export const dashboards: Record<string, Record<string, any>> = {
         'NewsWidget',
         {
           title: 'NEWS',
+        },
+      ],
+      [
+        'PerformerWidget',
+        {
+          title: 'PERFORMER',
         },
       ],
       [

@@ -2,7 +2,6 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
-  ComponentFactoryResolver,
   Directive,
   EventEmitter,
   Injector,
@@ -16,13 +15,11 @@ import {
 import { filter, map, switchMap } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subscription } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '@arpa/services';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService, MeService, LoadingService } from '@arpa/services';
 import { MenuItem } from 'primeng/api';
 import { WidgetComponent } from './widget/widget.component';
-import { LoadingService } from '@arpa/services';
 import { dashboards, widgets } from './dashboard.config';
-import { MeService } from '@arpa/services';
 
 /**
  * Represents a card layout that defines the number of columns and the dimensions of various card types.
@@ -122,11 +119,9 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private route: ActivatedRoute,
-    private router: Router,
-    private cfr: ComponentFactoryResolver,
-    private cdRef: ChangeDetectorRef,
+    private changeDetectorRef: ChangeDetectorRef,
     private injector: Injector,
-    private vcRef: ViewContainerRef,
+    private viewContainerRef: ViewContainerRef,
     private authService: AuthService,
     private meService: MeService
   ) {}
@@ -206,10 +201,6 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   private createWidget(targetRef: ViewContainerRef, type: string, config: Record<string, any> = {}) {
     let component = widgets[type];
     if (component) {
-      let widgetComponentFactory = this.cfr.resolveComponentFactory(WidgetComponent);
-
-      const ngContentFactory = this.cfr.resolveComponentFactory(component);
-
       const injector = Injector.create({
         providers: [
           {
@@ -222,15 +213,15 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
         parent: this.injector,
       });
 
-      const componentRef = this.vcRef.createComponent<any>(ngContentFactory, undefined, injector);
+      const componentRef = this.viewContainerRef.createComponent(component, { injector });
 
-      const widgetRef = targetRef.createComponent(widgetComponentFactory, undefined, injector, [[componentRef.location.nativeElement]]);
+      const widgetRef = targetRef.createComponent(WidgetComponent, { injector, projectableNodes: [[componentRef.location.nativeElement]] });
 
       componentRef.changeDetectorRef.detectChanges();
 
       if (config.title) {
         widgetRef.instance.title = config?.title;
-        this.cdRef.detectChanges();
+        this.changeDetectorRef.detectChanges();
       }
     }
   }
