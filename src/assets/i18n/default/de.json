@@ -183,6 +183,7 @@
   },
   "projectParticipationStatusResult": {
     "ACCEPTANCE": "Wie schön, Du bist dabei!",
+    "PENDING": "Bitte Teilnahmestatus angeben!",
     "REFUSAL": "Schade, du bist leider nicht dabei"
   },
   "projectStatus": {
