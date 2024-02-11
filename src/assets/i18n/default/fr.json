@@ -181,6 +181,7 @@
   },
   "projectParticipationStatusResult": {
     "ACCEPTANCE": "Oui, vous en êtes!",
+    "PENDING": "Veuillez préciser le statut de participation!",
     "REFUSAL": "Dommage, tu n'es pas là"
   },
   "projectStatus": {
