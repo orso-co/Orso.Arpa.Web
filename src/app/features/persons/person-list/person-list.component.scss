@@ -1,0 +1,50 @@
+:host ::ng-deep {
+  .person-list-table {
+    .p-datatable .p-datatable-tbody > tr > td .p-column-title {
+      display: none;
+    }
+
+    .action {
+      width: 4rem;
+    }
+
+    .p-datatable-wrapper table {
+      background-color: #1e1e1e;
+    }
+  }
+
+  @media screen and (max-width: 959px) {
+    .p-datatable {
+      .p-datatable-thead > tr > th,
+      .p-datatable-tfoot > tr > td {
+        display: none !important;
+      }
+
+      arpa-avatar {
+        display: none;
+      }
+
+      .p-datatable-tbody > tr {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--surface-d);
+
+        & > td {
+          text-align: left;
+          width: 100%;
+          float: left;
+          clear: left;
+          border: 0 none;
+          margin: 0.2rem;
+
+          .p-column-title {
+            padding: 0.4rem;
+            min-width: 30%;
+            display: inline-block;
+            margin: -0.4em 1em -0.4em -0.4rem;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}

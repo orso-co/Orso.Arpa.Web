@@ -1,43 +1,44 @@
 :host ::ng-deep {
-  .p-datatable .p-datatable-tbody > tr > td .p-column-title {
-    display: none;
+  .audit-log-table {
+    .p-datatable .p-datatable-tbody > tr > td .p-column-title {
+      display: none;
+    }
+
+    .action {
+      width: 4rem;
+    }
+
+    .p-datatable-wrapper table {
+      background-color: #1e1e1e;
+    }
   }
 
-  .action {
-    width: 4rem;
-  }
-
-  .p-datatable-wrapper table {
-    background-color: #1e1e1e;
-  }
-}
-
-@media screen and (max-width: 50rem) {
-  :host ::ng-deep {
+  @media screen and (max-width: 959px) {
     .p-datatable {
       .p-datatable-thead > tr > th,
       .p-datatable-tfoot > tr > td {
         display: none !important;
       }
 
-      .p-datatable-tbody > tr > td {
-        text-align: left;
-        display: block;
-        width: 100%;
-        float: left;
-        clear: left;
-        border: 0 none;
+      .p-datatable-tbody > tr {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--surface-d);
 
-        .p-column-title {
-          padding: .4rem;
-          min-width: 30%;
-          display: inline-block;
-          margin: -.4em 1em -.4em -.4rem;
-          font-weight: bold;
-        }
+        & > td {
+          text-align: left;
+          width: 100%;
+          float: left;
+          clear: left;
+          border: 0 none;
+          margin: 0.2rem;
 
-        &:last-child {
-          border-bottom: 1px solid var(--surface-d);
+          .p-column-title {
+            padding: 0.4rem;
+            min-width: 30%;
+            display: inline-block;
+            margin: -0.4em 1em -0.4em -0.4rem;
+            font-weight: bold;
+          }
         }
       }
     }
