@@ -7,17 +7,19 @@
 
 <!-- The feed template is projected into the graph-ql-feed component. -->
 <ng-template #feed let-feed>
-  <arpa-table
-    (lazyEvents)="feedSource.onLazy($event)"
-    (rowClickEvents)="onRowClick($event)"
-    [actionsTemplateRef]="actionsTemplate"
-    [columns]="columns"
-    [feed]="feed"
-  >
-    <ng-template arpaTableColumn="completed" let-value>
-      <i *ngIf="value" class="pi pi-check"></i>
-    </ng-template>
-  </arpa-table>
+  <div class="project-list-table">
+    <arpa-table
+      (lazyEvents)="feedSource.onLazy($event)"
+      (rowClickEvents)="onRowClick($event)"
+      [actionsTemplateRef]="actionsTemplate"
+      [columns]="columns"
+      [feed]="feed"
+    >
+      <ng-template arpaTableColumn="completed" let-value>
+        <i *ngIf="value" class="pi pi-check"></i>
+      </ng-template>
+    </arpa-table>
+  </div>
 </ng-template>
 
 <!-- The actions template is used in the arpa-table component and added to each row. -->
