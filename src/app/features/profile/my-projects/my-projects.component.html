@@ -205,7 +205,7 @@
               </div>
               <div *ngIf="myProject.project.status" class="p-col-3 content-item">
                 <label>{{ 'my-projects.STATUS' | translate }}</label>
-                <span>{{ myProject.project.status | translate }}</span>
+                <span>{{ 'projectStatus.' + myProject.project.status | translate }}</span>
               </div>
             </div>
             <div class="p-fluid p-mt-1 p-formgrid p-grid comparison-container">
@@ -224,7 +224,7 @@
               </div>
               <div *ngIf="myProject.parentProject?.status" class="p-col-3 content-item">
                 <label>{{ 'my-projects.STATUS' | translate }}</label>
-                <span>{{ myProject.parentProject?.status | translate }}</span>
+                <span>{{ 'projectStatus.' + myProject.parentProject?.status | translate }}</span>
               </div>
             </div>
             <div class="p-fluid p-mt-1 p-formgrid p-grid comparison-container">
