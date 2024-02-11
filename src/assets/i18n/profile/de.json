@@ -105,9 +105,10 @@
     "WORK_IN_PROGRESS": "Estamos a trabalhar no seu estatuto de participação e a enviar-lhe um e-mail, quando algo muda."
   },
   "my-appointments": {
-    "PREDICTION": "Vorhersage",
-    "MY_COMMENT": "Mein Kommentar",
-    "EDIT_PREDICTION": "Vorhersage bearbeiten"
+    "PREDICTION": "Wirst du teilnehmen?",
+    "MY_COMMENT": "Kommentar",
+    "EDIT_PREDICTION": "Vorhersage bearbeiten",
+    "ENTER_PREDICTION": "Bitte Vorhersage eintragen!"
   },
   "bank": {
     "ACCOUNT_OWNER": "Kontoinhaber",

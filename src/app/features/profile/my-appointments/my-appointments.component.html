@@ -50,7 +50,6 @@
               >{{ appointment.startTime | date : 'H:mm' : 'locale(de)' }}-{{ appointment.endTime | date : 'H:mm' : 'locale(de)' }}</span
             >
           </div>
-          <p-button *ngIf="!appointment.prediction" icon="pi pi-question"></p-button>
 
           <div class="p-d-lg-none status-badge p-mt-3">
             <p-tag
@@ -74,7 +73,7 @@
                 ><span *ngIf="appointment.category?.name" class="category">{{ appointment.category?.name }} </span>"{{ appointment.name }}"
               </span>
               <div *ngIf="!appointment.prediction" class="edit-participation">
-                <span>{{ 'my-appointments.EDIT_PREDICTION' | translate }}</span>
+                <span>{{ 'my-appointments.ENTER_PREDICTION' | translate }}</span>
               </div>
               <p-chip
                 icon="pi pi-check"

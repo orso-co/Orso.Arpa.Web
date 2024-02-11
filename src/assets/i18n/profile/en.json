@@ -105,9 +105,10 @@
   },
 
   "my-appointments": {
-    "PREDICTION": "Prediction ",
-    "MY_COMMENT": "My Comment",
-    "EDIT_PREDICTION": "Edit Prediction"
+    "PREDICTION": "Will you participate?",
+    "MY_COMMENT": "Comment",
+    "EDIT_PREDICTION": "Edit Prediction",
+    "ENTER_PREDICTION": "Please enter prediction"
   },
 
   "bank": {

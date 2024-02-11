@@ -29,16 +29,5 @@
   "BIRTHDAYS_DESCRIPTION": "Les personnes suivantes ont leur anniversaire aujourd'hui, hourra !",
   "PROJECTSTATS": "Statistiques du projet",
   "GO_TO_MY_APPOINTMENTS": "Allez dans \"mes dates\"",
-  "VENUE_NOT_CONFIRMED": "Lieu non confirmé",
-
-  "my-appointments": {
-    "PREDICTION": "Prédiction",
-    "MY_COMMENT": "Mon commentaire",
-    "EDIT_PREDICTION": "Modifier la prédiction"
-  },
-  "appointmentRibbon": {
-    "POLL_MISSING": "Sondage manquant",
-    "AWAITING_POLL": "En attente de sondage",
-    "AMBIGUOUS": "Date ambiguë"
-  }
+  "VENUE_NOT_CONFIRMED": "Lieu non confirmé"
 }

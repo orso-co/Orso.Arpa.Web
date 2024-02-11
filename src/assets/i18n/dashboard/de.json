@@ -34,16 +34,5 @@
   "BIRTHDAYS_DESCRIPTION": "Die folgenden Personen haben heute Geburtstag, hurra!",
   "PROJECTSTATS": "Projektstatistik",
   "GO_TO_MY_APPOINTMENTS": "Gehe zu 'Meine Termine'",
-  "VENUE_NOT_CONFIRMED": "Ort noch nicht bestätigt",
-
-  "my-appointments": {
-    "PREDICTION": "Vorhersage",
-    "MY_COMMENT": "Mein Kommentar",
-    "EDIT_PREDICTION": "Vorhersage bearbeiten"
-  },
-  "appointmentRibbon": {
-    "POLL_MISSING": "Bitte an der Terminumfrage teilnehmen!",
-    "AWAITING_POLL": "Terminumfrage läuft noch",
-    "AMBIGUOUS": "Unklar, ob Termin stattfindet"
-  }
+  "VENUE_NOT_CONFIRMED": "Ort noch nicht bestätigt"
 }
