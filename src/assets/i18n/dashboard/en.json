@@ -31,16 +31,5 @@
   "BIRTHDAYS_DESCRIPTION": "The following people have a birthday today, hurray!",
   "PROJECTSTATS": "Project Statistics",
   "GO_TO_MY_APPOINTMENTS": "Got to 'My appointments'",
-  "VENUE_NOT_CONFIRMED": "Venue not confirmed",
-
-  "my-appointments": {
-    "PREDICTION": "Prediction",
-    "MY_COMMENT": "My comment",
-    "EDIT_PREDICTION": "Edit prediction"
-  },
-  "appointmentRibbon": {
-    "POLL_MISSING": "You have not yet voted",
-    "AWAITING_POLL": "Still awaiting poll",
-    "AMBIGUOUS": "Appointment not yet confirmed"
-  }
+  "VENUE_NOT_CONFIRMED": "Venue not confirmed"
 }

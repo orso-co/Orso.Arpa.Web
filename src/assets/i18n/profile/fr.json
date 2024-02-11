@@ -102,9 +102,10 @@
     "WORK_IN_PROGRESS": "Nous travaillons sur votre statut de participation et vous enverrons un e-mail en cas de changement."
   },
   "my-appointments": {
-    "PREDICTION": "Prédiction",
-    "MY_COMMENT": "Mon commentaire",
-    "EDIT_PREDICTION": "Modifier la prédiction"
+    "PREDICTION": "Participeras-tu ?",
+    "MY_COMMENT": "Commentaire",
+    "EDIT_PREDICTION": "Modifier la prédiction",
+    "ENTER_PREDICTION": "Veuillez saisir les prévisions"
   },
   "bank": {
     "ACCOUNT_OWNER": "Propriétaire du compte",

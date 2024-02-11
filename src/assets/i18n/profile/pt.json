@@ -102,9 +102,10 @@
   },
 
   "my-appointments": {
-    "PREDICTION": "Previsão",
-    "MY_COMMENT": "Meu comentário",
-    "EDIT_PREDICTION": "Editar previsão"
+    "PREDICTION": "Vai participar?",
+    "MY_COMMENT": "Comentário",
+    "EDIT_PREDICTION": "Editar previsão",
+    "ENTER_PREDICTION": "Introduzir previsão"
   },
 
   "bank": {
