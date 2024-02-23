@@ -1,7 +1,7 @@
 <form (ngSubmit)="submit()" [formGroup]="registerFormGroup" autocomplete="off" class="p-jc-center">
   <div class="p-fluid">
     <arpa-form-field label="GENDER" type="select">
-      <p-dropdown
+        <p-dropdown
         [options]="(genderSelectValue | async) || []"
         [placeholder]="'NOTHING_SELECTED' | translate"
         formControlName="genderId"
