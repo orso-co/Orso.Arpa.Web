@@ -37,6 +37,8 @@ export const environment = {
       en: 'English',
       fr: 'Français',
       pt: 'Português',
+      ru: 'Русский',
+      ua: 'Українська',
     },
   },
 };

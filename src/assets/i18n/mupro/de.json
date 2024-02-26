@@ -6,10 +6,10 @@
   "EDIT_PARTICIPATION": "Teilnahmestatus bearbeiten",
   "PROJECTS": "Projekte für dieses Profil",
   "STATUS_STAFF": "Stand seitens KBB",
-  "STATUS_PERFORMER": "Stand seitens Performer",
+  "STATUS_PERFORMER": "Stand seitens Mitwirkender",
   "PARTICIPATION_STATUS_INTERNAL": "Teilnahmestatus",
   "PARTICIPATION_STATUS_INNER": "Teilnahmestatus",
-  "PARTICIPATION_COMMENT_PERFORMER": "Kommentar Performer",
+  "PARTICIPATION_COMMENT_PERFORMER": "Kommentar Mitwirkender",
   "PARTICIPATION_COMMENT_STAFF": "Kommentar Mitarbeiter",
   "MUPRO_CREATION_DATE": "Profil-Erstellungsdatum",
   "PARTICIPATION_COMMENT_TEAM": "Kommentar nur KBB-intern",
@@ -18,8 +18,8 @@
   "GO_TO_PERSON": "Gehe zur Person",
   "AMATEUR": "Amateur",
   "STUDENT": "Student",
-  "SEMI-PROFESSIONAL": "Semi-Professional",
-  "PROFESSIONAL": "Professional",
+  "SEMI-PROFESSIONAL": "Semi-Professionell",
+  "PROFESSIONAL": "Professionell",
   "UKNONWN": "Unbekannt",
   "QUALIFICATION": "Qualifikation"
 }
