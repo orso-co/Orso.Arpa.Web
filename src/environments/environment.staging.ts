@@ -35,8 +35,10 @@ export const environment = {
     locales: {
       de: 'Deutsch',
       en: 'English',
-      pt: 'Português',
       fr: 'Français',
+      pt: 'Português',
+      ru: 'Русский',
+      ua: 'Українська',
     },
   },
 };
