@@ -34,17 +34,11 @@ export class TopbarService {
       { label: 'LOGOUT', icon: 'pi pi-sign-out', routerLink: ['/logout'] },
       { label: 'MY_DATA', icon: 'pi pi-user-edit', routerLink: ['/arpa/profile/my-data'] },
       { separator: true },
-      {
-        label: 'LANGUAGE',
-        icon: 'pi pi-globe',
-        children: [
-          ...this.languageService.getLangs().map((lang) => ({
-            label: this.languageService.getLanguageName(lang),
-            command: () => this.updateLanguage(lang),
-          })),
-        ],
-      },
-
+      ...this.languageService.getLangs().map((lang) => ({
+        label: this.languageService.getLanguageName(lang),
+        icon: `fi fi-${lang === 'en' ? 'gb' : lang}`,
+        command: () => this.updateLanguage(lang),
+      })),
       { separator: true },
       { label: 'THEME_SWITCHER', icon: 'pi pi-desktop', command: () => this.menuService.toggleDarkMode() },
     ];
