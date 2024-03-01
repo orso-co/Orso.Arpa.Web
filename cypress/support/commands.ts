@@ -1,12 +1,19 @@
 /// <reference types="cypress" />
+
+/*
+    This file contains all custom commands used in the e2e tests.
+    They implement repeatable tasks to prefent bloating the testcode.
+*/
+
+// login with username and password.
 Cypress.Commands.add('login', (username, password) => {
-    // Arrange
     cy.visit('/login')
     cy.get('#usernameOrEmail').type(username )
     cy.get('#password').type(password)
     cy.get('button[type="submit"]').click()
 })
 
+// fillout and submit registration form.
 Cypress.Commands.add('adduser', (givenname, surname, email, username, password) => {
     cy.clearAllCookies()
     cy.visit('/login')
@@ -25,7 +32,7 @@ Cypress.Commands.add('adduser', (givenname, surname, email, username, password) 
     .click({ force: true })
     cy.get('input[formControlName="givenName"]').type(givenname)
     cy.get('input[formControlName="surname"]').type(surname)
-    cy.get('input[formControlName="email"]').type(email)
+    cy.get(' input[formControlName="email"]').type(email)
     cy.get('input[formControlName="userName"]').type(username)
     cy.get('p-password[formControlName="password"]').type(password)
     cy.get('p-password[formControlName="confirmPassword"]').type(password)
@@ -35,12 +42,13 @@ Cypress.Commands.add('adduser', (givenname, surname, email, username, password) 
     cy.get('button[type="submit"]').click({force: true})
 })
 
-Cypress.Commands.add('deleteUser', (user_name, adminuser, adminpw) => {
-    cy.login(adminuser, adminpw)
-
-})
-
+// logout current user, only working when logged in.
 Cypress.Commands.add('logout', () => {
     cy.get('arpa-avatar.ng-star-inserted > .p-element > .p-mr-3').click()
     cy.get('.p-menu-list > :nth-child(1) > .p-ripple').click()
+})
+
+// close toast msg, to increase testspeed while not waiting for toast msg closing.
+Cypress.Commands.add('closeToast', () => {
+    cy.get('.p-toast-icon-close-icon').click()
 })

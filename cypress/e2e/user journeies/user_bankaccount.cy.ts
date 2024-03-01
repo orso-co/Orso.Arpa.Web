@@ -2,7 +2,9 @@ describe('User is able to make crud operations to his bankaccount', () => {
     it('Add bankaccount', () => {
         // Arrange
         cy.clearAllCookies()
-        cy.login('admin', 'Pa$$w0rd')
+        cy.fixture('admin').then((data) => {
+            cy.login(data.username, data.password)
+        })
         cy.get(':nth-child(5) > .p-ripple > .p-menuitem-icon').click()
         cy.get('#p-tabpanel-4-label').click()
         cy.get('#iban').type('DE02120300000000202051')
@@ -13,8 +15,11 @@ describe('User is able to make crud operations to his bankaccount', () => {
 
         //Act
         cy.get('arpa-user-bankdata > .p-my-5 > .p-formgroup-inline > .p-text-left > .p-element').click()
+        cy.closeToast()
         cy.logout()
-        cy.login('admin', 'Pa$$w0rd')
+        cy.fixture('admin').then((data) => {
+            cy.login(data.username, data.password)
+        })
         cy.get(':nth-child(5) > .p-ripple > .p-menuitem-icon').click()
         cy.get('#p-tabpanel-4-label').click()
 
@@ -28,10 +33,13 @@ describe('User is able to make crud operations to his bankaccount', () => {
     })
 
     it('Delete bankaccount', () => {
-        cy.login('admin', 'Pa$$w0rd')
+        cy.fixture('admin').then((data) => {
+            cy.login(data.username, data.password)
+        })
         cy.get(':nth-child(5) > .p-ripple > .p-menuitem-icon').click()
         cy.get('#p-tabpanel-4-label').click()
         cy.get('#pr_id_10-table > .p-datatable-tbody > .hasHover > .end > .p-element > .p-button-icon').click()
+        cy.closeToast()
         cy.logout()
     })
 })
