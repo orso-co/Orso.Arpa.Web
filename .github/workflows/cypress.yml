@@ -11,5 +11,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          build: npm run build
-          start: npm start
+         build: |
+             npm install --legacy-peer-deps
+             npm run build:dev
+         start: npm start
