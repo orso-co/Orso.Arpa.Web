@@ -13,5 +13,4 @@ jobs:
         with:
          build: |
              npm install --legacy-peer-deps
-             npm run build:dev
          start: npm start
