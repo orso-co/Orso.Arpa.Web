@@ -128,7 +128,12 @@
                 <div class="p-d-flex p-flex-column">
                   <span>{{ appointment.venue.name }}</span>
                   <span>{{ appointment.venue.address.address1 }}</span>
-                  <span>{{ appointment.venue.address.zip }} {{ appointment.venue.address.city }}</span>
+                  <span
+                    >{{ appointment.venue.address.zip }} {{ appointment.venue.address.city
+                    }}<span *ngIf="appointment.venue.address?.urbanDistrict"
+                      >&nbsp;({{ appointment.venue.address.urbanDistrict }})</span
+                    ></span
+                  >
                 </div>
               </div>
             </div>
