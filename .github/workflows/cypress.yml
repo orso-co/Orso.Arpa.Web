@@ -8,11 +8,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Start Backend
-        uses: orso-co/Orso.Arpa.Api
-        run: |
-            docker-compose build --no-cache api
-            docker-compose up -d
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
