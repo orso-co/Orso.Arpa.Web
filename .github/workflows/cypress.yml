@@ -10,15 +10,17 @@ jobs:
         uses: actions/checkout@v4
         with:
             repository: orso-co/Orso.Arpa.Api
+            path: backend
       - name: Build backend
         uses: isbang/compose-action@v1.5.1
         with:
             compose-file: "./docker-compose.yml"
             up-flags: "-d"
       - name: Checkout frontend
-        run: |
-          git clone https://github.com/orso-co/Orso.Arpa.Web.git
-          cd ./Orso.Arpa.Web
+        uses: actions/checkout@v4
+        with:
+            repository: orso-co/Orso.Arpa.Web
+            path: frontend
       - name: Run cypress tests
         uses: cypress-io/github-action@v6
         with:
