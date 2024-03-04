@@ -24,8 +24,8 @@ jobs:
       - name: Start frontend
         run: |
           cd frontend
-          npm i --legacy-peer-deps&
-          npm start
+          npm i --legacy-peer-deps
+          npm start &
       - name: Run cypress tests
         uses: cypress-io/github-action@v6
         with:
