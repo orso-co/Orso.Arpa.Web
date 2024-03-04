@@ -16,6 +16,8 @@ jobs:
             compose-file: "./docker-compose.yml"
       - name: Checkout frontend
         uses: actions/checkout@v4
+        with:
+          repository: orso-co/Orso.Arpa.Api
       - name: Run cypress tests
         uses: cypress-io/github-action@v6
         with:
