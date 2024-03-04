@@ -3,14 +3,28 @@ name: Cypress Tests
 on: push
 
 jobs:
-  cypress-run:
+  run-cypress-tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Cypress run
+      - name: Checkout backend
+        uses: orso-co/Orso.Arpa.Api
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build api-server
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: false
+          tags: api
+      - name: Run backend
+        uses: addnab/docker-run-action@v3
+        with:
+          image: api
+      - name: Run cypress tests
         uses: cypress-io/github-action@v6
         with:
-         build: |
-             npm install --legacy-peer-deps
-         start: npm start
+          install-command: npm install --legacy-peer-deps
+          start: npm start
+      
