@@ -16,9 +16,9 @@ jobs:
             compose-file: "./docker-compose.yml"
             up-flags: "-d"
       - name: Checkout frontend
-        uses: actions/checkout@v4
-        with:
-          repository: orso-co/Orso.Arpa.Web
+        run: |
+          git clone https://github.com/orso-co/Orso.Arpa.Web.git
+          cd Orso.Arpa.Web
       - name: Run cypress tests
         uses: cypress-io/github-action@v6
         with:
