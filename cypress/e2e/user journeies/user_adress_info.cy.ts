@@ -43,6 +43,4 @@ describe('User can manage adress information', () => {
         cy.closeToast()
         cy.logout()
     })
-
-    //TODO change adress delete adress
 })
