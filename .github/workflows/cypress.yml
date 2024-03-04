@@ -6,22 +6,9 @@ jobs:
   run-cypress-tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout backend
-        uses: orso-co/Orso.Arpa.Api
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
       - name: Build api-server
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: false
-          tags: api
-      - name: Run backend
-        uses: addnab/docker-run-action@v3
-        with:
-          image: api
+        uses: orso-co/Orso.Arpa.Api
+        run: docker build -t api < Dockerile
       - name: Run cypress tests
         uses: cypress-io/github-action@v6
         with:
