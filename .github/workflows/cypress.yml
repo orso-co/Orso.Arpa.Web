@@ -8,10 +8,11 @@ jobs:
     steps:
       - name: Checkout backend
         uses: actions/checkout@v4
-          with:
+        with:
             repository: orso-co/Orso.Arpa.Api
       - name: Build backend
         uses: isbang/compose-action@v1.5.1
+        with:
             compose-file: "./docker-compose.yml"
       - name: Checkout frontend
         uses: actions/checkout@v4
