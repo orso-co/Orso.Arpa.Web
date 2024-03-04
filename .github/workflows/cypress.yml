@@ -23,6 +23,7 @@ jobs:
             path: frontend
       - name: Start frontend
         run: |
+          cd frontend
           npm install --legacy-peer-deps
           npm start
       - name: Run cypress tests
