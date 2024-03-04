@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout backend
-        uses: orso-co/Orso.Arpa.Api
+        uses: orso-co/Orso.Arpa.Api@main
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
