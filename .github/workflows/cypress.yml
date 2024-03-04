@@ -6,7 +6,7 @@ jobs:
   run-cypress-tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout frontend
         uses: actions/checkout@v4
       - name: Run cypress tests
         uses: cypress-io/github-action@v6
