@@ -18,7 +18,7 @@ jobs:
       - name: Checkout frontend
         run: |
           git clone https://github.com/orso-co/Orso.Arpa.Web.git
-          cd Orso.Arpa.Web
+          cd ./Orso.Arpa.Web
       - name: Run cypress tests
         uses: cypress-io/github-action@v6
         with:
