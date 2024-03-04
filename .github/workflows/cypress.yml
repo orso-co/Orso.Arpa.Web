@@ -28,6 +28,8 @@ jobs:
       - name: Run cypress tests
         uses: cypress-io/github-action@v6
         with:
-          install-command: npm install --legacy-peer-deps
+          install-command: |
+            cd frontend
+            npm install --legacy-peer-deps
           start: npm start
       
