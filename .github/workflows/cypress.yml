@@ -17,6 +17,9 @@ jobs:
           sudo snap install dotnet-sdk --classic
           sudo docker-compose build
           sudo docker-compose up -d
+          docker-compose stop api
+          dotnet-sdk.dotnet build
+          dotnet-sdk.dotnet run --project Orso.Arpa.Api
           cd ..
           sudo rm -R backend
       - name: Checkout frontend
