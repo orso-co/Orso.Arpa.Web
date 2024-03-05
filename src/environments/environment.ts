@@ -9,11 +9,11 @@ export const environment = {
   },
   api: {
     protocol: 'http',
-    baseUrl: 'localhost:5001/api',
+    baseUrl: 'localhost:5000/api',
   },
   graphql: {
     protocol: 'http',
-    baseUrl: 'localhost:5001/graphql',
+    baseUrl: 'localhost:5000/graphql',
   },
   web: {
     protocol: 'http',
@@ -28,7 +28,7 @@ export const environment = {
   },
   config: {
     protocol: 'http',
-    baseUrl: 'localhost:5001/swagger/v1/swagger.json',
+    baseUrl: 'localhost:5000/swagger/v1/swagger.json',
   },
   locale: {
     default: 'de',
