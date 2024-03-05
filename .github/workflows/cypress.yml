@@ -14,9 +14,8 @@ jobs:
       - name: Start backend
         run: |
           cd backend
-          sudo docker-compose build --no-cache api
-          sudo docker-compose up -d
-          docker-compose stop api
+          docker-compose build --no-cache api
+          docker-compose up -d
           cd ..
           sudo rm -R backend
       - name: Checkout frontend
