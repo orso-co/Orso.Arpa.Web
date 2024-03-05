@@ -22,12 +22,12 @@ jobs:
         with:
             repository: orso-co/Orso.Arpa.Web
             path: frontend
-      - run: cd frontend/frontend
-      - run: ls
       - name: Run cypress tests
         uses: cypress-io/github-action@v6
         with:
-          install-command: npm install --legacy-peer-deps
+          install-command: |
+            cd frontend 
+            npm install --legacy-peer-deps
           start: npm start
             
       
