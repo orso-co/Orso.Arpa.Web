@@ -27,6 +27,6 @@ jobs:
           cd frontend
           npm install --legacy-peer-deps
       - name: Run cypress tests
-        run: cd frontend && (npm start &) && npx cypress run -b chromium
+        run: cd frontend && (npm start &) && npx cypress run
             
       
