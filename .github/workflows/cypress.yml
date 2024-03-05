@@ -11,11 +11,9 @@ jobs:
         with:
             repository: orso-co/Orso.Arpa.Api
             path: backend
-      - name: Build backend
-        uses: isbang/compose-action@v1.5.1
-        with:
-            compose-file: "backend/docker-compose.yml"
-            up-flags: "-d"
+      - run: |
+          cd backend
+          docker-compose up -d
       - run: docker ps
       - name: Checkout frontend
         uses: actions/checkout@v4
