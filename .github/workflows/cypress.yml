@@ -22,7 +22,7 @@ jobs:
         with:
             repository: orso-co/Orso.Arpa.Web
             path: frontend
-      - run: cd frontend
+      - run: cd frontend/frontend
       - run: ls
       - name: Run cypress tests
         uses: cypress-io/github-action@v6
