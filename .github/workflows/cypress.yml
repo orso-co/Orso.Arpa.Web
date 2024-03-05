@@ -22,5 +22,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           install-command: npm install --legacy-peer-deps
-          start: npm start
+          start: |
+            ng serve 
+            npm start
       
