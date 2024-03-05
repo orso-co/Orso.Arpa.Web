@@ -14,7 +14,6 @@ jobs:
       - name: Start backend
         run: |
           cd backend
-          sudo docker-compose build
           sudo docker-compose up -d
           cd ..
           sudo rm -R backend
