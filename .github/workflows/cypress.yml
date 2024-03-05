@@ -14,7 +14,7 @@ jobs:
       - name: Build backend
         uses: isbang/compose-action@v1.5.1
         with:
-            compose-file: "./backend/docker-compose.yaml"
+            compose-file: "backend/docker-compose.yaml"
             up-flags: "-d"
       - run: docker ps
       - name: Checkout frontend
