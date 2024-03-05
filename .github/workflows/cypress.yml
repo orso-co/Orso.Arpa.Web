@@ -18,9 +18,6 @@ jobs:
             up-flags: "-d"
       - name: Checkout frontend
         uses: actions/checkout@v4
-        with:
-            repository: orso-co/Orso.Arpa.Web
-            path: frontend
       - name: Run cypress tests
         uses: cypress-io/github-action@v6
         with:
