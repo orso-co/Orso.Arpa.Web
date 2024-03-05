@@ -16,6 +16,7 @@ jobs:
         with:
             compose-file: "./docker-compose.yml"
             up-flags: "-d"
+      - run: docker ps
       - name: Checkout frontend
         uses: actions/checkout@v4
       - name: Run cypress tests
