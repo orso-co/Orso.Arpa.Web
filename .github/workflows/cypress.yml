@@ -26,6 +26,8 @@ jobs:
         run: |
           cd frontend
           npm install --legacy-peer-deps
+      - name: install test browser
+        run: sudo apt install firefox -y
       - name: Run cypress tests
         run: cd frontend && (npm start &) && npx cypress run -b firefox
             
