@@ -11,7 +11,8 @@ jobs:
         with:
             repository: orso-co/Orso.Arpa.Api
             path: backend
-      - run: |
+      - name: Start backend
+        run: |
           cd backend
           sudo docker-compose up -d
           cd ..
@@ -22,12 +23,13 @@ jobs:
         with:
             repository: orso-co/Orso.Arpa.Web
             path: frontend
+      - name: Install dependencies
+        run: |
+          cd frontend
+          npm install --legacy-peer-deps
       - name: Run cypress tests
         uses: cypress-io/github-action@v6
         with:
-          install-command: |
-            cd frontend 
-            npm install --legacy-peer-deps
           start: npm start
             
       
