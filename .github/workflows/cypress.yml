@@ -17,7 +17,6 @@ jobs:
           sudo docker-compose up -d
           cd ..
           sudo rm -R backend
-      - run: docker ps
       - name: Checkout frontend
         uses: actions/checkout@v4
         with:
