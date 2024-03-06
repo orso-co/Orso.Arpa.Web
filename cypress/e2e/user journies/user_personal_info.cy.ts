@@ -37,7 +37,7 @@ describe('User can manage his contact info', () => {
     it('Change contact information', () => {
         // Arrange
         cy.clearAllCookies()
-        ccy.fixture('admin').then((data) => {
+        cy.fixture('admin').then((data) => {
             cy.login(data.username, data.password)
         })
         cy.get(':nth-child(5) > .p-ripple > .p-menuitem-icon').click()
