@@ -29,8 +29,6 @@ jobs:
           npm install --legacy-peer-deps
       - name: Run cypress tests on chromium
         run: cd frontend && (npm start &) && npx cypress run -b chromium
-      - name: Run cypress tests on edge
-        run: npx cypress run -b edge
       - name: Run cypress tests on firefox
         run: |
           sudo snap install firefox
