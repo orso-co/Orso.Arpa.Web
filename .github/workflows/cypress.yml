@@ -27,11 +27,11 @@ jobs:
         run: |
           cd frontend
           npm install --legacy-peer-deps
-      - name: Run cypress tests on chromium
+      - name: Run cypress tests on firefox
         run: cd frontend && (npm start &) && npx cypress run -b chromium
       - name: Run cypress tests on firefox
         run: |
-          sudo snap install firefox
-          npx cypress run -b firefox
+          sudo snap install chrome
+          cd frontend && npx cypress run -b chrome
             
       
