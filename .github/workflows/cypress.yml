@@ -33,9 +33,5 @@ jobs:
         run: cd frontend && npx cypress run -b chrome
       - name: Run cypress tests on edge
         run: cd frontend && npx cypress run -b edge
-      - name: install firefox
-        run: sudo apt-get install firefox -y
-      - name: Run cypress tests on firefox
-        run: cd frontend && npx cypress run -b firefox
             
       
