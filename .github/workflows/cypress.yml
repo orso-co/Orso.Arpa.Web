@@ -1,6 +1,10 @@
 name: Cypress Tests
 
-on: push
+on:
+  push:
+  pull_request:
+    types: opened
+    branches: master
 
 jobs:
   run-cypress-tests:
@@ -11,7 +15,6 @@ jobs:
         with:
             repository: orso-co/Orso.Arpa.Api
             path: backend
-            ref: fix-docker-compose
       - name: Start backend
         run: |
           cd backend
@@ -33,5 +36,4 @@ jobs:
         run: cd frontend && npx cypress run -b chrome
       - name: Run cypress tests on edge
         run: cd frontend && npx cypress run -b edge
-            
-      
+    
