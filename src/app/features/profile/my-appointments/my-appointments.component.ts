@@ -74,10 +74,10 @@ export class MyAppointmentsComponent {
             (error) => {
               if (Object.keys(error.errors).length) {
                 Object.keys(error.errors).forEach((e) => {
-                  error.errors[e].forEach((message: string) => {
-                    this.notificationsService.error(message, 'views');
-                  });
+                  error.errors[e].forEach((message: string) => this.notificationsService.error(message));
                 });
+              } else {
+                this.notificationsService.error(error.title);
               }
             }
           );
