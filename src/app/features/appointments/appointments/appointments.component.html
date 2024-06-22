@@ -1,13 +1,16 @@
-<div class='card p-m-auto' style='max-width: 100%;'>
-  <div class='p-grid'>
-    <div class='p-col-12'>
+<div class="card p-m-auto" style="max-width: 100%">
+  <div class="p-grid">
+    <div class="p-col-12">
       <p-fullCalendar
         #calendar
-        [events]='events'
-        [options]='fullCalendarOptions$ | async'
-        deepChangeDetection='true'
-        id='calendar'
-></p-fullCalendar>
+        [events]="events"
+        [options]="fullCalendarOptions$ | async"
+        deepChangeDetection="true"
+        id="calendar"
+      ></p-fullCalendar>
     </div>
+  </div>
+  <div style="text-align: center">
+    <p-button label="{{ 'DOWNLOAD_APPOINTMENTS' | translate }}" (onClick)="download()"></p-button>
   </div>
 </div>
