@@ -8,7 +8,7 @@ import {
   AppointmentListDto,
 } from '@arpa/models';
 import { shareReplay } from 'rxjs/operators';
-import { HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '@arpa/services';
@@ -79,7 +79,12 @@ export class AppointmentService {
   }
 
   setDates(id: string, startTime: Date | null, endTime: Date | null): Observable<AppointmentDto> {
-    return this.apiService.put<AppointmentDto>(`${this.baseUrl}/${id}/dates/set`, { startTime, endTime }).pipe(shareReplay());
+    return this.apiService
+      .put<AppointmentDto>(`${this.baseUrl}/${id}/dates/set`, {
+        startTime,
+        endTime,
+      })
+      .pipe(shareReplay());
   }
 
   setResult(personId: string, appointmentId: string, result: AppointmentParticipationResult): Observable<any> {
@@ -95,5 +100,18 @@ export class AppointmentService {
   sendNotification(appointmentId: string, forceSending = false) {
     const params = new HttpParams().set('forceSending', forceSending);
     return this.apiService.post(`${this.baseUrl}/${appointmentId}/notification`, {}, params).pipe(shareReplay());
+  }
+
+  downloadIcsFile(): void {
+    this.apiService.getAsBlob('/appointments/export').subscribe((blob) => {
+      const url = window.URL.createObjectURL(blob);
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = 'appointments.ics';
+      document.body.appendChild(anchor);
+      anchor.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(anchor);
+    });
   }
 }
