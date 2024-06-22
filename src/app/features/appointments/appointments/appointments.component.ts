@@ -9,7 +9,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Observable, Subscription } from 'rxjs';
 import { first, map } from 'rxjs/operators';
-import { AppointmentService } from '../../../../@arpa/services/appointment.service';
+import { AppointmentService } from '@arpa/services';
 import { SectionService, NotificationsService, EnumService } from '@arpa/services';
 import { EditAppointmentComponent } from '../edit-appointment/edit-appointment.component';
 import { Unsubscribe } from '../../../../@arpa/decorators/unsubscribe.decorator';
@@ -301,5 +301,8 @@ export class AppointmentsComponent {
         }
       });
     });
+  }
+  download(): void {
+    this.appointmentService.downloadIcsFile();
   }
 }
