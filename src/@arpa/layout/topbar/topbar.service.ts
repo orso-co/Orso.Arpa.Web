@@ -36,6 +36,7 @@ export class TopbarService {
       { separator: true },
       ...this.languageService.getLangs().map((lang) => ({
         label: this.languageService.getLanguageName(lang),
+        icon: `fi fi-${lang === 'en' ? 'gb' : lang}`,
         command: () => this.updateLanguage(lang),
       })),
       { separator: true },

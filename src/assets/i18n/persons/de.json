@@ -76,14 +76,5 @@
     "MUSICIAN_PROFILE": "Musikerprofil",
     "LEVEL_ASSESSMENT_TEAM": "Level KBB",
     "BACKGROUND_TEAM": "Background (Team)"
-  },
-
-  "member": {
-    "CREATE_NEW_MEMPRO": "Mitgliedsprofil hinzufügen",
-    "MEMBER_PROFILE": "Mitgliedsprofil"
-  },
-  "client": {
-    "CREATE_NEW_CLIPRO": "Kundenprofil hinzufügen",
-    "CLIENT_PROFILE": "Kundenprofil"
   }
 }

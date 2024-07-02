@@ -65,11 +65,22 @@ export class MyAppointmentsComponent {
         this.meService
           .setAppointmentPrediction(myAppointmentDto.id, result)
           .pipe(first())
-          .subscribe(() => {
-            myAppointmentDto.prediction = result.prediction;
-            myAppointmentDto.commentByPerformerInner = result.commentByPerformerInner;
-            this.notificationsService.success('profile.PREDICTION_SET');
-          });
+          .subscribe(
+            () => {
+              myAppointmentDto.prediction = result.prediction;
+              myAppointmentDto.commentByPerformerInner = result.commentByPerformerInner;
+              this.notificationsService.success('profile.PREDICTION_SET');
+            },
+            (error) => {
+              if (Object.keys(error.errors).length) {
+                Object.keys(error.errors).forEach((e) => {
+                  error.errors[e].forEach((message: string) => this.notificationsService.error(message));
+                });
+              } else {
+                this.notificationsService.error(error.title);
+              }
+            }
+          );
       }
     });
   }

@@ -42,6 +42,7 @@
       <div class="p-d-flex p-jc-between p-flex-column p-flex-md-row full-width">
         <div class="p-mr-md-4 p-d-flex p-flex-column date-container">
           <div class="date">
+            <span class="city" *ngIf="appointment.venue?.address?.city">{{ appointment.venue.address.city | uppercase }}</span>
             <span class="year p-order-3 p-md-order-0">{{ appointment.startTime | localizedDate : 'YYYY' }}</span>
             <span class="month-name p-order-2 p-md-order-1">{{ appointment.startTime | localizedDate : 'MMMM' }}</span>
             <span class="day p-order-1 p-md-order-2">{{ appointment.startTime | date : 'dd' : 'locale(de)' }}</span>
@@ -127,7 +128,12 @@
                 <div class="p-d-flex p-flex-column">
                   <span>{{ appointment.venue.name }}</span>
                   <span>{{ appointment.venue.address.address1 }}</span>
-                  <span>{{ appointment.venue.address.zip }} {{ appointment.venue.address.city }}</span>
+                  <span
+                    >{{ appointment.venue.address.zip }} {{ appointment.venue.address.city
+                    }}<span *ngIf="appointment.venue.address?.urbanDistrict"
+                      >&nbsp;({{ appointment.venue.address.urbanDistrict }})</span
+                    ></span
+                  >
                 </div>
               </div>
             </div>

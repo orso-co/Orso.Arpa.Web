@@ -18,12 +18,18 @@
     flex-direction: row;
     display: flex;
 
+    .city {
+      font-weight: bold;
+      opacity: 0.7;
+    }
+
     @media (max-width: 767px) {
       .day,
       .day-name,
       .month-name,
       .year,
-      .time {
+      .time,
+      .city {
         margin-right: 0.3rem;
         color: var(--primary-color);
         font-weight: 600;
@@ -62,11 +68,15 @@
       .year {
         font-size: 0.7em;
         font-weight: 100;
+        line-height: 1;
       }
       .time {
         opacity: 0.85;
         font-size: 0.85em;
         padding-bottom: 0.5rem;
+      }
+      .city {
+        line-break: anywhere;
       }
     }
   }

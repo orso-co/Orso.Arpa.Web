@@ -66,7 +66,25 @@ export class VenuesComponent implements OnInit {
         .subscribe(() => {
           this.notificationService.success('VENUE_UPDATED', 'venues');
           const index = this.venues.findIndex((venue) => venue.id === id);
-          this.venues[index] = { ...this.selectedVenue, ...this.addLabelToVenue(value) };
+          console.log('before', this.venues[index], value);
+          const updatedVenue: VenueDto = {
+            ...this.selectedVenue!,
+            name: value.name,
+            description: value.description,
+            address: {
+              address1: value.address1,
+              address2: value.address2,
+              zip: value.zip,
+              city: value.city,
+              urbanDistrict: value.urbanDistrict,
+              country: value.country,
+              state: value.state,
+              commentInner: value.addressCommentInner,
+            },
+          };
+          this.venues.splice(index, 1, { ...this.selectedVenue, ...this.addLabelToVenue(updatedVenue) });
+          console.log('after', this.venues[index]);
+          this.venues = [...this.venues];
           this.resetForm();
         });
     } else {
