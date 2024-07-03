@@ -48,4 +48,12 @@ export class ApiService {
   private formatErrors(error: any) {
     return throwError(error.error);
   }
+  getAsBlob(path: string, params: HttpParams = new HttpParams()): Observable<Blob> {
+    return this.http
+      .get(`${this.baseUrl}${path}`, {
+        params,
+        responseType: 'blob',
+      })
+      .pipe(catchError(this.formatErrors));
+  }
 }
