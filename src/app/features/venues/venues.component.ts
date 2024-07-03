@@ -66,7 +66,6 @@ export class VenuesComponent implements OnInit {
         .subscribe(() => {
           this.notificationService.success('VENUE_UPDATED', 'venues');
           const index = this.venues.findIndex((venue) => venue.id === id);
-          console.log('before', this.venues[index], value);
           const updatedVenue: VenueDto = {
             ...this.selectedVenue!,
             name: value.name,
@@ -83,7 +82,6 @@ export class VenuesComponent implements OnInit {
             },
           };
           this.venues.splice(index, 1, { ...this.selectedVenue, ...this.addLabelToVenue(updatedVenue) });
-          console.log('after', this.venues[index]);
           this.venues = [...this.venues];
           this.resetForm();
         });
