@@ -18,7 +18,7 @@ import { ConfirmationService, MenuItem, SelectItem } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { sortBy, uniq } from 'lodash-es';
 import { EnumService, NotificationsService, ProjectService, SectionService, SelectValueService, VenueService } from '@arpa/services';
-import { AppointmentService } from '../../../../@arpa/services/appointment.service';
+import { AppointmentService } from '@arpa/services';
 import { first, map } from 'rxjs/operators';
 import { of, zip } from 'rxjs';
 import { Table } from 'primeng/table';
@@ -643,8 +643,9 @@ export class EditAppointmentComponent implements OnInit {
     });
   }
   getSendNotificationLabel(): string {
-    return `${this.translate.instant('appointments.SEND_NOTIFICATION')} (${this.totalParticipationCount}) (${this.translate.instant(
-      'appointments.PARTICIPANTS'
-    )})`;
+    const sendNotificationLabel = this.translate.instant('appointments.SEND_NOTIFICATION');
+    const recipientsLabel = this.translate.instant('RECEPIENTS');
+
+    return `${sendNotificationLabel} (${this.totalParticipationCount} ${recipientsLabel})`;
   }
 }

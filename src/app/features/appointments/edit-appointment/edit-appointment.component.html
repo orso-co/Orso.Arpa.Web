@@ -10,16 +10,19 @@
   <h3 style="text-align: center" class="appointment-title">
     {{ appointment.name }} - {{ appointment.startTime | date : 'dd.MM.yy' : 'locale(de)' }}
   </h3>
-  <button
-    [label]="getSendNotificationLabel()"
-    [pTooltip]="'appointments.SEND_NOTIFICATION_TOOLTIP' | translate"
-    *ngIf="!isNew && formGroup.pristine"
-    (click)="onSendNotification($event)"
-    pButton
-    class="p-button-outlined p-button-secondary p-mr-3"
-    type="button"
-    icon="pi pi-envelope"
-  ></button>
+  <div style="display: flex; justify-content: center; margin-bottom: 2rem">
+    <button
+      [label]="getSendNotificationLabel()"
+      [pTooltip]="'appointments.SEND_NOTIFICATION_TOOLTIP' | translate"
+      *ngIf="!isNew && formGroup.pristine"
+      (click)="onSendNotification($event)"
+      pButton
+      class="p-button-outlined p-button-warning p-mr-3"
+      type="button"
+      icon="pi pi-envelope"
+    ></button>
+  </div>
+
   <p-steps [(activeIndex)]="activeIndex" [model]="items" [readonly]="false" (activeIndexChange)="onActiveIndexChange($event)"></p-steps>
   <div [ngSwitch]="activeIndex">
     <ng-container *ngSwitchCase="0">
@@ -185,16 +188,6 @@
                 pButton
                 type="submit"
                 class="p-mr-3"
-              ></button>
-              <button
-                [label]="getSendNotificationLabel()"
-                [pTooltip]="'appointments.SEND_NOTIFICATION_TOOLTIP' | translate"
-                *ngIf="!isNew && formGroup.pristine"
-                (click)="onSendNotification($event)"
-                pButton
-                class="p-button-outlined p-button-secondary p-mr-3"
-                type="button"
-                icon="pi pi-envelope"
               ></button>
               <button
                 (click)="onSubmit(true)"
