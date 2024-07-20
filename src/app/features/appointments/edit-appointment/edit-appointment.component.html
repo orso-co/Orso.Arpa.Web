@@ -10,6 +10,16 @@
   <h3 style="text-align: center" class="appointment-title">
     {{ appointment.name }} - {{ appointment.startTime | date : 'dd.MM.yy' : 'locale(de)' }}
   </h3>
+  <button
+    [label]="getSendNotificationLabel()"
+    [pTooltip]="'appointments.SEND_NOTIFICATION_TOOLTIP' | translate"
+    *ngIf="!isNew && formGroup.pristine"
+    (click)="onSendNotification($event)"
+    pButton
+    class="p-button-outlined p-button-secondary p-mr-3"
+    type="button"
+    icon="pi pi-envelope"
+  ></button>
   <p-steps [(activeIndex)]="activeIndex" [model]="items" [readonly]="false" (activeIndexChange)="onActiveIndexChange($event)"></p-steps>
   <div [ngSwitch]="activeIndex">
     <ng-container *ngSwitchCase="0">
@@ -177,7 +187,7 @@
                 class="p-mr-3"
               ></button>
               <button
-                [label]="'appointments.SEND_NOTIFICATION' | translate"
+                [label]="getSendNotificationLabel()"
                 [pTooltip]="'appointments.SEND_NOTIFICATION_TOOLTIP' | translate"
                 *ngIf="!isNew && formGroup.pristine"
                 (click)="onSendNotification($event)"
