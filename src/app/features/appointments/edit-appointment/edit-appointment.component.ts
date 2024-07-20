@@ -93,7 +93,8 @@ export class EditAppointmentComponent implements OnInit {
 
   participationTableItems: ParticipationTableItem[] = [];
   columns: any[] = [];
-  filteredDataCount: number;
+  filteredDataCount: number = 0;
+  totalParticipationCount: number = 0;
 
   constructor(
     public ref: DynamicDialogRef,
@@ -212,7 +213,17 @@ export class EditAppointmentComponent implements OnInit {
       this.venueOptions = this.venues?.map((v) => this.mapVenueToSelectItem(v));
       this.setRooms(this.appointment.venueId);
       this.ready = true;
+
+      // Check if appointment.participations is loaded
+      console.log('Appointment Participations:', this.appointment.participations);
+
+      // Calculate totalParticipationCount
+      this.calculateTotalParticipationCount();
     });
+  }
+
+  private calculateTotalParticipationCount() {
+    this.totalParticipationCount = this.appointment.participations?.length || 0;
   }
 
   onSubmit(continueToNextStep: boolean): void {
@@ -272,6 +283,10 @@ export class EditAppointmentComponent implements OnInit {
 
             this.mapParticipations();
             this.ready = true;
+
+            this.calculateTotalParticipationCount();
+            // Check if appointment.participations is loaded
+            console.log('Appointment Participations:', this.appointment.participations);
           }
         },
         () => (this.ready = true)
@@ -453,7 +468,7 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   onTableFiltered(event: any): void {
-    this.filteredDataCount = event.filteredValue.length;
+    this.filteredDataCount = event.filteredValue ? event.filteredValue.length : 0;
   }
 
   onResultChanged(item: ParticipationTableItem, event: any): void {
@@ -626,5 +641,10 @@ export class EditAppointmentComponent implements OnInit {
         this.sendNotification(true);
       },
     });
+  }
+  getSendNotificationLabel(): string {
+    return `${this.translate.instant('appointments.SEND_NOTIFICATION')} (${this.totalParticipationCount}) (${this.translate.instant(
+      'appointments.PARTICIPANTS'
+    )})`;
   }
 }
