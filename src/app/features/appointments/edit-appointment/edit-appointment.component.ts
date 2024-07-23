@@ -13,12 +13,12 @@ import {
 } from '@arpa/models';
 import { TranslateService } from '@ngx-translate/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConfirmationService, MenuItem, SelectItem } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { sortBy, uniq } from 'lodash-es';
 import { EnumService, NotificationsService, ProjectService, SectionService, SelectValueService, VenueService } from '@arpa/services';
-import { AppointmentService } from '@arpa/services';
+import { AppointmentService } from '../../../../@arpa/services/appointment.service';
 import { first, map } from 'rxjs/operators';
 import { of, zip } from 'rxjs';
 import { Table } from 'primeng/table';
@@ -58,7 +58,6 @@ class ParticipationTableItem {
   selector: 'arpa-edit-appointment',
   templateUrl: './edit-appointment.component.html',
   styleUrls: ['./edit-appointment.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class EditAppointmentComponent implements OnInit {
   @ViewChild('participationTable') table: Table;
@@ -94,8 +93,7 @@ export class EditAppointmentComponent implements OnInit {
 
   participationTableItems: ParticipationTableItem[] = [];
   columns: any[] = [];
-  filteredDataCount: number = 0;
-  totalParticipationCount: number = 0;
+  filteredDataCount: number;
 
   constructor(
     public ref: DynamicDialogRef,
@@ -125,8 +123,9 @@ export class EditAppointmentComponent implements OnInit {
       { field: 'prediction', header: this.translate.instant('appointments.PREDICTION'), width: '20%' },
       { field: 'result', header: this.translate.instant('appointments.RESULTS'), width: '20%' },
       { field: 'sections', header: this.translate.instant('appointments.SECTIONS'), width: '20%' },
-      { field: 'qualification', header: this.translate.instant('appointments.QUALIFICATION'), width: '20%' },
+      // { field: 'qualification', header: this.translate.instant('appointments.QUALIFICATION'), width: '20%' },
     ];
+    this.createStepperMenu();
   }
 
   private loadData() {
@@ -213,45 +212,38 @@ export class EditAppointmentComponent implements OnInit {
       this.venueOptions = this.venues?.map((v) => this.mapVenueToSelectItem(v));
       this.setRooms(this.appointment.venueId);
       this.ready = true;
-      this.calculateTotalParticipationCount();
     });
   }
 
-  private calculateTotalParticipationCount() {
-    this.totalParticipationCount = this.appointment.participations?.length || 0;
-  }
-
-  onSubmit(): void {
+  onSubmit(continueToNextStep: boolean): void {
     if (this.formGroup.invalid || this.formGroup.pristine) {
-      this.notificationsService.info('No changes to save');
       return;
     }
     if (this.isNew) {
-      this.createAppointment({ ...this.appointment, ...this.formGroup.value });
+      this.createAppointment({ ...this.appointment, ...this.formGroup.value }, continueToNextStep);
     } else {
-      this.updateAppointment({
-        id: this.appointment.id,
-        categoryId: this.appointment.categoryId,
-        startTime: this.appointment.startTime,
-        endTime: this.appointment.endTime,
-        name: this.appointment.name,
-        publicDetails: this.appointment.publicDetails,
-        internalDetails: this.appointment.internalDetails,
-        status: this.appointment.status,
-        salaryId: this.appointment.salaryId,
-        salaryPatternId: this.appointment.salaryPatternId,
-        expecationId: this.appointment.expectationId,
-        ...this.formGroup.value,
-      });
+      this.updateAppointment(
+        {
+          id: this.appointment.id,
+          categoryId: this.appointment.categoryId,
+          startTime: this.appointment.startTime,
+          endTime: this.appointment.endTime,
+          name: this.appointment.name,
+          publicDetails: this.appointment.publicDetails,
+          internalDetails: this.appointment.internalDetails,
+          status: this.appointment.status,
+          salaryId: this.appointment.salaryId,
+          salaryPatternId: this.appointment.salaryPatternId,
+          expecationId: this.appointment.expectationId,
+          ...this.formGroup.value,
+        },
+        continueToNextStep
+      );
     }
   }
 
-  cancelAndClose(): void {
-    this.ref.close();
-  }
-
-  onTabChange(event: { index: number }) {
-    if (event.index === 1 && !this.areParticipationsAlreadyLoaded) {
+  onActiveIndexChange(event: number) {
+    if (event === 2 && !this.areParticipationsAlreadyLoaded) {
       this.ready = false;
       this.appointmentService.getById(this.appointment.id, true).subscribe(
         (appointment) => {
@@ -280,7 +272,6 @@ export class EditAppointmentComponent implements OnInit {
 
             this.mapParticipations();
             this.ready = true;
-            this.calculateTotalParticipationCount();
           }
         },
         () => (this.ready = true)
@@ -292,27 +283,32 @@ export class EditAppointmentComponent implements OnInit {
     return { label: `${venue?.address?.city} ${venue?.address?.urbanDistrict} | ${venue?.name}`, value: venue?.id };
   }
 
-  updateAppointment(appointment: AppointmentModifyBodyDto): void {
+  updateAppointment(appointment: AppointmentModifyBodyDto, continueToNextStep: boolean): void {
     this.appointmentService
       .update(appointment)
       .pipe(first())
       .subscribe(() => {
         this.notificationsService.success('appointments.APPOINTMENT_UPDATED');
-        this.appointment = { ...this.appointment, ...appointment };
-        this.fillForm();
-        this.activeIndex = 0;
+        if (continueToNextStep) {
+          this.appointment = { ...this.appointment, ...appointment };
+          this.fillForm();
+          this.activeIndex = 1;
+        } else {
+          this.ref.close(appointment);
+        }
       });
   }
 
-  createAppointment(appointment: AppointmentCreateDto): void {
+  createAppointment(appointment: AppointmentCreateDto, continueToNextStep: boolean): void {
     this.appointmentService
       .create(appointment)
       .pipe(first())
       .subscribe((result) => {
         this.notificationsService.success('appointments.APPOINTMENT_CREATED');
-        if (onsubmit) {
+        if (continueToNextStep) {
           this.appointment = result;
           this.fillForm();
+          this.createStepperMenu();
           this.activeIndex = 1;
         } else {
           this.ref.close(result);
@@ -457,7 +453,7 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   onTableFiltered(event: any): void {
-    this.filteredDataCount = event.filteredValue ? event.filteredValue.length : 0;
+    this.filteredDataCount = event.filteredValue.length;
   }
 
   onResultChanged(item: ParticipationTableItem, event: any): void {
@@ -527,10 +523,6 @@ export class EditAppointmentComponent implements OnInit {
       salaryId: [null],
       salaryPatternId: [null],
       expectationId: [null],
-      venueId: [null],
-      roomId: [null],
-      projectIds: [null],
-      sectionIds: [null],
     });
   }
 
@@ -562,11 +554,39 @@ export class EditAppointmentComponent implements OnInit {
     });
   }
 
+  private createStepperMenu(): void {
+    this.items = [
+      {
+        label: this.translate.instant('appointments.BASICDATA'),
+        command: () => {
+          this.activeIndex = 0;
+        },
+      },
+      {
+        label: this.translate.instant('appointments.ADDITIONALDATA'),
+        disabled: this.isNew,
+        command: () => {
+          this.activeIndex = 1;
+        },
+      },
+      {
+        label: this.translate.instant('appointments.RESULTS'),
+        disabled: this.isNew,
+        command: () => {
+          this.activeIndex = 2;
+        },
+      },
+    ];
+  }
+
   private deleteAppointment(): void {
     this.appointmentService.delete(this.appointment.id).subscribe(() => {
       this.notificationsService.success('appointments.APPOINTMENT_DELETED');
       this.ref.close(this.appointment.id);
     });
+  }
+  exportCSV() {
+    this.table.exportCSV();
   }
 
   public onSendNotification(event: Event) {
@@ -606,14 +626,5 @@ export class EditAppointmentComponent implements OnInit {
         this.sendNotification(true);
       },
     });
-  }
-  getSendNotificationLabel(): string {
-    const sendNotificationLabel = this.translate.instant('appointments.SEND_NOTIFICATION');
-    const recipientsLabel = this.translate.instant('RECEPIENTS');
-    if (this.totalParticipationCount === 0) {
-      return `${sendNotificationLabel}`;
-    } else {
-      return `${sendNotificationLabel} (${this.totalParticipationCount} ${recipientsLabel})`;
-    }
   }
 }

@@ -60,54 +60,7 @@
   background-color: black;
   text-align: center;
 }
-:host ::ng-deep {
-  .p-datatable {
-    padding-left: 4px;
-    padding-right: 4px;
-  }
-
-  .p-datatable-header {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  td.start {
-    i.pi {
-      font-weight: 800;
-      align-items: center;
-      color: var(--green-500);
-    }
-  }
-}
-:host ::ng-deep {
-  .p-datatable {
-    padding-left: 4px;
-    padding-right: 4px;
-  }
-
-  .p-datatable-header {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  td.start {
-    i.pi {
-      font-weight: 800;
-      align-items: center;
-      color: var(--green-500);
-    }
-  }
-}
 .download-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
-}
-.download-button button {
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  &:hover {
-    background-color: var(--hover-color, #f2f2f2);
-    transform: scale(1.25);
-  }
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
 }

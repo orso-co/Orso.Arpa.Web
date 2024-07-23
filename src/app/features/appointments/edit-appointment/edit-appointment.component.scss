@@ -1,34 +1,9 @@
-label {
-  font-weight: bolder;
-  font-size: 0.8rem;
-  opacity: 0.5;
-  text-transform: uppercase;
-}
-
-table {
-  width: 100%;
-  table-layout: fixed;
-}
-
-th,
-td {
-  text-align: left;
-  padding: 8px;
-  box-sizing: border-box;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-
-.p-column-title {
-  display: none;
-}
-
-@media (max-width: 600px) {
-  .p-column-title {
-    display: block;
-    font-weight: bold;
+:host ::ng-deep #participationTable {
+  div.p-datatable-wrapper {
+    overflow-x: scroll;
+  }
+  table {
+    width: 1200px;
   }
 }
 
@@ -37,12 +12,6 @@ th {
 }
 .appointment-title {
   color: var(--primary-color);
-  font-weight: bolder;
-  font-size: xxx-large;
-}
-.download-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
+  font-weight: normal;
+  font-size: xx-large;
 }
