@@ -240,13 +240,13 @@ export class EditAppointmentComponent implements OnInit {
         status: this.appointment.status,
         salaryId: this.appointment.salaryId,
         salaryPatternId: this.appointment.salaryPatternId,
-        expecationId: this.appointment.expectationId,
+        expectationId: this.appointment.expectationId,
         ...this.formGroup.value,
       });
     }
   }
 
-  cancelAndClose(): void {
+  close(): void {
     this.ref.close();
   }
 
@@ -527,10 +527,6 @@ export class EditAppointmentComponent implements OnInit {
       salaryId: [null],
       salaryPatternId: [null],
       expectationId: [null],
-      venueId: [null],
-      roomId: [null],
-      projectIds: [null],
-      sectionIds: [null],
     });
   }
 
@@ -609,11 +605,27 @@ export class EditAppointmentComponent implements OnInit {
   }
   getSendNotificationLabel(): string {
     const sendNotificationLabel = this.translate.instant('appointments.SEND_NOTIFICATION');
-    const recipientsLabel = this.translate.instant('RECEPIENTS');
+    const recipientsLabel = this.translate.instant('RECIPIENTS');
     if (this.totalParticipationCount === 0) {
       return `${sendNotificationLabel}`;
     } else {
       return `${sendNotificationLabel} (${this.totalParticipationCount} ${recipientsLabel})`;
     }
+  }
+  getFormattedProjectTitles(): string {
+    return this.appointment.projects
+      .map((project: any) => {
+        const title = project.title;
+        return title.length > 30 ? title.substring(0, 30) + '...' : title;
+      })
+      .join(' | ');
+  }
+  getFormattedSectionNames(): string {
+    return this.appointment.sections
+      .map((section: any) => {
+        const name = section.name;
+        return name;
+      })
+      .join(' - ');
   }
 }

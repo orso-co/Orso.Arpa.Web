@@ -7,9 +7,21 @@
 </ng-template>
 
 <ng-container *ngIf="ready; else loading">
-  <h3 style="text-align: center" class="appointment-title">
-    {{ appointment.name }} - {{ appointment.startTime | date : 'dd.MM.yy' : 'locale(de)' }}
+  <h4 class="project-title">
+    {{ getFormattedProjectTitles() }}
+  </h4>
+  <h3 class="appointment-date">
+    {{ appointment.startTime | date : 'EEEE' : 'locale(de)' }}, {{ appointment.startTime | date : 'dd.MM.yy' : 'locale(de)' }} -
+    {{ appointment.startTime | date : 'hh:mm' : 'locale(de)' }}
   </h3>
+  <h4 class="appointment-title">
+    {{ appointment.name }}
+  </h4>
+
+  <p style="text-align: center">
+    {{ getFormattedSectionNames() }}
+  </p>
+
   <div style="display: flex; justify-content: center; margin-bottom: 2rem">
     <button
       [label]="getSendNotificationLabel()"
@@ -50,40 +62,7 @@
               placeholder="Select category"
             ></p-dropdown>
           </div>
-          <div class="p-field p-fluid p-col-12 p-md-6">
-            <label for="sections">{{ 'appointments.SECTIONS' | translate }}</label>
-            <p-autoComplete
-              (completeMethod)="searchSection($event)"
-              (onSelect)="onSectionAdded($event)"
-              (onUnselect)="onSectionRemoved($event)"
-              [disabled]="sections.length === 0"
-              [dropdown]="true"
-              [forceSelection]="true"
-              [multiple]="true"
-              [suggestions]="sectionOptions"
-              appendTo="body"
-              field="name"
-              id="sections"
-              name="sections"
-            ></p-autoComplete>
-          </div>
-          <div class="p-field p-fluid p-col-12 p-md-6">
-            <label for="projects">{{ 'appointments.PROJECTS' | translate }}</label>
-            <p-autoComplete
-              (completeMethod)="searchProject($event)"
-              (onSelect)="onProjectAdded($event)"
-              (onUnselect)="onProjectRemoved($event)"
-              [disabled]="projects.length === 0"
-              [dropdown]="true"
-              [forceSelection]="true"
-              [multiple]="true"
-              [suggestions]="projectOptions"
-              appendTo="body"
-              field="title"
-              id="projects"
-              name="projects"
-            ></p-autoComplete>
-          </div>
+
           <div class="p-field p-fluid p-col-8 p-md-4">
             <label for="starttime">{{ 'appointments.START' | translate }} *</label>
             <p-calendar
@@ -124,6 +103,7 @@
               [showOnFocus]="false"
             ></p-calendar>
           </div>
+
           <div class="p-field p-fluid p-col-12 p-md-6">
             <label for="status">{{ 'appointments.STATUS' | translate }} </label>
             <p-dropdown
@@ -148,38 +128,7 @@
               placeholder="Select expectation"
             ></p-dropdown>
           </div>
-          <div class="p-field p-fluid p-col-12 p-md-6">
-            <label for="venue">{{ 'appointments.VENUE' | translate }}</label>
-            <p-dropdown
-              (onChange)="onVenueChanged($event)"
-              [autoDisplayFirst]="false"
-              [options]="venueOptions"
-              [showClear]="true"
-              [ngModel]="appointment.venueId"
-              formControlName="venueId"
-              appendTo="body"
-              id="venue"
-              name="venue"
-              placeholder="Select venue"
-            ></p-dropdown>
-          </div>
-          <div class="p-field p-fluid p-col-12 p-md-6">
-            <label for="rooms">{{ 'appointments.ROOM' | translate }}</label>
-            <p-autoComplete
-              (completeMethod)="searchRoom($event)"
-              (onSelect)="onRoomAdded($event)"
-              (onUnselect)="onRoomRemoved($event)"
-              [disabled]="rooms.length === 0"
-              [dropdown]="true"
-              [forceSelection]="true"
-              [multiple]="true"
-              [suggestions]="roomOptions"
-              appendTo="body"
-              field="name"
-              id="rooms"
-              name="rooms"
-            ></p-autoComplete>
-          </div>
+
           <div class="p-field p-fluid p-col-12 p-md-6">
             <label for="publicDetails">{{ 'appointments.DETAILSPUBLIC' | translate }}</label>
             <textarea
@@ -206,52 +155,42 @@
               placeholder="{{ 'appointments.DETAILSINTERNAL' | translate }}"
             ></textarea>
           </div>
+          <!--          <div class="p-col-12">-->
+          <!--            <p-fieldset [collapsed]="true" [toggleable]="true" legend="{{ 'appointments.SALARY' | translate }}">-->
+          <!--              <div class="p-grid p-formgrid">-->
+          <!--                <div class="p-field p-fluid p-col-12 p-md-6">-->
+          <!--                  <label for="salary">{{ 'appointments.SALARY' | translate }} </label>-->
+          <!--                  <p-dropdown-->
+          <!--                    [autoDisplayFirst]="false"-->
+          <!--                    [options]="salaryOptions"-->
+          <!--                    [showClear]="true"-->
+          <!--                    [style]="{ 'min-width': '50%' }"-->
+          <!--                    appendTo="body"-->
+          <!--                    formControlName="salaryId"-->
+          <!--                    id="salary"-->
+          <!--                  ></p-dropdown>-->
+          <!--                </div>-->
+          <!--                <div class="p-field p-fluid p-col-12 p-md-6">-->
+          <!--                  <div class="p-field">-->
+          <!--                    <label for="salaryPattern">{{ 'appointments.SALARYPATTERN' | translate }}</label>-->
+          <!--                    <p-dropdown-->
+          <!--                      [autoDisplayFirst]="false"-->
+          <!--                      [options]="salaryPatternOptions"-->
+          <!--                      [showClear]="true"-->
+          <!--                      [style]="{ 'min-width': '50%' }"-->
+          <!--                      appendTo="body"-->
+          <!--                      formControlName="salaryPatternId"-->
+          <!--                      id="salaryPattern"-->
+          <!--                    ></p-dropdown>-->
+          <!--                  </div>-->
+          <!--                </div>-->
+          <!--              </div>-->
+          <!--            </p-fieldset>-->
+          <!--          </div>-->
 
-          <div class="p-col-12">
-            <p-fieldset [collapsed]="true" [toggleable]="true" legend="{{ 'appointments.SALARY' | translate }}">
-              <div class="p-grid p-formgrid">
-                <div class="p-field p-fluid p-col-12 p-md-6">
-                  <label for="salary">{{ 'appointments.SALARY' | translate }} </label>
-                  <p-dropdown
-                    [autoDisplayFirst]="false"
-                    [options]="salaryOptions"
-                    [showClear]="true"
-                    [style]="{ 'min-width': '50%' }"
-                    appendTo="body"
-                    formControlName="salaryId"
-                    id="salary"
-                  ></p-dropdown>
-                </div>
-                <div class="p-field p-fluid p-col-12 p-md-6">
-                  <div class="p-field">
-                    <label for="salaryPattern">{{ 'appointments.SALARYPATTERN' | translate }}</label>
-                    <p-dropdown
-                      [autoDisplayFirst]="false"
-                      [options]="salaryPatternOptions"
-                      [showClear]="true"
-                      [style]="{ 'min-width': '50%' }"
-                      appendTo="body"
-                      formControlName="salaryPatternId"
-                      id="salaryPattern"
-                    ></p-dropdown>
-                  </div>
-                </div>
-              </div>
-            </p-fieldset>
-          </div>
           <div class="p-col-12 p-d-flex p-jc-between p-mt-3">
             <div>
               <button
-                type="button"
-                (click)="cancelAndClose()"
-                [label]="'CANCEL' | translate"
-                pButton
-                class="p-mr-3"
-                icon="pi pi-times"
-                iconPos="left"
-              ></button>
-              <button
-                (click)="onSubmit()"
                 [disabled]="formGroup.pristine || formGroup.invalid"
                 [label]="'appointments.SAVE' | translate"
                 icon="pi pi-check"
@@ -260,20 +199,115 @@
                 type="submit"
                 class="p-mr-3"
               ></button>
+              <button
+                type="button"
+                (click)="close()"
+                [label]="'CANCEL' | translate"
+                pButton
+                class="p-mr-3"
+                icon="pi pi-times"
+                iconPos="left"
+              ></button>
             </div>
-
-            <button
-              (click)="showDeleteConfirmation($event)"
-              [label]="'DELETE' | translate"
-              class="ml-3 p-button-danger"
-              icon="pi pi-trash"
-              iconPos="left"
-              pButton
-              type="button"
-            ></button>
           </div>
         </div>
       </form>
+
+      <hr style="margin-top: 20px" />
+
+      <div class="p-grid p-formgrid">
+        <div class="p-field p-fluid p-col-12 p-md-6">
+          <label for="venue">{{ 'appointments.VENUE' | translate }}</label>
+          <p-dropdown
+            (onChange)="onVenueChanged($event)"
+            [(ngModel)]="appointment.venueId"
+            [autoDisplayFirst]="false"
+            [options]="venueOptions"
+            [showClear]="true"
+            [disabled]="!appointment.id"
+            appendTo="body"
+            id="venue"
+            name="venue"
+            placeholder="Select venue"
+          ></p-dropdown>
+        </div>
+        <div class="p-field p-fluid p-col-12 p-md-6">
+          <label for="rooms">{{ 'appointments.ROOM' | translate }}</label>
+          <p-autoComplete
+            (completeMethod)="searchRoom($event)"
+            [(ngModel)]="appointment.rooms"
+            (onSelect)="onRoomAdded($event)"
+            (onUnselect)="onRoomRemoved($event)"
+            [disabled]="rooms.length === 0 || !appointment.id"
+            [dropdown]="true"
+            [forceSelection]="true"
+            [multiple]="true"
+            [suggestions]="roomOptions"
+            appendTo="body"
+            field="name"
+            id="rooms"
+            name="rooms"
+          ></p-autoComplete>
+        </div>
+        <div class="p-field p-fluid p-col-12 p-md-6">
+          <label for="sections">{{ 'appointments.SECTIONS' | translate }}</label>
+          <p-autoComplete
+            (completeMethod)="searchSection($event)"
+            (onSelect)="onSectionAdded($event)"
+            (onUnselect)="onSectionRemoved($event)"
+            [disabled]="sections.length === 0 || !appointment.id"
+            [dropdown]="true"
+            [forceSelection]="true"
+            [multiple]="true"
+            [suggestions]="sectionOptions"
+            [(ngModel)]="appointment.sections"
+            appendTo="body"
+            field="name"
+            id="sections"
+            name="sections"
+          ></p-autoComplete>
+        </div>
+        <div class="p-field p-fluid p-col-12 p-md-6">
+          <label for="projects">{{ 'appointments.PROJECTS' | translate }}</label>
+          <p-autoComplete
+            (completeMethod)="searchProject($event)"
+            (onSelect)="onProjectAdded($event)"
+            (onUnselect)="onProjectRemoved($event)"
+            [disabled]="projects.length === 0 || !appointment.id"
+            [dropdown]="true"
+            [forceSelection]="true"
+            [multiple]="true"
+            [suggestions]="projectOptions"
+            [(ngModel)]="appointment.projects"
+            appendTo="body"
+            field="title"
+            id="projects"
+            name="projects"
+          ></p-autoComplete>
+        </div>
+      </div>
+      <div class="p-col-12 p-d-flex p-jc-between p-mt-3">
+        <div>
+          <button
+            type="button"
+            (click)="close()"
+            [label]="'CLOSE' | translate"
+            pButton
+            class="p-mr-3"
+            icon="pi pi-times"
+            iconPos="left"
+          ></button>
+        </div>
+        <button
+          (click)="showDeleteConfirmation($event)"
+          [label]="'DELETE' | translate"
+          class="ml-3 p-button-danger"
+          icon="pi pi-trash"
+          iconPos="left"
+          pButton
+          type="button"
+        ></button>
+      </div>
     </p-tabPanel>
     <p-tabPanel header="{{ 'appointments.PARTICIPATIONS' | translate }}" [disabled]="isNew">
       <p-table
