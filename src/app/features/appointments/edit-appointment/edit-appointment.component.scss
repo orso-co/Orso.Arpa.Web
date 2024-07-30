@@ -1,17 +1,64 @@
-:host ::ng-deep #participationTable {
-  div.p-datatable-wrapper {
-    overflow-x: scroll;
-  }
-  table {
-    width: 1200px;
+label {
+  font-weight: bolder;
+  font-size: 0.8rem;
+  opacity: 0.5;
+  text-transform: uppercase;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.p-column-title {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .p-column-title {
+    display: block;
+    font-weight: bold;
   }
 }
 
 .comment-overlay {
   max-width: 300px;
 }
-.appointment-title {
+
+.project-title {
   color: var(--primary-color);
-  font-weight: normal;
-  font-size: xx-large;
+  font-weight: lighter;
+  font-size: small;
+  text-align: center;
+}
+.appointment-date {
+  color: var(--primary-color);
+  font-weight: bolder;
+  font-size: x-large;
+  text-align: center;
+}
+
+.appointment-title {
+  color: var(--yellow-400);
+  font-weight: bold;
+  font-size: large;
+  text-align: center;
+}
+
+.download-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
 }

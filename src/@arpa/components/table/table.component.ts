@@ -11,6 +11,7 @@ import {
   Output,
   QueryList,
   TemplateRef,
+  ViewEncapsulation,
 } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { PrimeTemplate, SelectItem } from 'primeng/api';
@@ -51,6 +52,7 @@ export class ArpaTableColumnDirective {
   selector: 'arpa-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class TableComponent implements OnInit, OnDestroy, AfterContentInit {
   @Input()
