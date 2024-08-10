@@ -30,30 +30,64 @@ th {
     display: block;
     font-weight: bold;
   }
+  .container {
+    flex-direction: column; /* Stack columns vertically on small screens */
+  }
+
+  .right-column {
+    flex: 1;
+    padding-top: 20px; /* Add some spacing between stacked columns */
+  }
+
+  .chart-container {
+    height: 100px; /* Adjust height for smaller screens */
+  }
 }
 
 .comment-overlay {
   max-width: 300px;
 }
 
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align items at the top */
+}
+
+.left-column {
+  flex: 1;
+  padding: 10px;
+  /* Additional styling for the left column */
+}
+
+.right-column {
+  flex: 0 0 50vw; /* Take 50% of the viewport width */
+  padding: 10px;
+}
+
+.chart-container {
+  width: 100%; /* Ensures the chart takes the full width of the right column */
+  height: 150px; /* Adjust the height as necessary */
+}
+
 .project-title {
   color: var(--primary-color);
   font-weight: lighter;
   font-size: small;
-  text-align: center;
+  text-align: left;
 }
 .appointment-date {
   color: var(--primary-color);
   font-weight: bolder;
   font-size: x-large;
-  text-align: center;
+  text-align: left;
 }
 
 .appointment-title {
   color: var(--yellow-400);
   font-weight: bold;
   font-size: large;
-  text-align: center;
+  text-align: left;
 }
 
 .download-button {

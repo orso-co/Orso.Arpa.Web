@@ -97,6 +97,9 @@ export class EditAppointmentComponent implements OnInit {
   filteredDataCount: number = 0;
   totalParticipationCount: number = 0;
 
+  donutChartData: any;
+  donutChartOptions: any;
+
   constructor(
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
@@ -209,9 +212,9 @@ export class EditAppointmentComponent implements OnInit {
       )
     ).subscribe(() => {
       this.fillForm();
-
       this.venueOptions = this.venues?.map((v) => this.mapVenueToSelectItem(v));
       this.setRooms(this.appointment.venueId);
+      this.prepareDonutChartData();
       this.ready = true;
       this.calculateTotalParticipationCount();
     });
@@ -219,6 +222,53 @@ export class EditAppointmentComponent implements OnInit {
 
   private calculateTotalParticipationCount() {
     this.totalParticipationCount = this.appointment.participations?.length || 0;
+  }
+
+  private prepareDonutChartData() {
+    const predictionCounts: { [key: string]: number } = {};
+
+    this.predictionOptions.forEach((option) => {
+      predictionCounts[option.value] = 0;
+    });
+
+    this.participationTableItems.forEach((item) => {
+      if (item.prediction) {
+        predictionCounts[item.prediction]++;
+      }
+    });
+
+    const totalCount = this.participationTableItems.length;
+    const predictionData = Object.keys(predictionCounts).map((key) => predictionCounts[key]);
+    const predictionLabels = Object.keys(predictionCounts);
+    const predictionPercentages = predictionData.map((count) => ((count / totalCount) * 100).toFixed(2));
+
+    this.donutChartData = {
+      labels: predictionLabels,
+      datasets: [
+        {
+          data: predictionData,
+          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
+          hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
+        },
+      ],
+    };
+
+    this.donutChartOptions = {
+      responsive: true,
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: (tooltipItem: any) => {
+              const count = predictionData[tooltipItem.dataIndex];
+              const percentage = predictionPercentages[tooltipItem.dataIndex];
+              return `${tooltipItem.label}: ${count} (${percentage}%)`;
+            },
+          },
+        },
+      },
+    };
+    console.log('Donut Chart Data:', this.donutChartData);
+    console.log('Donut Chart Options:', this.donutChartOptions);
   }
 
   onSubmit(): void {

@@ -7,33 +7,41 @@
 </ng-template>
 
 <ng-container *ngIf="ready; else loading">
-  <h4 class="project-title">
-    {{ getFormattedProjectTitles() }}
-  </h4>
-  <h3 class="appointment-date">
-    {{ appointment.startTime | date : 'EEEE' : 'locale(de)' }}, {{ appointment.startTime | date : 'dd.MM.yy' : 'locale(de)' }} -
-    {{ appointment.startTime | date : 'hh:mm' : 'locale(de)' }}
-  </h3>
-  <h4 class="appointment-title">
-    {{ appointment.name }}
-  </h4>
-
-  <p style="text-align: center">
-    {{ getFormattedSectionNames() }}
-  </p>
-
-  <div style="display: flex; justify-content: center; margin-bottom: 2rem">
-    <button
-      [label]="getSendNotificationLabel()"
-      [pTooltip]="'appointments.SEND_NOTIFICATION_TOOLTIP' | translate"
-      *ngIf="!isNew && formGroup.pristine"
-      (click)="onSendNotification($event)"
-      pButton
-      class="p-button-outlined p-button-warning p-mr-3"
-      type="button"
-      icon="pi pi-envelope"
-    ></button>
+  <div class="container">
+    <div class="left-column">
+      <h4 class="project-title">
+        {{ getFormattedProjectTitles() }}
+      </h4>
+      <h3 class="appointment-date">
+        {{ appointment.startTime | date : 'EEEE' : 'locale(de)' }}, {{ appointment.startTime | date : 'dd.MM.yy' : 'locale(de)' }} -
+        {{ appointment.startTime | date : 'hh:mm' : 'locale(de)' }}
+      </h3>
+      <h4 class="appointment-title">
+        {{ appointment.name }}
+      </h4>
+      <p style="text-align: center">
+        {{ getFormattedSectionNames() }}
+      </p>
+      <div style="display: flex; justify-content: center; margin-bottom: 2rem">
+        <button
+          [label]="getSendNotificationLabel()"
+          [pTooltip]="'appointments.SEND_NOTIFICATION_TOOLTIP' | translate"
+          *ngIf="!isNew && formGroup.pristine"
+          (click)="onSendNotification($event)"
+          pButton
+          class="p-button-outlined p-button-warning p-mr-3"
+          type="button"
+          icon="pi pi-envelope"
+        ></button>
+      </div>
+    </div>
+    <div class="right-column">
+      <div class="chart-container">
+        <p-chart type="doughnut" [data]="donutChartData" [options]="donutChartOptions"></p-chart>
+      </div>
+    </div>
   </div>
+
   <p-tabView [(activeIndex)]="activeIndex" (onChange)="onTabChange($event)">
     <p-tabPanel header="{{ 'appointments.APPOINTMENT_DETAILS' | translate }}">
       <form (submit)="onSubmit()" [formGroup]="formGroup" class="p-mt-5">
