@@ -65,10 +65,11 @@ export class EditAppointmentComponent implements OnInit {
   items: MenuItem[] = [];
   activeIndex = 0;
   formGroup: UntypedFormGroup;
-  ready = false;
+
+  appointmentReady = false;
+  participantsReady = false;
 
   appointment: AppointmentDto;
-  areParticipationsAlreadyLoaded = false;
   isAllDayEvent: boolean;
 
   // loaded in loadData()
@@ -214,9 +215,8 @@ export class EditAppointmentComponent implements OnInit {
       this.fillForm();
       this.venueOptions = this.venues?.map((v) => this.mapVenueToSelectItem(v));
       this.setRooms(this.appointment.venueId);
-      this.prepareDonutChartData();
-      this.ready = true;
-      this.calculateTotalParticipationCount();
+      this.appointmentReady = true;
+      this.loadAppointmentParticipations();
     });
   }
 
@@ -300,42 +300,40 @@ export class EditAppointmentComponent implements OnInit {
     this.ref.close();
   }
 
-  onTabChange(event: { index: number }) {
-    if (event.index === 1 && !this.areParticipationsAlreadyLoaded) {
-      this.ready = false;
-      this.appointmentService.getById(this.appointment.id, true).subscribe(
-        (appointment) => {
-          this.appointment = appointment;
-          this.areParticipationsAlreadyLoaded = true;
-          if (this.appointment.participations) {
-            this.sectionSelectItems = sortBy(
-              uniq(
-                this.appointment.participations
-                  .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles ?? [])
-                  .reduce((a, b) => a.concat(b), [])
-                  .map((mp: ReducedMusicianProfileDto) => mp?.instrumentName ?? '')
-              ).map((val) => ({ label: val, value: val })),
-              (selectItem) => selectItem.label
-            );
+  private loadAppointmentParticipations(): void {
+    this.participantsReady = false;
+    this.appointmentService.getById(this.appointment.id, true).subscribe(
+      (appointment) => {
+        this.appointment = appointment;
+        if (this.appointment.participations) {
+          this.sectionSelectItems = sortBy(
+            uniq(
+              this.appointment.participations
+                .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles ?? [])
+                .reduce((a, b) => a.concat(b), [])
+                .map((mp: ReducedMusicianProfileDto) => mp?.instrumentName ?? '')
+            ).map((val) => ({ label: val, value: val })),
+            (selectItem) => selectItem.label
+          );
 
-            this.qualificationOptions = sortBy(
-              uniq(
-                this.appointment.participations
-                  .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles ?? [])
-                  .reduce((a, b) => a.concat(b), [])
-                  .map((mp: ReducedMusicianProfileDto) => mp?.qualification ?? '')
-              ).map((val) => ({ label: val, value: val })),
-              (selectItem) => selectItem.label
-            );
+          this.qualificationOptions = sortBy(
+            uniq(
+              this.appointment.participations
+                .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles ?? [])
+                .reduce((a, b) => a.concat(b), [])
+                .map((mp: ReducedMusicianProfileDto) => mp?.qualification ?? '')
+            ).map((val) => ({ label: val, value: val })),
+            (selectItem) => selectItem.label
+          );
 
-            this.mapParticipations();
-            this.ready = true;
-            this.calculateTotalParticipationCount();
-          }
-        },
-        () => (this.ready = true)
-      );
-    }
+          this.mapParticipations();
+          this.calculateTotalParticipationCount();
+          this.prepareDonutChartData();
+        }
+        this.participantsReady = true;
+      },
+      () => (this.participantsReady = true)
+    );
   }
 
   mapVenueToSelectItem(venue: VenueDto): SelectItem {
@@ -467,7 +465,7 @@ export class EditAppointmentComponent implements OnInit {
       .pipe(first())
       .subscribe((result) => {
         this.appointment = result;
-        this.areParticipationsAlreadyLoaded = false;
+        this.loadAppointmentParticipations();
         this.notificationsService.success('appointments.SECTION_REMOVED');
       });
   }
@@ -475,7 +473,7 @@ export class EditAppointmentComponent implements OnInit {
   addSection(sectionId: string): void {
     this.appointmentService.addSection(this.appointment.id, sectionId).subscribe((result) => {
       this.appointment = result;
-      this.areParticipationsAlreadyLoaded = false;
+      this.loadAppointmentParticipations();
       this.notificationsService.success('appointments.SECTION_ADDED');
     });
   }
@@ -486,7 +484,7 @@ export class EditAppointmentComponent implements OnInit {
       .pipe(first())
       .subscribe((result) => {
         this.appointment = result;
-        this.areParticipationsAlreadyLoaded = false;
+        this.loadAppointmentParticipations();
         this.notificationsService.success('appointments.PROJECT_REMOVED');
       });
   }
@@ -497,7 +495,7 @@ export class EditAppointmentComponent implements OnInit {
       .pipe(first())
       .subscribe((result) => {
         this.appointment = result;
-        this.areParticipationsAlreadyLoaded = false;
+        this.loadAppointmentParticipations();
         this.notificationsService.success('appointments.PROJECT_ADDED');
       });
   }

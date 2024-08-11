@@ -6,7 +6,7 @@
   </div>
 </ng-template>
 
-<ng-container *ngIf="ready; else loading">
+<ng-container *ngIf="appointmentReady; else loading">
   <div class="container">
     <div class="left-column">
       <h4 class="project-title">
@@ -36,13 +36,14 @@
       </div>
     </div>
     <div class="right-column">
-      <div class="chart-container">
+      <div class="chart-container" *ngIf="participantsReady; else loading">
+        <!-- <arpa-chart [values]="finalResultsValues" [labels]="finalResultsKeys" type="pie" [legend]="true"></arpa-chart> -->
         <p-chart type="doughnut" [data]="donutChartData" [options]="donutChartOptions"></p-chart>
       </div>
     </div>
   </div>
 
-  <p-tabView [(activeIndex)]="activeIndex" (onChange)="onTabChange($event)">
+  <p-tabView [(activeIndex)]="activeIndex">
     <p-tabPanel header="{{ 'appointments.APPOINTMENT_DETAILS' | translate }}">
       <form (submit)="onSubmit()" [formGroup]="formGroup" class="p-mt-5">
         <div class="p-grid p-formgrid">
@@ -318,159 +319,161 @@
       </div>
     </p-tabPanel>
     <p-tabPanel header="{{ 'appointments.PARTICIPATIONS' | translate }}" [disabled]="isNew">
-      <p-table
-        #participationTable
-        (onFilter)="onTableFiltered($event)"
-        [columns]="columns"
-        [paginator]="true"
-        [responsive]="true"
-        [rows]="25"
-        [value]="participationTableItems"
-        id="participationTable"
-        sortMode="multiple"
-        [tableStyle]="{ 'table-layout': 'fixed' }"
-      >
-        <ng-template pTemplate="caption">{{ filteredDataCount }} {{ 'appointments.RESULTS' | translate }}</ng-template>
-        <ng-template let-columns pTemplate="header">
-          <tr>
-            <th *ngFor="let col of columns" [pSortableColumn]="col.field" [ngStyle]="{ width: col.width }" scope="col">
-              {{ col.header }}
-              <p-sortIcon [field]="col.field"></p-sortIcon>
-            </th>
-          </tr>
-          <tr>
-            <th *ngFor="let col of columns" [ngSwitch]="col.field" [ngStyle]="{ width: col.width }" scope="col">
-              <input
-                (input)="participationTable.filter($event.target.value, col.field, 'contains')"
-                *ngSwitchCase="'surname'"
-                pInputText
-                type="text"
-                [style]="{ width: '100%' }"
-              />
-              <input
-                (input)="participationTable.filter($event.target.value, col.field, 'contains')"
-                *ngSwitchCase="'givenName'"
-                pInputText
-                type="text"
-                [style]="{ width: '100%' }"
-              />
-              <p-dropdown
-                (onChange)="participationTable.filter($event.value, col.field, 'equals')"
-                *ngSwitchCase="'prediction'"
-                [autoDisplayFirst]="false"
-                [options]="predictionOptions"
-                [showClear]="true"
-                [style]="{ width: '100%' }"
-                appendTo="body"
-              ></p-dropdown>
-              <p-dropdown
-                (onChange)="participationTable.filter($event.value, col.field, 'equals')"
-                *ngSwitchCase="'result'"
-                [autoDisplayFirst]="false"
-                [options]="resultOptions"
-                [showClear]="true"
-                [style]="{ width: '100%' }"
-                appendTo="body"
-              ></p-dropdown>
-              <p-dropdown
-                (onChange)="participationTable.filter($event.value, col.field, 'contains')"
-                *ngSwitchCase="'sections'"
-                [autoDisplayFirst]="false"
-                [options]="sectionSelectItems"
-                [showClear]="true"
-                [style]="{ width: '100%' }"
-                appendTo="body"
-              ></p-dropdown>
+      <ng-container *ngIf="participantsReady; else loading">
+        <p-table
+          #participationTable
+          (onFilter)="onTableFiltered($event)"
+          [columns]="columns"
+          [paginator]="true"
+          [responsive]="true"
+          [rows]="25"
+          [value]="participationTableItems"
+          id="participationTable"
+          sortMode="multiple"
+          [tableStyle]="{ 'table-layout': 'fixed' }"
+        >
+          <ng-template pTemplate="caption">{{ filteredDataCount }} {{ 'appointments.RESULTS' | translate }}</ng-template>
+          <ng-template let-columns pTemplate="header">
+            <tr>
+              <th *ngFor="let col of columns" [pSortableColumn]="col.field" [ngStyle]="{ width: col.width }" scope="col">
+                {{ col.header }}
+                <p-sortIcon [field]="col.field"></p-sortIcon>
+              </th>
+            </tr>
+            <tr>
+              <th *ngFor="let col of columns" [ngSwitch]="col.field" [ngStyle]="{ width: col.width }" scope="col">
+                <input
+                  (input)="participationTable.filter($event.target.value, col.field, 'contains')"
+                  *ngSwitchCase="'surname'"
+                  pInputText
+                  type="text"
+                  [style]="{ width: '100%' }"
+                />
+                <input
+                  (input)="participationTable.filter($event.target.value, col.field, 'contains')"
+                  *ngSwitchCase="'givenName'"
+                  pInputText
+                  type="text"
+                  [style]="{ width: '100%' }"
+                />
+                <p-dropdown
+                  (onChange)="participationTable.filter($event.value, col.field, 'equals')"
+                  *ngSwitchCase="'prediction'"
+                  [autoDisplayFirst]="false"
+                  [options]="predictionOptions"
+                  [showClear]="true"
+                  [style]="{ width: '100%' }"
+                  appendTo="body"
+                ></p-dropdown>
+                <p-dropdown
+                  (onChange)="participationTable.filter($event.value, col.field, 'equals')"
+                  *ngSwitchCase="'result'"
+                  [autoDisplayFirst]="false"
+                  [options]="resultOptions"
+                  [showClear]="true"
+                  [style]="{ width: '100%' }"
+                  appendTo="body"
+                ></p-dropdown>
+                <p-dropdown
+                  (onChange)="participationTable.filter($event.value, col.field, 'contains')"
+                  *ngSwitchCase="'sections'"
+                  [autoDisplayFirst]="false"
+                  [options]="sectionSelectItems"
+                  [showClear]="true"
+                  [style]="{ width: '100%' }"
+                  appendTo="body"
+                ></p-dropdown>
 
-              <p-dropdown
-                (onChange)="participationTable.filter($event.value, col.field, 'contains')"
-                *ngSwitchCase="'qualification'"
-                [autoDisplayFirst]="false"
-                [options]="qualificationOptions"
-                [showClear]="true"
-                [style]="{ width: '100%' }"
-                appendTo="body"
-              ></p-dropdown>
-            </th>
-          </tr>
-        </ng-template>
-        <ng-template let-item pTemplate="body">
-          <tr>
-            <td>
-              <span class="p-column-title">{{ 'SURNAME' | translate }}</span>
-              {{ item.surname }}
-            </td>
-            <td>
-              <span class="p-column-title">{{ 'GIVENNAME' | translate }}</span>
-              {{ item.givenName }}
-            </td>
-            <td>
-              <span class="p-column-title">{{ 'appointments.PREDICTION' | translate }}</span>
-              <p-dropdown
-                (onChange)="onPredictionChanged(item, $event)"
-                [(ngModel)]="item.prediction"
-                [autoDisplayFirst]="false"
-                [name]="'prediction-' + item.id"
-                [options]="predictionOptions"
-                appendTo="body"
-                [placeholder]="'appointments.SELECT_PREDICTION' | translate"
-              ></p-dropdown>
-              <button
-                pButton
-                pRipple
-                type="button"
-                class="p-button-text"
-                *ngIf="item.commentByPerformerInner"
-                icon="pi pi-comment"
-                (click)="op.toggle($event)"
-              ></button>
-              <p-overlayPanel #op>
-                <ng-template pTemplate>
-                  <p class="comment-overlay">{{ item.commentByPerformerInner }}</p>
-                </ng-template>
-              </p-overlayPanel>
-            </td>
-            <td>
-              <span class="p-column-title">{{ 'appointments.RESULTS' | translate }}</span>
-              <p-dropdown
-                (onChange)="onResultChanged(item, $event)"
-                [(ngModel)]="item.result"
-                [autoDisplayFirst]="false"
-                [name]="'result-' + item.id"
-                [options]="resultOptions"
-                appendTo="body"
-                [placeholder]="'appointments.SELECT_STATUS' | translate"
-              ></p-dropdown>
-            </td>
-            <td>
-              <span class="p-column-title">{{ 'SECTIONS' | translate }}</span>
-              {{ item.sections }}
-            </td>
-            <td>
-              <span class="p-column-title">{{ 'appointments.QUALIFICATION' | translate }}</span>
-              {{ item.qualification }}
-            </td>
-          </tr>
-        </ng-template>
-        <ng-template let-columns pTemplate="emptymessage">
-          <tr>
-            <td [attr.colspan]="columns.length">{{ 'appointments.NORECORDS' | translate }}</td>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="summary" style="margin-bottom: 1rem">
-          {{ filteredDataCount }} {{ 'appointments.RESULTS' | translate }}
-        </ng-template>
-      </p-table>
-      <div class="download-button">
-        <button
-          class="download-button"
-          type="button"
-          pButton
-          icon="pi pi-download"
-          (click)="table.exportCSV()"
-          label="Download CSV"
-        ></button>
-      </div>
+                <p-dropdown
+                  (onChange)="participationTable.filter($event.value, col.field, 'contains')"
+                  *ngSwitchCase="'qualification'"
+                  [autoDisplayFirst]="false"
+                  [options]="qualificationOptions"
+                  [showClear]="true"
+                  [style]="{ width: '100%' }"
+                  appendTo="body"
+                ></p-dropdown>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template let-item pTemplate="body">
+            <tr>
+              <td>
+                <span class="p-column-title">{{ 'SURNAME' | translate }}</span>
+                {{ item.surname }}
+              </td>
+              <td>
+                <span class="p-column-title">{{ 'GIVENNAME' | translate }}</span>
+                {{ item.givenName }}
+              </td>
+              <td>
+                <span class="p-column-title">{{ 'appointments.PREDICTION' | translate }}</span>
+                <p-dropdown
+                  (onChange)="onPredictionChanged(item, $event)"
+                  [(ngModel)]="item.prediction"
+                  [autoDisplayFirst]="false"
+                  [name]="'prediction-' + item.id"
+                  [options]="predictionOptions"
+                  appendTo="body"
+                  [placeholder]="'appointments.SELECT_PREDICTION' | translate"
+                ></p-dropdown>
+                <button
+                  pButton
+                  pRipple
+                  type="button"
+                  class="p-button-text"
+                  *ngIf="item.commentByPerformerInner"
+                  icon="pi pi-comment"
+                  (click)="op.toggle($event)"
+                ></button>
+                <p-overlayPanel #op>
+                  <ng-template pTemplate>
+                    <p class="comment-overlay">{{ item.commentByPerformerInner }}</p>
+                  </ng-template>
+                </p-overlayPanel>
+              </td>
+              <td>
+                <span class="p-column-title">{{ 'appointments.RESULTS' | translate }}</span>
+                <p-dropdown
+                  (onChange)="onResultChanged(item, $event)"
+                  [(ngModel)]="item.result"
+                  [autoDisplayFirst]="false"
+                  [name]="'result-' + item.id"
+                  [options]="resultOptions"
+                  appendTo="body"
+                  [placeholder]="'appointments.SELECT_STATUS' | translate"
+                ></p-dropdown>
+              </td>
+              <td>
+                <span class="p-column-title">{{ 'SECTIONS' | translate }}</span>
+                {{ item.sections }}
+              </td>
+              <td>
+                <span class="p-column-title">{{ 'appointments.QUALIFICATION' | translate }}</span>
+                {{ item.qualification }}
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template let-columns pTemplate="emptymessage">
+            <tr>
+              <td [attr.colspan]="columns.length">{{ 'appointments.NORECORDS' | translate }}</td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="summary" style="margin-bottom: 1rem">
+            {{ filteredDataCount }} {{ 'appointments.RESULTS' | translate }}
+          </ng-template>
+        </p-table>
+        <div class="download-button">
+          <button
+            class="download-button"
+            type="button"
+            pButton
+            icon="pi pi-download"
+            (click)="table.exportCSV()"
+            label="Download CSV"
+          ></button>
+        </div>
+      </ng-container>
     </p-tabPanel>
   </p-tabView>
 </ng-container>
