@@ -22,6 +22,7 @@ import { AppointmentService } from '@arpa/services';
 import { first, map } from 'rxjs/operators';
 import { of, zip } from 'rxjs';
 import { Table } from 'primeng/table';
+import { AuthService } from '@arpa/services';
 
 class ParticipationTableItem {
   givenName: string;
@@ -65,10 +66,11 @@ export class EditAppointmentComponent implements OnInit {
   items: MenuItem[] = [];
   activeIndex = 0;
   formGroup: UntypedFormGroup;
-  ready = false;
+
+  appointmentReady = false;
+  participantsReady = false;
 
   appointment: AppointmentDto;
-  areParticipationsAlreadyLoaded = false;
   isAllDayEvent: boolean;
 
   // loaded in loadData()
@@ -97,6 +99,14 @@ export class EditAppointmentComponent implements OnInit {
   filteredDataCount: number = 0;
   totalParticipationCount: number = 0;
 
+  predictionsChartValues: number[] = [];
+  predictionChartKeys: string[] = [];
+
+  acceptedSectionName: string[] = [];
+  accpetedSectionCount: number[] = [];
+
+  currentUser: { roles: string[] };
+
   constructor(
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
@@ -104,6 +114,7 @@ export class EditAppointmentComponent implements OnInit {
     private appointmentService: AppointmentService,
     private formBuilder: UntypedFormBuilder,
     private translate: TranslateService,
+    private authService: AuthService,
     private confirmationService: ConfirmationService,
     private selectValueService: SelectValueService,
     private enumService: EnumService,
@@ -119,6 +130,10 @@ export class EditAppointmentComponent implements OnInit {
   ngOnInit(): void {
     this.createForm();
     this.loadData();
+    this.authService.currentUser.subscribe((user) => {
+      this.currentUser = user;
+    });
+
     this.columns = [
       { field: 'surname', header: this.translate.instant('SURNAME'), width: '20%' },
       { field: 'givenName', header: this.translate.instant('GIVENNAME'), width: '20%' },
@@ -209,16 +224,55 @@ export class EditAppointmentComponent implements OnInit {
       )
     ).subscribe(() => {
       this.fillForm();
-
       this.venueOptions = this.venues?.map((v) => this.mapVenueToSelectItem(v));
       this.setRooms(this.appointment.venueId);
-      this.ready = true;
-      this.calculateTotalParticipationCount();
+      this.appointmentReady = true;
+      this.loadAppointmentParticipations();
     });
   }
-
+  hasAdminRole(): boolean {
+    return this.currentUser?.roles.includes('admin');
+  }
   private calculateTotalParticipationCount() {
     this.totalParticipationCount = this.appointment.participations?.length || 0;
+  }
+
+  public prepareDonutChartData() {
+    const predictionCounts: { [key: string]: number } = {};
+    const sectionCounts: { [key: string]: number } = {};
+
+    // we want this extra property because there are cases where we don't have any information on the person participation
+    // Do not forget to add translations for this property
+    const noPredictionKey = 'NO_PREDICTION';
+
+    this.predictionOptions.forEach((option) => {
+      predictionCounts[option.value] = 0;
+    });
+    predictionCounts[noPredictionKey] = 0;
+
+    this.participationTableItems.forEach((item) => {
+      if (item.prediction) {
+        predictionCounts[item.prediction]++;
+
+        if ([AppointmentParticipationPrediction.YES, AppointmentParticipationPrediction.PARTLY].includes(item.prediction)) {
+          // the count of this section is either an increase in the number of exisint participants of this section
+          //  or, if this is the first time we see this section, the number 1 (1st participant)
+          sectionCounts[item.sections] = sectionCounts[item.sections] ? sectionCounts[item.sections]++ : 1;
+        }
+      } else {
+        predictionCounts[noPredictionKey]++;
+      }
+    });
+
+    for (const [key, value] of Object.entries(predictionCounts)) {
+      this.predictionChartKeys.push(key);
+      this.predictionsChartValues.push(value);
+    }
+
+    for (const [key, value] of Object.entries(sectionCounts)) {
+      this.acceptedSectionName.push(key);
+      this.accpetedSectionCount.push(value);
+    }
   }
 
   onSubmit(): void {
@@ -250,42 +304,40 @@ export class EditAppointmentComponent implements OnInit {
     this.ref.close();
   }
 
-  onTabChange(event: { index: number }) {
-    if (event.index === 1 && !this.areParticipationsAlreadyLoaded) {
-      this.ready = false;
-      this.appointmentService.getById(this.appointment.id, true).subscribe(
-        (appointment) => {
-          this.appointment = appointment;
-          this.areParticipationsAlreadyLoaded = true;
-          if (this.appointment.participations) {
-            this.sectionSelectItems = sortBy(
-              uniq(
-                this.appointment.participations
-                  .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles ?? [])
-                  .reduce((a, b) => a.concat(b), [])
-                  .map((mp: ReducedMusicianProfileDto) => mp?.instrumentName ?? '')
-              ).map((val) => ({ label: val, value: val })),
-              (selectItem) => selectItem.label
-            );
+  private loadAppointmentParticipations(): void {
+    this.participantsReady = false;
+    this.appointmentService.getById(this.appointment.id, true).subscribe(
+      (appointment) => {
+        this.appointment = appointment;
+        if (this.appointment.participations) {
+          this.sectionSelectItems = sortBy(
+            uniq(
+              this.appointment.participations
+                .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles ?? [])
+                .reduce((a, b) => a.concat(b), [])
+                .map((mp: ReducedMusicianProfileDto) => mp?.instrumentName ?? '')
+            ).map((val) => ({ label: val, value: val })),
+            (selectItem) => selectItem.label
+          );
 
-            this.qualificationOptions = sortBy(
-              uniq(
-                this.appointment.participations
-                  .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles ?? [])
-                  .reduce((a, b) => a.concat(b), [])
-                  .map((mp: ReducedMusicianProfileDto) => mp?.qualification ?? '')
-              ).map((val) => ({ label: val, value: val })),
-              (selectItem) => selectItem.label
-            );
+          this.qualificationOptions = sortBy(
+            uniq(
+              this.appointment.participations
+                .map((p: AppointmentParticipationListItemDto) => p.musicianProfiles ?? [])
+                .reduce((a, b) => a.concat(b), [])
+                .map((mp: ReducedMusicianProfileDto) => mp?.qualification ?? '')
+            ).map((val) => ({ label: val, value: val })),
+            (selectItem) => selectItem.label
+          );
 
-            this.mapParticipations();
-            this.ready = true;
-            this.calculateTotalParticipationCount();
-          }
-        },
-        () => (this.ready = true)
-      );
-    }
+          this.mapParticipations();
+          this.calculateTotalParticipationCount();
+          this.prepareDonutChartData();
+        }
+        this.participantsReady = true;
+      },
+      () => (this.participantsReady = true)
+    );
   }
 
   mapVenueToSelectItem(venue: VenueDto): SelectItem {
@@ -417,7 +469,7 @@ export class EditAppointmentComponent implements OnInit {
       .pipe(first())
       .subscribe((result) => {
         this.appointment = result;
-        this.areParticipationsAlreadyLoaded = false;
+        this.loadAppointmentParticipations();
         this.notificationsService.success('appointments.SECTION_REMOVED');
       });
   }
@@ -425,7 +477,7 @@ export class EditAppointmentComponent implements OnInit {
   addSection(sectionId: string): void {
     this.appointmentService.addSection(this.appointment.id, sectionId).subscribe((result) => {
       this.appointment = result;
-      this.areParticipationsAlreadyLoaded = false;
+      this.loadAppointmentParticipations();
       this.notificationsService.success('appointments.SECTION_ADDED');
     });
   }
@@ -436,7 +488,7 @@ export class EditAppointmentComponent implements OnInit {
       .pipe(first())
       .subscribe((result) => {
         this.appointment = result;
-        this.areParticipationsAlreadyLoaded = false;
+        this.loadAppointmentParticipations();
         this.notificationsService.success('appointments.PROJECT_REMOVED');
       });
   }
@@ -447,7 +499,7 @@ export class EditAppointmentComponent implements OnInit {
       .pipe(first())
       .subscribe((result) => {
         this.appointment = result;
-        this.areParticipationsAlreadyLoaded = false;
+        this.loadAppointmentParticipations();
         this.notificationsService.success('appointments.PROJECT_ADDED');
       });
   }
@@ -616,9 +668,9 @@ export class EditAppointmentComponent implements OnInit {
     return this.appointment.projects
       .map((project: any) => {
         const title = project.title;
-        return title.length > 30 ? title.substring(0, 30) + '...' : title;
+        return title.length > 50 ? title.substring(0, 30) + '...' : title;
       })
-      .join(' | ');
+      .join('  |  ');
   }
   getFormattedSectionNames(): string {
     return this.appointment.sections

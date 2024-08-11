@@ -25,20 +25,61 @@ th {
   display: none;
 }
 
-@media (max-width: 600px) {
-  .p-column-title {
-    display: block;
-    font-weight: bold;
-  }
-}
-
 .comment-overlay {
   max-width: 300px;
 }
 
+.charts-container {
+  display: flex;
+  height: 100%;
+  margin: auto;
+  padding: 10px;
+}
+
+.left-column {
+  width: 50%;
+  height: 250px;
+  float: left;
+}
+
+.right-column {
+  width: 50%;
+  height: 250px;
+  float: right;
+}
+
+.chart-container {
+  width: 100%;
+  height: 100%;
+}
+
+.no-acceptances-yet {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* Media query for screens smaller than 768px (like most mobile devices) */
+@media screen and (max-width: 768px) {
+  .charts-container {
+    flex-direction: column; /* Stack columns vertically on smaller screens */
+
+    .left-column,
+    .right-column {
+      width: 100%; /* Each chart takes full width when stacked */
+    }
+  }
+}
+.p-col-12.p-d-flex.p-jc-between.p-mt-3 {
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 .project-title {
-  color: var(--primary-color);
-  font-weight: lighter;
+  color: var(--secondary-color);
+  font-weight: 500;
   font-size: small;
   text-align: center;
 }

@@ -13,6 +13,7 @@ import { ThemeSwitcherService } from '../@arpa/components/theme-switcher/theme-s
 import { ConfigService } from '@arpa/services';
 import { OfflineComponent } from './shared/components/offline/offline.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   declarations: [AppComponent, OfflineComponent],
@@ -23,6 +24,7 @@ import { TranslateModule } from '@ngx-translate/core';
     HttpClientModule,
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    ChartModule,
 
     ArpaModule.forRoot(),
     // ServiceWorkerModule.register('ngsw-worker.js', {

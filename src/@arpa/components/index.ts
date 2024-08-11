@@ -11,3 +11,4 @@ export * from './split-view/split-view.module';
 export * from './status-badge/state-badge.module';
 export * from './table/table.module';
 export * from './theme-switcher/theme-switcher.module';
+export * from './chart/chart.module';

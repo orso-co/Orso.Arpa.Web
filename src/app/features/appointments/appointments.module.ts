@@ -28,6 +28,9 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { RippleModule } from 'primeng/ripple';
 import { TabViewModule } from 'primeng/tabview';
+import { ChartModule } from '@arpa/components';
+import { MessageModule } from 'primeng/message';
+import { ChipModule } from 'primeng/chip';
 
 @NgModule({
   declarations: [AppointmentsComponent, EditAppointmentComponent],
@@ -54,6 +57,9 @@ import { TabViewModule } from 'primeng/tabview';
     OverlayPanelModule,
     RippleModule,
     TabViewModule,
+    ChartModule,
+    MessageModule,
+    ChipModule,
   ],
   providers: [
     AppointmentCategoryListResolver,

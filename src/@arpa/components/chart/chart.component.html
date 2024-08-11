@@ -1,12 +1,15 @@
 <div style="display: block; height: 100%">
-  <canvas baseChart
+  <canvas
+    baseChart
     *ngIf="data"
     [type]="type"
     [datasets]="data"
     [labels]="labels"
     [legend]="legend"
     [options]="options"
+    [plugins]="pieChartPlugins"
     height="100%"
-    width="100%">
+    width="100%"
+  >
   </canvas>
 </div>

@@ -1,4 +1,1 @@
-<arpa-chart
-  [data]='[(data | async)]'
-  [labels]='(labels | async) || []'
-  [type]='chartType'></arpa-chart>
+<arpa-chart [values]="[data | async]" [labels]="(labels | async) || []" [type]="chartType"></arpa-chart>
