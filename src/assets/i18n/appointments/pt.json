@@ -10,6 +10,7 @@
   "APPOINTMENT_DETAILS": "Detalhes do evento",
   "CATEGORY": "Categoria",
   "CREATE": "Criar evento",
+  "DELETION_HINT": "Apenas os administradores podem apagar eventos",
   "DETAILSINTERNAL": "Detalhes privados",
   "DETAILSPUBLIC": "Detalhes públicos",
   "DOWNLOAD_APPOINTMENTS": "Descarregar eventos",

@@ -11,6 +11,7 @@
   "APPOINTMENT_DETAILS": "Appointment details",
   "CATEGORY": "Category",
   "CREATE": "Create an appointment",
+  "DELETION_HINT": "Only admins can delete appointments",
   "DETAILSINTERNAL": "Internal Details",
   "DETAILSPUBLIC": "Public Details",
   "DOWNLOAD_APPOINTMENTS": "Download appointments",

@@ -11,6 +11,7 @@
   "APPOINTMENT_DETAILS": "Деталі зустрічі",
   "CATEGORY": "Категорія",
   "CREATE": "Створити зустріч",
+  "DELETION_HINT": "Тільки адміністратори можуть видаляти зустрічі",
   "DETAILSINTERNAL": "Внутрішні деталі",
   "DETAILSPUBLIC": "Публічна інформація",
   "DOWNLOAD_APPOINTMENTS": "Завантажити зустрічі",

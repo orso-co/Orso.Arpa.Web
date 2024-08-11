@@ -11,6 +11,7 @@
   "APPOINTMENT_DETAILS": "Детали назначения",
   "CATEGORY": "Категория",
   "CREATE": "Назначить встречу",
+  "DELETION_HINT": "Только администраторы могут удалять назначения",
   "DETAILSINTERNAL": "Внутренние детали",
   "DETAILSPUBLIC": "Публичные подробности",
   "DOWNLOAD_APPOINTMENTS": "Загрузить даты",

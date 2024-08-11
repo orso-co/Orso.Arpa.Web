@@ -71,9 +71,15 @@ th {
     }
   }
 }
+.p-col-12.p-d-flex.p-jc-between.p-mt-3 {
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 .project-title {
-  color: var(--primary-color);
-  font-weight: lighter;
+  color: var(--secondary-color);
+  font-weight: 500;
   font-size: small;
   text-align: center;
 }

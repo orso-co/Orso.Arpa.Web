@@ -10,6 +10,7 @@
   "APPOINTMENT_DETAILS": "Détails de l'événement",
   "CATEGORY": "Catégorie",
   "CREATE": "Créer un nouvel événement",
+  "DELETION_HINT": "Seuls les administrateurs peuvent supprimer des événements",
   "DETAILSINTERNAL": "Détails privés",
   "DETAILSPUBLIC": "Détails publics",
   "DOWNLOAD_APPOINTMENTS": "Télécharger les rendez-vous",

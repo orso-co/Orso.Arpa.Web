@@ -22,6 +22,7 @@ import { AppointmentService } from '@arpa/services';
 import { first, map } from 'rxjs/operators';
 import { of, zip } from 'rxjs';
 import { Table } from 'primeng/table';
+import { AuthService } from '@arpa/services';
 
 class ParticipationTableItem {
   givenName: string;
@@ -113,6 +114,7 @@ export class EditAppointmentComponent implements OnInit {
     private appointmentService: AppointmentService,
     private formBuilder: UntypedFormBuilder,
     private translate: TranslateService,
+    private authService: AuthService,
     private confirmationService: ConfirmationService,
     private selectValueService: SelectValueService,
     private enumService: EnumService,
@@ -128,7 +130,10 @@ export class EditAppointmentComponent implements OnInit {
   ngOnInit(): void {
     this.createForm();
     this.loadData();
-    this.loadCurrentUser();
+    this.authService.currentUser.subscribe((user) => {
+      this.currentUser = user;
+    });
+
     this.columns = [
       { field: 'surname', header: this.translate.instant('SURNAME'), width: '20%' },
       { field: 'givenName', header: this.translate.instant('GIVENNAME'), width: '20%' },
@@ -225,7 +230,9 @@ export class EditAppointmentComponent implements OnInit {
       this.loadAppointmentParticipations();
     });
   }
-
+  hasAdminRole(): boolean {
+    return this.currentUser?.roles.includes('admin');
+  }
   private calculateTotalParticipationCount() {
     this.totalParticipationCount = this.appointment.participations?.length || 0;
   }
@@ -601,14 +608,6 @@ export class EditAppointmentComponent implements OnInit {
       endTime: new Date(this.appointment.endTime),
       allDay: this.isAllDayEvent,
     });
-  }
-
-  private loadCurrentUser(): void {
-    this.currentUser = { roles: ['admin'] };
-  }
-
-  hasAdminRole(): boolean {
-    return this.currentUser?.roles?.includes('admin');
   }
 
   private deleteAppointment(): void {
