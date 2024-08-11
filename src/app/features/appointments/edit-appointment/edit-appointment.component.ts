@@ -98,8 +98,8 @@ export class EditAppointmentComponent implements OnInit {
   filteredDataCount: number = 0;
   totalParticipationCount: number = 0;
 
-  donutChartData: any;
-  donutChartOptions: any;
+  chartValues: number[] = [];
+  chartKeys: string[] = [];
 
   constructor(
     public ref: DynamicDialogRef,
@@ -227,48 +227,27 @@ export class EditAppointmentComponent implements OnInit {
   private prepareDonutChartData() {
     const predictionCounts: { [key: string]: number } = {};
 
+    // we want this extra property because there are cases where we don't have any information on the person participation
+    // Do not forget to add translations for this property
+    const noPredictionKey = 'NO_PREDICTION';
+
     this.predictionOptions.forEach((option) => {
       predictionCounts[option.value] = 0;
     });
+    predictionCounts[noPredictionKey] = 0;
 
     this.participationTableItems.forEach((item) => {
       if (item.prediction) {
         predictionCounts[item.prediction]++;
+      } else {
+        predictionCounts[noPredictionKey]++;
       }
     });
 
-    const totalCount = this.participationTableItems.length;
-    const predictionData = Object.keys(predictionCounts).map((key) => predictionCounts[key]);
-    const predictionLabels = Object.keys(predictionCounts);
-    const predictionPercentages = predictionData.map((count) => ((count / totalCount) * 100).toFixed(2));
-
-    this.donutChartData = {
-      labels: predictionLabels,
-      datasets: [
-        {
-          data: predictionData,
-          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
-          hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
-        },
-      ],
-    };
-
-    this.donutChartOptions = {
-      responsive: true,
-      plugins: {
-        tooltip: {
-          callbacks: {
-            label: (tooltipItem: any) => {
-              const count = predictionData[tooltipItem.dataIndex];
-              const percentage = predictionPercentages[tooltipItem.dataIndex];
-              return `${tooltipItem.label}: ${count} (${percentage}%)`;
-            },
-          },
-        },
-      },
-    };
-    console.log('Donut Chart Data:', this.donutChartData);
-    console.log('Donut Chart Options:', this.donutChartOptions);
+    for (const [key, value] of Object.entries(predictionCounts)) {
+      this.chartKeys.push(key);
+      this.chartValues.push(value);
+    }
   }
 
   onSubmit(): void {

@@ -6,7 +6,7 @@ import { AvatarModule } from '../../../@arpa/components/avatar/avatar.module';
 import { BadgeModule } from 'primeng/badge';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
-import { ChartModule } from '../../../@arpa/components/chart/chart.module';
+import { ChartModule } from '@arpa/components';
 import { ChartWidgetComponent } from './chart-widget/chart-widget.component';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ChoirGridWidgetComponent } from './choir-grid-widget/choir-grid-widget.component';

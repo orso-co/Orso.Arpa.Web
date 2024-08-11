@@ -37,8 +37,8 @@
     </div>
     <div class="right-column">
       <div class="chart-container" *ngIf="participantsReady; else loading">
-        <!-- <arpa-chart [values]="finalResultsValues" [labels]="finalResultsKeys" type="pie" [legend]="true"></arpa-chart> -->
-        <p-chart type="doughnut" [data]="donutChartData" [options]="donutChartOptions"></p-chart>
+        <!-- See https://orso.atlassian.net/browse/ARPA-1019 -->
+        <arpa-chart [values]="chartValues" [labels]="chartKeys" type="pie" [legend]="true"></arpa-chart>
       </div>
     </div>
   </div>
