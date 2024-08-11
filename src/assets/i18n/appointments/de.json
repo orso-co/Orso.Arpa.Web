@@ -19,6 +19,7 @@
   "EXPECTATION": "Erwartung",
   "LEVEL": "Qualifikation",
   "NEW_APPOINTMENT_CONFIRMATION": "Möchtest du einen neuen Termin anlegen für {{value}}?",
+  "NO_ACCEPTANCES_YET": "Noch keine Zusagen vorhanden",
   "NO_PREDICTION": "Deine Prognose?",
   "NORECORDS": "Keine Datensätze gefunden",
   "NOTIFICATION_SENT": "Die E-Mail-Benachrichtigungen wurde gesendet",

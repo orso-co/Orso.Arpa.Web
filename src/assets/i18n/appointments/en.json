@@ -19,6 +19,7 @@
   "EXPECTATION": "Expectation",
   "LEVEL": "(Semi-)Professional",
   "NEW_APPOINTMENT_CONFIRMATION": "Do you want to create a new appointment for {{value}}?",
+  "NO_ACCEPTANCES_YET": "No acceptances yet",
   "NO_PREDICTION": "Your prediction?",
   "NORECORDS": "No records found",
   "NOTIFICATION_SENT": "The e-mail notifications have been sent",

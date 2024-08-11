@@ -8,7 +8,7 @@
 
 <ng-container *ngIf="appointmentReady; else loading">
   <div class="container">
-    <div class="left-column">
+    <div class="header">
       <h4 class="project-title">
         {{ getFormattedProjectTitles() }}
       </h4>
@@ -22,22 +22,10 @@
       <p style="text-align: center">
         {{ getFormattedSectionNames() }}
       </p>
-      <div style="display: flex; justify-content: center; margin-bottom: 2rem">
-        <button
-          [label]="getSendNotificationLabel()"
-          [pTooltip]="'appointments.SEND_NOTIFICATION_TOOLTIP' | translate"
-          *ngIf="!isNew && formGroup.pristine"
-          (click)="onSendNotification($event)"
-          pButton
-          class="p-button-outlined p-button-warning p-mr-3"
-          type="button"
-          icon="pi pi-envelope"
-        ></button>
-      </div>
     </div>
-    <div class="right-column" *ngIf="!isNew">
-      <div class="charts-container" *ngIf="participantsReady; else loading">
-        <!-- See https://orso.atlassian.net/browse/ARPA-1019 -->
+
+    <div class="charts-container">
+      <div class="left-column" *ngIf="participantsReady; else loading">
         <div class="chart-container">
           <arpa-chart
             [values]="predictionsChartValues"
@@ -48,21 +36,19 @@
           ></arpa-chart>
           <strong *ngIf="!predictionsChartValues?.length">{{ 'appointments.NO_PREDICTIONS_AVAILABLE' | translate }}</strong>
         </div>
-
-        <div class="chart-container">
-          <arpa-chart
-            [values]="accpetedSectionCount"
-            [labels]="acceptedSectionName"
-            type="pie"
-            [legend]="true"
-            *ngIf="accpetedSectionCount?.length"
-          ></arpa-chart>
-          <strong *ngIf="!accpetedSectionCount?.length">{{ 'appointments.NO_ACCEPTANCES_YET' | translate }}</strong>
-        </div>
+      </div>
+      <div class="right-column" *ngIf="!isNew">
+        <arpa-chart
+          [values]="accpetedSectionCount"
+          [labels]="acceptedSectionName"
+          type="pie"
+          [legend]="true"
+          *ngIf="accpetedSectionCount?.length"
+        ></arpa-chart>
+        <p class="no-acceptances-yet" *ngIf="!accpetedSectionCount?.length">{{ 'appointments.NO_ACCEPTANCES_YET' | translate }}</p>
       </div>
     </div>
   </div>
-
   <p-tabView [(activeIndex)]="activeIndex">
     <p-tabPanel header="{{ 'appointments.APPOINTMENT_DETAILS' | translate }}">
       <form (submit)="onSubmit()" [formGroup]="formGroup" class="p-mt-5">
@@ -327,7 +313,21 @@
             iconPos="left"
           ></button>
         </div>
+        <div style="display: flex; justify-content: center; margin-bottom: 2rem">
+          <button
+            [label]="getSendNotificationLabel()"
+            [pTooltip]="'appointments.SEND_NOTIFICATION_TOOLTIP' | translate"
+            *ngIf="!isNew && formGroup.pristine"
+            (click)="onSendNotification($event)"
+            pButton
+            class="p-button-outlined p-button-warning p-mr-3"
+            type="button"
+            icon="pi pi-envelope"
+          ></button>
+        </div>
+
         <button
+          *ngIf="hasAdminRole()"
           (click)="showDeleteConfirmation($event)"
           [label]="'DELETE' | translate"
           class="ml-3 p-button-danger"

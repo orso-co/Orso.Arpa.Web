@@ -104,6 +104,8 @@ export class EditAppointmentComponent implements OnInit {
   acceptedSectionName: string[] = [];
   accpetedSectionCount: number[] = [];
 
+  currentUser: { roles: string[] };
+
   constructor(
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
@@ -126,6 +128,7 @@ export class EditAppointmentComponent implements OnInit {
   ngOnInit(): void {
     this.createForm();
     this.loadData();
+    this.loadCurrentUser();
     this.columns = [
       { field: 'surname', header: this.translate.instant('SURNAME'), width: '20%' },
       { field: 'givenName', header: this.translate.instant('GIVENNAME'), width: '20%' },
@@ -227,7 +230,7 @@ export class EditAppointmentComponent implements OnInit {
     this.totalParticipationCount = this.appointment.participations?.length || 0;
   }
 
-  private prepareDonutChartData() {
+  public prepareDonutChartData() {
     const predictionCounts: { [key: string]: number } = {};
     const sectionCounts: { [key: string]: number } = {};
 
@@ -600,6 +603,14 @@ export class EditAppointmentComponent implements OnInit {
     });
   }
 
+  private loadCurrentUser(): void {
+    this.currentUser = { roles: ['admin'] };
+  }
+
+  hasAdminRole(): boolean {
+    return this.currentUser?.roles?.includes('admin');
+  }
+
   private deleteAppointment(): void {
     this.appointmentService.delete(this.appointment.id).subscribe(() => {
       this.notificationsService.success('appointments.APPOINTMENT_DELETED');
@@ -658,9 +669,9 @@ export class EditAppointmentComponent implements OnInit {
     return this.appointment.projects
       .map((project: any) => {
         const title = project.title;
-        return title.length > 30 ? title.substring(0, 30) + '...' : title;
+        return title.length > 50 ? title.substring(0, 30) + '...' : title;
       })
-      .join(' | ');
+      .join('  |  ');
   }
   getFormattedSectionNames(): string {
     return this.appointment.sections

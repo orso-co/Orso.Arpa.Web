@@ -19,6 +19,7 @@
   "EXPECTATION": "Очікування",
   "LEVEL": "Кваліфікація",
   "NEW_APPOINTMENT_CONFIRMATION": "Ви хочете створити нову зустріч для {{value}}?",
+  "NO_ACCEPTANCES_YET": "Ще немає підтверджень",
   "NO_PREDICTION": "Ваш прогноз?",
   "NORECORDS": "Не знайдено жодного запису даних",
   "NOTIFICATION_SENT": "Сповіщення на електронну пошту надіслано",

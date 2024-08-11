@@ -25,73 +25,70 @@ th {
   display: none;
 }
 
-@media (max-width: 600px) {
-  .p-column-title {
-    display: block;
-    font-weight: bold;
-  }
-  .container {
-    flex-direction: column; /* Stack columns vertically on small screens */
-  }
-
-  .right-column {
-    flex: 1;
-    padding-top: 20px; /* Add some spacing between stacked columns */
-  }
-
-  .chart-container {
-    height: 100px; /* Adjust height for smaller screens */
-  }
-}
-
 .comment-overlay {
   max-width: 300px;
 }
 
-.container {
+.charts-container {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start; /* Align items at the top */
+  height: 100%;
+  margin: auto;
+  padding: 10px;
 }
 
 .left-column {
-  flex: 1;
-  padding: 10px;
-  /* Additional styling for the left column */
+  width: 50%;
+  height: 250px;
+  float: left;
 }
 
 .right-column {
-  flex: 0 0 50vw; /* Take 50% of the viewport width */
-  padding: 10px;
+  width: 50%;
+  height: 250px;
+  float: right;
 }
 
 .chart-container {
-  width: 100%; /* Ensures the chart takes the full width of the right column */
-  height: 150px; /* Adjust the height as necessary */
+  width: 100%;
+  height: 100%;
 }
 
-.charts-container {
-  width: 100%; /* Ensures the chart takes the full width of the right column */
+.no-acceptances-yet {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
+/* Media query for screens smaller than 768px (like most mobile devices) */
+@media screen and (max-width: 768px) {
+  .charts-container {
+    flex-direction: column; /* Stack columns vertically on smaller screens */
+
+    .left-column,
+    .right-column {
+      width: 100%; /* Each chart takes full width when stacked */
+    }
+  }
+}
 .project-title {
   color: var(--primary-color);
   font-weight: lighter;
   font-size: small;
-  text-align: left;
+  text-align: center;
 }
 .appointment-date {
   color: var(--primary-color);
   font-weight: bolder;
   font-size: x-large;
-  text-align: left;
+  text-align: center;
 }
 
 .appointment-title {
   color: var(--yellow-400);
   font-weight: bold;
   font-size: large;
-  text-align: left;
+  text-align: center;
 }
 
 .download-button {
