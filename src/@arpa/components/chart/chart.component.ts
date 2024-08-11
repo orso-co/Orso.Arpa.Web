@@ -1,5 +1,6 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ChartOptions, ChartType } from 'chart.js';
+import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 
 @Component({
   selector: 'arpa-chart',
@@ -7,7 +8,6 @@ import { ChartOptions, ChartType } from 'chart.js';
   styleUrls: ['./chart.component.scss'],
 })
 export class ChartComponent implements OnInit, OnChanges {
-
   @Input() data: any;
 
   @Input() values: number[];
@@ -16,6 +16,8 @@ export class ChartComponent implements OnInit, OnChanges {
   @Input() legend: boolean = true;
   @Input() labels: string[];
 
+  pieChartPlugins = [DatalabelsPlugin];
+
   ngOnInit(): void {
     if (this.values?.length) {
       this.updateDataset();
@@ -23,6 +25,14 @@ export class ChartComponent implements OnInit, OnChanges {
     this.options = {
       responsive: true,
       maintainAspectRatio: false,
+      plugins: {
+        datalabels: {
+          color: 'white',
+          formatter: (value) => {
+            return value;
+          },
+        },
+      },
       ...this.options,
     };
   }
@@ -34,6 +44,6 @@ export class ChartComponent implements OnInit, OnChanges {
   }
 
   private updateDataset() {
-    setTimeout(() => this.data = [{ data: this.values }]);
+    setTimeout(() => (this.data = [{ data: this.values }]));
   }
 }

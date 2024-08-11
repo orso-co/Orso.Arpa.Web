@@ -98,8 +98,11 @@ export class EditAppointmentComponent implements OnInit {
   filteredDataCount: number = 0;
   totalParticipationCount: number = 0;
 
-  chartValues: number[] = [];
-  chartKeys: string[] = [];
+  predictionsChartValues: number[] = [];
+  predictionChartKeys: string[] = [];
+
+  acceptedSectionName: string[] = [];
+  accpetedSectionCount: number[] = [];
 
   constructor(
     public ref: DynamicDialogRef,
@@ -226,6 +229,7 @@ export class EditAppointmentComponent implements OnInit {
 
   private prepareDonutChartData() {
     const predictionCounts: { [key: string]: number } = {};
+    const sectionCounts: { [key: string]: number } = {};
 
     // we want this extra property because there are cases where we don't have any information on the person participation
     // Do not forget to add translations for this property
@@ -239,14 +243,25 @@ export class EditAppointmentComponent implements OnInit {
     this.participationTableItems.forEach((item) => {
       if (item.prediction) {
         predictionCounts[item.prediction]++;
+
+        if ([AppointmentParticipationPrediction.YES, AppointmentParticipationPrediction.PARTLY].includes(item.prediction)) {
+          // the count of this section is either an increase in the number of exisint participants of this section
+          //  or, if this is the first time we see this section, the number 1 (1st participant)
+          sectionCounts[item.sections] = sectionCounts[item.sections] ? sectionCounts[item.sections]++ : 1;
+        }
       } else {
         predictionCounts[noPredictionKey]++;
       }
     });
 
     for (const [key, value] of Object.entries(predictionCounts)) {
-      this.chartKeys.push(key);
-      this.chartValues.push(value);
+      this.predictionChartKeys.push(key);
+      this.predictionsChartValues.push(value);
+    }
+
+    for (const [key, value] of Object.entries(sectionCounts)) {
+      this.acceptedSectionName.push(key);
+      this.accpetedSectionCount.push(value);
     }
   }
 

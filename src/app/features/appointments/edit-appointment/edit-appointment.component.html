@@ -35,10 +35,30 @@
         ></button>
       </div>
     </div>
-    <div class="right-column">
-      <div class="chart-container" *ngIf="participantsReady; else loading">
+    <div class="right-column" *ngIf="!isNew">
+      <div class="charts-container" *ngIf="participantsReady; else loading">
         <!-- See https://orso.atlassian.net/browse/ARPA-1019 -->
-        <arpa-chart [values]="chartValues" [labels]="chartKeys" type="pie" [legend]="true"></arpa-chart>
+        <div class="chart-container">
+          <arpa-chart
+            [values]="predictionsChartValues"
+            [labels]="predictionChartKeys"
+            type="pie"
+            [legend]="true"
+            *ngIf="predictionsChartValues?.length"
+          ></arpa-chart>
+          <strong *ngIf="!predictionsChartValues?.length">{{ 'appointments.NO_PREDICTIONS_AVAILABLE' | translate }}</strong>
+        </div>
+
+        <div class="chart-container">
+          <arpa-chart
+            [values]="accpetedSectionCount"
+            [labels]="acceptedSectionName"
+            type="pie"
+            [legend]="true"
+            *ngIf="accpetedSectionCount?.length"
+          ></arpa-chart>
+          <strong *ngIf="!accpetedSectionCount?.length">{{ 'appointments.NO_ACCEPTANCES_YET' | translate }}</strong>
+        </div>
       </div>
     </div>
   </div>

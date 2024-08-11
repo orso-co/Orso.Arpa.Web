@@ -70,6 +70,10 @@ th {
   height: 150px; /* Adjust the height as necessary */
 }
 
+.charts-container {
+  width: 100%; /* Ensures the chart takes the full width of the right column */
+}
+
 .project-title {
   color: var(--primary-color);
   font-weight: lighter;
