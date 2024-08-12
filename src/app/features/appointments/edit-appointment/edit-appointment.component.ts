@@ -257,12 +257,12 @@ export class EditAppointmentComponent implements OnInit {
 
     this.participationTableItems.forEach((item) => {
       if (item.prediction) {
-        predictionCounts[item.prediction]++;
+        predictionCounts[item.prediction] = (predictionCounts[item.prediction] || 0) + 1;
 
         if ([AppointmentParticipationPrediction.YES, AppointmentParticipationPrediction.PARTLY].includes(item.prediction)) {
           // the count of this section is either an increase in the number of exisint participants of this section
           //  or, if this is the first time we see this section, the number 1 (1st participant)
-          sectionCounts[item.sections] = sectionCounts[item.sections] ? sectionCounts[item.sections]++ : 1;
+          sectionCounts[item.sections] = (sectionCounts[item.sections] || 0) + 1;
         }
       } else {
         predictionCounts[noPredictionKey]++;
