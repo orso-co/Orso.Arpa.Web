@@ -20,6 +20,7 @@
   "LEVEL": "qualification",
   "NEW_APPOINTMENT_CONFIRMATION": "Aimerais -tu fixer un nouveau rendez-vous pour {{value}}?",
   "NO_ACCEPTANCES_YET": "Aucune acceptation pour le moment",
+  "NO_PREDICTIONS_AVAILABLE": "Aucune prédiction disponible",
   "NO_PREDICTION": "Aucune prédiction",
   "NORECORDS": "Aucun enregistrement n'a été trouvée",
   "NOTIFICATION_SENT": "Les notifications par e-mail ont été envoyées",

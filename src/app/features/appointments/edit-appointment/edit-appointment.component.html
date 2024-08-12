@@ -34,7 +34,9 @@
             [legend]="true"
             *ngIf="predictionsChartValues?.length"
           ></arpa-chart>
-          <strong *ngIf="!predictionsChartValues?.length">{{ 'appointments.NO_PREDICTIONS_AVAILABLE' | translate }}</strong>
+          <p class="no-predictions-yet" *ngIf="!predictionsChartValues?.length">
+            {{ 'appointments.NO_PREDICTIONS_AVAILABLE' | translate }}
+          </p>
         </div>
       </div>
       <div class="right-column" *ngIf="!isNew">

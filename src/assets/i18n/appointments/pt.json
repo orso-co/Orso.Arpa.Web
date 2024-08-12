@@ -21,6 +21,7 @@
   "NEW_APPOINTMENT_CONFIRMATION": "Deseja (re)agendar para {{value}}?",
   "NO_ACCEPTANCES_YET": "Ainda sem aceitações",
   "NO_PREDICTION": "Sem previsão",
+  "NO_PREDICTIONS_AVAILABLE": "Sem previsões disponíveis",
   "NORECORDS": "Nenhum registo encontrado",
   "NOTIFICATION_SENT": "As notificações por correio eletrónico foram enviadas",
   "PAGE_TITLE": "Calendário",
