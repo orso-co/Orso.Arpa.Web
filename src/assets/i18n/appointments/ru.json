@@ -21,6 +21,7 @@
   "LEVEL": "Квалификация",
   "NEW_APPOINTMENT_CONFIRMATION": "Вы хотите создать новую встречу для {{value}}?",
   "NO_ACCEPTANCES_YET": "Пока нет подтверждений",
+  "NO_PREDICTIONS_AVAILABLE": "Прогнозы недоступны",
   "NO_PREDICTION": "Ваш прогноз?",
   "NORECORDS": "Записи данных не найдены",
   "NOTIFICATION_SENT": "Уведомления по электронной почте отправлены",

@@ -238,6 +238,11 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   public prepareDonutChartData() {
+    this.predictionChartKeys = [];
+    this.predictionsChartValues = [];
+    this.acceptedSectionName = [];
+    this.accpetedSectionCount = [];
+
     const predictionCounts: { [key: string]: number } = {};
     const sectionCounts: { [key: string]: number } = {};
 
@@ -528,6 +533,7 @@ export class EditAppointmentComponent implements OnInit {
       .subscribe((_) => {
         this.notificationsService.success('appointments.PREDICTION_SET');
       });
+    this.prepareDonutChartData();
   }
 
   onAllDayChanged(isAllDay: boolean) {
