@@ -415,7 +415,6 @@
                   [style]="{ width: '100%' }"
                   appendTo="body"
                 ></p-dropdown>
-
                 <p-dropdown
                   (onChange)="participationTable.filter($event.value, col.field, 'contains')"
                   *ngSwitchCase="'qualification'"
@@ -501,7 +500,7 @@
             type="button"
             pButton
             icon="pi pi-download"
-            (click)="table.exportCSV()"
+            (click)="participationTable.exportCSV()"
             label="Download CSV"
           ></button>
         </div>

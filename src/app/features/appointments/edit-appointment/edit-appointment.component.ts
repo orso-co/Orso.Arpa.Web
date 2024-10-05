@@ -1,28 +1,36 @@
-import {
-  AppointmentParticipationListItemDto,
-  ReducedMusicianProfileDto,
-  AppointmentDto,
-  SectionsAllDto,
-  ProjectDto,
-  VenueDto,
-  RoomDto,
-  AppointmentParticipationPrediction,
-  AppointmentParticipationResult,
-  AppointmentModifyBodyDto,
-  AppointmentCreateDto,
-} from '@arpa/models';
-import { TranslateService } from '@ngx-translate/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { sortBy, uniq } from 'lodash-es';
 import { ConfirmationService, MenuItem, SelectItem } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { sortBy, uniq } from 'lodash-es';
-import { EnumService, NotificationsService, ProjectService, SectionService, SelectValueService, VenueService } from '@arpa/services';
-import { AppointmentService } from '@arpa/services';
-import { first, map } from 'rxjs/operators';
-import { of, zip } from 'rxjs';
 import { Table } from 'primeng/table';
-import { AuthService } from '@arpa/services';
+import { of, zip } from 'rxjs';
+import { first, map } from 'rxjs/operators';
+
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  AppointmentCreateDto,
+  AppointmentDto,
+  AppointmentModifyBodyDto,
+  AppointmentParticipationListItemDto,
+  AppointmentParticipationPrediction,
+  AppointmentParticipationResult,
+  ProjectDto,
+  ReducedMusicianProfileDto,
+  RoomDto,
+  SectionsAllDto,
+  VenueDto,
+} from '@arpa/models';
+import {
+  AppointmentService,
+  AuthService,
+  EnumService,
+  NotificationsService,
+  ProjectService,
+  SectionService,
+  SelectValueService,
+  VenueService,
+} from '@arpa/services';
+import { TranslateService } from '@ngx-translate/core';
 
 class ParticipationTableItem {
   givenName: string;
@@ -141,6 +149,7 @@ export class EditAppointmentComponent implements OnInit {
       { field: 'result', header: this.translate.instant('appointments.RESULTS'), width: '20%' },
       { field: 'sections', header: this.translate.instant('appointments.SECTIONS'), width: '20%' },
       { field: 'qualification', header: this.translate.instant('appointments.QUALIFICATION'), width: '20%' },
+      { field: 'commentByPerformerInner', header: this.translate.instant('appointments.COMMENT'), width: '0%' },
     ];
   }
 
