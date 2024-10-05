@@ -367,10 +367,12 @@
           <ng-template pTemplate="caption">{{ filteredDataCount }} {{ 'appointments.RESULTS' | translate }}</ng-template>
           <ng-template let-columns pTemplate="header">
             <tr>
-              <th *ngFor="let col of columns" [pSortableColumn]="col.field" [ngStyle]="{ width: col.width }" scope="col">
-                {{ col.header }}
-                <p-sortIcon [field]="col.field"></p-sortIcon>
-              </th>
+              <ng-container *ngFor="let col of columns">
+                <th [pSortableColumn]="col.field" [ngStyle]="{ width: col.width }" scope="col" *ngIf="col.visible">
+                  {{ col.header }}
+                  <p-sortIcon [field]="col.field"></p-sortIcon>
+                </th>
+              </ng-container>
             </tr>
             <tr>
               <th *ngFor="let col of columns" [ngSwitch]="col.field" [ngStyle]="{ width: col.width }" scope="col">
