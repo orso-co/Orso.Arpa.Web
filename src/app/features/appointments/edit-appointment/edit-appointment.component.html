@@ -375,58 +375,60 @@
               </ng-container>
             </tr>
             <tr>
-              <th *ngFor="let col of columns" [ngSwitch]="col.field" [ngStyle]="{ width: col.width }" scope="col">
-                <input
-                  (input)="participationTable.filter($event.target.value, col.field, 'contains')"
-                  *ngSwitchCase="'surname'"
-                  pInputText
-                  type="text"
-                  [style]="{ width: '100%' }"
-                />
-                <input
-                  (input)="participationTable.filter($event.target.value, col.field, 'contains')"
-                  *ngSwitchCase="'givenName'"
-                  pInputText
-                  type="text"
-                  [style]="{ width: '100%' }"
-                />
-                <p-dropdown
-                  (onChange)="participationTable.filter($event.value, col.field, 'equals')"
-                  *ngSwitchCase="'prediction'"
-                  [autoDisplayFirst]="false"
-                  [options]="predictionOptions"
-                  [showClear]="true"
-                  [style]="{ width: '100%' }"
-                  appendTo="body"
-                ></p-dropdown>
-                <p-dropdown
-                  (onChange)="participationTable.filter($event.value, col.field, 'equals')"
-                  *ngSwitchCase="'result'"
-                  [autoDisplayFirst]="false"
-                  [options]="resultOptions"
-                  [showClear]="true"
-                  [style]="{ width: '100%' }"
-                  appendTo="body"
-                ></p-dropdown>
-                <p-dropdown
-                  (onChange)="participationTable.filter($event.value, col.field, 'contains')"
-                  *ngSwitchCase="'sections'"
-                  [autoDisplayFirst]="false"
-                  [options]="sectionSelectItems"
-                  [showClear]="true"
-                  [style]="{ width: '100%' }"
-                  appendTo="body"
-                ></p-dropdown>
-                <p-dropdown
-                  (onChange)="participationTable.filter($event.value, col.field, 'contains')"
-                  *ngSwitchCase="'qualification'"
-                  [autoDisplayFirst]="false"
-                  [options]="qualificationOptions"
-                  [showClear]="true"
-                  [style]="{ width: '100%' }"
-                  appendTo="body"
-                ></p-dropdown>
-              </th>
+              <ng-container *ngFor="let col of columns">
+                <th [ngSwitch]="col.field" [ngStyle]="{ width: col.width }" scope="col" *ngIf="col.visible">
+                  <input
+                    (input)="participationTable.filter($event.target.value, col.field, 'contains')"
+                    *ngSwitchCase="'surname'"
+                    pInputText
+                    type="text"
+                    [style]="{ width: '100%' }"
+                  />
+                  <input
+                    (input)="participationTable.filter($event.target.value, col.field, 'contains')"
+                    *ngSwitchCase="'givenName'"
+                    pInputText
+                    type="text"
+                    [style]="{ width: '100%' }"
+                  />
+                  <p-dropdown
+                    (onChange)="participationTable.filter($event.value, col.field, 'equals')"
+                    *ngSwitchCase="'prediction'"
+                    [autoDisplayFirst]="false"
+                    [options]="predictionOptions"
+                    [showClear]="true"
+                    [style]="{ width: '100%' }"
+                    appendTo="body"
+                  ></p-dropdown>
+                  <p-dropdown
+                    (onChange)="participationTable.filter($event.value, col.field, 'equals')"
+                    *ngSwitchCase="'result'"
+                    [autoDisplayFirst]="false"
+                    [options]="resultOptions"
+                    [showClear]="true"
+                    [style]="{ width: '100%' }"
+                    appendTo="body"
+                  ></p-dropdown>
+                  <p-dropdown
+                    (onChange)="participationTable.filter($event.value, col.field, 'contains')"
+                    *ngSwitchCase="'sections'"
+                    [autoDisplayFirst]="false"
+                    [options]="sectionSelectItems"
+                    [showClear]="true"
+                    [style]="{ width: '100%' }"
+                    appendTo="body"
+                  ></p-dropdown>
+                  <p-dropdown
+                    (onChange)="participationTable.filter($event.value, col.field, 'contains')"
+                    *ngSwitchCase="'qualification'"
+                    [autoDisplayFirst]="false"
+                    [options]="qualificationOptions"
+                    [showClear]="true"
+                    [style]="{ width: '100%' }"
+                    appendTo="body"
+                  ></p-dropdown>
+                </th>
+              </ng-container>
             </tr>
           </ng-template>
           <ng-template let-item pTemplate="body">

@@ -57,5 +57,6 @@
   "VENUE": "Место",
   "VENUE_SET": "Место проведения",
   "QUALIFICATION": "Квалификация",
-  "SELECT_STATUS": "Выберите состояние"
+  "SELECT_STATUS": "Выберите состояние",
+  "COMMENT_BY_PERFORMER_INNER": "Комментарий"
 }

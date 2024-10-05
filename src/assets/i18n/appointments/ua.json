@@ -57,5 +57,6 @@
   "VENUE": "Місце",
   "VENUE_SET": "Місце проведення",
   "QUALIFICATION": "Кваліфікація",
-  "SELECT_STATUS": "Виберіть статус"
+  "SELECT_STATUS": "Виберіть статус",
+  "COMMENT_BY_PERFORMER_INNER": "Коментар"
 }

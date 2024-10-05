@@ -60,5 +60,6 @@
   "QUALIFICATION": "Qualification",
   "SELECT_STATUS": "Select status",
   "CREATED_BY": "Created by",
-  "CREATED_AT": "Created at"
+  "CREATED_AT": "Created at",
+  "COMMENT_BY_PERFORMER_INNER": "Comment"
 }

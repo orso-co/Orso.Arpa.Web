@@ -55,5 +55,6 @@
   "TITLE": "Nom de l'événement",
   "VENUE": "Lieu",
   "VENUE_SET": "Lieu de l'événement choisi",
-  "SELECT_STATUS": "Sélectionner le statut"
+  "SELECT_STATUS": "Sélectionner le statut",
+  "COMMENT_BY_PERFORMER_INNER": "Commentaire"
 }

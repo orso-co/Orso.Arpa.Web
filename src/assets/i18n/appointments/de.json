@@ -58,5 +58,6 @@
   "VENUE": "Ort",
   "VENUE_SET": "Veranstaltungsort gesetzt",
   "QUALIFICATION": "Qualifikation",
-  "SELECT_STATUS": "Status auswählen"
+  "SELECT_STATUS": "Status auswählen",
+  "COMMENT_BY_PERFORMER_INNER": "Kommentar"
 }

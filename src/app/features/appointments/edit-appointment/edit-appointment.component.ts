@@ -149,7 +149,12 @@ export class EditAppointmentComponent implements OnInit {
       { field: 'result', header: this.translate.instant('appointments.RESULTS'), width: '20%', visible: true },
       { field: 'sections', header: this.translate.instant('appointments.SECTIONS'), width: '20%', visible: true },
       { field: 'qualification', header: this.translate.instant('appointments.QUALIFICATION'), width: '20%', visible: true },
-      { field: 'commentByPerformerInner', header: this.translate.instant('appointments.COMMENT'), width: '20%', visible: false },
+      {
+        field: 'commentByPerformerInner',
+        header: this.translate.instant('appointments.COMMENT_BY_PERFORMER_INNER'),
+        width: '20%',
+        visible: false,
+      }, // only needed for CSV export
     ];
   }
 
