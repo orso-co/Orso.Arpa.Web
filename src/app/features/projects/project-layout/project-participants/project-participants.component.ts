@@ -132,7 +132,7 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
         this.tableData.next([
           ...participations.map((participation: any) => ({
             ...participation,
-            preferredPositionsTeamNames: participation.preferredPositionsTeam
+            preferredPositionsTeamNames: participation.musicianProfile.preferredPositionsTeam
               .map((p: any) => p.selectValueSection.selectValue.name)
               .join(', '),
           })),
