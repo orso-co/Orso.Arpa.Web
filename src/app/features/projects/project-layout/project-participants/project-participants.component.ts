@@ -1,13 +1,15 @@
-import { TranslateService } from '@ngx-translate/core';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { BehaviorSubject, Subscription } from 'rxjs';
-import { DynamicDialogConfig, DialogService } from 'primeng/dynamicdialog';
-import { ColumnDefinition } from '../../../../../@arpa/components/table/table.component';
 import { DocumentNode } from 'graphql';
-import { ProjectParticipationsQuery, ProjectParticipationsQueryResponse } from './projectparticipations.graphql';
+import { DialogService, DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { first, map } from 'rxjs/operators';
+
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProjectService } from '@arpa/services';
+import { TranslateService } from '@ngx-translate/core';
+
+import { ColumnDefinition } from '../../../../../@arpa/components/table/table.component';
 import { ParticipationDialogComponent } from '../../../participation-dialog/participation-dialog.component';
+import { ProjectParticipationsQuery, ProjectParticipationsQueryResponse } from './projectparticipations.graphql';
 
 @Component({
   selector: 'arpa-project-participants',
@@ -23,9 +25,10 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
   ready = false;
 
   query: DocumentNode = ProjectParticipationsQuery;
-  columns: ColumnDefinition<ProjectParticipationsQueryResponse>[] = [
+  columns: ColumnDefinition<any>[] = [
     { label: 'projects.PARTICIPANTS', property: 'musicianProfile.person.displayName', type: 'text' },
     { label: 'projects.INSTRUMENT', property: 'musicianProfile.instrument.name', type: 'text' },
+    { label: 'projects.PREFERRED_POSITIONS_TEAM', property: 'preferredPositionsTeamNames', type: 'text' },
     { label: 'projects.EMAIL', property: 'musicianProfile.person.user.normalizedEmail', type: 'text' },
     {
       label: 'projects.PARTICIPATION_STATUS_INVITATION',
@@ -75,7 +78,7 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
     { label: 'MODIFIED_BY', property: 'modifiedBy', type: 'text' },
   ];
 
-  tableData = new BehaviorSubject<ProjectParticipationsQueryResponse[]>([]);
+  tableData = new BehaviorSubject<any[]>([]);
   totalReplies = 0;
   totalInvited = 0;
   innerStatsCount: Record<string, number> = {};
@@ -126,7 +129,14 @@ export class ProjectParticipantsComponent implements OnInit, OnDestroy {
             (this.finalResultsCount[participation.participationStatusResult] || 0) + 1;
         });
 
-        this.tableData.next([...participations]);
+        this.tableData.next([
+          ...participations.map((participation: any) => ({
+            ...participation,
+            preferredPositionsTeamNames: participation.preferredPositionsTeam
+              .map((p: any) => p.selectValueSection.selectValue.name)
+              .join(', '),
+          })),
+        ]);
         this.totalInvited = participations.length;
 
         this.innerStatsValues = Object.values(this.innerStatsCount);

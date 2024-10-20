@@ -40,6 +40,13 @@ export interface ProjectParticipationsQueryResponse {
           normalizedEmail: string;
         };
       };
+      preferredPositionsTeam: {
+        selectValueSection: {
+          selectValue: {
+            name: string;
+          };
+        };
+      };
     };
   }[];
 }
@@ -92,6 +99,13 @@ export const ProjectParticipationsQuery = gql`
               user {
                 id
                 normalizedEmail
+              }
+            }
+            preferredPositionsTeam {
+              selectValueSection {
+                selectValue {
+                  name
+                }
               }
             }
           }
