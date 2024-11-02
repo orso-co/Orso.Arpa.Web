@@ -60,14 +60,8 @@
             <div class="p-as-start p-d-flex p-ai-center">
               <span class="project-title">{{ myProject.project.title }}</span>
             </div>
-            <div class="p-as-start p-d-flex project-date">
-              <span *ngIf="myProject.project.startDate">{{ myProject.project.startDate | date : 'dd.MM.yy' : 'locale(de)' }}</span>
-              <span *ngIf="myProject.project.endDate"> - {{ myProject.project.endDate | date : 'dd.MM.yy' : 'locale(de)' }}</span>
-            </div>
-            <div class="p-as-start p-d-flex parentProject">
-              <span *ngIf="myProject.project.parentId" class="project-type">
-                {{ 'my-projects.IS_PART_OF_PROJECT' | translate }} {{ myProject.parentProject?.title }}</span
-              >
+            <div *ngIf="myProject.project.parentId" class="p-as-start p-d-flex parentProject">
+              <span class="project-type"> {{ 'my-projects.IS_PART_OF_PROJECT' | translate }} {{ myProject.parentProject?.title }}</span>
             </div>
           </div>
           <div *ngIf="myProject.participations.length === 1" class="right-align">
