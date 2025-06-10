@@ -2,6 +2,8 @@
 
 Frontend Arpa 2.0
 
+<img src="https://github.com/chipper-teapot/test/raw/main/Scanned_By_Snyk.png" alt="Scanned By Snyk Badge" width="25%" style="display: inline-block;">
+
 ## Project Structure
 
 ```
@@ -12,11 +14,11 @@ Orso.Arpa.Web.git
 └─── .github Githooks
 └─── @arpa // Global components library
 └─── src
-    └─── @arpa 
-    └─── app 
-    └─── assets 
+    └─── @arpa
+    └─── app
+    └─── assets
     │   └─── common // Default fonts, icons, images
-    │   └─── i18n 
+    │   └─── i18n
     │   │   └─── default // Global translations
     │   │       │   de.json
     │   │       │   <other_lang>.json
