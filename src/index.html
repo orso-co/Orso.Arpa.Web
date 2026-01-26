@@ -1,6 +1,12 @@
 <!doctype html>
 <html lang='en'>
 <head>
+  <script>
+    // Redirect from Azure to new server (Migration Januar 2026)
+    if (window.location.hostname.includes('azurewebsites.net')) {
+      window.location.replace('https://arpax.loopus.it' + window.location.pathname + window.location.search);
+    }
+  </script>
   <title>ORSO ARPA 2.0</title>
   <base href='/'>
   <meta charset='utf-8'>
